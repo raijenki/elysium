@@ -91,85 +91,95 @@ Partial Class frmEditor_AutoMapper
         Me.pnlResources.Controls.Add(Me.txtResource)
         Me.pnlResources.Controls.Add(Me.DarkLabel8)
         Me.pnlResources.Controls.Add(Me.lstResources)
-        Me.pnlResources.Location = New System.Drawing.Point(394, 20)
+        Me.pnlResources.Location = New System.Drawing.Point(591, 31)
+        Me.pnlResources.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.pnlResources.Name = "pnlResources"
-        Me.pnlResources.Size = New System.Drawing.Size(385, 267)
+        Me.pnlResources.Size = New System.Drawing.Size(578, 411)
         Me.pnlResources.TabIndex = 24
         Me.pnlResources.Visible = False
         '
         'btnAddResource
         '
-        Me.btnAddResource.Location = New System.Drawing.Point(254, 154)
+        Me.btnAddResource.Location = New System.Drawing.Point(381, 237)
+        Me.btnAddResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddResource.Name = "btnAddResource"
-        Me.btnAddResource.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnAddResource.Size = New System.Drawing.Size(122, 23)
+        Me.btnAddResource.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddResource.Size = New System.Drawing.Size(183, 35)
         Me.btnAddResource.TabIndex = 14
-        Me.btnAddResource.Text = "Add Resources"
+        Me.btnAddResource.Text = "Adicionar Recursos"
         '
         'btnRemoveResource
         '
-        Me.btnRemoveResource.Location = New System.Drawing.Point(254, 183)
+        Me.btnRemoveResource.Location = New System.Drawing.Point(381, 282)
+        Me.btnRemoveResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnRemoveResource.Name = "btnRemoveResource"
-        Me.btnRemoveResource.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRemoveResource.Size = New System.Drawing.Size(122, 23)
+        Me.btnRemoveResource.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnRemoveResource.Size = New System.Drawing.Size(183, 35)
         Me.btnRemoveResource.TabIndex = 13
-        Me.btnRemoveResource.Text = "Remove Resources"
+        Me.btnRemoveResource.Text = "Remover Recursos"
         '
         'btnUpdateResource
         '
-        Me.btnUpdateResource.Location = New System.Drawing.Point(254, 212)
+        Me.btnUpdateResource.Location = New System.Drawing.Point(381, 326)
+        Me.btnUpdateResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnUpdateResource.Name = "btnUpdateResource"
-        Me.btnUpdateResource.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnUpdateResource.Size = New System.Drawing.Size(122, 23)
+        Me.btnUpdateResource.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnUpdateResource.Size = New System.Drawing.Size(183, 35)
         Me.btnUpdateResource.TabIndex = 12
-        Me.btnUpdateResource.Text = "Update Resources"
+        Me.btnUpdateResource.Text = "Atualizar Recursos"
         '
         'btnSaveResource
         '
-        Me.btnSaveResource.Location = New System.Drawing.Point(254, 241)
+        Me.btnSaveResource.Location = New System.Drawing.Point(381, 371)
+        Me.btnSaveResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSaveResource.Name = "btnSaveResource"
-        Me.btnSaveResource.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnSaveResource.Size = New System.Drawing.Size(122, 23)
+        Me.btnSaveResource.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSaveResource.Size = New System.Drawing.Size(183, 35)
         Me.btnSaveResource.TabIndex = 11
-        Me.btnSaveResource.Text = "Save"
+        Me.btnSaveResource.Text = "Salvar"
         '
         'btnCloseResource
         '
-        Me.btnCloseResource.Location = New System.Drawing.Point(3, 240)
+        Me.btnCloseResource.Location = New System.Drawing.Point(4, 369)
+        Me.btnCloseResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCloseResource.Name = "btnCloseResource"
-        Me.btnCloseResource.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnCloseResource.Size = New System.Drawing.Size(122, 23)
+        Me.btnCloseResource.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCloseResource.Size = New System.Drawing.Size(183, 35)
         Me.btnCloseResource.TabIndex = 10
-        Me.btnCloseResource.Text = "Close"
+        Me.btnCloseResource.Text = "Fechar"
         '
         'txtResource
         '
         Me.txtResource.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtResource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtResource.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtResource.Location = New System.Drawing.Point(109, 156)
+        Me.txtResource.Location = New System.Drawing.Point(164, 240)
+        Me.txtResource.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtResource.Name = "txtResource"
-        Me.txtResource.Size = New System.Drawing.Size(100, 20)
+        Me.txtResource.Size = New System.Drawing.Size(149, 26)
         Me.txtResource.TabIndex = 9
         '
         'DarkLabel8
         '
         Me.DarkLabel8.AutoSize = True
         Me.DarkLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel8.Location = New System.Drawing.Point(7, 156)
+        Me.DarkLabel8.Location = New System.Drawing.Point(10, 240)
+        Me.DarkLabel8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel8.Name = "DarkLabel8"
-        Me.DarkLabel8.Size = New System.Drawing.Size(96, 13)
+        Me.DarkLabel8.Size = New System.Drawing.Size(155, 20)
         Me.DarkLabel8.TabIndex = 8
-        Me.DarkLabel8.Text = "Resource Number:"
+        Me.DarkLabel8.Text = "Número do Recurso:"
         '
         'lstResources
         '
         Me.lstResources.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.lstResources.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstResources.FormattingEnabled = True
-        Me.lstResources.Location = New System.Drawing.Point(3, 3)
+        Me.lstResources.ItemHeight = 20
+        Me.lstResources.Location = New System.Drawing.Point(4, 5)
+        Me.lstResources.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstResources.Name = "lstResources"
-        Me.lstResources.Size = New System.Drawing.Size(373, 147)
+        Me.lstResources.Size = New System.Drawing.Size(558, 224)
         Me.lstResources.TabIndex = 0
         '
         'pnlTileConfig
@@ -181,49 +191,54 @@ Partial Class frmEditor_AutoMapper
         Me.pnlTileConfig.Controls.Add(Me.cmbLayer)
         Me.pnlTileConfig.Controls.Add(Me.cmbPrefab)
         Me.pnlTileConfig.Controls.Add(Me.GroupBox1)
-        Me.pnlTileConfig.Location = New System.Drawing.Point(803, 23)
+        Me.pnlTileConfig.Location = New System.Drawing.Point(1204, 35)
+        Me.pnlTileConfig.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.pnlTileConfig.Name = "pnlTileConfig"
-        Me.pnlTileConfig.Size = New System.Drawing.Size(381, 270)
+        Me.pnlTileConfig.Size = New System.Drawing.Size(572, 415)
         Me.pnlTileConfig.TabIndex = 25
         Me.pnlTileConfig.Visible = False
         '
         'btnTileSetSave
         '
-        Me.btnTileSetSave.Location = New System.Drawing.Point(298, 240)
+        Me.btnTileSetSave.Location = New System.Drawing.Point(447, 369)
+        Me.btnTileSetSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnTileSetSave.Name = "btnTileSetSave"
-        Me.btnTileSetSave.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnTileSetSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnTileSetSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnTileSetSave.Size = New System.Drawing.Size(112, 35)
         Me.btnTileSetSave.TabIndex = 45
-        Me.btnTileSetSave.Text = "Save"
+        Me.btnTileSetSave.Text = "Salvar"
         '
         'btnTileSetClose
         '
-        Me.btnTileSetClose.Location = New System.Drawing.Point(7, 241)
+        Me.btnTileSetClose.Location = New System.Drawing.Point(10, 371)
+        Me.btnTileSetClose.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnTileSetClose.Name = "btnTileSetClose"
-        Me.btnTileSetClose.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnTileSetClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnTileSetClose.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnTileSetClose.Size = New System.Drawing.Size(112, 35)
         Me.btnTileSetClose.TabIndex = 44
-        Me.btnTileSetClose.Text = "Close"
+        Me.btnTileSetClose.Text = "Fechar"
         '
         'DarkLabel10
         '
         Me.DarkLabel10.AutoSize = True
         Me.DarkLabel10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel10.Location = New System.Drawing.Point(7, 37)
+        Me.DarkLabel10.Location = New System.Drawing.Point(10, 57)
+        Me.DarkLabel10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel10.Name = "DarkLabel10"
-        Me.DarkLabel10.Size = New System.Drawing.Size(97, 13)
+        Me.DarkLabel10.Size = New System.Drawing.Size(144, 20)
         Me.DarkLabel10.TabIndex = 43
-        Me.DarkLabel10.Text = "Choose The Layer:"
+        Me.DarkLabel10.Text = "Escolha a camada:"
         '
         'DarkLabel9
         '
         Me.DarkLabel9.AutoSize = True
         Me.DarkLabel9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel9.Location = New System.Drawing.Point(7, 10)
+        Me.DarkLabel9.Location = New System.Drawing.Point(10, 15)
+        Me.DarkLabel9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel9.Name = "DarkLabel9"
-        Me.DarkLabel9.Size = New System.Drawing.Size(102, 13)
+        Me.DarkLabel9.Size = New System.Drawing.Size(134, 20)
         Me.DarkLabel9.TabIndex = 43
-        Me.DarkLabel9.Text = "Choose The Prefab:"
+        Me.DarkLabel9.Text = "Escolha o Prefab:"
         '
         'cmbLayer
         '
@@ -240,9 +255,10 @@ Partial Class frmEditor_AutoMapper
         Me.cmbLayer.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbLayer.FormattingEnabled = True
         Me.cmbLayer.Items.AddRange(New Object() {"Ground", "Mask", "Mask 2", "Fringe", "Fringe 2"})
-        Me.cmbLayer.Location = New System.Drawing.Point(115, 34)
+        Me.cmbLayer.Location = New System.Drawing.Point(172, 52)
+        Me.cmbLayer.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbLayer.Name = "cmbLayer"
-        Me.cmbLayer.Size = New System.Drawing.Size(252, 21)
+        Me.cmbLayer.Size = New System.Drawing.Size(376, 27)
         Me.cmbLayer.TabIndex = 43
         Me.cmbLayer.Text = "Ground"
         Me.cmbLayer.TextPadding = New System.Windows.Forms.Padding(2)
@@ -262,9 +278,10 @@ Partial Class frmEditor_AutoMapper
         Me.cmbPrefab.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbPrefab.FormattingEnabled = True
         Me.cmbPrefab.Items.AddRange(New Object() {"Water", "Sand", "Grass", "Passing", "Overgrass", "River", "Mountain"})
-        Me.cmbPrefab.Location = New System.Drawing.Point(115, 7)
+        Me.cmbPrefab.Location = New System.Drawing.Point(172, 11)
+        Me.cmbPrefab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbPrefab.Name = "cmbPrefab"
-        Me.cmbPrefab.Size = New System.Drawing.Size(252, 21)
+        Me.cmbPrefab.Size = New System.Drawing.Size(376, 27)
         Me.cmbPrefab.TabIndex = 43
         Me.cmbPrefab.Text = "Water"
         Me.cmbPrefab.TextPadding = New System.Windows.Forms.Padding(2)
@@ -281,21 +298,24 @@ Partial Class frmEditor_AutoMapper
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Gainsboro
-        Me.GroupBox1.Location = New System.Drawing.Point(7, 66)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 102)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(366, 169)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Size = New System.Drawing.Size(549, 260)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Tile Settings"
+        Me.GroupBox1.Text = "Configurações de Tile"
         '
         'txtAutotile
         '
         Me.txtAutotile.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtAutotile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAutotile.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtAutotile.Location = New System.Drawing.Point(108, 98)
+        Me.txtAutotile.Location = New System.Drawing.Point(162, 151)
+        Me.txtAutotile.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtAutotile.Name = "txtAutotile"
-        Me.txtAutotile.Size = New System.Drawing.Size(252, 20)
+        Me.txtAutotile.Size = New System.Drawing.Size(377, 26)
         Me.txtAutotile.TabIndex = 47
         '
         'txtTileY
@@ -303,9 +323,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtTileY.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtTileY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTileY.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtTileY.Location = New System.Drawing.Point(108, 72)
+        Me.txtTileY.Location = New System.Drawing.Point(162, 111)
+        Me.txtTileY.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtTileY.Name = "txtTileY"
-        Me.txtTileY.Size = New System.Drawing.Size(252, 20)
+        Me.txtTileY.Size = New System.Drawing.Size(377, 26)
         Me.txtTileY.TabIndex = 46
         '
         'txtTileX
@@ -313,9 +334,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtTileX.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtTileX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTileX.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtTileX.Location = New System.Drawing.Point(108, 46)
+        Me.txtTileX.Location = New System.Drawing.Point(162, 71)
+        Me.txtTileX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtTileX.Name = "txtTileX"
-        Me.txtTileX.Size = New System.Drawing.Size(252, 20)
+        Me.txtTileX.Size = New System.Drawing.Size(377, 26)
         Me.txtTileX.TabIndex = 45
         '
         'txtTileset
@@ -323,65 +345,73 @@ Partial Class frmEditor_AutoMapper
         Me.txtTileset.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtTileset.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTileset.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtTileset.Location = New System.Drawing.Point(108, 20)
+        Me.txtTileset.Location = New System.Drawing.Point(162, 31)
+        Me.txtTileset.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtTileset.Name = "txtTileset"
-        Me.txtTileset.Size = New System.Drawing.Size(252, 20)
+        Me.txtTileset.Size = New System.Drawing.Size(377, 26)
         Me.txtTileset.TabIndex = 44
         '
         'chkBlocked
         '
         Me.chkBlocked.AutoSize = True
-        Me.chkBlocked.Location = New System.Drawing.Point(8, 132)
+        Me.chkBlocked.Location = New System.Drawing.Point(12, 203)
+        Me.chkBlocked.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkBlocked.Name = "chkBlocked"
-        Me.chkBlocked.Size = New System.Drawing.Size(91, 17)
+        Me.chkBlocked.Size = New System.Drawing.Size(156, 24)
         Me.chkBlocked.TabIndex = 43
-        Me.chkBlocked.Text = "Is It Blocked?"
+        Me.chkBlocked.Text = "Está bloqueado?"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(11, 100)
+        Me.Label14.Location = New System.Drawing.Point(16, 154)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(49, 13)
+        Me.Label14.Size = New System.Drawing.Size(71, 20)
         Me.Label14.TabIndex = 6
         Me.Label14.Text = "AutoTile:"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(11, 74)
+        Me.Label13.Location = New System.Drawing.Point(16, 114)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(53, 13)
+        Me.Label13.Size = New System.Drawing.Size(77, 20)
         Me.Label13.TabIndex = 4
         Me.Label13.Text = "TileSet Y:"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(11, 48)
+        Me.Label12.Location = New System.Drawing.Point(16, 74)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(53, 13)
+        Me.Label12.Size = New System.Drawing.Size(77, 20)
         Me.Label12.TabIndex = 2
         Me.Label12.Text = "TileSet X:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(11, 22)
+        Me.Label11.Location = New System.Drawing.Point(16, 34)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(83, 13)
+        Me.Label11.Size = New System.Drawing.Size(144, 20)
         Me.Label11.TabIndex = 0
-        Me.Label11.Text = "TileSet Number:"
+        Me.Label11.Text = "Número do TileSet:"
         '
         'DarkMenu
         '
         Me.DarkMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.DarkMenu.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkMenu.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.DarkMenu.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.DarkMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfigurationsToolStripMenuItem2, Me.GenerateToolStripMenuItem1})
         Me.DarkMenu.Location = New System.Drawing.Point(0, 0)
         Me.DarkMenu.Name = "DarkMenu"
-        Me.DarkMenu.Padding = New System.Windows.Forms.Padding(3, 2, 0, 2)
-        Me.DarkMenu.Size = New System.Drawing.Size(1188, 24)
+        Me.DarkMenu.Padding = New System.Windows.Forms.Padding(4, 3, 0, 3)
+        Me.DarkMenu.Size = New System.Drawing.Size(1782, 36)
         Me.DarkMenu.TabIndex = 27
         '
         'ConfigurationsToolStripMenuItem2
@@ -389,30 +419,30 @@ Partial Class frmEditor_AutoMapper
         Me.ConfigurationsToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TilesetsToolStripMenuItem, Me.ResourcesToolStripMenuItem})
         Me.ConfigurationsToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.ConfigurationsToolStripMenuItem2.Name = "ConfigurationsToolStripMenuItem2"
-        Me.ConfigurationsToolStripMenuItem2.Size = New System.Drawing.Size(93, 20)
-        Me.ConfigurationsToolStripMenuItem2.Text = "Configuration"
+        Me.ConfigurationsToolStripMenuItem2.Size = New System.Drawing.Size(134, 30)
+        Me.ConfigurationsToolStripMenuItem2.Text = "Configuração"
         '
         'TilesetsToolStripMenuItem
         '
         Me.TilesetsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.TilesetsToolStripMenuItem.Name = "TilesetsToolStripMenuItem"
-        Me.TilesetsToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.TilesetsToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.TilesetsToolStripMenuItem.Text = "Tilesets"
         '
         'ResourcesToolStripMenuItem
         '
         Me.ResourcesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.ResourcesToolStripMenuItem.Name = "ResourcesToolStripMenuItem"
-        Me.ResourcesToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
-        Me.ResourcesToolStripMenuItem.Text = "Resources"
+        Me.ResourcesToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
+        Me.ResourcesToolStripMenuItem.Text = "Recursos"
         '
         'GenerateToolStripMenuItem1
         '
         Me.GenerateToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PathsToolStripMenuItem1, Me.RiversToolStripMenuItem1, Me.MountainsToolStripMenuItem1, Me.OverGrassToolStripMenuItem1, Me.ResourcesToolStripMenuItem3, Me.DetailsToolStripMenuItem1})
         Me.GenerateToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.GenerateToolStripMenuItem1.Name = "GenerateToolStripMenuItem1"
-        Me.GenerateToolStripMenuItem1.Size = New System.Drawing.Size(66, 20)
-        Me.GenerateToolStripMenuItem1.Text = "Generate"
+        Me.GenerateToolStripMenuItem1.Size = New System.Drawing.Size(70, 30)
+        Me.GenerateToolStripMenuItem1.Text = "Gerar"
         '
         'PathsToolStripMenuItem1
         '
@@ -421,8 +451,8 @@ Partial Class frmEditor_AutoMapper
         Me.PathsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.PathsToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.PathsToolStripMenuItem1.Name = "PathsToolStripMenuItem1"
-        Me.PathsToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
-        Me.PathsToolStripMenuItem1.Text = "Paths"
+        Me.PathsToolStripMenuItem1.Size = New System.Drawing.Size(270, 34)
+        Me.PathsToolStripMenuItem1.Text = "Caminhos"
         '
         'RiversToolStripMenuItem1
         '
@@ -431,8 +461,8 @@ Partial Class frmEditor_AutoMapper
         Me.RiversToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.RiversToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.RiversToolStripMenuItem1.Name = "RiversToolStripMenuItem1"
-        Me.RiversToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
-        Me.RiversToolStripMenuItem1.Text = "Rivers"
+        Me.RiversToolStripMenuItem1.Size = New System.Drawing.Size(270, 34)
+        Me.RiversToolStripMenuItem1.Text = "Rios"
         '
         'MountainsToolStripMenuItem1
         '
@@ -441,8 +471,8 @@ Partial Class frmEditor_AutoMapper
         Me.MountainsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.MountainsToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.MountainsToolStripMenuItem1.Name = "MountainsToolStripMenuItem1"
-        Me.MountainsToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
-        Me.MountainsToolStripMenuItem1.Text = "Mountains"
+        Me.MountainsToolStripMenuItem1.Size = New System.Drawing.Size(270, 34)
+        Me.MountainsToolStripMenuItem1.Text = "Montanhas"
         '
         'OverGrassToolStripMenuItem1
         '
@@ -451,8 +481,8 @@ Partial Class frmEditor_AutoMapper
         Me.OverGrassToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.OverGrassToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.OverGrassToolStripMenuItem1.Name = "OverGrassToolStripMenuItem1"
-        Me.OverGrassToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
-        Me.OverGrassToolStripMenuItem1.Text = "OverGrass"
+        Me.OverGrassToolStripMenuItem1.Size = New System.Drawing.Size(270, 34)
+        Me.OverGrassToolStripMenuItem1.Text = "Sobre-grama"
         '
         'ResourcesToolStripMenuItem3
         '
@@ -461,8 +491,8 @@ Partial Class frmEditor_AutoMapper
         Me.ResourcesToolStripMenuItem3.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ResourcesToolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.ResourcesToolStripMenuItem3.Name = "ResourcesToolStripMenuItem3"
-        Me.ResourcesToolStripMenuItem3.Size = New System.Drawing.Size(131, 22)
-        Me.ResourcesToolStripMenuItem3.Text = "Resources"
+        Me.ResourcesToolStripMenuItem3.Size = New System.Drawing.Size(270, 34)
+        Me.ResourcesToolStripMenuItem3.Text = "Recursos"
         '
         'DetailsToolStripMenuItem1
         '
@@ -471,87 +501,95 @@ Partial Class frmEditor_AutoMapper
         Me.DetailsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.DetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.DetailsToolStripMenuItem1.Name = "DetailsToolStripMenuItem1"
-        Me.DetailsToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
-        Me.DetailsToolStripMenuItem1.Text = "Details"
+        Me.DetailsToolStripMenuItem1.Size = New System.Drawing.Size(270, 34)
+        Me.DetailsToolStripMenuItem1.Text = "Detalhes"
         '
         'DarkLabel1
         '
         Me.DarkLabel1.AutoSize = True
         Me.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel1.Location = New System.Drawing.Point(12, 31)
+        Me.DarkLabel1.Location = New System.Drawing.Point(18, 48)
+        Me.DarkLabel1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel1.Name = "DarkLabel1"
-        Me.DarkLabel1.Size = New System.Drawing.Size(56, 13)
+        Me.DarkLabel1.Size = New System.Drawing.Size(97, 20)
         Me.DarkLabel1.TabIndex = 28
-        Me.DarkLabel1.Text = "Start Map:"
+        Me.DarkLabel1.Text = "Mapa Inicial:"
         '
         'DarkLabel2
         '
         Me.DarkLabel2.AutoSize = True
         Me.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel2.Location = New System.Drawing.Point(12, 57)
+        Me.DarkLabel2.Location = New System.Drawing.Point(18, 88)
+        Me.DarkLabel2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel2.Name = "DarkLabel2"
-        Me.DarkLabel2.Size = New System.Drawing.Size(63, 13)
+        Me.DarkLabel2.Size = New System.Drawing.Size(99, 20)
         Me.DarkLabel2.TabIndex = 29
-        Me.DarkLabel2.Text = "Island Area:"
+        Me.DarkLabel2.Text = "Área de Ilha:"
         '
         'DarkLabel3
         '
         Me.DarkLabel3.AutoSize = True
         Me.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel3.Location = New System.Drawing.Point(13, 83)
+        Me.DarkLabel3.Location = New System.Drawing.Point(20, 128)
+        Me.DarkLabel3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel3.Name = "DarkLabel3"
-        Me.DarkLabel3.Size = New System.Drawing.Size(63, 13)
+        Me.DarkLabel3.Size = New System.Drawing.Size(171, 20)
         Me.DarkLabel3.TabIndex = 30
-        Me.DarkLabel3.Text = "Max Size X:"
+        Me.DarkLabel3.Text = "Tamanho do Mapa (X):"
         '
         'DarkLabel4
         '
         Me.DarkLabel4.AutoSize = True
         Me.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel4.Location = New System.Drawing.Point(12, 109)
+        Me.DarkLabel4.Location = New System.Drawing.Point(18, 168)
+        Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(64, 13)
+        Me.DarkLabel4.Size = New System.Drawing.Size(171, 20)
         Me.DarkLabel4.TabIndex = 31
-        Me.DarkLabel4.Text = "Map Size Y:"
+        Me.DarkLabel4.Text = "Tamanho do Mapa (Y):"
         '
         'DarkLabel5
         '
         Me.DarkLabel5.AutoSize = True
         Me.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel5.Location = New System.Drawing.Point(13, 135)
+        Me.DarkLabel5.Location = New System.Drawing.Point(20, 208)
+        Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(69, 13)
+        Me.DarkLabel5.Size = New System.Drawing.Size(119, 20)
         Me.DarkLabel5.TabIndex = 32
-        Me.DarkLabel5.Text = "Sand Border:"
+        Me.DarkLabel5.Text = "Borda de Areia:"
         '
         'DarkLabel6
         '
         Me.DarkLabel6.AutoSize = True
         Me.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel6.Location = New System.Drawing.Point(13, 161)
+        Me.DarkLabel6.Location = New System.Drawing.Point(20, 248)
+        Me.DarkLabel6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel6.Name = "DarkLabel6"
-        Me.DarkLabel6.Size = New System.Drawing.Size(111, 13)
+        Me.DarkLabel6.Size = New System.Drawing.Size(171, 20)
         Me.DarkLabel6.TabIndex = 33
-        Me.DarkLabel6.Text = "Detail Frequency 1 of "
+        Me.DarkLabel6.Text = "Freq. de Detalhes 1 de"
         '
         'DarkLabel7
         '
         Me.DarkLabel7.AutoSize = True
         Me.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel7.Location = New System.Drawing.Point(12, 187)
+        Me.DarkLabel7.Location = New System.Drawing.Point(18, 288)
+        Me.DarkLabel7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel7.Name = "DarkLabel7"
-        Me.DarkLabel7.Size = New System.Drawing.Size(127, 13)
+        Me.DarkLabel7.Size = New System.Drawing.Size(179, 20)
         Me.DarkLabel7.TabIndex = 34
-        Me.DarkLabel7.Text = "Resource Frequency 1 of"
+        Me.DarkLabel7.Text = "Freq. de Recursos 1 de "
         '
         'txtMapStart
         '
         Me.txtMapStart.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtMapStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMapStart.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtMapStart.Location = New System.Drawing.Point(145, 28)
+        Me.txtMapStart.Location = New System.Drawing.Point(218, 43)
+        Me.txtMapStart.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtMapStart.Name = "txtMapStart"
-        Me.txtMapStart.Size = New System.Drawing.Size(225, 20)
+        Me.txtMapStart.Size = New System.Drawing.Size(336, 26)
         Me.txtMapStart.TabIndex = 35
         Me.txtMapStart.Text = "1"
         '
@@ -560,9 +598,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtMapSize.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtMapSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMapSize.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtMapSize.Location = New System.Drawing.Point(145, 54)
+        Me.txtMapSize.Location = New System.Drawing.Point(218, 83)
+        Me.txtMapSize.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtMapSize.Name = "txtMapSize"
-        Me.txtMapSize.Size = New System.Drawing.Size(225, 20)
+        Me.txtMapSize.Size = New System.Drawing.Size(336, 26)
         Me.txtMapSize.TabIndex = 36
         Me.txtMapSize.Text = "4"
         '
@@ -571,9 +610,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtMapX.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtMapX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMapX.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtMapX.Location = New System.Drawing.Point(145, 80)
+        Me.txtMapX.Location = New System.Drawing.Point(218, 123)
+        Me.txtMapX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtMapX.Name = "txtMapX"
-        Me.txtMapX.Size = New System.Drawing.Size(225, 20)
+        Me.txtMapX.Size = New System.Drawing.Size(336, 26)
         Me.txtMapX.TabIndex = 37
         Me.txtMapX.Text = "50"
         '
@@ -582,9 +622,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtMapY.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtMapY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMapY.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtMapY.Location = New System.Drawing.Point(145, 106)
+        Me.txtMapY.Location = New System.Drawing.Point(218, 163)
+        Me.txtMapY.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtMapY.Name = "txtMapY"
-        Me.txtMapY.Size = New System.Drawing.Size(225, 20)
+        Me.txtMapY.Size = New System.Drawing.Size(336, 26)
         Me.txtMapY.TabIndex = 38
         Me.txtMapY.Text = "50"
         '
@@ -593,9 +634,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtSandBorder.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtSandBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtSandBorder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtSandBorder.Location = New System.Drawing.Point(145, 132)
+        Me.txtSandBorder.Location = New System.Drawing.Point(218, 203)
+        Me.txtSandBorder.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtSandBorder.Name = "txtSandBorder"
-        Me.txtSandBorder.Size = New System.Drawing.Size(225, 20)
+        Me.txtSandBorder.Size = New System.Drawing.Size(336, 26)
         Me.txtSandBorder.TabIndex = 39
         Me.txtSandBorder.Text = "4"
         '
@@ -604,9 +646,10 @@ Partial Class frmEditor_AutoMapper
         Me.txtDetail.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDetail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtDetail.Location = New System.Drawing.Point(145, 158)
+        Me.txtDetail.Location = New System.Drawing.Point(218, 243)
+        Me.txtDetail.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtDetail.Name = "txtDetail"
-        Me.txtDetail.Size = New System.Drawing.Size(225, 20)
+        Me.txtDetail.Size = New System.Drawing.Size(336, 26)
         Me.txtDetail.TabIndex = 40
         Me.txtDetail.Text = "10"
         '
@@ -615,27 +658,29 @@ Partial Class frmEditor_AutoMapper
         Me.txtResourceFreq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtResourceFreq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtResourceFreq.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtResourceFreq.Location = New System.Drawing.Point(145, 184)
+        Me.txtResourceFreq.Location = New System.Drawing.Point(218, 283)
+        Me.txtResourceFreq.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtResourceFreq.Name = "txtResourceFreq"
-        Me.txtResourceFreq.Size = New System.Drawing.Size(225, 20)
+        Me.txtResourceFreq.Size = New System.Drawing.Size(336, 26)
         Me.txtResourceFreq.TabIndex = 41
         Me.txtResourceFreq.Text = "20"
         '
         'btnStart
         '
-        Me.btnStart.Location = New System.Drawing.Point(16, 232)
+        Me.btnStart.Location = New System.Drawing.Point(24, 357)
+        Me.btnStart.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnStart.Name = "btnStart"
-        Me.btnStart.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnStart.Size = New System.Drawing.Size(354, 33)
+        Me.btnStart.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnStart.Size = New System.Drawing.Size(531, 51)
         Me.btnStart.TabIndex = 42
-        Me.btnStart.Text = "Create The World"
+        Me.btnStart.Text = "Criar Mundo"
         '
-        'FrmAutoMapper
+        'frmEditor_AutoMapper
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1188, 296)
+        Me.ClientSize = New System.Drawing.Size(1782, 455)
         Me.Controls.Add(Me.pnlResources)
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.txtResourceFreq)
@@ -655,8 +700,9 @@ Partial Class frmEditor_AutoMapper
         Me.Controls.Add(Me.pnlTileConfig)
         Me.Controls.Add(Me.DarkMenu)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "FrmAutoMapper"
-        Me.Text = "Auto Mapper"
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Name = "frmEditor_AutoMapper"
+        Me.Text = "Gerador Procedural de Mapas"
         Me.pnlResources.ResumeLayout(False)
         Me.pnlResources.PerformLayout()
         Me.pnlTileConfig.ResumeLayout(False)

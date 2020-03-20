@@ -319,6 +319,10 @@ Friend Class FrmGame
         CraftingInit()
     End Sub
 
+    Private Sub lblCurrency_Click(sender As Object, e As EventArgs) Handles lblCurrency.Click
+
+    End Sub
+
 #End Region
 
 End Class

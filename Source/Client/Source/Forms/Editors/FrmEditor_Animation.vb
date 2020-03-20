@@ -80,4 +80,7 @@
         Animation(Editorindex).Sound = cmbSound.SelectedItem.ToString
     End Sub
 
+    Private Sub DarkGroupBox1_Enter(sender As Object, e As EventArgs) Handles DarkGroupBox1.Enter
+
+    End Sub
 End Class
