@@ -247,6 +247,10 @@
         Npc(Editorindex).Skill(6) = cmbSkill6.SelectedIndex
     End Sub
 
+    Private Sub DarkLabel4_Click(sender As Object, e As EventArgs) Handles DarkLabel4.Click
+
+    End Sub
+
 #End Region
 
 End Class

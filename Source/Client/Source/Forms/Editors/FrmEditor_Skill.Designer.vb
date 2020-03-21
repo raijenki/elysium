@@ -158,7 +158,7 @@ Partial Class frmEditor_Skill
         Me.btnDelete.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.btnDelete.Size = New System.Drawing.Size(75, 23)
         Me.btnDelete.TabIndex = 4
-        Me.btnDelete.Text = "Deletar"
+        Me.btnDelete.Text = "Excluir"
         '
         'btnCancel
         '

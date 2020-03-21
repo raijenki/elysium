@@ -65,11 +65,9 @@ Partial Class frmEditor_Shop
         Me.DarkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox1.Controls.Add(Me.lstIndex)
         Me.DarkGroupBox1.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox1.Location = New System.Drawing.Point(4, 5)
-        Me.DarkGroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.DarkGroupBox1.Name = "DarkGroupBox1"
-        Me.DarkGroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DarkGroupBox1.Size = New System.Drawing.Size(314, 612)
+        Me.DarkGroupBox1.Size = New System.Drawing.Size(209, 398)
         Me.DarkGroupBox1.TabIndex = 0
         Me.DarkGroupBox1.TabStop = False
         Me.DarkGroupBox1.Text = "Lista de Lojas"
@@ -80,11 +78,9 @@ Partial Class frmEditor_Shop
         Me.lstIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstIndex.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstIndex.FormattingEnabled = True
-        Me.lstIndex.ItemHeight = 20
-        Me.lstIndex.Location = New System.Drawing.Point(9, 29)
-        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstIndex.Location = New System.Drawing.Point(6, 19)
         Me.lstIndex.Name = "lstIndex"
-        Me.lstIndex.Size = New System.Drawing.Size(293, 562)
+        Me.lstIndex.Size = New System.Drawing.Size(196, 366)
         Me.lstIndex.TabIndex = 1
         '
         'DarkGroupBox2
@@ -104,42 +100,37 @@ Partial Class frmEditor_Shop
         Me.DarkGroupBox2.Controls.Add(Me.DarkLabel1)
         Me.DarkGroupBox2.Controls.Add(Me.picFace)
         Me.DarkGroupBox2.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox2.Location = New System.Drawing.Point(327, 5)
-        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox2.Location = New System.Drawing.Point(218, 3)
         Me.DarkGroupBox2.Name = "DarkGroupBox2"
-        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DarkGroupBox2.Size = New System.Drawing.Size(621, 612)
+        Me.DarkGroupBox2.Size = New System.Drawing.Size(414, 398)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
         Me.DarkGroupBox2.Text = "Propriedades da Loja"
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(500, 562)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnCancel.Location = New System.Drawing.Point(333, 365)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
-        Me.btnCancel.Size = New System.Drawing.Size(112, 35)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 55
         Me.btnCancel.Text = "Cancelar"
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(255, 562)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnDelete.Location = New System.Drawing.Point(170, 365)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
-        Me.btnDelete.Size = New System.Drawing.Size(112, 35)
+        Me.btnDelete.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
         Me.btnDelete.TabIndex = 54
         Me.btnDelete.Text = "Excluir"
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(9, 562)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSave.Location = New System.Drawing.Point(6, 365)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
-        Me.btnSave.Size = New System.Drawing.Size(112, 35)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 53
         Me.btnSave.Text = "Salvar"
         '
@@ -159,32 +150,28 @@ Partial Class frmEditor_Shop
         Me.DarkGroupBox3.Controls.Add(Me.DarkLabel5)
         Me.DarkGroupBox3.Controls.Add(Me.lstTradeItem)
         Me.DarkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox3.Location = New System.Drawing.Point(9, 186)
-        Me.DarkGroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox3.Location = New System.Drawing.Point(6, 121)
         Me.DarkGroupBox3.Name = "DarkGroupBox3"
-        Me.DarkGroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DarkGroupBox3.Size = New System.Drawing.Size(602, 366)
+        Me.DarkGroupBox3.Size = New System.Drawing.Size(401, 238)
         Me.DarkGroupBox3.TabIndex = 52
         Me.DarkGroupBox3.TabStop = False
         Me.DarkGroupBox3.Text = "Itens Vendidos pela Loja"
         '
         'btnDeleteTrade
         '
-        Me.btnDeleteTrade.Location = New System.Drawing.Point(304, 325)
-        Me.btnDeleteTrade.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnDeleteTrade.Location = New System.Drawing.Point(203, 211)
         Me.btnDeleteTrade.Name = "btnDeleteTrade"
-        Me.btnDeleteTrade.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
-        Me.btnDeleteTrade.Size = New System.Drawing.Size(112, 35)
+        Me.btnDeleteTrade.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnDeleteTrade.Size = New System.Drawing.Size(75, 23)
         Me.btnDeleteTrade.TabIndex = 53
-        Me.btnDeleteTrade.Text = "Deletar"
+        Me.btnDeleteTrade.Text = "Excluir"
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(183, 325)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnUpdate.Location = New System.Drawing.Point(122, 211)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
-        Me.btnUpdate.Size = New System.Drawing.Size(112, 35)
+        Me.btnUpdate.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 52
         Me.btnUpdate.Text = "Atualizar"
         '
@@ -192,10 +179,9 @@ Partial Class frmEditor_Shop
         '
         Me.nudCostValue.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudCostValue.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudCostValue.Location = New System.Drawing.Point(446, 283)
-        Me.nudCostValue.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.nudCostValue.Location = New System.Drawing.Point(297, 184)
         Me.nudCostValue.Name = "nudCostValue"
-        Me.nudCostValue.Size = New System.Drawing.Size(147, 26)
+        Me.nudCostValue.Size = New System.Drawing.Size(98, 20)
         Me.nudCostValue.TabIndex = 51
         Me.nudCostValue.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -203,10 +189,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel8.AutoSize = True
         Me.DarkLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel8.Location = New System.Drawing.Point(395, 286)
-        Me.DarkLabel8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel8.Location = New System.Drawing.Point(263, 186)
         Me.DarkLabel8.Name = "DarkLabel8"
-        Me.DarkLabel8.Size = New System.Drawing.Size(43, 20)
+        Me.DarkLabel8.Size = New System.Drawing.Size(30, 13)
         Me.DarkLabel8.TabIndex = 50
         Me.DarkLabel8.Text = "Qtd.:"
         '
@@ -224,10 +209,9 @@ Partial Class frmEditor_Shop
         Me.cmbCostItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCostItem.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCostItem.FormattingEnabled = True
-        Me.cmbCostItem.Location = New System.Drawing.Point(141, 281)
-        Me.cmbCostItem.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cmbCostItem.Location = New System.Drawing.Point(94, 183)
         Me.cmbCostItem.Name = "cmbCostItem"
-        Me.cmbCostItem.Size = New System.Drawing.Size(246, 27)
+        Me.cmbCostItem.Size = New System.Drawing.Size(165, 21)
         Me.cmbCostItem.TabIndex = 49
         Me.cmbCostItem.Text = Nothing
         Me.cmbCostItem.TextPadding = New System.Windows.Forms.Padding(2)
@@ -236,10 +220,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel7.AutoSize = True
         Me.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel7.Location = New System.Drawing.Point(9, 288)
-        Me.DarkLabel7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel7.Location = New System.Drawing.Point(6, 187)
         Me.DarkLabel7.Name = "DarkLabel7"
-        Me.DarkLabel7.Size = New System.Drawing.Size(113, 20)
+        Me.DarkLabel7.Size = New System.Drawing.Size(75, 13)
         Me.DarkLabel7.TabIndex = 48
         Me.DarkLabel7.Text = "Custo do Item:"
         '
@@ -247,10 +230,9 @@ Partial Class frmEditor_Shop
         '
         Me.nudItemValue.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudItemValue.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudItemValue.Location = New System.Drawing.Point(446, 243)
-        Me.nudItemValue.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.nudItemValue.Location = New System.Drawing.Point(297, 158)
         Me.nudItemValue.Name = "nudItemValue"
-        Me.nudItemValue.Size = New System.Drawing.Size(147, 26)
+        Me.nudItemValue.Size = New System.Drawing.Size(98, 20)
         Me.nudItemValue.TabIndex = 47
         Me.nudItemValue.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -258,10 +240,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel6.AutoSize = True
         Me.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel6.Location = New System.Drawing.Point(395, 245)
-        Me.DarkLabel6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel6.Location = New System.Drawing.Point(263, 159)
         Me.DarkLabel6.Name = "DarkLabel6"
-        Me.DarkLabel6.Size = New System.Drawing.Size(43, 20)
+        Me.DarkLabel6.Size = New System.Drawing.Size(30, 13)
         Me.DarkLabel6.TabIndex = 46
         Me.DarkLabel6.Text = "Qtd.:"
         '
@@ -279,10 +260,9 @@ Partial Class frmEditor_Shop
         Me.cmbItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbItem.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbItem.FormattingEnabled = True
-        Me.cmbItem.Location = New System.Drawing.Point(141, 245)
-        Me.cmbItem.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cmbItem.Location = New System.Drawing.Point(94, 159)
         Me.cmbItem.Name = "cmbItem"
-        Me.cmbItem.Size = New System.Drawing.Size(246, 27)
+        Me.cmbItem.Size = New System.Drawing.Size(165, 21)
         Me.cmbItem.TabIndex = 45
         Me.cmbItem.Text = Nothing
         Me.cmbItem.TextPadding = New System.Windows.Forms.Padding(2)
@@ -291,10 +271,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel5.AutoSize = True
         Me.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel5.Location = New System.Drawing.Point(9, 252)
-        Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel5.Location = New System.Drawing.Point(6, 164)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(114, 20)
+        Me.DarkLabel5.Size = New System.Drawing.Size(76, 13)
         Me.DarkLabel5.TabIndex = 44
         Me.DarkLabel5.Text = "Item à Vender:"
         '
@@ -304,22 +283,19 @@ Partial Class frmEditor_Shop
         Me.lstTradeItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstTradeItem.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstTradeItem.FormattingEnabled = True
-        Me.lstTradeItem.ItemHeight = 20
         Me.lstTradeItem.Items.AddRange(New Object() {"1.", "2.", "3.", "4.", "5.", "6.", "7.", "8."})
-        Me.lstTradeItem.Location = New System.Drawing.Point(9, 29)
-        Me.lstTradeItem.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstTradeItem.Location = New System.Drawing.Point(6, 19)
         Me.lstTradeItem.Name = "lstTradeItem"
-        Me.lstTradeItem.Size = New System.Drawing.Size(582, 202)
+        Me.lstTradeItem.Size = New System.Drawing.Size(389, 132)
         Me.lstTradeItem.TabIndex = 43
         '
         'DarkLabel4
         '
         Me.DarkLabel4.AutoSize = True
         Me.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel4.Location = New System.Drawing.Point(431, 134)
-        Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel4.Location = New System.Drawing.Point(287, 87)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(144, 20)
+        Me.DarkLabel4.Size = New System.Drawing.Size(95, 13)
         Me.DarkLabel4.TabIndex = 51
         Me.DarkLabel4.Text = "% do Valor do Item"
         '
@@ -327,10 +303,9 @@ Partial Class frmEditor_Shop
         '
         Me.nudBuy.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudBuy.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudBuy.Location = New System.Drawing.Point(299, 132)
-        Me.nudBuy.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.nudBuy.Location = New System.Drawing.Point(199, 86)
         Me.nudBuy.Name = "nudBuy"
-        Me.nudBuy.Size = New System.Drawing.Size(120, 26)
+        Me.nudBuy.Size = New System.Drawing.Size(80, 20)
         Me.nudBuy.TabIndex = 50
         Me.nudBuy.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -338,10 +313,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel3.AutoSize = True
         Me.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel3.Location = New System.Drawing.Point(162, 134)
-        Me.DarkLabel3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel3.Location = New System.Drawing.Point(108, 87)
         Me.DarkLabel3.Name = "DarkLabel3"
-        Me.DarkLabel3.Size = New System.Drawing.Size(129, 20)
+        Me.DarkLabel3.Size = New System.Drawing.Size(88, 13)
         Me.DarkLabel3.TabIndex = 49
         Me.DarkLabel3.Text = "Taxa de Compra:"
         '
@@ -349,10 +323,9 @@ Partial Class frmEditor_Shop
         '
         Me.nudFace.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudFace.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudFace.Location = New System.Drawing.Point(270, 78)
-        Me.nudFace.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.nudFace.Location = New System.Drawing.Point(180, 51)
         Me.nudFace.Name = "nudFace"
-        Me.nudFace.Size = New System.Drawing.Size(140, 26)
+        Me.nudFace.Size = New System.Drawing.Size(93, 20)
         Me.nudFace.TabIndex = 48
         Me.nudFace.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -360,10 +333,9 @@ Partial Class frmEditor_Shop
         '
         Me.DarkLabel2.AutoSize = True
         Me.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel2.Location = New System.Drawing.Point(162, 82)
-        Me.DarkLabel2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel2.Location = New System.Drawing.Point(108, 53)
         Me.DarkLabel2.Name = "DarkLabel2"
-        Me.DarkLabel2.Size = New System.Drawing.Size(56, 20)
+        Me.DarkLabel2.Size = New System.Drawing.Size(38, 13)
         Me.DarkLabel2.TabIndex = 47
         Me.DarkLabel2.Text = "Rosto:"
         '
@@ -372,20 +344,18 @@ Partial Class frmEditor_Shop
         Me.txtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtName.Location = New System.Drawing.Point(270, 29)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtName.Location = New System.Drawing.Point(180, 19)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(340, 26)
+        Me.txtName.Size = New System.Drawing.Size(227, 20)
         Me.txtName.TabIndex = 46
         '
         'DarkLabel1
         '
         Me.DarkLabel1.AutoSize = True
         Me.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel1.Location = New System.Drawing.Point(162, 32)
-        Me.DarkLabel1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DarkLabel1.Location = New System.Drawing.Point(108, 21)
         Me.DarkLabel1.Name = "DarkLabel1"
-        Me.DarkLabel1.Size = New System.Drawing.Size(55, 20)
+        Me.DarkLabel1.Size = New System.Drawing.Size(38, 13)
         Me.DarkLabel1.TabIndex = 45
         Me.DarkLabel1.Text = "Nome:"
         '
@@ -393,24 +363,22 @@ Partial Class frmEditor_Shop
         '
         Me.picFace.BackColor = System.Drawing.Color.Black
         Me.picFace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picFace.Location = New System.Drawing.Point(9, 29)
-        Me.picFace.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.picFace.Location = New System.Drawing.Point(6, 19)
         Me.picFace.Name = "picFace"
-        Me.picFace.Size = New System.Drawing.Size(144, 148)
+        Me.picFace.Size = New System.Drawing.Size(96, 96)
         Me.picFace.TabIndex = 44
         Me.picFace.TabStop = False
         '
         'frmEditor_Shop
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(957, 628)
+        Me.ClientSize = New System.Drawing.Size(638, 408)
         Me.ControlBox = False
         Me.Controls.Add(Me.DarkGroupBox2)
         Me.Controls.Add(Me.DarkGroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmEditor_Shop"
         Me.Text = "Editor de Lojas"
         Me.DarkGroupBox1.ResumeLayout(False)
