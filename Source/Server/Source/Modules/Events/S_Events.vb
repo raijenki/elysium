@@ -12,7 +12,7 @@ Friend Module S_Events
 
     Friend Const PathfindingType As Integer = 1
 
-    'Effect Constants - Used for event options...
+    'Constantes de Efeito - Usado para opções de eventos...
     Friend Const EffectTypeFadein As Integer = 2
 
     Friend Const EffectTypeFadeout As Integer = 1
@@ -55,7 +55,7 @@ Friend Module S_Events
         Dim GraphicY As Integer
         Dim GraphicY2 As Integer
 
-        'Server Only Options
+        'Opções Apenas do Servidor
         Dim MoveType As Integer
 
         Dim MoveSpeed As Integer
@@ -111,8 +111,7 @@ Friend Module S_Events
     End Structure
 
     Structure EventPageStruct
-
-        'These are condition variables that decide if the event even appears to the player.
+        'Estas são variáveis de condições que decidem se o evento ao menos aparece ao jogador.
         Dim ChkVariable As Integer
 
         Dim Variableindex As Integer
@@ -131,9 +130,9 @@ Friend Module S_Events
         Dim SelfSwitchindex As Integer
         Dim SelfSwitchCompare As Integer
         Dim ChkPlayerGender As Integer
-        'End Conditions
+        'Fim das condições
 
-        'Handles the Event Sprite
+        'Lida com a Sprite do Evento
         Dim GraphicType As Byte
 
         Dim Graphic As Integer
@@ -142,7 +141,7 @@ Friend Module S_Events
         Dim GraphicX2 As Integer
         Dim GraphicY2 As Integer
 
-        'Handles Movement - Move Routes to come soon.
+        'Lida com o Movimento.
         Dim MoveType As Byte
 
         Dim MoveSpeed As Byte
@@ -152,17 +151,17 @@ Friend Module S_Events
         Dim IgnoreMoveRoute As Integer
         Dim RepeatMoveRoute As Integer
 
-        'Guidelines for the event
+        'Regras para o Evento
         Dim WalkAnim As Integer
 
         Dim DirFix As Integer
         Dim WalkThrough As Integer
         Dim ShowName As Integer
 
-        'Trigger for the event
+        'Gatilho para o evento
         Dim Trigger As Byte
 
-        'Commands for the event
+        'Comandos para o evento
         Dim CommandListCount As Integer
 
         Dim CommandList() As CommandListStruct
@@ -171,7 +170,7 @@ Friend Module S_Events
 
         Dim QuestNum As Integer
 
-        'For EventMap
+        'Para o EventMap
         Dim X As Integer
 
         Dim Y As Integer
@@ -220,7 +219,7 @@ Friend Module S_Events
         Dim EventId As Integer
         Dim PageId As Integer
 
-        'Server Only Options
+        'Opções Apenas do Servidor
         Dim MoveType As Integer
 
         Dim MoveSpeed As Integer
@@ -306,27 +305,27 @@ Friend Module S_Events
         ChangeGraphic
     End Enum
 
-    ' Event Types
+    ' Tipos de Eventos
     Friend Enum EventType
 
-        ' Message
+        ' Mensagem
         EvAddText = 1
 
         EvShowText
         EvShowChoices
 
-        ' Game Progression
+        ' Progressão de Jogo
         EvPlayerVar
 
         EvPlayerSwitch
         EvSelfSwitch
 
-        ' Flow Control
+        ' Controle de Fluxo
         EvCondition
 
         EvExitProcess
 
-        ' Player
+        ' Jogador
         EvChangeItems
 
         EvRestoreHp
@@ -339,15 +338,15 @@ Friend Module S_Events
         EvChangeSex
         EvChangePk
 
-        ' Movement
+        ' Movimento
         EvWarpPlayer
 
         EvSetMoveRoute
 
-        ' Character
+        ' Personagem
         EvPlayAnimation
 
-        ' Music and Sounds
+        ' Música e Som
         EvPlayBgm
 
         EvFadeoutBgm
@@ -359,12 +358,12 @@ Friend Module S_Events
 
         EvSetAccess
 
-        'Shop/Bank
+        'Loja/Banco
         EvOpenBank
 
         EvOpenShop
 
-        'New
+        'Novo
         EvGiveExp
 
         EvShowChatBubble

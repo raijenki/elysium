@@ -7,21 +7,21 @@
     ' Used for closing key doors again
     Friend KeyTimer As Integer
 
-    ' Used for gradually giving back npcs hp
+    ' Usado para dar HP de volta aos NPCs gradualmente
     Friend GiveNPCHPTimer As Integer
 
     Friend GiveNPCMPTimer As Integer
 
-    ' Used for logging
+    ' Usado para Logs
     Friend ServerLog As Boolean
 
-    ' Used for server loop
+    ' Usado para o loop do servidor
     Friend ServerOnline As Boolean
 
-    ' Used for outputting text
+    ' Usado para colocar texto de output
     Friend NumLines As Integer
 
-    ' Used to handle shutting down server with countdown.
+    ' Usado para desativar servidor com contagem regressiva.
     Friend isShuttingDown As Boolean
 
     Friend Secs As Integer

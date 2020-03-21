@@ -14,7 +14,7 @@ Module S_Console
     Private Sub ConsoleThread()
         Dim line As String, parts As String()
 
-        Console.WriteLine("Initializing Console Loop")
+        Console.WriteLine("Inicializando loop do console")
 
         While (True)
             line = Console.ReadLine()
@@ -22,19 +22,19 @@ Module S_Console
             parts = line.Split(" ") : If (parts.Length < 1) Then Continue While
 
             Select Case parts(0).Trim().ToLower()
-                Case "/help"
+                Case "/ajuda"
 
 #Region " Body "
 
-                    Console.WriteLine("/help, Shows this message.")
-                    Console.WriteLine("/exit, Closes down the server.")
-                    Console.WriteLine("/setadmin, Sets player access level, use with '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.")
-                    Console.WriteLine("/kick, Kicks user from server, use with '/kick playername'")
-                    Console.WriteLine("/ban, Bans user from server, use with '/ban playername'")
+                    Console.WriteLine("/ajuda, mostra esta mensagem.")
+                    Console.WriteLine("/sair, encerra o servidor.")
+                    Console.WriteLine("/setadmin, seta o nível de acesso de um jogador; use como '/setadmin nome-do-jogador nivel-de-acesso', com o último indo de 0 a 4.")
+                    Console.WriteLine("/chutar, Kicks user from server, use with '/kick playername'")
+                    Console.WriteLine("/banir, Bans user from server, use with '/ban playername'")
 
 #End Region
 
-                Case "/exit"
+                Case "/sair"
 
 #Region " Body "
 
@@ -52,42 +52,42 @@ Module S_Console
                     Dim Power As Integer : Integer.TryParse(parts(2), Power)
 
                     If Not Pindex > 0 Then
-                        Console.WriteLine("Player name is empty or invalid. [Name not found]")
+                        Console.WriteLine("Nome do jogador está vazio ou inválido. [Nome não encontrado]")
                     Else
                         Select Case Power
                             Case 0
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
-                                PlayerMsg(Pindex, "Your PowerLevel has been set to Player Rank!", ColorType.BrightCyan)
-                                Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
+                                PlayerMsg(Pindex, "Seu Acesso foi setado para Jogador!", ColorType.BrightCyan)
+                                Console.WriteLine("Nível de acesso " & Power & " setado para " & Name & " com sucesso")
                             Case 1
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
-                                PlayerMsg(Pindex, "Your PowerLevel has been set to Monitor Rank!", ColorType.BrightCyan)
+                                PlayerMsg(Pindex, "Seu Acesso foi setado para Monitor!", ColorType.BrightCyan)
                                 Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
                             Case 2
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
-                                PlayerMsg(Pindex, "Your PowerLevel has been set to Mapper Rank!", ColorType.BrightCyan)
-                                Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
+                                PlayerMsg(Pindex, "Seu Acesso foi setado para Mapeador!", ColorType.BrightCyan)
+                                Console.WriteLine("Nível de acesso " & Power & " setado para " & Name & " com sucesso")
                             Case 3
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
-                                PlayerMsg(Pindex, "Your PowerLevel has been set to Developer Rank!", ColorType.BrightCyan)
-                                Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
+                                PlayerMsg(Pindex, "Seu Acesso foi setado para Desenvolvedor!", ColorType.BrightCyan)
+                                Console.WriteLine("Nível de acesso " & Power & " setado para " & Name & " com sucesso")
                             Case 4
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
-                                PlayerMsg(Pindex, "Your PowerLevel has been set to Creator Rank!", ColorType.BrightCyan)
-                                Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
+                                PlayerMsg(Pindex, "Seu Acesso foi setado para Administrador!", ColorType.BrightCyan)
+                                Console.WriteLine("Nível de acesso " & Power & " setado para " & Name & " com sucesso")
                             Case Else
-                                Console.WriteLine("Failed to set the power level to " & Power & " for player " & Name)
+                                Console.WriteLine("Falha em definir o acesso " & Power & " para o jogador " & Name)
                         End Select
                     End If
 
 #End Region
 
-                Case "/kick"
+                Case "/chutar"
                     If parts.Length < 2 Then Continue While
 
 #Region " Body "
@@ -95,27 +95,27 @@ Module S_Console
                     Dim Name As String = parts(1)
                     Dim Pindex As Integer = FindPlayer(Name)
                     If Not Pindex > 0 Then
-                        Console.WriteLine("Player name is empty or invalid. [Name not found]")
+                        Console.WriteLine("Nome do jogador está vazio ou inválido. [Nome não encontrado]")
                     Else
-                        AlertMsg(Pindex, "You have been kicked by the server owner!")
+                        AlertMsg(Pindex, "Você foi chutado do servidor!")
                         LeftGame(Pindex)
                     End If
 
 #End Region
 
-                Case "/ban"
+                Case "/banir"
                     If parts.Length < 2 Then Continue While
 
 #Region " Body "
 
                     Dim Name As String = parts(1)
                     Dim Pindex As Integer = FindPlayer(Name)
-                    If Not Pindex > 0 Then : Console.WriteLine("Player name is empty or invalid. [Name not found]")
+                    If Not Pindex > 0 Then : Console.WriteLine("Nome do jogador está vazio ou inválido. [Nome não encontrado]")
                     Else : ServerBanIndex(Pindex) : End If
 
 #End Region
 
-                Case "/timespeed"
+                Case "/veljogo"
                     If parts.Length < 2 Then Exit Sub
 
 #Region " Body "
@@ -123,12 +123,12 @@ Module S_Console
                     Dim speed As Double
                     Double.TryParse(parts(1), speed)
                     Time.Instance.GameSpeed = speed
-                    Console.WriteLine("Set GameSpeed to " & Time.Instance.GameSpeed & " secs per seconds")
+                    Console.WriteLine("Velocidade do jogo modificada para " & Time.Instance.GameSpeed & " segundos por segundo")
 
 #End Region
 
                 Case "" : Continue While
-                Case Else : Console.WriteLine("Invalid Command. If you are unsure of the functions type '/help'.")
+                Case Else : Console.WriteLine("Comando inválido. Se você está inseguro das funções disponíveis, digite '/ajuda'.")
             End Select
         End While
     End Sub

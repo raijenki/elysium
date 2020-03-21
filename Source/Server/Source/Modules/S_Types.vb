@@ -1,6 +1,6 @@
 ﻿Module modTypes2
 
-    ' Friend data structures
+    ' Estrutura de Dados de Amigos
     Friend Map(MAX_CACHED_MAPS) As MapRec
 
     Friend TempTile(MAX_CACHED_MAPS) As TempTileRec
@@ -13,20 +13,20 @@
 
     Friend Structure PlayerRec
 
-        ' Account
+        ' Conta
         Dim Login As String
 
         Dim Password As String
         Dim Access As Byte
 
-        'multi char
+        ' Multi-personagens
         Dim Character() As CharacterRec
 
     End Structure
 
     Friend Structure CharacterRec
 
-        ' General
+        ' Geral
         Dim Name As String
 
         Dim Sex As Byte
@@ -37,23 +37,23 @@
 
         Dim Pk As Byte
 
-        ' Vitals
+        ' Vitalidade
         Dim Vital() As Integer
 
-        ' Stats
+        ' Atributos
         Dim Stat() As Byte
 
         Dim Points As Byte
 
-        ' Worn equipment
+        ' Equipamento usado
         Dim Equipment() As Integer
 
-        ' Inventory
+        ' Inventário
         Dim Inv() As PlayerInvStruct
 
         Dim Skill() As Integer
 
-        ' Position
+        ' Posição
         Dim Map As Integer
 
         Dim X As Byte
@@ -62,7 +62,7 @@
 
         Dim PlayerQuest() As PlayerQuestRec
 
-        'Housing
+        'Casa
         Dim House As PlayerHouseRec
 
         Dim InHouse As Integer
@@ -73,17 +73,17 @@
         'Hotbar
         Dim Hotbar() As HotbarRec
 
-        'Event
+        'Evento
         Dim Switches() As Byte
 
         Dim Variables() As Integer
 
-        'gather skills
+        'Habilidades
         Dim GatherSkills() As ResourceSkillsStruct
 
         Dim RecipeLearned() As Byte
 
-        ' Random Items
+        ' Itens Aleatórios
         Dim RandInv() As RandInvStruct
 
         Dim RandEquip() As RandInvStruct
@@ -93,7 +93,7 @@
 
     Friend Structure TempPlayerRec
 
-        ' Non saved local vars
+        ' Variáveis locais não salvas
         Dim InGame As Boolean
 
         Dim AttackTimer As Integer
@@ -114,14 +114,14 @@
         Dim StunDuration As Integer
         Dim InBank As Boolean
 
-        ' trade
+        ' Troca
         Dim TradeRequest As Integer
 
         Dim InTrade As Integer
         Dim TradeOffer() As PlayerInvStruct
         Dim AcceptTrade As Boolean
 
-        'Housing
+        'Casa
         Dim BuyHouseindex As Integer
 
         Dim Invitationindex As Integer
@@ -131,10 +131,10 @@
         Dim EventProcessingCount As Integer
         Dim EventProcessing() As EventProcessingStruct
 
-        'multi char
+        'Multi-personagem
         Dim CurChar As Byte
 
-        'craft shit
+        'Crafting
         Dim IsCrafting As Boolean
 
         Dim CraftIt As Byte
@@ -155,7 +155,7 @@
         Dim TmpX As Integer
         Dim TmpY As Integer
 
-        'pets
+        'Pets
         Dim PetTarget As Integer
 
         Dim PetTargetType As Integer
@@ -174,7 +174,7 @@
         Dim PetDoT() As DoTRec
         Dim PetHoT() As DoTRec
 
-        ' regen
+        ' Regeneração
         Dim PetstopRegen As Boolean
 
         Dim PetstopRegenTimer As Integer
@@ -265,7 +265,7 @@
         Dim Y As Byte
         Dim Dir As Integer
 
-        ' For server use only
+        ' Para uso do servidor apenas
         Dim SpawnWait As Integer
 
         Dim AttackTimer As Integer
@@ -307,7 +307,7 @@
         Dim StartTime As Integer
 
         'PET
-        Dim AttackerType As Integer 'For Pets
+        Dim AttackerType As Integer 'Para Pets
 
     End Structure
 

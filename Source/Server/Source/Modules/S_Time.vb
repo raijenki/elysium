@@ -3,12 +3,12 @@
 Friend Module modTime
 
     Sub InitTime()
-        ' Add handlers to time events
+        ' Adicionar handlers aos eventos temporais
         AddHandler Time.Instance.OnTimeChanged, AddressOf HandleTimeChanged
         AddHandler Time.Instance.OnTimeOfDayChanged, AddressOf HandleTimeOfDayChanged
         AddHandler Time.Instance.OnTimeSync, AddressOf HandleTimeSync
 
-        ' Prepare the time instance
+        ' Preparar a instância de tempo
         Time.Instance.Time = Date.Now
         Time.Instance.GameSpeed = 1
     End Sub

@@ -1,5 +1,4 @@
-Welcome to the Orion + Client. This is a free open source VB.Net game engine! 
+Bem vindo ao cliente da Elysium.NET. Esta é uma engine open-source escrita em VB.Net!
 
-For help or support please visit our site at http://ascensionforums.com. 
-
-This project is based off of Orion.
+Para mais informações, visite nosso fórum: www.raijenkifoda.com.br
+Este projeto é baseado na Orion+ Engine, que por sua vez é baseada na Orion.

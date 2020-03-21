@@ -7,11 +7,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Orion Server")>
+<Assembly: AssemblyTitle("Elysium.NET Servidor")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("EO.Net Server")>
-<Assembly: AssemblyCopyright("Copyright ©  2014")>
+<Assembly: AssemblyProduct("Servidor")>
+<Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

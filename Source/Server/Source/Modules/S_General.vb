@@ -28,7 +28,7 @@ Module S_General
 
         LoadSettings()
 
-        Console.Title = "Orion+ Server"
+        Console.Title = "Elysium.NET v1.0 - Servidor"
         Console.SetWindowSize(120, 20)
 
         handler = New ConsoleEventDelegate(AddressOf ConsoleEventCallback)
@@ -180,7 +180,7 @@ Module S_General
         InitNetwork()
 
         ' Init all the player sockets
-        Console.WriteLine("Initializing player array...")
+        Console.WriteLine("Inicializando vetor de jogadores...")
 
         For x = 1 To MAX_PLAYERS
             ClearPlayer(x)
@@ -189,9 +189,9 @@ Module S_General
         ' Serves as a constructor
         ClearGameData()
         LoadGameData()
-        Console.WriteLine("Spawning map items...")
+        Console.WriteLine("Gerando itens dos mapas...")
         SpawnAllMapsItems()
-        Console.WriteLine("Spawning map npcs...")
+        Console.WriteLine("Gerando NPCs dos mapas...")
         SpawnAllMapNpcs()
 
         ' Check if the master charlist file exists for checking duplicate names, and if it doesnt make it
@@ -208,18 +208,20 @@ Module S_General
         time2 = GetTimeMs()
 
         Console.Clear()
-        Console.WriteLine("  ____       _                        _____                          ")
-        Console.WriteLine(" / __ \     (_)                _     / ____|                         ")
-        Console.WriteLine("| |  | |_ __ _  ___  _ __    _| |_  | (___   ___ _ ____   _____ _ __ ")
-        Console.WriteLine("| |  | | '__| |/ _ \| '_ \  |_   _|  \___ \ / _ \ '__\ \ / / _ \ '__|")
-        Console.WriteLine("| |__| | |  | | (_) | | | |   |_|    ____) |  __/ |   \ V /  __/ |   ")
-        Console.WriteLine(" \____/|_|  |_|\___/|_| |_|         |_____/ \___|_|    \_/ \___|_|   ")
+        Console.WriteLine(" _____ _           _                   _   _  _____ _____ ")
+        Console.WriteLine("|  ___| |         (_)                 | \ | ||  ___|_   _|")
+        Console.WriteLine("| |__ | |_   _ ___ _ _   _ _ __ ___   |  \| || |__   | |  ")
+        Console.WriteLine("|  __|| | | | / __| | | | | '_ ` _ \  | . ` ||  __|  | |  ")
+        Console.WriteLine("| |___| | |_| \__ \ | |_| | | | | | |_| |\  || |___  | |  ")
+        Console.WriteLine("\____/|_|\__, |___/_|\__,_|_| |_| |_(_)_| \_/\____/  \_/  ")
+        Console.WriteLine("          __/ |                                           ")
+        Console.WriteLine("         |___/                                            ")
 
         Console.WriteLine("")
 
-        Console.WriteLine("Initialization complete. Server loaded in " & time2 - time1 & "ms.")
+        Console.WriteLine("Inicialização completa. Servidor iniciado em " & time2 - time1 & "ms.")
         Console.WriteLine("")
-        Console.WriteLine("Use /help for the available commands.")
+        Console.WriteLine("Use /ajuda para os comandos disponíveis.")
 
         MyIPAddress = GetIP()
 
@@ -238,7 +240,7 @@ Module S_General
 
     Private Function ConsoleEventCallback(eventType As Integer) As Boolean
         If eventType = 2 Then
-            Console.WriteLine("Console window closing, death imminent")
+            Console.WriteLine("Janela do console fechando, morte iminente")
             'cleanup and close
             DestroyServer()
         End If
@@ -256,16 +258,16 @@ Module S_General
     End Function
 
     Sub UpdateCaption()
-        Console.Title = String.Format("{0} <IP {1}:{2}> ({3} Players Online) - Current Errors: {4} - Time: {5}", Settings.GameName, MyIPAddress, Settings.Port, GetPlayersOnline(), ErrorCount, Time.Instance.ToString())
+        Console.Title = String.Format("{0} <IP {1}:{2}> ({3} Jogadores Online) - Erros Atuais: {4} - Hora: {5}", Settings.GameName, MyIPAddress, Settings.Port, GetPlayersOnline(), ErrorCount, Time.Instance.ToString())
     End Sub
 
     Sub DestroyServer()
         Socket.StopListening()
 
-        Console.WriteLine("Saving players online...")
+        Console.WriteLine("Salvando jogadores Online...")
         SaveAllPlayersOnline()
 
-        Console.WriteLine("Unloading players...")
+        Console.WriteLine("Descarregando jogadores...")
         For i As Integer = 1 To MAX_PLAYERS
             SendLeftGame(i)
             LeftGame(i)
@@ -284,40 +286,40 @@ Module S_General
     End Sub
 
     Friend Sub ClearGameData()
-        Console.WriteLine("Clearing temp tile fields...") : ClearTempTiles()
-        Console.WriteLine("Clearing Maps...") : ClearMaps()
-        Console.WriteLine("Clearing Map Items...") : ClearMapItems()
-        Console.WriteLine("Clearing Map Npc's...") : ClearAllMapNpcs()
-        Console.WriteLine("Clearing Npc's...") : ClearNpcs()
-        Console.WriteLine("Clearing Resources...") : ClearResources()
-        Console.WriteLine("Clearing Items...") : ClearItems()
-        Console.WriteLine("Clearing Shops...") : ClearShops()
-        Console.WriteLine("Clearing Skills...") : ClearSkills()
-        Console.WriteLine("Clearing Animations...") : ClearAnimations()
-        Console.WriteLine("Clearing Quests...") : ClearQuests()
-        Console.WriteLine("Clearing map projectiles...") : ClearMapProjectiles()
-        Console.WriteLine("Clearing projectiles...") : ClearProjectiles()
-        Console.WriteLine("Clearing Recipes...") : ClearRecipes()
-        Console.WriteLine("Clearing pets...") : ClearPets()
+        Console.WriteLine("Limpando tile fields temporários...") : ClearTempTiles()
+        Console.WriteLine("Limpando Mapass...") : ClearMaps()
+        Console.WriteLine("Limpando Itens dos Mapas...") : ClearMapItems()
+        Console.WriteLine("Limpando NPCs dos Mapas...") : ClearAllMapNpcs()
+        Console.WriteLine("Limpando NPCs...") : ClearNpcs()
+        Console.WriteLine("Limpando Recursos...") : ClearResources()
+        Console.WriteLine("Limpando Itens...") : ClearItems()
+        Console.WriteLine("Limpando Lojas...") : ClearShops()
+        Console.WriteLine("Limpando Habilidades...") : ClearSkills()
+        Console.WriteLine("Limpando Animações...") : ClearAnimations()
+        Console.WriteLine("Limpando Quests...") : ClearQuests()
+        Console.WriteLine("Limpando Projéteis do Mapa...") : ClearMapProjectiles()
+        Console.WriteLine("Limpando Projéteis...") : ClearProjectiles()
+        Console.WriteLine("Limpando Receitas...") : ClearRecipes()
+        Console.WriteLine("Limpando Pets...") : ClearPets()
     End Sub
 
     Private Sub LoadGameData()
-        Console.WriteLine("Loading Classes...") : LoadClasses()
-        Console.WriteLine("Loading Maps...") : LoadMaps()
-        Console.WriteLine("Loading Items...") : LoadItems()
-        Console.WriteLine("Loading Npc's...") : LoadNpcs()
-        Console.WriteLine("Loading Resources...") : LoadResources()
-        Console.WriteLine("Loading Shops...") : LoadShops()
-        Console.WriteLine("Loading Skills...") : LoadSkills()
-        Console.WriteLine("Loading Animations...") : LoadAnimations()
-        Console.WriteLine("Loading Quests...") : LoadQuests()
-        Console.WriteLine("Loading House Configurations...") : LoadHouses()
-        Console.WriteLine("Loading Switches...") : LoadSwitches()
-        Console.WriteLine("Loading Variables...") : LoadVariables()
-        Console.WriteLine("Spawning global events...") : SpawnAllMapGlobalEvents()
-        Console.WriteLine("Loading projectiles...") : LoadProjectiles()
-        Console.WriteLine("Loading Recipes...") : LoadRecipes()
-        Console.WriteLine("Loading Pets...") : LoadPets()
+        Console.WriteLine("Carregando Classes...") : LoadClasses()
+        Console.WriteLine("Carregando Mapas...") : LoadMaps()
+        Console.WriteLine("Carregando Itens...") : LoadItems()
+        Console.WriteLine("Carregando Npc's...") : LoadNpcs()
+        Console.WriteLine("Carregando Recursos...") : LoadResources()
+        Console.WriteLine("Carregando Lojas...") : LoadShops()
+        Console.WriteLine("Carregando Habilidades...") : LoadSkills()
+        Console.WriteLine("Carregando Animações...") : LoadAnimations()
+        Console.WriteLine("Carregando Quests...") : LoadQuests()
+        Console.WriteLine("Carregando Configuração de Casas...") : LoadHouses()
+        Console.WriteLine("Carregando Switches...") : LoadSwitches()
+        Console.WriteLine("Carregando Variáveis...") : LoadVariables()
+        Console.WriteLine("Gerando eventos globais...") : SpawnAllMapGlobalEvents()
+        Console.WriteLine("Carregando Projéteis...") : LoadProjectiles()
+        Console.WriteLine("Carregando Receitas...") : LoadRecipes()
+        Console.WriteLine("Carregando Pets...") : LoadPets()
     End Sub
 
     ' Used for checking validity of names
@@ -356,7 +358,7 @@ Module S_General
         Dim st As New StackTrace(ex, True)
         For Each sf As StackFrame In st.GetFrames
             If sf.GetFileLineNumber() > 0 Then
-                Result &= "Line:" & sf.GetFileLineNumber() & " Filename: " & System.IO.Path.GetFileName(sf.GetFileName) & Environment.NewLine
+                Result &= "Linha:" & sf.GetFileLineNumber() & " Arquivo: " & System.IO.Path.GetFileName(sf.GetFileName) & Environment.NewLine
             End If
         Next
         Return Result

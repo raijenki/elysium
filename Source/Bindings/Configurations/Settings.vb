@@ -6,7 +6,7 @@ Public Class SettingsDef
 
 #If CLIENT Then
 
-    Public Language As String = "English"
+    Public Language As String = "PT-BR"
 
     Public Username As String = ""
     Public Password As String = ""
@@ -24,7 +24,7 @@ Public Class SettingsDef
     <XmlIgnore()> Public Ip As String = "127.0.0.1"
     <XmlIgnore()> Public Port As Integer = 7001
 
-    <XmlIgnore()> Public GameName As String = "Orion+"
+    <XmlIgnore()> Public GameName As String = "Elysium.NET"
     <XmlIgnore()> Public Website As String = "http://ascensiongamedev.com/index.php"
 
 #ElseIf SERVER Then

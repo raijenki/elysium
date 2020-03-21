@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <StartupObject>Sub Main</StartupObject>
     <RootNamespace>Engine</RootNamespace>
-    <AssemblyName>Orion+ Server</AssemblyName>
+    <AssemblyName>Elysium</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
