@@ -54,12 +54,14 @@ Partial Class frmEditor_House
         Me.DarkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox1.Controls.Add(Me.lstIndex)
         Me.DarkGroupBox1.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.DarkGroupBox1.Location = New System.Drawing.Point(4, 5)
+        Me.DarkGroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox1.Name = "DarkGroupBox1"
-        Me.DarkGroupBox1.Size = New System.Drawing.Size(200, 364)
+        Me.DarkGroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox1.Size = New System.Drawing.Size(300, 560)
         Me.DarkGroupBox1.TabIndex = 0
         Me.DarkGroupBox1.TabStop = False
-        Me.DarkGroupBox1.Text = "House List"
+        Me.DarkGroupBox1.Text = "Lista de Casas"
         '
         'lstIndex
         '
@@ -67,9 +69,11 @@ Partial Class frmEditor_House
         Me.lstIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstIndex.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstIndex.FormattingEnabled = True
-        Me.lstIndex.Location = New System.Drawing.Point(6, 19)
+        Me.lstIndex.ItemHeight = 20
+        Me.lstIndex.Location = New System.Drawing.Point(9, 29)
+        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstIndex.Name = "lstIndex"
-        Me.lstIndex.Size = New System.Drawing.Size(188, 340)
+        Me.lstIndex.Size = New System.Drawing.Size(281, 522)
         Me.lstIndex.TabIndex = 1
         '
         'DarkGroupBox2
@@ -89,20 +93,23 @@ Partial Class frmEditor_House
         Me.DarkGroupBox2.Controls.Add(Me.txtName)
         Me.DarkGroupBox2.Controls.Add(Me.DarkLabel1)
         Me.DarkGroupBox2.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox2.Location = New System.Drawing.Point(209, 3)
+        Me.DarkGroupBox2.Location = New System.Drawing.Point(314, 5)
+        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox2.Name = "DarkGroupBox2"
-        Me.DarkGroupBox2.Size = New System.Drawing.Size(272, 335)
+        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox2.Size = New System.Drawing.Size(408, 515)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
-        Me.DarkGroupBox2.Text = "House Properties"
+        Me.DarkGroupBox2.Text = "Atributos da Casa"
         '
         'nudFurniture
         '
         Me.nudFurniture.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudFurniture.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudFurniture.Location = New System.Drawing.Point(199, 220)
+        Me.nudFurniture.Location = New System.Drawing.Point(298, 338)
+        Me.nudFurniture.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudFurniture.Name = "nudFurniture"
-        Me.nudFurniture.Size = New System.Drawing.Size(62, 20)
+        Me.nudFurniture.Size = New System.Drawing.Size(93, 26)
         Me.nudFurniture.TabIndex = 11
         Me.nudFurniture.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -110,19 +117,21 @@ Partial Class frmEditor_House
         '
         Me.DarkLabel6.AutoSize = True
         Me.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel6.Location = New System.Drawing.Point(6, 222)
+        Me.DarkLabel6.Location = New System.Drawing.Point(9, 342)
+        Me.DarkLabel6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel6.Name = "DarkLabel6"
-        Me.DarkLabel6.Size = New System.Drawing.Size(188, 13)
+        Me.DarkLabel6.Size = New System.Drawing.Size(275, 20)
         Me.DarkLabel6.TabIndex = 10
-        Me.DarkLabel6.Text = "Max Pieces of Furniture (0 for no max):"
+        Me.DarkLabel6.Text = "Máximo de Mobília (0 para sem limite):"
         '
         'nudPrice
         '
         Me.nudPrice.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudPrice.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudPrice.Location = New System.Drawing.Point(84, 180)
+        Me.nudPrice.Location = New System.Drawing.Point(126, 277)
+        Me.nudPrice.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudPrice.Name = "nudPrice"
-        Me.nudPrice.Size = New System.Drawing.Size(177, 20)
+        Me.nudPrice.Size = New System.Drawing.Size(266, 26)
         Me.nudPrice.TabIndex = 9
         Me.nudPrice.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -130,20 +139,22 @@ Partial Class frmEditor_House
         '
         Me.DarkLabel5.AutoSize = True
         Me.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel5.Location = New System.Drawing.Point(6, 182)
+        Me.DarkLabel5.Location = New System.Drawing.Point(9, 280)
+        Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(34, 13)
+        Me.DarkLabel5.Size = New System.Drawing.Size(54, 20)
         Me.DarkLabel5.TabIndex = 8
-        Me.DarkLabel5.Text = "Price:"
+        Me.DarkLabel5.Text = "Preço:"
         '
         'nudY
         '
         Me.nudY.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudY.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudY.Location = New System.Drawing.Point(84, 137)
+        Me.nudY.Location = New System.Drawing.Point(126, 211)
+        Me.nudY.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudY.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudY.Name = "nudY"
-        Me.nudY.Size = New System.Drawing.Size(177, 20)
+        Me.nudY.Size = New System.Drawing.Size(266, 26)
         Me.nudY.TabIndex = 7
         Me.nudY.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -151,20 +162,22 @@ Partial Class frmEditor_House
         '
         Me.DarkLabel4.AutoSize = True
         Me.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel4.Location = New System.Drawing.Point(6, 139)
+        Me.DarkLabel4.Location = New System.Drawing.Point(9, 214)
+        Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(63, 13)
+        Me.DarkLabel4.Size = New System.Drawing.Size(95, 20)
         Me.DarkLabel4.TabIndex = 6
-        Me.DarkLabel4.Text = "Entrance Y:"
+        Me.DarkLabel4.Text = "Entrada (Y):"
         '
         'nudX
         '
         Me.nudX.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudX.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudX.Location = New System.Drawing.Point(84, 94)
+        Me.nudX.Location = New System.Drawing.Point(126, 145)
+        Me.nudX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudX.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudX.Name = "nudX"
-        Me.nudX.Size = New System.Drawing.Size(177, 20)
+        Me.nudX.Size = New System.Drawing.Size(266, 26)
         Me.nudX.TabIndex = 5
         Me.nudX.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -172,20 +185,22 @@ Partial Class frmEditor_House
         '
         Me.DarkLabel3.AutoSize = True
         Me.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel3.Location = New System.Drawing.Point(6, 96)
+        Me.DarkLabel3.Location = New System.Drawing.Point(9, 148)
+        Me.DarkLabel3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel3.Name = "DarkLabel3"
-        Me.DarkLabel3.Size = New System.Drawing.Size(63, 13)
+        Me.DarkLabel3.Size = New System.Drawing.Size(95, 20)
         Me.DarkLabel3.TabIndex = 4
-        Me.DarkLabel3.Text = "Entrance X:"
+        Me.DarkLabel3.Text = "Entrada (X):"
         '
         'nudBaseMap
         '
         Me.nudBaseMap.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudBaseMap.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudBaseMap.Location = New System.Drawing.Point(84, 51)
+        Me.nudBaseMap.Location = New System.Drawing.Point(126, 78)
+        Me.nudBaseMap.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudBaseMap.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudBaseMap.Name = "nudBaseMap"
-        Me.nudBaseMap.Size = New System.Drawing.Size(177, 20)
+        Me.nudBaseMap.Size = New System.Drawing.Size(266, 26)
         Me.nudBaseMap.TabIndex = 3
         Me.nudBaseMap.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -193,64 +208,70 @@ Partial Class frmEditor_House
         '
         Me.DarkLabel2.AutoSize = True
         Me.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel2.Location = New System.Drawing.Point(6, 53)
+        Me.DarkLabel2.Location = New System.Drawing.Point(9, 82)
+        Me.DarkLabel2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel2.Name = "DarkLabel2"
-        Me.DarkLabel2.Size = New System.Drawing.Size(58, 13)
+        Me.DarkLabel2.Size = New System.Drawing.Size(94, 20)
         Me.DarkLabel2.TabIndex = 2
-        Me.DarkLabel2.Text = "Base Map:"
+        Me.DarkLabel2.Text = "Mapa Base:"
         '
         'txtName
         '
         Me.txtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtName.Location = New System.Drawing.Point(84, 17)
+        Me.txtName.Location = New System.Drawing.Point(126, 26)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(177, 20)
+        Me.txtName.Size = New System.Drawing.Size(264, 26)
         Me.txtName.TabIndex = 1
         '
         'DarkLabel1
         '
         Me.DarkLabel1.AutoSize = True
         Me.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel1.Location = New System.Drawing.Point(6, 19)
+        Me.DarkLabel1.Location = New System.Drawing.Point(9, 29)
+        Me.DarkLabel1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel1.Name = "DarkLabel1"
-        Me.DarkLabel1.Size = New System.Drawing.Size(72, 13)
+        Me.DarkLabel1.Size = New System.Drawing.Size(55, 20)
         Me.DarkLabel1.TabIndex = 0
-        Me.DarkLabel1.Text = "House Name:"
+        Me.DarkLabel1.Text = "Nome:"
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(406, 344)
+        Me.btnCancel.Location = New System.Drawing.Point(609, 529)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 2
-        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Text = "Cancelar"
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(325, 344)
+        Me.btnSave.Location = New System.Drawing.Point(488, 529)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSave.Size = New System.Drawing.Size(112, 35)
         Me.btnSave.TabIndex = 3
-        Me.btnSave.Text = "Save"
+        Me.btnSave.Text = "Salvar"
         '
-        'FrmHouse
+        'frmEditor_House
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(485, 371)
+        Me.ClientSize = New System.Drawing.Size(728, 571)
         Me.ControlBox = False
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.DarkGroupBox2)
         Me.Controls.Add(Me.DarkGroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "FrmHouse"
-        Me.Text = "House Editor"
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Name = "frmEditor_House"
+        Me.Text = "Editor de Casa"
         Me.DarkGroupBox1.ResumeLayout(False)
         Me.DarkGroupBox2.ResumeLayout(False)
         Me.DarkGroupBox2.PerformLayout()

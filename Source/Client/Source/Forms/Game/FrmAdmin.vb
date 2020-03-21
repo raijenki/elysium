@@ -10,7 +10,7 @@
         Next
     End Sub
 
-#Region "Moderação"
+#Region "Moderation"
 
     Private Sub BtnAdminWarpTo_Click(sender As Object, e As EventArgs) Handles btnAdminWarpTo.Click
 
@@ -109,7 +109,7 @@
 
 #End Region
 
-#Region "Editores"
+#Region "Editors"
 
     Private Sub btnAnimationEditor_Click(sender As Object, e As EventArgs) Handles btnAnimationEditor.Click
         If GetPlayerAccess(Myindex) < AdminType.Developer Then
@@ -250,7 +250,7 @@
 
 #End Region
 
-#Region "Relatório de Mapa"
+#Region "Map Report"
 
     Private Sub BtnMapReport_Click(sender As Object, e As EventArgs) Handles btnMapReport.Click
         If GetPlayerAccess(Myindex) < AdminType.Mapper Then
@@ -276,7 +276,7 @@
 
 #End Region
 
-#Region "Etc"
+#Region "Misc"
 
     Private Sub CmbSpawnItem_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpawnItem.SelectedIndexChanged
         If Item(cmbSpawnItem.SelectedIndex + 1).Type = ItemType.Currency OrElse Item(cmbSpawnItem.SelectedIndex + 1).Stackable = 1 Then
@@ -321,6 +321,10 @@
         End If
 
         SendMapRespawn()
+    End Sub
+
+    Private Sub lstMaps_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstMaps.SelectedIndexChanged
+
     End Sub
 #End Region
 

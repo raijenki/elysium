@@ -2583,6 +2583,10 @@ Public Class FrmEditor_Events
 
     End Sub
 
+    Private Sub fraPageSetUp_Enter(sender As Object, e As EventArgs) Handles fraPageSetUp.Enter
+
+    End Sub
+
 #End Region
 
 #End Region
