@@ -82,4 +82,7 @@ Friend Class frmEditor_Shop
         Shop(Editorindex).Face = nudFace.Value
     End Sub
 
+    Private Sub DarkLabel5_Click(sender As Object, e As EventArgs) Handles DarkLabel5.Click
+
+    End Sub
 End Class
