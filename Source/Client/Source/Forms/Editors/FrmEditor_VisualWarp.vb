@@ -69,5 +69,4 @@ Friend Class frmEditor_VisualWarp
     Private Sub FrmVisualWarp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
-
 End Class

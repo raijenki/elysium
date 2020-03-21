@@ -48,9 +48,9 @@ Partial Class frmEditor_VisualWarp
         Me.DarkLabel15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.DarkLabel15.Location = New System.Drawing.Point(12, 9)
         Me.DarkLabel15.Name = "DarkLabel15"
-        Me.DarkLabel15.Size = New System.Drawing.Size(47, 13)
+        Me.DarkLabel15.Size = New System.Drawing.Size(78, 13)
         Me.DarkLabel15.TabIndex = 3
-        Me.DarkLabel15.Text = "Map List"
+        Me.DarkLabel15.Text = "Lista de mapas"
         '
         'lstMaps
         '
@@ -86,9 +86,9 @@ Partial Class frmEditor_VisualWarp
         Me.lblSelX.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.lblSelX.Location = New System.Drawing.Point(12, 313)
         Me.lblSelX.Name = "lblSelX"
-        Me.lblSelX.Size = New System.Drawing.Size(71, 13)
+        Me.lblSelX.Size = New System.Drawing.Size(87, 13)
         Me.lblSelX.TabIndex = 5
-        Me.lblSelX.Text = "Selected X: 0"
+        Me.lblSelX.Text = "Coordenada X: 0"
         '
         'lblSelY
         '
@@ -96,11 +96,11 @@ Partial Class frmEditor_VisualWarp
         Me.lblSelY.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.lblSelY.Location = New System.Drawing.Point(12, 338)
         Me.lblSelY.Name = "lblSelY"
-        Me.lblSelY.Size = New System.Drawing.Size(71, 13)
+        Me.lblSelY.Size = New System.Drawing.Size(87, 13)
         Me.lblSelY.TabIndex = 6
-        Me.lblSelY.Text = "Selected Y: 0"
+        Me.lblSelY.Text = "Coordenada Y: 0"
         '
-        'FrmVisualWarp
+        'frmEditor_VisualWarp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -114,7 +114,7 @@ Partial Class frmEditor_VisualWarp
         Me.Controls.Add(Me.DarkLabel15)
         Me.Controls.Add(Me.lstMaps)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "FrmVisualWarp"
+        Me.Name = "frmEditor_VisualWarp"
         Me.Text = "Visual Warp"
         Me.pnlPreview.ResumeLayout(False)
         CType(Me.picPreview, System.ComponentModel.ISupportInitialize).EndInit()
