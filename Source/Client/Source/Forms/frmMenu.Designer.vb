@@ -107,8 +107,9 @@ Partial Class FrmMenu
         Me.pnlLogin.Controls.Add(Me.txtLogin)
         Me.pnlLogin.Controls.Add(Me.lblLoginName)
         Me.pnlLogin.Controls.Add(Me.lblLogin)
+        Me.pnlLogin.Controls.Add(Me.pnlRegister)
         Me.pnlLogin.ForeColor = System.Drawing.Color.White
-        Me.pnlLogin.Location = New System.Drawing.Point(160, 180)
+        Me.pnlLogin.Location = New System.Drawing.Point(160, 182)
         Me.pnlLogin.Name = "pnlLogin"
         Me.pnlLogin.Size = New System.Drawing.Size(400, 192)
         Me.pnlLogin.TabIndex = 37
@@ -125,7 +126,7 @@ Partial Class FrmMenu
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(110, 26)
         Me.btnLogin.TabIndex = 49
-        Me.btnLogin.Text = "Login"
+        Me.btnLogin.Text = "Logar"
         Me.btnLogin.UseVisualStyleBackColor = True
         '
         'chkSavePass
@@ -135,9 +136,9 @@ Partial Class FrmMenu
         Me.chkSavePass.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkSavePass.Location = New System.Drawing.Point(110, 128)
         Me.chkSavePass.Name = "chkSavePass"
-        Me.chkSavePass.Size = New System.Drawing.Size(186, 32)
+        Me.chkSavePass.Size = New System.Drawing.Size(114, 21)
         Me.chkSavePass.TabIndex = 25
-        Me.chkSavePass.Text = "Save Password?"
+        Me.chkSavePass.Text = "Salvar senha ?"
         Me.chkSavePass.UseVisualStyleBackColor = False
         '
         'txtPassword
@@ -146,7 +147,7 @@ Partial Class FrmMenu
         Me.txtPassword.Location = New System.Drawing.Point(180, 98)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(110, 33)
+        Me.txtPassword.Size = New System.Drawing.Size(110, 25)
         Me.txtPassword.TabIndex = 24
         '
         'lblLoginPass
@@ -155,16 +156,16 @@ Partial Class FrmMenu
         Me.lblLoginPass.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLoginPass.Location = New System.Drawing.Point(107, 101)
         Me.lblLoginPass.Name = "lblLoginPass"
-        Me.lblLoginPass.Size = New System.Drawing.Size(106, 28)
+        Me.lblLoginPass.Size = New System.Drawing.Size(53, 17)
         Me.lblLoginPass.TabIndex = 23
-        Me.lblLoginPass.Text = "Password:"
+        Me.lblLoginPass.Text = "Senha :"
         '
         'txtLogin
         '
         Me.txtLogin.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLogin.Location = New System.Drawing.Point(180, 63)
         Me.txtLogin.Name = "txtLogin"
-        Me.txtLogin.Size = New System.Drawing.Size(110, 33)
+        Me.txtLogin.Size = New System.Drawing.Size(110, 25)
         Me.txtLogin.TabIndex = 17
         '
         'lblLoginName
@@ -173,9 +174,9 @@ Partial Class FrmMenu
         Me.lblLoginName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLoginName.Location = New System.Drawing.Point(107, 66)
         Me.lblLoginName.Name = "lblLoginName"
-        Me.lblLoginName.Size = New System.Drawing.Size(73, 28)
+        Me.lblLoginName.Size = New System.Drawing.Size(51, 17)
         Me.lblLoginName.TabIndex = 16
-        Me.lblLoginName.Text = "Name:"
+        Me.lblLoginName.Text = "Login :"
         '
         'lblLogin
         '
@@ -183,7 +184,7 @@ Partial Class FrmMenu
         Me.lblLogin.Font = New System.Drawing.Font("Segoe UI Semibold", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLogin.Location = New System.Drawing.Point(156, 9)
         Me.lblLogin.Name = "lblLogin"
-        Me.lblLogin.Size = New System.Drawing.Size(128, 55)
+        Me.lblLogin.Size = New System.Drawing.Size(85, 37)
         Me.lblLogin.TabIndex = 15
         Me.lblLogin.Text = "Login"
         '
@@ -201,7 +202,7 @@ Partial Class FrmMenu
         Me.pnlRegister.Controls.Add(Me.lblNewAccName)
         Me.pnlRegister.Controls.Add(Me.lblNewAccount)
         Me.pnlRegister.ForeColor = System.Drawing.Color.White
-        Me.pnlRegister.Location = New System.Drawing.Point(160, 180)
+        Me.pnlRegister.Location = New System.Drawing.Point(0, 0)
         Me.pnlRegister.Name = "pnlRegister"
         Me.pnlRegister.Size = New System.Drawing.Size(400, 192)
         Me.pnlRegister.TabIndex = 38
@@ -218,7 +219,7 @@ Partial Class FrmMenu
         Me.btnCreateAccount.Name = "btnCreateAccount"
         Me.btnCreateAccount.Size = New System.Drawing.Size(110, 26)
         Me.btnCreateAccount.TabIndex = 23
-        Me.btnCreateAccount.Text = "Create Account"
+        Me.btnCreateAccount.Text = "Criar conta"
         Me.btnCreateAccount.UseVisualStyleBackColor = True
         '
         'txtRPass2
@@ -227,18 +228,18 @@ Partial Class FrmMenu
         Me.txtRPass2.Location = New System.Drawing.Point(180, 125)
         Me.txtRPass2.Name = "txtRPass2"
         Me.txtRPass2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtRPass2.Size = New System.Drawing.Size(110, 33)
+        Me.txtRPass2.Size = New System.Drawing.Size(110, 25)
         Me.txtRPass2.TabIndex = 21
         '
         'lblNewAccPass2
         '
         Me.lblNewAccPass2.AutoSize = True
         Me.lblNewAccPass2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNewAccPass2.Location = New System.Drawing.Point(70, 128)
+        Me.lblNewAccPass2.Location = New System.Drawing.Point(38, 128)
         Me.lblNewAccPass2.Name = "lblNewAccPass2"
-        Me.lblNewAccPass2.Size = New System.Drawing.Size(178, 28)
+        Me.lblNewAccPass2.Size = New System.Drawing.Size(123, 17)
         Me.lblNewAccPass2.TabIndex = 20
-        Me.lblNewAccPass2.Text = "Retype Password:"
+        Me.lblNewAccPass2.Text = "Re-digite a senha :"
         '
         'txtRPass
         '
@@ -246,7 +247,7 @@ Partial Class FrmMenu
         Me.txtRPass.Location = New System.Drawing.Point(180, 97)
         Me.txtRPass.Name = "txtRPass"
         Me.txtRPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtRPass.Size = New System.Drawing.Size(110, 33)
+        Me.txtRPass.Size = New System.Drawing.Size(110, 25)
         Me.txtRPass.TabIndex = 19
         '
         'lblNewAccPass
@@ -255,16 +256,16 @@ Partial Class FrmMenu
         Me.lblNewAccPass.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewAccPass.Location = New System.Drawing.Point(107, 100)
         Me.lblNewAccPass.Name = "lblNewAccPass"
-        Me.lblNewAccPass.Size = New System.Drawing.Size(106, 28)
+        Me.lblNewAccPass.Size = New System.Drawing.Size(53, 17)
         Me.lblNewAccPass.TabIndex = 18
-        Me.lblNewAccPass.Text = "Password:"
+        Me.lblNewAccPass.Text = "Senha :"
         '
         'txtRuser
         '
         Me.txtRuser.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRuser.Location = New System.Drawing.Point(180, 63)
         Me.txtRuser.Name = "txtRuser"
-        Me.txtRuser.Size = New System.Drawing.Size(110, 33)
+        Me.txtRuser.Size = New System.Drawing.Size(110, 25)
         Me.txtRuser.TabIndex = 17
         '
         'lblNewAccName
@@ -273,9 +274,9 @@ Partial Class FrmMenu
         Me.lblNewAccName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewAccName.Location = New System.Drawing.Point(107, 65)
         Me.lblNewAccName.Name = "lblNewAccName"
-        Me.lblNewAccName.Size = New System.Drawing.Size(111, 28)
+        Me.lblNewAccName.Size = New System.Drawing.Size(51, 17)
         Me.lblNewAccName.TabIndex = 16
-        Me.lblNewAccName.Text = "Username:"
+        Me.lblNewAccName.Text = "Login :"
         '
         'lblNewAccount
         '
@@ -283,9 +284,9 @@ Partial Class FrmMenu
         Me.lblNewAccount.Font = New System.Drawing.Font("Segoe UI Semibold", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewAccount.Location = New System.Drawing.Point(122, 12)
         Me.lblNewAccount.Name = "lblNewAccount"
-        Me.lblNewAccount.Size = New System.Drawing.Size(293, 60)
+        Me.lblNewAccount.Size = New System.Drawing.Size(167, 40)
         Me.lblNewAccount.TabIndex = 15
-        Me.lblNewAccount.Text = "New Account"
+        Me.lblNewAccount.Text = "Nova conta"
         '
         'pnlCredits
         '
@@ -295,7 +296,7 @@ Partial Class FrmMenu
         Me.pnlCredits.Controls.Add(Me.lblCreditsTop)
         Me.pnlCredits.Controls.Add(Me.lblScrollingCredits)
         Me.pnlCredits.ForeColor = System.Drawing.Color.White
-        Me.pnlCredits.Location = New System.Drawing.Point(160, 180)
+        Me.pnlCredits.Location = New System.Drawing.Point(0, 0)
         Me.pnlCredits.Name = "pnlCredits"
         Me.pnlCredits.Size = New System.Drawing.Size(400, 192)
         Me.pnlCredits.TabIndex = 39
@@ -309,7 +310,7 @@ Partial Class FrmMenu
         Me.lblCreditsTop.Name = "lblCreditsTop"
         Me.lblCreditsTop.Size = New System.Drawing.Size(247, 33)
         Me.lblCreditsTop.TabIndex = 15
-        Me.lblCreditsTop.Text = "Credits"
+        Me.lblCreditsTop.Text = "Creditos"
         Me.lblCreditsTop.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblScrollingCredits
@@ -318,7 +319,7 @@ Partial Class FrmMenu
         Me.lblScrollingCredits.BackColor = System.Drawing.Color.Transparent
         Me.lblScrollingCredits.Location = New System.Drawing.Point(70, 179)
         Me.lblScrollingCredits.Name = "lblScrollingCredits"
-        Me.lblScrollingCredits.Size = New System.Drawing.Size(0, 23)
+        Me.lblScrollingCredits.Size = New System.Drawing.Size(0, 13)
         Me.lblScrollingCredits.TabIndex = 17
         Me.lblScrollingCredits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -332,6 +333,7 @@ Partial Class FrmMenu
         Me.pnlNewChar.BackColor = System.Drawing.Color.Transparent
         Me.pnlNewChar.BackgroundImage = CType(resources.GetObject("pnlNewChar.BackgroundImage"), System.Drawing.Image)
         Me.pnlNewChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlNewChar.Controls.Add(Me.pnlCharSelect)
         Me.pnlNewChar.Controls.Add(Me.txtDescription)
         Me.pnlNewChar.Controls.Add(Me.lblNewCharSprite)
         Me.pnlNewChar.Controls.Add(Me.btnCreateCharacter)
@@ -347,7 +349,7 @@ Partial Class FrmMenu
         Me.pnlNewChar.Controls.Add(Me.lblNewCharName)
         Me.pnlNewChar.Controls.Add(Me.lblNewChar)
         Me.pnlNewChar.ForeColor = System.Drawing.Color.White
-        Me.pnlNewChar.Location = New System.Drawing.Point(160, 180)
+        Me.pnlNewChar.Location = New System.Drawing.Point(160, 181)
         Me.pnlNewChar.Name = "pnlNewChar"
         Me.pnlNewChar.Size = New System.Drawing.Size(400, 192)
         Me.pnlNewChar.TabIndex = 43
@@ -368,7 +370,7 @@ Partial Class FrmMenu
         Me.lblNewCharSprite.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewCharSprite.Location = New System.Drawing.Point(49, 71)
         Me.lblNewCharSprite.Name = "lblNewCharSprite"
-        Me.lblNewCharSprite.Size = New System.Drawing.Size(64, 28)
+        Me.lblNewCharSprite.Size = New System.Drawing.Size(42, 17)
         Me.lblNewCharSprite.TabIndex = 43
         Me.lblNewCharSprite.Text = "Sprite"
         '
@@ -377,20 +379,20 @@ Partial Class FrmMenu
         Me.btnCreateCharacter.BackgroundImage = CType(resources.GetObject("btnCreateCharacter.BackgroundImage"), System.Drawing.Image)
         Me.btnCreateCharacter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCreateCharacter.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnCreateCharacter.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCreateCharacter.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCreateCharacter.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.btnCreateCharacter.Location = New System.Drawing.Point(263, 150)
         Me.btnCreateCharacter.Name = "btnCreateCharacter"
         Me.btnCreateCharacter.Size = New System.Drawing.Size(121, 26)
         Me.btnCreateCharacter.TabIndex = 42
-        Me.btnCreateCharacter.Text = "Create Character"
+        Me.btnCreateCharacter.Text = "Criar personagem"
         Me.btnCreateCharacter.UseVisualStyleBackColor = True
         '
         'placeholderforsprite
         '
-        Me.placeholderforsprite.Location = New System.Drawing.Point(50, 91)
+        Me.placeholderforsprite.Location = New System.Drawing.Point(43, 91)
         Me.placeholderforsprite.Name = "placeholderforsprite"
-        Me.placeholderforsprite.Size = New System.Drawing.Size(48, 60)
+        Me.placeholderforsprite.Size = New System.Drawing.Size(55, 60)
         Me.placeholderforsprite.TabIndex = 41
         Me.placeholderforsprite.TabStop = False
         Me.placeholderforsprite.Visible = False
@@ -398,18 +400,18 @@ Partial Class FrmMenu
         'lblNextChar
         '
         Me.lblNextChar.AutoSize = True
-        Me.lblNextChar.Location = New System.Drawing.Point(100, 156)
+        Me.lblNextChar.Location = New System.Drawing.Point(83, 157)
         Me.lblNextChar.Name = "lblNextChar"
-        Me.lblNextChar.Size = New System.Drawing.Size(22, 23)
+        Me.lblNextChar.Size = New System.Drawing.Size(15, 13)
         Me.lblNextChar.TabIndex = 40
         Me.lblNextChar.Text = ">"
         '
         'lblPrevChar
         '
         Me.lblPrevChar.AutoSize = True
-        Me.lblPrevChar.Location = New System.Drawing.Point(37, 156)
+        Me.lblPrevChar.Location = New System.Drawing.Point(49, 157)
         Me.lblPrevChar.Name = "lblPrevChar"
-        Me.lblPrevChar.Size = New System.Drawing.Size(22, 23)
+        Me.lblPrevChar.Size = New System.Drawing.Size(15, 13)
         Me.lblPrevChar.TabIndex = 39
         Me.lblPrevChar.Text = "<"
         '
@@ -419,10 +421,10 @@ Partial Class FrmMenu
         Me.rdoFemale.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdoFemale.Location = New System.Drawing.Point(135, 118)
         Me.rdoFemale.Name = "rdoFemale"
-        Me.rdoFemale.Size = New System.Drawing.Size(99, 32)
+        Me.rdoFemale.Size = New System.Drawing.Size(78, 21)
         Me.rdoFemale.TabIndex = 38
         Me.rdoFemale.TabStop = True
-        Me.rdoFemale.Text = "Female"
+        Me.rdoFemale.Text = "Feminino"
         Me.rdoFemale.UseVisualStyleBackColor = True
         '
         'rdoMale
@@ -431,10 +433,10 @@ Partial Class FrmMenu
         Me.rdoMale.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdoMale.Location = New System.Drawing.Point(135, 93)
         Me.rdoMale.Name = "rdoMale"
-        Me.rdoMale.Size = New System.Drawing.Size(80, 32)
+        Me.rdoMale.Size = New System.Drawing.Size(85, 21)
         Me.rdoMale.TabIndex = 37
         Me.rdoMale.TabStop = True
-        Me.rdoMale.Text = "Male"
+        Me.rdoMale.Text = "Masculino"
         Me.rdoMale.UseVisualStyleBackColor = True
         '
         'cmbClass
@@ -444,7 +446,7 @@ Partial Class FrmMenu
         Me.cmbClass.FormattingEnabled = True
         Me.cmbClass.Location = New System.Drawing.Point(227, 43)
         Me.cmbClass.Name = "cmbClass"
-        Me.cmbClass.Size = New System.Drawing.Size(157, 36)
+        Me.cmbClass.Size = New System.Drawing.Size(157, 25)
         Me.cmbClass.TabIndex = 36
         '
         'lblNewCharGender
@@ -453,9 +455,9 @@ Partial Class FrmMenu
         Me.lblNewCharGender.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewCharGender.Location = New System.Drawing.Point(133, 75)
         Me.lblNewCharGender.Name = "lblNewCharGender"
-        Me.lblNewCharGender.Size = New System.Drawing.Size(80, 28)
+        Me.lblNewCharGender.Size = New System.Drawing.Size(58, 17)
         Me.lblNewCharGender.TabIndex = 34
-        Me.lblNewCharGender.Text = "Gender:"
+        Me.lblNewCharGender.Text = "Genero :"
         '
         'lblNewCharClass
         '
@@ -463,16 +465,16 @@ Partial Class FrmMenu
         Me.lblNewCharClass.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewCharClass.Location = New System.Drawing.Point(186, 45)
         Me.lblNewCharClass.Name = "lblNewCharClass"
-        Me.lblNewCharClass.Size = New System.Drawing.Size(59, 28)
+        Me.lblNewCharClass.Size = New System.Drawing.Size(52, 17)
         Me.lblNewCharClass.TabIndex = 33
-        Me.lblNewCharClass.Text = "Class:"
+        Me.lblNewCharClass.Text = "Classe :"
         '
         'txtCharName
         '
         Me.txtCharName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCharName.Location = New System.Drawing.Point(59, 42)
         Me.txtCharName.Name = "txtCharName"
-        Me.txtCharName.Size = New System.Drawing.Size(121, 33)
+        Me.txtCharName.Size = New System.Drawing.Size(121, 25)
         Me.txtCharName.TabIndex = 32
         '
         'lblNewCharName
@@ -482,20 +484,20 @@ Partial Class FrmMenu
         Me.lblNewCharName.ForeColor = System.Drawing.Color.White
         Me.lblNewCharName.Location = New System.Drawing.Point(13, 45)
         Me.lblNewCharName.Name = "lblNewCharName"
-        Me.lblNewCharName.Size = New System.Drawing.Size(68, 28)
+        Me.lblNewCharName.Size = New System.Drawing.Size(51, 17)
         Me.lblNewCharName.TabIndex = 31
-        Me.lblNewCharName.Text = "Name:"
+        Me.lblNewCharName.Text = "Nome :"
         '
         'lblNewChar
         '
         Me.lblNewChar.AutoSize = True
         Me.lblNewChar.Font = New System.Drawing.Font("Segoe UI Semibold", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNewChar.ForeColor = System.Drawing.Color.White
-        Me.lblNewChar.Location = New System.Drawing.Point(85, 1)
+        Me.lblNewChar.Location = New System.Drawing.Point(36, 1)
         Me.lblNewChar.Name = "lblNewChar"
-        Me.lblNewChar.Size = New System.Drawing.Size(356, 60)
+        Me.lblNewChar.Size = New System.Drawing.Size(326, 40)
         Me.lblNewChar.TabIndex = 30
-        Me.lblNewChar.Text = "Create Character"
+        Me.lblNewChar.Text = "Criação de personagem"
         '
         'lblStatusHeader
         '
@@ -503,11 +505,11 @@ Partial Class FrmMenu
         Me.lblStatusHeader.BackColor = System.Drawing.Color.Transparent
         Me.lblStatusHeader.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStatusHeader.ForeColor = System.Drawing.Color.White
-        Me.lblStatusHeader.Location = New System.Drawing.Point(482, 9)
+        Me.lblStatusHeader.Location = New System.Drawing.Point(456, 9)
         Me.lblStatusHeader.Name = "lblStatusHeader"
-        Me.lblStatusHeader.Size = New System.Drawing.Size(91, 32)
+        Me.lblStatusHeader.Size = New System.Drawing.Size(128, 21)
         Me.lblStatusHeader.TabIndex = 44
-        Me.lblStatusHeader.Text = "Status:"
+        Me.lblStatusHeader.Text = "Conectividade :"
         '
         'lblServerStatus
         '
@@ -517,7 +519,7 @@ Partial Class FrmMenu
         Me.lblServerStatus.ForeColor = System.Drawing.Color.Red
         Me.lblServerStatus.Location = New System.Drawing.Point(589, 9)
         Me.lblServerStatus.Name = "lblServerStatus"
-        Me.lblServerStatus.Size = New System.Drawing.Size(93, 32)
+        Me.lblServerStatus.Size = New System.Drawing.Size(63, 21)
         Me.lblServerStatus.TabIndex = 45
         Me.lblServerStatus.Text = "Offline"
         '
@@ -528,8 +530,9 @@ Partial Class FrmMenu
         Me.pnlMainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlMainMenu.Controls.Add(Me.lblNewsHeader)
         Me.pnlMainMenu.Controls.Add(Me.lblNews)
+        Me.pnlMainMenu.Controls.Add(Me.pnlCredits)
         Me.pnlMainMenu.ForeColor = System.Drawing.Color.White
-        Me.pnlMainMenu.Location = New System.Drawing.Point(160, 180)
+        Me.pnlMainMenu.Location = New System.Drawing.Point(160, 182)
         Me.pnlMainMenu.Name = "pnlMainMenu"
         Me.pnlMainMenu.Size = New System.Drawing.Size(400, 192)
         Me.pnlMainMenu.TabIndex = 46
@@ -539,19 +542,19 @@ Partial Class FrmMenu
         Me.lblNewsHeader.AutoSize = True
         Me.lblNewsHeader.BackColor = System.Drawing.Color.Transparent
         Me.lblNewsHeader.Font = New System.Drawing.Font("Segoe UI", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNewsHeader.Location = New System.Drawing.Point(112, 16)
+        Me.lblNewsHeader.Location = New System.Drawing.Point(94, 2)
         Me.lblNewsHeader.Name = "lblNewsHeader"
-        Me.lblNewsHeader.Size = New System.Drawing.Size(259, 60)
+        Me.lblNewsHeader.Size = New System.Drawing.Size(218, 40)
         Me.lblNewsHeader.TabIndex = 36
-        Me.lblNewsHeader.Text = "Latest News"
+        Me.lblNewsHeader.Text = "Ultimas noticias"
         '
         'lblNews
         '
         Me.lblNews.BackColor = System.Drawing.Color.Transparent
         Me.lblNews.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNews.Location = New System.Drawing.Point(17, 55)
+        Me.lblNews.Location = New System.Drawing.Point(17, 43)
         Me.lblNews.Name = "lblNews"
-        Me.lblNews.Size = New System.Drawing.Size(366, 121)
+        Me.lblNews.Size = New System.Drawing.Size(366, 138)
         Me.lblNews.TabIndex = 37
         Me.lblNews.Text = resources.GetString("lblNews.Text")
         Me.lblNews.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -641,7 +644,7 @@ Partial Class FrmMenu
         Me.pnlCharSelect.Controls.Add(Me.lblCharSelect)
         Me.pnlCharSelect.Controls.Add(Me.Label16)
         Me.pnlCharSelect.ForeColor = System.Drawing.Color.White
-        Me.pnlCharSelect.Location = New System.Drawing.Point(160, 180)
+        Me.pnlCharSelect.Location = New System.Drawing.Point(0, 0)
         Me.pnlCharSelect.Name = "pnlCharSelect"
         Me.pnlCharSelect.Size = New System.Drawing.Size(400, 192)
         Me.pnlCharSelect.TabIndex = 57
@@ -727,8 +730,8 @@ Partial Class FrmMenu
         Me.lblCharSelect.Name = "lblCharSelect"
         Me.lblCharSelect.Size = New System.Drawing.Size(312, 33)
         Me.lblCharSelect.TabIndex = 15
-        Me.lblCharSelect.Text = "Seleção de Personagens"
-        Me.lblCharSelect.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.lblCharSelect.Text = "Sel. de Personagem"
+        Me.lblCharSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label16
         '
@@ -736,7 +739,7 @@ Partial Class FrmMenu
         Me.Label16.BackColor = System.Drawing.Color.Transparent
         Me.Label16.Location = New System.Drawing.Point(70, 179)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(0, 23)
+        Me.Label16.Size = New System.Drawing.Size(0, 13)
         Me.Label16.TabIndex = 17
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -765,13 +768,12 @@ Partial Class FrmMenu
         '
         'FrmMenu
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 23.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(784, 562)
-        Me.Controls.Add(Me.pnlCharSelect)
         Me.Controls.Add(Me.pnlNewChar)
         Me.Controls.Add(Me.pnlLoad)
         Me.Controls.Add(Me.btnExit)
@@ -780,8 +782,6 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.btnPlay)
         Me.Controls.Add(Me.lblServerStatus)
         Me.Controls.Add(Me.lblStatusHeader)
-        Me.Controls.Add(Me.pnlCredits)
-        Me.Controls.Add(Me.pnlRegister)
         Me.Controls.Add(Me.pnlLogin)
         Me.Controls.Add(Me.pnlMainMenu)
         Me.Controls.Add(Me.picLogo)

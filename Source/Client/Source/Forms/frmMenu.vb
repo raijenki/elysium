@@ -659,6 +659,10 @@ Friend Class FrmMenu
         End If
     End Sub
 
+    Private Sub lblNewCharName_Click(sender As Object, e As EventArgs) Handles lblNewCharName.Click
+
+    End Sub
+
 #End Region
 
 End Class
