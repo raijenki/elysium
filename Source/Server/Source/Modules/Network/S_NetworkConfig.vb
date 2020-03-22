@@ -6,16 +6,15 @@ Friend Module S_NetworkConfig
 
     Friend Sub InitNetwork()
         If Not Socket Is Nothing Then Return
-        ' Establish some Rulez
+        ' Estabelecer algumas regras
         Socket = New Server(ClientPackets.Count, 4096, MAX_PLAYERS) With {
-            .BufferLimit = 2048000, ' <- this is 2mb max data storage
-            .MinimumIndex = 1, ' <- this prevents the network from giving us 0 as an index
-            .PacketAcceptLimit = 100, ' Dunno what is a reasonable cap right now so why not? :P
-            .PacketDisconnectCount = 150 ' If the other thing was even remotely reasonable, this is DEFINITELY spam count!
+            .BufferLimit = 2048000, ' <- 2mb de armazenamento máximo
+            .MinimumIndex = 1, ' <- Previne que a rede nos dê 0 de índice
+            .PacketAcceptLimit = 100, ' Não sei qual seria um limite razoável agora, entao por que não?
+            .PacketDisconnectCount = 150 ' Se a outra coisa era pelo menos razoável, então este é certamente o contador de spam!
             }
-        ' END THE ESTABLISHMENT! WOOH ANARCHY! ~SpiceyWolf
 
-        PacketRouter() ' Need them packet ids boah!
+        PacketRouter() ' Precisa dos packets Ids!
     End Sub
 
     Friend Sub DestroyNetwork()
@@ -43,7 +42,7 @@ Friend Module S_NetworkConfig
     End Function
 
     Function IsMultiAccounts(Login As String) As Boolean
-        ' Lol this was broke before ~ SpiceyWolf
+        ' Isso estava quebrado antes
         For i As Integer = 1 To GetPlayersOnline()
             If Player(i).Login.Trim.ToLower() = Login.Trim.ToLower() Then Return True
         Next
@@ -92,40 +91,38 @@ Friend Module S_NetworkConfig
 #Region " Events "
 
     Friend Sub Socket_ConnectionReceived(index As Integer) Handles Socket.ConnectionReceived
-        Console.WriteLine("Connection received on index[" & index & "] - IP[" & Socket.ClientIp(index) & "]")
+        Console.WriteLine("Conexão recebida no índice[" & index & "] - IP[" & Socket.ClientIp(index) & "]")
         SendKeyPair(index)
         SendNews(index)
     End Sub
 
     Friend Sub Socket_ConnectionLost(index As Integer) Handles Socket.ConnectionLost
-        Console.WriteLine("Connection lost on index[" & index & "] - IP[" & Socket.ClientIp(index) & "]")
+        Console.WriteLine("Conexão recebida no índice[" & index & "] - IP[" & Socket.ClientIp(index) & "]")
         LeftGame(index)
     End Sub
 
     Friend Sub Socket_CrashReport(index As Integer, err As String) Handles Socket.CrashReport
-        Console.WriteLine("There was a network error -> Index[" & index & "]")
-        Console.WriteLine("Report: " & err)
+        Console.WriteLine("Houve um erro de rede -> Índice[" & index & "]")
+        Console.WriteLine("Relatório: " & err)
         LeftGame(index)
     End Sub
 
     Private Sub Socket_TrafficReceived(size As Integer, ByRef data() As Byte) Handles Socket.TrafficReceived
         If DebugTxt = True Then
-            Console.WriteLine("Traffic Received : [Size: " & size & "]")
+            Console.WriteLine("Tráfego Recebido : [Tamanho: " & size & "]")
         End If
 
         Dim tmpData = data
         Dim BreakPointDummy As Integer = 0
-        'Put breakline on BreakPointDummy to look at what is contained in data at runtime in the VS logger.
     End Sub
 
     Private Sub Socket_PacketReceived(size As Integer, header As Integer, ByRef data() As Byte) Handles Socket.PacketReceived
         If DebugTxt = True Then
-            Console.WriteLine("Packet Received : [Size: " & size & "| Packet: " & CType(header, ClientPackets).ToString() & "]")
+            Console.WriteLine("Packet Recebido : [Tamanho: " & size & "| Packet: " & CType(header, ClientPackets).ToString() & "]")
         End If
 
         Dim tmpData = data
         Dim BreakPointDummy As Integer = 0
-        'Put breakline on BreakPointDummy to look at what is contained in data at runtime in the VS logger.
     End Sub
 
 #End Region

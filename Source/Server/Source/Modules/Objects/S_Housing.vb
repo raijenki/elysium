@@ -94,7 +94,7 @@ Friend Module S_Housing
                 If HasItem(index, 1) >= price Then
                     TakeInvItem(index, 1, price)
                     Player(index).Character(TempPlayer(index).CurChar).House.Houseindex = TempPlayer(index).BuyHouseindex
-                    PlayerMsg(index, "You just bought the " & Trim$(HouseConfig(TempPlayer(index).BuyHouseindex).ConfigName) & " house!", ColorType.BrightGreen)
+                    PlayerMsg(index, "Você acabou de comprar a casa " & Trim$(HouseConfig(TempPlayer(index).BuyHouseindex).ConfigName) & "!", ColorType.BrightGreen)
                     Player(index).Character(TempPlayer(index).CurChar).LastMap = GetPlayerMap(index)
                     Player(index).Character(TempPlayer(index).CurChar).LastX = GetPlayerX(index)
                     Player(index).Character(TempPlayer(index).CurChar).LastY = GetPlayerY(index)
@@ -103,7 +103,7 @@ Friend Module S_Housing
                     PlayerWarp(index, HouseConfig(Player(index).Character(TempPlayer(index).CurChar).House.Houseindex).BaseMap, HouseConfig(Player(index).Character(TempPlayer(index).CurChar).House.Houseindex).X, HouseConfig(Player(index).Character(TempPlayer(index).CurChar).House.Houseindex).Y, True)
                     SavePlayer(index)
                 Else
-                    PlayerMsg(index, "You cannot afford this house!", ColorType.BrightRed)
+                    PlayerMsg(index, "Você não tem dinheiro para esta casa!", ColorType.BrightRed)
                 End If
             End If
         End If
@@ -122,18 +122,18 @@ Friend Module S_Housing
         buffer.Dispose()
 
         If invitee = 0 Then
-            PlayerMsg(index, "Player not found.", ColorType.BrightRed)
+            PlayerMsg(index, "Jogador não encontrado.", ColorType.BrightRed)
             Exit Sub
         End If
 
         If index = invitee Then
-            PlayerMsg(index, "You cannot invite yourself to you own house!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode se convidar para sua própria casa!", ColorType.BrightRed)
             Exit Sub
         End If
 
         If TempPlayer(invitee).Invitationindex > 0 Then
             If TempPlayer(invitee).InvitationTimer > GetTimeMs() Then
-                PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " is currently busy!", ColorType.Yellow)
+                PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " está atualmente ocupada!", ColorType.Yellow)
                 Exit Sub
             End If
         End If
@@ -143,12 +143,12 @@ Friend Module S_Housing
                 If Player(index).Character(TempPlayer(index).CurChar).InHouse = index Then
                     If Player(invitee).Character(TempPlayer(invitee).CurChar).InHouse > 0 Then
                         If Player(invitee).Character(TempPlayer(invitee).CurChar).InHouse = index Then
-                            PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " is already in your house!", ColorType.Yellow)
+                            PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " já está na sua casa!", ColorType.Yellow)
                         Else
-                            PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " is already visiting someone elses house!", ColorType.Yellow)
+                            PlayerMsg(index, Trim$(GetPlayerName(invitee)) & " está visitando a casa de alguém!", ColorType.Yellow)
                         End If
                     Else
-                        'Send invite
+                        'Enviar convite
                         buffer = New ByteStream(4)
                         buffer.WriteInt32(ServerPackets.SVisit)
                         buffer.WriteInt32(index)
@@ -158,13 +158,13 @@ Friend Module S_Housing
                         buffer.Dispose()
                     End If
                 Else
-                    PlayerMsg(index, "Only the house owner can invite other players into their house.", ColorType.BrightRed)
+                    PlayerMsg(index, "Apenas o dono da casa pode convidar outros jogadores para sua casa.", ColorType.BrightRed)
                 End If
             Else
-                PlayerMsg(index, "You must be inside your house before you can invite someone to visit!", ColorType.BrightRed)
+                PlayerMsg(index, "Você deve estar dentro de sua casa antes de convidar alguém para visitar!", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "You do not have a house to invite anyone to!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode convidar alguém para uma casa que não tem!", ColorType.BrightRed)
         End If
 
     End Sub
@@ -178,7 +178,7 @@ Friend Module S_Housing
         If response = 1 Then
             If TempPlayer(index).Invitationindex > 0 Then
                 If TempPlayer(index).InvitationTimer > GetTimeMs() Then
-                    'Accept this invite
+                    'Aceitar este convite
                     If IsPlaying(TempPlayer(index).Invitationindex) Then
                         Player(index).Character(TempPlayer(index).CurChar).InHouse = TempPlayer(index).Invitationindex
                         Player(index).Character(TempPlayer(index).CurChar).LastX = GetPlayerX(index)
@@ -188,10 +188,10 @@ Friend Module S_Housing
                         PlayerWarp(index, Player(TempPlayer(index).Invitationindex).Character(TempPlayer(index).CurChar).Map, HouseConfig(Player(TempPlayer(index).Invitationindex).Character(TempPlayer(TempPlayer(index).Invitationindex).CurChar).House.Houseindex).X, HouseConfig(Player(TempPlayer(index).Invitationindex).Character(TempPlayer(TempPlayer(index).Invitationindex).CurChar).House.Houseindex).Y, True, True)
                     Else
                         TempPlayer(index).InvitationTimer = 0
-                        PlayerMsg(index, "Cannot find player!", ColorType.BrightRed)
+                        PlayerMsg(index, "Jogador não encontrado!", ColorType.BrightRed)
                     End If
                 Else
-                    PlayerMsg(index, "Your invitation has expired, have your friend re-invite you.", ColorType.Yellow)
+                    PlayerMsg(index, "Seu convite expirou, peça para que seu amigo te reconvide.", ColorType.Yellow)
                 End If
             End If
         Else
@@ -215,40 +215,40 @@ Friend Module S_Housing
 
         ItemNum = Player(index).Character(TempPlayer(index).CurChar).Inv(invslot).Num
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If ItemNum < 1 OrElse ItemNum > MAX_ITEMS Then Exit Sub
 
         If Player(index).Character(TempPlayer(index).CurChar).InHouse = index Then
             If Item(ItemNum).Type = ItemType.Furniture Then
-                ' stat requirements
+                ' Requerimentos de Atributos
                 For i = 1 To StatType.Count - 1
                     If GetPlayerRawStat(index, i) < Item(ItemNum).Stat_Req(i) Then
-                        PlayerMsg(index, "You do not meet the stat requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não possui os atributos necessários para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
                 Next
 
-                ' level requirement
+                ' Requerimento de nível
                 If GetPlayerLevel(index) < Item(ItemNum).LevelReq Then
-                    PlayerMsg(index, "You do not meet the level requirement to use this item.", ColorType.BrightRed)
+                    PlayerMsg(index, "Você não possui o nível necessário para usar este item.", ColorType.BrightRed)
                     Exit Sub
                 End If
 
-                ' class requirement
+                ' Requerimento de classe
                 If Item(ItemNum).ClassReq > 0 Then
                     If Not GetPlayerClass(index) = Item(ItemNum).ClassReq Then
-                        PlayerMsg(index, "You do not meet the class requirement to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não possui a classe necessária para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
                 End If
 
-                ' access requirement
+                ' Requerimento de acesso
                 If Not GetPlayerAccess(index) >= Item(ItemNum).AccessReq Then
-                    PlayerMsg(index, "You do not meet the access requirement to use this item.", ColorType.BrightRed)
+                    PlayerMsg(index, "Você não possui os requerimentos de acesso para este item.", ColorType.BrightRed)
                     Exit Sub
                 End If
 
-                'Ok, now we got to see what can be done about this furniture :/
+                'Ok, agora vejamos o que pode ser feito quanto a mobília :/
                 If Player(index).Character(TempPlayer(index).CurChar).InHouse <> index Then
                     PlayerMsg(index, "You must be inside your house to place furniture!", ColorType.Yellow)
                     Exit Sub
@@ -297,7 +297,7 @@ Friend Module S_Housing
                                 For i = 1 To Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount
                                     If x >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X AndAlso x <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X + Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureWidth - 1 Then
                                         If y <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y AndAlso y >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y - Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureHeight + 1 Then
-                                            'Blocked!
+                                            'Bloqueado!
                                             Exit Sub
                                         End If
                                     End If
@@ -324,7 +324,7 @@ Friend Module S_Housing
                                 For i = 1 To Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount
                                     If x >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X AndAlso x <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X + Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureWidth - 1 Then
                                         If y <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y AndAlso y >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y - Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureHeight + 1 Then
-                                            'Blocked!
+                                            'Bloqueado!
                                             Exit Sub
                                         End If
                                     End If
@@ -351,7 +351,7 @@ Friend Module S_Housing
                                 For i = 1 To Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount
                                     If x >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X AndAlso x <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X + Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureWidth - 1 Then
                                         If y <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y AndAlso y >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y - Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureHeight + 1 Then
-                                            'Blocked!
+                                            'Bloqueado!
                                             Exit Sub
                                         End If
                                     End If
@@ -363,8 +363,7 @@ Friend Module S_Housing
 
                 x = x1
                 y = y1
-
-                'If all checks out, place furniture and send the update to everyone in the player's house.
+                'Se tudo der certo, colocar mobília e enviar a atualização para todos na casa do jogador
                 Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount = Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount + 1
                 ReDim Preserve Player(index).Character(TempPlayer(index).CurChar).House.Furniture(Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount)
                 Player(index).Character(TempPlayer(index).CurChar).House.Furniture(Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount).ItemNum = ItemNum
@@ -378,7 +377,7 @@ Friend Module S_Housing
                 SavePlayer(index)
             End If
         Else
-            PlayerMsg(index, "You cannot place furniture unless you are in your own house!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode colocar mobília a não ser que esteja na sua casa!", ColorType.BrightRed)
         End If
 
     End Sub
@@ -386,7 +385,7 @@ Friend Module S_Housing
     Sub Packet_RequestEditHouse(index As Integer, ByRef data() As Byte)
         Dim buffer As ByteStream, i As Integer
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         buffer = New ByteStream(4)
@@ -407,7 +406,7 @@ Friend Module S_Housing
     Sub Packet_SaveHouses(index As Integer, ByRef data() As Byte)
         Dim i As Integer, x As Integer, Count As Integer, z As Integer
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         Dim buffer As New ByteStream(data)
@@ -441,7 +440,7 @@ Friend Module S_Housing
         Dim buffer As New ByteStream(data)
         Tmpindex = Player(index).Character(TempPlayer(index).CurChar).House.Houseindex
         If Tmpindex > 0 Then
-            'get some money back
+            'Pegar algum dinheiro de volta
             refund = HouseConfig(Tmpindex).Price / 2
 
             Player(index).Character(TempPlayer(index).CurChar).House.Houseindex = 0
@@ -460,10 +459,10 @@ Friend Module S_Housing
 
             SavePlayer(index)
 
-            PlayerMsg(index, "You sold your House for " & refund & " Gold!", ColorType.BrightGreen)
+            PlayerMsg(index, "Você vendeu sua casa por " & refund & " Ouros!", ColorType.BrightGreen)
             GiveInvItem(index, 1, refund)
         Else
-            PlayerMsg(index, "You dont own a House!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não possui uma casa!", ColorType.BrightRed)
         End If
 
         buffer.Dispose()
