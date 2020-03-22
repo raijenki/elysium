@@ -202,58 +202,7 @@ Friend Module S_Items
     Function ItemData(itemNum As Integer) As Byte()
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(itemNum)
-        buffer.WriteInt32(Item(itemNum).AccessReq)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Add_Stat(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Animation)
-        buffer.WriteInt32(Item(itemNum).BindType)
-        buffer.WriteInt32(Item(itemNum).ClassReq)
-        buffer.WriteInt32(Item(itemNum).Data1)
-        buffer.WriteInt32(Item(itemNum).Data2)
-        buffer.WriteInt32(Item(itemNum).Data3)
-        buffer.WriteInt32(Item(itemNum).TwoHanded)
-        buffer.WriteInt32(Item(itemNum).LevelReq)
-        buffer.WriteInt32(Item(itemNum).Mastery)
-        buffer.WriteString((Trim$(Item(itemNum).Name)))
-        buffer.WriteInt32(Item(itemNum).Paperdoll)
-        buffer.WriteInt32(Item(itemNum).Pic)
-        buffer.WriteInt32(Item(itemNum).Price)
-        buffer.WriteInt32(Item(itemNum).Rarity)
-        buffer.WriteInt32(Item(itemNum).Speed)
-
-        buffer.WriteInt32(Item(itemNum).Randomize)
-        buffer.WriteInt32(Item(itemNum).RandomMin)
-        buffer.WriteInt32(Item(itemNum).RandomMax)
-
-        buffer.WriteInt32(Item(itemNum).Stackable)
-        buffer.WriteString((Trim$(Item(itemNum).Description)))
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Stat_Req(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Type)
-        buffer.WriteInt32(Item(itemNum).SubType)
-
-        buffer.WriteInt32(Item(itemNum).ItemLevel)
-        'Housing
-        buffer.WriteInt32(Item(itemNum).FurnitureWidth)
-        buffer.WriteInt32(Item(itemNum).FurnitureHeight)
-
-        For i = 0 To 3
-            For x = 0 To 3
-                buffer.WriteInt32(Item(itemNum).FurnitureBlocks(i, x))
-                buffer.WriteInt32(Item(itemNum).FurnitureFringe(i, x))
-            Next
-        Next
-
-        buffer.WriteInt32(Item(itemNum).KnockBack)
-        buffer.WriteInt32(Item(itemNum).KnockBackTiles)
-        buffer.WriteInt32(Item(itemNum).Projectile)
-        buffer.WriteInt32(Item(itemNum).Ammo)
+        buffer.WriteBlock(SerializeData(Item(itemNum)))
         Return buffer.ToArray
     End Function
 
@@ -443,61 +392,7 @@ Friend Module S_Items
 
         If n < 0 OrElse n > MAX_ITEMS Then Exit Sub
 
-        ' Update the item
-        Item(n).AccessReq = buffer.ReadInt32()
-
-        For i = 0 To StatType.Count - 1
-            Item(n).Add_Stat(i) = buffer.ReadInt32()
-        Next
-
-        Item(n).Animation = buffer.ReadInt32()
-        Item(n).BindType = buffer.ReadInt32()
-        Item(n).ClassReq = buffer.ReadInt32()
-        Item(n).Data1 = buffer.ReadInt32()
-        Item(n).Data2 = buffer.ReadInt32()
-        Item(n).Data3 = buffer.ReadInt32()
-        Item(n).TwoHanded = buffer.ReadInt32()
-        Item(n).LevelReq = buffer.ReadInt32()
-        Item(n).Mastery = buffer.ReadInt32()
-        Item(n).Name = Trim$(buffer.ReadString)
-        Item(n).Paperdoll = buffer.ReadInt32()
-        Item(n).Pic = buffer.ReadInt32()
-        Item(n).Price = buffer.ReadInt32()
-        Item(n).Rarity = buffer.ReadInt32()
-        Item(n).Speed = buffer.ReadInt32()
-
-        Item(n).Randomize = buffer.ReadInt32()
-        Item(n).RandomMin = buffer.ReadInt32()
-        Item(n).RandomMax = buffer.ReadInt32()
-
-        Item(n).Stackable = buffer.ReadInt32()
-        Item(n).Description = Trim$(buffer.ReadString)
-
-        For i = 0 To StatType.Count - 1
-            Item(n).Stat_Req(i) = buffer.ReadInt32()
-        Next
-
-        Item(n).Type = buffer.ReadInt32()
-        Item(n).SubType = buffer.ReadInt32
-
-        Item(n).ItemLevel = buffer.ReadInt32
-
-        'Housing
-        Item(n).FurnitureWidth = buffer.ReadInt32()
-        Item(n).FurnitureHeight = buffer.ReadInt32()
-
-        For a = 0 To 3
-            For b = 0 To 3
-                Item(n).FurnitureBlocks(a, b) = buffer.ReadInt32()
-                Item(n).FurnitureFringe(a, b) = buffer.ReadInt32()
-            Next
-        Next
-
-        Item(n).KnockBack = buffer.ReadInt32()
-        Item(n).KnockBackTiles = buffer.ReadInt32()
-
-        Item(n).Projectile = buffer.ReadInt32()
-        Item(n).Ammo = buffer.ReadInt32()
+        Item(n) = DeserializeData(buffer)
 
         ' Save it
         SendUpdateItemToAll(n)

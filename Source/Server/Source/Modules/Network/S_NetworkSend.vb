@@ -1094,18 +1094,7 @@ Module S_NetworkSend
         AddDebug("Sent SMSG: SBank")
 
         For i = 1 To MAX_BANK
-            buffer.WriteInt32(Bank(index).Item(i).Num)
-            buffer.WriteInt32(Bank(index).Item(i).Value)
-
-            buffer.WriteString((Bank(index).ItemRand(i).Prefix.Trim))
-            buffer.WriteString((Bank(index).ItemRand(i).Suffix.Trim))
-            buffer.WriteInt32(Bank(index).ItemRand(i).Rarity)
-            buffer.WriteInt32(Bank(index).ItemRand(i).Damage)
-            buffer.WriteInt32(Bank(index).ItemRand(i).Speed)
-
-            For x = 1 To StatType.Count - 1
-                buffer.WriteInt32(Bank(index).ItemRand(i).Stat(x))
-            Next
+            buffer.WriteBlock(SerializeData(Bank(index)))
         Next
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)

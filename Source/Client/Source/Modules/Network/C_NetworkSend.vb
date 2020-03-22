@@ -680,60 +680,7 @@ Module C_NetworkSend
 
         buffer.WriteInt32(ClientPackets.CSaveItem)
         buffer.WriteInt32(itemNum)
-        buffer.WriteInt32(Item(itemNum).AccessReq)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Add_Stat(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Animation)
-        buffer.WriteInt32(Item(itemNum).BindType)
-        buffer.WriteInt32(Item(itemNum).ClassReq)
-        buffer.WriteInt32(Item(itemNum).Data1)
-        buffer.WriteInt32(Item(itemNum).Data2)
-        buffer.WriteInt32(Item(itemNum).Data3)
-        buffer.WriteInt32(Item(itemNum).TwoHanded)
-        buffer.WriteInt32(Item(itemNum).LevelReq)
-        buffer.WriteInt32(Item(itemNum).Mastery)
-        buffer.WriteString((Trim$(Item(itemNum).Name)))
-        buffer.WriteInt32(Item(itemNum).Paperdoll)
-        buffer.WriteInt32(Item(itemNum).Pic)
-        buffer.WriteInt32(Item(itemNum).Price)
-        buffer.WriteInt32(Item(itemNum).Rarity)
-        buffer.WriteInt32(Item(itemNum).Speed)
-
-        buffer.WriteInt32(Item(itemNum).Randomize)
-        buffer.WriteInt32(Item(itemNum).RandomMin)
-        buffer.WriteInt32(Item(itemNum).RandomMax)
-
-        buffer.WriteInt32(Item(itemNum).Stackable)
-        buffer.WriteString((Trim$(Item(itemNum).Description)))
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Stat_Req(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Type)
-        buffer.WriteInt32(Item(itemNum).SubType)
-
-        buffer.WriteInt32(Item(itemNum).ItemLevel)
-
-        'Housing
-        buffer.WriteInt32(Item(itemNum).FurnitureWidth)
-        buffer.WriteInt32(Item(itemNum).FurnitureHeight)
-
-        For i = 0 To 3
-            For x = 0 To 3
-                buffer.WriteInt32(Item(itemNum).FurnitureBlocks(i, x))
-                buffer.WriteInt32(Item(itemNum).FurnitureFringe(i, x))
-            Next
-        Next
-
-        buffer.WriteInt32(Item(itemNum).KnockBack)
-        buffer.WriteInt32(Item(itemNum).KnockBackTiles)
-
-        buffer.WriteInt32(Item(itemNum).Projectile)
-        buffer.WriteInt32(Item(itemNum).Ammo)
+        buffer.WriteBlock(SerializeData(Item(itemNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()
