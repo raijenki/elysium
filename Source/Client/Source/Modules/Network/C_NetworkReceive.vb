@@ -834,61 +834,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            ' Update the item
-            Item(n).AccessReq = buffer.ReadInt32()
-
-            For z = 0 To StatType.Count - 1
-                Item(n).Add_Stat(z) = buffer.ReadInt32()
-            Next
-
-            Item(n).Animation = buffer.ReadInt32()
-            Item(n).BindType = buffer.ReadInt32()
-            Item(n).ClassReq = buffer.ReadInt32()
-            Item(n).Data1 = buffer.ReadInt32()
-            Item(n).Data2 = buffer.ReadInt32()
-            Item(n).Data3 = buffer.ReadInt32()
-            Item(n).TwoHanded = buffer.ReadInt32()
-            Item(n).LevelReq = buffer.ReadInt32()
-            Item(n).Mastery = buffer.ReadInt32()
-            Item(n).Name = Trim$(buffer.ReadString())
-            Item(n).Paperdoll = buffer.ReadInt32()
-            Item(n).Pic = buffer.ReadInt32()
-            Item(n).Price = buffer.ReadInt32()
-            Item(n).Rarity = buffer.ReadInt32()
-            Item(n).Speed = buffer.ReadInt32()
-
-            Item(n).Randomize = buffer.ReadInt32()
-            Item(n).RandomMin = buffer.ReadInt32()
-            Item(n).RandomMax = buffer.ReadInt32()
-
-            Item(n).Stackable = buffer.ReadInt32()
-            Item(n).Description = Trim$(buffer.ReadString())
-
-            For z = 0 To StatType.Count - 1
-                Item(n).Stat_Req(z) = buffer.ReadInt32()
-            Next
-
-            Item(n).Type = buffer.ReadInt32()
-            Item(n).SubType = buffer.ReadInt32
-
-            Item(n).ItemLevel = buffer.ReadInt32
-
-            'Housing
-            Item(n).FurnitureWidth = buffer.ReadInt32()
-            Item(n).FurnitureHeight = buffer.ReadInt32()
-
-            For a = 0 To 3
-                For b = 0 To 3
-                    Item(n).FurnitureBlocks(a, b) = buffer.ReadInt32()
-                    Item(n).FurnitureFringe(a, b) = buffer.ReadInt32()
-                Next
-            Next
-
-            Item(n).KnockBack = buffer.ReadInt32()
-            Item(n).KnockBackTiles = buffer.ReadInt32()
-
-            Item(n).Projectile = buffer.ReadInt32()
-            Item(n).Ammo = buffer.ReadInt32()
+            Item(n) = DeserializeData(buffer)
         Next
 
         ' changes to inventory, need to clear any drop menu

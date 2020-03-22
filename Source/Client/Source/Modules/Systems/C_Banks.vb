@@ -37,20 +37,8 @@ Module C_Banks
     Friend Sub Packet_OpenBank(ByRef data() As Byte)
         Dim i As Integer, x As Integer
         Dim buffer As New ByteStream(data)
-        For i = 1 To MAX_BANK
-            Bank.Item(i).Num = buffer.ReadInt32
-            Bank.Item(i).Value = buffer.ReadInt32
 
-            Bank.ItemRand(i).Prefix = buffer.ReadString
-            Bank.ItemRand(i).Suffix = buffer.ReadString
-            Bank.ItemRand(i).Rarity = buffer.ReadInt32
-            Bank.ItemRand(i).Damage = buffer.ReadInt32
-            Bank.ItemRand(i).Speed = buffer.ReadInt32
-
-            For x = 1 To StatType.Count - 1
-                Bank.ItemRand(i).Stat(x) = buffer.ReadInt32
-            Next
-        Next
+        Bank = DeserializeData(buffer)
 
         NeedToOpenBank = True
 
