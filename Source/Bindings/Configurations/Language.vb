@@ -7,10 +7,10 @@ Public Class LanguageDef
     Public Load As New LoadDef
     Public Class LoadDef
 
-        Public Loading As String = "Loading..."
-        Public Graphics As String = "Initialising Graphics.."
-        Public Network As String = "Initialising Network..."
-        Public Starting As String = "Starting Game..."
+        Public Loading As String = "Carregando..."
+        Public Graphics As String = "Iniciando Graficos..."
+        Public Network As String = "Conectando na rede..."
+        Public Starting As String = "Jogo inciando..."
 
     End Class
 
@@ -18,51 +18,51 @@ Public Class LanguageDef
     Public Class MainMenuDef
 
         ' Main Panel
-        Public ServerStatus As String = "Server Status:"
+        Public ServerStatus As String = "Status do servidor:"
         Public ServerOnline As String = "Online"
-        Public ServerReconnect As String = "Reconnecting..."
+        Public ServerReconnect As String = "Reconectando..."
         Public ServerOffline As String = "Offline"
-        Public ButtonPlay As String = "Play"
-        Public ButtonRegister As String = "Register"
-        Public ButtonCredits As String = "Credits"
-        Public ButtonExit As String = "Exit"
-        Public NewsHeader As String = "Latest News"
-        Public News As String = "Welcome To the Orion Client.
-                                 This Is a free open source VB.Net game engine!
-                                 For help Or support please visit our site at
-                                 http://ascensionforums.com."
+        Public ButtonPlay As String = "Jogar"
+        Public ButtonRegister As String = "Registrar"
+        Public ButtonCredits As String = "Creditos"
+        Public ButtonExit As String = "Sair"
+        Public NewsHeader As String = "Ultimas noticias"
+        Public News As String = "Bemvindos ao cliente da Elysium.NET
+                                 Esse é uma game engine, gratuita e open source, baseado em VB.NET
+                                 Precisa de ajuda OU suporte? visite nosso forum
+                                 http://www.mmodev.com.br/"
 
         ' Login Panel
         Public Login As String = "Login"
-        Public LoginName As String = "Name : "
-        Public LoginPass As String = "Password : "
-        Public LoginCheckBox As String = "Save Password?"
-        Public LoginButton As String = "Submit"
+        Public LoginName As String = "Login : "
+        Public LoginPass As String = "Senha : "
+        Public LoginCheckBox As String = "Salvar senha?"
+        Public LoginButton As String = "Enviar"
 
         ' New Character Panel
-        Public NewCharacter As String = "Create Character"
-        Public NewCharacterName As String = "Name : "
-        Public NewCharacterClass As String = "Class : "
-        Public NewCharacterGender As String = "Gender : "
-        Public NewCharacterMale As String = "Male"
-        Public NewCharacterFemale As String = "Female"
+        Public NewCharacter As String = "Criar personagem"
+        Public NewCharacterName As String = "Nome : "
+        Public NewCharacterClass As String = "Classe : "
+        Public NewCharacterGender As String = "Genero : "
+        Public NewCharacterMale As String = "Masculino"
+        Public NewCharacterFemale As String = "Feminino"
         Public NewCharacterSprite As String = "Sprite"
-        Public NewCharacterButton As String = "Submit"
+        Public NewCharacterButton As String = "Enviar"
 
         ' Character Select
-        Public UseCharacter As String = "Character Selection"
-        Public UseCharacterNew As String = "New Character"
-        Public UseCharacterUse As String = "Use Character"
-        Public UseCharacterDel As String = "Delete Character"
+        Public UseCharacter As String = "Seleção de personagem"
+        Public UseCharacterNew As String = "Novo personagem"
+        Public UseCharacterUse As String = "Escolher personagem"
+        Public UseCharacterDel As String = "Deletar personagem"
 
         ' Register
-        Public Register As String = "Registration"
-        Public RegisterName As String = "Username : "
-        Public RegisterPass1 As String = "Password : "
-        Public RegisterPass2 As String = "Retype Password : "
+        Public Register As String = "Registro de conta"
+        Public RegisterName As String = "Login : "
+        Public RegisterPass1 As String = "Senha : "
+        Public RegisterPass2 As String = "Re-digite a senha : "
 
         ' Credits
-        Public Credits As String = "Credits"
+        Public Credits As String = "Creditos"
 
         ' Misc
         Public StringLegal As String = "You cannot use high ASCII characters In your name, please re-enter."
