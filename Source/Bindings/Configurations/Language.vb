@@ -171,90 +171,90 @@ Public Class LanguageDef
     Public SkillDescription As New SkillDescriptionDef
     Public Class SkillDescriptionDef
 
-        Public No As String = "No"
-        Public None As String = "None"
-        Public Warp As String = "Warp"
+        Public No As String = "Não"
+        Public None As String = "Nenhum"
+        Public Warp As String = "Teleporte"
         Public Tiles As String = "Tiles"
-        Public SelfCast As String = "Self-Cast"
+        Public SelfCast As String = "Uso proprio"
 
-        Public Gain As String = "Regen : "
-        Public GainHp As String = "Regen Hp"
-        Public GainMp As String = "Regen Mp"
-        Public Lose As String = "Syphon : "
-        Public LoseHp As String = "Syphon Hp"
-        Public LoseMp As String = "Syphon Mp"
+        Public Gain As String = "Recup : "
+        Public GainHp As String = "Recup Hp"
+        Public GainMp As String = "Recup Mp"
+        Public Lose As String = "Perdendo : "
+        Public LoseHp As String = "Perdendo Hp"
+        Public LoseMp As String = "Perdendo Mp"
 
     End Class
 
     Public Crafting As New CraftingDef
     Public Class CraftingDef
 
-        Public NotEnough As String = "Not enough materials!"
-        Public NotSelected As String = "Nothing selected"
+        Public NotEnough As String = "Materiais insuficientes!"
+        Public NotSelected As String = "Nada selecionado"
 
     End Class
 
     Public Trade As New TradeDef
     Public Class TradeDef
 
-        Public Request As String = "{0} is requesting to trade."
-        Public Timeout As String = "You took too long to decide. Please try again."
+        Public Request As String = "{0} está solicitando trade."
+        Public Timeout As String = "Você demorou muito para decidir. Por favor, tente novamente."
 
-        Public Value As String = "Total Value : {0}g"
+        Public Value As String = "Valor total : {0}g"
 
-        Public StatusOther As String = "Other player confirmed offer."
-        Public StatusSelf As String = "You confirmed the offer."
+        Public StatusOther As String = "Outro jogador aceitou a oferta."
+        Public StatusSelf As String = "Você aceitou a oferta."
 
     End Class
 
     Public Events As New EventDef
     Public Class EventDef
 
-        Public OptContinue = "- Continue -"
+        Public OptContinue = "- Continuar -"
 
     End Class
 
     Public Quest As New QuestDef
     Public Class QuestDef
 
-        Public Cancel As String = "Cancel Started"
-        Public Started As String = "Quest Started"
-        Public Completed As String = "Quest Completed"
+        Public Cancel As String = "Cancela quest iniciada"
+        Public Started As String = "Inicia quest"
+        Public Completed As String = "Quest completada"
 
         ' Quest Types
-        Public Slay As String = "Defeat {0}/{1} {2}."
-        Public Collect As String = "Collect {0}/{1} {2}."
-        Public Talk As String = "Go talk To {0}."
-        Public Reach As String = "Go To {0}."
-        Public TurnIn As String = "Give {0} the {1} {2}/{3} they requested."
-        Public Kill As String = "Defeat {0}/{1} Players In Battle."
-        Public Gather As String = "Gather {0}/{1} {2}."
-        Public Fetch As String = "Fetch {0} X {1} from {2}."
+        Public Slay As String = "Mate {0}/{1} {2}."
+        Public Collect As String = "Colete {0}/{1} {2}."
+        Public Talk As String = "Fale com {0}."
+        Public Reach As String = "Vá para {0}."
+        Public TurnIn As String = "De {0} para {1} {2}/{3} conforme pedido."
+        Public Kill As String = "Mate {0}/{1} jogadores no combate."
+        Public Gather As String = "Reuna {0}/{1} {2}."
+        Public Fetch As String = "Busque {0} X {1} do {2}."
 
     End Class
 
     Public Character As New CharacterDef
     Public Class CharacterDef
 
-        Public Name As String = "Name : "
-        Public ClassType As String = "Class : "
-        Public Level As String = "Lv : "
-        Public Exp As String = "Exp : "
+        Public Name As String = "Nome : "
+        Public ClassType As String = "Classe : "
+        Public Level As String = "Lvl : "
+        Public Exp As String = "Xp : "
 
-        Public StatsLabel As String = "== Stats =="
-        Public Strength As String = "Strength : "
-        Public Endurance As String = "Endurance : "
-        Public Vitality As String = "Vitality : "
-        Public Intelligence As String = "Intelligence : "
-        Public Luck As String = "Luck : "
-        Public Spirit As String = "Spirit : "
-        Public Points As String = "Points Available : "
+        Public StatsLabel As String = "== Status =="
+        Public Strength As String = "Força : "
+        Public Endurance As String = "Resistência : "
+        Public Vitality As String = "Vitalidade : "
+        Public Intelligence As String = "Inteligência : "
+        Public Luck As String = "Sorte : "
+        Public Spirit As String = "Espírito : "
+        Public Points As String = "Pontos Disponíveis : "
 
-        Public SkillLabel As String = "== Skill Levels =="
-        Public Herbalist As String = "Herbalist : "
-        Public Woodcutter As String = "Woodcutter : "
-        Public Miner As String = "Miner : "
-        Public Fisherman As String = "Fisherman : "
+        Public SkillLabel As String = "== Level da habilidade =="
+        Public Herbalist As String = "Herborista : "
+        Public Woodcutter As String = "Lenhador : "
+        Public Miner As String = "Mineiração : "
+        Public Fisherman As String = "Pescaria : "
 
     End Class
 End Class

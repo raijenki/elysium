@@ -81,11 +81,11 @@
         Dim SkillAnim As Integer
         Dim StunDuration As Integer
 
-        'projectiles
-        Dim IsProjectile As Integer '0 is no, 1 is yes
+        ' projéteis
+        Dim IsProjectile As Integer '0 é não, 1 é sim
         Dim Projectile As Integer
 
-        Dim KnockBack As Byte '0 is no, 1 is yes
+        Dim KnockBack As Byte '0 é não, 1 é sim
         Dim KnockBackTiles As Byte
     End Structure
 
@@ -155,7 +155,7 @@
         Dim Stackable As Byte
         Dim ItemLevel As Byte
 
-        'Housing
+        'variaveis do sistema de casa
         Dim FurnitureWidth As Integer
         Dim FurnitureHeight As Integer
         Dim FurnitureBlocks(,) As Integer
@@ -172,14 +172,14 @@
         Dim Animation As Integer
         Dim X As Integer
         Dim Y As Integer
-        ' used for locking to players/npcs
+        ' usado para localizar jogadores / npcs
         Dim lockindex As Integer
         Dim LockType As Byte
-        ' timing
+        ' cronometragem
         Dim Timer() As Integer
-        ' rendering check
+        ' verificação de renderização
         Dim Used() As Boolean
-        ' counting the loop
+        ' contando o loop
         Dim LoopIndex() As Integer
         Dim FrameIndex() As Integer
     End Structure
@@ -227,7 +227,7 @@
         Dim StartY As Byte
         Dim BaseExp As Integer
 
-        ' For client use
+        ' Para uso do cliente
         Dim Vital() As Integer
 
     End Structure
