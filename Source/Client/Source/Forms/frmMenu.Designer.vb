@@ -46,6 +46,15 @@ Partial Class FrmMenu
         Me.lblScrollingCredits = New System.Windows.Forms.Label()
         Me.tmrCredits = New System.Windows.Forms.Timer(Me.components)
         Me.pnlNewChar = New System.Windows.Forms.Panel()
+        Me.pnlCharSelect = New System.Windows.Forms.Panel()
+        Me.btnUseChar = New System.Windows.Forms.Button()
+        Me.btnDelChar = New System.Windows.Forms.Button()
+        Me.btnNewChar = New System.Windows.Forms.Button()
+        Me.picChar3 = New System.Windows.Forms.PictureBox()
+        Me.picChar2 = New System.Windows.Forms.PictureBox()
+        Me.picChar1 = New System.Windows.Forms.PictureBox()
+        Me.lblCharSelect = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.txtDescription = New System.Windows.Forms.TextBox()
         Me.lblNewCharSprite = New System.Windows.Forms.Label()
         Me.btnCreateCharacter = New System.Windows.Forms.Button()
@@ -70,28 +79,19 @@ Partial Class FrmMenu
         Me.btnRegister = New System.Windows.Forms.Button()
         Me.btnCredits = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.pnlCharSelect = New System.Windows.Forms.Panel()
-        Me.btnUseChar = New System.Windows.Forms.Button()
-        Me.btnDelChar = New System.Windows.Forms.Button()
-        Me.btnNewChar = New System.Windows.Forms.Button()
-        Me.picChar3 = New System.Windows.Forms.PictureBox()
-        Me.picChar2 = New System.Windows.Forms.PictureBox()
-        Me.picChar1 = New System.Windows.Forms.PictureBox()
-        Me.lblCharSelect = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
         Me.pnlLoad = New System.Windows.Forms.Panel()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.pnlLogin.SuspendLayout()
         Me.pnlRegister.SuspendLayout()
         Me.pnlCredits.SuspendLayout()
         Me.pnlNewChar.SuspendLayout()
-        CType(Me.placeholderforsprite, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlMainMenu.SuspendLayout()
-        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlCharSelect.SuspendLayout()
         CType(Me.picChar3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picChar2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picChar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.placeholderforsprite, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlMainMenu.SuspendLayout()
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoad.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -107,12 +107,11 @@ Partial Class FrmMenu
         Me.pnlLogin.Controls.Add(Me.txtLogin)
         Me.pnlLogin.Controls.Add(Me.lblLoginName)
         Me.pnlLogin.Controls.Add(Me.lblLogin)
-        Me.pnlLogin.Controls.Add(Me.pnlRegister)
         Me.pnlLogin.ForeColor = System.Drawing.Color.White
-        Me.pnlLogin.Location = New System.Drawing.Point(160, 182)
+        Me.pnlLogin.Location = New System.Drawing.Point(38, 170)
         Me.pnlLogin.Name = "pnlLogin"
         Me.pnlLogin.Size = New System.Drawing.Size(400, 192)
-        Me.pnlLogin.TabIndex = 37
+        Me.pnlLogin.TabIndex = 57
         Me.pnlLogin.Visible = False
         '
         'btnLogin
@@ -125,7 +124,7 @@ Partial Class FrmMenu
         Me.btnLogin.Location = New System.Drawing.Point(180, 153)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(110, 26)
-        Me.btnLogin.TabIndex = 49
+        Me.btnLogin.TabIndex = 57
         Me.btnLogin.Text = "Logar"
         Me.btnLogin.UseVisualStyleBackColor = True
         '
@@ -137,7 +136,7 @@ Partial Class FrmMenu
         Me.chkSavePass.Location = New System.Drawing.Point(110, 128)
         Me.chkSavePass.Name = "chkSavePass"
         Me.chkSavePass.Size = New System.Drawing.Size(114, 21)
-        Me.chkSavePass.TabIndex = 25
+        Me.chkSavePass.TabIndex = 57
         Me.chkSavePass.Text = "Salvar senha ?"
         Me.chkSavePass.UseVisualStyleBackColor = False
         '
@@ -157,7 +156,7 @@ Partial Class FrmMenu
         Me.lblLoginPass.Location = New System.Drawing.Point(107, 101)
         Me.lblLoginPass.Name = "lblLoginPass"
         Me.lblLoginPass.Size = New System.Drawing.Size(53, 17)
-        Me.lblLoginPass.TabIndex = 23
+        Me.lblLoginPass.TabIndex = 57
         Me.lblLoginPass.Text = "Senha :"
         '
         'txtLogin
@@ -175,7 +174,7 @@ Partial Class FrmMenu
         Me.lblLoginName.Location = New System.Drawing.Point(107, 66)
         Me.lblLoginName.Name = "lblLoginName"
         Me.lblLoginName.Size = New System.Drawing.Size(51, 17)
-        Me.lblLoginName.TabIndex = 16
+        Me.lblLoginName.TabIndex = 57
         Me.lblLoginName.Text = "Login :"
         '
         'lblLogin
@@ -185,7 +184,7 @@ Partial Class FrmMenu
         Me.lblLogin.Location = New System.Drawing.Point(156, 9)
         Me.lblLogin.Name = "lblLogin"
         Me.lblLogin.Size = New System.Drawing.Size(85, 37)
-        Me.lblLogin.TabIndex = 15
+        Me.lblLogin.TabIndex = 57
         Me.lblLogin.Text = "Login"
         '
         'pnlRegister
@@ -202,10 +201,10 @@ Partial Class FrmMenu
         Me.pnlRegister.Controls.Add(Me.lblNewAccName)
         Me.pnlRegister.Controls.Add(Me.lblNewAccount)
         Me.pnlRegister.ForeColor = System.Drawing.Color.White
-        Me.pnlRegister.Location = New System.Drawing.Point(0, 0)
+        Me.pnlRegister.Location = New System.Drawing.Point(0, 1)
         Me.pnlRegister.Name = "pnlRegister"
         Me.pnlRegister.Size = New System.Drawing.Size(400, 192)
-        Me.pnlRegister.TabIndex = 38
+        Me.pnlRegister.TabIndex = 58
         Me.pnlRegister.Visible = False
         '
         'btnCreateAccount
@@ -295,11 +294,12 @@ Partial Class FrmMenu
         Me.pnlCredits.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlCredits.Controls.Add(Me.lblCreditsTop)
         Me.pnlCredits.Controls.Add(Me.lblScrollingCredits)
+        Me.pnlCredits.Controls.Add(Me.pnlLogin)
         Me.pnlCredits.ForeColor = System.Drawing.Color.White
-        Me.pnlCredits.Location = New System.Drawing.Point(0, 0)
+        Me.pnlCredits.Location = New System.Drawing.Point(2, 1)
         Me.pnlCredits.Name = "pnlCredits"
         Me.pnlCredits.Size = New System.Drawing.Size(400, 192)
-        Me.pnlCredits.TabIndex = 39
+        Me.pnlCredits.TabIndex = 10
         Me.pnlCredits.Visible = False
         '
         'lblCreditsTop
@@ -309,7 +309,7 @@ Partial Class FrmMenu
         Me.lblCreditsTop.Location = New System.Drawing.Point(78, 6)
         Me.lblCreditsTop.Name = "lblCreditsTop"
         Me.lblCreditsTop.Size = New System.Drawing.Size(247, 33)
-        Me.lblCreditsTop.TabIndex = 15
+        Me.lblCreditsTop.TabIndex = 57
         Me.lblCreditsTop.Text = "Creditos"
         Me.lblCreditsTop.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
@@ -333,7 +333,6 @@ Partial Class FrmMenu
         Me.pnlNewChar.BackColor = System.Drawing.Color.Transparent
         Me.pnlNewChar.BackgroundImage = CType(resources.GetObject("pnlNewChar.BackgroundImage"), System.Drawing.Image)
         Me.pnlNewChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlNewChar.Controls.Add(Me.pnlCharSelect)
         Me.pnlNewChar.Controls.Add(Me.txtDescription)
         Me.pnlNewChar.Controls.Add(Me.lblNewCharSprite)
         Me.pnlNewChar.Controls.Add(Me.btnCreateCharacter)
@@ -349,11 +348,124 @@ Partial Class FrmMenu
         Me.pnlNewChar.Controls.Add(Me.lblNewCharName)
         Me.pnlNewChar.Controls.Add(Me.lblNewChar)
         Me.pnlNewChar.ForeColor = System.Drawing.Color.White
-        Me.pnlNewChar.Location = New System.Drawing.Point(160, 181)
+        Me.pnlNewChar.Location = New System.Drawing.Point(2, 0)
         Me.pnlNewChar.Name = "pnlNewChar"
         Me.pnlNewChar.Size = New System.Drawing.Size(400, 192)
-        Me.pnlNewChar.TabIndex = 43
+        Me.pnlNewChar.TabIndex = 58
         Me.pnlNewChar.Visible = False
+        '
+        'pnlCharSelect
+        '
+        Me.pnlCharSelect.BackColor = System.Drawing.Color.Transparent
+        Me.pnlCharSelect.BackgroundImage = CType(resources.GetObject("pnlCharSelect.BackgroundImage"), System.Drawing.Image)
+        Me.pnlCharSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlCharSelect.Controls.Add(Me.btnUseChar)
+        Me.pnlCharSelect.Controls.Add(Me.btnDelChar)
+        Me.pnlCharSelect.Controls.Add(Me.btnNewChar)
+        Me.pnlCharSelect.Controls.Add(Me.picChar3)
+        Me.pnlCharSelect.Controls.Add(Me.picChar2)
+        Me.pnlCharSelect.Controls.Add(Me.picChar1)
+        Me.pnlCharSelect.Controls.Add(Me.lblCharSelect)
+        Me.pnlCharSelect.Controls.Add(Me.Label16)
+        Me.pnlCharSelect.ForeColor = System.Drawing.Color.White
+        Me.pnlCharSelect.Location = New System.Drawing.Point(159, 183)
+        Me.pnlCharSelect.Name = "pnlCharSelect"
+        Me.pnlCharSelect.Size = New System.Drawing.Size(400, 192)
+        Me.pnlCharSelect.TabIndex = 57
+        Me.pnlCharSelect.Visible = False
+        '
+        'btnUseChar
+        '
+        Me.btnUseChar.BackgroundImage = CType(resources.GetObject("btnUseChar.BackgroundImage"), System.Drawing.Image)
+        Me.btnUseChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnUseChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnUseChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUseChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.btnUseChar.Location = New System.Drawing.Point(147, 154)
+        Me.btnUseChar.Name = "btnUseChar"
+        Me.btnUseChar.Size = New System.Drawing.Size(110, 26)
+        Me.btnUseChar.TabIndex = 52
+        Me.btnUseChar.Text = "Usar Personagem"
+        Me.btnUseChar.UseVisualStyleBackColor = True
+        '
+        'btnDelChar
+        '
+        Me.btnDelChar.BackgroundImage = CType(resources.GetObject("btnDelChar.BackgroundImage"), System.Drawing.Image)
+        Me.btnDelChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDelChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnDelChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.btnDelChar.Location = New System.Drawing.Point(263, 154)
+        Me.btnDelChar.Name = "btnDelChar"
+        Me.btnDelChar.Size = New System.Drawing.Size(119, 26)
+        Me.btnDelChar.TabIndex = 51
+        Me.btnDelChar.Text = "Excluir Personagem"
+        Me.btnDelChar.UseVisualStyleBackColor = True
+        '
+        'btnNewChar
+        '
+        Me.btnNewChar.BackgroundImage = CType(resources.GetObject("btnNewChar.BackgroundImage"), System.Drawing.Image)
+        Me.btnNewChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnNewChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnNewChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.btnNewChar.Location = New System.Drawing.Point(20, 154)
+        Me.btnNewChar.Name = "btnNewChar"
+        Me.btnNewChar.Size = New System.Drawing.Size(121, 26)
+        Me.btnNewChar.TabIndex = 50
+        Me.btnNewChar.Text = "Novo Personagem"
+        Me.btnNewChar.UseVisualStyleBackColor = True
+        '
+        'picChar3
+        '
+        Me.picChar3.BackColor = System.Drawing.Color.Transparent
+        Me.picChar3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.picChar3.Location = New System.Drawing.Point(300, 52)
+        Me.picChar3.Name = "picChar3"
+        Me.picChar3.Size = New System.Drawing.Size(48, 60)
+        Me.picChar3.TabIndex = 44
+        Me.picChar3.TabStop = False
+        '
+        'picChar2
+        '
+        Me.picChar2.BackColor = System.Drawing.Color.Transparent
+        Me.picChar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.picChar2.Location = New System.Drawing.Point(175, 52)
+        Me.picChar2.Name = "picChar2"
+        Me.picChar2.Size = New System.Drawing.Size(48, 60)
+        Me.picChar2.TabIndex = 43
+        Me.picChar2.TabStop = False
+        '
+        'picChar1
+        '
+        Me.picChar1.BackColor = System.Drawing.Color.Transparent
+        Me.picChar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.picChar1.Location = New System.Drawing.Point(52, 52)
+        Me.picChar1.Name = "picChar1"
+        Me.picChar1.Size = New System.Drawing.Size(48, 60)
+        Me.picChar1.TabIndex = 42
+        Me.picChar1.TabStop = False
+        '
+        'lblCharSelect
+        '
+        Me.lblCharSelect.BackColor = System.Drawing.Color.Transparent
+        Me.lblCharSelect.Font = New System.Drawing.Font("Segoe UI Semibold", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCharSelect.Location = New System.Drawing.Point(44, 12)
+        Me.lblCharSelect.Name = "lblCharSelect"
+        Me.lblCharSelect.Size = New System.Drawing.Size(312, 33)
+        Me.lblCharSelect.TabIndex = 15
+        Me.lblCharSelect.Text = "Sel. de Personagem"
+        Me.lblCharSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Location = New System.Drawing.Point(70, 179)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(0, 13)
+        Me.Label16.TabIndex = 17
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtDescription
         '
@@ -400,7 +512,7 @@ Partial Class FrmMenu
         'lblNextChar
         '
         Me.lblNextChar.AutoSize = True
-        Me.lblNextChar.Location = New System.Drawing.Point(83, 157)
+        Me.lblNextChar.Location = New System.Drawing.Point(80, 157)
         Me.lblNextChar.Name = "lblNextChar"
         Me.lblNextChar.Size = New System.Drawing.Size(15, 13)
         Me.lblNextChar.TabIndex = 40
@@ -409,7 +521,7 @@ Partial Class FrmMenu
         'lblPrevChar
         '
         Me.lblPrevChar.AutoSize = True
-        Me.lblPrevChar.Location = New System.Drawing.Point(49, 157)
+        Me.lblPrevChar.Location = New System.Drawing.Point(46, 157)
         Me.lblPrevChar.Name = "lblPrevChar"
         Me.lblPrevChar.Size = New System.Drawing.Size(15, 13)
         Me.lblPrevChar.TabIndex = 39
@@ -529,13 +641,15 @@ Partial Class FrmMenu
         Me.pnlMainMenu.BackgroundImage = CType(resources.GetObject("pnlMainMenu.BackgroundImage"), System.Drawing.Image)
         Me.pnlMainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlMainMenu.Controls.Add(Me.lblNewsHeader)
+        Me.pnlMainMenu.Controls.Add(Me.pnlNewChar)
         Me.pnlMainMenu.Controls.Add(Me.lblNews)
         Me.pnlMainMenu.Controls.Add(Me.pnlCredits)
+        Me.pnlMainMenu.Controls.Add(Me.pnlRegister)
         Me.pnlMainMenu.ForeColor = System.Drawing.Color.White
         Me.pnlMainMenu.Location = New System.Drawing.Point(160, 182)
         Me.pnlMainMenu.Name = "pnlMainMenu"
         Me.pnlMainMenu.Size = New System.Drawing.Size(400, 192)
-        Me.pnlMainMenu.TabIndex = 46
+        Me.pnlMainMenu.TabIndex = 57
         '
         'lblNewsHeader
         '
@@ -545,7 +659,7 @@ Partial Class FrmMenu
         Me.lblNewsHeader.Location = New System.Drawing.Point(94, 2)
         Me.lblNewsHeader.Name = "lblNewsHeader"
         Me.lblNewsHeader.Size = New System.Drawing.Size(218, 40)
-        Me.lblNewsHeader.TabIndex = 36
+        Me.lblNewsHeader.TabIndex = 9
         Me.lblNewsHeader.Text = "Ultimas noticias"
         '
         'lblNews
@@ -555,7 +669,7 @@ Partial Class FrmMenu
         Me.lblNews.Location = New System.Drawing.Point(17, 43)
         Me.lblNews.Name = "lblNews"
         Me.lblNews.Size = New System.Drawing.Size(366, 138)
-        Me.lblNews.TabIndex = 37
+        Me.lblNews.TabIndex = 57
         Me.lblNews.Text = resources.GetString("lblNews.Text")
         Me.lblNews.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
@@ -630,119 +744,6 @@ Partial Class FrmMenu
         Me.btnExit.Text = "Sair"
         Me.btnExit.UseVisualStyleBackColor = True
         '
-        'pnlCharSelect
-        '
-        Me.pnlCharSelect.BackColor = System.Drawing.Color.Transparent
-        Me.pnlCharSelect.BackgroundImage = CType(resources.GetObject("pnlCharSelect.BackgroundImage"), System.Drawing.Image)
-        Me.pnlCharSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlCharSelect.Controls.Add(Me.btnUseChar)
-        Me.pnlCharSelect.Controls.Add(Me.btnDelChar)
-        Me.pnlCharSelect.Controls.Add(Me.btnNewChar)
-        Me.pnlCharSelect.Controls.Add(Me.picChar3)
-        Me.pnlCharSelect.Controls.Add(Me.picChar2)
-        Me.pnlCharSelect.Controls.Add(Me.picChar1)
-        Me.pnlCharSelect.Controls.Add(Me.lblCharSelect)
-        Me.pnlCharSelect.Controls.Add(Me.Label16)
-        Me.pnlCharSelect.ForeColor = System.Drawing.Color.White
-        Me.pnlCharSelect.Location = New System.Drawing.Point(0, 0)
-        Me.pnlCharSelect.Name = "pnlCharSelect"
-        Me.pnlCharSelect.Size = New System.Drawing.Size(400, 192)
-        Me.pnlCharSelect.TabIndex = 57
-        Me.pnlCharSelect.Visible = False
-        '
-        'btnUseChar
-        '
-        Me.btnUseChar.BackgroundImage = CType(resources.GetObject("btnUseChar.BackgroundImage"), System.Drawing.Image)
-        Me.btnUseChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnUseChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnUseChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUseChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.btnUseChar.Location = New System.Drawing.Point(147, 154)
-        Me.btnUseChar.Name = "btnUseChar"
-        Me.btnUseChar.Size = New System.Drawing.Size(110, 26)
-        Me.btnUseChar.TabIndex = 52
-        Me.btnUseChar.Text = "Usar Personagem"
-        Me.btnUseChar.UseVisualStyleBackColor = True
-        '
-        'btnDelChar
-        '
-        Me.btnDelChar.BackgroundImage = CType(resources.GetObject("btnDelChar.BackgroundImage"), System.Drawing.Image)
-        Me.btnDelChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnDelChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnDelChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.btnDelChar.Location = New System.Drawing.Point(263, 154)
-        Me.btnDelChar.Name = "btnDelChar"
-        Me.btnDelChar.Size = New System.Drawing.Size(119, 26)
-        Me.btnDelChar.TabIndex = 51
-        Me.btnDelChar.Text = "Excluir Personagem"
-        Me.btnDelChar.UseVisualStyleBackColor = True
-        '
-        'btnNewChar
-        '
-        Me.btnNewChar.BackgroundImage = CType(resources.GetObject("btnNewChar.BackgroundImage"), System.Drawing.Image)
-        Me.btnNewChar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnNewChar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnNewChar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNewChar.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.btnNewChar.Location = New System.Drawing.Point(20, 154)
-        Me.btnNewChar.Name = "btnNewChar"
-        Me.btnNewChar.Size = New System.Drawing.Size(121, 26)
-        Me.btnNewChar.TabIndex = 50
-        Me.btnNewChar.Text = "Novo Personagem"
-        Me.btnNewChar.UseVisualStyleBackColor = True
-        '
-        'picChar3
-        '
-        Me.picChar3.BackColor = System.Drawing.Color.Transparent
-        Me.picChar3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.picChar3.Location = New System.Drawing.Point(300, 52)
-        Me.picChar3.Name = "picChar3"
-        Me.picChar3.Size = New System.Drawing.Size(48, 60)
-        Me.picChar3.TabIndex = 44
-        Me.picChar3.TabStop = False
-        '
-        'picChar2
-        '
-        Me.picChar2.BackColor = System.Drawing.Color.Transparent
-        Me.picChar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.picChar2.Location = New System.Drawing.Point(175, 52)
-        Me.picChar2.Name = "picChar2"
-        Me.picChar2.Size = New System.Drawing.Size(48, 60)
-        Me.picChar2.TabIndex = 43
-        Me.picChar2.TabStop = False
-        '
-        'picChar1
-        '
-        Me.picChar1.BackColor = System.Drawing.Color.Transparent
-        Me.picChar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.picChar1.Location = New System.Drawing.Point(52, 52)
-        Me.picChar1.Name = "picChar1"
-        Me.picChar1.Size = New System.Drawing.Size(48, 60)
-        Me.picChar1.TabIndex = 42
-        Me.picChar1.TabStop = False
-        '
-        'lblCharSelect
-        '
-        Me.lblCharSelect.BackColor = System.Drawing.Color.Transparent
-        Me.lblCharSelect.Font = New System.Drawing.Font("Segoe UI Semibold", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCharSelect.Location = New System.Drawing.Point(44, 12)
-        Me.lblCharSelect.Name = "lblCharSelect"
-        Me.lblCharSelect.Size = New System.Drawing.Size(312, 33)
-        Me.lblCharSelect.TabIndex = 15
-        Me.lblCharSelect.Text = "Sel. de Personagem"
-        Me.lblCharSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Location = New System.Drawing.Point(70, 179)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(0, 13)
-        Me.Label16.TabIndex = 17
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'pnlLoad
         '
         Me.pnlLoad.BackgroundImage = CType(resources.GetObject("pnlLoad.BackgroundImage"), System.Drawing.Image)
@@ -774,7 +775,7 @@ Partial Class FrmMenu
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(784, 562)
-        Me.Controls.Add(Me.pnlNewChar)
+        Me.Controls.Add(Me.pnlCharSelect)
         Me.Controls.Add(Me.pnlLoad)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnCredits)
@@ -782,7 +783,6 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.btnPlay)
         Me.Controls.Add(Me.lblServerStatus)
         Me.Controls.Add(Me.lblStatusHeader)
-        Me.Controls.Add(Me.pnlLogin)
         Me.Controls.Add(Me.pnlMainMenu)
         Me.Controls.Add(Me.picLogo)
         Me.DoubleBuffered = True
@@ -802,15 +802,15 @@ Partial Class FrmMenu
         Me.pnlCredits.PerformLayout()
         Me.pnlNewChar.ResumeLayout(False)
         Me.pnlNewChar.PerformLayout()
-        CType(Me.placeholderforsprite, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlMainMenu.ResumeLayout(False)
-        Me.pnlMainMenu.PerformLayout()
-        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlCharSelect.ResumeLayout(False)
         Me.pnlCharSelect.PerformLayout()
         CType(Me.picChar3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picChar2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picChar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.placeholderforsprite, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlMainMenu.ResumeLayout(False)
+        Me.pnlMainMenu.PerformLayout()
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoad.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

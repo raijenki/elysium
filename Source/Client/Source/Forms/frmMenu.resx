@@ -1317,6 +1317,16 @@
         cTn2GJ2qzmU71rRwQLXQa344tgmd9pU61GMbiP//8zx/9v8B9MEmxzIFwIUAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnCreateCharacter.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu
+        OWwzfk4AAADSSURBVHhe7du3EcRAEANBhsAQqLU0mH9ox+cZ7yABbNUYvRvA2ChSSkVZlgm+vkY50vM8
+        MPY1+oe67xuGJNR1XTAkoc7zhCFCBSGhjuOAIQm17zsMESoICbVtGwxJqHVdYYhQQUioZVlgSELN8wxD
+        EmqaJhgiVBASahxHGJJQwzDAEKGCkFB938OQhOq6DoYIFYSEatsWhiRU0zQwJKHquoYhQgUhoaqqgiFC
+        BUGoIAgVBKGCIFQQhAqCUEEQKggJBV85FBtef3nDm8/vwVdKqXgBBLyCRwLXRTEAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="pnlCharSelect.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -1639,16 +1649,6 @@
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
         P6c8iEGn797qAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnCreateCharacter.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu
-        OWwzfk4AAADSSURBVHhe7du3EcRAEANBhsAQqLU0mH9ox+cZ7yABbNUYvRvA2ChSSkVZlgm+vkY50vM8
-        MPY1+oe67xuGJNR1XTAkoc7zhCFCBSGhjuOAIQm17zsMESoICbVtGwxJqHVdYYhQQUioZVlgSELN8wxD
-        EmqaJhgiVBASahxHGJJQwzDAEKGCkFB938OQhOq6DoYIFYSEatsWhiRU0zQwJKHquoYhQgUhoaqqgiFC
-        BUGoIAgVBKGCIFQQhAqCUEEQKggJBV85FBtef3nDm8/vwVdKqXgBBLyCRwLXRTEAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="pnlMainMenu.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
