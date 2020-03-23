@@ -101,6 +101,7 @@
         Dim Value As Integer
     End Structure
 
+    <Serializable>
     Friend Structure BankStruct
         Dim Item() As PlayerInvStruct
         Dim ItemRand() As RandInvStruct
@@ -122,6 +123,7 @@
         Dim DirBlock As Byte
     End Structure
 
+    <Serializable>
     Friend Structure ItemStruct
         Dim Name As String
         Dim Pic As Integer

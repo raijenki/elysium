@@ -171,11 +171,11 @@ Friend Module S_Animations
         Dim AnimNum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveAnimation")
+        AddDebug("Recebida EMSG: SaveAnimation")
 
         AnimNum = buffer.ReadInt32
 
-        ' Update the Animation
+        ' Atualizar animação
         For i = 0 To UBound(Animation(AnimNum).Frames)
             Animation(AnimNum).Frames(i) = buffer.ReadInt32()
         Next
@@ -200,15 +200,15 @@ Friend Module S_Animations
 
         buffer.Dispose()
 
-        ' Save it
+        ' Salvar
         SaveAnimation(AnimNum)
         SendUpdateAnimationToAll(AnimNum)
-        Addlog(GetPlayerLogin(index) & " saved Animation #" & AnimNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou Animação #" & AnimNum & ".", ADMIN_LOG)
 
     End Sub
 
     Sub Packet_RequestAnimations(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestAnimations")
+        AddDebug("Recebida CMSG: CRequestAnimations")
 
         SendAnimations(index)
     End Sub
@@ -226,7 +226,7 @@ Friend Module S_Animations
         buffer.WriteInt32(LockType)
         buffer.WriteInt32(Lockindex)
 
-        AddDebug("Sent SMSG: SAnimation")
+        AddDebug("Enviada SMSG: SAnimation")
 
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
@@ -274,7 +274,7 @@ Friend Module S_Animations
         '    buffer.WriteInt32(Animation(AnimationNum).Sprite(i))
         'Next
 
-        AddDebug("Sent SMSG: SUpdateAnimation")
+        AddDebug("Enviada SMSG: SUpdateAnimation")
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -308,7 +308,7 @@ Friend Module S_Animations
         '    buffer.WriteInt32(Animation(AnimationNum).Sprite(i))
         'Next
 
-        AddDebug("Sent SMSG: SUpdateAnimation To All")
+        AddDebug("Enviada SMSG: SUpdateAnimation To All")
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()

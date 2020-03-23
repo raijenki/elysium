@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Engine.My.MyApplication</StartupObject>
     <RootNamespace>Engine</RootNamespace>
-    <AssemblyName>Orion+ Client</AssemblyName>
+    <AssemblyName>Elysium Client</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -201,6 +201,8 @@
     </Compile>
     <Compile Include="Source\Modules\C_AutoMap.vb" />
     <Compile Include="Source\Modules\C_Editors.vb" />
+    <Compile Include="Source\Modules\Network\C_Binder.vb" />
+    <Compile Include="Source\Modules\Network\C_Serialization.vb" />
     <Compile Include="Source\Modules\Objects\C_Animations.vb" />
     <Compile Include="Source\Modules\Objects\C_Classes.vb" />
     <Compile Include="Source\Modules\Objects\C_Items.vb" />

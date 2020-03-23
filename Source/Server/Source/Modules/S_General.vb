@@ -286,8 +286,8 @@ Module S_General
     End Sub
 
     Friend Sub ClearGameData()
-        Console.WriteLine("Limpando tile fields temporários...") : ClearTempTiles()
-        Console.WriteLine("Limpando Mapass...") : ClearMaps()
+        Console.WriteLine("Limpando campos de tiles temporários...") : ClearTempTiles()
+        Console.WriteLine("Limpando Mapas...") : ClearMaps()
         Console.WriteLine("Limpando Itens dos Mapas...") : ClearMapItems()
         Console.WriteLine("Limpando NPCs dos Mapas...") : ClearAllMapNpcs()
         Console.WriteLine("Limpando NPCs...") : ClearNpcs()
@@ -307,7 +307,7 @@ Module S_General
         Console.WriteLine("Carregando Classes...") : LoadClasses()
         Console.WriteLine("Carregando Mapas...") : LoadMaps()
         Console.WriteLine("Carregando Itens...") : LoadItems()
-        Console.WriteLine("Carregando Npc's...") : LoadNpcs()
+        Console.WriteLine("Carregando NPCs...") : LoadNpcs()
         Console.WriteLine("Carregando Recursos...") : LoadResources()
         Console.WriteLine("Carregando Lojas...") : LoadShops()
         Console.WriteLine("Carregando Habilidades...") : LoadSkills()

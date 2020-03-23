@@ -28,9 +28,9 @@ Module S_Console
 
                     Console.WriteLine("/ajuda, mostra esta mensagem.")
                     Console.WriteLine("/sair, encerra o servidor.")
-                    Console.WriteLine("/setadmin, seta o nível de acesso de um jogador; use como '/setadmin nome-do-jogador nivel-de-acesso', com o último indo de 0 a 4.")
-                    Console.WriteLine("/chutar, Kicks user from server, use with '/kick playername'")
-                    Console.WriteLine("/banir, Bans user from server, use with '/ban playername'")
+                    Console.WriteLine("/setadmin, seta o nível de acesso de um jogador; sintaxe: '/setadmin nome-do-jogador nivel-de-acesso', com o último indo de 0 a 4.")
+                    Console.WriteLine("/chutar, chuta o usuário do servidor; sintaxe: '/chutar nome-do-jogador'")
+                    Console.WriteLine("/banir, bane o jogador; sintaxe: '/banir nome-do-jogador'")
 
 #End Region
 

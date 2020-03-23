@@ -86,7 +86,7 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CPlayerHandleQuest) = AddressOf Packet_PlayerHandleQuest
         Socket.PacketId(ClientPackets.CQuestReset) = AddressOf Packet_QuestReset
 
-        'Housing
+        'Casas
         Socket.PacketId(ClientPackets.CBuyHouse) = AddressOf Packet_BuyHouse
         Socket.PacketId(ClientPackets.CVisit) = AddressOf Packet_InviteToHouse
         Socket.PacketId(ClientPackets.CAcceptVisit) = AddressOf Packet_AcceptInvite
@@ -99,18 +99,18 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CDeleteHotbarSlot) = AddressOf Packet_DeleteHotBarSlot
         Socket.PacketId(ClientPackets.CUseHotbarSlot) = AddressOf Packet_UseHotBarSlot
 
-        'Events
+        'Eventos
         Socket.PacketId(ClientPackets.CEventChatReply) = AddressOf Packet_EventChatReply
         Socket.PacketId(ClientPackets.CEvent) = AddressOf Packet_Event
         Socket.PacketId(ClientPackets.CRequestSwitchesAndVariables) = AddressOf Packet_RequestSwitchesAndVariables
         Socket.PacketId(ClientPackets.CSwitchesAndVariables) = AddressOf Packet_SwitchesAndVariables
 
-        'projectiles
+        'Projeteis
 
         Socket.PacketId(ClientPackets.CRequestProjectiles) = AddressOf HandleRequestProjectiles
         Socket.PacketId(ClientPackets.CClearProjectile) = AddressOf HandleClearProjectile
 
-        'craft
+        'Artesanato
         Socket.PacketId(ClientPackets.CRequestRecipes) = AddressOf Packet_RequestRecipes
 
         Socket.PacketId(ClientPackets.CCloseCraft) = AddressOf Packet_CloseCraft
@@ -118,10 +118,10 @@ Module S_NetworkReceive
 
         Socket.PacketId(ClientPackets.CRequestClasses) = AddressOf Packet_RequestClasses
 
-        'emotes
+        'Emotes
         Socket.PacketId(ClientPackets.CEmote) = AddressOf Packet_Emote
 
-        'parties
+        'Times
         Socket.PacketId(ClientPackets.CRequestParty) = AddressOf Packet_PartyRquest
         Socket.PacketId(ClientPackets.CAcceptParty) = AddressOf Packet_AcceptParty
         Socket.PacketId(ClientPackets.CDeclineParty) = AddressOf Packet_DeclineParty
@@ -137,7 +137,7 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CPetSkill) = AddressOf Packet_PetSkill
         Socket.PacketId(ClientPackets.CPetUseStatPoint) = AddressOf Packet_UsePetStatPoint
 
-        'editor
+        'Edtiores
         Socket.PacketId(ClientPackets.CRequestEditItem) = AddressOf Packet_EditItem
         Socket.PacketId(ClientPackets.CSaveItem) = AddressOf Packet_SaveItem
         Socket.PacketId(ClientPackets.CRequestEditNpc) = AddressOf Packet_EditNpc
@@ -163,7 +163,7 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CRequestAutoMap) = AddressOf Packet_RequestAutoMap
         Socket.PacketId(ClientPackets.CSaveAutoMap) = AddressOf Packet_SaveAutoMap
 
-        'pet
+        'Pets
         Socket.PacketId(ClientPackets.CRequestEditPet) = AddressOf Packet_RequestEditPet
         Socket.PacketId(ClientPackets.CSavePet) = AddressOf Packet_SavePet
 
@@ -178,31 +178,31 @@ Module S_NetworkReceive
         Dim i As Integer, n As Integer, IP As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CNewAccount")
+        AddDebug("Recebida CMSG: CNewAccount")
 
         If Not IsPlaying(index) AndAlso Not IsLoggedIn(index) Then
-            'Get the Data
+            'Pegar os dados
             username = EKeyPair.DecryptString(buffer.ReadString)
             password = EKeyPair.DecryptString(buffer.ReadString)
-            ' Prevent hacking
+            ' Prevenir hacking
             If Len(username.Trim) < 3 OrElse Len(password.Trim) < 3 Then
-                AlertMsg(index, "Your username and password must be at least three characters in length")
+                AlertMsg(index, "Seu nome de usuário e senha devem possuir pelo menos três caracteres.")
                 Exit Sub
             End If
 
-            ' Prevent hacking
+            ' Prevenir hacking
             For i = 1 To Len(username)
                 n = AscW(Mid$(username, i, 1))
 
                 If Not IsNameLegal(n) Then
-                    AlertMsg(index, "Invalid username, only letters, numbers, spaces, and _ allowed in usernames.")
+                    AlertMsg(index, "Nome de usuário inválido: apenas letras, números, espaços e _ são aceitos.")
                     Exit Sub
                 End If
             Next
 
-            'banned ip?
+            'IP banido?
 
-            ' Cut off last portion of ip
+            ' Cortar a última parte do IP
             IP = Socket.ClientIp(index)
 
             For i = Len(IP) To 1 Step -1
@@ -215,35 +215,35 @@ Module S_NetworkReceive
 
             IP = Mid$(IP, 1, i)
             If IsBanned(IP) Then
-                AlertMsg(index, "Your Banned!")
+                AlertMsg(index, "Você está banido!")
             End If
 
-            ' Check to see if account already exists
+            ' Ver se a conta já não existe
             If Not AccountExist(username) Then
                 AddAccount(index, username, password)
 
-                Console.WriteLine("Account " & username & " has been created.")
-                Addlog("Account " & username & " has been created.", PLAYER_LOG)
+                Console.WriteLine("Conta " & username & " foi criada.")
+                Addlog("Conta " & username & " foi criada.", PLAYER_LOG)
 
-                ' Load the player
+                ' Carregar o jogador
                 LoadPlayer(index, username)
 
-                ' Check if character data has been created
+                ' Checar se o dado do personagem já foi criado 
                 If Len(Trim$(Player(index).Character(TempPlayer(index).CurChar).Name)) > 0 Then
-                    ' we have a char!
+                    ' Personagem criado!
                     HandleUseChar(index)
                 Else
-                    ' send new char shit
+                    ' Mandar as infos de novo personagem
                     If Not IsPlaying(index) Then
                         SendNewCharClasses(index)
                     End If
                 End If
 
-                ' Show the player up on the socket status
-                Addlog(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".", PLAYER_LOG)
-                Console.WriteLine(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".")
+                ' Mostrar que o novo jogador está online 
+                Addlog(GetPlayerLogin(index) & " logou a partir do IP " & Socket.ClientIp(index) & ".", PLAYER_LOG)
+                Console.WriteLine(GetPlayerLogin(index) & " logou a partir do IP " & Socket.ClientIp(index) & ".")
             Else
-                AlertMsg(index, "Sorry, that account username is already taken!")
+                AlertMsg(index, "Desculpe, essa conta já foi pega!")
             End If
 
             buffer.Dispose()
@@ -254,20 +254,20 @@ Module S_NetworkReceive
         Dim Name As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CDelChar")
+        AddDebug("Recebida CMSG: CDelChar")
 
         ' Get the data
         Name = buffer.ReadString
 
         If GetPlayerLogin(index) = Trim$(Name) Then
-            PlayerMsg(index, "You cannot delete your own account while online!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode excluir sua própria conta enquanto estiver online!", ColorType.BrightRed)
             Exit Sub
         End If
 
         For i = 1 To GetPlayersOnline()
             If IsPlaying(i) Then
                 If Trim$(Player(i).Login) = Trim$(Name) Then
-                    AlertMsg(i, "Your account has been removed by an admin!")
+                    AlertMsg(i, "Sua conta foi removida por um administrador!")
                     ClearPlayer(i)
                 End If
             End If
@@ -279,13 +279,13 @@ Module S_NetworkReceive
         Dim Password As String, i As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CLogin")
+        AddDebug("Recebida CMSG: CLogin")
 
         If Not IsPlaying(index) Then
             If Not IsLoggedIn(index) Then
 
-                'check if its banned
-                ' Cut off last portion of ip
+                'Checar se está banido
+                ' Cortar a última parte do IP
                 IP = Socket.ClientIp(index)
 
                 For i = Len(IP) To 1 Step -1
@@ -298,40 +298,40 @@ Module S_NetworkReceive
 
                 IP = Mid$(IP, 1, i)
                 If IsBanned(IP) Then
-                    AlertMsg(index, "Your Banned!")
+                    AlertMsg(index, "Você está banido!")
                 End If
 
-                ' Get the data
+                ' Pegar os dados
                 Name = EKeyPair.DecryptString(buffer.ReadString())
                 Password = EKeyPair.DecryptString(buffer.ReadString())
 
-                ' Check versions
+                ' Checar versões
                 If EKeyPair.DecryptString(buffer.ReadString()) <> Application.ProductVersion Then
-                    AlertMsg(index, "Version outdated, please visit " & Settings.Website)
+                    AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
                     Exit Sub
                 End If
 
                 If Len(Trim$(Name)) < 3 OrElse Len(Trim$(Password)) < 3 Then
-                    AlertMsg(index, "Your name and password must be at least three characters in length")
+                    AlertMsg(index, "Seu nome e senha devem possuir ao menos três caracteres de tamanho.")
                     Exit Sub
                 End If
 
                 If Not AccountExist(Name) Then
-                    AlertMsg(index, "That account name does not exist.")
+                    AlertMsg(index, "Esse nome de conta não existe.")
                     Exit Sub
                 End If
 
                 If Not PasswordOK(Name, Password) Then
-                    AlertMsg(index, "Incorrect password.")
+                    AlertMsg(index, "Senha incorreta.")
                     Exit Sub
                 End If
 
                 If IsMultiAccounts(Name) Then
-                    AlertMsg(index, "Multiple account logins is not authorized.")
+                    AlertMsg(index, "Logins múltiplos não são permitidos.")
                     Exit Sub
                 End If
 
-                ' Load the player
+                ' Carregar o jogador
                 LoadPlayer(index, Name)
                 ClearBank(index)
                 LoadBank(index, Name)
@@ -341,7 +341,7 @@ Module S_NetworkReceive
                 buffer.WriteInt32(ServerPackets.SLoginOk)
                 buffer.WriteInt32(MAX_CHARS)
 
-                AddDebug("Sent SMSG: SLoginOk")
+                AddDebug("Enviada SMSG: SLoginOk")
 
                 For i = 1 To MAX_CHARS
                     If Player(index).Character(i).Classes <= 0 Then
@@ -362,16 +362,16 @@ Module S_NetworkReceive
 
                 Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-                ' Show the player up on the socket status
-                Addlog(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".", PLAYER_LOG)
-                Console.WriteLine(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".")
+                ' Mostrar que o jogador está online nos status das sockets
+                Addlog(GetPlayerLogin(index) & " logou a partir do IP " & Socket.ClientIp(index) & ".", PLAYER_LOG)
+                Console.WriteLine(GetPlayerLogin(index) & " logou a partir do IP " & Socket.ClientIp(index) & ".")
 
-                '' Check if character data has been created
+                '' Verificar se os dados do personagem foram criados
                 'If Len(Trim$(Player(index).Character(TempPlayer(index).CurChar).Name)) > 0 Then
-                '    ' we have a char!
+                '    ' Temos um personagem!
                 '    'HandleUseChar(index)
                 'Else
-                '    ' send new char shit
+                '    ' Enviar informação
                 '    If Not IsPlaying(index) Then
                 '        SendNewCharClasses(index)
                 '    End If
@@ -386,22 +386,22 @@ Module S_NetworkReceive
         Dim slot As Byte
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CUseChar")
+        AddDebug("Recebida CMSG: CUseChar")
 
         If Not IsPlaying(index) Then
             If IsLoggedIn(index) Then
 
                 slot = buffer.ReadInt32
 
-                ' Check if character data has been created
+                ' Verificar se o personagem foi criado
                 If Len(Trim$(Player(index).Character(slot).Name)) > 0 Then
-                    ' we have a char!
+                    ' Temos um personagem!
                     TempPlayer(index).CurChar = slot
                     HandleUseChar(index)
                     ClearBank(index)
                     LoadBank(index, Trim$(Player(index).Login))
                 Else
-                    ' send new char shit
+                    '  Enviar informações do novo personagem
                     If Not IsPlaying(index) Then
                         SendNewCharClasses(index)
                         TempPlayer(index).CurChar = slot
@@ -422,7 +422,7 @@ Module S_NetworkReceive
 
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CAddChar")
+        AddDebug("Recebida CMSG: CAddChar")
 
         If Not IsPlaying(index) Then
             slot = buffer.ReadInt32
@@ -431,9 +431,9 @@ Module S_NetworkReceive
             Classes = buffer.ReadInt32
             Sprite = buffer.ReadInt32
 
-            ' Prevent hacking
+            ' Prevenir hacking
             If Len(Name.Trim) < 3 Then
-                AlertMsg(index, "Character name must be at least three characters in length.")
+                AlertMsg(index, "O nome do personagem deve possuir ao menos três caracteres de tamanho.")
                 Exit Sub
             End If
 
@@ -441,7 +441,7 @@ Module S_NetworkReceive
                 n = AscW(Mid$(Name, i, 1))
 
                 If Not IsNameLegal(n) Then
-                    AlertMsg(index, "Invalid name, only letters, numbers, spaces, and _ allowed in names.")
+                    AlertMsg(index, "Nome inválido: apenas letras, números, espaços e _ são aceitos.")
                     Exit Sub
                 End If
 
@@ -451,24 +451,24 @@ Module S_NetworkReceive
 
             If Classes < 1 OrElse Classes > Max_Classes Then Exit Sub
 
-            ' Check if char already exists in slot
+            ' Ver se já existe personagem nesse slot
             If CharExist(index, slot) Then
-                AlertMsg(index, "Character already exists!")
+                AlertMsg(index, "Personagem já existe!")
                 Exit Sub
             End If
 
-            ' Check if name is already in use
+            ' Ver se o nome já está em uso
             If FindChar(Name) Then
-                AlertMsg(index, "Sorry, but that name is in use!")
+                AlertMsg(index, "Desculpe, mas este nome já está em uso!")
                 Exit Sub
             End If
 
-            ' Everything went ok, add the character
+            ' Tudo foi bem, adicionar o personagem
             TempPlayer(index).CurChar = slot
             AddChar(index, slot, Name, Sex, Classes, Sprite)
-            Addlog("Character " & Name & " added to " & GetPlayerLogin(index) & "'s account.", PLAYER_LOG)
+            Addlog("Personagem " & Name & " adicionado ã conta de " & GetPlayerLogin(index) & ".", PLAYER_LOG)
 
-            ' log them in!!
+            ' Logar!!
             HandleUseChar(index)
 
             buffer.Dispose()
@@ -480,16 +480,15 @@ Module S_NetworkReceive
         Dim slot As Byte
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CDelChar")
+        AddDebug("Recebida CMSG: CDelChar")
 
         If Not IsPlaying(index) Then
             If IsLoggedIn(index) Then
 
                 slot = buffer.ReadInt32
 
-                ' Check if character data has been created
+                ' Verificar se os dados do personagem foi criado
                 If Len(Trim$(Player(index).Character(slot).Name)) > 0 Then
-                    ' we have a char!
                     DeleteName(Trim$(Player(index).Character(slot).Name))
                     ClearCharacter(index, slot)
                     SaveCharacter(index, slot)
@@ -499,7 +498,7 @@ Module S_NetworkReceive
                     buffer.WriteInt32(ServerPackets.SLoginOk)
                     buffer.WriteInt32(MAX_CHARS)
 
-                    AddDebug("Sent SMSG: SLoginOk")
+                    AddDebug("Enviada SMSG: SLoginOk")
 
                     For i = 1 To MAX_CHARS
                         If Player(index).Character(i).Classes <= 0 Then
@@ -529,12 +528,12 @@ Module S_NetworkReceive
         Dim msg As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSayMsg")
+        AddDebug("Recebida CMSG: CSayMsg")
 
         'msg = Buffer.ReadString
         msg = buffer.ReadString
 
-        Addlog("Map #" & GetPlayerMap(index) & ": " & GetPlayerName(index) & " says, '" & msg & "'", PLAYER_LOG)
+        Addlog("Mapa #" & GetPlayerMap(index) & " - " & GetPlayerName(index) & " diz: '" & msg & "'", PLAYER_LOG)
 
         SayMsg_Map(GetPlayerMap(index), index, msg, ColorType.White)
         SendChatBubble(GetPlayerMap(index), index, TargetType.Player, msg, ColorType.White)
@@ -547,7 +546,7 @@ Module S_NetworkReceive
         Dim s As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CBroadcastMsg")
+        AddDebug("Recebida CMSG: CBroadcastMsg")
 
         'msg = Buffer.ReadString
         msg = buffer.ReadString
@@ -564,7 +563,7 @@ Module S_NetworkReceive
         Dim OtherPlayer As String, Msg As String, OtherPlayerindex As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CPlayerMsg")
+        AddDebug("Recebida CMSG: CPlayerMsg")
 
         OtherPlayer = buffer.ReadString
         'Msg = buffer.ReadString
@@ -574,14 +573,14 @@ Module S_NetworkReceive
         OtherPlayerindex = FindPlayer(OtherPlayer)
         If OtherPlayerindex <> index Then
             If OtherPlayerindex > 0 Then
-                Addlog(GetPlayerName(index) & " tells " & GetPlayerName(index) & ", '" & Msg & "'", PLAYER_LOG)
-                PlayerMsg(OtherPlayerindex, GetPlayerName(index) & " tells you, '" & Msg & "'", ColorType.Pink)
-                PlayerMsg(index, "You tell " & GetPlayerName(OtherPlayerindex) & ", '" & Msg & "'", ColorType.Pink)
+                Addlog(GetPlayerName(index) & " fala para " & GetPlayerName(index) & ", '" & Msg & "'", PLAYER_LOG)
+                PlayerMsg(OtherPlayerindex, GetPlayerName(index) & " te fala: '" & Msg & "'", ColorType.Pink)
+                PlayerMsg(index, "Você diz para " & GetPlayerName(OtherPlayerindex) & ": '" & Msg & "'", ColorType.Pink)
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "Jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "Cannot message your self!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode mandar mensagem para si próprio!", ColorType.BrightRed)
         End If
     End Sub
 
@@ -591,7 +590,7 @@ Module S_NetworkReceive
         Dim tmpX As Integer, tmpY As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CPlayerMove")
+        AddDebug("Recebida CMSG: CPlayerMove")
 
         If TempPlayer(index).GettingMap = True Then Exit Sub
 
@@ -601,36 +600,36 @@ Module S_NetworkReceive
         tmpY = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If Dir < DirectionType.Up OrElse Dir > DirectionType.Right Then Exit Sub
 
         If movement < 1 OrElse movement > 2 Then Exit Sub
 
-        ' Prevent player from moving if they have casted a skill
+        ' Prevenir jogador de mover se ele gerou uma habilidade
         If TempPlayer(index).SkillBuffer > 0 Then
             SendPlayerXY(index)
             Exit Sub
         End If
 
-        'Cant move if in the bank!
+        'Não mover se estiver no banco!
         If TempPlayer(index).InBank Then
             SendPlayerXY(index)
             Exit Sub
         End If
 
-        ' if stunned, stop them moving
+        ' Se estuporado, não mover
         If TempPlayer(index).StunDuration > 0 Then
             SendPlayerXY(index)
             Exit Sub
         End If
 
-        ' Prevent player from moving if in shop
+        ' Prevenir jogador de mover se estiver na loja
         If TempPlayer(index).InShop > 0 Then
             SendPlayerXY(index)
             Exit Sub
         End If
 
-        ' Desynced
+        ' Desincronizado
         If GetPlayerX(index) <> tmpX Then
             SendPlayerXY(index)
             Exit Sub
@@ -643,7 +642,7 @@ Module S_NetworkReceive
 
         PlayerMove(index, Dir, movement, False)
 
-        AddDebug(" Player: " & GetPlayerName(index) & " : " & " X: " & tmpX & " Y: " & tmpY & " Dir: " & Dir & " Movement: " & movement)
+        AddDebug(" Jogador: " & GetPlayerName(index) & " : " & " X: " & tmpX & " Y: " & tmpY & " Dir: " & Dir & " Movimento: " & movement)
 
         buffer.Dispose()
     End Sub
@@ -652,14 +651,14 @@ Module S_NetworkReceive
         Dim dir As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CPlayerDir")
+        AddDebug("Recebida CMSG: CPlayerDir")
 
         If TempPlayer(index).GettingMap = True Then Exit Sub
 
         dir = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If dir < DirectionType.Up OrElse dir > DirectionType.Right Then Exit Sub
 
         SetPlayerDir(index, dir)
@@ -670,7 +669,7 @@ Module S_NetworkReceive
         buffer.WriteInt32(GetPlayerDir(index))
         SendDataToMapBut(index, GetPlayerMap(index), buffer.Data, buffer.Head)
 
-        AddDebug("Sent SMSG: SPlayerDir")
+        AddDebug("Enviada SMSG: SPlayerDir")
 
         buffer.Dispose()
 
@@ -680,7 +679,7 @@ Module S_NetworkReceive
         Dim invnum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CUseItem")
+        AddDebug("Enviada CMSG: CUseItem")
 
         invnum = buffer.ReadInt32
         buffer.Dispose()
@@ -694,31 +693,31 @@ Module S_NetworkReceive
         Dim x As Integer, y As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CAttack")
+        AddDebug("Enviada CMSG: CAttack")
 
-        ' can't attack whilst casting
+        ' Não pode atacar enquanto conjurando
         If TempPlayer(index).SkillBuffer > 0 Then Exit Sub
 
-        ' can't attack whilst stunned
+        ' Não pode atacar enquanto estuporado
         If TempPlayer(index).StunDuration > 0 Then Exit Sub
 
-        ' Send this packet so they can see the person attacking
+        ' Mandar esta packet para que veja a pessoa atacando
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SAttack)
         buffer.WriteInt32(index)
         SendDataToMap(GetPlayerMap(index), buffer.Data, buffer.Head)
         buffer.Dispose()
 
-        ' Projectile check
+        ' Verificar projetil
         If GetPlayerEquipment(index, EquipmentType.Weapon) > 0 Then
-            If Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Projectile > 0 Then 'Item has a projectile
+            If Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Projectile > 0 Then 'Item tem um projetil
                 If Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Ammo > 0 Then
                     If HasItem(index, Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Ammo) Then
                         TakeInvItem(index, Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Ammo, 1)
                         PlayerFireProjectile(index)
                         Exit Sub
                     Else
-                        PlayerMsg(index, "No More " & Item(Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Ammo).Name & " !", ColorType.BrightRed)
+                        PlayerMsg(index, "Não há mais " & Item(Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Ammo).Name & " !", ColorType.BrightRed)
                         Exit Sub
                     End If
                 Else
@@ -728,11 +727,11 @@ Module S_NetworkReceive
             End If
         End If
 
-        ' Try to attack a player
+        ' Tentar atacar um jogador
         For i = 1 To GetPlayersOnline()
             Tempindex = i
 
-            ' Make sure we dont try to attack ourselves
+            ' Ter certeza que não estamos nos atacando
             If Tempindex <> index Then
                 If IsPlaying(Tempindex) Then
                     TryPlayerAttackPlayer(index, i)
@@ -740,12 +739,12 @@ Module S_NetworkReceive
             End If
         Next
 
-        ' Try to attack a npc
+        ' Tentar atacar um NPC
         For i = 1 To MAX_MAP_NPCS
             TryPlayerAttackNpc(index, i)
         Next
 
-        ' Check tradeskills
+        ' Checar tradeskills
         Select Case GetPlayerDir(index)
             Case DirectionType.Up
 
@@ -779,28 +778,28 @@ Module S_NetworkReceive
         Dim name As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CPlayerInfoRequest")
+        AddDebug("Recebida CMSG: CPlayerInfoRequest")
 
         name = buffer.ReadString
         i = FindPlayer(name)
 
         If i > 0 Then
-            PlayerMsg(index, "Account:  " & Trim$(Player(i).Login) & ", Name: " & GetPlayerName(i), ColorType.Yellow)
+            PlayerMsg(index, "Conta:  " & Trim$(Player(i).Login) & ", Nome: " & GetPlayerName(i), ColorType.Yellow)
 
             If GetPlayerAccess(index) > AdminType.Monitor Then
-                PlayerMsg(index, "-=- Stats for " & GetPlayerName(i) & " -=-", ColorType.Yellow)
-                PlayerMsg(index, "Level: " & GetPlayerLevel(i) & "  Exp: " & GetPlayerExp(i) & "/" & GetPlayerNextLevel(i), ColorType.Yellow)
+                PlayerMsg(index, "-=- Atributos de " & GetPlayerName(i) & " -=-", ColorType.Yellow)
+                PlayerMsg(index, "Nível: " & GetPlayerLevel(i) & "  Exp: " & GetPlayerExp(i) & "/" & GetPlayerNextLevel(i), ColorType.Yellow)
                 PlayerMsg(index, "HP: " & GetPlayerVital(i, VitalType.HP) & "/" & GetPlayerMaxVital(i, VitalType.HP) & "  MP: " & GetPlayerVital(i, VitalType.MP) & "/" & GetPlayerMaxVital(i, VitalType.MP) & "  SP: " & GetPlayerVital(i, VitalType.SP) & "/" & GetPlayerMaxVital(i, VitalType.SP), ColorType.Yellow)
-                PlayerMsg(index, "Strength: " & GetPlayerStat(i, StatType.Strength) & "  Defense: " & GetPlayerStat(i, StatType.Endurance) & "  Magic: " & GetPlayerStat(i, StatType.Intelligence) & "  Speed: " & GetPlayerStat(i, StatType.Spirit), ColorType.Yellow)
+                PlayerMsg(index, "Força: " & GetPlayerStat(i, StatType.Strength) & "  Defesa: " & GetPlayerStat(i, StatType.Endurance) & "  Magia: " & GetPlayerStat(i, StatType.Intelligence) & "  Vel.: " & GetPlayerStat(i, StatType.Spirit), ColorType.Yellow)
                 n = (GetPlayerStat(i, StatType.Strength) \ 2) + (GetPlayerLevel(i) \ 2)
                 i = (GetPlayerStat(i, StatType.Endurance) \ 2) + (GetPlayerLevel(i) \ 2)
 
                 If n > 100 Then n = 100
                 If i > 100 Then i = 100
-                PlayerMsg(index, "Critical Hit Chance: " & n & "%, Block Chance: " & i & "%", ColorType.Yellow)
+                PlayerMsg(index, "Chance de Acerto Crítico: " & n & "%, Chance de Bloqueio: " & i & "%", ColorType.Yellow)
             End If
         Else
-            PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+            PlayerMsg(index, "Jogador não está online.", ColorType.BrightRed)
         End If
 
         buffer.Dispose()
@@ -810,26 +809,26 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CWarpMeTo")
+        AddDebug("Recebida CMSG: CWarpMeTo")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' The player
+        ' O jogador
         n = FindPlayer(buffer.ReadString)
         buffer.Dispose()
 
         If n <> index Then
             If n > 0 Then
                 PlayerWarp(index, GetPlayerMap(n), GetPlayerX(n), GetPlayerY(n))
-                PlayerMsg(n, GetPlayerName(index) & " has warped to you.", ColorType.Yellow)
-                PlayerMsg(index, "You have been warped to " & GetPlayerName(n) & ".", ColorType.Yellow)
-                Addlog(GetPlayerName(index) & " has warped to " & GetPlayerName(n) & ", map #" & GetPlayerMap(n) & ".", ADMIN_LOG)
+                PlayerMsg(n, GetPlayerName(index) & " foi teleportado à você.", ColorType.Yellow)
+                PlayerMsg(index, "Você foi teleportado para " & GetPlayerName(n) & ".", ColorType.Yellow)
+                Addlog(GetPlayerName(index) & " foi teleportado para " & GetPlayerName(n) & ", mapa #" & GetPlayerMap(n) & ".", ADMIN_LOG)
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "O jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "You cannot warp to yourself, dumbass!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode se teleportar!", ColorType.BrightRed)
         End If
 
     End Sub
@@ -838,26 +837,26 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CWarpToMe")
+        AddDebug("Recebida CMSG: CWarpToMe")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' The player
+        ' O jogador
         n = FindPlayer(buffer.ReadString)
         buffer.Dispose()
 
         If n <> index Then
             If n > 0 Then
                 PlayerWarp(n, GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index))
-                PlayerMsg(n, "You have been summoned by " & GetPlayerName(index) & ".", ColorType.Yellow)
-                PlayerMsg(index, GetPlayerName(n) & " has been summoned.", ColorType.Yellow)
-                Addlog(GetPlayerName(index) & " has warped " & GetPlayerName(n) & " to self, map #" & GetPlayerMap(index) & ".", ADMIN_LOG)
+                PlayerMsg(n, "Você foi convocado por " & GetPlayerName(index) & ".", ColorType.Yellow)
+                PlayerMsg(index, GetPlayerName(n) & " foi convocado.", ColorType.Yellow)
+                Addlog(GetPlayerName(index) & " teleportou " & GetPlayerName(n) & " para si, mapa #" & GetPlayerMap(index) & ".", ADMIN_LOG)
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "O jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "You cannot warp yourself to yourself, dumbass!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode se autoteleportar!", ColorType.BrightRed)
         End If
 
     End Sub
@@ -866,21 +865,21 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CWarpTo")
+        AddDebug("Recebida CMSG: CWarpTo")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' The map
+        ' O mapa
         n = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If n < 0 OrElse n > MAX_CACHED_MAPS Then Exit Sub
 
         PlayerWarp(index, n, GetPlayerX(index), GetPlayerY(index))
-        PlayerMsg(index, "You have been warped to map #" & n, ColorType.Yellow)
-        Addlog(GetPlayerName(index) & " warped to map #" & n & ".", ADMIN_LOG)
+        PlayerMsg(index, "Você foi teleportado para o mapa #" & n, ColorType.Yellow)
+        Addlog(GetPlayerName(index) & " teleportou para o mapa #" & n & ".", ADMIN_LOG)
 
     End Sub
 
@@ -888,12 +887,12 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSetSprite")
+        AddDebug("Recebida CMSG: CSetSprite")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' The sprite
+        ' A sprite
         n = buffer.ReadInt32
         buffer.Dispose()
 
@@ -907,18 +906,18 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CGetStats")
+        AddDebug("Recebida CMSG: CGetStats")
 
-        PlayerMsg(index, "-=- Stats for " & GetPlayerName(index) & " -=-", ColorType.Yellow)
-        PlayerMsg(index, "Level: " & GetPlayerLevel(index) & "  Exp: " & GetPlayerExp(index) & "/" & GetPlayerNextLevel(index), ColorType.Yellow)
+        PlayerMsg(index, "-=- Atributos de " & GetPlayerName(index) & " -=-", ColorType.Yellow)
+        PlayerMsg(index, "Nível: " & GetPlayerLevel(index) & "  Exp: " & GetPlayerExp(index) & "/" & GetPlayerNextLevel(index), ColorType.Yellow)
         PlayerMsg(index, "HP: " & GetPlayerVital(index, VitalType.HP) & "/" & GetPlayerMaxVital(index, VitalType.HP) & "  MP: " & GetPlayerVital(index, VitalType.MP) & "/" & GetPlayerMaxVital(index, VitalType.MP) & "  SP: " & GetPlayerVital(index, VitalType.SP) & "/" & GetPlayerMaxVital(index, VitalType.SP), ColorType.Yellow)
-        PlayerMsg(index, "STR: " & GetPlayerStat(index, StatType.Strength) & "  DEF: " & GetPlayerStat(index, StatType.Endurance) & "  MAGI: " & GetPlayerStat(index, StatType.Intelligence) & "  Speed: " & GetPlayerStat(index, StatType.Spirit), ColorType.Yellow)
+        PlayerMsg(index, "FOR: " & GetPlayerStat(index, StatType.Strength) & "  DEF: " & GetPlayerStat(index, StatType.Endurance) & "  MAGI: " & GetPlayerStat(index, StatType.Intelligence) & "  VEL: " & GetPlayerStat(index, StatType.Spirit), ColorType.Yellow)
         n = (GetPlayerStat(index, StatType.Strength) \ 2) + (GetPlayerLevel(index) \ 2)
         i = (GetPlayerStat(index, StatType.Endurance) \ 2) + (GetPlayerLevel(index) \ 2)
 
         If n > 100 Then n = 100
         If i > 100 Then i = 100
-        PlayerMsg(index, "Critical Hit Chance: " & n & "%, Block Chance: " & i & "%", ColorType.Yellow)
+        PlayerMsg(index, "Chance de Acerto Crítico: " & n & "%, Chance de Bloqueio: " & i & "%", ColorType.Yellow)
         buffer.Dispose()
     End Sub
 
@@ -926,12 +925,12 @@ Module S_NetworkReceive
         Dim dir As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CRequestNewMap")
+        AddDebug("Recebida CMSG: CRequestNewMap")
 
         dir = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If dir < DirectionType.Up OrElse dir > DirectionType.Right Then Exit Sub
 
         PlayerMove(index, dir, 1, True)
@@ -943,11 +942,11 @@ Module S_NetworkReceive
         Dim x As Integer
         Dim y As Integer
 
-        AddDebug("Recieved CMSG: CSaveMap")
+        AddDebug("Recebida CMSG: CSaveMap")
 
         Dim buffer As New ByteStream(Compression.DecompressBytes(data))
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         Gettingmap = True
@@ -1013,7 +1012,7 @@ Module S_NetworkReceive
 
         End With
 
-        'Event Data!
+        'Dados de Eventos!
         Map(mapNum).EventCount = buffer.ReadInt32
 
         If Map(mapNum).EventCount > 0 Then
@@ -1140,9 +1139,9 @@ Module S_NetworkReceive
                 End If
             Next
         End If
-        'End Event Data
+        'Fim dos Dados de Eventos
 
-        ' Save the map
+        ' Salvar o mapa
         SaveMap(mapNum)
         SaveMapEvent(mapNum)
 
@@ -1160,7 +1159,7 @@ Module S_NetworkReceive
             End If
         Next
 
-        ' Clear it all out
+        ' Limpar tudo
         For i = 1 To MAX_MAP_ITEMS
             SpawnItemSlot(i, 0, 0, GetPlayerMap(index), MapItem(GetPlayerMap(index), i).X, MapItem(GetPlayerMap(index), i).Y)
             ClearMapItem(i, GetPlayerMap(index))
@@ -1172,11 +1171,11 @@ Module S_NetworkReceive
         ClearTempTile(mapNum)
         CacheResources(mapNum)
 
-        ' Refresh map for everyone online
+        ' Atualizar mapa para todos online
         For i = 1 To GetPlayersOnline()
             If IsPlaying(i) AndAlso GetPlayerMap(i) = mapNum Then
                 PlayerWarp(i, mapNum, GetPlayerX(i), GetPlayerY(i))
-                ' Send map
+                ' Enviar mapa
                 SendMapData(i, mapNum, True)
             End If
         Next
@@ -1188,13 +1187,13 @@ Module S_NetworkReceive
         Dim s As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CNeedMap")
+        AddDebug("Recebida CMSG: CNeedMap")
 
-        ' Get yes/no value
+        ' Pegar valor sim/nao
         s = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Check if map data is needed to be sent
+        ' Ver se é necessário mandar as infos do mapa
         If s = 1 Then
             SendMapData(index, GetPlayerMap(index), True)
         Else
@@ -1210,12 +1209,12 @@ Module S_NetworkReceive
         Dim i As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CMapRespawn")
+        AddDebug("Recebida CMSG: CMapRespawn")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' Clear out it all
+        ' Limpar tudo
         For i = 1 To MAX_MAP_ITEMS
             SpawnItemSlot(i, 0, 0, GetPlayerMap(index), MapItem(GetPlayerMap(index), i).X, MapItem(GetPlayerMap(index), i).Y)
             ClearMapItem(i, GetPlayerMap(index))
@@ -1224,14 +1223,14 @@ Module S_NetworkReceive
         ' Respawn
         SpawnMapItems(GetPlayerMap(index))
 
-        ' Respawn NPCS
+        ' Respawn nos NPCS
         For i = 1 To MAX_MAP_NPCS
             SpawnNpc(i, GetPlayerMap(index))
         Next
 
         CacheResources(GetPlayerMap(index))
-        PlayerMsg(index, "Map respawned.", ColorType.BrightGreen)
-        Addlog(GetPlayerName(index) & " has respawned map #" & GetPlayerMap(index), ADMIN_LOG)
+        PlayerMsg(index, "O mapa foi re-gerado.", ColorType.BrightGreen)
+        Addlog(GetPlayerName(index) & " re-gerou o mapa #" & GetPlayerMap(index), ADMIN_LOG)
 
         buffer.Dispose()
     End Sub
@@ -1240,70 +1239,70 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CKickPlayer")
+        AddDebug("Recebida CMSG: CKickPlayer")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) <= 0 Then
             Exit Sub
         End If
 
-        ' The player index
+        ' Índice do jogador
         n = FindPlayer(buffer.ReadString)
         buffer.Dispose()
 
         If n <> index Then
             If n > 0 Then
                 If GetPlayerAccess(n) < GetPlayerAccess(index) Then
-                    GlobalMsg(GetPlayerName(n) & " has been kicked from " & Settings.GameName & " by " & GetPlayerName(index) & "!")
-                    Addlog(GetPlayerName(index) & " has kicked " & GetPlayerName(n) & ".", ADMIN_LOG)
-                    AlertMsg(n, "You have been kicked by " & GetPlayerName(index) & "!")
+                    GlobalMsg(GetPlayerName(n) & " foi chutado do " & Settings.GameName & " por " & GetPlayerName(index) & "!")
+                    Addlog(GetPlayerName(index) & " chutou " & GetPlayerName(n) & ".", ADMIN_LOG)
+                    AlertMsg(n, "Você foi chutado por " & GetPlayerName(index) & "!")
                 Else
-                    PlayerMsg(index, "That is a higher or same access admin then you!", ColorType.BrightRed)
+                    PlayerMsg(index, "Esse é alguém de acesso igual ou maior que o seu!", ColorType.BrightRed)
                 End If
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "O jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "You cannot kick yourself!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode se chutar!", ColorType.BrightRed)
         End If
     End Sub
 
     Sub Packet_Banlist(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CBanList")
+        AddDebug("Recebida CMSG: CBanList")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then
             Exit Sub
         End If
 
-        PlayerMsg(index, "Command /banlist is not available in Orion+... yet ;)", ColorType.Yellow)
+        PlayerMsg(index, "Comando /banlist ainda não está disponível.", ColorType.Yellow)
     End Sub
 
     Sub Packet_DestroyBans(index As Integer, ByRef data() As Byte)
         Dim filename As String
 
-        AddDebug("Recieved CMSG: CBanDestory")
+        AddDebug("Recebida CMSG: CBanDestory")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Creator Then Exit Sub
 
         filename = Application.StartupPath & "\data\banlist.txt"
 
         If File.Exists(filename) Then Kill(filename)
 
-        PlayerMsg(index, "Ban list destroyed.", ColorType.BrightGreen)
+        PlayerMsg(index, "Lista de bans destruída.", ColorType.BrightGreen)
     End Sub
 
     Sub Packet_BanPlayer(index As Integer, ByRef data() As Byte)
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CBanPlayer")
+        AddDebug("Recebida CMSG: CBanPlayer")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        ' The player index
+        ' Índice do jogador
         n = FindPlayer(buffer.ReadString)
         buffer.Dispose()
 
@@ -1312,25 +1311,25 @@ Module S_NetworkReceive
                 If GetPlayerAccess(n) < GetPlayerAccess(index) Then
                     BanIndex(n, index)
                 Else
-                    PlayerMsg(index, "That is a higher or same access admin then you!", ColorType.BrightRed)
+                    PlayerMsg(index, "Esse é alguém de acesso igual ou maior que o seu!", ColorType.BrightRed)
                 End If
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "O jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "You cannot ban yourself, dumbass!", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode se banir!", ColorType.BrightRed)
         End If
 
     End Sub
 
     Private Sub Packet_EditMapRequest(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestEditMap")
+        AddDebug("Recebida CMSG: CRequestEditMap")
 
         ' Prevent hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         If GetPlayerMap(index) > MAX_MAPS Then
-            PlayerMsg(index, "Cant edit instanced maps!", ColorType.BrightRed)
+            PlayerMsg(index, "Não dá pra editar mapas instanciados!", ColorType.BrightRed)
             Exit Sub
         End If
 
@@ -1343,16 +1342,16 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_EditShop(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestEditShop")
+        AddDebug("Recebida EMSG: RequestEditShop")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SShopEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SShopEditor")
+        AddDebug("Enviada SMSG: SShopEditor")
 
         Buffer.Dispose()
     End Sub
@@ -1361,14 +1360,14 @@ Module S_NetworkReceive
         Dim ShopNum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveShop")
+        AddDebug("Recebida EMSG: SaveShop")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         ShopNum = buffer.ReadInt32
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If ShopNum < 0 OrElse ShopNum > MAX_SHOPS Then Exit Sub
 
         Shop(ShopNum).BuyRate = buffer.ReadInt32()
@@ -1386,23 +1385,23 @@ Module S_NetworkReceive
 
         buffer.Dispose()
 
-        ' Save it
+        ' Salvar
         SendUpdateShopToAll(ShopNum)
         SaveShop(ShopNum)
-        Addlog(GetPlayerLogin(index) & " saving shop #" & ShopNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvando loja #" & ShopNum & ".", ADMIN_LOG)
     End Sub
 
     Sub Packet_EditSkill(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestEditSkill")
+        AddDebug("Recebida EMSG: RequestEditSkill")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SSkillEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SSkillEditor")
+        AddDebug("Enviada SMSG: SSkillEditor")
 
         Buffer.Dispose()
     End Sub
@@ -1411,11 +1410,11 @@ Module S_NetworkReceive
         Dim skillnum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveSkill")
+        AddDebug("Recebida EMSG: SaveSkill")
 
         skillnum = buffer.ReadInt32
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If skillnum < 0 OrElse skillnum > MAX_SKILLS Then Exit Sub
 
         Skill(skillnum).AccessReq = buffer.ReadInt32()
@@ -1441,17 +1440,17 @@ Module S_NetworkReceive
         Skill(skillnum).X = buffer.ReadInt32()
         Skill(skillnum).Y = buffer.ReadInt32()
 
-        'projectiles
+        'Projeteis
         Skill(skillnum).IsProjectile = buffer.ReadInt32()
         Skill(skillnum).Projectile = buffer.ReadInt32()
 
         Skill(skillnum).KnockBack = buffer.ReadInt32()
         Skill(skillnum).KnockBackTiles = buffer.ReadInt32()
 
-        ' Save it
+        ' Salvar
         SendUpdateSkillToAll(skillnum)
         SaveSkill(skillnum)
-        Addlog(GetPlayerLogin(index) & " saved Skill #" & skillnum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou Habilidade #" & skillnum & ".", ADMIN_LOG)
 
         buffer.Dispose()
     End Sub
@@ -1461,47 +1460,46 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim i As Integer
 
-        AddDebug("Recieved CMSG: CSetAccess")
+        AddDebug("Recebida CMSG: CSetAccess")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Creator Then Exit Sub
 
-        ' The index
+        ' O índice
         n = FindPlayer(buffer.ReadString)
-        ' The access
+        ' O acesso
         i = buffer.ReadInt32
 
-        ' Check for invalid access level
+        ' Verificar se o acesso é inválido
         If i >= 0 OrElse i <= 3 Then
 
-            ' Check if player is on
+            ' Ver se o jogador está online
             If n > 0 Then
-
-                'check to see if same level access is trying to change another access of the very same level and boot them if they are.
+                'Checar para ver se o mesmo acesso está tentando mudar outro acesso de mesmo nível
                 If GetPlayerAccess(n) = GetPlayerAccess(index) Then
-                    PlayerMsg(index, "Invalid access level.", ColorType.BrightRed)
+                    PlayerMsg(index, "Nível de acesso inválido.", ColorType.BrightRed)
                     Exit Sub
                 End If
 
                 If GetPlayerAccess(n) <= 0 Then
-                    GlobalMsg(GetPlayerName(n) & " has been blessed with administrative access.")
+                    GlobalMsg(GetPlayerName(n) & " foi abençoado com acesso administrativo.")
                 End If
 
                 SetPlayerAccess(n, i)
                 SendPlayerData(n)
-                Addlog(GetPlayerName(index) & " has modified " & GetPlayerName(n) & "'s access.", ADMIN_LOG)
+                Addlog(GetPlayerName(index) & " modificou o acesso e " & GetPlayerName(n) & ".", ADMIN_LOG)
             Else
-                PlayerMsg(index, "Player is not online.", ColorType.BrightRed)
+                PlayerMsg(index, "O jogador não está online.", ColorType.BrightRed)
             End If
         Else
-            PlayerMsg(index, "Invalid access level.", ColorType.BrightRed)
+            PlayerMsg(index, "Nível de acesso inválido.", ColorType.BrightRed)
         End If
 
         buffer.Dispose()
     End Sub
 
     Sub Packet_WhosOnline(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CWhosOnline")
+        AddDebug("Recebida CMSG: CWhosOnline")
 
         SendWhosOnline(index)
     End Sub
@@ -1509,16 +1507,16 @@ Module S_NetworkReceive
     Sub Packet_SetMotd(index As Integer, ByRef data() As Byte)
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSetMotd")
+        AddDebug("Recebida CMSG: CSetMotd")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         Settings.Welcome = Trim$(buffer.ReadString)
         SaveSettings()
 
-        GlobalMsg("Welcome changed to: " & Settings.Welcome)
-        Addlog(GetPlayerName(index) & " changed welcome to: " & Settings.welcome, ADMIN_LOG)
+        GlobalMsg("Mensagem de boas-vindas alterada para: " & Settings.Welcome)
+        Addlog(GetPlayerName(index) & " mudou as boas-vindas para: " & Settings.Welcome, ADMIN_LOG)
 
         buffer.Dispose()
     End Sub
@@ -1528,16 +1526,16 @@ Module S_NetworkReceive
         Dim x As Integer, y As Integer, i As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSearch")
+        AddDebug("Recebida CMSG: CSearch")
 
         x = buffer.ReadInt32
         y = buffer.ReadInt32
         rclick = buffer.ReadInt32
 
-        ' Prevent subscript out of range
+        ' Prevenir subscript out of range
         If x < 0 OrElse x > Map(GetPlayerMap(index)).MaxX OrElse y < 0 OrElse y > Map(GetPlayerMap(index)).MaxY Then Exit Sub
 
-        ' Check for a player
+        ' Verificar o jogador
         For i = 1 To GetPlayersOnline()
 
             If IsPlaying(i) Then
@@ -1545,26 +1543,26 @@ Module S_NetworkReceive
                     If GetPlayerX(i) = x Then
                         If GetPlayerY(i) = y Then
 
-                            ' Consider the player
+                            ' Considerar o jogador
                             If i <> index Then
                                 If GetPlayerLevel(i) >= GetPlayerLevel(index) + 5 Then
-                                    PlayerMsg(index, "You wouldn't stand a chance.", ColorType.BrightRed)
+                                    PlayerMsg(index, "Você não teria chance.", ColorType.BrightRed)
                                 Else
 
                                     If GetPlayerLevel(i) > GetPlayerLevel(index) Then
-                                        PlayerMsg(index, "This one seems to have an advantage over you.", ColorType.Yellow)
+                                        PlayerMsg(index, "Esse parece ter uma vantagem sobre você.", ColorType.Yellow)
                                     Else
 
                                         If GetPlayerLevel(i) = GetPlayerLevel(index) Then
-                                            PlayerMsg(index, "This would be an even fight.", ColorType.White)
+                                            PlayerMsg(index, "Esta seria uma luta de igual pra igual.", ColorType.White)
                                         Else
 
                                             If GetPlayerLevel(index) >= GetPlayerLevel(i) + 5 Then
-                                                PlayerMsg(index, "You could slaughter that player.", ColorType.BrightBlue)
+                                                PlayerMsg(index, "Você poderia assasinar aquele jogador.", ColorType.BrightBlue)
                                             Else
 
                                                 If GetPlayerLevel(index) > GetPlayerLevel(i) Then
-                                                    PlayerMsg(index, "You would have an advantage over that player.", ColorType.BrightCyan)
+                                                    PlayerMsg(index, "Você teria uma vantagem sobre aquele jogador.", ColorType.BrightCyan)
                                                 End If
                                             End If
                                         End If
@@ -1572,10 +1570,10 @@ Module S_NetworkReceive
                                 End If
                             End If
 
-                            ' Change target
+                            ' Alterar alvo
                             TempPlayer(index).Target = i
                             TempPlayer(index).TargetType = TargetType.Player
-                            PlayerMsg(index, "Your target is now " & GetPlayerName(i) & ".", ColorType.Yellow)
+                            PlayerMsg(index, "Seu alvo agora é " & GetPlayerName(i) & ".", ColorType.Yellow)
                             SendTarget(index, TempPlayer(index).Target, TempPlayer(index).TargetType)
                             TargetFound = 1
                             If rclick = 1 Then SendRightClick(index)
@@ -1587,13 +1585,13 @@ Module S_NetworkReceive
 
         Next
 
-        ' Check for an item
+        ' Verificar item
         For i = 1 To MAX_MAP_ITEMS
 
             If MapItem(GetPlayerMap(index), i).Num > 0 Then
                 If MapItem(GetPlayerMap(index), i).X = x Then
                     If MapItem(GetPlayerMap(index), i).Y = y Then
-                        PlayerMsg(index, "You see " & CheckGrammar(Trim$(Item(MapItem(GetPlayerMap(index), i).Num).Name)) & ".", ColorType.White)
+                        PlayerMsg(index, "Você vê um(a) " & CheckGrammar(Trim$(Item(MapItem(GetPlayerMap(index), i).Num).Name)) & ".", ColorType.White)
                         Exit Sub
                     End If
                 End If
@@ -1601,16 +1599,16 @@ Module S_NetworkReceive
 
         Next
 
-        ' Check for an npc
+        ' Verificar npc
         For i = 1 To MAX_MAP_NPCS
 
             If MapNpc(GetPlayerMap(index)).Npc(i).Num > 0 Then
                 If MapNpc(GetPlayerMap(index)).Npc(i).X = x Then
                     If MapNpc(GetPlayerMap(index)).Npc(i).Y = y Then
-                        ' Change target
+                        ' Alterar alvo
                         TempPlayer(index).Target = i
                         TempPlayer(index).TargetType = TargetType.Npc
-                        PlayerMsg(index, "Your target is now " & CheckGrammar(Trim$(Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name)) & ".", ColorType.Yellow)
+                        PlayerMsg(index, "Seu alvo agora é " & CheckGrammar(Trim$(Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name)) & ".", ColorType.Yellow)
                         SendTarget(index, TempPlayer(index).Target, TempPlayer(index).TargetType)
                         TargetFound = 1
                         Exit Sub
@@ -1620,7 +1618,7 @@ Module S_NetworkReceive
 
         Next
 
-        'Housing
+        'Casa
         If Player(index).Character(TempPlayer(index).CurChar).InHouse > 0 Then
             If Player(index).Character(TempPlayer(index).CurChar).InHouse = index Then
                 If Player(index).Character(TempPlayer(index).CurChar).House.Houseindex > 0 Then
@@ -1628,7 +1626,7 @@ Module S_NetworkReceive
                         For i = 1 To Player(index).Character(TempPlayer(index).CurChar).House.FurnitureCount
                             If x >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X AndAlso x <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).X + Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureWidth - 1 Then
                                 If y <= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y AndAlso y >= Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).Y - Item(Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum).FurnitureHeight + 1 Then
-                                    'Found an Item, get the index and lets pick it up!
+                                    'Encontrou um item, pegar o index e catar o item!
                                     x = FindOpenInvSlot(index, Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum)
                                     If x > 0 Then
                                         GiveInvItem(index, Player(index).Character(TempPlayer(index).CurChar).House.Furniture(i).ItemNum, 0, True)
@@ -1640,7 +1638,7 @@ Module S_NetworkReceive
                                         SendFurnitureToHouse(index)
                                         Exit Sub
                                     Else
-                                        PlayerMsg(index, "No inventory space available!", ColorType.BrightRed)
+                                        PlayerMsg(index, "Inventário cheio!", ColorType.BrightRed)
                                     End If
                                     Exit Sub
                                 End If
@@ -1659,7 +1657,7 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_Skills(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CSkills")
+        AddDebug("Enviada CMSG: CSkills")
 
         SendPlayerSkills(index)
     End Sub
@@ -1668,20 +1666,20 @@ Module S_NetworkReceive
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CCast")
+        AddDebug("Enviada CMSG: CCast")
 
-        ' Skill slot
+        ' Espaço de Habilidades
         n = buffer.ReadInt32
         buffer.Dispose()
 
-        ' set the skill buffer before castin
+        ' Setr o buffer da habilidade antes de conjurar
         BufferSkill(index, n)
 
         buffer.Dispose()
     End Sub
 
     Sub Packet_QuitGame(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CQuit")
+        AddDebug("Enviada CMSG: CQuit")
 
         SendLeftGame(index)
         LeftGame(index)
@@ -1691,11 +1689,11 @@ Module S_NetworkReceive
         Dim oldSlot As Integer, newSlot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSwapInvSlots")
+        AddDebug("Recebida CMSG: CSwapInvSlots")
 
         If TempPlayer(index).InTrade > 0 OrElse TempPlayer(index).InBank OrElse TempPlayer(index).InShop Then Exit Sub
 
-        ' Old Slot
+        ' Slot antigo
         oldSlot = buffer.ReadInt32
         newSlot = buffer.ReadInt32
         buffer.Dispose()
@@ -1711,7 +1709,7 @@ Module S_NetworkReceive
         buffer.WriteInt32(ServerPackets.SSendPing)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-        AddDebug("Sent SMSG: SSendPing")
+        AddDebug("Enviada SMSG: SSendPing")
 
         buffer.Dispose()
     End Sub
@@ -1719,7 +1717,7 @@ Module S_NetworkReceive
     Sub Packet_Unequip(index As Integer, ByRef data() As Byte)
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CUnequip")
+        AddDebug("Recebida CMSG: CUnequip")
 
         PlayerUnequipItem(index, buffer.ReadInt32)
 
@@ -1727,13 +1725,13 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_RequestPlayerData(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestPlayerData")
+        AddDebug("Recebida CMSG: CRequestPlayerData")
 
         SendPlayerData(index)
     End Sub
 
     Sub Packet_RequestNpcs(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestNPCS")
+        AddDebug("Recebida CMSG: CRequestNPCS")
 
         SendNpcs(index)
     End Sub
@@ -1743,7 +1741,7 @@ Module S_NetworkReceive
         Dim tmpAmount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSpawnItem")
+        AddDebug("Recebida CMSG: CSpawnItem")
 
         ' item
         tmpItem = buffer.ReadInt32
@@ -1759,41 +1757,41 @@ Module S_NetworkReceive
         Dim tmpstat As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CTrainStat")
+        AddDebug("Recebida CMSG: CTrainStat")
 
-        ' check points
+        ' Checar pontos
         If GetPlayerPOINTS(index) = 0 Then Exit Sub
 
-        ' stat
+        ' atributos
         tmpstat = buffer.ReadInt32
 
-        ' increment stat
+        ' incrementar atriutos
         SetPlayerStat(index, tmpstat, GetPlayerRawStat(index, tmpstat) + 1)
 
-        ' decrement points
+        ' decrementar pontos
         SetPlayerPOINTS(index, GetPlayerPOINTS(index) - 1)
 
-        ' send player new data
+        ' enviar novos dados do jogador
         SendPlayerData(index)
         buffer.Dispose()
     End Sub
 
     Sub Packet_RequestSkills(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestSkills")
+        AddDebug("Recebida CMSG: CRequestSkills")
 
         SendSkills(index)
     End Sub
 
     Sub Packet_RequestShops(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestShops")
+        AddDebug("Recebida CMSG: CRequestShops")
 
         SendShops(index)
     End Sub
 
     Sub Packet_RequestLevelUp(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestLevelUp")
+        AddDebug("Recebida CMSG: CRequestLevelUp")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Creator Then Exit Sub
 
         SetPlayerExp(index, GetPlayerNextLevel(index))
@@ -1804,7 +1802,7 @@ Module S_NetworkReceive
         Dim skillslot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CForgetSkill")
+        AddDebug("Recebida CMSG: CForgetSkill")
 
         skillslot = buffer.ReadInt32
 
@@ -1813,13 +1811,13 @@ Module S_NetworkReceive
 
         ' dont let them forget a skill which is in CD
         If TempPlayer(index).SkillCd(skillslot) > 0 Then
-            PlayerMsg(index, "Cannot forget a skill which is cooling down!", ColorType.BrightRed)
+            PlayerMsg(index, "Não se pode esquecer uma habilidade que está recarregando!", ColorType.BrightRed)
             Exit Sub
         End If
 
         ' dont let them forget a skill which is buffered
         If TempPlayer(index).SkillBuffer = skillslot Then
-            PlayerMsg(index, "Cannot forget a skill which you are casting!", ColorType.BrightRed)
+            PlayerMsg(index, "Não dá pra esquecer uma habilidade que você está usando!", ColorType.BrightRed)
             Exit Sub
         End If
 
@@ -1830,7 +1828,7 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_CloseShop(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CCloseShop")
+        AddDebug("Recebida CMSG: CCloseShop")
 
         TempPlayer(index).InShop = 0
     End Sub
@@ -1839,33 +1837,33 @@ Module S_NetworkReceive
         Dim shopslot As Integer, shopnum As Integer, itemamount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CBuyItem")
+        AddDebug("Recebida CMSG: CBuyItem")
 
         shopslot = buffer.ReadInt32
 
-        ' not in shop, exit out
+        ' Não está na loja, sair
         shopnum = TempPlayer(index).InShop
         If shopnum < 1 OrElse shopnum > MAX_SHOPS Then Exit Sub
 
         With Shop(shopnum).TradeItem(shopslot)
-            ' check trade exists
+            ' Verificar se a troca existe
             If .Item < 1 Then Exit Sub
 
-            ' check has the cost item
+            ' Ver se tem o valor do item
             itemamount = HasItem(index, .CostItem)
             If itemamount = 0 OrElse itemamount < .CostValue Then
-                PlayerMsg(index, "You do not have enough to buy this item.", ColorType.BrightRed)
+                PlayerMsg(index, "Você não tem o suficiente para comprar este item.", ColorType.BrightRed)
                 ResetShopAction(index)
                 Exit Sub
             End If
 
-            ' it's fine, let's go ahead
+            ' Está tudo bem, sigamos em frente
             TakeInvItem(index, .CostItem, .CostValue)
             GiveInvItem(index, .Item, .ItemValue)
         End With
 
-        ' send confirmation message & reset their shop action
-        PlayerMsg(index, "Trade successful.", ColorType.BrightGreen)
+        ' Enviar mensagem de confirmação e resetar a ação de loja
+        PlayerMsg(index, "Troca realizada com sucesso..", ColorType.BrightGreen)
         ResetShopAction(index)
 
         buffer.Dispose()
@@ -1878,36 +1876,36 @@ Module S_NetworkReceive
         Dim multiplier As Double
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSellItem")
+        AddDebug("Recebida CMSG: CSellItem")
 
         invSlot = buffer.ReadInt32
 
-        ' if invalid, exit out
+        ' se inválido, sair
         If invSlot < 1 OrElse invSlot > MAX_INV Then Exit Sub
 
-        ' has item?
+        ' tem item?
         If GetPlayerInvItemNum(index, invSlot) < 1 OrElse GetPlayerInvItemNum(index, invSlot) > MAX_ITEMS Then Exit Sub
 
-        ' seems to be valid
+        ' parece ser válido
         itemNum = GetPlayerInvItemNum(index, invSlot)
 
-        ' work out price
+        ' trabalhar no preço
         multiplier = Shop(TempPlayer(index).InShop).BuyRate / 100
         price = Item(itemNum).Price * multiplier
 
-        ' item has cost?
+        ' item tem custo?
         If price <= 0 Then
-            PlayerMsg(index, "The shop doesn't want that item.", ColorType.Yellow)
+            PlayerMsg(index, "A loja não quer esse item.", ColorType.Yellow)
             ResetShopAction(index)
             Exit Sub
         End If
 
-        ' take item and give gold
+        ' pegar o item e dar dinheiro
         TakeInvItem(index, itemNum, 1)
         GiveInvItem(index, 1, price)
 
-        ' send confirmation message & reset their shop action
-        PlayerMsg(index, "Sold the " & Trim(Item(GetPlayerInvItemNum(index, invSlot)).Name) & " !", ColorType.BrightGreen)
+        ' enviar mensagem de confirmação e resetar ação da loja
+        PlayerMsg(index, "Vendeu o(a) " & Trim(Item(GetPlayerInvItemNum(index, invSlot)).Name) & " !", ColorType.BrightGreen)
         ResetShopAction(index)
 
         buffer.Dispose()
@@ -1917,7 +1915,7 @@ Module S_NetworkReceive
         Dim oldslot As Integer, newslot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CChangeBankSlots")
+        AddDebug("Recebida CMSG: CChangeBankSlots")
 
         oldslot = buffer.ReadInt32
         newslot = buffer.ReadInt32
@@ -1931,7 +1929,7 @@ Module S_NetworkReceive
         Dim invslot As Integer, amount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CDepositItem")
+        AddDebug("Recebida CMSG: CDepositItem")
 
         invslot = buffer.ReadInt32
         amount = buffer.ReadInt32
@@ -1945,7 +1943,7 @@ Module S_NetworkReceive
         Dim bankslot As Integer, amount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CWithdrawItem")
+        AddDebug("Recebida CMSG: CWithdrawItem")
 
         bankslot = buffer.ReadInt32
         amount = buffer.ReadInt32
@@ -1956,7 +1954,7 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_CloseBank(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CCloseBank")
+        AddDebug("Recebida CMSG: CCloseBank")
 
         SaveBank(index)
         SavePlayer(index)
@@ -1968,17 +1966,17 @@ Module S_NetworkReceive
         Dim x As Integer, y As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CAdminWarp")
+        AddDebug("Recebida CMSG: CAdminWarp")
 
         x = buffer.ReadInt32
         y = buffer.ReadInt32
 
         If GetPlayerAccess(index) >= AdminType.Mapper Then
-            'Set the  Information
+            'Setar a informação
             SetPlayerX(index, x)
             SetPlayerY(index, y)
 
-            'send the stuff
+            'enviar as coisas
             SendPlayerXY(index)
         End If
 
@@ -1989,31 +1987,31 @@ Module S_NetworkReceive
         Dim Name As String, tradetarget As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CTradeInvite")
+        AddDebug("Recebida CMSG: CTradeInvite")
 
         Name = buffer.ReadString
 
         buffer.Dispose()
 
-        ' Check for a player
+        ' Checar por um jogador
 
         tradetarget = FindPlayer(Name)
 
-        ' make sure we don't error
+        ' Ter certeza que não erramos
         If tradetarget <= 0 OrElse tradetarget > MAX_PLAYERS Then Exit Sub
 
-        ' can't trade with yourself..
+        ' Não podemos trocar com nós mesmos..
         If tradetarget = index Then
-            PlayerMsg(index, "You can't trade with yourself.", ColorType.BrightRed)
+            PlayerMsg(index, "Você não pode trocar consigo próprio.", ColorType.BrightRed)
             Exit Sub
         End If
 
-        ' send the trade request
+        ' enviar o pedido de troca
         TempPlayer(index).TradeRequest = tradetarget
         TempPlayer(tradetarget).TradeRequest = index
 
-        PlayerMsg(tradetarget, Trim$(GetPlayerName(index)) & " has invited you to trade.", ColorType.Yellow)
-        PlayerMsg(index, "You have invited " & Trim$(GetPlayerName(tradetarget)) & " to trade.", ColorType.BrightGreen)
+        PlayerMsg(tradetarget, Trim$(GetPlayerName(index)) & " te convidou para um troca.", ColorType.Yellow)
+        PlayerMsg(index, "Você convidou " & Trim$(GetPlayerName(tradetarget)) & " para troca.", ColorType.BrightGreen)
         SendClearTradeTimer(index)
 
         SendTradeInvite(tradetarget, index)
@@ -2023,7 +2021,7 @@ Module S_NetworkReceive
         Dim tradetarget As Integer, status As Byte
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CTradeInviteAccept")
+        AddDebug("Recebida CMSG: CTradeInviteAccept")
 
         status = buffer.ReadInt32
 
@@ -2033,23 +2031,23 @@ Module S_NetworkReceive
 
         tradetarget = TempPlayer(index).TradeRequest
 
-        ' Let them trade!
+        ' Deixem-nos trocar!
         If TempPlayer(tradetarget).TradeRequest = index Then
-            ' let them know they're trading
-            PlayerMsg(index, "You have accepted " & Trim$(GetPlayerName(tradetarget)) & "'s trade request.", ColorType.Yellow)
-            PlayerMsg(tradetarget, Trim$(GetPlayerName(index)) & " has accepted your trade request.", ColorType.BrightGreen)
-            ' clear the trade timeout clientside
+            ' Deixe eles saberem que estão trocando
+            PlayerMsg(index, "Você aceitou o pedido de troca de " & Trim$(GetPlayerName(tradetarget)) & ".", ColorType.Yellow)
+            PlayerMsg(tradetarget, Trim$(GetPlayerName(index)) & " aceitou seu pedido de troca.", ColorType.BrightGreen)
+            ' Limpar o timeout do client
             SendClearTradeTimer(index)
 
-            ' clear the tradeRequest server-side
+            ' Limpar a requisição de troca no servidor
             TempPlayer(index).TradeRequest = 0
             TempPlayer(tradetarget).TradeRequest = 0
 
-            ' set that they're trading with each other
+            ' Setar que estão trocando entre si 
             TempPlayer(index).InTrade = tradetarget
             TempPlayer(tradetarget).InTrade = index
 
-            ' clear out their trade offers
+            ' Limpar as ofertas de troca
             ReDim TempPlayer(index).TradeOffer(MAX_INV)
             ReDim TempPlayer(tradetarget).TradeOffer(MAX_INV)
             For i = 1 To MAX_INV
@@ -2058,11 +2056,11 @@ Module S_NetworkReceive
                 TempPlayer(tradetarget).TradeOffer(i).Num = 0
                 TempPlayer(tradetarget).TradeOffer(i).Value = 0
             Next
-            ' Used to init the trade window clientside
+            ' Usado para iniciar a janela de troca no cliente
             SendTrade(index, tradetarget)
             SendTrade(tradetarget, index)
 
-            ' Send the offer data - Used to clear their client
+            ' Enviar os dados da troca - Usado para limpar o cliente
             SendTradeUpdate(index, 0)
             SendTradeUpdate(index, 1)
             SendTradeUpdate(tradetarget, 0)
@@ -2077,55 +2075,55 @@ Module S_NetworkReceive
         Dim tmpTradeItem(MAX_INV) As PlayerInvStruct
         Dim tmpTradeItem2(MAX_INV) As PlayerInvStruct
 
-        AddDebug("Recieved CMSG: CAcceptTrade")
+        AddDebug("Recebida CMSG: CAcceptTrade")
 
         TempPlayer(index).AcceptTrade = True
 
         tradeTarget = TempPlayer(index).InTrade
 
-        ' if not both of them accept, then exit
+        ' Se ambos não aceitarem, sair
         If Not TempPlayer(tradeTarget).AcceptTrade Then
             SendTradeStatus(index, 2)
             SendTradeStatus(tradeTarget, 1)
             Exit Sub
         End If
 
-        ' take their items
+        ' pegar itens deles
         For i = 1 To MAX_INV
-            ' player
+            ' jogador
             If TempPlayer(index).TradeOffer(i).Num > 0 Then
                 itemNum = Player(index).Character(TempPlayer(index).CurChar).Inv(TempPlayer(index).TradeOffer(i).Num).Num
                 If itemNum > 0 Then
-                    ' store temp
+                    ' guardar temporariamente
                     tmpTradeItem(i).Num = itemNum
                     tmpTradeItem(i).Value = TempPlayer(index).TradeOffer(i).Value
-                    ' take item
+                    ' pegar item
                     TakeInvSlot(index, TempPlayer(index).TradeOffer(i).Num, tmpTradeItem(i).Value)
                 End If
             End If
-            ' target
+            ' alvo
             If TempPlayer(tradeTarget).TradeOffer(i).Num > 0 Then
                 itemNum = GetPlayerInvItemNum(tradeTarget, TempPlayer(tradeTarget).TradeOffer(i).Num)
                 If itemNum > 0 Then
-                    ' store temp
+                    ' guardar temporariamente
                     tmpTradeItem2(i).Num = itemNum
                     tmpTradeItem2(i).Value = TempPlayer(tradeTarget).TradeOffer(i).Value
-                    ' take item
+                    ' pegar item
                     TakeInvSlot(tradeTarget, TempPlayer(tradeTarget).TradeOffer(i).Num, tmpTradeItem2(i).Value)
                 End If
             End If
         Next
 
-        ' taken all items. now they can't not get items because of no inventory space.
+        ' todos itens pegos, agora não podem pegar itens porque não há espaço no inventário
         For i = 1 To MAX_INV
-            ' player
+            ' jogador
             If tmpTradeItem2(i).Num > 0 Then
-                ' give away!
+                ' dar!
                 GiveInvItem(index, tmpTradeItem2(i).Num, tmpTradeItem2(i).Value, False)
             End If
-            ' target
+            ' alvo
             If tmpTradeItem(i).Num > 0 Then
-                ' give away!
+                ' dar!
                 GiveInvItem(tradeTarget, tmpTradeItem(i).Num, tmpTradeItem(i).Value, False)
             End If
         Next
@@ -2133,7 +2131,7 @@ Module S_NetworkReceive
         SendInventory(index)
         SendInventory(tradeTarget)
 
-        ' they now have all the items. Clear out values + let them out of the trade.
+        ' agora tem todos os itens. limpar valores + sair da troca.
         For i = 1 To MAX_INV
             TempPlayer(index).TradeOffer(i).Num = 0
             TempPlayer(index).TradeOffer(i).Value = 0
@@ -2144,8 +2142,8 @@ Module S_NetworkReceive
         TempPlayer(index).InTrade = 0
         TempPlayer(tradeTarget).InTrade = 0
 
-        PlayerMsg(index, "Trade completed.", ColorType.BrightGreen)
-        PlayerMsg(tradeTarget, "Trade completed.", ColorType.BrightGreen)
+        PlayerMsg(index, "Troca completa.", ColorType.BrightGreen)
+        PlayerMsg(tradeTarget, "Troca completa.", ColorType.BrightGreen)
 
         SendCloseTrade(index)
         SendCloseTrade(tradeTarget)
@@ -2154,7 +2152,7 @@ Module S_NetworkReceive
     Sub Packet_DeclineTrade(index As Integer, ByRef data() As Byte)
         Dim tradeTarget As Integer
 
-        AddDebug("Recieved CMSG: CDeclineTrade")
+        AddDebug("Recebida CMSG: CDeclineTrade")
 
         tradeTarget = TempPlayer(index).InTrade
 
@@ -2168,8 +2166,8 @@ Module S_NetworkReceive
         TempPlayer(index).InTrade = 0
         TempPlayer(tradeTarget).InTrade = 0
 
-        PlayerMsg(index, "You declined the trade.", ColorType.Yellow)
-        PlayerMsg(tradeTarget, GetPlayerName(index) & " has declined the trade.", ColorType.BrightRed)
+        PlayerMsg(index, "Você recusou a troca.", ColorType.Yellow)
+        PlayerMsg(tradeTarget, GetPlayerName(index) & " recusou trocar com você.", ColorType.BrightRed)
 
         SendCloseTrade(index)
         SendCloseTrade(tradeTarget)
@@ -2180,7 +2178,7 @@ Module S_NetworkReceive
         Dim invslot As Integer, amount As Integer, emptyslot As Integer, i As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CTradeItem")
+        AddDebug("Recebida CMSG: CTradeItem")
 
         invslot = buffer.ReadInt32
         amount = buffer.ReadInt32
@@ -2193,24 +2191,24 @@ Module S_NetworkReceive
 
         If itemnum <= 0 OrElse itemnum > MAX_ITEMS Then Exit Sub
 
-        ' make sure they have the amount they offer
+        ' ter certeza que eles tem a quantidade que oferecem
         If amount < 0 OrElse amount > GetPlayerInvItemValue(index, invslot) Then Exit Sub
 
         If Item(itemnum).Type = ItemType.Currency OrElse Item(itemnum).Stackable = 1 Then
 
-            ' check if already offering same currency item
+            ' verificar se já não estão oferecendo o mesmo item
             For i = 1 To MAX_INV
 
                 If TempPlayer(index).TradeOffer(i).Num = invslot Then
-                    ' add amount
+                    ' adicionar quantidade
                     TempPlayer(index).TradeOffer(i).Value = TempPlayer(index).TradeOffer(i).Value + amount
 
-                    ' clamp to limits
+                    ' limites
                     If TempPlayer(index).TradeOffer(i).Value > GetPlayerInvItemValue(index, invslot) Then
                         TempPlayer(index).TradeOffer(i).Value = GetPlayerInvItemValue(index, invslot)
                     End If
 
-                    ' cancel any trade agreement
+                    ' cancelar qualquer acordo de troca
                     TempPlayer(index).AcceptTrade = False
                     TempPlayer(TempPlayer(index).InTrade).AcceptTrade = False
 
@@ -2219,21 +2217,21 @@ Module S_NetworkReceive
 
                     SendTradeUpdate(index, 0)
                     SendTradeUpdate(TempPlayer(index).InTrade, 1)
-                    ' exit early
+                    ' sair cedo
                     Exit Sub
                 End If
             Next
         Else
-            ' make sure they're not already offering it
+            ' ter certeza que já não estão oferecendo o item
             For i = 1 To MAX_INV
                 If TempPlayer(index).TradeOffer(i).Num = invslot Then
-                    PlayerMsg(index, "You've already offered this item.", ColorType.BrightRed)
+                    PlayerMsg(index, "Voce já ofereceu este item.", ColorType.BrightRed)
                     Exit Sub
                 End If
             Next
         End If
 
-        ' not already offering - find earliest empty slot
+        ' não ofereceu - encontrar o primeiro espaço vazio 
         For i = 1 To MAX_INV
             If TempPlayer(index).TradeOffer(i).Num = 0 Then
                 emptyslot = i
@@ -2243,7 +2241,7 @@ Module S_NetworkReceive
         TempPlayer(index).TradeOffer(emptyslot).Num = invslot
         TempPlayer(index).TradeOffer(emptyslot).Value = amount
 
-        ' cancel any trade agreement and send new data
+        ' cancelar acordo de troca e mandar novo dado
         TempPlayer(index).AcceptTrade = False
         TempPlayer(TempPlayer(index).InTrade).AcceptTrade = False
 
@@ -2258,7 +2256,7 @@ Module S_NetworkReceive
         Dim tradeslot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CUntradeItem")
+        AddDebug("Recebida CMSG: CUntradeItem")
 
         tradeslot = buffer.ReadInt32
 
@@ -2283,27 +2281,27 @@ Module S_NetworkReceive
     Sub HackingAttempt(index As Integer, Reason As String)
 
         If index > 0 AndAlso IsPlaying(index) Then
-            GlobalMsg(GetPlayerLogin(index) & "/" & GetPlayerName(index) & " has been booted for (" & Reason & ")")
+            GlobalMsg(GetPlayerLogin(index) & "/" & GetPlayerName(index) & " foi desconectado por (" & Reason & ")")
 
-            AlertMsg(index, "You have lost your connection with " & Settings.GameName & ".")
+            AlertMsg(index, "Você perdeu sua conexão com " & Settings.GameName & ".")
         End If
 
     End Sub
 
     'Mapreport
     Sub Packet_MapReport(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CMapReport")
+        AddDebug("Recebida CMSG: CMapReport")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         SendMapReport(index)
     End Sub
 
     Sub Packet_Admin(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CAdmin")
+        AddDebug("Recebida CMSG: CAdmin")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         SendAdminPanel(index)
@@ -2313,7 +2311,7 @@ Module S_NetworkReceive
         Dim slot As Integer, skill As Integer, type As Byte
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CSetHotbarSlot")
+        AddDebug("Recebida CMSG: CSetHotbarSlot")
 
         slot = buffer.ReadInt32
         skill = buffer.ReadInt32
@@ -2331,7 +2329,7 @@ Module S_NetworkReceive
         Dim slot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CDeleteHotbarSlot")
+        AddDebug("Recebida CMSG: CDeleteHotbarSlot")
 
         slot = buffer.ReadInt32
 
@@ -2347,13 +2345,13 @@ Module S_NetworkReceive
         Dim slot As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CUseHotbarSlot")
+        AddDebug("Recebida CMSG: CUseHotbarSlot")
 
         slot = buffer.ReadInt32
         buffer.Dispose()
 
         If Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).Slot > 0 Then
-            If Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).SlotType = 1 Then 'skill
+            If Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).SlotType = 1 Then 'habilidade
                 BufferSkill(index, Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).Slot)
             ElseIf Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).SlotType = 2 Then 'item
                 UseItem(index, Player(index).Character(TempPlayer(index).CurChar).Hotbar(slot).Slot)
@@ -2365,15 +2363,15 @@ Module S_NetworkReceive
     End Sub
 
     Sub Packet_RequestClasses(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestClasses")
+        AddDebug("Recebida CMSG: CRequestClasses")
 
         SendClasses(index)
     End Sub
 
     Sub Packet_RequestEditClasses(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestEditClasses")
+        AddDebug("Recebida EMSG: RequestEditClasses")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         SendClasses(index)
@@ -2385,9 +2383,9 @@ Module S_NetworkReceive
         Dim i As Integer, z As Integer, x As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveClasses")
+        AddDebug("Recebida EMSG: SaveClasses")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         For i = 0 To Max_Classes
@@ -2400,19 +2398,19 @@ Module S_NetworkReceive
                 .Name = buffer.ReadString
                 .Desc = buffer.ReadString
 
-                ' get array size
+                ' Pegar tamanho do vetor
                 z = buffer.ReadInt32
 
-                ' redim array
+                ' Redim vetor
                 ReDim .MaleSprite(z)
                 ' loop-receive data
                 For x = 0 To z
                     .MaleSprite(x) = buffer.ReadInt32
                 Next
 
-                ' get array size
+                ' Pegar tamanho do vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' Redim Vetor
                 ReDim .FemaleSprite(z)
                 ' loop-receive data
                 For x = 0 To z
@@ -2455,42 +2453,42 @@ Module S_NetworkReceive
         Dim Name As String, Password As String, Version As String
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: EditorLogin")
+        AddDebug("Recebida EMSG: EditorLogin")
 
         If Not IsLoggedIn(index) Then
 
-            ' Get the data
+            ' Pegar o dado
             Name = EKeyPair.DecryptString(buffer.ReadString)
             Password = EKeyPair.DecryptString(buffer.ReadString)
             Version = EKeyPair.DecryptString(buffer.ReadString)
 
-            ' Check versions
+            ' Checar versões
             If Version <> Application.ProductVersion Then
-                AlertMsg(index, "Version outdated, please visit " & Settings.Website)
+                AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
                 Exit Sub
             End If
 
             If Len(Trim$(Name)) < 3 OrElse Len(Trim$(Password)) < 3 Then
-                AlertMsg(index, "Your name and password must be at least three characters in length")
+                AlertMsg(index, "Seu nome e seha devem ter pelo menos três caracteres de tamanho")
                 Exit Sub
             End If
 
             If Not AccountExist(Name) Then
-                AlertMsg(index, "That account name does not exist.")
+                AlertMsg(index, "Esse nome de conta não existe.")
                 Exit Sub
             End If
 
             If Not PasswordOK(Name, Password) Then
-                AlertMsg(index, "Incorrect password.")
+                AlertMsg(index, "Senha incorreta.")
                 Exit Sub
             End If
 
             If IsMultiAccounts(Name) Then
-                AlertMsg(index, "Multiple account logins is not authorized.")
+                AlertMsg(index, "Múltiplos logins de conta não autorizado.")
                 Exit Sub
             End If
 
-            ' Load the player
+            ' Carregar o jogador
             LoadPlayer(index, Name)
 
             If GetPlayerAccess(index) > AdminType.Player Then
@@ -2504,14 +2502,14 @@ Module S_NetworkReceive
                 SendHouseConfigs(index)
                 SendPets(index)
             Else
-                AlertMsg(index, "not authorized.")
+                AlertMsg(index, "Não autorizado.")
                 Exit Sub
             End If
 
             ' Show the player up on the socket status
-            Addlog(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".", PLAYER_LOG)
+            Addlog(GetPlayerLogin(index) & " fez o login a partir do IP " & Socket.ClientIp(index) & ".", PLAYER_LOG)
 
-            Console.WriteLine(GetPlayerLogin(index) & " has logged in from " & Socket.ClientIp(index) & ".")
+            Console.WriteLine(GetPlayerLogin(index) & " fez o login a partir do IP " & Socket.ClientIp(index) & ".")
 
         End If
 
@@ -2522,7 +2520,7 @@ Module S_NetworkReceive
         Dim mapNum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: EditorRequestMap")
+        AddDebug("Recebida EMSG: EditorRequestMap")
 
         mapNum = buffer.ReadInt32
 
@@ -2536,11 +2534,11 @@ Module S_NetworkReceive
             buffer.WriteInt32(ServerPackets.SEditMap)
             Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-            AddDebug("Sent SMSG: SEditMap")
+            AddDebug("Enviada SMSG: SEditMap")
 
             buffer.Dispose()
         Else
-            AlertMsg(index, "Not Allowed!")
+            AlertMsg(index, "Não permitido!")
         End If
 
     End Sub
@@ -2551,9 +2549,9 @@ Module S_NetworkReceive
         Dim x As Integer
         Dim y As Integer
 
-        AddDebug("Recieved EMSG: EditorSaveMap")
+        AddDebug("Recebida EMSG: EditorSaveMap")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         Dim buffer As New ByteStream(Compression.DecompressBytes(data))
@@ -2621,7 +2619,7 @@ Module S_NetworkReceive
 
         End With
 
-        'Event Data!
+        'Dados de Eventos!
         Map(mapNum).EventCount = buffer.ReadInt32
 
         If Map(mapNum).EventCount > 0 Then
@@ -2748,9 +2746,9 @@ Module S_NetworkReceive
                 End If
             Next
         End If
-        'End Event Data
+        'Fim dos Dados de Evntos
 
-        ' Save the map
+        ' Salvar o mapa
         SaveMap(mapNum)
 
         SaveMapEvent(mapNum)
@@ -2781,11 +2779,11 @@ Module S_NetworkReceive
         ClearTempTile(mapNum)
         CacheResources(mapNum)
 
-        ' Refresh map for everyone online
+        ' Atualizar mapa para todos online
         For i = 1 To GetPlayersOnline()
             If IsPlaying(i) AndAlso GetPlayerMap(i) = mapNum Then
                 PlayerWarp(i, mapNum, GetPlayerX(i), GetPlayerY(i))
-                ' Send map
+                ' Enviar
                 SendMapData(i, mapNum, True)
             End If
         Next
@@ -2804,7 +2802,7 @@ Module S_NetworkReceive
         Dim Emote As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CEmote")
+        AddDebug("Recebida CMSG: CEmote")
 
         Emote = buffer.ReadInt32
 
