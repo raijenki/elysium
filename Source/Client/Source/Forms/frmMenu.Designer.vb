@@ -108,10 +108,10 @@ Partial Class FrmMenu
         Me.pnlLogin.Controls.Add(Me.lblLoginName)
         Me.pnlLogin.Controls.Add(Me.lblLogin)
         Me.pnlLogin.ForeColor = System.Drawing.Color.White
-        Me.pnlLogin.Location = New System.Drawing.Point(38, 170)
+        Me.pnlLogin.Location = New System.Drawing.Point(0, 0)
         Me.pnlLogin.Name = "pnlLogin"
         Me.pnlLogin.Size = New System.Drawing.Size(400, 192)
-        Me.pnlLogin.TabIndex = 57
+        Me.pnlLogin.TabIndex = 58
         Me.pnlLogin.Visible = False
         '
         'btnLogin
@@ -136,7 +136,7 @@ Partial Class FrmMenu
         Me.chkSavePass.Location = New System.Drawing.Point(110, 128)
         Me.chkSavePass.Name = "chkSavePass"
         Me.chkSavePass.Size = New System.Drawing.Size(114, 21)
-        Me.chkSavePass.TabIndex = 57
+        Me.chkSavePass.TabIndex = 58
         Me.chkSavePass.Text = "Salvar senha ?"
         Me.chkSavePass.UseVisualStyleBackColor = False
         '
@@ -156,7 +156,7 @@ Partial Class FrmMenu
         Me.lblLoginPass.Location = New System.Drawing.Point(107, 101)
         Me.lblLoginPass.Name = "lblLoginPass"
         Me.lblLoginPass.Size = New System.Drawing.Size(53, 17)
-        Me.lblLoginPass.TabIndex = 57
+        Me.lblLoginPass.TabIndex = 58
         Me.lblLoginPass.Text = "Senha :"
         '
         'txtLogin
@@ -174,7 +174,7 @@ Partial Class FrmMenu
         Me.lblLoginName.Location = New System.Drawing.Point(107, 66)
         Me.lblLoginName.Name = "lblLoginName"
         Me.lblLoginName.Size = New System.Drawing.Size(51, 17)
-        Me.lblLoginName.TabIndex = 57
+        Me.lblLoginName.TabIndex = 58
         Me.lblLoginName.Text = "Login :"
         '
         'lblLogin
@@ -184,7 +184,7 @@ Partial Class FrmMenu
         Me.lblLogin.Location = New System.Drawing.Point(156, 9)
         Me.lblLogin.Name = "lblLogin"
         Me.lblLogin.Size = New System.Drawing.Size(85, 37)
-        Me.lblLogin.TabIndex = 57
+        Me.lblLogin.TabIndex = 58
         Me.lblLogin.Text = "Login"
         '
         'pnlRegister
@@ -192,7 +192,6 @@ Partial Class FrmMenu
         Me.pnlRegister.BackColor = System.Drawing.Color.Transparent
         Me.pnlRegister.BackgroundImage = CType(resources.GetObject("pnlRegister.BackgroundImage"), System.Drawing.Image)
         Me.pnlRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlRegister.Controls.Add(Me.btnCreateAccount)
         Me.pnlRegister.Controls.Add(Me.txtRPass2)
         Me.pnlRegister.Controls.Add(Me.lblNewAccPass2)
         Me.pnlRegister.Controls.Add(Me.txtRPass)
@@ -200,8 +199,9 @@ Partial Class FrmMenu
         Me.pnlRegister.Controls.Add(Me.txtRuser)
         Me.pnlRegister.Controls.Add(Me.lblNewAccName)
         Me.pnlRegister.Controls.Add(Me.lblNewAccount)
+        Me.pnlRegister.Controls.Add(Me.btnCreateAccount)
         Me.pnlRegister.ForeColor = System.Drawing.Color.White
-        Me.pnlRegister.Location = New System.Drawing.Point(0, 1)
+        Me.pnlRegister.Location = New System.Drawing.Point(0, 2)
         Me.pnlRegister.Name = "pnlRegister"
         Me.pnlRegister.Size = New System.Drawing.Size(400, 192)
         Me.pnlRegister.TabIndex = 58
@@ -294,12 +294,11 @@ Partial Class FrmMenu
         Me.pnlCredits.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlCredits.Controls.Add(Me.lblCreditsTop)
         Me.pnlCredits.Controls.Add(Me.lblScrollingCredits)
-        Me.pnlCredits.Controls.Add(Me.pnlLogin)
         Me.pnlCredits.ForeColor = System.Drawing.Color.White
-        Me.pnlCredits.Location = New System.Drawing.Point(2, 1)
+        Me.pnlCredits.Location = New System.Drawing.Point(3, 2)
         Me.pnlCredits.Name = "pnlCredits"
         Me.pnlCredits.Size = New System.Drawing.Size(400, 192)
-        Me.pnlCredits.TabIndex = 10
+        Me.pnlCredits.TabIndex = 56
         Me.pnlCredits.Visible = False
         '
         'lblCreditsTop
@@ -309,7 +308,7 @@ Partial Class FrmMenu
         Me.lblCreditsTop.Location = New System.Drawing.Point(78, 6)
         Me.lblCreditsTop.Name = "lblCreditsTop"
         Me.lblCreditsTop.Size = New System.Drawing.Size(247, 33)
-        Me.lblCreditsTop.TabIndex = 57
+        Me.lblCreditsTop.TabIndex = 56
         Me.lblCreditsTop.Text = "Creditos"
         Me.lblCreditsTop.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
@@ -348,10 +347,10 @@ Partial Class FrmMenu
         Me.pnlNewChar.Controls.Add(Me.lblNewCharName)
         Me.pnlNewChar.Controls.Add(Me.lblNewChar)
         Me.pnlNewChar.ForeColor = System.Drawing.Color.White
-        Me.pnlNewChar.Location = New System.Drawing.Point(2, 0)
+        Me.pnlNewChar.Location = New System.Drawing.Point(160, 182)
         Me.pnlNewChar.Name = "pnlNewChar"
         Me.pnlNewChar.Size = New System.Drawing.Size(400, 192)
-        Me.pnlNewChar.TabIndex = 58
+        Me.pnlNewChar.TabIndex = 57
         Me.pnlNewChar.Visible = False
         '
         'pnlCharSelect
@@ -368,10 +367,10 @@ Partial Class FrmMenu
         Me.pnlCharSelect.Controls.Add(Me.lblCharSelect)
         Me.pnlCharSelect.Controls.Add(Me.Label16)
         Me.pnlCharSelect.ForeColor = System.Drawing.Color.White
-        Me.pnlCharSelect.Location = New System.Drawing.Point(159, 183)
+        Me.pnlCharSelect.Location = New System.Drawing.Point(160, 181)
         Me.pnlCharSelect.Name = "pnlCharSelect"
         Me.pnlCharSelect.Size = New System.Drawing.Size(400, 192)
-        Me.pnlCharSelect.TabIndex = 57
+        Me.pnlCharSelect.TabIndex = 60
         Me.pnlCharSelect.Visible = False
         '
         'btnUseChar
@@ -617,7 +616,7 @@ Partial Class FrmMenu
         Me.lblStatusHeader.BackColor = System.Drawing.Color.Transparent
         Me.lblStatusHeader.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStatusHeader.ForeColor = System.Drawing.Color.White
-        Me.lblStatusHeader.Location = New System.Drawing.Point(456, 9)
+        Me.lblStatusHeader.Location = New System.Drawing.Point(414, 9)
         Me.lblStatusHeader.Name = "lblStatusHeader"
         Me.lblStatusHeader.Size = New System.Drawing.Size(128, 21)
         Me.lblStatusHeader.TabIndex = 44
@@ -640,16 +639,16 @@ Partial Class FrmMenu
         Me.pnlMainMenu.BackColor = System.Drawing.Color.Transparent
         Me.pnlMainMenu.BackgroundImage = CType(resources.GetObject("pnlMainMenu.BackgroundImage"), System.Drawing.Image)
         Me.pnlMainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlMainMenu.Controls.Add(Me.lblNewsHeader)
-        Me.pnlMainMenu.Controls.Add(Me.pnlNewChar)
-        Me.pnlMainMenu.Controls.Add(Me.lblNews)
+        Me.pnlMainMenu.Controls.Add(Me.pnlLogin)
         Me.pnlMainMenu.Controls.Add(Me.pnlCredits)
         Me.pnlMainMenu.Controls.Add(Me.pnlRegister)
+        Me.pnlMainMenu.Controls.Add(Me.lblNewsHeader)
+        Me.pnlMainMenu.Controls.Add(Me.lblNews)
         Me.pnlMainMenu.ForeColor = System.Drawing.Color.White
         Me.pnlMainMenu.Location = New System.Drawing.Point(160, 182)
         Me.pnlMainMenu.Name = "pnlMainMenu"
         Me.pnlMainMenu.Size = New System.Drawing.Size(400, 192)
-        Me.pnlMainMenu.TabIndex = 57
+        Me.pnlMainMenu.TabIndex = 56
         '
         'lblNewsHeader
         '
@@ -659,7 +658,7 @@ Partial Class FrmMenu
         Me.lblNewsHeader.Location = New System.Drawing.Point(94, 2)
         Me.lblNewsHeader.Name = "lblNewsHeader"
         Me.lblNewsHeader.Size = New System.Drawing.Size(218, 40)
-        Me.lblNewsHeader.TabIndex = 9
+        Me.lblNewsHeader.TabIndex = 56
         Me.lblNewsHeader.Text = "Ultimas noticias"
         '
         'lblNews
@@ -669,7 +668,7 @@ Partial Class FrmMenu
         Me.lblNews.Location = New System.Drawing.Point(17, 43)
         Me.lblNews.Name = "lblNews"
         Me.lblNews.Size = New System.Drawing.Size(366, 138)
-        Me.lblNews.TabIndex = 57
+        Me.lblNews.TabIndex = 56
         Me.lblNews.Text = resources.GetString("lblNews.Text")
         Me.lblNews.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
@@ -678,7 +677,7 @@ Partial Class FrmMenu
         Me.picLogo.BackColor = System.Drawing.Color.Transparent
         Me.picLogo.BackgroundImage = CType(resources.GetObject("picLogo.BackgroundImage"), System.Drawing.Image)
         Me.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picLogo.Location = New System.Drawing.Point(77, 30)
+        Me.picLogo.Location = New System.Drawing.Point(142, 31)
         Me.picLogo.Name = "picLogo"
         Me.picLogo.Size = New System.Drawing.Size(560, 144)
         Me.picLogo.TabIndex = 52
@@ -776,6 +775,7 @@ Partial Class FrmMenu
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(784, 562)
         Me.Controls.Add(Me.pnlCharSelect)
+        Me.Controls.Add(Me.pnlNewChar)
         Me.Controls.Add(Me.pnlLoad)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnCredits)
@@ -783,8 +783,8 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.btnPlay)
         Me.Controls.Add(Me.lblServerStatus)
         Me.Controls.Add(Me.lblStatusHeader)
-        Me.Controls.Add(Me.pnlMainMenu)
         Me.Controls.Add(Me.picLogo)
+        Me.Controls.Add(Me.pnlMainMenu)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
