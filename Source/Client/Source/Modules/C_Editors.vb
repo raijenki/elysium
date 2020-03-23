@@ -12,7 +12,7 @@ Module C_Editors
 
         With Animation(Editorindex)
 
-            ' find the music we have set
+            ' encontra a música que definimos
             FrmEditor_Animation.cmbSound.Items.Clear()
             FrmEditor_Animation.cmbSound.Items.Add("None")
 
@@ -93,7 +93,7 @@ Module C_Editors
         If Npc(Editorindex).Name Is Nothing Then Npc(Editorindex).Name = ""
 
         With frmEditor_NPC
-            'populate combo boxes
+            'preencher  combobox's
             .cmbAnimation.Items.Clear()
             .cmbAnimation.Items.Add("None")
             For i = 1 To MAX_ANIMATIONS
@@ -223,7 +223,7 @@ Module C_Editors
         Editorindex = frmEditor_Resource.lstIndex.SelectedIndex + 1
 
         With frmEditor_Resource
-            'populate combo boxes
+            'preencher  combobox's
             .cmbRewardItem.Items.Clear()
             .cmbRewardItem.Items.Add("None")
             For i = 1 To MAX_ITEMS
@@ -296,12 +296,12 @@ Module C_Editors
         If Skill(Editorindex).Name Is Nothing Then Skill(Editorindex).Name = ""
 
         With frmEditor_Skill
-            ' set max values
+            ' definir valores máximos
             .nudAoE.Maximum = Byte.MaxValue
             .nudRange.Maximum = Byte.MaxValue
             .nudMap.Maximum = MAX_MAPS
 
-            ' build class combo
+            ' criar classe combobox
             .cmbClass.Items.Clear()
             .cmbClass.Items.Add("None")
             For i = 1 To MAX_CLASSES
@@ -327,7 +327,7 @@ Module C_Editors
             .cmbAnimCast.SelectedIndex = 0
             .cmbAnim.SelectedIndex = 0
 
-            ' set values
+            ' definir valores
             .txtName.Text = Trim$(Skill(Editorindex).Name)
             .cmbType.SelectedIndex = Skill(Editorindex).Type
             .nudMp.Value = Skill(Editorindex).MpCost
@@ -447,9 +447,9 @@ Module C_Editors
 
         For i = 1 To MAX_TRADES
             With Shop(Editorindex).TradeItem(i)
-                ' if none, show as none
+                ' se vazio, mostrar vazio
                 If .Item = 0 AndAlso .CostItem = 0 Then
-                    frmEditor_Shop.lstTradeItem.Items.Add("Empty Trade Slot")
+                    frmEditor_Shop.lstTradeItem.Items.Add("Slot de comércio vazio")
                 Else
                     frmEditor_Shop.lstTradeItem.Items.Add(i & ": " & .ItemValue & "x " & Trim$(Item(.Item).Name) & " for " & .CostValue & "x " & Trim$(Item(.CostItem).Name))
                 End If
@@ -601,7 +601,7 @@ Module C_Editors
             Editor = EDITOR_ITEM
             .lstIndex.Items.Clear()
 
-            ' Add the names
+            ' Adicione os nomes
             For i = 1 To MAX_ITEMS
                 .lstIndex.Items.Add(i & ": " & Trim$(Item(i).Name))
             Next
@@ -619,7 +619,7 @@ Module C_Editors
         Editorindex = frmEditor_Item.lstIndex.SelectedIndex + 1
 
         With Item(Editorindex)
-            'populate combo boxes
+            'preencher combobox's
             frmEditor_Item.cmbAnimation.Items.Clear()
             frmEditor_Item.cmbAnimation.Items.Add("None")
             For i = 1 To MAX_ANIMATIONS
@@ -668,7 +668,7 @@ Module C_Editors
             If .ItemLevel = 0 Then .ItemLevel = 1
             frmEditor_Item.nudItemLvl.Value = .ItemLevel
 
-            ' Type specific settings
+            ' Digita configurações específicas
             If (frmEditor_Item.cmbType.SelectedIndex = ItemType.Equipment) Then
                 frmEditor_Item.fraEquipment.Visible = True
                 frmEditor_Item.cmbProjectile.SelectedIndex = .Data1
@@ -748,7 +748,7 @@ Module C_Editors
                 frmEditor_Item.fraPet.Visible = False
             End If
 
-            ' Basic requirements
+            ' Requisitos básicos
             frmEditor_Item.cmbAccessReq.SelectedIndex = .AccessReq
             frmEditor_Item.nudLevelReq.Value = .LevelReq
 
@@ -759,7 +759,7 @@ Module C_Editors
             frmEditor_Item.nudIntReq.Value = .Stat_Req(StatType.Intelligence)
             frmEditor_Item.nudSprReq.Value = .Stat_Req(StatType.Spirit)
 
-            ' Build cmbClassReq
+            ' Construção da cmbClassReq
             frmEditor_Item.cmbClassReq.Items.Clear()
             frmEditor_Item.cmbClassReq.Items.Add("None")
 
@@ -768,7 +768,7 @@ Module C_Editors
             Next
 
             frmEditor_Item.cmbClassReq.SelectedIndex = .ClassReq
-            ' Info
+            ' Informaçoes
             frmEditor_Item.nudPrice.Value = .Price
             frmEditor_Item.cmbBind.SelectedIndex = .BindType
             frmEditor_Item.nudRarity.Value = .Rarity
