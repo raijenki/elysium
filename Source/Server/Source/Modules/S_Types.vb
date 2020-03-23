@@ -183,6 +183,7 @@
 
     End Structure
 
+    <Serializable>
     Friend Structure MapRec
         Dim Name As String
         Dim Music As String

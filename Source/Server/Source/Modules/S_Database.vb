@@ -192,57 +192,7 @@ Module modDatabase
         Dim x As Integer, y As Integer, l As Integer
 
         filename = Path.Map(mapNum)
-        Dim writer As New ByteStream(100)
-        writer.WriteString(Map(mapNum).Name)
-        writer.WriteString(Map(mapNum).Music)
-        writer.WriteInt32(Map(mapNum).Revision)
-        writer.WriteByte(Map(mapNum).Moral)
-        writer.WriteInt32(Map(mapNum).Tileset)
-        writer.WriteInt32(Map(mapNum).Up)
-        writer.WriteInt32(Map(mapNum).Down)
-        writer.WriteInt32(Map(mapNum).Left)
-        writer.WriteInt32(Map(mapNum).Right)
-        writer.WriteInt32(Map(mapNum).BootMap)
-        writer.WriteByte(Map(mapNum).BootX)
-        writer.WriteByte(Map(mapNum).BootY)
-        writer.WriteByte(Map(mapNum).MaxX)
-        writer.WriteByte(Map(mapNum).MaxY)
-        writer.WriteByte(Map(mapNum).WeatherType)
-        writer.WriteInt32(Map(mapNum).Fogindex)
-        writer.WriteInt32(Map(mapNum).WeatherIntensity)
-        writer.WriteByte(Map(mapNum).FogAlpha)
-        writer.WriteByte(Map(mapNum).FogSpeed)
-        writer.WriteByte(Map(mapNum).HasMapTint)
-        writer.WriteByte(Map(mapNum).MapTintR)
-        writer.WriteByte(Map(mapNum).MapTintG)
-        writer.WriteByte(Map(mapNum).MapTintB)
-        writer.WriteByte(Map(mapNum).MapTintA)
-
-        writer.WriteByte(Map(mapNum).Instanced)
-        writer.WriteByte(Map(mapNum).Panorama)
-        writer.WriteByte(Map(mapNum).Parallax)
-
-        For x = 0 To Map(mapNum).MaxX
-            For y = 0 To Map(mapNum).MaxY
-                writer.WriteInt32(Map(mapNum).Tile(x, y).Data1)
-                writer.WriteInt32(Map(mapNum).Tile(x, y).Data2)
-                writer.WriteInt32(Map(mapNum).Tile(x, y).Data3)
-                writer.WriteByte(Map(mapNum).Tile(x, y).DirBlock)
-                For l = 0 To LayerType.Count - 1
-                    writer.WriteByte(Map(mapNum).Tile(x, y).Layer(l).Tileset)
-                    writer.WriteByte(Map(mapNum).Tile(x, y).Layer(l).X)
-                    writer.WriteByte(Map(mapNum).Tile(x, y).Layer(l).Y)
-                    writer.WriteByte(Map(mapNum).Tile(x, y).Layer(l).AutoTile)
-                Next
-                writer.WriteByte(Map(mapNum).Tile(x, y).Type)
-            Next
-        Next
-
-        For x = 1 To MAX_MAP_NPCS
-            writer.WriteInt32(Map(mapNum).Npc(x))
-        Next
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Map(mapNum), filename)
 
     End Sub
 
@@ -526,61 +476,7 @@ Module modDatabase
         Dim l As Integer
 
         filename = Path.Map(mapNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Map(mapNum).Name = reader.ReadString()
-        Map(mapNum).Music = reader.ReadString()
-        Map(mapNum).Revision = reader.ReadInt32()
-        Map(mapNum).Moral = reader.ReadByte()
-        Map(mapNum).Tileset = reader.ReadInt32()
-        Map(mapNum).Up = reader.ReadInt32()
-        Map(mapNum).Down = reader.ReadInt32()
-        Map(mapNum).Left = reader.ReadInt32()
-        Map(mapNum).Right = reader.ReadInt32()
-        Map(mapNum).BootMap = reader.ReadInt32()
-        Map(mapNum).BootX = reader.ReadByte()
-        Map(mapNum).BootY = reader.ReadByte()
-        Map(mapNum).MaxX = reader.ReadByte()
-        Map(mapNum).MaxY = reader.ReadByte()
-        Map(mapNum).WeatherType = reader.ReadByte()
-        Map(mapNum).Fogindex = reader.ReadInt32()
-        Map(mapNum).WeatherIntensity = reader.ReadInt32()
-        Map(mapNum).FogAlpha = reader.ReadByte()
-        Map(mapNum).FogSpeed = reader.ReadByte()
-        Map(mapNum).HasMapTint = reader.ReadByte()
-        Map(mapNum).MapTintR = reader.ReadByte()
-        Map(mapNum).MapTintG = reader.ReadByte()
-        Map(mapNum).MapTintB = reader.ReadByte()
-        Map(mapNum).MapTintA = reader.ReadByte()
-        Map(mapNum).Instanced = reader.ReadByte()
-        Map(mapNum).Panorama = reader.ReadByte()
-        Map(mapNum).Parallax = reader.ReadByte()
-
-        ' have to set the tile()
-        ReDim Map(mapNum).Tile(Map(mapNum).MaxX, Map(mapNum).MaxY)
-
-        For x = 0 To Map(mapNum).MaxX
-            For y = 0 To Map(mapNum).MaxY
-                Map(mapNum).Tile(x, y).Data1 = reader.ReadInt32()
-                Map(mapNum).Tile(x, y).Data2 = reader.ReadInt32()
-                Map(mapNum).Tile(x, y).Data3 = reader.ReadInt32()
-                Map(mapNum).Tile(x, y).DirBlock = reader.ReadByte()
-                ReDim Map(mapNum).Tile(x, y).Layer(LayerType.Count - 1)
-                For l = 0 To LayerType.Count - 1
-                    Map(mapNum).Tile(x, y).Layer(l).Tileset = reader.ReadByte()
-                    Map(mapNum).Tile(x, y).Layer(l).X = reader.ReadByte()
-                    Map(mapNum).Tile(x, y).Layer(l).Y = reader.ReadByte()
-                    Map(mapNum).Tile(x, y).Layer(l).AutoTile = reader.ReadByte()
-                Next
-                Map(mapNum).Tile(x, y).Type = reader.ReadByte()
-            Next
-        Next
-
-        For x = 1 To MAX_MAP_NPCS
-            Map(mapNum).Npc(x) = reader.ReadInt32()
-            MapNpc(mapNum).Npc(x).Num = Map(mapNum).Npc(x)
-        Next
+        LoadObject(Map(mapNum), filename)
 
         ClearTempTile(mapNum)
         CacheResources(mapNum)

@@ -176,6 +176,7 @@ Friend Module S_Events
         Dim Y As Integer
     End Structure
 
+    <Serializable>
     Structure EventStruct
         Dim Name As String
         Dim Globals As Byte
