@@ -654,40 +654,7 @@ Module modDatabase
         Dim i As Integer
         filename = Path.Npc(NpcNum)
 
-        Dim writer As New ByteStream(100)
-        writer.WriteString(Npc(NpcNum).Name)
-        writer.WriteString(Npc(NpcNum).AttackSay)
-        writer.WriteInt32(Npc(NpcNum).Sprite)
-        writer.WriteByte(Npc(NpcNum).SpawnTime)
-        writer.WriteInt32(Npc(NpcNum).SpawnSecs)
-        writer.WriteByte(Npc(NpcNum).Behaviour)
-        writer.WriteByte(Npc(NpcNum).Range)
-
-        For i = 1 To 5
-            writer.WriteInt32(Npc(NpcNum).DropChance(i))
-            writer.WriteInt32(Npc(NpcNum).DropItem(i))
-            writer.WriteInt32(Npc(NpcNum).DropItemValue(i))
-        Next
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Npc(NpcNum).Stat(i))
-        Next
-
-        writer.WriteByte(Npc(NpcNum).Faction)
-        writer.WriteInt32(Npc(NpcNum).Hp)
-        writer.WriteInt32(Npc(NpcNum).Exp)
-        writer.WriteInt32(Npc(NpcNum).Animation)
-
-        writer.WriteInt32(Npc(NpcNum).QuestNum)
-
-        For i = 1 To MAX_NPC_SKILLS
-            writer.WriteByte(Npc(NpcNum).Skill(i))
-        Next
-
-        writer.WriteInt32(Npc(NpcNum).Level)
-        writer.WriteInt32(Npc(NpcNum).Damage)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Npc(NpcNum), filename)
     End Sub
 
     Sub LoadNpcs()
@@ -707,40 +674,7 @@ Module modDatabase
         Dim n As Integer
 
         filename = Path.Npc(NpcNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Npc(NpcNum).Name = reader.ReadString()
-        Npc(NpcNum).AttackSay = reader.ReadString()
-        Npc(NpcNum).Sprite = reader.ReadInt32()
-        Npc(NpcNum).SpawnTime = reader.ReadByte()
-        Npc(NpcNum).SpawnSecs = reader.ReadInt32()
-        Npc(NpcNum).Behaviour = reader.ReadByte()
-        Npc(NpcNum).Range = reader.ReadByte()
-
-        For i = 1 To 5
-            Npc(NpcNum).DropChance(i) = reader.ReadInt32()
-            Npc(NpcNum).DropItem(i) = reader.ReadInt32()
-            Npc(NpcNum).DropItemValue(i) = reader.ReadInt32()
-        Next
-
-        For n = 0 To StatType.Count - 1
-            Npc(NpcNum).Stat(n) = reader.ReadByte()
-        Next
-
-        Npc(NpcNum).Faction = reader.ReadByte()
-        Npc(NpcNum).Hp = reader.ReadInt32()
-        Npc(NpcNum).Exp = reader.ReadInt32()
-        Npc(NpcNum).Animation = reader.ReadInt32()
-
-        Npc(NpcNum).QuestNum = reader.ReadInt32()
-
-        For i = 1 To MAX_NPC_SKILLS
-            Npc(NpcNum).Skill(i) = reader.ReadByte()
-        Next
-
-        Npc(NpcNum).Level = reader.ReadInt32()
-        Npc(NpcNum).Damage = reader.ReadInt32()
+        LoadObject(Npc(NpcNum), filename)
 
         If Npc(NpcNum).Name Is Nothing Then Npc(NpcNum).Name = ""
         If Npc(NpcNum).AttackSay Is Nothing Then Npc(NpcNum).AttackSay = ""
@@ -827,20 +761,7 @@ Module modDatabase
 
         filename = Path.Shop(shopNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Shop(shopNum).Name)
-        writer.WriteByte(Shop(shopNum).Face)
-        writer.WriteInt32(Shop(shopNum).BuyRate)
-
-        For i = 1 To MAX_TRADES
-            writer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            writer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-            writer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            writer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-        Next
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Shop(shopNum), filename)
     End Sub
 
     Sub LoadShops()
@@ -861,19 +782,8 @@ Module modDatabase
         Dim x As Integer
 
         filename = Path.Shop(ShopNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
 
-        Shop(ShopNum).Name = reader.ReadString()
-        Shop(ShopNum).Face = reader.ReadByte()
-        Shop(ShopNum).BuyRate = reader.ReadInt32()
-
-        For x = 1 To MAX_TRADES
-            Shop(ShopNum).TradeItem(x).Item = reader.ReadInt32()
-            Shop(ShopNum).TradeItem(x).ItemValue = reader.ReadInt32()
-            Shop(ShopNum).TradeItem(x).CostItem = reader.ReadInt32()
-            Shop(ShopNum).TradeItem(x).CostValue = reader.ReadInt32()
-        Next
+        LoadObject(Shop(ShopNum), filename)
 
     End Sub
 
@@ -928,38 +838,7 @@ Module modDatabase
         Dim filename As String
         filename = Path.Skill(skillnum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Skill(skillnum).Name)
-        writer.WriteByte(Skill(skillnum).Type)
-        writer.WriteInt32(Skill(skillnum).MpCost)
-        writer.WriteInt32(Skill(skillnum).LevelReq)
-        writer.WriteInt32(Skill(skillnum).AccessReq)
-        writer.WriteInt32(Skill(skillnum).ClassReq)
-        writer.WriteInt32(Skill(skillnum).CastTime)
-        writer.WriteInt32(Skill(skillnum).CdTime)
-        writer.WriteInt32(Skill(skillnum).Icon)
-        writer.WriteInt32(Skill(skillnum).Map)
-        writer.WriteInt32(Skill(skillnum).X)
-        writer.WriteInt32(Skill(skillnum).Y)
-        writer.WriteByte(Skill(skillnum).Dir)
-        writer.WriteInt32(Skill(skillnum).Vital)
-        writer.WriteInt32(Skill(skillnum).Duration)
-        writer.WriteInt32(Skill(skillnum).Interval)
-        writer.WriteInt32(Skill(skillnum).Range)
-        writer.WriteBoolean(Skill(skillnum).IsAoE)
-        writer.WriteInt32(Skill(skillnum).AoE)
-        writer.WriteInt32(Skill(skillnum).CastAnim)
-        writer.WriteInt32(Skill(skillnum).SkillAnim)
-        writer.WriteInt32(Skill(skillnum).StunDuration)
-
-        writer.WriteInt32(Skill(skillnum).IsProjectile)
-        writer.WriteInt32(Skill(skillnum).Projectile)
-
-        writer.WriteByte(Skill(skillnum).KnockBack)
-        writer.WriteByte(Skill(skillnum).KnockBackTiles)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Skill(skillnum), filename)
     End Sub
 
     Sub LoadSkills()
@@ -978,37 +857,7 @@ Module modDatabase
         Dim filename As String
 
         filename = Path.Skill(SkillNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Skill(SkillNum).Name = reader.ReadString()
-        Skill(SkillNum).Type = reader.ReadByte()
-        Skill(SkillNum).MpCost = reader.ReadInt32()
-        Skill(SkillNum).LevelReq = reader.ReadInt32()
-        Skill(SkillNum).AccessReq = reader.ReadInt32()
-        Skill(SkillNum).ClassReq = reader.ReadInt32()
-        Skill(SkillNum).CastTime = reader.ReadInt32()
-        Skill(SkillNum).CdTime = reader.ReadInt32()
-        Skill(SkillNum).Icon = reader.ReadInt32()
-        Skill(SkillNum).Map = reader.ReadInt32()
-        Skill(SkillNum).X = reader.ReadInt32()
-        Skill(SkillNum).Y = reader.ReadInt32()
-        Skill(SkillNum).Dir = reader.ReadByte()
-        Skill(SkillNum).Vital = reader.ReadInt32()
-        Skill(SkillNum).Duration = reader.ReadInt32()
-        Skill(SkillNum).Interval = reader.ReadInt32()
-        Skill(SkillNum).Range = reader.ReadInt32()
-        Skill(SkillNum).IsAoE = reader.ReadBoolean()
-        Skill(SkillNum).AoE = reader.ReadInt32()
-        Skill(SkillNum).CastAnim = reader.ReadInt32()
-        Skill(SkillNum).SkillAnim = reader.ReadInt32()
-        Skill(SkillNum).StunDuration = reader.ReadInt32()
-
-        Skill(SkillNum).IsProjectile = reader.ReadInt32()
-        Skill(SkillNum).Projectile = reader.ReadInt32()
-
-        Skill(SkillNum).KnockBack = reader.ReadByte()
-        Skill(SkillNum).KnockBackTiles = reader.ReadByte()
+        LoadObject(Skill(SkillNum), filename)
 
     End Sub
 
@@ -1102,6 +951,7 @@ Module modDatabase
     Sub LoadPlayer(index As Integer, Name As String)
         Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Name.Trim() & "\Data.bin"
         ClearPlayer(index)
+
         Dim reader As New ByteStream()
         BinaryFile.Load(filename, reader)
 
@@ -1144,56 +994,13 @@ Module modDatabase
             Exit Sub
         End If
 
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        For i = 1 To MAX_BANK
-            Bank(index).Item(i).Num = reader.ReadByte()
-            Bank(index).Item(i).Value = reader.ReadInt32()
-
-            Bank(index).ItemRand(i).Prefix = reader.ReadString()
-            Bank(index).ItemRand(i).Suffix = reader.ReadString()
-            Bank(index).ItemRand(i).Rarity = reader.ReadInt32()
-            Bank(index).ItemRand(i).Damage = reader.ReadInt32()
-            Bank(index).ItemRand(i).Speed = reader.ReadInt32()
-
-            For x = 1 To StatType.Count - 1
-                Bank(index).ItemRand(i).Stat(x) = reader.ReadInt32()
-            Next
-        Next
+        LoadObject(Bank(index), filename)
     End Sub
 
     Sub SaveBank(index As Integer)
         Dim filename = Application.StartupPath & "\Data\Accounts\" & Player(index).Login.Trim() & "\Bank.bin"
 
-        Dim writer As New ByteStream(100)
-
-        For i = 1 To MAX_BANK
-            writer.WriteByte(Bank(index).Item(i).Num)
-            writer.WriteInt32(Bank(index).Item(i).Value)
-
-            If Bank(index).ItemRand(i).Prefix = Nothing Then Bank(index).ItemRand(i).Prefix = ""
-            If Bank(index).ItemRand(i).Suffix = Nothing Then Bank(index).ItemRand(i).Suffix = ""
-
-            writer.WriteString(Bank(index).ItemRand(i).Prefix)
-            writer.WriteString(Bank(index).ItemRand(i).Suffix)
-            writer.WriteInt32(Bank(index).ItemRand(i).Rarity)
-            writer.WriteInt32(Bank(index).ItemRand(i).Damage)
-            writer.WriteInt32(Bank(index).ItemRand(i).Speed)
-
-            For x = 1 To StatType.Count - 1
-                writer.WriteInt32(Bank(index).ItemRand(i).Stat(x))
-            Next
-
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Strength))
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Endurance))
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Vitality))
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Luck))
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Intelligence))
-            'writer.WriteInt32(Bank(Index).ItemRand(i).Stat(Stats.Spirit))
-        Next
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Bank(index), filename)
     End Sub
 
     Sub ClearBank(index As Integer)
@@ -1370,283 +1177,14 @@ Module modDatabase
 
         ClearCharacter(index, CharNum)
 
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Player(index).Character(CharNum).Classes = reader.ReadByte()
-        Player(index).Character(CharNum).Dir = reader.ReadByte()
-
-        For i = 1 To EquipmentType.Count - 1
-            Player(index).Character(CharNum).Equipment(i) = reader.ReadByte()
-        Next
-
-        Player(index).Character(CharNum).Exp = reader.ReadInt32()
-
-        For i = 0 To MAX_INV
-            Player(index).Character(CharNum).Inv(i).Num = reader.ReadByte()
-            Player(index).Character(CharNum).Inv(i).Value = reader.ReadInt32()
-        Next
-
-        Player(index).Character(CharNum).Level = reader.ReadByte()
-        Player(index).Character(CharNum).Map = reader.ReadInt32()
-        Player(index).Character(CharNum).Name = reader.ReadString()
-        Player(index).Character(CharNum).Pk = reader.ReadByte()
-        Player(index).Character(CharNum).Points = reader.ReadByte()
-        Player(index).Character(CharNum).Sex = reader.ReadByte()
-
-        For i = 0 To MAX_PLAYER_SKILLS
-            Player(index).Character(CharNum).Skill(i) = reader.ReadByte()
-        Next
-
-        Player(index).Character(CharNum).Sprite = reader.ReadInt32()
-
-        For i = 0 To StatType.Count - 1
-            Player(index).Character(CharNum).Stat(i) = reader.ReadByte()
-        Next
-
-        For i = 0 To VitalType.Count - 1
-            Player(index).Character(CharNum).Vital(i) = reader.ReadInt32()
-        Next
-
-        Player(index).Character(CharNum).X = reader.ReadByte()
-        Player(index).Character(CharNum).Y = reader.ReadByte()
-
-        For i = 1 To MAX_QUESTS
-            Player(index).Character(CharNum).PlayerQuest(i).Status = reader.ReadInt32()
-            Player(index).Character(CharNum).PlayerQuest(i).ActualTask = reader.ReadInt32()
-            Player(index).Character(CharNum).PlayerQuest(i).CurrentCount = reader.ReadInt32()
-        Next
-
-        'Housing
-        Player(index).Character(CharNum).House.Houseindex = reader.ReadInt32()
-        Player(index).Character(CharNum).House.FurnitureCount = reader.ReadInt32()
-        ReDim Player(index).Character(CharNum).House.Furniture(Player(index).Character(CharNum).House.FurnitureCount)
-        For i = 0 To Player(index).Character(CharNum).House.FurnitureCount
-            Player(index).Character(CharNum).House.Furniture(i).ItemNum = reader.ReadInt32()
-            Player(index).Character(CharNum).House.Furniture(i).X = reader.ReadInt32()
-            Player(index).Character(CharNum).House.Furniture(i).Y = reader.ReadInt32()
-        Next
-        Player(index).Character(CharNum).InHouse = reader.ReadInt32()
-        Player(index).Character(CharNum).LastMap = reader.ReadInt32()
-        Player(index).Character(CharNum).LastX = reader.ReadInt32()
-        Player(index).Character(CharNum).LastY = reader.ReadInt32()
-
-        For i = 1 To MAX_HOTBAR
-            Player(index).Character(CharNum).Hotbar(i).Slot = reader.ReadInt32()
-            Player(index).Character(CharNum).Hotbar(i).SlotType = reader.ReadByte()
-        Next
-
-        ReDim Player(index).Character(CharNum).Switches(MAX_SWITCHES)
-        For i = 1 To MAX_SWITCHES
-            Player(index).Character(CharNum).Switches(i) = reader.ReadByte()
-        Next
-        ReDim Player(index).Character(CharNum).Variables(MAX_VARIABLES)
-        For i = 1 To MAX_VARIABLES
-            Player(index).Character(CharNum).Variables(i) = reader.ReadInt32()
-        Next
-
-        ReDim Player(index).Character(CharNum).GatherSkills(ResourceSkills.Count - 1)
-        For i = 0 To ResourceSkills.Count - 1
-            Player(index).Character(CharNum).GatherSkills(i).SkillLevel = reader.ReadInt32()
-            Player(index).Character(CharNum).GatherSkills(i).SkillCurExp = reader.ReadInt32()
-            Player(index).Character(CharNum).GatherSkills(i).SkillNextLvlExp = reader.ReadInt32()
-            If Player(index).Character(CharNum).GatherSkills(i).SkillLevel = 0 Then Player(index).Character(CharNum).GatherSkills(i).SkillLevel = 1
-            If Player(index).Character(CharNum).GatherSkills(i).SkillNextLvlExp = 0 Then Player(index).Character(CharNum).GatherSkills(i).SkillNextLvlExp = 100
-        Next
-
-        ReDim Player(index).Character(CharNum).RecipeLearned(MAX_RECIPE)
-        For i = 1 To MAX_RECIPE
-            Player(index).Character(CharNum).RecipeLearned(i) = reader.ReadByte()
-        Next
-
-        'random items
-        ReDim Player(index).Character(CharNum).RandInv(MAX_INV)
-        For i = 1 To MAX_INV
-            Player(index).Character(CharNum).RandInv(i).Prefix = reader.ReadString()
-            Player(index).Character(CharNum).RandInv(i).Suffix = reader.ReadString()
-            Player(index).Character(CharNum).RandInv(i).Rarity = reader.ReadInt32()
-            Player(index).Character(CharNum).RandInv(i).Damage = reader.ReadInt32()
-            Player(index).Character(CharNum).RandInv(i).Speed = reader.ReadInt32()
-
-            ReDim Player(index).Character(CharNum).RandInv(i).Stat(StatType.Count - 1)
-            For x = 1 To StatType.Count - 1
-                Player(index).Character(CharNum).RandInv(i).Stat(x) = reader.ReadInt32()
-            Next
-        Next
-
-        ReDim Player(index).Character(CharNum).RandEquip(EquipmentType.Count - 1)
-        For i = 1 To EquipmentType.Count - 1
-            Player(index).Character(CharNum).RandEquip(i).Prefix = reader.ReadString()
-            Player(index).Character(CharNum).RandEquip(i).Suffix = reader.ReadString()
-            Player(index).Character(CharNum).RandEquip(i).Rarity = reader.ReadInt32()
-            Player(index).Character(CharNum).RandEquip(i).Damage = reader.ReadInt32()
-            Player(index).Character(CharNum).RandEquip(i).Speed = reader.ReadInt32()
-
-            ReDim Player(index).Character(CharNum).RandEquip(i).Stat(StatType.Count - 1)
-            For x = 1 To StatType.Count - 1
-                Player(index).Character(CharNum).RandEquip(i).Stat(x) = reader.ReadInt32()
-            Next
-        Next
-
-        'pets
-        Player(index).Character(CharNum).Pet.Num = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Health = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Mana = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Level = reader.ReadInt32()
-
-        ReDim Player(index).Character(CharNum).Pet.Stat(StatType.Count - 1)
-        For i = 1 To StatType.Count - 1
-            Player(index).Character(CharNum).Pet.Stat(i) = reader.ReadByte()
-        Next
-
-        ReDim Player(index).Character(CharNum).Pet.Skill(4)
-        For i = 1 To 4
-            Player(index).Character(CharNum).Pet.Skill(i) = reader.ReadInt32()
-        Next
-
-        Player(index).Character(CharNum).Pet.X = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Y = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Dir = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Alive = reader.ReadByte()
-        Player(index).Character(CharNum).Pet.AttackBehaviour = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.AdoptiveStats = reader.ReadByte()
-        Player(index).Character(CharNum).Pet.Points = reader.ReadInt32()
-        Player(index).Character(CharNum).Pet.Exp = reader.ReadInt32()
+        LoadObject(Player(index).Character(CharNum), filename)
 
     End Sub
 
     Sub SaveCharacter(index As Integer, CharNum As Integer)
         Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Player(index).Login.Trim & "\" & CharNum & ".bin"
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteByte(Player(index).Character(CharNum).Classes)
-        writer.WriteByte(Player(index).Character(CharNum).Dir)
-
-        For i = 1 To EquipmentType.Count - 1
-            writer.WriteByte(Player(index).Character(CharNum).Equipment(i))
-        Next
-
-        writer.WriteInt32(Player(index).Character(CharNum).Exp)
-
-        For i = 0 To MAX_INV
-            writer.WriteByte(Player(index).Character(CharNum).Inv(i).Num)
-            writer.WriteInt32(Player(index).Character(CharNum).Inv(i).Value)
-        Next
-
-        writer.WriteByte(Player(index).Character(CharNum).Level)
-        writer.WriteInt32(Player(index).Character(CharNum).Map)
-        writer.WriteString(Player(index).Character(CharNum).Name)
-        writer.WriteByte(Player(index).Character(CharNum).Pk)
-        writer.WriteByte(Player(index).Character(CharNum).Points)
-        writer.WriteByte(Player(index).Character(CharNum).Sex)
-
-        For i = 0 To MAX_PLAYER_SKILLS
-            writer.WriteByte(Player(index).Character(CharNum).Skill(i))
-        Next
-
-        writer.WriteInt32(Player(index).Character(CharNum).Sprite)
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Player(index).Character(CharNum).Stat(i))
-        Next
-
-        For i = 0 To VitalType.Count - 1
-            writer.WriteInt32(Player(index).Character(CharNum).Vital(i))
-        Next
-
-        writer.WriteByte(Player(index).Character(CharNum).X)
-        writer.WriteByte(Player(index).Character(CharNum).Y)
-
-        For i = 1 To MAX_QUESTS
-            writer.WriteInt32(Player(index).Character(CharNum).PlayerQuest(i).Status)
-            writer.WriteInt32(Player(index).Character(CharNum).PlayerQuest(i).ActualTask)
-            writer.WriteInt32(Player(index).Character(CharNum).PlayerQuest(i).CurrentCount)
-        Next
-
-        'Housing
-        writer.WriteInt32(Player(index).Character(CharNum).House.Houseindex)
-        writer.WriteInt32(Player(index).Character(CharNum).House.FurnitureCount)
-        For i = 0 To Player(index).Character(CharNum).House.FurnitureCount
-            writer.WriteInt32(Player(index).Character(CharNum).House.Furniture(i).ItemNum)
-            writer.WriteInt32(Player(index).Character(CharNum).House.Furniture(i).X)
-            writer.WriteInt32(Player(index).Character(CharNum).House.Furniture(i).Y)
-        Next
-        writer.WriteInt32(Player(index).Character(CharNum).InHouse)
-        writer.WriteInt32(Player(index).Character(CharNum).LastMap)
-        writer.WriteInt32(Player(index).Character(CharNum).LastX)
-        writer.WriteInt32(Player(index).Character(CharNum).LastY)
-
-        For i = 1 To MAX_HOTBAR
-            writer.WriteInt32(Player(index).Character(CharNum).Hotbar(i).Slot)
-            writer.WriteByte(Player(index).Character(CharNum).Hotbar(i).SlotType)
-        Next
-
-        For i = 1 To MAX_SWITCHES
-            writer.WriteByte(Player(index).Character(CharNum).Switches(i))
-        Next
-
-        For i = 1 To MAX_VARIABLES
-            writer.WriteInt32(Player(index).Character(CharNum).Variables(i))
-        Next
-
-        For i = 0 To ResourceSkills.Count - 1
-            writer.WriteInt32(Player(index).Character(CharNum).GatherSkills(i).SkillLevel)
-            writer.WriteInt32(Player(index).Character(CharNum).GatherSkills(i).SkillCurExp)
-            writer.WriteInt32(Player(index).Character(CharNum).GatherSkills(i).SkillNextLvlExp)
-        Next
-
-        For i = 1 To MAX_RECIPE
-            writer.WriteByte(Player(index).Character(CharNum).RecipeLearned(i))
-        Next
-
-        'random items
-        For i = 1 To MAX_INV
-            writer.WriteString(Player(index).Character(CharNum).RandInv(i).Prefix)
-            writer.WriteString(Player(index).Character(CharNum).RandInv(i).Suffix)
-            writer.WriteInt32(Player(index).Character(CharNum).RandInv(i).Rarity)
-            writer.WriteInt32(Player(index).Character(CharNum).RandInv(i).Damage)
-            writer.WriteInt32(Player(index).Character(CharNum).RandInv(i).Speed)
-            For x = 1 To StatType.Count - 1
-                writer.WriteInt32(Player(index).Character(CharNum).RandInv(i).Stat(x))
-            Next
-        Next
-
-        For i = 1 To EquipmentType.Count - 1
-            writer.WriteString(Player(index).Character(CharNum).RandEquip(i).Prefix)
-            writer.WriteString(Player(index).Character(CharNum).RandEquip(i).Suffix)
-            writer.WriteInt32(Player(index).Character(CharNum).RandEquip(i).Rarity)
-            writer.WriteInt32(Player(index).Character(CharNum).RandEquip(i).Damage)
-            writer.WriteInt32(Player(index).Character(CharNum).RandEquip(i).Speed)
-            For x = 1 To StatType.Count - 1
-                writer.WriteInt32(Player(index).Character(CharNum).RandEquip(i).Stat(x))
-            Next
-        Next
-
-        'pets
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Num)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Health)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Mana)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Level)
-
-        For i = 1 To StatType.Count - 1
-            writer.WriteByte(Player(index).Character(CharNum).Pet.Stat(i))
-        Next
-
-        For i = 1 To 4
-            writer.WriteInt32(Player(index).Character(CharNum).Pet.Skill(i))
-        Next
-
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.X)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Y)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Dir)
-        writer.WriteByte(Player(index).Character(CharNum).Pet.Alive)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.AttackBehaviour)
-        writer.WriteByte(Player(index).Character(CharNum).Pet.AdoptiveStats)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Points)
-        writer.WriteInt32(Player(index).Character(CharNum).Pet.Exp)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Player(index).Character(CharNum), filename)
     End Sub
 
     Function CharExist(index As Integer, CharNum As Integer) As Boolean
@@ -2038,6 +1576,25 @@ Module modDatabase
         buffer.WriteInt32(Skill(skillnum).KnockBackTiles)
         Return buffer.ToArray
     End Function
+
+#End Region
+
+#Region "Serialization"
+
+    Sub LoadObject(ByRef Element As Object, ByVal Filename As String)
+        Dim stream As FileStream
+        Dim formatter As New Runtime.Serialization.Formatters.Binary.BinaryFormatter()
+        stream = File.OpenRead(Filename)
+        Element = formatter.Deserialize(stream)
+        stream.Close()
+    End Sub
+
+    Sub SaveObject(ByVal Element As Object, ByVal Filename As String)
+        Dim stream As FileStream = File.Create(Filename)
+        Dim formatter As New Runtime.Serialization.Formatters.Binary.BinaryFormatter()
+        formatter.Serialize(stream, Element)
+        stream.Close()
+    End Sub
 
 #End Region
 

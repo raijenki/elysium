@@ -33,6 +33,7 @@ Friend Module S_Quest
     'Types
     Friend Quest(MAX_QUESTS) As QuestRec
 
+    <Serializable>
     Friend Structure PlayerQuestRec
         Dim Status As Integer '0=not started, 1=started, 2=completed, 3=completed but repeatable
         Dim ActualTask As Integer

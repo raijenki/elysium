@@ -579,25 +579,7 @@ Module C_NetworkSend
 
         buffer.WriteInt32(ClientPackets.CSaveAnimation)
         buffer.WriteInt32(Animationnum)
-
-        For i = 0 To UBound(Animation(Animationnum).Frames)
-            buffer.WriteInt32(Animation(Animationnum).Frames(i))
-        Next
-
-        For i = 0 To UBound(Animation(Animationnum).LoopCount)
-            buffer.WriteInt32(Animation(Animationnum).LoopCount(i))
-        Next
-
-        For i = 0 To UBound(Animation(Animationnum).LoopTime)
-            buffer.WriteInt32(Animation(Animationnum).LoopTime(i))
-        Next
-
-        buffer.WriteString((Trim$(Animation(Animationnum).Name)))
-        buffer.WriteString((Trim$(Animation(Animationnum).Sound)))
-
-        For i = 0 To UBound(Animation(Animationnum).Sprite)
-            buffer.WriteInt32(Animation(Animationnum).Sprite(i))
-        Next
+        buffer.WriteBlock(SerializeData(Animation(Animationnum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()

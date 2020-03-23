@@ -9,6 +9,7 @@
     Friend Animation(MAX_ANIMATIONS) As AnimationStruct
 
     ' Common data structures
+    <Serializable>
     Friend Structure RandInvStruct
         Dim Prefix As String
         Dim Suffix As String
@@ -18,12 +19,14 @@
         Dim Speed As Integer
     End Structure
 
+    <Serializable>
     Friend Structure ResourceSkillsStruct
         Dim SkillLevel As Integer
         Dim SkillCurExp As Integer
         Dim SkillNextLvlExp As Integer
     End Structure
 
+    <Serializable>
     Friend Structure AnimationStruct
         Dim Name As String
         Dim Sound As String
@@ -40,6 +43,7 @@
         Dim Bottom As Integer
     End Structure
 
+    <Serializable>
     Friend Structure ResourceStruct
         Dim Name As String
         Dim SuccessMessage As String
@@ -57,6 +61,7 @@
         Dim Animation As Integer
     End Structure
 
+    <Serializable>
     Friend Structure SkillStruct
         Dim Name As String
         Dim Type As Byte
@@ -89,6 +94,7 @@
         Dim KnockBackTiles As Byte
     End Structure
 
+    <Serializable>
     Friend Structure ShopStruct
         Dim Name As String
         Dim Face As Byte
@@ -96,6 +102,7 @@
         Dim TradeItem() As TradeItemStruct
     End Structure
 
+    <Serializable>
     Friend Structure PlayerInvStruct
         Dim Num As Integer
         Dim Value As Integer
@@ -107,6 +114,7 @@
         Dim ItemRand() As RandInvStruct
     End Structure
 
+    <Serializable>
     Friend Structure TileDataStruct
         Dim X As Byte
         Dim Y As Byte
@@ -114,6 +122,7 @@
         Dim AutoTile As Byte
     End Structure
 
+    <Serializable>
     Friend Structure TileStruct
         Dim Layer() As TileDataStruct
         Dim Type As Byte
@@ -184,6 +193,7 @@
         Dim FrameIndex() As Integer
     End Structure
 
+    <Serializable>
     Friend Structure NpcStruct
         Dim Name As String
         Dim AttackSay As String
@@ -207,6 +217,7 @@
         Dim Damage As Integer
     End Structure
 
+    <Serializable>
     Friend Structure TradeItemStruct
         Dim Item As Integer
         Dim ItemValue As Integer

@@ -41,24 +41,7 @@ Friend Module S_Resources
 
         filename = Path.Resource(ResourceNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Resource(ResourceNum).Name)
-        writer.WriteString(Resource(ResourceNum).SuccessMessage)
-        writer.WriteString(Resource(ResourceNum).EmptyMessage)
-        writer.WriteInt32(Resource(ResourceNum).ResourceType)
-        writer.WriteInt32(Resource(ResourceNum).ResourceImage)
-        writer.WriteInt32(Resource(ResourceNum).ExhaustedImage)
-        writer.WriteInt32(Resource(ResourceNum).ExpReward)
-        writer.WriteInt32(Resource(ResourceNum).ItemReward)
-        writer.WriteInt32(Resource(ResourceNum).LvlRequired)
-        writer.WriteInt32(Resource(ResourceNum).ToolRequired)
-        writer.WriteInt32(Resource(ResourceNum).Health)
-        writer.WriteInt32(Resource(ResourceNum).RespawnTime)
-        writer.WriteBoolean(Resource(ResourceNum).Walkthrough)
-        writer.WriteInt32(Resource(ResourceNum).Animation)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Resource(ResourceNum), filename)
     End Sub
 
     Sub LoadResources()
@@ -77,23 +60,7 @@ Friend Module S_Resources
         Dim filename As String
 
         filename = Path.Resource(ResourceNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Resource(ResourceNum).Name = reader.ReadString()
-        Resource(ResourceNum).SuccessMessage = reader.ReadString()
-        Resource(ResourceNum).EmptyMessage = reader.ReadString()
-        Resource(ResourceNum).ResourceType = reader.ReadInt32()
-        Resource(ResourceNum).ResourceImage = reader.ReadInt32()
-        Resource(ResourceNum).ExhaustedImage = reader.ReadInt32()
-        Resource(ResourceNum).ExpReward = reader.ReadInt32()
-        Resource(ResourceNum).ItemReward = reader.ReadInt32()
-        Resource(ResourceNum).LvlRequired = reader.ReadInt32()
-        Resource(ResourceNum).ToolRequired = reader.ReadInt32()
-        Resource(ResourceNum).Health = reader.ReadInt32()
-        Resource(ResourceNum).RespawnTime = reader.ReadInt32()
-        Resource(ResourceNum).Walkthrough = reader.ReadBoolean()
-        Resource(ResourceNum).Animation = reader.ReadInt32()
+        LoadObject(Resource(ResourceNum), filename)
 
         If Resource(ResourceNum).Name Is Nothing Then Resource(ResourceNum).Name = ""
         If Resource(ResourceNum).EmptyMessage Is Nothing Then Resource(ResourceNum).EmptyMessage = ""

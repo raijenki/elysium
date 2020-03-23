@@ -20,6 +20,7 @@ Friend Module C_Projectiles
 
 #Region "Types"
 
+    <Serializable>
     Friend Structure ProjectileRec
         Dim Name As String
         Dim Sprite As Integer

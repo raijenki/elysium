@@ -28,6 +28,7 @@ Module C_Pets
     Friend Const PetAttackBehaviourGuard As Byte = 3 'If attacked, the pet will fight back
     Friend Const PetAttackBehaviourDonothing As Byte = 4 'The pet will not attack even if attacked
 
+    <Serializable>
     Friend Structure PetRec
         Dim Num As Integer
         Dim Name As String

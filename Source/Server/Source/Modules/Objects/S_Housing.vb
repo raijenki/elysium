@@ -25,6 +25,7 @@ Friend Module S_Housing
         Dim Y As Integer
     End Structure
 
+    <Serializable>
     Structure PlayerHouseRec
         Dim Houseindex As Integer
         Dim FurnitureCount As Integer

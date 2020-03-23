@@ -14,6 +14,7 @@ Friend Module S_Projectiles
 
 #Region "Types"
 
+    <Serializable>
     Friend Structure ProjectileRec
         Dim Name As String
         Dim Sprite As Integer
@@ -50,38 +51,27 @@ Friend Module S_Projectiles
 
         filename = Path.Projectile(ProjectileNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Projectiles(ProjectileNum).Name)
-        writer.WriteInt32(Projectiles(ProjectileNum).Sprite)
-        writer.WriteByte(Projectiles(ProjectileNum).Range)
-        writer.WriteInt32(Projectiles(ProjectileNum).Speed)
-        writer.WriteInt32(Projectiles(ProjectileNum).Damage)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Projectiles(ProjectileNum), filename)
 
     End Sub
 
     Sub LoadProjectiles()
-        Dim filename As String
         Dim i As Integer
 
         CheckProjectile()
 
         For i = 1 To MAX_PROJECTILES
-            filename = Path.Projectile(i)
-            Dim reader As New ByteStream()
-            BinaryFile.Load(filename, reader)
-
-            Projectiles(i).Name = reader.ReadString()
-            Projectiles(i).Sprite = reader.ReadInt32()
-            Projectiles(i).Range = reader.ReadByte()
-            Projectiles(i).Speed = reader.ReadInt32()
-            Projectiles(i).Damage = reader.ReadInt32()
-
+            LoadProjectile(i)
             Application.DoEvents()
         Next
 
+    End Sub
+
+    Sub LoadProjectile(ProjectileNum As Long)
+        Dim filename As String
+
+        filename = Path.Projectile(ProjectileNum)
+        LoadObject(Projectiles(ProjectileNum), filename)
     End Sub
 
     Sub CheckProjectile()
