@@ -158,27 +158,7 @@ Module S_Pets
 
         With Pet(petNum)
             buffer.WriteInt32(.Num)
-            buffer.WriteString(.Name.Trim)
-            buffer.WriteInt32(.Sprite)
-            buffer.WriteInt32(.Range)
-            buffer.WriteInt32(.Level)
-            buffer.WriteInt32(.MaxLevel)
-            buffer.WriteInt32(.ExpGain)
-            buffer.WriteInt32(.LevelPnts)
-            buffer.WriteInt32(.StatType)
-            buffer.WriteInt32(.LevelingType)
-
-            For i = 1 To StatType.Count - 1
-                buffer.WriteInt32(.Stat(i))
-            Next
-
-            For i = 1 To 4
-                buffer.WriteInt32(.Skill(i))
-            Next
-
-            buffer.WriteInt32(.Evolvable)
-            buffer.WriteInt32(.EvolveLevel)
-            buffer.WriteInt32(.EvolveNum)
+            buffer.WriteBlock(SerializeData(Pet(petNum)))
         End With
 
         SendDataToAll(buffer.Data, buffer.Head)
@@ -195,27 +175,7 @@ Module S_Pets
 
         With Pet(petNum)
             buffer.WriteInt32(.Num)
-            buffer.WriteString(.Name.Trim)
-            buffer.WriteInt32(.Sprite)
-            buffer.WriteInt32(.Range)
-            buffer.WriteInt32(.Level)
-            buffer.WriteInt32(.MaxLevel)
-            buffer.WriteInt32(.ExpGain)
-            buffer.WriteInt32(.LevelPnts)
-            buffer.WriteInt32(.StatType)
-            buffer.WriteInt32(.LevelingType)
-
-            For i = 1 To StatType.Count - 1
-                buffer.WriteInt32(.Stat(i))
-            Next
-
-            For i = 1 To 4
-                buffer.WriteInt32(.Skill(i))
-            Next
-
-            buffer.WriteInt32(.Evolvable)
-            buffer.WriteInt32(.EvolveLevel)
-            buffer.WriteInt32(.EvolveNum)
+            buffer.WriteBlock(SerializeData(Pet(petNum)))
         End With
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -367,28 +327,9 @@ Module S_Pets
 
         With Pet(petNum)
             .Num = buffer.ReadInt32
-            .Name = buffer.ReadString
-            .Sprite = buffer.ReadInt32
-            .Range = buffer.ReadInt32
-            .Level = buffer.ReadInt32
-            .MaxLevel = buffer.ReadInt32
-            .ExpGain = buffer.ReadInt32
-            .LevelPnts = buffer.ReadInt32
-            .StatType = buffer.ReadInt32
-            .LevelingType = buffer.ReadInt32
-
-            For i = 1 To StatType.Count - 1
-                .Stat(i) = buffer.ReadInt32
-            Next
-
-            For i = 1 To 4
-                .Skill(i) = buffer.ReadInt32
-            Next
-
-            .Evolvable = buffer.ReadInt32
-            .EvolveLevel = buffer.ReadInt32
-            .EvolveNum = buffer.ReadInt32
         End With
+
+        Pet(petNum) = DeserializeData(buffer)
 
         ' Save it
         SendUpdatePetToAll(petNum)

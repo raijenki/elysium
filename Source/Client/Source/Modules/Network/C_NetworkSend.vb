@@ -461,36 +461,7 @@ Module C_NetworkSend
         buffer.WriteInt32(ClientPackets.CSaveNpc)
         buffer.WriteInt32(NpcNum)
 
-        buffer.WriteInt32(Npc(NpcNum).Animation)
-        buffer.WriteString((Npc(NpcNum).AttackSay))
-        buffer.WriteInt32(Npc(NpcNum).Behaviour)
-        For i = 1 To 5
-            buffer.WriteInt32(Npc(NpcNum).DropChance(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItem(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItemValue(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Exp)
-        buffer.WriteInt32(Npc(NpcNum).Faction)
-        buffer.WriteInt32(Npc(NpcNum).Hp)
-        buffer.WriteString((Npc(NpcNum).Name))
-        buffer.WriteInt32(Npc(NpcNum).Range)
-        buffer.WriteInt32(Npc(NpcNum).SpawnTime)
-        buffer.WriteInt32(Npc(NpcNum).SpawnSecs)
-        buffer.WriteInt32(Npc(NpcNum).Sprite)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Npc(NpcNum).Stat(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).QuestNum)
-
-        For i = 1 To MAX_NPC_SKILLS
-            buffer.WriteInt32(Npc(NpcNum).Skill(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Level)
-        buffer.WriteInt32(Npc(NpcNum).Damage)
+        buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()
