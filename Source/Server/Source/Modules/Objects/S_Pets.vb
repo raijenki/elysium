@@ -18,33 +18,6 @@ Module S_Pets
     Friend givePetHpTimer As Integer
 
     <Serializable>
-    Friend Structure PetRec
-
-        Dim Num As Integer
-        Dim Name As String
-        Dim Sprite As Integer
-
-        Dim Range As Integer
-
-        Dim Level As Integer
-
-        Dim MaxLevel As Integer
-        Dim ExpGain As Integer
-        Dim LevelPnts As Integer
-
-        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
-        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
-
-        Dim Stat() As Byte
-
-        Dim Skill() As Integer
-
-        Dim Evolvable As Byte
-        Dim EvolveLevel As Integer
-        Dim EvolveNum As Integer
-    End Structure
-
-    <Serializable>
     Friend Structure PlayerPetRec
 
         Dim Num As Integer
@@ -155,11 +128,7 @@ Module S_Pets
         buffer.WriteInt32(ServerPackets.SUpdatePet)
 
         buffer.WriteInt32(petNum)
-
-        With Pet(petNum)
-            buffer.WriteInt32(.Num)
-            buffer.WriteBlock(SerializeData(Pet(petNum)))
-        End With
+        buffer.WriteBlock(SerializeData(Pet(petNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
 
@@ -173,10 +142,7 @@ Module S_Pets
 
         buffer.WriteInt32(petNum)
 
-        With Pet(petNum)
-            buffer.WriteInt32(.Num)
-            buffer.WriteBlock(SerializeData(Pet(petNum)))
-        End With
+        buffer.WriteBlock(SerializeData(Pet(petNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
@@ -314,7 +280,7 @@ Module S_Pets
     End Sub
 
     Sub Packet_SavePet(index As Integer, ByRef data() As Byte)
-        Dim petNum As Integer, i As Integer
+        Dim petNum As Integer
         Dim buffer As New ByteStream(data)
 
         ' Prevent hacking
@@ -324,10 +290,6 @@ Module S_Pets
 
         ' Prevent hacking
         If petNum < 0 OrElse petNum > MAX_PETS Then Exit Sub
-
-        With Pet(petNum)
-            .Num = buffer.ReadInt32
-        End With
 
         Pet(petNum) = DeserializeData(buffer)
 

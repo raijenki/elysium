@@ -242,4 +242,30 @@
         Dim Vital() As Integer
 
     End Structure
+
+    <Serializable>
+    Friend Structure PetRec
+        Dim Num As Integer
+        Dim Name As String
+        Dim Sprite As Integer
+
+        Dim Range As Integer
+
+        Dim Level As Integer
+
+        Dim MaxLevel As Integer
+        Dim ExpGain As Integer
+        Dim LevelPnts As Integer
+
+        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
+        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
+
+        Dim Stat() As Byte
+
+        Dim Skill() As Integer
+
+        Dim Evolvable As Byte
+        Dim EvolveLevel As Integer
+        Dim EvolveNum As Integer
+    End Structure
 End Module

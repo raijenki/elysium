@@ -1064,7 +1064,7 @@ Module S_Npc
     End Sub
 
     Sub Packet_SaveNPC(index As Integer, ByRef data() As Byte)
-        Dim NpcNum As Integer, i As Integer
+        Dim NpcNum As Integer
         Dim buffer As New ByteStream(data)
 
         AddDebug("Recieved EMSG: SaveNpc")

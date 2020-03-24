@@ -456,7 +456,7 @@ Module C_NetworkSend
     End Sub
 
     Friend Sub SendSaveNpc(NpcNum As Integer)
-        Dim buffer As New ByteStream(4), i As Integer
+        Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ClientPackets.CSaveNpc)
         buffer.WriteInt32(NpcNum)

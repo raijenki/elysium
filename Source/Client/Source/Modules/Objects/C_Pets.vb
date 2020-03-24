@@ -28,32 +28,6 @@ Module C_Pets
     Friend Const PetAttackBehaviourGuard As Byte = 3 'If attacked, the pet will fight back
     Friend Const PetAttackBehaviourDonothing As Byte = 4 'The pet will not attack even if attacked
 
-    <Serializable>
-    Friend Structure PetRec
-        Dim Num As Integer
-        Dim Name As String
-        Dim Sprite As Integer
-
-        Dim Range As Integer
-
-        Dim Level As Integer
-
-        Dim MaxLevel As Integer
-        Dim ExpGain As Integer
-        Dim LevelPnts As Integer
-
-        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
-        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
-
-        Dim Stat() As Byte
-
-        Dim Skill() As Integer
-
-        Dim Evolvable As Byte
-        Dim EvolveLevel As Integer
-        Dim EvolveNum As Integer
-    End Structure
-
     Friend Structure PlayerPetRec
         Dim Num As Integer
         Dim Health As Integer
@@ -191,16 +165,10 @@ Module C_Pets
     End Sub
 
     Friend Sub SendSavePet(petNum As Integer)
-        Dim buffer As ByteStream
-        Dim i As Integer
+        Dim buffer As New ByteStream(4)
 
-        buffer = New ByteStream(4)
         buffer.WriteInt32(ClientPackets.CSavePet)
         buffer.WriteInt32(petNum)
-
-        With Pet(petNum)
-            buffer.WriteInt32(.Num)
-        End With
 
         buffer.WriteBlock(SerializeData(Pet(petNum)))
 
@@ -250,14 +218,10 @@ Module C_Pets
     End Sub
 
     Friend Sub Packet_UpdatePet(ByRef data() As Byte)
-        Dim n As Integer, i As Integer
+        Dim n As Integer
         Dim buffer As New ByteStream(data)
+
         n = buffer.ReadInt32
-
-        With Pet(n)
-            .Num = buffer.ReadInt32
-        End With
-
         Pet(n) = DeserializeData(buffer)
 
         buffer.Dispose()
