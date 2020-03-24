@@ -268,4 +268,13 @@
         Dim EvolveLevel As Integer
         Dim EvolveNum As Integer
     End Structure
+
+    <Serializable>
+    Friend Structure ProjectileRec
+        Dim Name As String
+        Dim Sprite As Integer
+        Dim Range As Byte
+        Dim Speed As Integer
+        Dim Damage As Integer
+    End Structure
 End Module

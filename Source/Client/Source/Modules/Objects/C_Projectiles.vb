@@ -20,15 +20,6 @@ Friend Module C_Projectiles
 
 #Region "Types"
 
-    <Serializable>
-    Friend Structure ProjectileRec
-        Dim Name As String
-        Dim Sprite As Integer
-        Dim Range As Byte
-        Dim Speed As Integer
-        Dim Damage As Integer
-    End Structure
-
     Friend Structure MapProjectileRec
         Dim ProjectileNum As Integer
         Dim Owner As Integer
@@ -61,12 +52,7 @@ Friend Module C_Projectiles
 
         buffer.WriteInt32(ClientPackets.CSaveProjectile)
         buffer.WriteInt32(ProjectileNum)
-
-        buffer.WriteString((Trim(Projectiles(ProjectileNum).Name)))
-        buffer.WriteInt32(Projectiles(ProjectileNum).Sprite)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Range)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Speed)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Damage)
+        buffer.WriteBlock(SerializeData(Projectiles(ProjectileNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -105,11 +91,7 @@ Friend Module C_Projectiles
         Dim buffer As New ByteStream(data)
         projectileNum = buffer.ReadInt32
 
-        Projectiles(projectileNum).Name = buffer.ReadString
-        Projectiles(projectileNum).Sprite = buffer.ReadInt32
-        Projectiles(projectileNum).Range = buffer.ReadInt32
-        Projectiles(projectileNum).Speed = buffer.ReadInt32
-        Projectiles(projectileNum).Damage = buffer.ReadInt32
+        Projectiles(projectileNum) = DeserializeData(buffer)
 
         buffer.Dispose()
 
