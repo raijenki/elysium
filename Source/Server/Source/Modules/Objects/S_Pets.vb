@@ -3091,7 +3091,7 @@ Module S_Pets
                     End If
 
                     If Not IsInRange(range, GetPetX(index), GetPetY(index), x, y) Then
-                        PlayerMsg(index, "O alvo de " Trim$(GetPetName(index)) & " não está ao alcance.", ColorType.Yellow)
+                        PlayerMsg(index, "O alvo de " & Trim$(GetPetName(index)) & " não está ao alcance.", ColorType.Yellow)
                         SendClearPetSpellBuffer(index)
                     End If
                 End If
