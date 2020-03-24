@@ -249,10 +249,10 @@ Friend Module S_Resources
         If level_count > 0 Then
             If level_count = 1 Then
                 'singular
-                PlayerMsg(index, String.Format("Your {0} has gone up a level!", GetResourceSkillName(SkillSlot)), ColorType.BrightGreen)
+                PlayerMsg(index, String.Format("Seu {0} subiu de nível!", GetResourceSkillName(SkillSlot)), ColorType.BrightGreen)
             Else
                 'plural
-                PlayerMsg(index, String.Format("Your {0} has gone up by {1} levels!", GetResourceSkillName(SkillSlot), level_count), ColorType.BrightGreen)
+                PlayerMsg(index, String.Format("Seu {0} subiu {1} níveis!", GetResourceSkillName(SkillSlot), level_count), ColorType.BrightGreen)
             End If
 
             SavePlayer(index)
@@ -263,13 +263,13 @@ Friend Module S_Resources
     Private Function GetResourceSkillName(ResSkill As ResourceSkills) As String
         Select Case ResSkill
             Case ResourceSkills.Herbalist
-                GetResourceSkillName = "herbalism"
+                GetResourceSkillName = "herbalismo"
             Case ResourceSkills.WoodCutter
-                GetResourceSkillName = "woodcutting"
+                GetResourceSkillName = "lenhar"
             Case ResourceSkills.Miner
-                GetResourceSkillName = "mining"
+                GetResourceSkillName = "mineração"
             Case ResourceSkills.Fisherman
-                GetResourceSkillName = "fishing"
+                GetResourceSkillName = "pesca"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -289,15 +289,15 @@ Friend Module S_Resources
     Sub Packet_EditResource(index As Integer, ByRef data() As Byte)
         Dim Buffer As New ByteStream(4)
 
-        AddDebug("Recieved EMSG: RequestEditResource")
+        AddDebug("Recebida EMSG: RequestEditResource")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Buffer.WriteInt32(ServerPackets.SResourceEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SResourceEditor")
+        AddDebug("Enviada SMSG: SResourceEditor")
 
         Buffer.Dispose()
     End Sub
@@ -306,14 +306,14 @@ Friend Module S_Resources
         Dim resourcenum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveResource")
+        AddDebug("Recebida EMSG: SaveResource")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         resourcenum = buffer.ReadInt32
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If resourcenum <= 0 OrElse resourcenum > MAX_RESOURCES Then Exit Sub
 
         Resource(resourcenum).Animation = buffer.ReadInt32()
@@ -331,17 +331,17 @@ Friend Module S_Resources
         Resource(resourcenum).ToolRequired = buffer.ReadInt32()
         Resource(resourcenum).Walkthrough = buffer.ReadInt32()
 
-        ' Save it
+        ' Salvar
         SendUpdateResourceToAll(resourcenum)
         SaveResource(resourcenum)
 
-        Addlog(GetPlayerLogin(index) & " saved Resource #" & resourcenum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou o Recurso #" & resourcenum & ".", ADMIN_LOG)
 
         buffer.Dispose()
     End Sub
 
     Sub Packet_RequestResources(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestResources")
+        AddDebug("Recebida CMSG: CRequestResources")
 
         SendResources(index)
     End Sub
@@ -359,7 +359,7 @@ Friend Module S_Resources
         buffer.WriteInt32(ServerPackets.SResourceCache)
         buffer.WriteInt32(ResourceCache(mapnum).ResourceCount)
 
-        AddDebug("Sent SMSG: SResourcesCache")
+        AddDebug("Enviada SMSG: SResourcesCache")
 
         If ResourceCache(mapnum).ResourceCount > 0 Then
 
@@ -382,7 +382,7 @@ Friend Module S_Resources
         buffer.WriteInt32(ServerPackets.SResourceCache)
         buffer.WriteInt32(ResourceCache(mapNum).ResourceCount)
 
-        AddDebug("Sent SMSG: SResourceCache")
+        AddDebug("Enviada SMSG: SResourceCache")
 
         If ResourceCache(mapNum).ResourceCount > 0 Then
 
@@ -418,7 +418,7 @@ Friend Module S_Resources
 
         buffer.WriteBlock(ResourceData(ResourceNum))
 
-        AddDebug("Sent SMSG: SUpdateResources")
+        AddDebug("Enviada SMSG: SUpdateResources")
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -431,7 +431,7 @@ Friend Module S_Resources
 
         buffer.WriteBlock(ResourceData(ResourceNum))
 
-        AddDebug("Sent SMSG: SUpdateResource")
+        AddDebug("Enviada SMSG: SUpdateResource")
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -452,7 +452,7 @@ Friend Module S_Resources
             Resource_index = Map(GetPlayerMap(index)).Tile(x, y).Data1
             ResourceType = Resource(Resource_index).ResourceType
 
-            ' Get the cache number
+            ' Pegar o número do cache
             For i = 0 To ResourceCache(GetPlayerMap(index)).ResourceCount
                 If ResourceCache(GetPlayerMap(index)).ResourceData(i).X = x Then
                     If ResourceCache(GetPlayerMap(index)).ResourceData(i).Y = y Then
@@ -465,21 +465,21 @@ Friend Module S_Resources
                 If GetPlayerEquipment(index, EquipmentType.Weapon) > 0 OrElse Resource(Resource_index).ToolRequired = 0 Then
                     If Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Data3 = Resource(Resource_index).ToolRequired Then
 
-                        ' inv space?
+                        ' Espaço no inventário?
                         If Resource(Resource_index).ItemReward > 0 Then
                             If FindOpenInvSlot(index, Resource(Resource_index).ItemReward) = 0 Then
-                                PlayerMsg(index, "You have no inventory space.", ColorType.Yellow)
+                                PlayerMsg(index, "Você não tem espaço no inventário.", ColorType.Yellow)
                                 Exit Sub
                             End If
                         End If
 
-                        'required lvl?
+                        'Nível requerido?
                         If Resource(Resource_index).LvlRequired > GetPlayerGatherSkillLvl(index, ResourceType) Then
-                            PlayerMsg(index, "Your level is too low!", ColorType.Yellow)
+                            PlayerMsg(index, "Seu nível é muito baixo!", ColorType.Yellow)
                             Exit Sub
                         End If
 
-                        ' check if already cut down
+                        ' verificar se já está cortado
                         If ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).ResourceState = 0 Then
 
                             rX = ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).X
@@ -491,9 +491,9 @@ Friend Module S_Resources
                                 Damage = Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Data2
                             End If
 
-                            ' check if damage is more than health
+                            ' verificar se dano é maior que cura
                             If Damage > 0 Then
-                                ' cut it down!
+                                ' cortar!
                                 If ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).CurHealth - Damage <= 0 Then
                                     ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).ResourceState = 1 ' Cut
                                     ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).ResourceTimer = GetTimeMs()
@@ -502,30 +502,30 @@ Friend Module S_Resources
                                     GiveInvItem(index, Resource(Resource_index).ItemReward, 1)
                                     SendAnimation(GetPlayerMap(index), Resource(Resource_index).Animation, rX, rY)
                                     SetPlayerGatherSkillExp(index, ResourceType, GetPlayerGatherSkillExp(index, ResourceType) + Resource(Resource_index).ExpReward)
-                                    'send msg
-                                    PlayerMsg(index, String.Format("Your {0} has earned {1} experience. ({2}/{3})", GetResourceSkillName(ResourceType), Resource(Resource_index).ExpReward, GetPlayerGatherSkillExp(index, ResourceType), GetPlayerGatherSkillMaxExp(index, ResourceType)), ColorType.BrightGreen)
+                                    'enviar mensagem
+                                    PlayerMsg(index, String.Format("Seu {0} conseguiu {1} de experiência. ({2}/{3})", GetResourceSkillName(ResourceType), Resource(Resource_index).ExpReward, GetPlayerGatherSkillExp(index, ResourceType), GetPlayerGatherSkillMaxExp(index, ResourceType)), ColorType.BrightGreen)
                                     SendPlayerData(index)
 
                                     CheckResourceLevelUp(index, ResourceType)
                                 Else
-                                    ' just do the damage
+                                    ' apenas dar dano
                                     ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).CurHealth = ResourceCache(GetPlayerMap(index)).ResourceData(Resource_num).CurHealth - Damage
                                     SendActionMsg(GetPlayerMap(index), "-" & Damage, ColorType.BrightRed, 1, (rX * 32), (rY * 32))
                                     SendAnimation(GetPlayerMap(index), Resource(Resource_index).Animation, rX, rY)
                                 End If
                                 CheckTasks(index, QuestType.Gather, Resource_index)
                             Else
-                                ' too weak
-                                SendActionMsg(GetPlayerMap(index), "Miss!", ColorType.BrightRed, 1, (rX * 32), (rY * 32))
+                                ' muito fraco
+                                SendActionMsg(GetPlayerMap(index), "Erro!", ColorType.BrightRed, 1, (rX * 32), (rY * 32))
                             End If
                         Else
                             SendActionMsg(GetPlayerMap(index), Trim$(Resource(Resource_index).EmptyMessage), ColorType.BrightRed, 1, (GetPlayerX(index) * 32), (GetPlayerY(index) * 32))
                         End If
                     Else
-                        PlayerMsg(index, "You have the wrong type of tool equiped.", ColorType.Yellow)
+                        PlayerMsg(index, "Você está equipado com a ferramenta errada.", ColorType.Yellow)
                     End If
                 Else
-                    PlayerMsg(index, "You need a tool to gather this resource.", ColorType.Yellow)
+                    PlayerMsg(index, "Voce precisa de uma ferramenta para pegar este recurso.", ColorType.Yellow)
                 End If
             End If
         End If
