@@ -277,4 +277,46 @@
         Dim Speed As Integer
         Dim Damage As Integer
     End Structure
+
+    <Serializable>
+    Friend Structure QuestRec
+        Dim Name As String
+        Dim QuestLog As String
+        Dim Repeat As Byte
+        Dim Cancelable As Byte
+
+        Dim ReqCount As Integer
+        Dim Requirement() As Integer '1=item, 2=quest, 3=class
+        Dim RequirementIndex() As Integer
+
+        Dim QuestGiveItem As Integer 'Todo: make this dynamic
+        Dim QuestGiveItemValue As Integer
+        Dim QuestRemoveItem As Integer
+        Dim QuestRemoveItemValue As Integer
+
+        Dim Chat() As String
+
+        Dim RewardCount As Integer
+        Dim RewardItem() As Integer
+        Dim RewardItemAmount() As Integer
+        Dim RewardExp As Integer
+
+        Dim TaskCount As Integer
+        Dim Task() As TaskRec
+
+    End Structure
+
+    <Serializable>
+    Friend Structure TaskRec
+        Dim Order As Integer
+        Dim Npc As Integer
+        Dim Item As Integer
+        Dim Map As Integer
+        Dim Resource As Integer
+        Dim Amount As Integer
+        Dim Speech As String
+        Dim TaskLog As String
+        Dim QuestEnd As Byte
+        Dim TaskType As Integer
+    End Structure
 End Module

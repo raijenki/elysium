@@ -69,45 +69,8 @@ Friend Module C_Quest
         Dim CurrentCount As Integer 'Used to handle the Amount property
     End Structure
 
-    Friend Structure TaskRec
-        Dim Order As Integer
-        Dim Npc As Integer
-        Dim Item As Integer
-        Dim Map As Integer
-        Dim Resource As Integer
-        Dim Amount As Integer
-        Dim Speech As String
-        Dim TaskLog As String
-        Dim QuestEnd As Byte
-        Dim TaskType As Integer
-    End Structure
 
-    Friend Structure QuestRec
-        Dim Name As String
-        Dim QuestLog As String
-        Dim Repeat As Byte
-        Dim Cancelable As Byte
 
-        Dim ReqCount As Integer
-        Dim Requirement() As Integer '1=item, 2=quest, 3=class
-        Dim RequirementIndex() As Integer
-
-        Dim QuestGiveItem As Integer 'Todo: make this dynamic
-        Dim QuestGiveItemValue As Integer
-        Dim QuestRemoveItem As Integer
-        Dim QuestRemoveItemValue As Integer
-
-        Dim Chat() As String
-
-        Dim RewardCount As Integer
-        Dim RewardItem() As Integer
-        Dim RewardItemAmount() As Integer
-        Dim RewardExp As Integer
-
-        Dim TaskCount As Integer
-        Dim Task() As TaskRec
-
-    End Structure
 
 #End Region
 
@@ -188,54 +151,7 @@ Friend Module C_Quest
         Dim questNum As Integer
         Dim buffer As New ByteStream(data)
         questNum = buffer.ReadInt32
-
-        ' Update the Quest
-        Quest(questNum).Name = buffer.ReadString
-        Quest(questNum).QuestLog = buffer.ReadString
-        Quest(questNum).Repeat = buffer.ReadInt32
-        Quest(questNum).Cancelable = buffer.ReadInt32
-
-        Quest(questNum).ReqCount = buffer.ReadInt32
-        ReDim Quest(questNum).Requirement(Quest(questNum).ReqCount)
-        ReDim Quest(questNum).RequirementIndex(Quest(questNum).ReqCount)
-        For I = 1 To Quest(questNum).ReqCount
-            Quest(questNum).Requirement(I) = buffer.ReadInt32
-            Quest(questNum).RequirementIndex(I) = buffer.ReadInt32
-        Next
-
-        Quest(questNum).QuestGiveItem = buffer.ReadInt32
-        Quest(questNum).QuestGiveItemValue = buffer.ReadInt32
-        Quest(questNum).QuestRemoveItem = buffer.ReadInt32
-        Quest(questNum).QuestRemoveItemValue = buffer.ReadInt32
-
-        For I = 1 To 3
-            Quest(questNum).Chat(I) = buffer.ReadString
-        Next
-
-        Quest(questNum).RewardCount = buffer.ReadInt32
-        ReDim Quest(questNum).RewardItem(Quest(questNum).RewardCount)
-        ReDim Quest(questNum).RewardItemAmount(Quest(questNum).RewardCount)
-        For i = 1 To Quest(questNum).RewardCount
-            Quest(questNum).RewardItem(i) = buffer.ReadInt32
-            Quest(questNum).RewardItemAmount(i) = buffer.ReadInt32
-        Next
-
-        Quest(questNum).RewardExp = buffer.ReadInt32
-
-        Quest(questNum).TaskCount = buffer.ReadInt32
-        ReDim Quest(questNum).Task(Quest(questNum).TaskCount)
-        For I = 1 To Quest(questNum).TaskCount
-            Quest(questNum).Task(I).Order = buffer.ReadInt32
-            Quest(questNum).Task(I).Npc = buffer.ReadInt32
-            Quest(questNum).Task(I).Item = buffer.ReadInt32
-            Quest(questNum).Task(I).Map = buffer.ReadInt32
-            Quest(questNum).Task(I).Resource = buffer.ReadInt32
-            Quest(questNum).Task(I).Amount = buffer.ReadInt32
-            Quest(questNum).Task(I).Speech = buffer.ReadString
-            Quest(questNum).Task(I).TaskLog = buffer.ReadString
-            Quest(questNum).Task(I).QuestEnd = buffer.ReadInt32
-            Quest(questNum).Task(I).TaskType = buffer.ReadInt32
-        Next
+        Quest(questNum) = DeserializeData(buffer)
 
         buffer.Dispose()
     End Sub
@@ -835,48 +751,7 @@ Friend Module C_Quest
 
         buffer.WriteInt32(ClientPackets.CSaveQuest)
         buffer.WriteInt32(QuestNum)
-
-        buffer.WriteString((Trim(Quest(QuestNum).Name)))
-        buffer.WriteString((Trim(Quest(QuestNum).QuestLog)))
-        buffer.WriteInt32(Quest(QuestNum).Repeat)
-        buffer.WriteInt32(Quest(QuestNum).Cancelable)
-
-        buffer.WriteInt32(Quest(QuestNum).ReqCount)
-        For I = 1 To Quest(QuestNum).ReqCount
-            buffer.WriteInt32(Quest(QuestNum).Requirement(I))
-            buffer.WriteInt32(Quest(QuestNum).RequirementIndex(I))
-        Next
-
-        buffer.WriteInt32(Quest(QuestNum).QuestGiveItem)
-        buffer.WriteInt32(Quest(QuestNum).QuestGiveItemValue)
-        buffer.WriteInt32(Quest(QuestNum).QuestRemoveItem)
-        buffer.WriteInt32(Quest(QuestNum).QuestRemoveItemValue)
-
-        For I = 1 To 3
-            buffer.WriteString((Trim(Quest(QuestNum).Chat(I))))
-        Next
-
-        buffer.WriteInt32(Quest(QuestNum).RewardCount)
-        For i = 1 To Quest(QuestNum).RewardCount
-            buffer.WriteInt32(Quest(QuestNum).RewardItem(i))
-            buffer.WriteInt32(Quest(QuestNum).RewardItemAmount(i))
-        Next
-
-        buffer.WriteInt32(Quest(QuestNum).RewardExp)
-
-        buffer.WriteInt32(Quest(QuestNum).TaskCount)
-        For I = 1 To Quest(QuestNum).TaskCount
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Order)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Npc)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Item)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Map)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Resource)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).Amount)
-            buffer.WriteString((Trim(Quest(QuestNum).Task(I).Speech)))
-            buffer.WriteString((Trim(Quest(QuestNum).Task(I).TaskLog)))
-            buffer.WriteInt32(Quest(QuestNum).Task(I).QuestEnd)
-            buffer.WriteInt32(Quest(QuestNum).Task(I).TaskType)
-        Next
+        buffer.WriteBlock(SerializeData(Quest(QuestNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()
