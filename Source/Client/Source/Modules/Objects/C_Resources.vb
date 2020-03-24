@@ -75,22 +75,10 @@ Module C_Resources
     Sub Packet_UpdateResource(ByRef data() As Byte)
         Dim resourceNum As Integer
         Dim buffer As New ByteStream(data)
+
         resourceNum = buffer.ReadInt32
 
-        Resource(resourceNum).Animation = buffer.ReadInt32()
-        Resource(resourceNum).EmptyMessage = buffer.ReadString().Trim
-        Resource(resourceNum).ExhaustedImage = buffer.ReadInt32()
-        Resource(resourceNum).Health = buffer.ReadInt32()
-        Resource(resourceNum).ExpReward = buffer.ReadInt32()
-        Resource(resourceNum).ItemReward = buffer.ReadInt32()
-        Resource(resourceNum).Name = buffer.ReadString().Trim
-        Resource(resourceNum).ResourceImage = buffer.ReadInt32()
-        Resource(resourceNum).ResourceType = buffer.ReadInt32()
-        Resource(resourceNum).RespawnTime = buffer.ReadInt32()
-        Resource(resourceNum).SuccessMessage = buffer.ReadString().Trim
-        Resource(resourceNum).LvlRequired = buffer.ReadInt32()
-        Resource(resourceNum).ToolRequired = buffer.ReadInt32()
-        Resource(resourceNum).Walkthrough = buffer.ReadInt32()
+        Resource(resourceNum) = DeserializeData(buffer)
 
         If Resource(resourceNum).Name Is Nothing Then Resource(resourceNum).Name = ""
         If Resource(resourceNum).EmptyMessage Is Nothing Then Resource(resourceNum).EmptyMessage = ""

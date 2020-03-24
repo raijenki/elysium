@@ -929,20 +929,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Resource(n).Animation = buffer.ReadInt32()
-            Resource(n).EmptyMessage = Trim(buffer.ReadString())
-            Resource(n).ExhaustedImage = buffer.ReadInt32()
-            Resource(n).Health = buffer.ReadInt32()
-            Resource(n).ExpReward = buffer.ReadInt32()
-            Resource(n).ItemReward = buffer.ReadInt32()
-            Resource(n).Name = Trim(buffer.ReadString())
-            Resource(n).ResourceImage = buffer.ReadInt32()
-            Resource(n).ResourceType = buffer.ReadInt32()
-            Resource(n).RespawnTime = buffer.ReadInt32()
-            Resource(n).SuccessMessage = Trim(buffer.ReadString())
-            Resource(n).LvlRequired = buffer.ReadInt32()
-            Resource(n).ToolRequired = buffer.ReadInt32()
-            Resource(n).Walkthrough = buffer.ReadInt32()
+            Resource(n) = DeserializeData(buffer)
 
             If Resource(n).Name Is Nothing Then Resource(n).Name = ""
             If Resource(n).EmptyMessage Is Nothing Then Resource(n).EmptyMessage = ""

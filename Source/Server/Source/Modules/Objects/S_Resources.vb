@@ -125,20 +125,7 @@ Friend Module S_Resources
     Function ResourceData(ResourceNum As Integer) As Byte()
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ResourceNum)
-        buffer.WriteInt32(Resource(ResourceNum).Animation)
-        buffer.WriteString((Resource(ResourceNum).EmptyMessage))
-        buffer.WriteInt32(Resource(ResourceNum).ExhaustedImage)
-        buffer.WriteInt32(Resource(ResourceNum).Health)
-        buffer.WriteInt32(Resource(ResourceNum).ExpReward)
-        buffer.WriteInt32(Resource(ResourceNum).ItemReward)
-        buffer.WriteString((Resource(ResourceNum).Name))
-        buffer.WriteInt32(Resource(ResourceNum).ResourceImage)
-        buffer.WriteInt32(Resource(ResourceNum).ResourceType)
-        buffer.WriteInt32(Resource(ResourceNum).RespawnTime)
-        buffer.WriteString((Resource(ResourceNum).SuccessMessage))
-        buffer.WriteInt32(Resource(ResourceNum).LvlRequired)
-        buffer.WriteInt32(Resource(ResourceNum).ToolRequired)
-        buffer.WriteInt32(Resource(ResourceNum).Walkthrough)
+        buffer.WriteBlock(SerializeData(Resource(ResourceNum)))
         Return buffer.ToArray
     End Function
 
@@ -283,20 +270,7 @@ Friend Module S_Resources
         ' Prevent hacking
         If resourcenum <= 0 OrElse resourcenum > MAX_RESOURCES Then Exit Sub
 
-        Resource(resourcenum).Animation = buffer.ReadInt32()
-        Resource(resourcenum).EmptyMessage = buffer.ReadString()
-        Resource(resourcenum).ExhaustedImage = buffer.ReadInt32()
-        Resource(resourcenum).Health = buffer.ReadInt32()
-        Resource(resourcenum).ExpReward = buffer.ReadInt32()
-        Resource(resourcenum).ItemReward = buffer.ReadInt32()
-        Resource(resourcenum).Name = buffer.ReadString()
-        Resource(resourcenum).ResourceImage = buffer.ReadInt32()
-        Resource(resourcenum).ResourceType = buffer.ReadInt32()
-        Resource(resourcenum).RespawnTime = buffer.ReadInt32()
-        Resource(resourcenum).SuccessMessage = buffer.ReadString()
-        Resource(resourcenum).LvlRequired = buffer.ReadInt32()
-        Resource(resourcenum).ToolRequired = buffer.ReadInt32()
-        Resource(resourcenum).Walkthrough = buffer.ReadInt32()
+        Resource(resourcenum) = DeserializeData(buffer)
 
         ' Save it
         SendUpdateResourceToAll(resourcenum)
@@ -382,7 +356,6 @@ Friend Module S_Resources
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SUpdateResource)
-
         buffer.WriteBlock(ResourceData(ResourceNum))
 
         AddDebug("Sent SMSG: SUpdateResources")
