@@ -1371,16 +1371,7 @@ Module S_NetworkReceive
         ' Prevent hacking
         If ShopNum < 0 OrElse ShopNum > MAX_SHOPS Then Exit Sub
 
-        Shop(ShopNum).BuyRate = buffer.ReadInt32()
-        Shop(ShopNum).Name = buffer.ReadString()
-        Shop(ShopNum).Face = buffer.ReadInt32()
-
-        For i = 0 To MAX_TRADES
-            Shop(ShopNum).TradeItem(i).CostItem = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).CostValue = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).Item = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).ItemValue = buffer.ReadInt32()
-        Next
+        Shop(ShopNum) = DeserializeData(buffer)
 
         If Shop(ShopNum).Name Is Nothing Then Shop(ShopNum).Name = ""
 

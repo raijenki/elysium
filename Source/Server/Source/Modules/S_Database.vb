@@ -1396,15 +1396,7 @@ Module modDatabase
     Function ShopData(shopNum As Integer) As Byte()
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(shopNum)
-        buffer.WriteInt32(Shop(shopNum).BuyRate)
-        buffer.WriteString((Shop(shopNum).Name))
-        buffer.WriteInt32(Shop(shopNum).Face)
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopNum)))
         Return buffer.ToArray
     End Function
 

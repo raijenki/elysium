@@ -478,17 +478,7 @@ Module C_NetworkSend
 
         buffer.WriteInt32(ClientPackets.CSaveShop)
         buffer.WriteInt32(shopnum)
-
-        buffer.WriteInt32(Shop(shopnum).BuyRate)
-        buffer.WriteString((Shop(shopnum).Name))
-        buffer.WriteInt32(Shop(shopnum).Face)
-
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopnum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopnum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopnum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopnum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopnum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()

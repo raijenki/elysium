@@ -279,18 +279,7 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateShop)
 
         buffer.WriteInt32(shopNum)
-        buffer.WriteInt32(Shop(shopNum).BuyRate)
-        buffer.WriteString((Shop(shopNum).Name.Trim))
-        buffer.WriteInt32(Shop(shopNum).Face)
-
-        AddDebug("Sent SMSG: SUpdateShop")
-
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -302,18 +291,7 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateShop)
 
         buffer.WriteInt32(shopNum)
-        buffer.WriteInt32(Shop(shopNum).BuyRate)
-        buffer.WriteString(Shop(shopNum).Name.Trim)
-        buffer.WriteInt32(Shop(shopNum).Face)
-
-        AddDebug("Sent SMSG: SUpdateShop To All")
-
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()

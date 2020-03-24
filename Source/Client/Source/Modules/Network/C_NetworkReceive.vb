@@ -830,16 +830,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Shop(n).BuyRate = buffer.ReadInt32()
-            Shop(n).Name = Trim(buffer.ReadString())
-            Shop(n).Face = buffer.ReadInt32()
-
-            For z = 0 To MAX_TRADES
-                Shop(n).TradeItem(z).CostItem = buffer.ReadInt32()
-                Shop(n).TradeItem(z).CostValue = buffer.ReadInt32()
-                Shop(n).TradeItem(z).Item = buffer.ReadInt32()
-                Shop(n).TradeItem(z).ItemValue = buffer.ReadInt32()
-            Next
+            Shop(n) = DeserializeData(buffer)
 
             If Shop(n).Name Is Nothing Then Shop(n).Name = ""
         Next
