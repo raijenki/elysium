@@ -8,12 +8,12 @@ Module S_Pets
 
     Friend Pet() As PetRec
 
-    ' PET constants
-    Friend Const PetBehaviourFollow As Byte = 0 'The pet will attack all npcs around
-    Friend Const PetBehaviourGoto As Byte = 1 'If attacked, the pet will fight back
-    Friend Const PetAttackBehaviourAttackonsight As Byte = 2 'The pet will attack all npcs around
-    Friend Const PetAttackBehaviourGuard As Byte = 3 'If attacked, the pet will fight back
-    Friend Const PetAttackBehaviourDonothing As Byte = 4 'The pet will not attack even if attacked
+    ' Constantes do sistema de Pets
+    Friend Const PetBehaviourFollow As Byte = 0 'O pet irá atacar todos os NPCs ao redor
+    Friend Const PetBehaviourGoto As Byte = 1 'Se atacado, o pet lutará de volta
+    Friend Const PetAttackBehaviourAttackonsight As Byte = 2 'O pet irá atacar todos os NPCs ao redor
+    Friend Const PetAttackBehaviourGuard As Byte = 3 'Se atacado, o pet lutará de volta
+    Friend Const PetAttackBehaviourDonothing As Byte = 4 'O pet não atacará mesmo se atacado
 
     Friend givePetHpTimer As Integer
 
@@ -31,8 +31,8 @@ Module S_Pets
         Dim ExpGain As Integer
         Dim LevelPnts As Integer
 
-        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
-        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
+        Dim StatType As Byte '1 para atributos definidos, 2 para relação com atributos do dono
+        Dim LevelingType As Byte '0 para subir de nível por conta própria, 1 para negativo
 
         Dim Stat() As Byte
 
@@ -407,12 +407,12 @@ Module S_Pets
         Dim petNum As Integer, i As Integer
         Dim buffer As New ByteStream(data)
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         petNum = buffer.ReadInt32
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If petNum < 0 OrElse petNum > MAX_PETS Then Exit Sub
 
         With Pet(petNum)
@@ -443,7 +443,7 @@ Module S_Pets
         ' Save it
         SendUpdatePetToAll(petNum)
         SavePet(petNum)
-        Addlog(GetPlayerLogin(index) & " saved Pet #" & petNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou o Pet #" & petNum & ".", ADMIN_LOG)
         SendPets(index)
     End Sub
 
@@ -467,43 +467,43 @@ Module S_Pets
         x = buffer.ReadInt32
         y = buffer.ReadInt32
 
-        ' Prevent subscript out of range
+        ' Prevenir subscript out of range
         If x < 0 OrElse x > Map(GetPlayerMap(index)).MaxX OrElse y < 0 OrElse y > Map(GetPlayerMap(index)).MaxY Then Exit Sub
 
-        ' Check for a player
+        ' Verificar por um jogador
         For i = 1 To GetPlayersOnline()
 
             If IsPlaying(i) Then
                 If GetPlayerMap(index) = GetPlayerMap(i) AndAlso GetPlayerX(i) = x AndAlso GetPlayerY(i) = y Then
                     If i = index Then
-                        ' Change target
+                        ' Alterar alvo
                         If TempPlayer(index).PetTargetType = TargetType.Player AndAlso TempPlayer(index).PetTarget = i Then
                             TempPlayer(index).PetTarget = 0
                             TempPlayer(index).PetTargetType = TargetType.None
                             TempPlayer(index).PetBehavior = PetBehaviourGoto
                             TempPlayer(index).GoToX = x
                             TempPlayer(index).GoToY = y
-                            ' send target to player
-                            PlayerMsg(index, "Your pet is no longer following you.", ColorType.BrightGreen)
+                            ' Enviar alvo ao jogador
+                            PlayerMsg(index, "Seu pet não está mais te seguindo.", ColorType.BrightGreen)
                         Else
                             TempPlayer(index).PetTarget = i
                             TempPlayer(index).PetTargetType = TargetType.Player
-                            ' send target to player
+                            ' Enviar alvo ao jogador
                             TempPlayer(index).PetBehavior = PetBehaviourFollow
-                            PlayerMsg(index, "Your " & GetPetName(index).Trim & " is now following you.", ColorType.BrightGreen)
+                            PlayerMsg(index, "Seu " & GetPetName(index).Trim & " agora está te seguindo.", ColorType.BrightGreen)
                         End If
                     Else
-                        ' Change target
+                        ' Alterar alvo
                         If TempPlayer(index).PetTargetType = TargetType.Player AndAlso TempPlayer(index).PetTarget = i Then
                             TempPlayer(index).PetTarget = 0
                             TempPlayer(index).PetTargetType = TargetType.None
-                            ' send target to player
-                            PlayerMsg(index, "Your pet is no longer targetting " & GetPlayerName(i).Trim & ".", ColorType.BrightGreen)
+                            ' Enviar alvo ao jogador
+                            PlayerMsg(index, "Seu pet não tem mais " & GetPlayerName(i).Trim & " como alvo.", ColorType.BrightGreen)
                         Else
                             TempPlayer(index).PetTarget = i
                             TempPlayer(index).PetTargetType = TargetType.Player
-                            ' send target to player
-                            PlayerMsg(index, "Your pet is now targetting " & GetPlayerName(i).Trim & ".", ColorType.BrightGreen)
+                            ' Enviar alvo ao jogador
+                            PlayerMsg(index, "Seu pet agora tem " & GetPlayerName(i).Trim & " como alvo.", ColorType.BrightGreen)
                         End If
                     End If
                     Exit Sub
@@ -517,35 +517,35 @@ Module S_Pets
                         TempPlayer(index).PetTarget = 0
                         TempPlayer(index).PetTargetType = TargetType.None
                         ' send target to player
-                        PlayerMsg(index, "Your pet is no longer targetting " & GetPlayerName(i).Trim & "'s " & GetPetName(i).Trim & ".", ColorType.BrightGreen)
+                        PlayerMsg(index, "Seu pet não está tem mais o  " & GetPetName(i).Trim & " de " & GetPlayerName(i).Trim & " como alvo.", ColorType.BrightGreen)
                     Else
                         TempPlayer(index).PetTarget = i
                         TempPlayer(index).PetTargetType = TargetType.Pet
                         ' send target to player
-                        PlayerMsg(index, "Your pet is now targetting " & GetPlayerName(i).Trim & "'s " & GetPetName(i).Trim & ".", ColorType.BrightGreen)
+                        PlayerMsg(index, "Seu pet agora tem como alvo o " & GetPetName(i).Trim & " de " & GetPlayerName(i).Trim & " como alvo.", ColorType.BrightGreen)
                     End If
                     Exit Sub
                 End If
             End If
         Next
 
-        'Search For Target First
-        ' Check for an npc
+        'Procurar por um alvo primeiro
+        ' Verificar npc
         For i = 1 To MAX_MAP_NPCS
             If MapNpc(GetPlayerMap(index)).Npc(i).Num > 0 AndAlso MapNpc(GetPlayerMap(index)).Npc(i).X = x AndAlso MapNpc(GetPlayerMap(index)).Npc(i).Y = y Then
                 If TempPlayer(index).PetTarget = i AndAlso TempPlayer(index).PetTargetType = TargetType.Npc Then
-                    ' Change target
+                    ' alterar alvo target
                     TempPlayer(index).PetTarget = 0
                     TempPlayer(index).PetTargetType = TargetType.None
-                    ' send target to player
-                    PlayerMsg(index, "Your " & GetPetName(index).Trim & "'s target is no longer a " & Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name.Trim & "!", ColorType.BrightGreen)
+                    ' enviar alvo ao jogador
+                    PlayerMsg(index, "O alvo de " & GetPetName(index).Trim & " não é mais um(a) " & Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name.Trim & "!", ColorType.BrightGreen)
                     Exit Sub
                 Else
-                    ' Change target
+                    ' Alterar alvo
                     TempPlayer(index).PetTarget = i
                     TempPlayer(index).PetTargetType = TargetType.Npc
-                    ' send target to player
-                    PlayerMsg(index, "Your " & GetPetName(index).Trim & "'s target is now a " & Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name.Trim & "!", ColorType.BrightGreen)
+                    ' Enviar alvo para o jogador
+                    PlayerMsg(index, "O alvo de seu " & GetPetName(index).Trim & " agora é um " & Npc(MapNpc(GetPlayerMap(index)).Npc(i).Num).Name.Trim & "!", ColorType.BrightGreen)
                     Exit Sub
                 End If
             End If
@@ -570,10 +570,10 @@ Module S_Pets
             Select Case behaviour
                 Case PetAttackBehaviourAttackonsight
                     SetPetBehaviour(index, PetAttackBehaviourAttackonsight)
-                    SendActionMsg(GetPlayerMap(index), "Agressive Mode!", ColorType.White, 0, GetPetX(index) * 32, GetPetY(index) * 32, index)
+                    SendActionMsg(GetPlayerMap(index), "Modo agressivo!", ColorType.White, 0, GetPetX(index) * 32, GetPetY(index) * 32, index)
                 Case PetAttackBehaviourGuard
                     SetPetBehaviour(index, PetAttackBehaviourGuard)
-                    SendActionMsg(GetPlayerMap(index), "Defensive Mode!", ColorType.White, 0, GetPetX(index) * 32, GetPetY(index) * 32, index)
+                    SendActionMsg(GetPlayerMap(index), "Modo defensivo!", ColorType.White, 0, GetPetX(index) * 32, GetPetY(index) * 32, index)
             End Select
         End If
 
@@ -588,12 +588,12 @@ Module S_Pets
     Sub Packet_PetSkill(index As Integer, ByRef data() As Byte)
         Dim n As Integer
         Dim buffer As New ByteStream(data)
-        ' Skill slot
+        ' Espaço de Habilidade
         n = buffer.ReadInt32
 
         buffer.Dispose()
 
-        ' set the skill buffer before castin
+        ' Colocar o buffer da skill antes de conjurar
         BufferPetSkill(index, n)
 
     End Sub
@@ -605,17 +605,17 @@ Module S_Pets
         pointType = buffer.ReadInt32
         buffer.Dispose()
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If (pointType < 0) OrElse (pointType > StatType.Count) Then Exit Sub
 
         If Not PetAlive(index) Then Exit Sub
 
-        ' Make sure they have points
+        ' Ter certeza que tem pontos
         If GetPetPoints(index) > 0 Then
 
-            ' make sure they're not maxed#
+            ' Ter certeza que não estão no máximo#
             If GetPetStat(index, pointType) >= 255 Then
-                PlayerMsg(index, "You cannot spend any more points on that stat for your pet.", ColorType.BrightRed)
+                PlayerMsg(index, "Você não pode gastar mais pontos nesse atributo no seu pet.", ColorType.BrightRed)
                 Exit Sub
             End If
 
@@ -625,19 +625,19 @@ Module S_Pets
             Select Case pointType
                 Case StatType.Strength
                     SetPetStat(index, pointType, GetPetStat(index, pointType) + 1)
-                    sMes = "Strength"
+                    sMes = "Força"
                 Case StatType.Endurance
                     SetPetStat(index, pointType, GetPetStat(index, pointType) + 1)
-                    sMes = "Endurance"
+                    sMes = "Resistência"
                 Case StatType.Intelligence
                     SetPetStat(index, pointType, GetPetStat(index, pointType) + 1)
-                    sMes = "Intelligence"
+                    sMes = "Inteligência"
                 Case StatType.Luck
                     SetPetStat(index, pointType, GetPetStat(index, pointType) + 1)
-                    sMes = "Agility"
+                    sMes = "Agilidade"
                 Case StatType.Spirit
                     SetPetStat(index, pointType, GetPetStat(index, pointType) + 1)
-                    sMes = "Willpower"
+                    sMes = "Força de Vontade"
             End Select
 
             SendActionMsg(GetPlayerMap(index), "+1 " & sMes, ColorType.White, 1, (GetPetX(index) * 32), (GetPetY(index) * 32))
@@ -645,7 +645,7 @@ Module S_Pets
             Exit Sub
         End If
 
-        ' Send the update
+        ' Enviar a atualização
         SendUpdatePlayerPet(index, True)
 
     End Sub
@@ -665,12 +665,12 @@ Module S_Pets
                 tickCount = GetTimeMs()
 
                 If GetPlayerMap(playerindex) = mapNum AndAlso PetAlive(playerindex) Then
-                    ' // This is used for ATTACKING ON SIGHT //
+                    ' // Isto é usado para atacar ã vista //
 
-                    ' If the npc is a attack on sight, search for a player on the map
+                    ' Se o NPC é atacar a vista, procurar por um jogador no mapa
                     If GetPetBehaviour(playerindex) <> PetAttackBehaviourDonothing Then
 
-                        ' make sure it's not stunned
+                        ' Ter certeza que não está estuporado
                         If Not TempPlayer(playerindex).PetStunDuration > 0 Then
 
                             For i = 1 To Socket.HighIndex
@@ -688,11 +688,11 @@ Module S_Pets
                                             distanceX = GetPetX(playerindex) - GetPetX(i)
                                             distanceY = GetPetY(playerindex) - GetPetY(i)
 
-                                            ' Make sure we get a positive value
+                                            ' Ter certeza de valor positivo
                                             If distanceX < 0 Then distanceX *= -1
                                             If distanceY < 0 Then distanceY *= -1
 
-                                            ' Are they in range?  if so GET'M!
+                                            ' Está ao alcance? Pegue-os!
                                             If distanceX <= n AndAlso distanceY <= n Then
                                                 If GetPetBehaviour(playerindex) = PetAttackBehaviourAttackonsight Then
                                                     TempPlayer(playerindex).PetTargetType = TargetType.Pet ' pet
@@ -704,11 +704,11 @@ Module S_Pets
                                             distanceX = GetPetX(playerindex) - GetPlayerX(i)
                                             distanceY = GetPetY(playerindex) - GetPlayerY(i)
 
-                                            ' Make sure we get a positive value
+                                            ' Ter certeza de valor positivo
                                             If distanceX < 0 Then distanceX *= -1
                                             If distanceY < 0 Then distanceY *= -1
 
-                                            ' Are they in range?  if so GET'M!
+                                            ' Está ao alcance? Pegue-os!
                                             If distanceX <= n AndAlso distanceY <= n Then
                                                 If GetPetBehaviour(playerindex) = PetAttackBehaviourAttackonsight Then
                                                     TempPlayer(playerindex).PetTargetType = TargetType.Player ' player
@@ -729,11 +729,11 @@ Module S_Pets
                                         distanceX = GetPetX(playerindex) - MapNpc(GetPlayerMap(playerindex)).Npc(i).X
                                         distanceY = GetPetY(playerindex) - MapNpc(GetPlayerMap(playerindex)).Npc(i).Y
 
-                                        ' Make sure we get a positive value
+                                        ' Ter certeza de valor positivo
                                         If distanceX < 0 Then distanceX *= -1
                                         If distanceY < 0 Then distanceY *= -1
 
-                                        ' Are they in range?  if so GET'M!
+                                        ' Está ao alcance? Pegue-os!
                                         If distanceX <= n AndAlso distanceY <= n Then
                                             If GetPetBehaviour(playerindex) = PetAttackBehaviourAttackonsight Then
                                                 TempPlayer(playerindex).PetTargetType = TargetType.Npc ' npc
@@ -747,11 +747,11 @@ Module S_Pets
 
                         targetVerify = False
 
-                        ' // This is used for Pet walking/targetting //
+                        ' // Isto é usado para o pet andar/ter alvos //
 
-                        ' Make sure theres a npc with the map
+                        ' Ter certeza que há um NPC com o mapa
                         If TempPlayer(playerindex).PetStunDuration > 0 Then
-                            ' check if we can unstun them
+                            ' Verificar se podemos desestuporá-lo
                             If GetTimeMs() > TempPlayer(playerindex).PetStunTimer + (TempPlayer(playerindex).PetStunDuration * 1000) Then
                                 TempPlayer(playerindex).PetStunDuration = 0
                                 TempPlayer(playerindex).PetStunTimer = 0
@@ -760,14 +760,14 @@ Module S_Pets
                             target = TempPlayer(playerindex).PetTarget
                             targetTypes = TempPlayer(playerindex).PetTargetType
 
-                            ' Check to see if its time for the npc to walk
+                            ' Verificar se é hora do NPC andar
                             If GetPetBehaviour(playerindex) <> PetAttackBehaviourDonothing Then
 
-                                If targetTypes = TargetType.Player Then ' player
-                                    ' Check to see if we are following a player or not
+                                If targetTypes = TargetType.Player Then ' jogador
+                                    ' Verificar se estamos seguindo um jogador ou não
                                     If target > 0 Then
 
-                                        ' Check if the player is even playing, if so follow'm
+                                        ' Verificar se o jogador está jogando; se sim, segui-lo
                                         If IsPlaying(target) AndAlso GetPlayerMap(target) = mapNum Then
                                             If target <> playerindex Then
                                                 didWalk = False
@@ -776,7 +776,7 @@ Module S_Pets
                                                 targetX = GetPlayerX(target)
                                             End If
                                         Else
-                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' clear
+                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' limpar
                                             TempPlayer(playerindex).PetTarget = 0
                                         End If
                                     End If
@@ -788,11 +788,11 @@ Module S_Pets
                                             targetY = MapNpc(mapNum).Npc(target).Y
                                             targetX = MapNpc(mapNum).Npc(target).X
                                         Else
-                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' clear
+                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' limpar
                                             TempPlayer(playerindex).PetTarget = 0
                                         End If
                                     End If
-                                ElseIf targetTypes = TargetType.Pet Then 'other pet
+                                ElseIf targetTypes = TargetType.Pet Then 'outro pet
                                     If target > 0 Then
                                         If IsPlaying(target) AndAlso GetPlayerMap(target) = mapNum AndAlso PetAlive(target) Then
                                             didWalk = False
@@ -800,7 +800,7 @@ Module S_Pets
                                             targetY = GetPetY(target)
                                             targetX = GetPetX(target)
                                         Else
-                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' clear
+                                            TempPlayer(playerindex).PetTargetType = TargetType.None ' limpar
                                             TempPlayer(playerindex).PetTarget = 0
                                         End If
                                     End If
@@ -831,7 +831,7 @@ Module S_Pets
                             ElseIf TempPlayer(playerindex).PetBehavior = PetBehaviourGoto AndAlso targetVerify = False Then
 
                                 If GetPetX(playerindex) = TempPlayer(playerindex).GoToX AndAlso GetPetY(playerindex) = TempPlayer(playerindex).GoToY Then
-                                    'Unblock these for the random turning
+                                    'Descomentar esses para viradas aleatórias
                                     'i = Int(Rnd() * 4)
                                     'PetDir(playerindex, i)
                                 Else
@@ -855,7 +855,7 @@ Module S_Pets
                             ElseIf TempPlayer(playerindex).PetBehavior = PetBehaviourFollow Then
 
                                 If IsPetByPlayer(playerindex) Then
-                                    'Unblock these to enable random turning
+                                    'Descomentar esses para viradas aleatórias
                                     'i = Int(Rnd() * 4)
                                     'PetDir(playerindex, i)
                                 Else
@@ -877,7 +877,7 @@ Module S_Pets
                             End If
                         End If
 
-                        ' // This is used for pets to attack targets //
+                        ' // Isto é usado para pets atacarem seus alvos //
 
                         ' Make sure theres a npc with the map
                         target = TempPlayer(playerindex).PetTarget
@@ -996,7 +996,7 @@ Module S_Pets
 
         SavePlayer(index)
 
-        PlayerMsg(index, "You released your pet!", ColorType.BrightGreen)
+        PlayerMsg(index, "Você libertou seu pet!", ColorType.BrightGreen)
 
         For i = 1 To MAX_MAP_NPCS
             If MapNpc(GetPlayerMap(index)).Npc(i).Vital(VitalType.HP) > 0 Then
@@ -1014,9 +1014,9 @@ Module S_Pets
     Sub AdoptPet(index As Integer, petNum As Integer)
 
         If GetPetNum(index) = 0 Then
-            PlayerMsg(index, "You have adopted a " & Pet(petNum).Name.Trim, ColorType.BrightGreen)
+            PlayerMsg(index, "Você adotou um " & Pet(petNum).Name.Trim, ColorType.BrightGreen)
         Else
-            PlayerMsg(index, "You allready have a " & Pet(petNum).Name.Trim & ", release your old pet first!", ColorType.BrightGreen)
+            PlayerMsg(index, "Você já tem um " & Pet(petNum).Name.Trim & "; primeiro liberte seu pet atual!", ColorType.BrightGreen)
             Exit Sub
         End If
 

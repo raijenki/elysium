@@ -4,14 +4,14 @@
         Dim OriginalMap As Integer
     End Structure
 
-    'Consts
+    'Constantes
     Friend Const INSTANCED_MAP_MASK As Integer = 16777216 '1 << 24
 
     Friend Const MAP_NUMBER_MASK As Integer = INSTANCED_MAP_MASK - 1
 
     Friend Const MAX_INSTANCED_MAPS As Integer = 100
     Friend Const MAX_CACHED_MAPS As Integer = MAX_MAPS + MAX_INSTANCED_MAPS
-    Friend Const INSTANCED_MAP_SUFFIX As String = " (Instanced)"
+    Friend Const INSTANCED_MAP_SUFFIX As String = " (Instanciado)"
 
     Friend InstancedMaps(MAX_INSTANCED_MAPS) As InstancedMap
 
@@ -54,19 +54,19 @@
 
         InstancedMaps(slot).OriginalMap = mapNum
 
-        'Copy Map Data
+        'Copiar Dados do Mapa
         Map(slot + MAX_MAPS) = Map(mapNum)
 
-        'Copy Map Item Data
+        'Copiar Dados dos Itens dos Mapas
 
         For i = 1 To MAX_MAP_ITEMS
             MapItem(slot + MAX_MAPS, i) = MapItem(mapNum, i)
         Next
 
-        'Copy Map NPCs
+        'Copiar Dados dos NPCs dos Mapas
         MapNpc(slot + MAX_MAPS) = MapNpc(mapNum)
 
-        'Re-Cache Resource
+        'Fazer recache dos Recursos
         CacheResources(slot + MAX_MAPS)
 
         If Not (Map(slot + MAX_MAPS).Name = vbNullString) Then Map(slot + MAX_MAPS).Name = Map(slot + MAX_MAPS).Name & INSTANCED_MAP_SUFFIX
