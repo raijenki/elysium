@@ -6,7 +6,7 @@ Friend Module C_Crafting
 #Region "Globals & Types"
 
     Friend RecipeChanged(MAX_RECIPE) As Boolean
-    Friend Recipe(MAX_RECIPE) As RecipeStruct
+    Friend Recipe(MAX_RECIPE) As RecipeRec
     Friend InitRecipeEditor As Boolean
     Friend InitCrafting As Boolean
     Friend InCraft As Boolean
@@ -39,20 +39,6 @@ Friend Module C_Crafting
 
     Friend CraftTimerEnabled As Boolean
     Friend CraftTimer As Integer
-
-    Friend Structure RecipeStruct
-        Dim Name As String
-        Dim RecipeType As Byte
-        Dim MakeItemNum As Integer
-        Dim MakeItemAmount As Integer
-        Dim Ingredients() As IngredientsStruct
-        Dim CreateTime As Byte
-    End Structure
-
-    Friend Structure IngredientsStruct
-        Dim ItemNum As Integer
-        Dim Value As Integer
-    End Structure
 
 #End Region
 
@@ -97,17 +83,7 @@ Friend Module C_Crafting
         n = buffer.ReadInt32
 
         ' Update the Recipe
-        Recipe(n).Name = Trim$(buffer.ReadString)
-        Recipe(n).RecipeType = buffer.ReadInt32
-        Recipe(n).MakeItemNum = buffer.ReadInt32
-        Recipe(n).MakeItemAmount = buffer.ReadInt32
-
-        For i = 1 To MAX_INGREDIENT
-            Recipe(n).Ingredients(i).ItemNum = buffer.ReadInt32()
-            Recipe(n).Ingredients(i).Value = buffer.ReadInt32()
-        Next
-
-        Recipe(n).CreateTime = buffer.ReadInt32
+        Recipe(n) = DeserializeData(buffer)
 
         buffer.Dispose()
 
@@ -175,17 +151,7 @@ Friend Module C_Crafting
 
         buffer.WriteInt32(recipeNum)
 
-        buffer.WriteString((Trim$(Recipe(recipeNum).Name)))
-        buffer.WriteInt32(Recipe(recipeNum).RecipeType)
-        buffer.WriteInt32(Recipe(recipeNum).MakeItemNum)
-        buffer.WriteInt32(Recipe(recipeNum).MakeItemAmount)
-
-        For i = 1 To MAX_INGREDIENT
-            buffer.WriteInt32(Recipe(recipeNum).Ingredients(i).ItemNum)
-            buffer.WriteInt32(Recipe(recipeNum).Ingredients(i).Value)
-        Next
-
-        buffer.WriteInt32(Recipe(recipeNum).CreateTime)
+        buffer.WriteBlock(SerializeData(Recipe(recipeNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()

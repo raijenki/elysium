@@ -319,4 +319,20 @@
         Dim QuestEnd As Byte
         Dim TaskType As Integer
     End Structure
+
+    <Serializable>
+    Friend Structure RecipeRec
+        Dim Name As String
+        Dim RecipeType As Byte
+        Dim MakeItemNum As Integer
+        Dim MakeItemAmount As Integer
+        Dim Ingredients() As IngredientsRec
+        Dim CreateTime As Byte
+    End Structure
+
+    <Serializable>
+    Friend Structure IngredientsRec
+        Dim ItemNum As Integer
+        Dim Value As Integer
+    End Structure
 End Module
