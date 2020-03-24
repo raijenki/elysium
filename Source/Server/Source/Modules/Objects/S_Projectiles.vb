@@ -14,14 +14,6 @@ Friend Module S_Projectiles
 
 #Region "Types"
 
-    Friend Structure ProjectileRec
-        Dim Name As String
-        Dim Sprite As Integer
-        Dim Range As Byte
-        Dim Speed As Integer
-        Dim Damage As Integer
-    End Structure
-
     Friend Structure MapProjectileRec
         Dim ProjectileNum As Integer
         Dim Owner As Integer
@@ -50,38 +42,27 @@ Friend Module S_Projectiles
 
         filename = Path.Projectile(ProjectileNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Projectiles(ProjectileNum).Name)
-        writer.WriteInt32(Projectiles(ProjectileNum).Sprite)
-        writer.WriteByte(Projectiles(ProjectileNum).Range)
-        writer.WriteInt32(Projectiles(ProjectileNum).Speed)
-        writer.WriteInt32(Projectiles(ProjectileNum).Damage)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Projectiles(ProjectileNum), filename)
 
     End Sub
 
     Sub LoadProjectiles()
-        Dim filename As String
         Dim i As Integer
 
         CheckProjectile()
 
         For i = 1 To MAX_PROJECTILES
-            filename = Path.Projectile(i)
-            Dim reader As New ByteStream()
-            BinaryFile.Load(filename, reader)
-
-            Projectiles(i).Name = reader.ReadString()
-            Projectiles(i).Sprite = reader.ReadInt32()
-            Projectiles(i).Range = reader.ReadByte()
-            Projectiles(i).Speed = reader.ReadInt32()
-            Projectiles(i).Damage = reader.ReadInt32()
-
+            LoadProjectile(i)
             Application.DoEvents()
         Next
 
+    End Sub
+
+    Sub LoadProjectile(ProjectileNum As Long)
+        Dim filename As String
+
+        filename = Path.Projectile(ProjectileNum)
+        LoadObject(Projectiles(ProjectileNum), filename)
     End Sub
 
     Sub CheckProjectile()
@@ -170,11 +151,7 @@ Friend Module S_Projectiles
             Exit Sub
         End If
 
-        Projectiles(ProjectileNum).Name = buffer.ReadString
-        Projectiles(ProjectileNum).Sprite = buffer.ReadInt32
-        Projectiles(ProjectileNum).Range = buffer.ReadInt32
-        Projectiles(ProjectileNum).Speed = buffer.ReadInt32
-        Projectiles(ProjectileNum).Damage = buffer.ReadInt32
+        Projectiles(ProjectileNum) = DeserializeData(buffer)
 
         ' Save it
         SendUpdateProjectileToAll(ProjectileNum)
@@ -272,11 +249,7 @@ Friend Module S_Projectiles
 
         buffer.WriteInt32(ServerPackets.SUpdateProjectile)
         buffer.WriteInt32(ProjectileNum)
-        buffer.WriteString((Trim(Projectiles(ProjectileNum).Name)))
-        buffer.WriteInt32(Projectiles(ProjectileNum).Sprite)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Range)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Speed)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Damage)
+        buffer.WriteBlock(SerializeData(Projectiles(ProjectileNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -290,11 +263,7 @@ Friend Module S_Projectiles
 
         buffer.WriteInt32(ServerPackets.SUpdateProjectile)
         buffer.WriteInt32(ProjectileNum)
-        buffer.WriteString((Trim(Projectiles(ProjectileNum).Name)))
-        buffer.WriteInt32(Projectiles(ProjectileNum).Sprite)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Range)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Speed)
-        buffer.WriteInt32(Projectiles(ProjectileNum).Damage)
+        buffer.WriteBlock(SerializeData(Projectiles(ProjectileNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()

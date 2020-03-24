@@ -7,7 +7,7 @@
     Friend Const MAX_INV As Byte = 35
     Friend Const MAX_ITEMS As Integer = 500
     Friend Const MAX_LEVELS As Byte = 100
-    Friend Const MAX_MAPS As Integer = 500
+    Friend Const MAX_MAPS As Integer = 50
     Friend Const MAX_MAP_ITEMS As Byte = 255
     Friend Const MAX_MAP_NPCS As Byte = 30
     Friend Const MAX_NPCS As Integer = 500

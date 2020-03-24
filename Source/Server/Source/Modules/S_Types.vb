@@ -11,6 +11,7 @@
     Friend TempPlayer(MAX_PLAYERS) As TempPlayerRec
     Friend Player(MAX_PLAYERS) As PlayerRec
 
+    <Serializable>
     Friend Structure PlayerRec
 
         ' Conta
@@ -24,6 +25,7 @@
 
     End Structure
 
+    <Serializable>
     Friend Structure CharacterRec
 
         ' Geral
@@ -181,6 +183,7 @@
 
     End Structure
 
+    <Serializable>
     Friend Structure MapRec
         Dim Name As String
         Dim Music As String
@@ -287,6 +290,7 @@
         Dim Npc() As MapNpcRec
     End Structure
 
+    <Serializable>
     Friend Structure HotbarRec
         Dim Slot As Integer
         Dim SlotType As Byte

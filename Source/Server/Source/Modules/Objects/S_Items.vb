@@ -19,64 +19,7 @@ Friend Module S_Items
         Dim filename As String
         filename = Path.Item(itemNum)
 
-        Dim writer As New ByteStream(100)
-        writer.WriteString(Item(itemNum).Name)
-        writer.WriteInt32(Item(itemNum).Pic)
-        writer.WriteString(Item(itemNum).Description)
-
-        writer.WriteByte(Item(itemNum).Type)
-        writer.WriteByte(Item(itemNum).SubType)
-        writer.WriteInt32(Item(itemNum).Data1)
-        writer.WriteInt32(Item(itemNum).Data2)
-        writer.WriteInt32(Item(itemNum).Data3)
-        writer.WriteInt32(Item(itemNum).ClassReq)
-        writer.WriteInt32(Item(itemNum).AccessReq)
-        writer.WriteInt32(Item(itemNum).LevelReq)
-        writer.WriteByte(Item(itemNum).Mastery)
-        writer.WriteInt32(Item(itemNum).Price)
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Item(itemNum).Add_Stat(i))
-        Next
-
-        writer.WriteByte(Item(itemNum).Rarity)
-        writer.WriteInt32(Item(itemNum).Speed)
-        writer.WriteInt32(Item(itemNum).TwoHanded)
-        writer.WriteByte(Item(itemNum).BindType)
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Item(itemNum).Stat_Req(i))
-        Next
-
-        writer.WriteInt32(Item(itemNum).Animation)
-        writer.WriteInt32(Item(itemNum).Paperdoll)
-
-        'Housing
-        writer.WriteInt32(Item(itemNum).FurnitureWidth)
-        writer.WriteInt32(Item(itemNum).FurnitureHeight)
-
-        For a = 0 To 3
-            For b = 0 To 3
-                writer.WriteInt32(Item(itemNum).FurnitureBlocks(a, b))
-                writer.WriteInt32(Item(itemNum).FurnitureFringe(a, b))
-            Next
-        Next
-
-        writer.WriteByte(Item(itemNum).KnockBack)
-        writer.WriteByte(Item(itemNum).KnockBackTiles)
-
-        writer.WriteByte(Item(itemNum).Randomize)
-        writer.WriteByte(Item(itemNum).RandomMin)
-        writer.WriteByte(Item(itemNum).RandomMax)
-
-        writer.WriteByte(Item(itemNum).Stackable)
-
-        writer.WriteByte(Item(itemNum).ItemLevel)
-
-        writer.WriteInt32(Item(itemNum).Projectile)
-        writer.WriteInt32(Item(itemNum).Ammo)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Item(itemNum), filename)
     End Sub
 
     Sub LoadItems()
@@ -96,64 +39,7 @@ Friend Module S_Items
 
         filename = Path.Item(ItemNum)
 
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Item(ItemNum).Name = reader.ReadString()
-        Item(ItemNum).Pic = reader.ReadInt32()
-        Item(ItemNum).Description = reader.ReadString()
-
-        Item(ItemNum).Type = reader.ReadByte()
-        Item(ItemNum).SubType = reader.ReadByte()
-        Item(ItemNum).Data1 = reader.ReadInt32()
-        Item(ItemNum).Data2 = reader.ReadInt32()
-        Item(ItemNum).Data3 = reader.ReadInt32()
-        Item(ItemNum).ClassReq = reader.ReadInt32()
-        Item(ItemNum).AccessReq = reader.ReadInt32()
-        Item(ItemNum).LevelReq = reader.ReadInt32()
-        Item(ItemNum).Mastery = reader.ReadByte()
-        Item(ItemNum).Price = reader.ReadInt32()
-
-        For s = 0 To StatType.Count - 1
-            Item(ItemNum).Add_Stat(s) = reader.ReadByte()
-        Next
-
-        Item(ItemNum).Rarity = reader.ReadByte()
-        Item(ItemNum).Speed = reader.ReadInt32()
-        Item(ItemNum).TwoHanded = reader.ReadInt32()
-        Item(ItemNum).BindType = reader.ReadByte()
-
-        For s = 0 To StatType.Count - 1
-            Item(ItemNum).Stat_Req(s) = reader.ReadByte()
-        Next
-
-        Item(ItemNum).Animation = reader.ReadInt32()
-        Item(ItemNum).Paperdoll = reader.ReadInt32()
-
-        'Housing
-        Item(ItemNum).FurnitureWidth = reader.ReadInt32()
-        Item(ItemNum).FurnitureHeight = reader.ReadInt32()
-
-        For a = 0 To 3
-            For b = 0 To 3
-                Item(ItemNum).FurnitureBlocks(a, b) = reader.ReadInt32()
-                Item(ItemNum).FurnitureFringe(a, b) = reader.ReadInt32()
-            Next
-        Next
-
-        Item(ItemNum).KnockBack = reader.ReadByte()
-        Item(ItemNum).KnockBackTiles = reader.ReadByte()
-
-        Item(ItemNum).Randomize = reader.ReadByte()
-        Item(ItemNum).RandomMin = reader.ReadByte()
-        Item(ItemNum).RandomMax = reader.ReadByte()
-
-        Item(ItemNum).Stackable = reader.ReadByte()
-
-        Item(ItemNum).ItemLevel = reader.ReadByte()
-
-        Item(ItemNum).Projectile = reader.ReadInt32()
-        Item(ItemNum).Ammo = reader.ReadInt32()
+        LoadObject(Item(ItemNum), filename)
 
     End Sub
 

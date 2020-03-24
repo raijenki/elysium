@@ -524,40 +524,7 @@ Module C_NetworkReceive
         Dim buffer As New ByteStream(data)
         i = buffer.ReadInt32
 
-        ' Update the Npc
-        Npc(i).Animation = buffer.ReadInt32()
-        Npc(i).AttackSay = Trim(buffer.ReadString())
-        Npc(i).Behaviour = buffer.ReadInt32()
-        ReDim Npc(i).DropChance(5)
-        ReDim Npc(i).DropItem(5)
-        ReDim Npc(i).DropItemValue(5)
-        For x = 1 To 5
-            Npc(i).DropChance(x) = buffer.ReadInt32()
-            Npc(i).DropItem(x) = buffer.ReadInt32()
-            Npc(i).DropItemValue(x) = buffer.ReadInt32()
-        Next
-
-        Npc(i).Exp = buffer.ReadInt32()
-        Npc(i).Faction = buffer.ReadInt32()
-        Npc(i).Hp = buffer.ReadInt32()
-        Npc(i).Name = Trim(buffer.ReadString())
-        Npc(i).Range = buffer.ReadInt32()
-        Npc(i).SpawnTime = buffer.ReadInt32()
-        Npc(i).SpawnSecs = buffer.ReadInt32()
-        Npc(i).Sprite = buffer.ReadInt32()
-
-        For i = 0 To StatType.Count - 1
-            Npc(i).Stat(i) = buffer.ReadInt32()
-        Next
-
-        Npc(i).QuestNum = buffer.ReadInt32()
-
-        For x = 1 To MAX_NPC_SKILLS
-            Npc(i).Skill(x) = buffer.ReadInt32()
-        Next
-
-        Npc(i).Level = buffer.ReadInt32()
-        Npc(i).Damage = buffer.ReadInt32()
+        Npc(i) = DeserializeData(buffer)
 
         If Npc(i).AttackSay Is Nothing Then Npc(i).AttackSay = ""
         If Npc(i).Name Is Nothing Then Npc(i).Name = ""
@@ -581,34 +548,7 @@ Module C_NetworkReceive
         Dim buffer As New ByteStream(data)
         skillnum = buffer.ReadInt32
 
-        Skill(skillnum).AccessReq = buffer.ReadInt32()
-        Skill(skillnum).AoE = buffer.ReadInt32()
-        Skill(skillnum).CastAnim = buffer.ReadInt32()
-        Skill(skillnum).CastTime = buffer.ReadInt32()
-        Skill(skillnum).CdTime = buffer.ReadInt32()
-        Skill(skillnum).ClassReq = buffer.ReadInt32()
-        Skill(skillnum).Dir = buffer.ReadInt32()
-        Skill(skillnum).Duration = buffer.ReadInt32()
-        Skill(skillnum).Icon = buffer.ReadInt32()
-        Skill(skillnum).Interval = buffer.ReadInt32()
-        Skill(skillnum).IsAoE = buffer.ReadInt32()
-        Skill(skillnum).LevelReq = buffer.ReadInt32()
-        Skill(skillnum).Map = buffer.ReadInt32()
-        Skill(skillnum).MpCost = buffer.ReadInt32()
-        Skill(skillnum).Name = Trim(buffer.ReadString())
-        Skill(skillnum).Range = buffer.ReadInt32()
-        Skill(skillnum).SkillAnim = buffer.ReadInt32()
-        Skill(skillnum).StunDuration = buffer.ReadInt32()
-        Skill(skillnum).Type = buffer.ReadInt32()
-        Skill(skillnum).Vital = buffer.ReadInt32()
-        Skill(skillnum).X = buffer.ReadInt32()
-        Skill(skillnum).Y = buffer.ReadInt32()
-
-        Skill(skillnum).IsProjectile = buffer.ReadInt32()
-        Skill(skillnum).Projectile = buffer.ReadInt32()
-
-        Skill(skillnum).KnockBack = buffer.ReadInt32()
-        Skill(skillnum).KnockBackTiles = buffer.ReadInt32()
+        Skill(skillnum) = DeserializeData(buffer)
 
         If Skill(skillnum).Name Is Nothing Then Skill(skillnum).Name = ""
 
@@ -856,28 +796,8 @@ Module C_NetworkReceive
 
         For i = 1 To x
             n = buffer.ReadInt32
-            ' Update the Animation
-            For z = 0 To UBound(Animation(n).Frames)
-                Animation(n).Frames(z) = buffer.ReadInt32()
-            Next
 
-            For z = 0 To UBound(Animation(n).LoopCount)
-                Animation(n).LoopCount(z) = buffer.ReadInt32()
-            Next
-
-            For z = 0 To UBound(Animation(n).LoopTime)
-                Animation(n).LoopTime(z) = buffer.ReadInt32()
-            Next
-
-            Animation(n).Name = Trim$(buffer.ReadString)
-            Animation(n).Sound = Trim$(buffer.ReadString)
-
-            If Animation(n).Name Is Nothing Then Animation(n).Name = ""
-            If Animation(n).Sound Is Nothing Then Animation(n).Sound = ""
-
-            For z = 0 To UBound(Animation(n).Sprite)
-                Animation(n).Sprite(z) = buffer.ReadInt32()
-            Next
+            Animation(n) = DeserializeData(buffer)
         Next
 
         i = 0
@@ -891,38 +811,7 @@ Module C_NetworkReceive
         x = buffer.ReadInt32
         For i = 1 To x
             n = buffer.ReadInt32
-            ' Update the Npc
-            Npc(n).Animation = buffer.ReadInt32()
-            Npc(n).AttackSay = Trim(buffer.ReadString())
-            Npc(n).Behaviour = buffer.ReadInt32()
-            For z = 1 To 5
-                Npc(n).DropChance(z) = buffer.ReadInt32()
-                Npc(n).DropItem(z) = buffer.ReadInt32()
-                Npc(n).DropItemValue(z) = buffer.ReadInt32()
-            Next
-
-            Npc(n).Exp = buffer.ReadInt32()
-            Npc(n).Faction = buffer.ReadInt32()
-            Npc(n).Hp = buffer.ReadInt32()
-            Npc(n).Name = Trim(buffer.ReadString())
-            Npc(n).Range = buffer.ReadInt32()
-            Npc(n).SpawnTime = buffer.ReadInt32()
-            Npc(n).SpawnSecs = buffer.ReadInt32()
-            Npc(n).Sprite = buffer.ReadInt32()
-
-            For z = 0 To StatType.Count - 1
-                Npc(n).Stat(z) = buffer.ReadInt32()
-            Next
-
-            Npc(n).QuestNum = buffer.ReadInt32()
-
-            ReDim Npc(n).Skill(MAX_NPC_SKILLS)
-            For z = 1 To MAX_NPC_SKILLS
-                Npc(n).Skill(z) = buffer.ReadInt32()
-            Next
-
-            Npc(i).Level = buffer.ReadInt32()
-            Npc(i).Damage = buffer.ReadInt32()
+            Npc(n) = DeserializeData(buffer)
 
             If Npc(n).AttackSay Is Nothing Then Npc(n).AttackSay = ""
             If Npc(n).Name Is Nothing Then Npc(n).Name = ""
@@ -941,16 +830,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Shop(n).BuyRate = buffer.ReadInt32()
-            Shop(n).Name = Trim(buffer.ReadString())
-            Shop(n).Face = buffer.ReadInt32()
-
-            For z = 0 To MAX_TRADES
-                Shop(n).TradeItem(z).CostItem = buffer.ReadInt32()
-                Shop(n).TradeItem(z).CostValue = buffer.ReadInt32()
-                Shop(n).TradeItem(z).Item = buffer.ReadInt32()
-                Shop(n).TradeItem(z).ItemValue = buffer.ReadInt32()
-            Next
+            Shop(n) = DeserializeData(buffer)
 
             If Shop(n).Name Is Nothing Then Shop(n).Name = ""
         Next
@@ -968,34 +848,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Skill(n).AccessReq = buffer.ReadInt32()
-            Skill(n).AoE = buffer.ReadInt32()
-            Skill(n).CastAnim = buffer.ReadInt32()
-            Skill(n).CastTime = buffer.ReadInt32()
-            Skill(n).CdTime = buffer.ReadInt32()
-            Skill(n).ClassReq = buffer.ReadInt32()
-            Skill(n).Dir = buffer.ReadInt32()
-            Skill(n).Duration = buffer.ReadInt32()
-            Skill(n).Icon = buffer.ReadInt32()
-            Skill(n).Interval = buffer.ReadInt32()
-            Skill(n).IsAoE = buffer.ReadInt32()
-            Skill(n).LevelReq = buffer.ReadInt32()
-            Skill(n).Map = buffer.ReadInt32()
-            Skill(n).MpCost = buffer.ReadInt32()
-            Skill(n).Name = Trim(buffer.ReadString())
-            Skill(n).Range = buffer.ReadInt32()
-            Skill(n).SkillAnim = buffer.ReadInt32()
-            Skill(n).StunDuration = buffer.ReadInt32()
-            Skill(n).Type = buffer.ReadInt32()
-            Skill(n).Vital = buffer.ReadInt32()
-            Skill(n).X = buffer.ReadInt32()
-            Skill(n).Y = buffer.ReadInt32()
-
-            Skill(n).IsProjectile = buffer.ReadInt32()
-            Skill(n).Projectile = buffer.ReadInt32()
-
-            Skill(n).KnockBack = buffer.ReadInt32()
-            Skill(n).KnockBackTiles = buffer.ReadInt32()
+            Skill(n) = DeserializeData(buffer)
 
             If Skill(n).Name Is Nothing Then Skill(n).Name = ""
         Next
@@ -1013,20 +866,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Resource(n).Animation = buffer.ReadInt32()
-            Resource(n).EmptyMessage = Trim(buffer.ReadString())
-            Resource(n).ExhaustedImage = buffer.ReadInt32()
-            Resource(n).Health = buffer.ReadInt32()
-            Resource(n).ExpReward = buffer.ReadInt32()
-            Resource(n).ItemReward = buffer.ReadInt32()
-            Resource(n).Name = Trim(buffer.ReadString())
-            Resource(n).ResourceImage = buffer.ReadInt32()
-            Resource(n).ResourceType = buffer.ReadInt32()
-            Resource(n).RespawnTime = buffer.ReadInt32()
-            Resource(n).SuccessMessage = Trim(buffer.ReadString())
-            Resource(n).LvlRequired = buffer.ReadInt32()
-            Resource(n).ToolRequired = buffer.ReadInt32()
-            Resource(n).Walkthrough = buffer.ReadInt32()
+            Resource(n) = DeserializeData(buffer)
 
             If Resource(n).Name Is Nothing Then Resource(n).Name = ""
             If Resource(n).EmptyMessage Is Nothing Then Resource(n).EmptyMessage = ""

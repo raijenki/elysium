@@ -1064,7 +1064,7 @@ Module S_Npc
     End Sub
 
     Sub Packet_SaveNPC(index As Integer, ByRef data() As Byte)
-        Dim NpcNum As Integer, i As Integer
+        Dim NpcNum As Integer
         Dim buffer As New ByteStream(data)
 
         AddDebug("Recieved EMSG: SaveNpc")
@@ -1074,37 +1074,7 @@ Module S_Npc
 
         NpcNum = buffer.ReadInt32
 
-        ' Update the Npc
-        Npc(NpcNum).Animation = buffer.ReadInt32()
-        Npc(NpcNum).AttackSay = buffer.ReadString()
-        Npc(NpcNum).Behaviour = buffer.ReadInt32()
-        For i = 1 To 5
-            Npc(NpcNum).DropChance(i) = buffer.ReadInt32()
-            Npc(NpcNum).DropItem(i) = buffer.ReadInt32()
-            Npc(NpcNum).DropItemValue(i) = buffer.ReadInt32()
-        Next
-
-        Npc(NpcNum).Exp = buffer.ReadInt32()
-        Npc(NpcNum).Faction = buffer.ReadInt32()
-        Npc(NpcNum).Hp = buffer.ReadInt32()
-        Npc(NpcNum).Name = buffer.ReadString()
-        Npc(NpcNum).Range = buffer.ReadInt32()
-        Npc(NpcNum).SpawnTime = buffer.ReadInt32()
-        Npc(NpcNum).SpawnSecs = buffer.ReadInt32()
-        Npc(NpcNum).Sprite = buffer.ReadInt32()
-
-        For i = 0 To StatType.Count - 1
-            Npc(NpcNum).Stat(i) = buffer.ReadInt32()
-        Next
-
-        Npc(NpcNum).QuestNum = buffer.ReadInt32()
-
-        For i = 1 To MAX_NPC_SKILLS
-            Npc(NpcNum).Skill(i) = buffer.ReadInt32()
-        Next
-
-        Npc(NpcNum).Level = buffer.ReadInt32()
-        Npc(NpcNum).Damage = buffer.ReadInt32()
+        Npc(NpcNum) = DeserializeData(buffer)
 
         ' Save it
         SendUpdateNpcToAll(NpcNum)
@@ -1133,37 +1103,7 @@ Module S_Npc
         AddDebug("Sent SMSG: SUpdateNpc")
 
         buffer.WriteInt32(NpcNum)
-        buffer.WriteInt32(Npc(NpcNum).Animation)
-        buffer.WriteString((Npc(NpcNum).AttackSay))
-        buffer.WriteInt32(Npc(NpcNum).Behaviour)
-
-        For i = 1 To 5
-            buffer.WriteInt32(Npc(NpcNum).DropChance(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItem(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItemValue(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Exp)
-        buffer.WriteInt32(Npc(NpcNum).Faction)
-        buffer.WriteInt32(Npc(NpcNum).Hp)
-        buffer.WriteString((Npc(NpcNum).Name))
-        buffer.WriteInt32(Npc(NpcNum).Range)
-        buffer.WriteInt32(Npc(NpcNum).SpawnTime)
-        buffer.WriteInt32(Npc(NpcNum).SpawnSecs)
-        buffer.WriteInt32(Npc(NpcNum).Sprite)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Npc(NpcNum).Stat(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).QuestNum)
-
-        For i = 1 To MAX_NPC_SKILLS
-            buffer.WriteInt32(Npc(NpcNum).Skill(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Level)
-        buffer.WriteInt32(Npc(NpcNum).Damage)
+        buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -1177,37 +1117,7 @@ Module S_Npc
         AddDebug("Sent SMSG: SUpdateNpc To All")
 
         buffer.WriteInt32(NpcNum)
-        buffer.WriteInt32(Npc(NpcNum).Animation)
-        buffer.WriteString((Npc(NpcNum).AttackSay))
-        buffer.WriteInt32(Npc(NpcNum).Behaviour)
-
-        For i = 1 To 5
-            buffer.WriteInt32(Npc(NpcNum).DropChance(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItem(i))
-            buffer.WriteInt32(Npc(NpcNum).DropItemValue(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Exp)
-        buffer.WriteInt32(Npc(NpcNum).Faction)
-        buffer.WriteInt32(Npc(NpcNum).Hp)
-        buffer.WriteString((Npc(NpcNum).Name))
-        buffer.WriteInt32(Npc(NpcNum).Range)
-        buffer.WriteInt32(Npc(NpcNum).SpawnTime)
-        buffer.WriteInt32(Npc(NpcNum).SpawnSecs)
-        buffer.WriteInt32(Npc(NpcNum).Sprite)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Npc(NpcNum).Stat(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).QuestNum)
-
-        For i = 1 To MAX_NPC_SKILLS
-            buffer.WriteInt32(Npc(NpcNum).Skill(i))
-        Next
-
-        buffer.WriteInt32(Npc(NpcNum).Level)
-        buffer.WriteInt32(Npc(NpcNum).Damage)
+        buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()

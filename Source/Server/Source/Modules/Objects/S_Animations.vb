@@ -17,32 +17,10 @@ Friend Module S_Animations
 
     Sub SaveAnimation(AnimationNum As Integer)
         Dim filename As String
-        Dim x As Integer
 
         filename = Path.Animation(AnimationNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Animation(AnimationNum).Name)
-        writer.WriteString(Animation(AnimationNum).Sound)
-
-        For x = 0 To UBound(Animation(AnimationNum).Sprite)
-            writer.WriteInt32(Animation(AnimationNum).Sprite(x))
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).Frames)
-            writer.WriteInt32(Animation(AnimationNum).Frames(x))
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).LoopCount)
-            writer.WriteInt32(Animation(AnimationNum).LoopCount(x))
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).LoopTime)
-            writer.WriteInt32(Animation(AnimationNum).LoopTime(x))
-        Next
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Animation(AnimationNum), filename)
     End Sub
 
     Sub LoadAnimations()
@@ -60,27 +38,7 @@ Friend Module S_Animations
         Dim filename As String
 
         filename = Path.Animation(AnimationNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Animation(AnimationNum).Name = reader.ReadString()
-        Animation(AnimationNum).Sound = reader.ReadString()
-
-        For x = 0 To UBound(Animation(AnimationNum).Sprite)
-            Animation(AnimationNum).Sprite(x) = reader.ReadInt32()
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).Frames)
-            Animation(AnimationNum).Frames(x) = reader.ReadInt32()
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).LoopCount)
-            Animation(AnimationNum).LoopCount(x) = reader.ReadInt32()
-        Next
-
-        For x = 0 To UBound(Animation(AnimationNum).LoopTime)
-            Animation(AnimationNum).LoopTime(x) = reader.ReadInt32()
-        Next
+        LoadObject(Animation(AnimationNum), filename)
 
         If Animation(AnimationNum).Name Is Nothing Then Animation(AnimationNum).Name = ""
     End Sub
@@ -129,24 +87,7 @@ Friend Module S_Animations
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(AnimationNum)
-        For i = 0 To UBound(Animation(AnimationNum).Frames)
-            buffer.WriteInt32(Animation(AnimationNum).Frames(i))
-        Next
-
-        For i = 0 To UBound(Animation(AnimationNum).LoopCount)
-            buffer.WriteInt32(Animation(AnimationNum).LoopCount(i))
-        Next
-
-        For i = 0 To UBound(Animation(AnimationNum).LoopTime)
-            buffer.WriteInt32(Animation(AnimationNum).LoopTime(i))
-        Next
-
-        buffer.WriteString((Animation(AnimationNum).Name))
-        buffer.WriteString((Animation(AnimationNum).Sound))
-
-        For i = 0 To UBound(Animation(AnimationNum).Sprite)
-            buffer.WriteInt32(Animation(AnimationNum).Sprite(i))
-        Next
+        buffer.WriteBlock(SerializeData(Animation(AnimationNum)))
 
         Return buffer.ToArray
     End Function
@@ -175,28 +116,7 @@ Friend Module S_Animations
 
         AnimNum = buffer.ReadInt32
 
-        ' Atualizar animação
-        For i = 0 To UBound(Animation(AnimNum).Frames)
-            Animation(AnimNum).Frames(i) = buffer.ReadInt32()
-        Next
-
-        For i = 0 To UBound(Animation(AnimNum).LoopCount)
-            Animation(AnimNum).LoopCount(i) = buffer.ReadInt32()
-        Next
-
-        For i = 0 To UBound(Animation(AnimNum).LoopTime)
-            Animation(AnimNum).LoopTime(i) = buffer.ReadInt32()
-        Next
-
-        Animation(AnimNum).Name = buffer.ReadString()
-        Animation(AnimNum).Sound = buffer.ReadString()
-
-        If Animation(AnimNum).Name Is Nothing Then Animation(AnimNum).Name = ""
-        If Animation(AnimNum).Sound Is Nothing Then Animation(AnimNum).Sound = ""
-
-        For i = 0 To UBound(Animation(AnimNum).Sprite)
-            Animation(AnimNum).Sprite(i) = buffer.ReadInt32()
-        Next
+        Animation(AnimNum) = DeserializeData(buffer)
 
         buffer.Dispose()
 
@@ -253,27 +173,6 @@ Friend Module S_Animations
 
         buffer.WriteBlock(AnimationData(AnimationNum))
 
-        'buffer.WriteInt32(AnimationNum)
-
-        'For i = 0 To UBound(Animation(AnimationNum).Frames)
-        '    buffer.WriteInt32(Animation(AnimationNum).Frames(i))
-        'Next
-
-        'For i = 0 To UBound(Animation(AnimationNum).LoopCount)
-        '    buffer.WriteInt32(Animation(AnimationNum).LoopCount(i))
-        'Next
-
-        'For i = 0 To UBound(Animation(AnimationNum).LoopTime)
-        '    buffer.WriteInt32(Animation(AnimationNum).LoopTime(i))
-        'Next
-
-        'buffer.WriteString((Animation(AnimationNum).Name))
-        'buffer.WriteString((Animation(AnimationNum).Sound))
-
-        'For i = 0 To UBound(Animation(AnimationNum).Sprite)
-        '    buffer.WriteInt32(Animation(AnimationNum).Sprite(i))
-        'Next
-
         AddDebug("Enviada SMSG: SUpdateAnimation")
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -286,27 +185,6 @@ Friend Module S_Animations
         buffer.WriteInt32(ServerPackets.SUpdateAnimation)
 
         buffer.WriteBlock(AnimationData(AnimationNum))
-
-        'buffer.WriteInt32(AnimationNum)
-
-        'For i = 0 To UBound(Animation(AnimationNum).Frames)
-        '    buffer.WriteInt32(Animation(AnimationNum).Frames(i))
-        'Next
-
-        'For i = 0 To UBound(Animation(AnimationNum).LoopCount)
-        '    buffer.WriteInt32(Animation(AnimationNum).LoopCount(i))
-        'Next
-
-        'For i = 0 To UBound(Animation(AnimationNum).LoopTime)
-        '    buffer.WriteInt32(Animation(AnimationNum).LoopTime(i))
-        'Next
-
-        'buffer.WriteString((Animation(AnimationNum).Name))
-        'buffer.WriteString((Animation(AnimationNum).Sound))
-
-        'For i = 0 To UBound(Animation(AnimationNum).Sprite)
-        '    buffer.WriteInt32(Animation(AnimationNum).Sprite(i))
-        'Next
 
         AddDebug("Enviada SMSG: SUpdateAnimation To All")
 

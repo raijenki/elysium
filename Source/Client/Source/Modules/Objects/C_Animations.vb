@@ -92,28 +92,8 @@ Module C_Animations
         Dim buffer As New ByteStream(data)
 
         n = buffer.ReadInt32
-        ' Update the Animation
-        For i = 0 To UBound(Animation(n).Frames)
-            Animation(n).Frames(i) = buffer.ReadInt32()
-        Next
+        Animation(n) = DeserializeData(buffer)
 
-        For i = 0 To UBound(Animation(n).LoopCount)
-            Animation(n).LoopCount(i) = buffer.ReadInt32()
-        Next
-
-        For i = 0 To UBound(Animation(n).LoopTime)
-            Animation(n).LoopTime(i) = buffer.ReadInt32()
-        Next
-
-        Animation(n).Name = Trim$(buffer.ReadString)
-        Animation(n).Sound = Trim$(buffer.ReadString)
-
-        If Animation(n).Name Is Nothing Then Animation(n).Name = ""
-        If Animation(n).Sound Is Nothing Then Animation(n).Sound = ""
-
-        For i = 0 To UBound(Animation(n).Sprite)
-            Animation(n).Sprite(i) = buffer.ReadInt32()
-        Next
         buffer.Dispose()
     End Sub
 
