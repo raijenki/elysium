@@ -548,34 +548,7 @@ Module C_NetworkReceive
         Dim buffer As New ByteStream(data)
         skillnum = buffer.ReadInt32
 
-        Skill(skillnum).AccessReq = buffer.ReadInt32()
-        Skill(skillnum).AoE = buffer.ReadInt32()
-        Skill(skillnum).CastAnim = buffer.ReadInt32()
-        Skill(skillnum).CastTime = buffer.ReadInt32()
-        Skill(skillnum).CdTime = buffer.ReadInt32()
-        Skill(skillnum).ClassReq = buffer.ReadInt32()
-        Skill(skillnum).Dir = buffer.ReadInt32()
-        Skill(skillnum).Duration = buffer.ReadInt32()
-        Skill(skillnum).Icon = buffer.ReadInt32()
-        Skill(skillnum).Interval = buffer.ReadInt32()
-        Skill(skillnum).IsAoE = buffer.ReadInt32()
-        Skill(skillnum).LevelReq = buffer.ReadInt32()
-        Skill(skillnum).Map = buffer.ReadInt32()
-        Skill(skillnum).MpCost = buffer.ReadInt32()
-        Skill(skillnum).Name = Trim(buffer.ReadString())
-        Skill(skillnum).Range = buffer.ReadInt32()
-        Skill(skillnum).SkillAnim = buffer.ReadInt32()
-        Skill(skillnum).StunDuration = buffer.ReadInt32()
-        Skill(skillnum).Type = buffer.ReadInt32()
-        Skill(skillnum).Vital = buffer.ReadInt32()
-        Skill(skillnum).X = buffer.ReadInt32()
-        Skill(skillnum).Y = buffer.ReadInt32()
-
-        Skill(skillnum).IsProjectile = buffer.ReadInt32()
-        Skill(skillnum).Projectile = buffer.ReadInt32()
-
-        Skill(skillnum).KnockBack = buffer.ReadInt32()
-        Skill(skillnum).KnockBackTiles = buffer.ReadInt32()
+        Skill(skillnum) = DeserializeData(buffer)
 
         If Skill(skillnum).Name Is Nothing Then Skill(skillnum).Name = ""
 
@@ -884,34 +857,7 @@ Module C_NetworkReceive
         For i = 1 To x
             n = buffer.ReadInt32
 
-            Skill(n).AccessReq = buffer.ReadInt32()
-            Skill(n).AoE = buffer.ReadInt32()
-            Skill(n).CastAnim = buffer.ReadInt32()
-            Skill(n).CastTime = buffer.ReadInt32()
-            Skill(n).CdTime = buffer.ReadInt32()
-            Skill(n).ClassReq = buffer.ReadInt32()
-            Skill(n).Dir = buffer.ReadInt32()
-            Skill(n).Duration = buffer.ReadInt32()
-            Skill(n).Icon = buffer.ReadInt32()
-            Skill(n).Interval = buffer.ReadInt32()
-            Skill(n).IsAoE = buffer.ReadInt32()
-            Skill(n).LevelReq = buffer.ReadInt32()
-            Skill(n).Map = buffer.ReadInt32()
-            Skill(n).MpCost = buffer.ReadInt32()
-            Skill(n).Name = Trim(buffer.ReadString())
-            Skill(n).Range = buffer.ReadInt32()
-            Skill(n).SkillAnim = buffer.ReadInt32()
-            Skill(n).StunDuration = buffer.ReadInt32()
-            Skill(n).Type = buffer.ReadInt32()
-            Skill(n).Vital = buffer.ReadInt32()
-            Skill(n).X = buffer.ReadInt32()
-            Skill(n).Y = buffer.ReadInt32()
-
-            Skill(n).IsProjectile = buffer.ReadInt32()
-            Skill(n).Projectile = buffer.ReadInt32()
-
-            Skill(n).KnockBack = buffer.ReadInt32()
-            Skill(n).KnockBackTiles = buffer.ReadInt32()
+            Skill(n) = DeserializeData(buffer)
 
             If Skill(n).Name Is Nothing Then Skill(n).Name = ""
         Next

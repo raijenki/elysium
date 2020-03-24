@@ -447,7 +447,6 @@ Module C_NetworkSend
 
         buffer.WriteInt32(ClientPackets.CSaveNpc)
         buffer.WriteInt32(NpcNum)
-
         buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
@@ -467,35 +466,7 @@ Module C_NetworkSend
 
         buffer.WriteInt32(ClientPackets.CSaveSkill)
         buffer.WriteInt32(skillnum)
-
-        buffer.WriteInt32(Skill(skillnum).AccessReq)
-        buffer.WriteInt32(Skill(skillnum).AoE)
-        buffer.WriteInt32(Skill(skillnum).CastAnim)
-        buffer.WriteInt32(Skill(skillnum).CastTime)
-        buffer.WriteInt32(Skill(skillnum).CdTime)
-        buffer.WriteInt32(Skill(skillnum).ClassReq)
-        buffer.WriteInt32(Skill(skillnum).Dir)
-        buffer.WriteInt32(Skill(skillnum).Duration)
-        buffer.WriteInt32(Skill(skillnum).Icon)
-        buffer.WriteInt32(Skill(skillnum).Interval)
-        buffer.WriteInt32(Skill(skillnum).IsAoE)
-        buffer.WriteInt32(Skill(skillnum).LevelReq)
-        buffer.WriteInt32(Skill(skillnum).Map)
-        buffer.WriteInt32(Skill(skillnum).MpCost)
-        buffer.WriteString((Skill(skillnum).Name))
-        buffer.WriteInt32(Skill(skillnum).Range)
-        buffer.WriteInt32(Skill(skillnum).SkillAnim)
-        buffer.WriteInt32(Skill(skillnum).StunDuration)
-        buffer.WriteInt32(Skill(skillnum).Type)
-        buffer.WriteInt32(Skill(skillnum).Vital)
-        buffer.WriteInt32(Skill(skillnum).X)
-        buffer.WriteInt32(Skill(skillnum).Y)
-
-        buffer.WriteInt32(Skill(skillnum).IsProjectile)
-        buffer.WriteInt32(Skill(skillnum).Projectile)
-
-        buffer.WriteInt32(Skill(skillnum).KnockBack)
-        buffer.WriteInt32(Skill(skillnum).KnockBackTiles)
+        buffer.WriteBlock(SerializeData(Skill(skillnum)))
 
         Socket.SendData(buffer.Data, buffer.Head)
 
