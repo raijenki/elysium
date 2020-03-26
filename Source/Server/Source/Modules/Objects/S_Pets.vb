@@ -1692,10 +1692,10 @@ Module S_Pets
         'Então repetimos o loop até que LastX e LastY não estejam no início. Olhe o código para ver
         'como LastX e LastY mudam.
         Do While lastX <> sX OrElse lastY <> sY
-            'We decrease tim by one, and then we are finding any adjacent square to the final one, that
-            'has that value. So lets say the tim would be 5, because it takes 5 steps to get to the target.
-            'Now everytime we decrease that, so we make it 4, and we look for any adjacent square that has
-            'that value. When we find it, we just color it yellow as for the solution
+            ' Diminuimos tim por um e então encontramos qualquer quadrado adjacente ao final que tenha aquele valor.
+            'Então digamos que tim seria 5, porque levaria 5 passos ao alvo. Agora todas as vezes diminuimos e 
+            'fazemos ser 4, olhamos por quadrados adjacentes qu tem esse valor. Qunado encontramos, colorimos 
+            'de amarelo como a solução
             tim -= 1
             'resetar did para falso
             did = False
