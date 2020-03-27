@@ -27,7 +27,7 @@
     Function GetNpcMaxVital(NpcNum As Integer, Vital As VitalType) As Integer
         GetNpcMaxVital = 0
 
-        ' Prevent subscript out of range
+        ' Prevenir subscript out of range
         If NpcNum <= 0 OrElse NpcNum > MAX_NPCS Then Exit Function
 
         Select Case Vital
@@ -46,7 +46,7 @@
 
         For i = 1 To GetPlayersOnline()
             If IsPlaying(i) Then
-                ' Make sure we dont try to check a name thats to small
+                ' Ter certeza que não tentamos checar um nome que é muito pequeno
                 If Len(GetPlayerName(i)) >= Len(Trim$(Name)) Then
                     If UCase$(Mid$(GetPlayerName(i), 1, Len(Trim$(Name)))) = UCase$(Trim$(Name)) Then
                         FindPlayer = i
@@ -74,11 +74,12 @@
             Exit Function
         End If
 
-        If FirstLetter Like "*[aeiou]*" Then
-            If Caps Then CheckGrammar = "An " & Word Else CheckGrammar = "an " & Word
-        Else
-            If Caps Then CheckGrammar = "A " & Word Else CheckGrammar = "a " & Word
-        End If
+        'Não é necessário isso
+        'If FirstLetter Like "*[aeiou]*" Then
+        ' If Caps Then CheckGrammar = "An " & Word Else CheckGrammar = "an " & Word
+        'Else
+        ' If Caps Then CheckGrammar = "A " & Word Else CheckGrammar = "a " & Word
+        'End If
     End Function
 
 End Module

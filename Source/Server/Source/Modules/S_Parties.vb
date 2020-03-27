@@ -30,8 +30,8 @@ Module S_Parties
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPartyInvite)
 
-        Addlog("Sent SMSG: SPartyInvite", PACKET_LOG)
-        Console.WriteLine("Sent SMSG: SPartyInvite")
+        Addlog("Enviada SMSG: SPartyInvite", PACKET_LOG)
+        Console.WriteLine("Enviada SMSG: SPartyInvite")
 
         buffer.WriteString((Trim$(Player(target).Character(TempPlayer(target).CurChar).Name)))
 
@@ -43,8 +43,8 @@ Module S_Parties
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPartyUpdate)
 
-        Addlog("Sent SMSG: SPartyUpdate", PACKET_LOG)
-        Console.WriteLine("Sent SMSG: SPartyUpdate")
+        Addlog("Enviada SMSG: SPartyUpdate", PACKET_LOG)
+        Console.WriteLine("Enviada SMSG: SPartyUpdate")
 
         buffer.WriteInt32(1)
         buffer.WriteInt32(Party(partyNum).Leader)
@@ -62,13 +62,13 @@ Module S_Parties
 
         buffer.WriteInt32(ServerPackets.SPartyUpdate)
 
-        Addlog("Sent SMSG: SPartyUpdate To Players", PACKET_LOG)
-        Console.WriteLine("Sent SMSG: SPartyUpdate To Players")
+        Addlog("Enviada SMSG: SPartyUpdate To Players", PACKET_LOG)
+        Console.WriteLine("Enviada SMSG: SPartyUpdate To Players")
 
-        ' check if we're in a party
+        ' ver se estamos em uma equipe
         partyNum = TempPlayer(index).InParty
         If partyNum > 0 Then
-            ' send party data
+            ' enviar dados da equipe
             buffer.WriteInt32(1)
             buffer.WriteInt32(Party(partyNum).Leader)
             For i = 1 To MAX_PARTY_MEMBERS
@@ -76,7 +76,7 @@ Module S_Parties
             Next
             buffer.WriteInt32(Party(partyNum).MemberCount)
         Else
-            ' send clear command
+            ' enviar comando de limpar
             buffer.WriteInt32(0)
         End If
 
@@ -91,8 +91,8 @@ Module S_Parties
         buffer.WriteInt32(ServerPackets.SPartyVitals)
         buffer.WriteInt32(index)
 
-        Addlog("Sent SMSG: SPartyVitals", PACKET_LOG)
-        Console.WriteLine("Sent SMSG: SPartyVitals")
+        Addlog("Enviada SMSG: SPartyVitals", PACKET_LOG)
+        Console.WriteLine("Enviada SMSG: SPartyVitals")
 
         For i = 1 To VitalType.Count - 1
             buffer.WriteInt32(GetPlayerMaxVital(index, i))
@@ -108,47 +108,47 @@ Module S_Parties
 #Region "Incoming Packets"
 
     Friend Sub Packet_PartyRquest(index As Integer, ByRef data() As Byte)
-        Addlog("Recieved CMSG: CRequestParty", PACKET_LOG)
-        Console.WriteLine("Recieved CMSG: CRequestParty")
+        Addlog("Recebida CMSG: CRequestParty", PACKET_LOG)
+        Console.WriteLine("Recebida CMSG: CRequestParty")
 
-        ' Prevent partying with self
+        ' Prevenir fazer euqipe com si próprio
         If TempPlayer(index).Target = index Then Exit Sub
-        ' make sure it's a valid target
+        ' ter certeza que é um alvo válido
         If TempPlayer(index).TargetType <> TargetType.Player Then Exit Sub
 
-        ' make sure they're connected and on the same map
+        ' ter certeza que estão conectado e no mesmo mapa
         If Not Socket.IsConnected(TempPlayer(index).Target) OrElse Not IsPlaying(TempPlayer(index).Target) Then Exit Sub
         If GetPlayerMap(TempPlayer(index).Target) <> GetPlayerMap(index) Then Exit Sub
 
-        ' init the request
+        ' iniciar o pedido
         Party_Invite(index, TempPlayer(index).Target)
     End Sub
 
     Friend Sub Packet_AcceptParty(index As Integer, ByRef data() As Byte)
-        Addlog("Recieved CMSG: CAcceptParty", PACKET_LOG)
-        Console.WriteLine("Recieved CMSG: CAcceptParty")
+        Addlog("Recebida CMSG: CAcceptParty", PACKET_LOG)
+        Console.WriteLine("Recebida CMSG: CAcceptParty")
 
         Party_InviteAccept(TempPlayer(index).PartyInvite, index)
     End Sub
 
     Friend Sub Packet_DeclineParty(index As Integer, ByRef data() As Byte)
-        Addlog("Recieved CMSG: CDeclineParty", PACKET_LOG)
-        Console.WriteLine("Recieved CMSG: CDeclineParty")
+        Addlog("Recebida CMSG: CDeclineParty", PACKET_LOG)
+        Console.WriteLine("Recebida CMSG: CDeclineParty")
 
         Party_InviteDecline(TempPlayer(index).PartyInvite, index)
     End Sub
 
     Friend Sub Packet_LeaveParty(index As Integer, ByRef data() As Byte)
-        Addlog("Recieved CMSG: CLeaveParty", PACKET_LOG)
-        Console.WriteLine("Recieved CMSG: CLeaveParty")
+        Addlog("Recebida CMSG: CLeaveParty", PACKET_LOG)
+        Console.WriteLine("Recebida CMSG: CLeaveParty")
 
         Party_PlayerLeave(index)
     End Sub
 
     Friend Sub Packet_PartyChatMsg(index As Integer, ByRef data() As Byte)
         Dim buffer As New ByteStream(data)
-        Addlog("Recieved CMSG: CPartyChatMsg", PACKET_LOG)
-        Console.WriteLine("Recieved CMSG: CPartyChatMsg")
+        Addlog("Recebida CMSG: CPartyChatMsg", PACKET_LOG)
+        Console.WriteLine("Recebida CMSG: CPartyChatMsg")
 
         PartyMsg(index, buffer.ReadString)
 
@@ -176,11 +176,11 @@ Module S_Parties
     Friend Sub PartyMsg(partyNum As Integer, msg As String)
         Dim i As Integer
 
-        ' send message to all people
+        ' enviar mensagem para todas as pessoas
         For i = 1 To MAX_PARTY_MEMBERS
-            ' exist?
+            ' existe?
             If Party(partyNum).Member(i) > 0 Then
-                ' make sure they're logged on
+                ' ter certeza que estao logados
                 If Socket.IsConnected(Party(partyNum).Member(i)) AndAlso IsPlaying(Party(partyNum).Member(i)) Then
                     PlayerMsg(Party(partyNum).Member(i), msg, ColorType.BrightBlue)
                 End If
@@ -208,44 +208,44 @@ Module S_Parties
         partyNum = TempPlayer(index).InParty
 
         If partyNum > 0 Then
-            ' find out how many members we have
+            ' descobrir quantos membros temos
             Party_CountMembers(partyNum)
-            ' make sure there's more than 2 people
+            ' ter certeza que tem mais que duas pesosoas
             If Party(partyNum).MemberCount > 2 Then
 
-                ' check if leader
+                ' ver se é líder
                 If Party(partyNum).Leader = index Then
-                    ' set next person down as leader
+                    ' colocar a próxima pessoa como lider
                     For i = 1 To MAX_PARTY_MEMBERS
                         If Party(partyNum).Member(i) > 0 AndAlso Party(partyNum).Member(i) <> index Then
                             Party(partyNum).Leader = Party(partyNum).Member(i)
-                            PartyMsg(partyNum, String.Format("{0} is now the party leader.", GetPlayerName(i)))
+                            PartyMsg(partyNum, String.Format("{0} agora é o líder da equipe.", GetPlayerName(i)))
                             Exit For
                         End If
                     Next
-                    ' leave party
-                    PartyMsg(partyNum, String.Format("{0} has left the party.", GetPlayerName(index)))
+                    ' sair da equipe
+                    PartyMsg(partyNum, String.Format("{0} saiu da equipe.", GetPlayerName(index)))
                     Party_RemoveFromParty(index, partyNum)
                 Else
-                    ' not the leader, just leave
-                    PartyMsg(partyNum, String.Format("{0} has left the party.", GetPlayerName(index)))
+                    ' não é o líder, apenas sair
+                    PartyMsg(partyNum, String.Format("{0} saiu da euqipe.", GetPlayerName(index)))
                     Party_RemoveFromParty(index, partyNum)
                 End If
             Else
-                ' find out how many members we have
+                ' descobrir quantos membros temos
                 Party_CountMembers(partyNum)
-                ' only 2 people, disband
-                PartyMsg(partyNum, "The party has been disbanded.")
+                ' apenas 2 pessoas, desfazer equipe
+                PartyMsg(partyNum, "A equipe foi desfeita.")
 
-                ' clear out everyone's party
+                ' limpar a equipe de todo mundo
                 For i = 1 To MAX_PARTY_MEMBERS
                     index = Party(partyNum).Member(i)
-                    ' player exist?
+                    ' jogador existe?
                     If index > 0 Then
                         Party_RemoveFromParty(index, partyNum)
                     End If
                 Next
-                ' clear out the party itself
+                ' limpar a equipe em si
                 ClearParty(partyNum)
             End If
         End If
@@ -254,56 +254,56 @@ Module S_Parties
     Friend Sub Party_Invite(index As Integer, target As Integer)
         Dim partyNum As Integer, i As Integer
 
-        ' check if the person is a valid target
+        ' ver se pessoa é alvo válido
         If Not Socket.IsConnected(target) OrElse Not IsPlaying(target) Then Exit Sub
 
-        ' make sure they're not busy
+        ' ter certeza que não está ocupado
         If TempPlayer(target).PartyInvite > 0 OrElse TempPlayer(target).TradeRequest > 0 Then
-            ' they've already got a request for trade/party
-            PlayerMsg(index, "This player is busy.", ColorType.BrightRed)
-            ' exit out early
+            ' já tem um pedido para troca/equipe
+            PlayerMsg(index, "Esse jogador está ocupado.", ColorType.BrightRed)
+            ' sair mais cedo
             Exit Sub
         End If
-        ' make syure they're not in a party
+        ' Ter certeza que não está já em uma equipe
         If TempPlayer(target).InParty > 0 Then
-            ' they're already in a party
-            PlayerMsg(index, "This player is already in a party.", ColorType.BrightRed)
-            'exit out early
+            ' Ele já está em uma
+            PlayerMsg(index, "Esse jogador já está em uma equipe.", ColorType.BrightRed)
+            'sair mais cedo
             Exit Sub
         End If
 
-        ' check if we're in a party
+        ' ver se estamos em uma equipe
         If TempPlayer(index).InParty > 0 Then
             partyNum = TempPlayer(index).InParty
-            ' make sure we're the leader
+            ' ter certeza que somos o lider
             If Party(partyNum).Leader = index Then
-                ' got a blank slot?
+                ' tem espaço livre?
                 For i = 1 To MAX_PARTY_MEMBERS
                     If Party(partyNum).Member(i) = 0 Then
-                        ' send the invitation
+                        ' enviar o convite
                         SendPartyInvite(target, index)
-                        ' set the invite target
+                        ' setar o alvo do convite
                         TempPlayer(target).PartyInvite = index
-                        ' let them know
-                        PlayerMsg(index, "Invitation sent.", ColorType.Yellow)
+                        ' deixar que saibam
+                        PlayerMsg(index, "Convite enviado.", ColorType.Yellow)
                         Exit Sub
                     End If
                 Next
-                ' no room
+                ' sem espaço
                 PlayerMsg(index, "Party is full.", ColorType.BrightRed)
                 Exit Sub
             Else
-                ' not the leader
-                PlayerMsg(index, "You are not the party leader.", ColorType.BrightRed)
+                ' não é o líder
+                PlayerMsg(index, "Você não é o líder da equipe.", ColorType.BrightRed)
                 Exit Sub
             End If
         Else
-            ' not in a party - doesn't matter!
+            ' não está em uma equipe - não importa!
             SendPartyInvite(target, index)
-            ' set the invite target
+            ' setar o alvo do convite
             TempPlayer(target).PartyInvite = index
-            ' let them know
-            PlayerMsg(index, "Invitation sent.", ColorType.Yellow)
+            ' deixar saber
+            PlayerMsg(index, "Convite enviado.", ColorType.Yellow)
             Exit Sub
         End If
     End Sub
@@ -311,41 +311,41 @@ Module S_Parties
     Friend Sub Party_InviteAccept(index As Integer, target As Integer)
         Dim partyNum As Integer, i As Integer
 
-        ' check if already in a party
+        ' ver se já está em uma equipe
         If TempPlayer(index).InParty > 0 Then
-            ' get the partynumber
+            ' pegar o número da equipe
             partyNum = TempPlayer(index).InParty
-            ' got a blank slot?
+            ' tem espaço vazio?
             For i = 1 To MAX_PARTY_MEMBERS
                 If Party(partyNum).Member(i) = 0 Then
-                    'add to the party
+                    'adicionar equipe
                     Party(partyNum).Member(i) = target
-                    ' recount party
+                    ' recontar equipe
                     Party_CountMembers(partyNum)
-                    ' send update to all - including new player
+                    ' atualizar para todos - inclusive o novo jogador
                     SendPartyUpdate(partyNum)
                     SendPartyVitals(partyNum, target)
-                    ' let everyone know they've joined
-                    PartyMsg(partyNum, String.Format("{0} has joined the party.", GetPlayerName(target)))
-                    ' add them in
+                    ' deixar todo saber que alguem entrou
+                    PartyMsg(partyNum, String.Format("{0} entrou na equipe.", GetPlayerName(target)))
+                    ' adicionar
                     TempPlayer(target).InParty = partyNum
                     Exit Sub
                 End If
             Next
-            ' no empty slots - let them know
-            PlayerMsg(index, "Party is full.", ColorType.BrightRed)
-            PlayerMsg(target, "Party is full.", ColorType.BrightRed)
+            ' não há espaço vazios - deixar saber
+            PlayerMsg(index, "A equipe está cheia.", ColorType.BrightRed)
+            PlayerMsg(target, "A equipe está cheia.", ColorType.BrightRed)
             Exit Sub
         Else
-            ' not in a party. Create one with the new person.
+            ' não está em uma equipe. criar uma nova com uma pessoa.
             For i = 1 To MAX_PARTIES
-                ' find blank party
+                ' encontrar uma equipe vazia
                 If Not Party(i).Leader > 0 Then
                     partyNum = i
                     Exit For
                 End If
             Next
-            ' create the party
+            ' criar a equipe
             Party(partyNum).MemberCount = 2
             Party(partyNum).Leader = index
             Party(partyNum).Member(1) = index
@@ -354,14 +354,14 @@ Module S_Parties
             SendPartyVitals(partyNum, index)
             SendPartyVitals(partyNum, target)
 
-            ' let them know it's created
-            PartyMsg(partyNum, "Party created.")
-            PartyMsg(partyNum, String.Format("{0} has joined the party.", GetPlayerName(index)))
+            ' deixem saber que a equipe foi criada
+            PartyMsg(partyNum, "Equipe criada.")
+            PartyMsg(partyNum, String.Format("{0} entrou na equipe.", GetPlayerName(index)))
 
-            ' clear the invitation
+            ' Limpar convites
             TempPlayer(target).PartyInvite = 0
 
-            ' add them to the party
+            ' adiciona-los a equipe
             TempPlayer(index).InParty = partyNum
             TempPlayer(target).InParty = partyNum
             Exit Sub
@@ -369,40 +369,40 @@ Module S_Parties
     End Sub
 
     Friend Sub Party_InviteDecline(index As Integer, target As Integer)
-        PlayerMsg(index, String.Format("{0} has declined to join your party.", GetPlayerName(target)), ColorType.BrightRed)
-        PlayerMsg(target, "You declined to join the party.", ColorType.Yellow)
-        ' clear the invitation
+        PlayerMsg(index, String.Format("{0} não quis entrar na sua equipe.", GetPlayerName(target)), ColorType.BrightRed)
+        PlayerMsg(target, "Você não quis entrar na equipe.", ColorType.Yellow)
+        ' limpar o convite
         TempPlayer(target).PartyInvite = 0
     End Sub
 
     Friend Sub Party_CountMembers(partyNum As Integer)
         Dim i As Integer, highindex As Integer, x As Integer
 
-        ' find the high index
+        ' encontrar o índice mais alto
         For i = MAX_PARTY_MEMBERS To 1 Step -1
             If Party(partyNum).Member(i) > 0 Then
                 highindex = i
                 Exit For
             End If
         Next
-        ' count the members
+        ' contar os membros
         For i = 1 To MAX_PARTY_MEMBERS
-            ' we've got a blank member
+            ' temos um membro em branco
             If Party(partyNum).Member(i) = 0 Then
-                ' is it lower than the high index?
+                ' é menor que o maior índice?
                 If i < highindex Then
-                    ' move everyone down a slot
+                    ' mover todo mundo para baixo
                     For x = i To MAX_PARTY_MEMBERS - 1
                         Party(partyNum).Member(x) = Party(partyNum).Member(x + 1)
                         Party(partyNum).Member(x + 1) = 0
                     Next
                 Else
-                    ' not lower - highindex is count
+                    ' não é mais baixo - highindex is count
                     Party(partyNum).MemberCount = highindex
                     Exit Sub
                 End If
             End If
-            ' check if we've reached the max
+            ' ver se atingimos o máximo
             If i = MAX_PARTY_MEMBERS Then
                 If highindex = i Then
                     Party(partyNum).MemberCount = MAX_PARTY_MEMBERS
@@ -410,21 +410,21 @@ Module S_Parties
                 End If
             End If
         Next
-        ' if we're here it means that we need to re-count again
+        ' se estamos aqui significa que temos que recontar
         Party_CountMembers(partyNum)
     End Sub
 
     Friend Sub Party_ShareExp(partyNum As Integer, exp As Integer, index As Integer, mapNum As Integer)
         Dim expShare As Integer, leftOver As Integer, i As Integer, tmpindex As Integer, loseMemberCount As Byte
 
-        ' check if it's worth sharing
+        ' ver se vale a pena compartilhar
         If Not exp >= Party(partyNum).MemberCount Then
-            ' no party - keep exp for self
+            ' sem equipe - manter tudo para si
             GivePlayerExp(index, exp)
             Exit Sub
         End If
 
-        ' check members in others maps
+        ' ver membros em outros mapas
         For i = 1 To MAX_PARTY_MEMBERS
             tmpindex = Party(partyNum).Member(i)
             If tmpindex > 0 Then
@@ -436,29 +436,29 @@ Module S_Parties
             End If
         Next
 
-        ' find out the equal share
+        ' descobrir a fatia igual
         expShare = exp \ (Party(partyNum).MemberCount - loseMemberCount)
         leftOver = exp Mod (Party(partyNum).MemberCount - loseMemberCount)
 
-        ' loop through and give everyone exp
+        ' passar por todos e distribuir a experiencia
         For i = 1 To MAX_PARTY_MEMBERS
             tmpindex = Party(partyNum).Member(i)
-            ' existing member?
+            ' membro existente?
             If tmpindex > 0 Then
-                ' playing?
+                ' jogando?
                 If Socket.IsConnected(tmpindex) AndAlso IsPlaying(tmpindex) Then
                     If GetPlayerMap(tmpindex) = mapNum Then
-                        ' give them their share
+                        ' dar o pedaço da exp
                         GivePlayerExp(tmpindex, expShare)
                     End If
                 End If
             End If
         Next
 
-        ' give the remainder to a random member
+        '  dar o remanescente para um membro aleatório
         If Not leftOver = 0 Then
             tmpindex = Party(partyNum).Member(Random(1, Party(partyNum).MemberCount))
-            ' give the exp
+            ' dar a exp
             GivePlayerExp(tmpindex, leftOver)
         End If
 

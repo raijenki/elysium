@@ -134,20 +134,20 @@ Friend Module modCrafting
 #Region "Incoming Packets"
 
     Sub Packet_RequestRecipes(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestRecipes")
+        AddDebug("Recebida CMSG: CRequestRecipes")
 
         SendRecipes(index)
     End Sub
 
     Sub Packet_RequestEditRecipes(index As Integer, ByRef data() As Byte)
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SRecipeEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SRecipeEditor")
+        AddDebug("Enviada SMSG: SRecipeEditor")
 
         Buffer.Dispose()
 
@@ -156,15 +156,15 @@ Friend Module modCrafting
     Sub Packet_SaveRecipe(index As Integer, ByRef data() As Byte)
         Dim n As Integer
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
         Dim buffer As New ByteStream(data)
-        AddDebug("Recieved EMSG: SaveRecipe")
+        AddDebug("Recebida EMSG: SaveRecipe")
 
-        'recipe index
+        'Índice da receita
         n = buffer.ReadInt32
 
-        ' Update the Recipe
+        ' Atualizar a receita
         Recipe(n).Name = buffer.ReadString
         Recipe(n).RecipeType = buffer.ReadInt32
         Recipe(n).MakeItemNum = buffer.ReadInt32
@@ -177,10 +177,10 @@ Friend Module modCrafting
 
         Recipe(n).CreateTime = buffer.ReadInt32
 
-        'save
+        'Salvar
         SaveRecipe(n)
 
-        'send to all
+        'Enviar a todos
         SendUpdateRecipeToAll(n)
 
         buffer.Dispose()
@@ -188,7 +188,7 @@ Friend Module modCrafting
     End Sub
 
     Sub Packet_CloseCraft(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CCloseCraft")
+        AddDebug("Recebida CMSG: CCloseCraft")
 
         TempPlayer(index).IsCrafting = False
     End Sub
@@ -197,7 +197,7 @@ Friend Module modCrafting
         Dim recipeindex As Integer, amount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CStartCraft")
+        AddDebug("Recebida CMSG: CStartCraft")
 
         recipeindex = buffer.ReadInt32
         amount = buffer.ReadInt32
@@ -237,7 +237,7 @@ Friend Module modCrafting
         buffer.WriteInt32(ServerPackets.SUpdateRecipe)
         buffer.WriteInt32(RecipeNum)
 
-        AddDebug("Sent SMSG: SUpdateRecipe")
+        AddDebug("Enviada SMSG: SUpdateRecipe")
 
         buffer.WriteString((Trim$(Recipe(RecipeNum).Name)))
         buffer.WriteInt32(Recipe(RecipeNum).RecipeType)
@@ -262,7 +262,7 @@ Friend Module modCrafting
         buffer.WriteInt32(ServerPackets.SUpdateRecipe)
         buffer.WriteInt32(RecipeNum)
 
-        AddDebug("Sent SMSG: SUpdateRecipe To All")
+        AddDebug("Enviada SMSG: SUpdateRecipe To All")
 
         buffer.WriteString((Trim$(Recipe(RecipeNum).Name)))
         buffer.WriteInt32(Recipe(RecipeNum).RecipeType)
@@ -287,7 +287,7 @@ Friend Module modCrafting
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SSendPlayerRecipe)
 
-        AddDebug("Sent SMSG: SSendPlayerRecipe")
+        AddDebug("Enviada SMSG: SSendPlayerRecipe")
 
         For i = 1 To MAX_RECIPE
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).RecipeLearned(i))
@@ -303,7 +303,7 @@ Friend Module modCrafting
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SOpenCraft)
 
-        AddDebug("Sent SMSG: SOpenCraft")
+        AddDebug("Enviada SMSG: SOpenCraft")
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
@@ -315,7 +315,7 @@ Friend Module modCrafting
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SUpdateCraft)
 
-        AddDebug("Sent SMSG: SUpdateCraft")
+        AddDebug("Enviada SMSG: SUpdateCraft")
 
         buffer.WriteInt32(done)
 
@@ -337,12 +337,12 @@ Friend Module modCrafting
     End Function
 
     Friend Sub LearnRecipe(index As Integer, RecipeNum As Integer, InvNum As Integer)
-        If CheckLearnedRecipe(index, RecipeNum) Then ' we know this one allready
-            PlayerMsg(index, "You allready know this recipe!", ColorType.BrightRed)
-        Else ' lets learn it
+        If CheckLearnedRecipe(index, RecipeNum) Then ' já conhecemos esta
+            PlayerMsg(index, "Você já conhece esta receita!", ColorType.BrightRed)
+        Else ' caso contrário, vamos aprender
             Player(index).Character(TempPlayer(index).CurChar).RecipeLearned(RecipeNum) = 1
 
-            PlayerMsg(index, "You learned the " & Recipe(RecipeNum).Name & " recipe!", ColorType.BrightGreen)
+            PlayerMsg(index, "Você aprendeu a receita " & Recipe(RecipeNum).Name & "!", ColorType.BrightGreen)
 
             TakeInvItem(index, GetPlayerInvItemNum(index, InvNum), 0)
 
@@ -368,12 +368,12 @@ Friend Module modCrafting
     Friend Sub UpdateCraft(index As Integer)
         Dim i As Integer
 
-        'ok, we made the item, give and take the shit
+        'certo, fizemos o item, dar o item e tomar os ingredientes
         If GiveInvItem(index, Recipe(TempPlayer(index).CraftRecipe).MakeItemNum, Recipe(TempPlayer(index).CraftRecipe).MakeItemAmount, True) Then
             For i = 1 To MAX_INGREDIENT
                 TakeInvItem(index, Recipe(TempPlayer(index).CraftRecipe).Ingredients(i).ItemNum, Recipe(TempPlayer(index).CraftRecipe).Ingredients(i).Value)
             Next
-            PlayerMsg(index, "You created " & Trim(Item(Recipe(TempPlayer(index).CraftRecipe).MakeItemNum).Name) & " X " & Recipe(TempPlayer(index).CraftRecipe).MakeItemAmount, ColorType.BrightGreen)
+            PlayerMsg(index, "Você criou " & Trim(Item(Recipe(TempPlayer(index).CraftRecipe).MakeItemNum).Name) & " X " & Recipe(TempPlayer(index).CraftRecipe).MakeItemAmount, ColorType.BrightGreen)
         End If
 
         If TempPlayer?(index).IsCrafting Then

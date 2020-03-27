@@ -100,7 +100,7 @@ Module modDatabase
             Ini.Write(cf, "CLASS" & i, "StartX", Classes(i).StartX)
             Ini.Write(cf, "CLASS" & i, "StartY", Classes(i).StartY)
 
-            ' loop for items & values
+            ' Fazer o loop de itens e valores
             For x = 1 To 5
                 Ini.Write(cf, "CLASS" & i, "StartItem" & x, Classes(i).StartItem(x))
                 Ini.Write(cf, "CLASS" & i, "StartValue" & x, Classes(i).StartValue(x))
@@ -165,7 +165,7 @@ Module modDatabase
         Map(mapNum).EventCount = 0
         ReDim Map(mapNum).Events(0)
 
-        ' Reset the values for if a player is on the map or not
+        ' Resetar o valores se o jogador estiver no mapa ou não
         PlayersOnMap(mapNum) = False
         Map(mapNum).Tileset = 1
         Map(mapNum).Name = ""
@@ -251,7 +251,7 @@ Module modDatabase
 
         If Not File.Exists(cf) Then File.Create(cf).Dispose()
 
-        'This is for event saving, it is in .ini files because there are non-limited values (strings) that cannot easily be loaded/saved in the normal manner.
+        'Isto é para salvar eventos. Está no arquivo .ini porque há valores não limitados (strings) que nao podem ser facilmente carregados da maneira normal.
         Ini.Write(cf, "Events", "EventCount", Val(Map(mapNum).EventCount))
 
         If Map(mapNum).EventCount > 0 Then
@@ -557,7 +557,7 @@ Module modDatabase
         Map(mapNum).Panorama = reader.ReadByte()
         Map(mapNum).Parallax = reader.ReadByte()
 
-        ' have to set the tile()
+        ' ter que setar o tile()
         ReDim Map(mapNum).Tile(Map(mapNum).MaxX, Map(mapNum).MaxY)
 
         For x = 0 To Map(mapNum).MaxX
@@ -915,7 +915,7 @@ Module modDatabase
 
     Sub SaveSkills()
         Dim i As Integer
-        Console.WriteLine("Saving skills... ")
+        Console.WriteLine("Salvando habilidades... ")
 
         For i = 1 To MAX_SKILLS
             SaveSkill(i)
@@ -1029,7 +1029,7 @@ Module modDatabase
     Sub ClearSkill(index As Integer)
         Skill(index) = Nothing
         Skill(index).Name = ""
-        Skill(index).LevelReq = 1 'Needs to be 1 for the skill editor
+        Skill(index).LevelReq = 1 'precisa ser 1 para o editor de habilidades
     End Sub
 
     Sub ClearSkills()
@@ -1266,7 +1266,7 @@ Module modDatabase
             Player(index).Character(CharNum).PlayerQuest(i).CurrentCount = 0
         Next
 
-        'Housing
+        'Moradia
         Player(index).Character(CharNum).House.Houseindex = 0
         Player(index).Character(CharNum).House.FurnitureCount = 0
         ReDim Player(index).Character(CharNum).House.Furniture(Player(index).Character(CharNum).House.FurnitureCount)
@@ -1309,7 +1309,7 @@ Module modDatabase
             Player(index).Character(CharNum).RecipeLearned(i) = 0
         Next
 
-        'random items
+        'Itens aleatórios
         ReDim Player(index).Character(CharNum).RandInv(MAX_INV)
         For i = 1 To MAX_INV
             Player(index).Character(CharNum).RandInv(i).Prefix = ""
@@ -1417,7 +1417,7 @@ Module modDatabase
             Player(index).Character(CharNum).PlayerQuest(i).CurrentCount = reader.ReadInt32()
         Next
 
-        'Housing
+        'Moradia
         Player(index).Character(CharNum).House.Houseindex = reader.ReadInt32()
         Player(index).Character(CharNum).House.FurnitureCount = reader.ReadInt32()
         ReDim Player(index).Character(CharNum).House.Furniture(Player(index).Character(CharNum).House.FurnitureCount)
@@ -1459,7 +1459,7 @@ Module modDatabase
             Player(index).Character(CharNum).RecipeLearned(i) = reader.ReadByte()
         Next
 
-        'random items
+        'Itens aleatórios
         ReDim Player(index).Character(CharNum).RandInv(MAX_INV)
         For i = 1 To MAX_INV
             Player(index).Character(CharNum).RandInv(i).Prefix = reader.ReadString()
@@ -1564,7 +1564,7 @@ Module modDatabase
             writer.WriteInt32(Player(index).Character(CharNum).PlayerQuest(i).CurrentCount)
         Next
 
-        'Housing
+        'Moradia
         writer.WriteInt32(Player(index).Character(CharNum).House.Houseindex)
         writer.WriteInt32(Player(index).Character(CharNum).House.FurnitureCount)
         For i = 0 To Player(index).Character(CharNum).House.FurnitureCount
@@ -1600,7 +1600,7 @@ Module modDatabase
             writer.WriteByte(Player(index).Character(CharNum).RecipeLearned(i))
         Next
 
-        'random items
+        'Itens aleatórios
         For i = 1 To MAX_INV
             writer.WriteString(Player(index).Character(CharNum).RandInv(i).Prefix)
             writer.WriteString(Player(index).Character(CharNum).RandInv(i).Suffix)
@@ -1682,7 +1682,7 @@ Module modDatabase
             Player(index).Character(CharNum).Vital(VitalType.MP) = GetPlayerMaxVital(index, VitalType.MP)
             Player(index).Character(CharNum).Vital(VitalType.SP) = GetPlayerMaxVital(index, VitalType.SP)
 
-            ' set starter equipment
+            ' Setar equipamento inicial
             For n = 1 To 5
                 If Classes(ClassNum).StartItem(n) > 0 Then
                     Player(index).Character(CharNum).Inv(n).Num = Classes(ClassNum).StartItem(n)
@@ -1701,7 +1701,7 @@ Module modDatabase
                 End If
             Next
 
-            'set skills
+            'Setar habilidades
             ReDim Player(index).Character(CharNum).GatherSkills(ResourceSkills.Count - 1)
             For i = 0 To ResourceSkills.Count - 1
                 Player(index).Character(CharNum).GatherSkills(i).SkillLevel = 1
@@ -1709,7 +1709,7 @@ Module modDatabase
                 Player(index).Character(CharNum).GatherSkills(i).SkillNextLvlExp = 100
             Next
 
-            ' Append name to file
+            ' Anexar nome ao arquivo
             AddTextToFile(Name, "accounts\charlist.txt")
 
             SavePlayer(index)
@@ -1802,13 +1802,12 @@ Module modDatabase
         Dim i As Integer
         filename = Application.StartupPath & "\data\banlist.txt"
 
-        ' Make sure the file exists
+        ' Ter certeza que o arquivo existe
         If Not File.Exists("data\banlist.txt") Then
             F = FreeFile()
-            'COME HERE!!!
         End If
 
-        ' Cut off last portion of ip
+        ' Cortar a última parte do IP 
         IP = Socket.ClientIp(BanPlayerindex)
 
         For i = Len(IP) To 1 Step -1
@@ -1821,9 +1820,9 @@ Module modDatabase
 
         IP = Mid$(IP, 1, i)
         AddTextToFile(IP, "banlist.txt")
-        GlobalMsg(GetPlayerName(BanPlayerindex) & " has been banned from " & Settings.GameName & " by " & "the Server" & "!")
-        Addlog("The Server" & " has banned " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
-        AlertMsg(BanPlayerindex, "You have been banned by " & "The Server" & "!")
+        GlobalMsg(GetPlayerName(BanPlayerindex) & " foi banido de " & Settings.GameName & " pelo " & "Servidor" & "!")
+        Addlog("O Servidor" & " baniu " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
+        AlertMsg(BanPlayerindex, "Você foi banido pelo " & "Servidor" & "!")
     End Sub
 
     Function IsBanned(IP As String) As Boolean
@@ -1831,7 +1830,7 @@ Module modDatabase
 
         filename = Application.StartupPath & "\data\banlist.txt"
 
-        ' Check if file exists
+        ' Ver se o arquivo existe
         If Not File.Exists("data\banlist.txt") Then
             Return False
         End If
@@ -1840,7 +1839,7 @@ Module modDatabase
 
         Do While sr.Peek() >= 0
             'Console.WriteLine(sr.ReadLine())
-            ' Is banned?
+            ' Está banido?
             line = sr.ReadLine()
             If Trim$(LCase$(line)) = Trim$(LCase$(Mid$(IP, 1, Len(line)))) Then
                 IsBanned = True
@@ -1854,10 +1853,10 @@ Module modDatabase
         Dim filename As String = Application.StartupPath & "\Data\banlist.txt"
         Dim IP As String, i As Integer
 
-        ' Make sure the file exists
+        ' Ter certeza que o arquivo existe
         If Not File.Exists(filename) Then File.Create(filename).Dispose()
 
-        ' Cut off last portion of ip
+        ' Cortar úlimo pedaço do IP
         IP = Socket.ClientIp(BanPlayerindex)
 
         For i = Len(IP) To 1 Step -1
@@ -1870,9 +1869,9 @@ Module modDatabase
 
         IP = Mid$(IP, 1, i)
         AddTextToFile(IP, "banlist.txt")
-        GlobalMsg(GetPlayerName(BanPlayerindex) & " has been banned from " & Settings.GameName & " by " & GetPlayerName(BannedByindex) & "!")
-        Addlog(GetPlayerName(BannedByindex) & " has banned " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
-        AlertMsg(BanPlayerindex, "You have been banned by " & GetPlayerName(BannedByindex) & "!")
+        GlobalMsg(GetPlayerName(BanPlayerindex) & " foi banido de " & Settings.GameName & " por " & GetPlayerName(BannedByindex) & "!")
+        Addlog(GetPlayerName(BannedByindex) & " baniu " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
+        AlertMsg(BanPlayerindex, "Você foi banido pory " & GetPlayerName(BannedByindex) & "!")
     End Sub
 
 #End Region
@@ -1890,24 +1889,24 @@ Module modDatabase
             buffer.WriteInt32(GetClassMaxVital(i, VitalType.MP))
             buffer.WriteInt32(GetClassMaxVital(i, VitalType.SP))
 
-            ' set sprite array size
+            ' Setar o tamanho do vetor da sprite
             n = UBound(Classes(i).MaleSprite)
 
-            ' send array size
+            ' Enviar o tamanho do vetor
             buffer.WriteInt32(n)
 
-            ' loop around sending each sprite
+            ' Fazer o loop enviando cada sprte 
             For q = 0 To n
                 buffer.WriteInt32(Classes(i).MaleSprite(q))
             Next
 
-            ' set sprite array size
+            ' Setar o tamanho do vetor da sprite 
             n = UBound(Classes(i).FemaleSprite)
 
-            ' send array size
+            ' Enviar o tamanho do vetor
             buffer.WriteInt32(n)
 
-            ' loop around sending each sprite
+            ' Fazer o loop enviando cada sprte
             For q = 0 To n
                 buffer.WriteInt32(Classes(i).FemaleSprite(q))
             Next
