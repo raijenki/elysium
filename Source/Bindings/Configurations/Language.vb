@@ -7,77 +7,78 @@ Public Class LanguageDef
     Public Load As New LoadDef
     Public Class LoadDef
 
-        Public Loading As String = "Loading..."
-        Public Graphics As String = "Initialising Graphics.."
-        Public Network As String = "Initialising Network..."
-        Public Starting As String = "Starting Game..."
+        Public Loading As String = "Carregando..."
+        Public Graphics As String = "Iniciando Graficos..."
+        Public Network As String = "Conectando na rede..."
+        Public Starting As String = "Jogo inciando..."
 
     End Class
 
     Public MainMenu As New MainMenuDef
     Public Class MainMenuDef
 
-        ' Main Panel
-        Public ServerStatus As String = "Server Status:"
+        ' TEXTO PRINCIPAL
+        Public ServerStatus As String = "Status do servidor:"
         Public ServerOnline As String = "Online"
-        Public ServerReconnect As String = "Reconnecting..."
+        Public ServerReconnect As String = "Reconectando..."
         Public ServerOffline As String = "Offline"
-        Public ButtonPlay As String = "Play"
-        Public ButtonRegister As String = "Register"
-        Public ButtonCredits As String = "Credits"
-        Public ButtonExit As String = "Exit"
-        Public NewsHeader As String = "Latest News"
-        Public News As String = "Welcome To the Orion Client.
-                                 This Is a free open source VB.Net game engine!
-                                 For help Or support please visit our site at
-                                 http://ascensionforums.com."
+        Public ButtonPlay As String = "Jogar"
+        Public ButtonRegister As String = "Registrar"
+        Public ButtonCredits As String = "Creditos"
+        Public ButtonExit As String = "Sair"
+        Public NewsHeader As String = "Ultimas noticias"
+        Public News As String = "Bemvindos ao cliente da Elysium.NET
+                                 Esse é uma game engine, gratuita e open source, baseado em VB.NET
+                                 Precisa de ajuda OU suporte? visite nosso forum
+                                 http://www.mmodev.com.br/"
 
-        ' Login Panel
+        ' TEXTO DE LOGIN
         Public Login As String = "Login"
-        Public LoginName As String = "Name : "
-        Public LoginPass As String = "Password : "
-        Public LoginCheckBox As String = "Save Password?"
-        Public LoginButton As String = "Submit"
+        Public LoginName As String = "Login : "
+        Public LoginPass As String = "Senha : "
+        Public LoginCheckBox As String = "Salvar senha?"
+        Public LoginButton As String = "Enviar"
 
-        ' New Character Panel
-        Public NewCharacter As String = "Create Character"
-        Public NewCharacterName As String = "Name : "
-        Public NewCharacterClass As String = "Class : "
-        Public NewCharacterGender As String = "Gender : "
-        Public NewCharacterMale As String = "Male"
-        Public NewCharacterFemale As String = "Female"
+        ' TEXTO DE NOVO PERSONAGEM
+        Public NewCharacter As String = "Criar personagem"
+        Public NewCharacterName As String = "Nome : "
+        Public NewCharacterClass As String = "Classe : "
+        Public NewCharacterGender As String = "Genero : "
+        Public NewCharacterMale As String = "Masculino"
+        Public NewCharacterFemale As String = "Feminino"
         Public NewCharacterSprite As String = "Sprite"
-        Public NewCharacterButton As String = "Submit"
+        Public NewCharacterButton As String = "Enviar"
 
-        ' Character Select
-        Public UseCharacter As String = "Character Selection"
-        Public UseCharacterNew As String = "New Character"
-        Public UseCharacterUse As String = "Use Character"
-        Public UseCharacterDel As String = "Delete Character"
+        ' TEXTO DE SELEÇÃO DE PERSONAGENS
+        Public UseCharacter As String = "Seleção de personagem"
+        Public UseCharacterNew As String = "Novo personagem"
+        Public UseCharacterUse As String = "Escolher personagem"
+        Public UseCharacterDel As String = "Deletar personagem"
 
-        ' Register
-        Public Register As String = "Registration"
-        Public RegisterName As String = "Username : "
-        Public RegisterPass1 As String = "Password : "
-        Public RegisterPass2 As String = "Retype Password : "
+        ' TEXTO DE REGISTRO DA CONTA
+        Public Register As String = "Registro de conta"
+        Public RegisterName As String = "Login : "
+        Public RegisterPass1 As String = "Senha : "
+        ' RJK OU LUCAS, SE VIREM ISSO ESSA VARIAVEL TERIA Q TER UM NOME MAIS AMIGAVEL N?
+        Public RegisterPass2 As String = "Re-digite a senha : "
 
-        ' Credits
-        Public Credits As String = "Credits"
+        ' TEXTO DE CREDITOS
+        Public Credits As String = "Creditos"
 
-        ' Misc
-        Public StringLegal As String = "You cannot use high ASCII characters In your name, please re-enter."
-        Public SendLogin As String = "Connected, sending login information..."
-        Public SendNewCharacter As String = "Connected, sending character data..."
-        Public SendRegister As String = "Connected, sending registration information..."
-        Public ConnectToServer As String = "Connecting To server...( {0} )"
+        ' TEXTOS DIVERSOS
+        Public StringLegal As String = "Você não pode usar caracteres ASCII em seu nome, digite novamente por favor."
+        Public SendLogin As String = "Conectado, logando na seleção de personagem..."
+        Public SendNewCharacter As String = "Conectado, selecionando personagem..."
+        Public SendRegister As String = "Conectado, concluindo registro..."
+        Public ConnectToServer As String = "Conectando no servidor ( {0} ) ..."
 
     End Class
 
     Public Game As New GameDef
     Public Class GameDef
 
-        Public MapName As String = "Map : "
-        Public Time As String = "Time : "
+        Public MapName As String = "Mapa : "
+        Public Time As String = "Tempo : "
         Public Fps As String = "Fps : "
         Public Lps As String = "Lps : "
 
@@ -85,12 +86,12 @@ Public Class LanguageDef
         Public PingSync As String = "Sync"
         Public PingLocal As String = "Local"
 
-        Public MapReceive As String = "Recieving Map..."
-        Public DataReceive As String = "Receiving game data..."
+        Public MapReceive As String = "Carregando mapa..."
+        Public DataReceive As String = "Carregando dados..."
 
-        Public MapCurMap As String = "Map # {0}"
-        Public MapCurLoc As String = "Loc() x: {0} y: {1}"
-        Public MapLoc As String = "Cur Loc x: {0} y: {1}"
+        Public MapCurMap As String = "Mapa # {0}"
+        Public MapCurLoc As String = "Localização() x: {0} y: {1}"
+        Public MapLoc As String = "Localizacao atual x: {0} y: {1}"
 
     End Class
 
@@ -98,162 +99,162 @@ Public Class LanguageDef
     Public Class ChatDef
 
         ' Universal
-        Public Emote As String = "Usage : /emote [1-11]"
-        Public Info As String = "Usage : /info [player]"
-        Public Party As String = "Usage : /party [player]"
-        Public PlayerMsg As String = "Usage : ![player] [message]"
-        Public HouseInvite As String = "Usage : /houseinvite [player]"
-        Public InvalidCmd As String = "Not a valid command!"
-        Public Help1 As String = "Social Commands : "
-        Public Help2 As String = "'[message] = Global Message"
-        Public Help3 As String = "-[message] = Party Message"
-        Public Help4 As String = "![player] [message] = Player Message"
-        Public Help5 As String = "Available Commands: /help, /info, 
+        Public Emote As String = "Digite : /emote [1-11]"
+        Public Info As String = "Digite : /info [player]"
+        Public Party As String = "Digite : /party [player]"
+        Public PlayerMsg As String = "Digite : ![player] [message]"
+        Public HouseInvite As String = "Digite : /houseinvite [player]"
+        Public InvalidCmd As String = "Comando invalido talquei?"
+        Public Help1 As String = "Comandos sociais : "
+        Public Help2 As String = "'[message] = Chat global"
+        Public Help3 As String = "-[message] = Chat da party"
+        Public Help4 As String = "![player] [message] = Mensagem direta"
+        Public Help5 As String = "Comandos uteis: /help, /info, 
                                   /who, /fps, /lps, /stats, /trade, 
                                   /party, /join, /leave, /sellhouse, 
                                   /houseinvite"
 
         ' Admin-Only
-        Public AccessAlert As String = "You need a higher access to do this!"
-        Public AdminGblMsg As String = "''msghere = Global Admin Message"
-        Public AdminPvtMsg As String = "= msghere = Private Admin Message"
-        Public Admin1 As String = "Social Commands:"
-        Public Admin2 As String = "Available Commands: /admin, /loc, 
+        Public AccessAlert As String = "Você não tem permissão necessaria..."
+        Public AdminGblMsg As String = "''msghere = Chat global como admin"
+        Public AdminPvtMsg As String = "= msghere = Chat privado como admin"
+        Public Admin1 As String = "omandos sociais:"
+        Public Admin2 As String = "Comandos uteis /admin, /loc, 
                                    /warpmeto, /warptome, /warpto, 
                                    /sprite, /mapreport, /kick, 
                                    /ban, /respawn, /welcome, /questreset"
 
-        Public Welcome As String = "Usage : /welcome [message]"
-        Public Access As String = "Usage : /access [player] [access]"
-        Public Sprite As String = "Usage : /sprite [index]"
-        Public Kick As String = "Usage : /kick [player]"
-        Public Ban As String = "Usage : /ban [player]"
+        Public Welcome As String = "Digite : /welcome [message]"
+        Public Access As String = "Digite : /access [player] [access]"
+        Public Sprite As String = "Digite : /sprite [index]"
+        Public Kick As String = "Digite : /kick [player]"
+        Public Ban As String = "Digite : /ban [player]"
 
-        Public WarpMeTo As String = "Usage : /warpmeto [player]"
-        Public WarpToMe As String = "Usage : /warptome [player]"
-        Public WarpTo As String = "Usage : /warpto [map index]"
+        Public WarpMeTo As String = "Digite : /warpmeto [player]"
+        Public WarpToMe As String = "Digite : /warptome [player]"
+        Public WarpTo As String = "Digite : /warpto [map index]"
 
-        Public ResetQuest As String = "Usage : /questreset [index]"
+        Public ResetQuest As String = "Digite : /questreset [index]"
 
-        Public InvalidMap As String = "Invalid map index."
-        Public InvalidQuest As String = "Invalid quest index."
+        Public InvalidMap As String = "Mapa invalido..."
+        Public InvalidQuest As String = "Quest invalida..."
 
     End Class
 
     Public ItemDescription As New ItemDescriptionDef
     Public Class ItemDescriptionDef
 
-        Public NotAvailable As String = "Not Available"
-        Public None As String = "None"
-        Public Seconds As String = "Seconds"
+        Public NotAvailable As String = "Não é possivel"
+        Public None As String = "Zero"
+        Public Seconds As String = "Segundos"
 
-        Public Currency As String = "Currency"
-        Public Key As String = "Key"
-        Public Furniture As String = "Furniture"
-        Public Potion As String = "Potion"
-        Public Skill As String = "Skill"
+        Public Currency As String = "Moeda"
+        Public Key As String = "Chave"
+        Public Furniture As String = "Moveis"
+        Public Potion As String = "Poção"
+        Public Skill As String = "Habilidades"
 
-        Public Weapon As String = "Weapon"
-        Public Armor As String = "Armor"
-        Public Helmet As String = "Helmet"
-        Public Shield As String = "Shield"
-        Public Shoes As String = "Shoes"
-        Public Gloves As String = "Gloves"
+        Public Weapon As String = "Equipamento"
+        Public Armor As String = "Armadura"
+        Public Helmet As String = "Capacete"
+        Public Shield As String = "Escudo"
+        Public Shoes As String = "Pés"
+        Public Gloves As String = "Mãos"
 
-        Public Amount As String = "Amount : "
-        Public Restore As String = "Restore Amount : "
-        Public Damage As String = "Damage : "
-        Public Defense As String = "Defense : "
+        Public Amount As String = "Quantidade : "
+        Public Restore As String = "Restaurar quantidade : "
+        Public Damage As String = "Dano : "
+        Public Defense As String = "Defesa : "
 
     End Class
 
     Public SkillDescription As New SkillDescriptionDef
     Public Class SkillDescriptionDef
 
-        Public No As String = "No"
-        Public None As String = "None"
-        Public Warp As String = "Warp"
+        Public No As String = "Não"
+        Public None As String = "Nenhum"
+        Public Warp As String = "Teleporte"
         Public Tiles As String = "Tiles"
-        Public SelfCast As String = "Self-Cast"
+        Public SelfCast As String = "Uso proprio"
 
-        Public Gain As String = "Regen : "
-        Public GainHp As String = "Regen Hp"
-        Public GainMp As String = "Regen Mp"
-        Public Lose As String = "Syphon : "
-        Public LoseHp As String = "Syphon Hp"
-        Public LoseMp As String = "Syphon Mp"
+        Public Gain As String = "Recup : "
+        Public GainHp As String = "Recup Hp"
+        Public GainMp As String = "Recup Mp"
+        Public Lose As String = "Perdendo : "
+        Public LoseHp As String = "Perdendo Hp"
+        Public LoseMp As String = "Perdendo Mp"
 
     End Class
 
     Public Crafting As New CraftingDef
     Public Class CraftingDef
 
-        Public NotEnough As String = "Not enough materials!"
-        Public NotSelected As String = "Nothing selected"
+        Public NotEnough As String = "Materiais insuficientes!"
+        Public NotSelected As String = "Nada selecionado"
 
     End Class
 
     Public Trade As New TradeDef
     Public Class TradeDef
 
-        Public Request As String = "{0} is requesting to trade."
-        Public Timeout As String = "You took too long to decide. Please try again."
+        Public Request As String = "{0} está solicitando trade."
+        Public Timeout As String = "Você demorou muito para decidir. Por favor, tente novamente."
 
-        Public Value As String = "Total Value : {0}g"
+        Public Value As String = "Valor total : {0}g"
 
-        Public StatusOther As String = "Other player confirmed offer."
-        Public StatusSelf As String = "You confirmed the offer."
+        Public StatusOther As String = "Outro jogador aceitou a oferta."
+        Public StatusSelf As String = "Você aceitou a oferta."
 
     End Class
 
     Public Events As New EventDef
     Public Class EventDef
 
-        Public OptContinue = "- Continue -"
+        Public OptContinue = "- Continuar -"
 
     End Class
 
     Public Quest As New QuestDef
     Public Class QuestDef
 
-        Public Cancel As String = "Cancel Started"
-        Public Started As String = "Quest Started"
-        Public Completed As String = "Quest Completed"
+        Public Cancel As String = "Cancela quest iniciada"
+        Public Started As String = "Inicia quest"
+        Public Completed As String = "Quest completada"
 
         ' Quest Types
-        Public Slay As String = "Defeat {0}/{1} {2}."
-        Public Collect As String = "Collect {0}/{1} {2}."
-        Public Talk As String = "Go talk To {0}."
-        Public Reach As String = "Go To {0}."
-        Public TurnIn As String = "Give {0} the {1} {2}/{3} they requested."
-        Public Kill As String = "Defeat {0}/{1} Players In Battle."
-        Public Gather As String = "Gather {0}/{1} {2}."
-        Public Fetch As String = "Fetch {0} X {1} from {2}."
+        Public Slay As String = "Mate {0}/{1} {2}."
+        Public Collect As String = "Colete {0}/{1} {2}."
+        Public Talk As String = "Fale com {0}."
+        Public Reach As String = "Vá para {0}."
+        Public TurnIn As String = "De {0} para {1} {2}/{3} conforme pedido."
+        Public Kill As String = "Mate {0}/{1} jogadores no combate."
+        Public Gather As String = "Reuna {0}/{1} {2}."
+        Public Fetch As String = "Busque {0} X {1} do {2}."
 
     End Class
 
     Public Character As New CharacterDef
     Public Class CharacterDef
 
-        Public Name As String = "Name : "
-        Public ClassType As String = "Class : "
-        Public Level As String = "Lv : "
-        Public Exp As String = "Exp : "
+        Public Name As String = "Nome : "
+        Public ClassType As String = "Classe : "
+        Public Level As String = "Lvl : "
+        Public Exp As String = "Xp : "
 
-        Public StatsLabel As String = "== Stats =="
-        Public Strength As String = "Strength : "
-        Public Endurance As String = "Endurance : "
-        Public Vitality As String = "Vitality : "
-        Public Intelligence As String = "Intelligence : "
-        Public Luck As String = "Luck : "
-        Public Spirit As String = "Spirit : "
-        Public Points As String = "Points Available : "
+        Public StatsLabel As String = "== Status =="
+        Public Strength As String = "Força : "
+        Public Endurance As String = "Resistência : "
+        Public Vitality As String = "Vitalidade : "
+        Public Intelligence As String = "Inteligência : "
+        Public Luck As String = "Sorte : "
+        Public Spirit As String = "Espírito : "
+        Public Points As String = "Pontos Disponíveis : "
 
-        Public SkillLabel As String = "== Skill Levels =="
-        Public Herbalist As String = "Herbalist : "
-        Public Woodcutter As String = "Woodcutter : "
-        Public Miner As String = "Miner : "
-        Public Fisherman As String = "Fisherman : "
+        Public SkillLabel As String = "== Level da habilidade =="
+        Public Herbalist As String = "Herborista : "
+        Public Woodcutter As String = "Lenhador : "
+        Public Miner As String = "Mineiração : "
+        Public Fisherman As String = "Pescaria : "
 
     End Class
 End Class

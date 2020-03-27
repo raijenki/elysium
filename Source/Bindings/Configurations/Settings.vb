@@ -25,13 +25,13 @@ Public Class SettingsDef
     <XmlIgnore()> Public Port As Integer = 7001
 
     <XmlIgnore()> Public GameName As String = "Elysium.NET"
-    <XmlIgnore()> Public Website As String = "http://ascensiongamedev.com/index.php"
+    <XmlIgnore()> Public Website As String = "http://www.mmodev.com.br"
 
 #ElseIf SERVER Then
-    Public GameName As String = "Orion+"
-    Public Website As String = "http://ascensiongamedev.com/index.php"
+    Public GameName As String = "Elysium.NET"
+    Public Website As String = "http://www.mmodev.com.br"
 
-    Public Welcome As String = "Welcome to Orion+, enjoy your stay!"
+    Public Welcome As String = "Bem vindo ao elysium.net, aproveite sua estadia e visite nosso forum http://www.mmodev.com.br!"
     Public Port As Integer = 7001
 
     Public StartMap As Integer = 1

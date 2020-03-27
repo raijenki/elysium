@@ -19,64 +19,7 @@ Friend Module S_Items
         Dim filename As String
         filename = Path.Item(itemNum)
 
-        Dim writer As New ByteStream(100)
-        writer.WriteString(Item(itemNum).Name)
-        writer.WriteInt32(Item(itemNum).Pic)
-        writer.WriteString(Item(itemNum).Description)
-
-        writer.WriteByte(Item(itemNum).Type)
-        writer.WriteByte(Item(itemNum).SubType)
-        writer.WriteInt32(Item(itemNum).Data1)
-        writer.WriteInt32(Item(itemNum).Data2)
-        writer.WriteInt32(Item(itemNum).Data3)
-        writer.WriteInt32(Item(itemNum).ClassReq)
-        writer.WriteInt32(Item(itemNum).AccessReq)
-        writer.WriteInt32(Item(itemNum).LevelReq)
-        writer.WriteByte(Item(itemNum).Mastery)
-        writer.WriteInt32(Item(itemNum).Price)
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Item(itemNum).Add_Stat(i))
-        Next
-
-        writer.WriteByte(Item(itemNum).Rarity)
-        writer.WriteInt32(Item(itemNum).Speed)
-        writer.WriteInt32(Item(itemNum).TwoHanded)
-        writer.WriteByte(Item(itemNum).BindType)
-
-        For i = 0 To StatType.Count - 1
-            writer.WriteByte(Item(itemNum).Stat_Req(i))
-        Next
-
-        writer.WriteInt32(Item(itemNum).Animation)
-        writer.WriteInt32(Item(itemNum).Paperdoll)
-
-        'Moradia
-        writer.WriteInt32(Item(itemNum).FurnitureWidth)
-        writer.WriteInt32(Item(itemNum).FurnitureHeight)
-
-        For a = 0 To 3
-            For b = 0 To 3
-                writer.WriteInt32(Item(itemNum).FurnitureBlocks(a, b))
-                writer.WriteInt32(Item(itemNum).FurnitureFringe(a, b))
-            Next
-        Next
-
-        writer.WriteByte(Item(itemNum).KnockBack)
-        writer.WriteByte(Item(itemNum).KnockBackTiles)
-
-        writer.WriteByte(Item(itemNum).Randomize)
-        writer.WriteByte(Item(itemNum).RandomMin)
-        writer.WriteByte(Item(itemNum).RandomMax)
-
-        writer.WriteByte(Item(itemNum).Stackable)
-
-        writer.WriteByte(Item(itemNum).ItemLevel)
-
-        writer.WriteInt32(Item(itemNum).Projectile)
-        writer.WriteInt32(Item(itemNum).Ammo)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Item(itemNum), filename)
     End Sub
 
     Sub LoadItems()
@@ -95,65 +38,7 @@ Friend Module S_Items
         Dim s As Integer
 
         filename = Path.Item(ItemNum)
-
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
-
-        Item(ItemNum).Name = reader.ReadString()
-        Item(ItemNum).Pic = reader.ReadInt32()
-        Item(ItemNum).Description = reader.ReadString()
-
-        Item(ItemNum).Type = reader.ReadByte()
-        Item(ItemNum).SubType = reader.ReadByte()
-        Item(ItemNum).Data1 = reader.ReadInt32()
-        Item(ItemNum).Data2 = reader.ReadInt32()
-        Item(ItemNum).Data3 = reader.ReadInt32()
-        Item(ItemNum).ClassReq = reader.ReadInt32()
-        Item(ItemNum).AccessReq = reader.ReadInt32()
-        Item(ItemNum).LevelReq = reader.ReadInt32()
-        Item(ItemNum).Mastery = reader.ReadByte()
-        Item(ItemNum).Price = reader.ReadInt32()
-
-        For s = 0 To StatType.Count - 1
-            Item(ItemNum).Add_Stat(s) = reader.ReadByte()
-        Next
-
-        Item(ItemNum).Rarity = reader.ReadByte()
-        Item(ItemNum).Speed = reader.ReadInt32()
-        Item(ItemNum).TwoHanded = reader.ReadInt32()
-        Item(ItemNum).BindType = reader.ReadByte()
-
-        For s = 0 To StatType.Count - 1
-            Item(ItemNum).Stat_Req(s) = reader.ReadByte()
-        Next
-
-        Item(ItemNum).Animation = reader.ReadInt32()
-        Item(ItemNum).Paperdoll = reader.ReadInt32()
-
-        'Moradia
-        Item(ItemNum).FurnitureWidth = reader.ReadInt32()
-        Item(ItemNum).FurnitureHeight = reader.ReadInt32()
-
-        For a = 0 To 3
-            For b = 0 To 3
-                Item(ItemNum).FurnitureBlocks(a, b) = reader.ReadInt32()
-                Item(ItemNum).FurnitureFringe(a, b) = reader.ReadInt32()
-            Next
-        Next
-
-        Item(ItemNum).KnockBack = reader.ReadByte()
-        Item(ItemNum).KnockBackTiles = reader.ReadByte()
-
-        Item(ItemNum).Randomize = reader.ReadByte()
-        Item(ItemNum).RandomMin = reader.ReadByte()
-        Item(ItemNum).RandomMax = reader.ReadByte()
-
-        Item(ItemNum).Stackable = reader.ReadByte()
-
-        Item(ItemNum).ItemLevel = reader.ReadByte()
-
-        Item(ItemNum).Projectile = reader.ReadInt32()
-        Item(ItemNum).Ammo = reader.ReadInt32()
+        LoadObject(Item(ItemNum), filename)
 
     End Sub
 
@@ -202,58 +87,7 @@ Friend Module S_Items
     Function ItemData(itemNum As Integer) As Byte()
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(itemNum)
-        buffer.WriteInt32(Item(itemNum).AccessReq)
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Add_Stat(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Animation)
-        buffer.WriteInt32(Item(itemNum).BindType)
-        buffer.WriteInt32(Item(itemNum).ClassReq)
-        buffer.WriteInt32(Item(itemNum).Data1)
-        buffer.WriteInt32(Item(itemNum).Data2)
-        buffer.WriteInt32(Item(itemNum).Data3)
-        buffer.WriteInt32(Item(itemNum).TwoHanded)
-        buffer.WriteInt32(Item(itemNum).LevelReq)
-        buffer.WriteInt32(Item(itemNum).Mastery)
-        buffer.WriteString((Trim$(Item(itemNum).Name)))
-        buffer.WriteInt32(Item(itemNum).Paperdoll)
-        buffer.WriteInt32(Item(itemNum).Pic)
-        buffer.WriteInt32(Item(itemNum).Price)
-        buffer.WriteInt32(Item(itemNum).Rarity)
-        buffer.WriteInt32(Item(itemNum).Speed)
-
-        buffer.WriteInt32(Item(itemNum).Randomize)
-        buffer.WriteInt32(Item(itemNum).RandomMin)
-        buffer.WriteInt32(Item(itemNum).RandomMax)
-
-        buffer.WriteInt32(Item(itemNum).Stackable)
-        buffer.WriteString((Trim$(Item(itemNum).Description)))
-
-        For i = 0 To StatType.Count - 1
-            buffer.WriteInt32(Item(itemNum).Stat_Req(i))
-        Next
-
-        buffer.WriteInt32(Item(itemNum).Type)
-        buffer.WriteInt32(Item(itemNum).SubType)
-
-        buffer.WriteInt32(Item(itemNum).ItemLevel)
-        'Moradia
-        buffer.WriteInt32(Item(itemNum).FurnitureWidth)
-        buffer.WriteInt32(Item(itemNum).FurnitureHeight)
-
-        For i = 0 To 3
-            For x = 0 To 3
-                buffer.WriteInt32(Item(itemNum).FurnitureBlocks(i, x))
-                buffer.WriteInt32(Item(itemNum).FurnitureFringe(i, x))
-            Next
-        Next
-
-        buffer.WriteInt32(Item(itemNum).KnockBack)
-        buffer.WriteInt32(Item(itemNum).KnockBackTiles)
-        buffer.WriteInt32(Item(itemNum).Projectile)
-        buffer.WriteInt32(Item(itemNum).Ammo)
+        buffer.WriteBlock(SerializeData(Item(itemNum)))
         Return buffer.ToArray
     End Function
 
@@ -442,61 +276,7 @@ Friend Module S_Items
 
         If n < 0 OrElse n > MAX_ITEMS Then Exit Sub
 
-        ' Atualizar o item
-        Item(n).AccessReq = buffer.ReadInt32()
-
-        For i = 0 To StatType.Count - 1
-            Item(n).Add_Stat(i) = buffer.ReadInt32()
-        Next
-
-        Item(n).Animation = buffer.ReadInt32()
-        Item(n).BindType = buffer.ReadInt32()
-        Item(n).ClassReq = buffer.ReadInt32()
-        Item(n).Data1 = buffer.ReadInt32()
-        Item(n).Data2 = buffer.ReadInt32()
-        Item(n).Data3 = buffer.ReadInt32()
-        Item(n).TwoHanded = buffer.ReadInt32()
-        Item(n).LevelReq = buffer.ReadInt32()
-        Item(n).Mastery = buffer.ReadInt32()
-        Item(n).Name = Trim$(buffer.ReadString)
-        Item(n).Paperdoll = buffer.ReadInt32()
-        Item(n).Pic = buffer.ReadInt32()
-        Item(n).Price = buffer.ReadInt32()
-        Item(n).Rarity = buffer.ReadInt32()
-        Item(n).Speed = buffer.ReadInt32()
-
-        Item(n).Randomize = buffer.ReadInt32()
-        Item(n).RandomMin = buffer.ReadInt32()
-        Item(n).RandomMax = buffer.ReadInt32()
-
-        Item(n).Stackable = buffer.ReadInt32()
-        Item(n).Description = Trim$(buffer.ReadString)
-
-        For i = 0 To StatType.Count - 1
-            Item(n).Stat_Req(i) = buffer.ReadInt32()
-        Next
-
-        Item(n).Type = buffer.ReadInt32()
-        Item(n).SubType = buffer.ReadInt32
-
-        Item(n).ItemLevel = buffer.ReadInt32
-
-        'Moradia
-        Item(n).FurnitureWidth = buffer.ReadInt32()
-        Item(n).FurnitureHeight = buffer.ReadInt32()
-
-        For a = 0 To 3
-            For b = 0 To 3
-                Item(n).FurnitureBlocks(a, b) = buffer.ReadInt32()
-                Item(n).FurnitureFringe(a, b) = buffer.ReadInt32()
-            Next
-        Next
-
-        Item(n).KnockBack = buffer.ReadInt32()
-        Item(n).KnockBackTiles = buffer.ReadInt32()
-
-        Item(n).Projectile = buffer.ReadInt32()
-        Item(n).Ammo = buffer.ReadInt32()
+        Item(n) = DeserializeData(buffer)
 
         ' Salvar
         SendUpdateItemToAll(n)

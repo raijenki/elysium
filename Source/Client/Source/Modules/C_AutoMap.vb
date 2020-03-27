@@ -35,7 +35,7 @@ Module C_AutoMap
         Count
     End Enum
 
-    'Distance between mountains and the map limit, so the player can walk freely when teleport between maps
+    'Distância entre montanhas e o limite do mapa, para que o jogador possa andar livremente ao se teletransportar entre mapas
     Private Const MountainBorder As Byte = 5
 
     Friend Tile(TilePrefab.Count - 1) As TileStruct
@@ -149,8 +149,8 @@ Module C_AutoMap
     Sub LoadDetails()
         ReDim Detail(1)
 
-        'Detail config area
-        'Use: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
+        'Área de configuração detalhada
+        'Uso: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
         LoadDetail(TilePrefab.Grass, 9, 0, 0, TileType.None, 7, 7)
         LoadDetail(TilePrefab.Grass, 9, 0, 10, TileType.None, 6, 15)
         LoadDetail(TilePrefab.Grass, 9, 0, 13, TileType.None, 7, 14)
@@ -220,7 +220,7 @@ Module C_AutoMap
         buffer.WriteInt32(DetailFreq)
         buffer.WriteInt32(ResourceFreq)
 
-        'send xml info
+        'envio informações xml
         buffer.WriteString((Ini.Read(cf, "Resources", "ResourcesNum")))
 
         For Prefab = 1 To TilePrefab.Count - 1

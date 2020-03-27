@@ -5,27 +5,11 @@ Imports ASFW.IO.FileIO
 Friend Module modCrafting
 
 #Region "Globals"
-
     Friend Recipe(MAX_RECIPE) As RecipeRec
 
     Friend Const RecipeType_Herb As Byte = 0
     Friend Const RecipeType_Wood As Byte = 1
     Friend Const RecipeType_Metal As Byte = 2
-
-    Friend Structure RecipeRec
-        Dim Name As String
-        Dim RecipeType As Byte
-        Dim MakeItemNum As Integer
-        Dim MakeItemAmount As Integer
-        Dim Ingredients() As IngredientsRec
-        Dim CreateTime As Byte
-    End Structure
-
-    Friend Structure IngredientsRec
-        Dim ItemNum As Integer
-        Dim Value As Integer
-    End Structure
-
 #End Region
 
 #Region "Database"
@@ -58,21 +42,7 @@ Friend Module modCrafting
 
         filename = Path.Recipe(RecipeNum)
 
-        Dim writer As New ByteStream(100)
-
-        writer.WriteString(Recipe(RecipeNum).Name)
-        writer.WriteByte(Recipe(RecipeNum).RecipeType)
-        writer.WriteInt32(Recipe(RecipeNum).MakeItemNum)
-        writer.WriteInt32(Recipe(RecipeNum).MakeItemAmount)
-
-        For i = 1 To MAX_INGREDIENT
-            writer.WriteInt32(Recipe(RecipeNum).Ingredients(i).ItemNum)
-            writer.WriteInt32(Recipe(RecipeNum).Ingredients(i).Value)
-        Next
-
-        writer.WriteByte(Recipe(RecipeNum).CreateTime)
-
-        BinaryFile.Save(filename, writer)
+        SaveObject(Recipe(RecipeNum), filename)
     End Sub
 
     Sub LoadRecipes()
@@ -87,27 +57,12 @@ Friend Module modCrafting
 
     Sub LoadRecipe(RecipeNum As Integer)
         Dim filename As String
-        Dim i As Integer
 
         CheckRecipes()
 
         filename = Path.Recipe(RecipeNum)
-        Dim reader As New ByteStream()
-        BinaryFile.Load(filename, reader)
 
-        Recipe(RecipeNum).Name = reader.ReadString()
-        Recipe(RecipeNum).RecipeType = reader.ReadByte()
-        Recipe(RecipeNum).MakeItemNum = reader.ReadInt32()
-        Recipe(RecipeNum).MakeItemAmount = reader.ReadInt32()
-
-        ReDim Recipe(RecipeNum).Ingredients(MAX_INGREDIENT)
-        For i = 1 To MAX_INGREDIENT
-            Recipe(RecipeNum).Ingredients(i).ItemNum = reader.ReadInt32()
-            Recipe(RecipeNum).Ingredients(i).Value = reader.ReadInt32()
-        Next
-
-        Recipe(RecipeNum).CreateTime = reader.ReadByte()
-
+        LoadObject(Recipe(RecipeNum), filename)
     End Sub
 
     Sub ClearRecipes()
@@ -164,18 +119,8 @@ Friend Module modCrafting
         'Índice da receita
         n = buffer.ReadInt32
 
-        ' Atualizar a receita
-        Recipe(n).Name = buffer.ReadString
-        Recipe(n).RecipeType = buffer.ReadInt32
-        Recipe(n).MakeItemNum = buffer.ReadInt32
-        Recipe(n).MakeItemAmount = buffer.ReadInt32
-
-        For i = 1 To MAX_INGREDIENT
-            Recipe(n).Ingredients(i).ItemNum = buffer.ReadInt32()
-            Recipe(n).Ingredients(i).Value = buffer.ReadInt32()
-        Next
-
-        Recipe(n).CreateTime = buffer.ReadInt32
+        ' Update the Recipe
+        Recipe(n) = DeserializeData(buffer)
 
         'Salvar
         SaveRecipe(n)
@@ -239,17 +184,7 @@ Friend Module modCrafting
 
         AddDebug("Enviada SMSG: SUpdateRecipe")
 
-        buffer.WriteString((Trim$(Recipe(RecipeNum).Name)))
-        buffer.WriteInt32(Recipe(RecipeNum).RecipeType)
-        buffer.WriteInt32(Recipe(RecipeNum).MakeItemNum)
-        buffer.WriteInt32(Recipe(RecipeNum).MakeItemAmount)
-
-        For i = 1 To MAX_INGREDIENT
-            buffer.WriteInt32(Recipe(RecipeNum).Ingredients(i).ItemNum)
-            buffer.WriteInt32(Recipe(RecipeNum).Ingredients(i).Value)
-        Next
-
-        buffer.WriteInt32(Recipe(RecipeNum).CreateTime)
+        buffer.WriteBlock(SerializeData(Recipe(RecipeNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
@@ -264,17 +199,7 @@ Friend Module modCrafting
 
         AddDebug("Enviada SMSG: SUpdateRecipe To All")
 
-        buffer.WriteString((Trim$(Recipe(RecipeNum).Name)))
-        buffer.WriteInt32(Recipe(RecipeNum).RecipeType)
-        buffer.WriteInt32(Recipe(RecipeNum).MakeItemNum)
-        buffer.WriteInt32(Recipe(RecipeNum).MakeItemAmount)
-
-        For i = 1 To MAX_INGREDIENT
-            buffer.WriteInt32(Recipe(RecipeNum).Ingredients(i).ItemNum)
-            buffer.WriteInt32(Recipe(RecipeNum).Ingredients(i).Value)
-        Next
-
-        buffer.WriteInt32(Recipe(RecipeNum).CreateTime)
+        buffer.WriteBlock(SerializeData(Recipe(RecipeNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
 

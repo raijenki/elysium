@@ -58,16 +58,7 @@ Module C_Shops
         Dim buffer As New ByteStream(data)
         shopnum = buffer.ReadInt32
 
-        Shop(shopnum).BuyRate = buffer.ReadInt32()
-        Shop(shopnum).Name = Trim(buffer.ReadString())
-        Shop(shopnum).Face = buffer.ReadInt32()
-
-        For i = 0 To MAX_TRADES
-            Shop(shopnum).TradeItem(i).CostItem = buffer.ReadInt32()
-            Shop(shopnum).TradeItem(i).CostValue = buffer.ReadInt32()
-            Shop(shopnum).TradeItem(i).Item = buffer.ReadInt32()
-            Shop(shopnum).TradeItem(i).ItemValue = buffer.ReadInt32()
-        Next
+        Shop(shopnum) = DeserializeData(buffer)
 
         If Shop(shopnum).Name Is Nothing Then Shop(shopnum).Name = ""
 

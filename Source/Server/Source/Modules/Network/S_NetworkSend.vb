@@ -279,18 +279,7 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateShop)
 
         buffer.WriteInt32(shopNum)
-        buffer.WriteInt32(Shop(shopNum).BuyRate)
-        buffer.WriteString((Shop(shopNum).Name.Trim))
-        buffer.WriteInt32(Shop(shopNum).Face)
-
-        AddDebug("Enviada SMSG: SUpdateShop")
-
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopNum)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -302,18 +291,7 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateShop)
 
         buffer.WriteInt32(shopNum)
-        buffer.WriteInt32(Shop(shopNum).BuyRate)
-        buffer.WriteString(Shop(shopNum).Name.Trim)
-        buffer.WriteInt32(Shop(shopNum).Face)
-
-        AddDebug("Enviada SMSG: SUpdateShop Para Todos")
-
-        For i = 0 To MAX_TRADES
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostItem)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).CostValue)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).Item)
-            buffer.WriteInt32(Shop(shopNum).TradeItem(i).ItemValue)
-        Next
+        buffer.WriteBlock(SerializeData(Shop(shopNum)))
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -337,37 +315,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.SUpdateSkill)
         buffer.WriteInt32(skillnum)
-        buffer.WriteInt32(Skill(skillnum).AccessReq)
-        buffer.WriteInt32(Skill(skillnum).AoE)
-        buffer.WriteInt32(Skill(skillnum).CastAnim)
-        buffer.WriteInt32(Skill(skillnum).CastTime)
-        buffer.WriteInt32(Skill(skillnum).CdTime)
-        buffer.WriteInt32(Skill(skillnum).ClassReq)
-        buffer.WriteInt32(Skill(skillnum).Dir)
-        buffer.WriteInt32(Skill(skillnum).Duration)
-        buffer.WriteInt32(Skill(skillnum).Icon)
-        buffer.WriteInt32(Skill(skillnum).Interval)
-        buffer.WriteInt32(Skill(skillnum).IsAoE)
-        buffer.WriteInt32(Skill(skillnum).LevelReq)
-        buffer.WriteInt32(Skill(skillnum).Map)
-        buffer.WriteInt32(Skill(skillnum).MpCost)
-        buffer.WriteString(Skill(skillnum).Name.Trim)
-        buffer.WriteInt32(Skill(skillnum).Range)
-        buffer.WriteInt32(Skill(skillnum).SkillAnim)
-        buffer.WriteInt32(Skill(skillnum).StunDuration)
-        buffer.WriteInt32(Skill(skillnum).Type)
-        buffer.WriteInt32(Skill(skillnum).Vital)
-        buffer.WriteInt32(Skill(skillnum).X)
-        buffer.WriteInt32(Skill(skillnum).Y)
+        buffer.WriteBlock(SerializeData(Skill(skillnum)))
 
         AddDebug("Enviada SMSG: SUpdateSkill")
-
-        'Projeteis
-        buffer.WriteInt32(Skill(skillnum).IsProjectile)
-        buffer.WriteInt32(Skill(skillnum).Projectile)
-
-        buffer.WriteInt32(Skill(skillnum).KnockBack)
-        buffer.WriteInt32(Skill(skillnum).KnockBackTiles)
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -378,37 +328,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.SUpdateSkill)
         buffer.WriteInt32(skillnum)
-        buffer.WriteInt32(Skill(skillnum).AccessReq)
-        buffer.WriteInt32(Skill(skillnum).AoE)
-        buffer.WriteInt32(Skill(skillnum).CastAnim)
-        buffer.WriteInt32(Skill(skillnum).CastTime)
-        buffer.WriteInt32(Skill(skillnum).CdTime)
-        buffer.WriteInt32(Skill(skillnum).ClassReq)
-        buffer.WriteInt32(Skill(skillnum).Dir)
-        buffer.WriteInt32(Skill(skillnum).Duration)
-        buffer.WriteInt32(Skill(skillnum).Icon)
-        buffer.WriteInt32(Skill(skillnum).Interval)
-        buffer.WriteInt32(Skill(skillnum).IsAoE)
-        buffer.WriteInt32(Skill(skillnum).LevelReq)
-        buffer.WriteInt32(Skill(skillnum).Map)
-        buffer.WriteInt32(Skill(skillnum).MpCost)
-        buffer.WriteString(Skill(skillnum).Name.Trim)
-        buffer.WriteInt32(Skill(skillnum).Range)
-        buffer.WriteInt32(Skill(skillnum).SkillAnim)
-        buffer.WriteInt32(Skill(skillnum).StunDuration)
-        buffer.WriteInt32(Skill(skillnum).Type)
-        buffer.WriteInt32(Skill(skillnum).Vital)
-        buffer.WriteInt32(Skill(skillnum).X)
-        buffer.WriteInt32(Skill(skillnum).Y)
+        buffer.WriteBlock(SerializeData(Skill(skillnum)))
 
         AddDebug("Enviada SMSG: SUpdateSkill Para Todos")
-
-        'projectiles
-        buffer.WriteInt32(Skill(skillnum).IsProjectile)
-        buffer.WriteInt32(Skill(skillnum).Projectile)
-
-        buffer.WriteInt32(Skill(skillnum).KnockBack)
-        buffer.WriteInt32(Skill(skillnum).KnockBackTiles)
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -1094,18 +1016,7 @@ Module S_NetworkSend
         AddDebug("Enviada SMSG: SBank")
 
         For i = 1 To MAX_BANK
-            buffer.WriteInt32(Bank(index).Item(i).Num)
-            buffer.WriteInt32(Bank(index).Item(i).Value)
-
-            buffer.WriteString((Bank(index).ItemRand(i).Prefix.Trim))
-            buffer.WriteString((Bank(index).ItemRand(i).Suffix.Trim))
-            buffer.WriteInt32(Bank(index).ItemRand(i).Rarity)
-            buffer.WriteInt32(Bank(index).ItemRand(i).Damage)
-            buffer.WriteInt32(Bank(index).ItemRand(i).Speed)
-
-            For x = 1 To StatType.Count - 1
-                buffer.WriteInt32(Bank(index).ItemRand(i).Stat(x))
-            Next
+            buffer.WriteBlock(SerializeData(Bank(index)))
         Next
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)

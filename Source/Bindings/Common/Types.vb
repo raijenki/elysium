@@ -9,6 +9,7 @@
     Friend Animation(MAX_ANIMATIONS) As AnimationStruct
 
     ' Common data structures
+    <Serializable>
     Friend Structure RandInvStruct
         Dim Prefix As String
         Dim Suffix As String
@@ -18,12 +19,14 @@
         Dim Speed As Integer
     End Structure
 
+    <Serializable>
     Friend Structure ResourceSkillsStruct
         Dim SkillLevel As Integer
         Dim SkillCurExp As Integer
         Dim SkillNextLvlExp As Integer
     End Structure
 
+    <Serializable>
     Friend Structure AnimationStruct
         Dim Name As String
         Dim Sound As String
@@ -40,6 +43,7 @@
         Dim Bottom As Integer
     End Structure
 
+    <Serializable>
     Friend Structure ResourceStruct
         Dim Name As String
         Dim SuccessMessage As String
@@ -57,6 +61,7 @@
         Dim Animation As Integer
     End Structure
 
+    <Serializable>
     Friend Structure SkillStruct
         Dim Name As String
         Dim Type As Byte
@@ -81,14 +86,15 @@
         Dim SkillAnim As Integer
         Dim StunDuration As Integer
 
-        'projectiles
-        Dim IsProjectile As Integer '0 is no, 1 is yes
+        ' projéteis
+        Dim IsProjectile As Integer '0 é não, 1 é sim
         Dim Projectile As Integer
 
-        Dim KnockBack As Byte '0 is no, 1 is yes
+        Dim KnockBack As Byte '0 é não, 1 é sim
         Dim KnockBackTiles As Byte
     End Structure
 
+    <Serializable>
     Friend Structure ShopStruct
         Dim Name As String
         Dim Face As Byte
@@ -96,16 +102,19 @@
         Dim TradeItem() As TradeItemStruct
     End Structure
 
+    <Serializable>
     Friend Structure PlayerInvStruct
         Dim Num As Integer
         Dim Value As Integer
     End Structure
 
+    <Serializable>
     Friend Structure BankStruct
         Dim Item() As PlayerInvStruct
         Dim ItemRand() As RandInvStruct
     End Structure
 
+    <Serializable>
     Friend Structure TileDataStruct
         Dim X As Byte
         Dim Y As Byte
@@ -113,6 +122,7 @@
         Dim AutoTile As Byte
     End Structure
 
+    <Serializable>
     Friend Structure TileStruct
         Dim Layer() As TileDataStruct
         Dim Type As Byte
@@ -122,6 +132,7 @@
         Dim DirBlock As Byte
     End Structure
 
+    <Serializable>
     Friend Structure ItemStruct
         Dim Name As String
         Dim Pic As Integer
@@ -153,7 +164,7 @@
         Dim Stackable As Byte
         Dim ItemLevel As Byte
 
-        'Housing
+        'variaveis do sistema de casa
         Dim FurnitureWidth As Integer
         Dim FurnitureHeight As Integer
         Dim FurnitureBlocks(,) As Integer
@@ -170,18 +181,19 @@
         Dim Animation As Integer
         Dim X As Integer
         Dim Y As Integer
-        ' used for locking to players/npcs
+        ' usado para localizar jogadores / npcs
         Dim lockindex As Integer
         Dim LockType As Byte
-        ' timing
+        ' cronometragem
         Dim Timer() As Integer
-        ' rendering check
+        ' verificação de renderização
         Dim Used() As Boolean
-        ' counting the loop
+        ' contando o loop
         Dim LoopIndex() As Integer
         Dim FrameIndex() As Integer
     End Structure
 
+    <Serializable>
     Friend Structure NpcStruct
         Dim Name As String
         Dim AttackSay As String
@@ -205,6 +217,7 @@
         Dim Damage As Integer
     End Structure
 
+    <Serializable>
     Friend Structure TradeItemStruct
         Dim Item As Integer
         Dim ItemValue As Integer
@@ -225,8 +238,101 @@
         Dim StartY As Byte
         Dim BaseExp As Integer
 
-        ' For client use
+        ' Para uso do cliente
         Dim Vital() As Integer
 
+    End Structure
+
+    <Serializable>
+    Friend Structure PetRec
+        Dim Num As Integer
+        Dim Name As String
+        Dim Sprite As Integer
+
+        Dim Range As Integer
+
+        Dim Level As Integer
+
+        Dim MaxLevel As Integer
+        Dim ExpGain As Integer
+        Dim LevelPnts As Integer
+
+        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
+        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
+
+        Dim Stat() As Byte
+
+        Dim Skill() As Integer
+
+        Dim Evolvable As Byte
+        Dim EvolveLevel As Integer
+        Dim EvolveNum As Integer
+    End Structure
+
+    <Serializable>
+    Friend Structure ProjectileRec
+        Dim Name As String
+        Dim Sprite As Integer
+        Dim Range As Byte
+        Dim Speed As Integer
+        Dim Damage As Integer
+    End Structure
+
+    <Serializable>
+    Friend Structure QuestRec
+        Dim Name As String
+        Dim QuestLog As String
+        Dim Repeat As Byte
+        Dim Cancelable As Byte
+
+        Dim ReqCount As Integer
+        Dim Requirement() As Integer '1=item, 2=quest, 3=class
+        Dim RequirementIndex() As Integer
+
+        Dim QuestGiveItem As Integer 'Todo: make this dynamic
+        Dim QuestGiveItemValue As Integer
+        Dim QuestRemoveItem As Integer
+        Dim QuestRemoveItemValue As Integer
+
+        Dim Chat() As String
+
+        Dim RewardCount As Integer
+        Dim RewardItem() As Integer
+        Dim RewardItemAmount() As Integer
+        Dim RewardExp As Integer
+
+        Dim TaskCount As Integer
+        Dim Task() As TaskRec
+
+    End Structure
+
+    <Serializable>
+    Friend Structure TaskRec
+        Dim Order As Integer
+        Dim Npc As Integer
+        Dim Item As Integer
+        Dim Map As Integer
+        Dim Resource As Integer
+        Dim Amount As Integer
+        Dim Speech As String
+        Dim TaskLog As String
+        Dim QuestEnd As Byte
+        Dim TaskType As Integer
+    End Structure
+
+    <Serializable>
+    Friend Structure RecipeRec
+        Dim Name As String
+        Dim RecipeType As Byte
+        Dim MakeItemNum As Integer
+        Dim MakeItemAmount As Integer
+        Dim Ingredients() As IngredientsRec
+        Dim CreateTime As Byte
+    End Structure
+
+    <Serializable>
+    Friend Structure IngredientsRec
+        Dim ItemNum As Integer
+        Dim Value As Integer
     End Structure
 End Module

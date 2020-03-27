@@ -1370,16 +1370,7 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If ShopNum < 0 OrElse ShopNum > MAX_SHOPS Then Exit Sub
 
-        Shop(ShopNum).BuyRate = buffer.ReadInt32()
-        Shop(ShopNum).Name = buffer.ReadString()
-        Shop(ShopNum).Face = buffer.ReadInt32()
-
-        For i = 0 To MAX_TRADES
-            Shop(ShopNum).TradeItem(i).CostItem = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).CostValue = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).Item = buffer.ReadInt32()
-            Shop(ShopNum).TradeItem(i).ItemValue = buffer.ReadInt32()
-        Next
+        Shop(ShopNum) = DeserializeData(buffer)
 
         If Shop(ShopNum).Name Is Nothing Then Shop(ShopNum).Name = ""
 
@@ -1417,35 +1408,7 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If skillnum < 0 OrElse skillnum > MAX_SKILLS Then Exit Sub
 
-        Skill(skillnum).AccessReq = buffer.ReadInt32()
-        Skill(skillnum).AoE = buffer.ReadInt32()
-        Skill(skillnum).CastAnim = buffer.ReadInt32()
-        Skill(skillnum).CastTime = buffer.ReadInt32()
-        Skill(skillnum).CdTime = buffer.ReadInt32()
-        Skill(skillnum).ClassReq = buffer.ReadInt32()
-        Skill(skillnum).Dir = buffer.ReadInt32()
-        Skill(skillnum).Duration = buffer.ReadInt32()
-        Skill(skillnum).Icon = buffer.ReadInt32()
-        Skill(skillnum).Interval = buffer.ReadInt32()
-        Skill(skillnum).IsAoE = buffer.ReadInt32()
-        Skill(skillnum).LevelReq = buffer.ReadInt32()
-        Skill(skillnum).Map = buffer.ReadInt32()
-        Skill(skillnum).MpCost = buffer.ReadInt32()
-        Skill(skillnum).Name = buffer.ReadString()
-        Skill(skillnum).Range = buffer.ReadInt32()
-        Skill(skillnum).SkillAnim = buffer.ReadInt32()
-        Skill(skillnum).StunDuration = buffer.ReadInt32()
-        Skill(skillnum).Type = buffer.ReadInt32()
-        Skill(skillnum).Vital = buffer.ReadInt32()
-        Skill(skillnum).X = buffer.ReadInt32()
-        Skill(skillnum).Y = buffer.ReadInt32()
-
-        'Projeteis
-        Skill(skillnum).IsProjectile = buffer.ReadInt32()
-        Skill(skillnum).Projectile = buffer.ReadInt32()
-
-        Skill(skillnum).KnockBack = buffer.ReadInt32()
-        Skill(skillnum).KnockBackTiles = buffer.ReadInt32()
+        Skill(skillnum) = DeserializeData(buffer)
 
         ' Salvar
         SendUpdateSkillToAll(skillnum)

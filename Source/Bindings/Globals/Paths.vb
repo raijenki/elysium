@@ -1,28 +1,28 @@
 ﻿Namespace Path
     Friend Module modPaths
 
-        ''' <summary> Returns app directory </summary>
+        ''' <summary> Retorna o diretório do aplicativo </summary>
         Friend ReadOnly Property Local As String
             Get
                 Return Application.StartupPath() & "/"
             End Get
         End Property
 
-        ''' <summary> Returns contents directory </summary>
+        ''' <summary> Retorna o diretório de conteúdos </summary>
         Friend ReadOnly Property Contents As String
             Get
                 Return Application.StartupPath() & "/Contents/"
             End Get
         End Property
 
-        ''' <summary> Returns database directory </summary>
+        ''' <summary> Retorna o diretório do banco de dados </summary>
         Friend ReadOnly Property Database As String
             Get
                 Return Application.StartupPath() & "/Database/"
             End Get
         End Property
 
-        ''' <summary> Returns configuration directory </summary>
+        ''' <summary> Retorna o diretório de configuração </summary>
         Friend ReadOnly Property Config As String
             Get
 #If CLIENT Then
@@ -37,33 +37,33 @@
 
 
         '############################
-        '###  Unique Directories  ###
+        '###  Diretórios exclusivos  ###
         '############################
 
 #If CLIENT Then
 
-        ''' <summary> Returns graphics directory </summary>
+        ''' <summary> Retorna o diretório gráfico </summary>
         Friend ReadOnly Property Graphics As String
             Get
                 Return Contents & "/Graphics/"
             End Get
         End Property
 
-        ''' <summary> Returns gui directory </summary>
+        ''' <summary> Retorna o diretório gui </summary>
         Friend ReadOnly Property Gui As String
             Get
                 Return Contents & "/Gui/"
             End Get
         End Property
 
-        ''' <summary> Returns music directory </summary>
+        ''' <summary> Retorna o diretório de músicas </summary>
         Friend ReadOnly Property Music As String
             Get
                 Return Contents & "/Music/"
             End Get
         End Property
 
-        ''' <summary> Returns sounds directory </summary>
+        ''' <summary> Retorna o diretório de sons </summary>
         Friend ReadOnly Property Sounds As String
             Get
                 Return Contents & "/Sounds/"
