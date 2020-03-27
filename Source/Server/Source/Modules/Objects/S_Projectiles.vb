@@ -129,7 +129,7 @@ Friend Module S_Projectiles
     Sub HandleRequestEditProjectiles(index As Integer, ByRef data() As Byte)
         Dim buffer As New ByteStream(4)
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         buffer.WriteInt32(ServerPackets.SProjectileEditor)
@@ -146,17 +146,17 @@ Friend Module S_Projectiles
 
         ProjectileNum = buffer.ReadInt32
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If ProjectileNum < 0 OrElse ProjectileNum > MAX_PROJECTILES Then
             Exit Sub
         End If
 
         Projectiles(ProjectileNum) = DeserializeData(buffer)
 
-        ' Save it
+        ' Salvar
         SendUpdateProjectileToAll(ProjectileNum)
         SaveProjectile(ProjectileNum)
-        Addlog(GetPlayerLogin(index) & " saved Projectile #" & ProjectileNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou o Projetil #" & ProjectileNum & ".", ADMIN_LOG)
         buffer.Dispose()
 
     End Sub
@@ -195,14 +195,14 @@ Friend Module S_Projectiles
                                 If Targetindex <> index Then
                                     If CanPlayerAttackPlayer(index, Targetindex, True) = True Then
 
-                                        ' Get the damage we can do
+                                        ' Pegar o dano que podemos fazer 
                                         Damage = GetPlayerDamage(index) + Projectiles(MapProjectiles(mapNum, ProjectileNum).ProjectileNum).Damage
 
-                                        ' if the npc blocks, take away the block amount
+                                        ' Se o NPC bloquear, descontar o valor de bloqueio
                                         armor = CanPlayerBlockHit(Targetindex)
                                         Damage = Damage - armor
 
-                                        ' randomise for up to 10% lower than max hit
+                                        ' Aleatorizar até 10% mais baixo que o dano máximo
                                         Damage = Random(1, Damage)
 
                                         If Damage < 1 Then Damage = 1
@@ -215,14 +215,14 @@ Friend Module S_Projectiles
                         Case TargetType.Npc
                             npcnum = MapNpc(mapNum).Npc(Targetindex).Num
                             If CanPlayerAttackNpc(index, Targetindex, True) = True Then
-                                ' Get the damage we can do
+                                ' Pegar o dano que podemos fazer
                                 Damage = GetPlayerDamage(index) + Projectiles(MapProjectiles(mapNum, ProjectileNum).ProjectileNum).Damage
 
-                                ' if the npc blocks, take away the block amount
+                                ' Se o NPC bloquear, descontar o valor de bloqueio
                                 armor = 0
                                 Damage = Damage - armor
 
-                                ' randomise from 1 to max hit
+                                ' Aleatorizar de 1 ao dano maximo
                                 Damage = Random(1, Damage)
 
                                 If Damage < 1 Then Damage = 1
@@ -314,18 +314,18 @@ Friend Module S_Projectiles
 
         mapNum = GetPlayerMap(index)
 
-        'Find a free projectile
+        'Encontrar um projetil livre
         For i = 1 To MAX_PROJECTILES
-            If MapProjectiles(mapNum, i).ProjectileNum = 0 Then ' Free Projectile
+            If MapProjectiles(mapNum, i).ProjectileNum = 0 Then ' Liberar projetil
                 ProjectileSlot = i
                 Exit For
             End If
         Next
 
-        'Check for no projectile, if so just overwrite the first slot
+        'Procurar por nenhum projétil; se sim, apenas sobrescrever o primeiro espaço
         If ProjectileSlot = 0 Then ProjectileSlot = 1
 
-        'Check for skill, if so then load data acordingly
+        'Procurar por habilidade; se houver, carregar dado de acordo
         If IsSkill > 0 Then
             ProjectileNum = Skill(IsSkill).Projectile
         Else
@@ -350,64 +350,64 @@ Friend Module S_Projectiles
 
     Friend Function Engine_GetAngle(CenterX As Integer, CenterY As Integer, targetX As Integer, targetY As Integer) As Single
         '************************************************************
-        'Gets the angle between two points in a 2d plane
+        'Pega o angulo entre dois pontos em um plano 2d
         '************************************************************
         Dim SideA As Single
         Dim SideC As Single
 
         On Error GoTo ErrOut
 
-        'Check for horizontal lines (90 or 270 degrees)
+        'Verificar a linha horizontal (90 ou 270 graus) 
         If CenterY = targetY Then
-            'Check for going right (90 degrees)
+            'Verificar para ir a direita (90 graus)
             If CenterX < targetX Then
                 Engine_GetAngle = 90
-                'Check for going left (270 degrees)
+                'Verificar para ir a esquerda (270 graus)
             Else
                 Engine_GetAngle = 270
             End If
 
-            'Exit the function
+            'Sair da função
             Exit Function
         End If
 
-        'Check for horizontal lines (360 or 180 degrees)
+        'Verificar a linha horizontal (360 ou 180 graus)
         If CenterX = targetX Then
-            'Check for going up (360 degrees)
+            'Verificar para ir acima (360 graus)
             If CenterY > targetY Then
                 Engine_GetAngle = 360
 
-                'Check for going down (180 degrees)
+                'Verificar para ir pra baixo (180 graus)
             Else
                 Engine_GetAngle = 180
             End If
 
-            'Exit the function
+            'Sair da função
             Exit Function
         End If
 
-        'Calculate Side C
+        'Calcular Lado C 
         SideC = Math.Sqrt(Math.Abs(targetX - CenterX) ^ 2 + Math.Abs(targetY - CenterY) ^ 2)
 
         'Side B = CenterY
 
-        'Calculate Side A
+        'Calcular lado A A
         SideA = Math.Sqrt(Math.Abs(targetX - CenterX) ^ 2 + targetY ^ 2)
 
-        'Calculate the angle
+        'Calcular o Angulo
         Engine_GetAngle = (SideA ^ 2 - CenterY ^ 2 - SideC ^ 2) / (CenterY * SideC * -2)
         Engine_GetAngle = (Math.Atan(-Engine_GetAngle / Math.Sqrt(-Engine_GetAngle * Engine_GetAngle + 1)) + 1.5708) * 57.29583
 
-        'If the angle is >180, subtract from 360
+        'Se o angulo for maior que 180, subtrair de 360
         If targetX < CenterX Then Engine_GetAngle = 360 - Engine_GetAngle
 
-        'Exit function
+        'Sair da funcao
         Exit Function
 
-        'Check for error
+        'Verificar erro
 ErrOut:
 
-        'Return a 0 saying there was an error
+        'Retornar zero dizendo que houve erro
         Engine_GetAngle = 0
 
         Exit Function

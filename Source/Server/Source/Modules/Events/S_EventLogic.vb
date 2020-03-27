@@ -22,8 +22,8 @@ Friend Module S_EventLogic
 
                     If Map(mapNum).Events(id).PageCount >= page Then
 
-                        'See if there is any reason to delete this event....
-                        'In other words, go back through conditions and make sure they all check up.
+                        'Ver se tem algum motivo para deletar este evento....
+                        'Em outras palavras, verificar condições e ver se elas batem.
                         If TempPlayer(i).EventMap.EventPages(x).Visible = 1 Then
                             If Map(mapNum).Events(id).Pages(page).ChkHasItem = 1 Then
                                 If HasItem(i, Map(mapNum).Events(id).Pages(page).HasItemindex) = 0 Then
@@ -78,7 +78,7 @@ Friend Module S_EventLogic
                             End If
 
                             If Map(mapNum).Events(id).Pages(page).ChkSwitch = 1 Then
-                                If Map(mapNum).Events(id).Pages(page).SwitchCompare = 1 Then 'we expect true
+                                If Map(mapNum).Events(id).Pages(page).SwitchCompare = 1 Then 'esperamos verdadeiro
                                     If Player(i).Character(TempPlayer(i).CurChar).Switches(Map(mapNum).Events(id).Pages(page).Switchindex) = 0 Then ' we see false so we despawn the event
                                         TempPlayer(i).EventMap.EventPages(x).Visible = 0
                                     End If
@@ -117,8 +117,8 @@ Friend Module S_EventLogic
                                 End With
                                 Socket.SendDataTo(i, Buffer.Data, Buffer.Head)
 
-                                Addlog("Sent SMSG: SSpawnEvent Remove Dead Events", PACKET_LOG)
-                                Console.WriteLine("Sent SMSG: SSpawnEvent Remove Dead Events")
+                                Addlog("Enviada SMSG: SSpawnEvent Remover Eventos Mortos", PACKET_LOG)
+                                Console.WriteLine("Enviada SMSG: SSpawnEvent Remover Eventos Mortos")
 
                                 Buffer.Dispose()
                             End If
@@ -134,7 +134,7 @@ Friend Module S_EventLogic
         Dim pageID As Integer, id As Integer, compare As Integer, i As Integer, mapNum As Integer
         Dim n As Integer, x As Integer, z As Integer, spawnevent As Boolean, p As Integer
 
-        'That was only removing events... now we gotta worry about spawning them again, luckily, it is almost the same exact thing, but backwards!
+        'Aquilo apenas removia eventos... agora temos que preocupar sobre gerá-los novamente; por sorte, quase a mesma coisa, ams de trás pra frente!
 
         For i = 1 To GetPlayersOnline()
             If Gettingmap = True Then Exit Sub
@@ -207,9 +207,9 @@ Friend Module S_EventLogic
                         End If
 
                         If Map(mapNum).Events(id).Pages(z).ChkSwitch = 1 Then
-                            If Map(mapNum).Events(id).Pages(z).SwitchCompare = 0 Then 'we want false
+                            If Map(mapNum).Events(id).Pages(z).SwitchCompare = 0 Then 'queremos falso
                                 If Player(i).Character(TempPlayer(i).CurChar).Switches(Map(mapNum).Events(id).Pages(z).Switchindex) = 1 Then 'and switch is true
-                                    spawnevent = False 'do not spawn
+                                    spawnevent = False 'nao gerar
                                 End If
                             Else
                                 If Player(i).Character(TempPlayer(i).CurChar).Switches(Map(mapNum).Events(id).Pages(z).Switchindex) = 0 Then ' else we want true and the switch is false
@@ -336,7 +336,7 @@ Friend Module S_EventLogic
                             End With
                             Socket.SendDataTo(i, Buffer.Data, Buffer.Head)
 
-                            AddDebug("Sent SMSG: SSpawnEvent Spawn New Events")
+                            AddDebug("Enviada SMSG: SSpawnEvent Gerar Novos Eventos")
 
                             Buffer.Dispose()
                             z = 1
@@ -353,23 +353,23 @@ Friend Module S_EventLogic
         Dim actualmovespeed As Integer, Buffer As ByteStream, z As Integer, sendupdate As Boolean
         Dim donotprocessmoveroute As Boolean, pageNum As Integer
 
-        'Process Movement if needed for each player/each map/each event....
+        'Processar movimento se necessário para cada jogador/cada mapa/cada evento...
 
         For i = 1 To MAX_MAPS
             If Gettingmap = True Then Exit Sub
 
             If PlayersOnMap(i) Then
-                'Manage Global Events First, then all the others.....
+                'Lidar primeiramente com eventos globais, depois os outros...
                 If TempEventMap(i).EventCount > 0 Then
                     For x = 1 To TempEventMap(i).EventCount
                         If TempEventMap(i).Events(x).Active > 0 Then
                             pageNum = 1
                             If TempEventMap(i).Events(x).MoveTimer <= GetTimeMs() Then
-                                'Real event! Lets process it!
+                                'Evento real! Vamos processá-lo!
                                 Select Case TempEventMap(i).Events(x).MoveType
                                     Case 0
-                                        'Nothing, fixed position
-                                    Case 1 'Random, move randomly if possible...
+                                        'Nada, posição fixa.
+                                    Case 1 'Áleatório, move aleatoriamente se possível...
                                         rand = Random(0, 3)
                                         If CanEventMove(0, i, TempEventMap(i).Events(x).X, TempEventMap(i).Events(x).Y, x, TempEventMap(i).Events(x).WalkThrough, rand, True) Then
                                             Select Case TempEventMap(i).Events(x).MoveSpeed
@@ -389,7 +389,7 @@ Friend Module S_EventLogic
                                         Else
                                             EventDir(0, i, x, rand, True)
                                         End If
-                                    Case 2 'Move Route
+                                    Case 2 'Rota de Movimento
                                         With TempEventMap(i).Events(x)
                                             isglobal = True
                                             mapNum = i
@@ -474,12 +474,12 @@ Friend Module S_EventLogic
                                                                 Else
                                                                     z = CanEventMoveTowardsPlayer(playerID, mapNum, eventID)
                                                                     If z >= 4 Then
-                                                                        'No
+                                                                        'Não
                                                                         If .IgnoreIfCannotMove = 0 Then
                                                                             .MoveRouteStep = .MoveRouteStep - 1
                                                                         End If
                                                                     Else
-                                                                        'i is the direct, lets go...
+                                                                        'i é o direto, vamos...
                                                                         If CanEventMove(playerID, mapNum, .X, .Y, eventID, WalkThrough, z, isglobal) Then
                                                                             EventMove(playerID, mapNum, eventID, z, actualmovespeed, isglobal)
                                                                         Else
@@ -494,9 +494,9 @@ Friend Module S_EventLogic
                                                             If isglobal = False Then
                                                                 z = CanEventMoveAwayFromPlayer(playerID, mapNum, eventID)
                                                                 If z >= 5 Then
-                                                                    'No
+                                                                    'Não
                                                                 Else
-                                                                    'i is the direct, lets go...
+                                                                    'i é o direto, vamos...
                                                                     If CanEventMove(playerID, mapNum, .X, .Y, eventID, WalkThrough, z, isglobal) Then
                                                                         EventMove(playerID, mapNum, eventID, z, actualmovespeed, isglobal)
                                                                     Else
@@ -619,19 +619,19 @@ Friend Module S_EventLogic
                                                             .MoveFreq = 4
                                                         Case 34
                                                             .WalkingAnim = 1
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 35
                                                             .WalkingAnim = 0
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 36
                                                             .FixedDir = 1
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 37
                                                             .FixedDir = 0
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 38
                                                             .WalkThrough = 1
@@ -639,15 +639,15 @@ Friend Module S_EventLogic
                                                             .WalkThrough = 0
                                                         Case 40
                                                             .Position = 0
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 41
                                                             .Position = 1
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 42
                                                             .Position = 2
-                                                            'Need to send update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                         Case 43
                                                             .GraphicType = .MoveRoute(.MoveRouteStep).Data1
@@ -668,7 +668,7 @@ Friend Module S_EventLogic
                                                                         .Dir = DirectionType.Up
                                                                 End Select
                                                             End If
-                                                            'Need to Send Update to client
+                                                            'Precisa mandar atualização ao cliente
                                                             sendupdate = True
                                                     End Select
 
@@ -698,8 +698,8 @@ Friend Module S_EventLogic
                                                         End With
                                                         SendDataToMap(i, Buffer.Data, Buffer.Head)
 
-                                                        Addlog("Sent SMSG: SSpawnEvent Process Event Movement", PACKET_LOG)
-                                                        Console.WriteLine("Sent SMSG: SSpawnEvent Process Event Movement")
+                                                        Addlog("Enviada SMSG: SSpawnEvent Process Event Movement", PACKET_LOG)
+                                                        Console.WriteLine("Enviada SMSG: SSpawnEvent Process Event Movement")
 
                                                         Buffer.Dispose()
                                                     End If
@@ -750,11 +750,11 @@ Friend Module S_EventLogic
                         If Map(GetPlayerMap(i)).Events(TempPlayer(i).EventMap.EventPages(x).EventId).Globals = 0 Then
                             If TempPlayer(i).EventMap.EventPages(x).Visible = 1 Then
                                 If TempPlayer(i).EventMap.EventPages(x).MoveTimer <= GetTimeMs() Then
-                                    'Real event! Lets process it!
+                                    'Evento real! Vamos processá-lo
                                     Select Case TempPlayer(i).EventMap.EventPages(x).MoveType
                                         Case 0
-                                            'Nothing, fixed position
-                                        Case 1 'Random, move randomly if possible...
+                                            'Nada, posição fixa
+                                        Case 1 'Aleatório, mover aleatoriamente se possível...
                                             rand = Random(0, 3)
                                             playerID = i
                                             If CanEventMove(i, GetPlayerMap(i), TempPlayer(i).EventMap.EventPages(x).X, TempPlayer(i).EventMap.EventPages(x).Y, x, TempPlayer(i).EventMap.EventPages(x).WalkThrough, rand, False) Then
@@ -775,7 +775,7 @@ Friend Module S_EventLogic
                                             Else
                                                 EventDir(0, GetPlayerMap(i), x, rand, True)
                                             End If
-                                        Case 2 'Move Route
+                                        Case 2 'Rota de Movimento
                                             With TempPlayer(i).EventMap.EventPages(x)
                                                 isglobal = False
                                                 sendupdate = False
@@ -856,7 +856,7 @@ Friend Module S_EventLogic
                                                                 If isglobal = False Then
                                                                     If IsOneBlockAway(.X, .Y, GetPlayerX(playerID), GetPlayerY(playerID)) = True Then
                                                                         EventDir(playerID, GetPlayerMap(playerID), eventID, GetDirToPlayer(playerID, GetPlayerMap(playerID), eventID), False)
-                                                                        'Lets do cool stuff!
+                                                                        'Vamos fazer coisas legais!
                                                                         If Map(GetPlayerMap(playerID)).Events(eventID).Pages(TempPlayer(playerID).EventMap.EventPages(eventID).PageId).Trigger = 1 Then
                                                                             If Map(mapNum).Events(eventID).Pages(TempPlayer(playerID).EventMap.EventPages(eventID).PageId).CommandListCount > 0 Then
                                                                                 TempPlayer(playerID).EventProcessing(eventID).Active = 1
@@ -875,12 +875,12 @@ Friend Module S_EventLogic
                                                                     Else
                                                                         z = CanEventMoveTowardsPlayer(playerID, mapNum, eventID)
                                                                         If z >= 4 Then
-                                                                            'No
+                                                                            'Nãoo
                                                                             If .IgnoreIfCannotMove = 0 Then
                                                                                 .MoveRouteStep = .MoveRouteStep - 1
                                                                             End If
                                                                         Else
-                                                                            'i is the direct, lets go...
+                                                                            'i é direto, vamos...
                                                                             If CanEventMove(playerID, mapNum, .X, .Y, eventID, WalkThrough, z, isglobal) Then
                                                                                 EventMove(playerID, mapNum, eventID, z, actualmovespeed, isglobal)
                                                                             Else
@@ -895,9 +895,9 @@ Friend Module S_EventLogic
                                                                 If isglobal = False Then
                                                                     z = CanEventMoveAwayFromPlayer(playerID, mapNum, eventID)
                                                                     If z >= 5 Then
-                                                                        'No
+                                                                        'Não
                                                                     Else
-                                                                        'i is the direct, lets go...
+                                                                        'i é direto, vamos...
                                                                         If CanEventMove(playerID, mapNum, .X, .Y, eventID, WalkThrough, z, isglobal) Then
                                                                             EventMove(playerID, mapNum, eventID, z, actualmovespeed, isglobal)
                                                                         Else
@@ -1020,19 +1020,19 @@ Friend Module S_EventLogic
                                                                 .MoveFreq = 4
                                                             Case 34
                                                                 .WalkingAnim = 1
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 35
                                                                 .WalkingAnim = 0
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 36
                                                                 .FixedDir = 1
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 37
                                                                 .FixedDir = 0
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 38
                                                                 .WalkThrough = 1
@@ -1040,15 +1040,15 @@ Friend Module S_EventLogic
                                                                 .WalkThrough = 0
                                                             Case 40
                                                                 .Position = 0
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 41
                                                                 .Position = 1
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 42
                                                                 .Position = 2
-                                                                'Need to send update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                             Case 43
                                                                 .GraphicType = .MoveRoute(.MoveRouteStep).Data1
@@ -1069,7 +1069,7 @@ Friend Module S_EventLogic
                                                                             .Dir = DirectionType.Up
                                                                     End Select
                                                                 End If
-                                                                'Need to Send Update to client
+                                                                'Precisa mandar atualização ao cliente
                                                                 sendupdate = True
                                                         End Select
 
@@ -1132,7 +1132,7 @@ Friend Module S_EventLogic
         Dim buffer As New ByteStream(4), i As Integer, x As Integer, removeEventProcess As Boolean, w As Integer, v As Integer, p As Integer
         Dim restartlist As Boolean, restartloop As Boolean, endprocess As Boolean
 
-        'Now, we process the damn things for commands :P
+        'Agora processamos as coisas para os comandos
 
         For i = 1 To GetPlayersOnline()
             If Gettingmap = True Then Exit Sub
@@ -1144,7 +1144,7 @@ Friend Module S_EventLogic
                             If TempPlayer(i).EventProcessingCount > 0 Then
                                 If TempPlayer(i).EventProcessing(x).Active = 0 Then
                                     If Map(GetPlayerMap(i)).Events(TempPlayer(i).EventMap.EventPages(x).EventId).Pages(TempPlayer(i).EventMap.EventPages(x).PageId).CommandListCount > 0 Then
-                                        'start new event processing
+                                        'Começar novo processamento de evento
                                         TempPlayer(i).EventProcessing(TempPlayer(i).EventMap.EventPages(x).EventId).Active = 1
                                         With TempPlayer(i).EventProcessing(TempPlayer(i).EventMap.EventPages(x).EventId)
                                             .ActionTimer = GetTimeMs()
@@ -1159,7 +1159,7 @@ Friend Module S_EventLogic
                                 End If
                             Else
                                 If Map(GetPlayerMap(i)).Events(TempPlayer(i).EventMap.EventPages(x).EventId).Pages(TempPlayer(i).EventMap.EventPages(x).PageId).CommandListCount > 0 Then
-                                    'Clearly need to start it!
+                                    'Claramente precisamos começar!
                                     TempPlayer(i).EventProcessing(TempPlayer(i).EventMap.EventPages(x).EventId).Active = 1
                                     With TempPlayer(i).EventProcessing(TempPlayer(i).EventMap.EventPages(x).EventId)
                                         .ActionTimer = GetTimeMs()
@@ -1177,8 +1177,7 @@ Friend Module S_EventLogic
                 Next
             End If
         Next
-
-        'That is it for starting parallel processes :D now we just have to make the code that actually processes the events to their fullest
+        'Isso é para começar processos paralelos :D agora só temos que fazer o código que processa eventos totalmente
         For i = 1 To GetPlayersOnline()
             If Gettingmap = True Then Exit Sub
 
@@ -1204,7 +1203,7 @@ Friend Module S_EventLogic
                                         End If
                                     End If
                                     If .WaitingForResponse = 4 Then
-                                        'waiting for eventmovement to complete
+                                        'esperando pelo eventmovement completar
                                         If .EventMovingType = 0 Then
                                             If TempPlayer(i).EventMap.EventPages(.EventMovingId).MoveRouteComplete = 1 Then
                                                 .WaitingForResponse = 0
@@ -1226,13 +1225,13 @@ Friend Module S_EventLogic
                                                     .ListLeftOff(.CurList) = 0
                                                 End If
                                                 If .CurList > Map(Player(i).Character(TempPlayer(i).CurChar).Map).Events(.EventId).Pages(.PageId).CommandListCount Then
-                                                    'Get rid of this event, it is bad
+                                                    'Se livrar deste evento, ele é ruim
                                                     removeEventProcess = True
                                                     endprocess = True
                                                 End If
                                                 If .CurSlot > Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).CommandCount Then
                                                     If .CurList = 1 Then
-                                                        'Get rid of this event, it is bad
+                                                        'Se livrar deste evento, ele é ruim
                                                         removeEventProcess = True
                                                         endprocess = True
                                                     Else
@@ -1242,7 +1241,7 @@ Friend Module S_EventLogic
                                                     End If
                                                 End If
                                                 If restartlist = False AndAlso endprocess = False Then
-                                                    'If we are still here, then we are good to process shit :D
+                                                    'Se ainda estamos aqui, então estamos bem pra processar isso
                                                     'Debug.WriteLine(.CurSlot)
                                                     Select Case Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Index
                                                         Case EventType.EvAddText
@@ -1263,7 +1262,7 @@ Friend Module S_EventLogic
                                                             buffer.WriteString((Trim(ParseEventText(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1))))
                                                             buffer.WriteInt32(0)
 
-                                                            AddDebug("Sent SMSG: SEventChat evShowText")
+                                                            AddDebug("Enviada SMSG: SEventChat evShowText")
 
                                                             If Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).CommandCount > .CurSlot Then
                                                                 If Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot + 1).Index = EventType.EvShowText OrElse Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot + 1).Index = EventType.EvShowChoices Then
@@ -1287,7 +1286,7 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data5)
                                                             buffer.WriteString((Trim(ParseEventText(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1))))
 
-                                                            AddDebug("Sent SMSG: SEventChat evShowChoices")
+                                                            AddDebug("Enviada SMSG: SEventChat evShowChoices")
 
                                                             If Len(Trim$(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text2)) > 0 Then
                                                                 w = 1
@@ -1694,7 +1693,7 @@ Friend Module S_EventLogic
                                                             ElseIf Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data2 = 2 Then
                                                                 Dim itemAmount As Integer
                                                                 itemAmount = HasItem(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1)
-                                                                ' Check Amount
+                                                                ' Checar quantidade
                                                                 If itemAmount >= Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data3 Then
                                                                     TakeInvItem(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data3)
                                                                     CheckTasks(i, QuestType.Fetch, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1)
@@ -1724,10 +1723,10 @@ Friend Module S_EventLogic
                                                                     If HasSkill(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1) = False Then
                                                                         SetPlayerSkill(i, FindOpenSkillSlot(i), Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1)
                                                                     Else
-                                                                        'Error, already knows skill
+                                                                        'Error, já tem a habilidade
                                                                     End If
                                                                 Else
-                                                                    'Error, no room for skills
+                                                                    'Error, sem espaço para habilidade
                                                                 End If
                                                             ElseIf Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data2 = 1 Then
                                                                 If HasSkill(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1) = True Then
@@ -1808,8 +1807,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteString((Trim(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1)))
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SPlayBGM", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SPlayBGM")
+                                                            Addlog("Enviada SMSG: SPlayBGM", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SPlayBGM")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvFadeoutBgm
@@ -1817,8 +1816,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(ServerPackets.SFadeoutBGM)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SFadeoutBGM", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SFadeoutBGM")
+                                                            Addlog("Enviada SMSG: SFadeoutBGM", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SFadeoutBGM")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvPlaySound
@@ -1827,8 +1826,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteString((Trim(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1)))
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SPlaySound", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SPlaySound")
+                                                            Addlog("Enviada SMSG: SPlaySound", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SPlaySound")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvStopSound
@@ -1836,8 +1835,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(ServerPackets.SStopSound)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SStopSound", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SStopSound")
+                                                            Addlog("Enviada SMSG: SStopSound", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SStopSound")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvSetAccess
@@ -1867,9 +1866,9 @@ Friend Module S_EventLogic
                                                                     SendChatBubble(GetPlayerMap(i), Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data2, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1, ColorType.Brown)
                                                             End Select
                                                         Case EventType.EvLabel
-                                                            'Do nothing, just a label
+                                                            'Faça nada, apenas um label
                                                         Case EventType.EvGotoLabel
-                                                            'Find the label's list of commands and slot
+                                                            'Encontre a lista de comandos da label e um espaço
                                                             FindEventLabel(Trim$(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1), GetPlayerMap(i), .EventId, .PageId, .CurSlot, .CurList, .ListLeftOff)
                                                         Case EventType.EvSpawnNpc
                                                             If Map(GetPlayerMap(i)).Npc(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1) > 0 Then
@@ -1918,8 +1917,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data5)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SPic evShowPicture", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SPic evShowPicture")
+                                                            Addlog("Enviada SMSG: SPic evShowPicture", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SPic evShowPicture")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvHidePicture
@@ -1929,8 +1928,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1 + 1)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SPic evHidePicture", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SPic evHidePicture")
+                                                            Addlog("Enviada SMSG: SPic evHidePicture", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SPic evHidePicture")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvWaitMovement
@@ -1951,8 +1950,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(0)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SHoldPlayer", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SHoldPlayer")
+                                                            Addlog("Enviada SMSG: SHoldPlayer", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SHoldPlayer")
 
                                                             buffer.Dispose()
                                                         Case EventType.EvReleasePlayer
@@ -1961,8 +1960,8 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(1)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
 
-                                                            Addlog("Sent SMSG: SHoldPlayer Release", PACKET_LOG)
-                                                            Console.WriteLine("Sent SMSG: SHoldPlayer Release")
+                                                            Addlog("Enviada SMSG: SHoldPlayer Release", PACKET_LOG)
+                                                            Console.WriteLine("Enviada SMSG: SHoldPlayer Release")
 
                                                             buffer.Dispose()
                                                     End Select
@@ -1989,7 +1988,7 @@ Friend Module S_EventLogic
     End Sub
 
     Friend Sub UpdateEventLogic()
-        'Check Removing and Adding of Events (Did switches change or something?)
+        'Verificar a Remoção e Adição de eventos (algo mudou?)
 
         If Gettingmap = True Then Exit Sub
 
@@ -2043,7 +2042,7 @@ Friend Module S_EventLogic
         Dim tmpCurSlot As Integer, tmpCurList As Integer, CurrentListOption() As Integer
         Dim removeEventProcess As Boolean, tmpListLeftOff() As Integer, restartlist As Boolean, w As Integer
 
-        'Store the Old data, just in case
+        'Guardar dados antigos por preucaução
 
         tmpCurSlot = CurSlot
         tmpCurList = CurList
@@ -2060,7 +2059,7 @@ Friend Module S_EventLogic
                 ListLeftOff(CurList) = 0
             End If
             If CurList > Map(mapNum).Events(eventID).Pages(pageID).CommandListCount Then
-                'Get rid of this event, it is bad
+                'Se livrar desse evento, ele é ruim
                 removeEventProcess = True
             End If
 
@@ -2076,7 +2075,7 @@ Friend Module S_EventLogic
 
             If restartlist = False Then
                 If removeEventProcess = False Then
-                    'If we are still here, then we are good to process shit :D
+                    'Se estamos aqui, podemos continuar processando :D
                     Select Case Map(mapNum).Events(eventID).Pages(pageID).CommandList(CurList).Commands(CurSlot).Index
                         Case EventType.EvShowChoices
                             If Len(Trim$(Map(mapNum).Events(eventID).Pages(pageID).CommandList(CurList).Commands(CurSlot).Text2)) > 0 Then
@@ -2094,7 +2093,7 @@ Friend Module S_EventLogic
                             If w > 0 Then
                                 If CurrentListOption(CurList) < w Then
                                     CurrentListOption(CurList) = CurrentListOption(CurList) + 1
-                                    'Process
+                                    'Processar
                                     ListLeftOff(CurList) = CurSlot
                                     Select Case CurrentListOption(CurList)
                                         Case 1
@@ -2109,7 +2108,7 @@ Friend Module S_EventLogic
                                     CurSlot = 0
                                 Else
                                     CurrentListOption(CurList) = 0
-                                    'continue on
+                                    'continuar
                                 End If
                             End If
                             w = 0
@@ -2128,7 +2127,7 @@ Friend Module S_EventLogic
                                 CurrentListOption(CurList) = 0
                             End If
                         Case EventType.EvLabel
-                            'Do nothing, just a label
+                            'Faça nada, apenas um label
                             If Trim$(Map(mapNum).Events(eventID).Pages(pageID).CommandList(CurList).Commands(CurSlot).Text1) = Trim$(Label) Then
                                 Exit Sub
                             End If
@@ -2149,7 +2148,7 @@ Friend Module S_EventLogic
         Dim tim As Integer, sX As Integer, sY As Integer, pos(,) As Integer, reachable As Boolean, j As Integer, LastSum As Integer, Sum As Integer, FX As Integer, FY As Integer, i As Integer
         Dim path() As Point, LastX As Integer, LastY As Integer, did As Boolean
 
-        'Initialization phase
+        'Fase de inicialização
 
         tim = 0
 
@@ -2168,38 +2167,36 @@ Friend Module S_EventLogic
         pos(sX, sY) = 100 + tim
         pos(FX, FY) = 2
 
-        'reset reachable
+        'resetar reachable
         reachable = False
 
-        'Do while reachable is false... if its set true in progress, we jump out
-        'If the path is decided unreachable in process, we will use exit sub. Not proper,
-        'but faster ;-)
+        'Executar enquanto reachable for falso... se é setado para verdeiro, pulamos fora
+        'Se o caminho é decididamente não-alcançavel no processo, saíremos da sub. Não é o melhor jeito, mas é rápido.
         Do While reachable = False
-            'we loop through all squares
+            'Fazemos um loop por todos os quadrados
             For j = 0 To Map(mapNum).MaxY
                 For i = 0 To Map(mapNum).MaxX
                     'If j = 10 AndAlso i = 0 Then MsgBox "hi!"
-                    'If they are to be extended, the pointer TIM is on them
+                    'Se eles são estendidos, o ponteiro TIM está com eles
                     If pos(i, j) = 100 + tim Then
-                        'The part is to be extended, so do it
-                        'We have to make sure that there is a pos(i+1,j) BEFORE we actually use it,
-                        'because then we get error... If the square is on side, we dont test for this one!
+                        'A parte deve ser estendida, então faça isso
+                        'Temos que ter certeza que há uma posição(i+1,j) ANTES de usarmos
+                        'porque então teremos error... SE o quadrado está do lado, não testamos para esse!
                         If i < Map(mapNum).MaxX Then
-                            'If there isnt a wall, or any other... thing
+                            'Se não há uma parede ou qualquer outra coisa...
                             If pos(i + 1, j) = 0 Then
-                                'Expand it, and make its pos equal to tim+1, so the next time we make this loop,
-                                'It will exapand that square too! This is crucial part of the program
+                                'Expanda e faça a posição igual a tim+1, daí a próxima vez que fizemos este loop,
+                                'ela irá expandir aquele quadrado também! Esta é uma parte crucial do programa.
                                 pos(i + 1, j) = 100 + tim + 1
                             ElseIf pos(i + 1, j) = 2 Then
-                                'If the position is no 0 but its 2 (FINISH) then Reachable = true!!! We found end
+                                'Se a posição não é 0 mas é 2 (FIM) então Reachable = true! Acabou
                                 reachable = True
                             End If
                         End If
 
-                        'This is the same as the last one, as i said a lot of copy paste work and editing that
-                        'This is simply another side that we have to test for... so instead of i+1 we have i-1
-                        'Its actually pretty same then... I wont comment it therefore, because its only repeating
-                        'same thing with minor changes to check sides
+                        'Isso é igual ao último. É simplesmente outro lado que temos que testar... então ao invés de
+                        'i+1 teremos i-1. É bem igual, e não vou comentar, já que é basicamente repetir a mesma coisa
+                        'com mudançãs menores para checar lados
                         If i > 0 Then
                             If pos((i - 1), j) = 0 Then
                                 pos(i - 1, j) = 100 + tim + 1
@@ -2228,19 +2225,18 @@ Friend Module S_EventLogic
                 Next i
             Next j
 
-            'If the reachable is STILL false, then
+            'Se o reachable ainda é falso, então
             If reachable = False Then
-                'reset sum
+                'resetar soma
                 Sum = 0
                 For j = 0 To Map(mapNum).MaxY
                     For i = 0 To Map(mapNum).MaxX
-                        'we add up ALL the squares
+                        'adicionamos todos os quadrados
                         Sum = Sum + pos(i, j)
                     Next i
                 Next j
 
-                'Now if the sum is euqal to the last sum, its not reachable, if it isnt, then we store
-                'sum to lastsum
+                'Agora se a soma é igual à última soma, não é alcançavel; se não é, então guardamos a soma na última soma
                 If Sum = LastSum Then
                     FindNpcPath = 4
                     Exit Function
@@ -2249,41 +2245,41 @@ Friend Module S_EventLogic
                 End If
             End If
 
-            'we increase the pointer to point to the next squares to be expanded
+            'aumentar o ponteiro para apontar ao próximo quadrado a ser expandido
             tim = tim + 1
         Loop
 
-        'We work backwards to find the way...
+        'Trabalhamos de trás-pra-frente para achar o caminho...
         LastX = FX
         LastY = FY
 
         ReDim path(tim + 1)
 
-        'The following code may be a little bit confusing but ill try my best to explain it.
-        'We are working backwards to find ONE of the shortest ways back to Start.
-        'So we repeat the loop until the LastX and LastY arent in start. Look in the code to see
-        'how LastX and LasY change
+        'O código abaixo pode ser um pouco confuso
+        'Trabalhamos de trás-pra-frente para achar UM DOS caminhos mais curtos de volta ao início
+        'Então repetimos o loop até que LastX e LastY não estejam no início. Olhe o código para ver
+        'como LastX e LastY mudam.
         Do While LastX <> sX OrElse LastY <> sY
-            'We decrease tim by one, and then we are finding any adjacent square to the final one, that
-            'has that value. So lets say the tim would be 5, because it takes 5 steps to get to the target.
-            'Now everytime we decrease that, so we make it 4, and we look for any adjacent square that has
-            'that value. When we find it, we just color it yellow as for the solution
+            ' Diminuimos tim por um e então encontramos qualquer quadrado adjacente ao final que tenha aquele valor.
+            'Então digamos que tim seria 5, porque levaria 5 passos ao alvo. Agora todas as vezes diminuimos e 
+            'fazemos ser 4, olhamos por quadrados adjacentes qu tem esse valor. Qunado encontramos, colorimos 
+            'de amarelo como a solução
             tim = tim - 1
-            'reset did to false
+            'resetar did para falso
             did = False
 
-            'If we arent on edge
+            'Se não estamos na borda
             If LastX < Map(mapNum).MaxX Then
-                'check the square on the right of the solution. Is it a tim-1 one? or just a blank one
+                'Ver o quadrado a direita da solução. É um tim-1? Ou apenas um branco?
                 If pos(LastX + 1, LastY) = 100 + tim Then
-                    'if it, then make it yellow, and change did to true
+                    'Se é, então faça-o amarelo e mude did para verdade
                     LastX = LastX + 1
                     did = True
                 End If
             End If
 
-            'This will then only work if the previous part didnt execute, and did is still false. THen
-            'we want to check another square, the on left. Is it a tim-1 one ?
+            'Isso vai funcionar apenas se a parte anterior não executar e did ainda é falso.
+            'Então queremos checar outro quadrado, o da esquerda. É um tim-1?
             If did = False Then
                 If LastX > 0 Then
                     If pos(LastX - 1, LastY) = 100 + tim Then
@@ -2293,7 +2289,7 @@ Friend Module S_EventLogic
                 End If
             End If
 
-            'We check the one below it
+            'Checamos o abaixo dele
             If did = False Then
                 If LastY < Map(mapNum).MaxY Then
                     If pos(LastX, LastY + 1) = 100 + tim Then
@@ -2303,8 +2299,7 @@ Friend Module S_EventLogic
                 End If
             End If
 
-            'And above it. One of these have to be it, since we have found the solution, we know that already
-            'there is a way back.
+            'E acima dele. Algum desses tem que ser, já que encontramos a solução e sabemos que há um jeito de volta. 
             If did = False Then
                 If LastY > 0 Then
                     If pos(LastX, LastY - 1) = 100 + tim Then
@@ -2316,11 +2311,13 @@ Friend Module S_EventLogic
             path(tim).X = LastX
             path(tim).Y = LastY
 
-            'Now we loop back and decrease tim, and look for the next square with lower value
+            'Agora fazemos um loop reverso e diminuimos tim, 
+            'e procuramos pelo próximo quadrado com um valor menor
             Application.DoEvents()
         Loop
 
-        'Ok we got a path. Now, lets look at the first step and see what direction we should take.
+        'OK. Temos um caminho.
+        'Agora vamos oolhar ao primeiro passo e ver que direção temos que tomar.
         If path(1).X > LastX Then
             FindNpcPath = DirectionType.Right
         ElseIf path(1).Y > LastY Then
@@ -2450,10 +2447,9 @@ Friend Module S_EventLogic
                                     End If
                             End Select
                         End If
-
-                        'we are assuming the event will spawn, and are looking for ways to stop it
+                        'estmaos assumindo que o evento será gerado, e procuramos maneiras de pará-lo
                         If .ChkSwitch = 1 Then
-                            If .SwitchCompare = 1 Then 'we want true
+                            If .SwitchCompare = 1 Then 'queremos verdadeiro
                                 If Player(index).Character(TempPlayer(index).CurChar).Switches(.Switchindex) = 0 Then 'it is false, so we stop the spawn
                                     spawncurrentevent = False
                                 End If
@@ -2488,7 +2484,7 @@ Friend Module S_EventLogic
                         End If
 
                         If spawncurrentevent = True OrElse (spawncurrentevent = False AndAlso z = 1) Then
-                            'spawn the event... send data to player
+                            'Gerar o evento... Mandar dado ao jogador
                             TempPlayer(index).EventMap.CurrentEvents = TempPlayer(index).EventMap.CurrentEvents + 1
                             ReDim Preserve TempPlayer(index).EventMap.EventPages(TempPlayer(index).EventMap.CurrentEvents)
                             With TempPlayer(index).EventMap.EventPages(TempPlayer(index).EventMap.CurrentEvents)
@@ -2606,7 +2602,7 @@ Friend Module S_EventLogic
                 End With
                 Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-                AddDebug("Sent SMSG: SSpawnEvent For Player")
+                AddDebug("Enviada SMSG: SSpawnEvent Para Jogador")
 
                 buffer.Dispose()
             Next

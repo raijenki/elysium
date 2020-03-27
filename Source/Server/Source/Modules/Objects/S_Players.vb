@@ -8,7 +8,7 @@ Module S_Players
     Function CanPlayerAttackPlayer(Attacker As Integer, Victim As Integer, Optional IsSkill As Boolean = False) As Boolean
 
         If Not IsSkill Then
-            ' Check attack timer
+            ' Verificar temporizador de ataque
             If GetPlayerEquipment(Attacker, EquipmentType.Weapon) > 0 Then
                 If GetTimeMs() < TempPlayer(Attacker).AttackTimer + Item(GetPlayerEquipment(Attacker, EquipmentType.Weapon)).Speed Then Exit Function
             Else
@@ -16,17 +16,17 @@ Module S_Players
             End If
         End If
 
-        ' Check for subscript out of range
+        ' Checar por subscript out of range
         If Not IsPlaying(Victim) Then Exit Function
 
-        ' Make sure they are on the same map
+        ' Ter certeza que estão no mesmo mapa
         If Not GetPlayerMap(Attacker) = GetPlayerMap(Victim) Then Exit Function
 
-        ' Make sure we dont attack the player if they are switching maps
+        ' Ter certeza que não atacaremos jogadores que estão trocando de mapas
         If TempPlayer(Victim).GettingMap = True Then Exit Function
 
         If Not IsSkill Then
-            ' Check if at same coordinates
+            ' Verificar se estao nas mesmas coordenadas
             Select Case GetPlayerDir(Attacker)
                 Case DirectionType.Up
 
@@ -45,38 +45,38 @@ Module S_Players
             End Select
         End If
 
-        ' Check if map is attackable
+        ' Verificar se o mapa é atacável
         If Not Map(GetPlayerMap(Attacker)).Moral = MapMoralType.None Then
             If GetPlayerPK(Victim) = False Then
-                PlayerMsg(Attacker, "This is a safe zone!", ColorType.BrightRed)
+                PlayerMsg(Attacker, "Esta é uma zona segura!", ColorType.BrightRed)
                 Exit Function
             End If
         End If
 
-        ' Make sure they have more then 0 hp
+        ' Ter certeza que tem mais de zro de HP
         If GetPlayerVital(Victim, VitalType.HP) <= 0 Then Exit Function
 
-        ' Check to make sure that they dont have access
+        ' Ter certeza que não tem acesso
         If GetPlayerAccess(Attacker) > AdminType.Monitor Then
-            PlayerMsg(Attacker, "You cannot attack any player for thou art an admin!", ColorType.BrightRed)
+            PlayerMsg(Attacker, "Você não pode atacar um jogador sendo um administrador!", ColorType.BrightRed)
             Exit Function
         End If
 
-        ' Check to make sure the victim isn't an admin
+        ' Tr certeza que a vítima não é um administrador
         If GetPlayerAccess(Victim) > AdminType.Monitor Then
-            PlayerMsg(Attacker, "You cannot attack " & GetPlayerName(Victim) & "!", ColorType.BrightRed)
+            PlayerMsg(Attacker, "Você não pode atacar " & GetPlayerName(Victim) & "!", ColorType.BrightRed)
             Exit Function
         End If
 
-        ' Make sure attacker is high enough level
+        ' Ter certeza que o atacante tem nível suficiente
         If GetPlayerLevel(Attacker) < 10 Then
-            PlayerMsg(Attacker, "You are below level 10, you cannot attack another player yet!", ColorType.BrightRed)
+            PlayerMsg(Attacker, "Você está abaixo do nível 10, você ainda não pode atacar outro jogador ainda!", ColorType.BrightRed)
             Exit Function
         End If
 
         ' Make sure victim is high enough level
         If GetPlayerLevel(Victim) < 10 Then
-            PlayerMsg(Attacker, GetPlayerName(Victim) & " is below level 10, you cannot attack this player yet!", ColorType.BrightRed)
+            PlayerMsg(Attacker, GetPlayerName(Victim) & " está abaixo do nível 10, você ainda não pode atacar esse jogador!", ColorType.BrightRed)
             Exit Function
         End If
 
@@ -131,7 +131,7 @@ Module S_Players
 
         GetPlayerDamage = 0
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse index <= 0 OrElse index > MAX_PLAYERS Then
             Exit Function
         End If
@@ -149,7 +149,7 @@ Module S_Players
         Dim Armor As Integer, Helm As Integer, Shoes As Integer, Gloves As Integer
         GetPlayerProtection = 0
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse index <= 0 OrElse index > MAX_PLAYERS Then
             Exit Function
         End If
@@ -184,18 +184,18 @@ Module S_Players
         Dim buffer As ByteStream
 
         If npcnum = 0 Then
-            ' Check for subscript out of range
+            ' Verificar por subscript out of range
             If IsPlaying(Attacker) = False OrElse IsPlaying(Victim) = False OrElse Damage < 0 Then
                 Exit Sub
             End If
 
-            ' Check for weapon
+            ' Verificar arma
 
             If GetPlayerEquipment(Attacker, EquipmentType.Weapon) > 0 Then
                 n = GetPlayerEquipment(Attacker, EquipmentType.Weapon)
             End If
 
-            ' Send this packet so they can see the person attacking
+            ' Enviar esta packet para que se veja a pessoa atacando
             buffer = New ByteStream(4)
             buffer.WriteInt32(ServerPackets.SAttack)
             buffer.WriteInt32(Attacker)
@@ -206,32 +206,32 @@ Module S_Players
 
                 SendActionMsg(GetPlayerMap(Victim), "-" & Damage, ColorType.BrightRed, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
 
-                ' Player is dead
-                GlobalMsg(GetPlayerName(Victim) & " has been killed by " & GetPlayerName(Attacker))
-                ' Calculate exp to give attacker
+                ' Jogador morreu
+                GlobalMsg(GetPlayerName(Victim) & " foi morto por " & GetPlayerName(Attacker))
+                ' Calcular exp para dar ao atacante
                 exp = (GetPlayerExp(Victim) \ 10)
 
-                ' Make sure we dont get less then 0
+                ' Ter certeza que não daremos menos que zero
                 If exp < 0 Then
                     exp = 0
                 End If
 
                 If exp = 0 Then
-                    PlayerMsg(Victim, "You lost no exp.", ColorType.BrightGreen)
-                    PlayerMsg(Attacker, "You received no exp.", ColorType.BrightRed)
+                    PlayerMsg(Victim, "Você não perdeu experiência.", ColorType.BrightGreen)
+                    PlayerMsg(Attacker, "Você não recebeu experiência.", ColorType.BrightRed)
                 Else
                     SetPlayerExp(Victim, GetPlayerExp(Victim) - exp)
                     SendExp(Victim)
-                    PlayerMsg(Victim, "You lost " & exp & " exp.", ColorType.BrightRed)
+                    PlayerMsg(Victim, "Você perdeu " & exp & " de experiência.", ColorType.BrightRed)
                     SetPlayerExp(Attacker, GetPlayerExp(Attacker) + exp)
                     SendExp(Attacker)
-                    PlayerMsg(Attacker, "You received " & exp & " exp.", ColorType.BrightGreen)
+                    PlayerMsg(Attacker, "Você recebeu " & exp & " de experiência.", ColorType.BrightGreen)
                 End If
 
-                ' Check for a level up
+                ' Verificar level up
                 CheckPlayerLevelUp(Attacker)
 
-                ' Check if target is player who died and if so set target to 0
+                ' Ver se o alvo é o jogador que morreu e se sim, resetar alvos para zero
                 If TempPlayer(Attacker).TargetType = TargetType.Player Then
                     If TempPlayer(Attacker).Target = Victim Then
                         TempPlayer(Attacker).Target = 0
@@ -243,34 +243,34 @@ Module S_Players
                     If GetPlayerPK(Attacker) = False Then
                         SetPlayerPK(Attacker, True)
                         SendPlayerData(Attacker)
-                        GlobalMsg(GetPlayerName(Attacker) & " has been deemed a Player Killer!!!")
+                        GlobalMsg(GetPlayerName(Attacker) & " foi declarado um Player Killer!!!")
                     End If
                 Else
-                    GlobalMsg(GetPlayerName(Victim) & " has paid the price for being a Player Killer!!!")
+                    GlobalMsg(GetPlayerName(Victim) & " pagou o preço por ser um Player Killer!!!")
                 End If
 
                 OnDeath(Victim)
             Else
-                ' Player not dead, just do the damage
+                ' Jogador não morreu, apenas dar danoe
                 SetPlayerVital(Victim, VitalType.HP, GetPlayerVital(Victim, VitalType.HP) - Damage)
                 SendVital(Victim, VitalType.HP)
                 SendActionMsg(GetPlayerMap(Victim), "-" & Damage, ColorType.BrightRed, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
 
-                'if a stunning skill, stun the player
+                'Se habilidade estuporante, estuporar o jogador
                 If skillnum > 0 Then
                     If Skill(skillnum).StunDuration > 0 Then StunPlayer(Victim, skillnum)
                 End If
             End If
 
-            ' Reset attack timer
+            ' Resetar temporizador de ataque
             TempPlayer(Attacker).AttackTimer = GetTimeMs()
-        Else ' npc to player
-            ' Check for subscript out of range
+        Else ' npc para jogador
+            ' Verificar por subscript out of range
             If IsPlaying(Victim) = False OrElse Damage < 0 Then Exit Sub
 
             mapNum = GetPlayerMap(Victim)
 
-            ' Send this packet so they can see the person attacking
+            ' Enviar esta packet para que vejam a pessoa atacando
             buffer = New ByteStream(4)
             buffer.WriteInt32(ServerPackets.SNpcAttack)
             buffer.WriteInt32(Attacker)
@@ -281,10 +281,10 @@ Module S_Players
 
                 SendActionMsg(mapNum, "-" & Damage, ColorType.BrightRed, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
 
-                ' Player is dead
-                GlobalMsg(GetPlayerName(Victim) & " has been killed by " & Npc(MapNpc(mapNum).Npc(Attacker).Num).Name)
+                ' Jogador morreu
+                GlobalMsg(GetPlayerName(Victim) & " foi morto por " & Npc(MapNpc(mapNum).Npc(Attacker).Num).Name)
 
-                ' Check if target is player who died and if so set target to 0
+                ' Ver se o alvo é o jogador que morreu e se sim, resetar alvos para zero
                 If TempPlayer(Attacker).TargetType = TargetType.Player Then
                     If TempPlayer(Attacker).Target = Victim Then
                         TempPlayer(Attacker).Target = 0
@@ -294,33 +294,33 @@ Module S_Players
 
                 OnDeath(Victim)
             Else
-                ' Player not dead, just do the damage
+                ' Jogador não morreu, apenas dar dano
                 SetPlayerVital(Victim, VitalType.HP, GetPlayerVital(Victim, VitalType.HP) - Damage)
                 SendVital(Victim, VitalType.HP)
                 SendActionMsg(mapNum, "-" & Damage, ColorType.BrightRed, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
 
-                'if a stunning skill, stun the player
+                'Se habilidade estuporante, estuporar o jogador
                 If skillnum > 0 Then
                     If Skill(skillnum).StunDuration > 0 Then StunPlayer(Victim, skillnum)
                 End If
             End If
 
-            ' Reset attack timer
+            ' Resetar temporizador de ataque
             MapNpc(mapNum).Npc(Attacker).AttackTimer = GetTimeMs()
         End If
 
     End Sub
 
     Friend Sub StunPlayer(index As Integer, skillnum As Integer)
-        ' check if it's a stunning skill
+        ' Verificar se é habilidade estuporante
         If Skill(skillnum).StunDuration > 0 Then
-            ' set the values on index
+            ' Setar valores no índice
             TempPlayer(index).StunDuration = Skill(skillnum).StunDuration
             TempPlayer(index).StunTimer = GetTimeMs()
-            ' send it to the index
+            ' Avisar ao índice
             SendStunned(index)
-            ' tell him he's stunned
-            PlayerMsg(index, "You have been stunned!", ColorType.Yellow)
+            ' Avisar que ele está estuporado
+            PlayerMsg(index, "Você foi estuporado!", ColorType.Yellow)
         End If
     End Sub
 
@@ -331,12 +331,12 @@ Module S_Players
         Dim atkY As Integer
         Dim attackspeed As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(Attacker) = False OrElse MapNpcNum <= 0 OrElse MapNpcNum > MAX_MAP_NPCS Then
             Exit Function
         End If
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If MapNpc(GetPlayerMap(Attacker)).Npc(MapNpcNum).Num <= 0 Then
             Exit Function
         End If
@@ -344,15 +344,15 @@ Module S_Players
         mapNum = GetPlayerMap(Attacker)
         NpcNum = MapNpc(mapNum).Npc(MapNpcNum).Num
 
-        ' Make sure the npc isn't already dead
+        ' Ter certeza que o NPC não morreu
         If MapNpc(mapNum).Npc(MapNpcNum).Vital(VitalType.HP) <= 0 Then
             Exit Function
         End If
 
-        ' Make sure they are on the same map
+        ' Ter certeza que estão no mesmo mapa
         If IsPlaying(Attacker) Then
 
-            ' attack speed from weapon
+            ' Velocidade de ataque da arma
             If GetPlayerEquipment(Attacker, EquipmentType.Weapon) > 0 Then
                 attackspeed = Item(GetPlayerEquipment(Attacker, EquipmentType.Weapon)).Speed
             Else
@@ -361,7 +361,7 @@ Module S_Players
 
             If NpcNum > 0 AndAlso GetTimeMs() > TempPlayer(Attacker).AttackTimer + attackspeed Then
 
-                ' exit out early
+                ' Saída mais cedo
                 If IsSkill Then
                     If Npc(NpcNum).Behaviour <> NpcBehavior.Friendly AndAlso Npc(NpcNum).Behaviour <> NpcBehavior.ShopKeeper Then
                         CanPlayerAttackNpc = True
@@ -369,7 +369,7 @@ Module S_Players
                     End If
                 End If
 
-                ' Check if at same coordinates
+                ' Verificar se nas mesmas coordenadas
                 Select Case GetPlayerDir(Attacker)
                     Case DirectionType.Up
                         atkX = GetPlayerX(Attacker)
@@ -412,7 +412,7 @@ Module S_Players
                                 CheckTasks(Attacker, QuestType.Talk, NpcNum)
                                 CheckTasks(Attacker, QuestType.Give, NpcNum)
                                 CheckTasks(Attacker, QuestType.Fetch, NpcNum)
-                                'Exit Function
+                                'Sair da função
                             End If
                             If Len(Trim$(Npc(NpcNum).AttackSay)) > 0 Then
                                 PlayerMsg(Attacker, Trim$(Npc(NpcNum).Name) & ": " & Trim$(Npc(NpcNum).AttackSay), ColorType.Yellow)
@@ -426,36 +426,36 @@ Module S_Players
     End Function
 
     Friend Sub StunNPC(index As Integer, mapNum As Integer, skillnum As Integer)
-        ' check if it's a stunning skill
+        ' Ver se é habilidade estuporante
         If Skill(skillnum).StunDuration > 0 Then
-            ' set the values on index
+            ' Setar valores no índice
             MapNpc(mapNum).Npc(index).StunDuration = Skill(skillnum).StunDuration
             MapNpc(mapNum).Npc(index).StunTimer = GetTimeMs()
         End If
     End Sub
 
     Sub PlayerAttackNpc(Attacker As Integer, MapNpcNum As Integer, Damage As Integer)
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(Attacker) = False OrElse MapNpcNum <= 0 OrElse MapNpcNum > MAX_MAP_NPCS OrElse Damage < 0 Then Exit Sub
 
         Dim MapNum = GetPlayerMap(Attacker)
         Dim NpcNum = MapNpc(MapNum).Npc(MapNpcNum).Num
         Dim Name = Npc(NpcNum).Name.Trim()
 
-        ' Check for weapon
+        ' Ver arma
         Dim Weapon = 0
         If GetPlayerEquipment(Attacker, EquipmentType.Weapon) > 0 Then
             Weapon = GetPlayerEquipment(Attacker, EquipmentType.Weapon)
         End If
 
-        ' Deal damage to our NPC.
+        ' Dar dano no nosso NPC 
         MapNpc(MapNum).Npc(MapNpcNum).Vital(VitalType.HP) = MapNpc(MapNum).Npc(MapNpcNum).Vital(VitalType.HP) - Damage
 
-        ' Set the NPC target to the player so they can come after them.
+        ' Setar alvo do NPC para o jogador para que venha atrás dele.
         MapNpc(MapNum).Npc(MapNpcNum).TargetType = TargetType.Player
         MapNpc(MapNum).Npc(MapNpcNum).Target = Attacker
 
-        ' Check for any mobs on the map with the Guard behaviour so they can come after our player.
+        ' Verificar por NPCs ao redor com o comportamento de Guarda para ir atrás do jogador.
         If Npc(MapNpc(MapNum).Npc(MapNpcNum).Num).Behaviour = NpcBehavior.Guard Then
             For Each Guard In MapNpc(MapNum).Npc.Where(Function(x) x.Num = MapNpc(MapNum).Npc(MapNpcNum).Num).Select(Function(x, y) y + 1).ToArray()
                 MapNpc(MapNum).Npc(Guard).Target = Attacker
@@ -463,7 +463,7 @@ Module S_Players
             Next
         End If
 
-        ' Send our general visual stuff.
+        ' Enviar as coisas visuais.
         SendActionMsg(MapNum, "-" & Damage, ColorType.BrightRed, 1, (MapNpc(MapNum).Npc(MapNpcNum).X * 32), (MapNpc(MapNum).Npc(MapNpcNum).Y * 32))
         SendBlood(GetPlayerMap(Attacker), MapNpc(MapNum).Npc(MapNpcNum).X, MapNpc(MapNum).Npc(MapNpcNum).Y)
         SendPlayerAttack(Attacker)
@@ -471,14 +471,14 @@ Module S_Players
             SendAnimation(MapNum, Item(GetPlayerEquipment(Attacker, EquipmentType.Weapon)).Animation, 0, 0, TargetType.Npc, MapNpcNum)
         End If
 
-        ' Reset our attack timer.
+        ' Resetar temporizador de ataque.
         TempPlayer(Attacker).AttackTimer = GetTimeMs()
 
         If Not IsNpcDead(MapNum, MapNpcNum) Then
-            ' Check if our NPC has something to share with our player.
+            ' Ver se o NPC tem algo a falar com o jogador.
             If MapNpc(MapNum).Npc(MapNpcNum).Target = 0 Then
                 If Len(Trim$(Npc(NpcNum).AttackSay)) > 0 Then
-                    PlayerMsg(Attacker, String.Format("{0} says: '{1}'", Npc(NpcNum).Name.Trim(), Npc(NpcNum).AttackSay.Trim()), ColorType.Yellow)
+                    PlayerMsg(Attacker, String.Format("{0} diz: '{1}'", Npc(NpcNum).Name.Trim(), Npc(NpcNum).AttackSay.Trim()), ColorType.Yellow)
                 End If
             End If
 
@@ -512,7 +512,7 @@ Module S_Players
             SendAnimation(GetPlayerMap(index), Skill(Skillnum).SkillAnim, 0, 0, TargetType.Player, index)
             SendActionMsg(GetPlayerMap(index), sSymbol & Damage, Colour, ActionMsgType.Scroll, GetPlayerX(index) * 32, GetPlayerY(index) * 32)
 
-            ' send the sound
+            ' Enviar som
             'SendMapSound Index, GetPlayerX(Index), GetPlayerY(Index), SoundEntity.seSpell, Spellnum
 
             If increment Then
@@ -566,27 +566,27 @@ Module S_Players
 
         Damage = 0
 
-        ' Can we attack the player?
+        ' Podemos atacar o jogador?
         If CanPlayerAttackPlayer(Attacker, Victim) Then
 
             mapNum = GetPlayerMap(Attacker)
 
-            ' check if NPC can avoid the attack
+            ' Verificar se a vítima pode desviar
             If CanPlayerDodge(Victim) Then
-                SendActionMsg(mapNum, "Dodge!", ColorType.Pink, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
+                SendActionMsg(mapNum, "Desvio!", ColorType.Pink, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
                 Exit Sub
             End If
 
             If CanPlayerParry(Victim) Then
-                SendActionMsg(mapNum, "Parry!", ColorType.Pink, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
+                SendActionMsg(mapNum, "Bloqueio!", ColorType.Pink, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
                 Exit Sub
             End If
 
-            ' Get the damage we can do
+            ' Pegar o dano que podemos causar
             Damage = GetPlayerDamage(Attacker)
 
             If CanPlayerBlockHit(Victim) Then
-                SendActionMsg(mapNum, "Block!", ColorType.BrightCyan, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
+                SendActionMsg(mapNum, "Bloqueio!", ColorType.BrightCyan, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
                 Damage = 0
                 Exit Sub
             Else
@@ -597,20 +597,20 @@ Module S_Players
                     End If
                 Next
 
-                ' take away armour
+                ' Subtrair armadura
                 Damage -= (GetPlayerStat(Victim, StatType.Spirit) * 2) + (GetPlayerLevel(Victim) * 3) + armor
 
-                ' * 1.5 if it's a crit!
+                ' * 1.5 se crítico!
                 If CanPlayerCriticalHit(Attacker) Then
                     Damage *= 1.5
-                    SendActionMsg(mapNum, "Critical!", ColorType.BrightCyan, 1, GetPlayerX(Attacker) * 32, GetPlayerY(Attacker) * 32)
+                    SendActionMsg(mapNum, "Crítico!", ColorType.BrightCyan, 1, GetPlayerX(Attacker) * 32, GetPlayerY(Attacker) * 32)
                 End If
             End If
 
             If Damage > 0 Then
                 PlayerAttackPlayer(Attacker, Victim, Damage)
             Else
-                PlayerMsg(Attacker, "Your attack does nothing.", ColorType.BrightRed)
+                PlayerMsg(Attacker, "Seu ataque não fez nada.", ColorType.BrightRed)
             End If
 
         End If
@@ -618,44 +618,44 @@ Module S_Players
     End Sub
 
     Sub PlayerAttackPlayer(Attacker As Integer, Victim As Integer, Damage As Integer)
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(Attacker) = False OrElse IsPlaying(Victim) = False OrElse Damage <= 0 Then
             Exit Sub
         End If
 
-        ' Check if our assailant has a weapon.
+        ' Ver se o assaltante tem uma arma.
         Dim Weapon = 0
         If GetPlayerEquipment(Attacker, EquipmentType.Weapon) > 0 Then
             Weapon = GetPlayerEquipment(Attacker, EquipmentType.Weapon)
         End If
 
-        ' Stop our player's regeneration abilities.
+        ' Parar as habilidades de regeneração do jogador.
         TempPlayer(Attacker).StopRegen = True
         TempPlayer(Attacker).StopRegenTimer = GetTimeMs()
 
-        ' Deal damage to our player.
+        ' Causar dano ao jogador.
         SetPlayerVital(Victim, VitalType.HP, GetPlayerVital(Victim, VitalType.HP) - Damage)
 
-        ' Send all the visuals to our player.
+        ' Enviar visuais ao jogador.
         If Weapon > 0 Then
             SendAnimation(GetPlayerMap(Victim), Item(Weapon).Animation, 0, 0, TargetType.Player, Victim)
         End If
         SendActionMsg(GetPlayerMap(Victim), "-" & Damage, ColorType.BrightRed, 1, (GetPlayerX(Victim) * 32), (GetPlayerY(Victim) * 32))
         SendBlood(GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim))
 
-        ' set the regen timer
+        ' Setar temporizador de regeneração
         TempPlayer(Victim).StopRegen = True
         TempPlayer(Victim).StopRegenTimer = GetTimeMs()
 
-        ' Reset attack timer
+        ' Resetar temporizador de ataque
         TempPlayer(Attacker).AttackTimer = GetTimeMs()
 
         If Not IsPlayerDead(Victim) Then
-            ' Send our player's new vitals to everyone that needs them.
+            ' Enviar novos vitais do jogador pra todos que precisam saber.
             SendVital(Victim, VitalType.HP)
             If TempPlayer(Victim).InParty > 0 Then SendPartyVitals(TempPlayer(Victim).InParty, Victim)
         Else
-            ' Handle our dead player.
+            ' Lidar com o jogador morto.
             HandlePlayerKillPlayer(Attacker, Victim)
         End If
     End Sub
@@ -670,38 +670,38 @@ Module S_Players
 
         Damage = 0
 
-        ' Can we attack the npc?
+        ' Podemos atacar o NPC?
         If CanPlayerAttackNpc(index, mapnpcnum) Then
 
             mapNum = GetPlayerMap(index)
             npcnum = MapNpc(mapNum).Npc(mapnpcnum).Num
 
-            ' check if NPC can avoid the attack
+            ' Ver se o NPC pode desviar do ataque
             If CanNpcDodge(npcnum) Then
-                SendActionMsg(mapNum, "Dodge!", ColorType.Pink, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
+                SendActionMsg(mapNum, "Desvio!", ColorType.Pink, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
                 Exit Sub
             End If
 
             If CanNpcParry(npcnum) Then
-                SendActionMsg(mapNum, "Parry!", ColorType.Pink, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
+                SendActionMsg(mapNum, "Bloqueio!", ColorType.Pink, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
                 Exit Sub
             End If
 
-            ' Get the damage we can do
+            ' Pegar o dano que podemos fazer
             Damage = GetPlayerDamage(index)
 
             If CanNpcBlock(npcnum) Then
-                SendActionMsg(mapNum, "Block!", ColorType.BrightCyan, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
+                SendActionMsg(mapNum, "Bloqueio!", ColorType.BrightCyan, 1, (MapNpc(mapNum).Npc(mapnpcnum).X * 32), (MapNpc(mapNum).Npc(mapnpcnum).Y * 32))
                 Damage = 0
                 Exit Sub
             Else
 
                 Damage -= ((Npc(npcnum).Stat(StatType.Spirit) * 2) + (Npc(npcnum).Level * 3))
 
-                ' * 1.5 if it's a crit!
+                ' * 1.5 se crítico!
                 If CanPlayerCriticalHit(index) Then
                     Damage *= 1.5
-                    SendActionMsg(mapNum, "Critical!", ColorType.BrightCyan, 1, (GetPlayerX(index) * 32), (GetPlayerY(index) * 32))
+                    SendActionMsg(mapNum, "Crítico!", ColorType.BrightCyan, 1, (GetPlayerX(index) * 32), (GetPlayerY(index) * 32))
                 End If
 
             End If
@@ -713,7 +713,7 @@ Module S_Players
             If Damage > 0 Then
                 PlayerAttackNpc(index, mapnpcnum, Damage)
             Else
-                PlayerMsg(index, "Your attack does nothing.", ColorType.BrightRed)
+                PlayerMsg(index, "Seu ataque não fez nada.", ColorType.BrightRed)
             End If
 
         End If
@@ -727,51 +727,51 @@ Module S_Players
     End Function
 
     Friend Sub HandlePlayerKillPlayer(Attacker As Integer, Victim As Integer)
-        ' Notify everyone that our player has bit the dust.
-        GlobalMsg(String.Format("{0} has been killed by {1}!", GetPlayerName(Victim), GetPlayerName(Attacker)))
+        ' Avisar a todos que nosso jogador morreu.
+        GlobalMsg(String.Format("{0} foi morto por {1}!", GetPlayerName(Victim), GetPlayerName(Attacker)))
 
-        ' Hand out player experience
+        ' Lidar com experiencia
         HandlePlayerKillExperience(Attacker, Victim)
 
-        ' Handle our PK outcomes.
+        ' Ligar com PK.
         HandlePlayerKilledPK(Attacker, Victim)
 
-        ' Remove our player from everyone's target list.
+        ' Remover o jogador morto da lista de alvo de todos.
         For Each p In TempPlayer.Where(Function(x, i) x.InGame AndAlso GetPlayerMap(i + 1) = GetPlayerMap(Victim) AndAlso x.TargetType = TargetType.Player AndAlso x.Target = Victim).Select(Function(x, i) i + 1).ToArray()
             TempPlayer(p).Target = 0
             TempPlayer(p).TargetType = TargetType.None
             SendTarget(p, 0, TargetType.None)
         Next
 
-        ' Actually kill the player.
+        ' Matar o jogado de fato.
         OnDeath(Victim)
 
-        ' Handle our quest system stuff.
+        ' Lidar com sistema de quests.
         CheckTasks(Attacker, QuestType.Kill, 0)
     End Sub
 
     Friend Sub HandlePlayerKillNpc(mapNum As Integer, index As Integer, MapNpcNum As Integer)
-        ' Set our attacker's target to nothing.
+        ' Setar o alvo do atacante para nenhum.
         SendTarget(index, 0, TargetType.None)
 
-        ' Hand out player experience
+        ' Lidar com experiêcia.
         HandleNpcKillExperience(index, MapNpc(mapNum).Npc(MapNpcNum).Num)
 
-        ' Drop items if we can.
+        ' Largar itens se puder.
         DropNpcItems(mapNum, MapNpcNum)
 
-        ' Handle quest tasks related to NPC death
+        ' Lidar com tarefas de quests relacionadas a morte de NPCs
         CheckTasks(index, QuestType.Slay, MapNpc(mapNum).Npc(MapNpcNum).Num)
 
-        ' Set our NPC's data to default so we know it's dead.
+        ' Retornar informações do NPC para o padrão para que saibamos que ele morreu.
         MapNpc(mapNum).Npc(MapNpcNum).Num = 0
         MapNpc(mapNum).Npc(MapNpcNum).SpawnWait = GetTimeMs()
         MapNpc(mapNum).Npc(MapNpcNum).Vital(VitalType.HP) = 0
 
-        ' Notify all our clients that the NPC has died.
+        ' Notificar todos nossos clientes que o NPC morreu
         SendNpcDead(mapNum, MapNpcNum)
 
-        ' Check if our dead NPC is targetted by another player and remove their targets.
+        ' Verificar se o NPC morto é alvo de outro jogador e retirar esse alvo.
         For Each p In TempPlayer.Where(Function(x, i) x.InGame AndAlso GetPlayerMap(i + 1) = mapNum AndAlso x.TargetType = TargetType.Npc AndAlso x.Target = MapNpcNum).Select(Function(x, i) i + 1).ToArray()
             TempPlayer(p).Target = 0
             TempPlayer(p).TargetType = TargetType.None
@@ -780,16 +780,16 @@ Module S_Players
     End Sub
 
     Friend Sub HandlePlayerKilledPK(Attacker As Integer, Victim As Integer)
-        ' TODO: Redo this method, it is horrendous.
+        ' TODO: Refazer, está horroso.
         Dim z As Integer, eqcount As Integer, invcount, j As Integer
         If GetPlayerPK(Victim) = 0 Then
             If GetPlayerPK(Attacker) = 0 Then
                 SetPlayerPK(Attacker, 1)
                 SendPlayerData(Attacker)
-                GlobalMsg(GetPlayerName(Attacker) & " has been deemed a Player Killer!!!")
+                GlobalMsg(GetPlayerName(Attacker) & " foi declarado um Player Killer!!!")
             End If
         Else
-            GlobalMsg(GetPlayerName(Victim) & " has paid the price for being a Player Killer!!!")
+            GlobalMsg(GetPlayerName(Victim) & " pagou o preço por ser um Player Killer!!!")
         End If
 
         If GetPlayerLevel(Victim) >= 10 Then
@@ -817,8 +817,8 @@ Module S_Players
                         j += 1
 
                         If j = z Then
-                            'Here it is, drop this piece of equipment!
-                            PlayerMsg(Victim, "In death you lost grip on your " & Trim$(Item(GetPlayerEquipment(Victim, x)).Name), ColorType.BrightRed)
+                            'Aqui está, largue esta peça de equipamento!
+                            PlayerMsg(Victim, "Na morte, você perdeu o seu " & Trim$(Item(GetPlayerEquipment(Victim, x)).Name), ColorType.BrightRed)
                             SpawnItem(GetPlayerEquipment(Victim, x), 1, GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim))
                             SetPlayerEquipment(Victim, 0, x)
                             SendWornEquipment(Victim)
@@ -833,8 +833,8 @@ Module S_Players
                         j += 1
 
                         If j = z Then
-                            'Here it is, drop this item!
-                            PlayerMsg(Victim, "In death you lost grip on your " & Trim$(Item(GetPlayerInvItemNum(Victim, x)).Name), ColorType.BrightRed)
+                            'Largar este item!
+                            PlayerMsg(Victim, "Na morte, você perdeu o seu " & Trim$(Item(GetPlayerInvItemNum(Victim, x)).Name), ColorType.BrightRed)
                             SpawnItem(GetPlayerInvItemNum(Victim, x), GetPlayerInvItemValue(Victim, x), GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim))
                             SetPlayerInvItemNum(Victim, x, 0)
                             SetPlayerInvItemValue(Victim, x, 0)
@@ -1065,10 +1065,10 @@ Module S_Players
         If level_count > 0 Then
             If level_count = 1 Then
                 'singular
-                GlobalMsg(GetPlayerName(index) & " has gained " & level_count & " level!")
+                GlobalMsg(GetPlayerName(index) & " ganhou " & level_count & " nível!")
             Else
                 'plural
-                GlobalMsg(GetPlayerName(index) & " has gained " & level_count & " levels!")
+                GlobalMsg(GetPlayerName(index) & " ganhou " & level_count & " níveis!")
             End If
             SendExp(index)
             SendPlayerData(index)
@@ -1090,7 +1090,7 @@ Module S_Players
     Friend Sub HandleUseChar(index As Integer)
         If Not IsPlaying(index) Then
             JoinGame(index)
-            Dim text = String.Format("{0} | {1} has began playing {2}.", GetPlayerLogin(index), GetPlayerName(index), Settings.GameName)
+            Dim text = String.Format("{0} | {1} começou a jogar {2}.", GetPlayerLogin(index), GetPlayerName(index), Settings.GameName)
             Addlog(text, PLAYER_LOG)
             Console.WriteLine(text)
         End If
@@ -1122,13 +1122,13 @@ Module S_Players
         If Map(MapNum).Instanced = 1 And NoInstance = False Then
             MapNum = CreateInstance(MapNum) ' AndAlso MAP_NUMBER_MASK)
             If MapNum = -1 Then
-                'Couldn't create instanced map!
+                'Não pôde instanciar um mapa!
                 MapNum = GetPlayerMap(index)
                 X = GetPlayerX(index)
                 Y = GetPlayerY(index)
-                AlertMsg(index, "Unable to create a cached map!")
+                AlertMsg(index, "Não foi possível criar mapa do cache!")
             Else
-                'store old info, for returning to entrance of instance
+                'Guardar infos antigas para retornar à entrada da instância
                 If Not TempPlayer(index).InInstance = 1 Then
                     TempPlayer(index).TmpMap = GetPlayerMap(index)
                     TempPlayer(index).TmpX = GetPlayerX(index)
@@ -1139,10 +1139,10 @@ Module S_Players
             End If
         End If
 
-        ' Check for subscript out of range
+        ' Veriicar por subscript out of range
         If IsPlaying(index) = False OrElse MapNum <= 0 OrElse MapNum > MAX_CACHED_MAPS Then Exit Sub
 
-        ' Check if you are out of bounds
+        ' Verificar se não está fora dos limites 
         If X > Map(MapNum).MaxX Then X = Map(MapNum).MaxX
         If Y > Map(MapNum).MaxY Then Y = Map(MapNum).MaxY
 
@@ -1165,12 +1165,12 @@ Module S_Players
             End If
         End If
 
-        'clear target
+        'Limpar alvo
         TempPlayer(index).Target = 0
         TempPlayer(index).TargetType = TargetType.None
         SendTarget(index, 0, TargetType.None)
 
-        ' Save old map to send erase player data to
+        ' Salvar antigo mapa para enviar os dados de saída do jogador
         OldMap = GetPlayerMap(index)
 
         If OldMap <> MapNum Then
@@ -1190,7 +1190,7 @@ Module S_Players
 
         SendPlayerXY(index)
 
-        ' send equipment of all people on new map
+        ' Enviar equipamento de todas as pessoas no novo mapa
         If GetTotalMapPlayers(MapNum) > 0 Then
             For i = 1 To GetPlayersOnline()
                 If IsPlaying(i) Then
@@ -1201,7 +1201,7 @@ Module S_Players
             Next
         End If
 
-        ' Now we check if there were any players left on the map the player just left, and if not stop processing npcs
+        'Agora vemos se restou algum jogador no mapa que o jogador acabou de sair; e se não, parar de processar NPCs
         If GetTotalMapPlayers(OldMap) = 0 Then
             PlayersOnMap(OldMap) = False
 
@@ -1209,7 +1209,7 @@ Module S_Players
                 DestroyInstancedMap(OldMap - MAX_MAPS)
             End If
 
-            ' Regenerate all NPCs' health
+            ' Regenerar todos os pontos de vida dos NPCs
             For i = 1 To MAX_MAP_NPCS
 
                 If MapNpc(OldMap).Npc(i).Num > 0 Then
@@ -1220,7 +1220,7 @@ Module S_Players
 
         End If
 
-        ' Sets it so we know to process npcs on the map
+        ' Setar para que saibamos que temos que processar NPCs no mapa
         PlayersOnMap(MapNum) = True
         TempPlayer(index).GettingMap = True
 
@@ -1245,7 +1245,7 @@ Module S_Players
 
         'Debug.Print("Server-PlayerMove")
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse Dir < DirectionType.Up OrElse Dir > DirectionType.Right OrElse Movement < 1 OrElse Movement > 2 Then
             Exit Sub
         End If
@@ -1257,27 +1257,27 @@ Module S_Players
         Select Case Dir
             Case DirectionType.Up
 
-                ' Check to make sure not outside of boundries
+                ' Verificar que não estamos fora dos limites
                 If GetPlayerY(index) > 0 Then
 
-                    ' Check to make sure that the tile is walkable
+                    ' Verificar que o campo é andável
                     If Not IsDirBlocked(Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index)).DirBlock, DirectionType.Up + 1) Then
                         If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) - 1).Type <> TileType.Blocked Then
                             If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) - 1).Type <> TileType.Resource Then
 
-                                ' Check to see if the tile is a key and if it is check if its opened
+                                ' Verificar se o campo é uma chave e se for checar se está aberto
                                 If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) - 1).Type <> TileType.Key OrElse (Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) - 1).Type = TileType.Key AndAlso TempTile(GetPlayerMap(index)).DoorOpen(GetPlayerX(index), GetPlayerY(index) - 1) = True) Then
                                     SetPlayerY(index, GetPlayerY(index) - 1)
                                     SendPlayerMove(index, Movement)
                                     Moved = True
                                 End If
 
-                                'check for event
+                                'Checar por evento
                                 For i = 1 To TempPlayer(index).EventMap.CurrentEvents
                                     If TempPlayer(index).EventMap.EventPages(i).X = GetPlayerX(index) AndAlso TempPlayer(index).EventMap.EventPages(i).Y = GetPlayerY(index) - 1 Then
                                         If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).Trigger = 1 Then
                                             'PlayerMsg(Index, "OnTouch event", ColorType.Red)
-                                            'Process this event, it is on-touch and everything checks out.
+                                            'Processar este evento, se é ao toque e tudo mais.
                                             If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).CommandListCount > 0 Then
 
                                                 TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).CurList = 1
@@ -1299,7 +1299,7 @@ Module S_Players
                     End If
                 Else
 
-                    ' Check to see if we can move them to the another map
+                    ' Ver se podemos move-lo ao outro mapa
                     If Map(GetPlayerMap(index)).Up > 0 Then
                         NewMapY = Map(Map(GetPlayerMap(index)).Up).MaxY
                         PlayerWarp(index, Map(GetPlayerMap(index)).Up, GetPlayerX(index), NewMapY)
@@ -1310,27 +1310,27 @@ Module S_Players
 
             Case DirectionType.Down
 
-                ' Check to make sure not outside of boundries
+                ' Verificar que não estamos fora dos limites
                 If GetPlayerY(index) < Map(mapNum).MaxY Then
 
-                    ' Check to make sure that the tile is walkable
+                    ' Verificar que o campo é andável
                     If Not IsDirBlocked(Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index)).DirBlock, DirectionType.Down + 1) Then
                         If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) + 1).Type <> TileType.Blocked Then
                             If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) + 1).Type <> TileType.Resource Then
 
-                                ' Check to see if the tile is a key and if it is check if its opened
+                                ' Verificar se o campo é uma chave e se for checar se está aberto
                                 If Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) + 1).Type <> TileType.Key OrElse (Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index) + 1).Type = TileType.Key AndAlso TempTile(GetPlayerMap(index)).DoorOpen(GetPlayerX(index), GetPlayerY(index) + 1) = True) Then
                                     SetPlayerY(index, GetPlayerY(index) + 1)
                                     SendPlayerMove(index, Movement)
                                     Moved = True
                                 End If
 
-                                'check for event
+                                'Checar por event
                                 For i = 1 To TempPlayer(index).EventMap.CurrentEvents
                                     If TempPlayer(index).EventMap.EventPages(i).X = GetPlayerX(index) AndAlso TempPlayer(index).EventMap.EventPages(i).Y = GetPlayerY(index) + 1 Then
                                         If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).Trigger = 1 Then
                                             'PlayerMsg(Index, "OnTouch event", ColorType.Red)
-                                            'Process this event, it is on-touch and everything checks out.
+                                            'Processar este evento, se é ao toque e tudo mais.
                                             If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).CommandListCount > 0 Then
 
                                                 TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).CurList = 1
@@ -1351,7 +1351,7 @@ Module S_Players
                     End If
                 Else
 
-                    ' Check to see if we can move them to the another map
+                    ' Ver se podemos move-lo ao outro mapa
                     If Map(GetPlayerMap(index)).Down > 0 Then
                         PlayerWarp(index, Map(GetPlayerMap(index)).Down, GetPlayerX(index), 0)
                         DidWarp = True
@@ -1361,27 +1361,27 @@ Module S_Players
 
             Case DirectionType.Left
 
-                ' Check to make sure not outside of boundries
+                ' Verificar que não estamos fora dos limites
                 If GetPlayerX(index) > 0 Then
 
-                    ' Check to make sure that the tile is walkable
+                    ' Verificar que o campo é andável
                     If Not IsDirBlocked(Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index)).DirBlock, DirectionType.Left + 1) Then
                         If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) - 1, GetPlayerY(index)).Type <> TileType.Blocked Then
                             If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) - 1, GetPlayerY(index)).Type <> TileType.Resource Then
 
-                                ' Check to see if the tile is a key and if it is check if its opened
+                                ' Verificar se o campo é uma chave e se for checar se está aberto
                                 If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) - 1, GetPlayerY(index)).Type <> TileType.Key OrElse (Map(GetPlayerMap(index)).Tile(GetPlayerX(index) - 1, GetPlayerY(index)).Type = TileType.Key AndAlso TempTile(GetPlayerMap(index)).DoorOpen(GetPlayerX(index) - 1, GetPlayerY(index)) = True) Then
                                     SetPlayerX(index, GetPlayerX(index) - 1)
                                     SendPlayerMove(index, Movement)
                                     Moved = True
                                 End If
 
-                                'check for event
+                                'Checar por evento
                                 For i = 1 To TempPlayer(index).EventMap.CurrentEvents
                                     If TempPlayer(index).EventMap.EventPages(i).X = GetPlayerX(index) - 1 AndAlso TempPlayer(index).EventMap.EventPages(i).Y = GetPlayerY(index) Then
                                         If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).Trigger = 1 Then
                                             'PlayerMsg(Index, "OnTouch event", ColorType.Red)
-                                            'Process this event, it is on-touch and everything checks out.
+                                            'Processar este evento, se é ao toque e tudo mais.
                                             If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).CommandListCount > 0 Then
 
                                                 TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).CurList = 1
@@ -1402,7 +1402,7 @@ Module S_Players
                     End If
                 Else
 
-                    ' Check to see if we can move them to the another map
+                    ' Ver se podemos move-lo ao outro mapa
                     If Map(GetPlayerMap(index)).Left > 0 Then
                         NewMapX = Map(Map(GetPlayerMap(index)).Left).MaxX
                         PlayerWarp(index, Map(GetPlayerMap(index)).Left, NewMapX, GetPlayerY(index))
@@ -1413,27 +1413,27 @@ Module S_Players
 
             Case DirectionType.Right
 
-                ' Check to make sure not outside of boundries
+                ' Verificar que não estamos fora dos limites
                 If GetPlayerX(index) < Map(mapNum).MaxX Then
 
-                    ' Check to make sure that the tile is walkable
+                    ' Verificar que o campo é andável
                     If Not IsDirBlocked(Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index)).DirBlock, DirectionType.Right + 1) Then
                         If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) + 1, GetPlayerY(index)).Type <> TileType.Blocked Then
                             If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) + 1, GetPlayerY(index)).Type <> TileType.Resource Then
 
-                                ' Check to see if the tile is a key and if it is check if its opened
+                                ' Verificar se o campo é uma chave e se for checar se está aberto
                                 If Map(GetPlayerMap(index)).Tile(GetPlayerX(index) + 1, GetPlayerY(index)).Type <> TileType.Key OrElse (Map(GetPlayerMap(index)).Tile(GetPlayerX(index) + 1, GetPlayerY(index)).Type = TileType.Key AndAlso TempTile(GetPlayerMap(index)).DoorOpen(GetPlayerX(index) + 1, GetPlayerY(index)) = True) Then
                                     SetPlayerX(index, GetPlayerX(index) + 1)
                                     SendPlayerMove(index, Movement)
                                     Moved = True
                                 End If
 
-                                'check for event
+                                'Checar por evento
                                 For i = 1 To TempPlayer(index).EventMap.CurrentEvents
                                     If TempPlayer(index).EventMap.EventPages(i).X = GetPlayerX(index) AndAlso TempPlayer(index).EventMap.EventPages(i).Y = GetPlayerY(index) Then
                                         If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).Trigger = 1 Then
                                             'PlayerMsg(Index, "OnTouch event", ColorType.Red)
-                                            'Process this event, it is on-touch and everything checks out.
+                                            'Processar este evento, se é ao toque e tudo mais.
                                             If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).CommandListCount > 0 Then
 
                                                 TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).CurList = 1
@@ -1454,7 +1454,7 @@ Module S_Players
                     End If
                 Else
 
-                    ' Check to see if we can move them to the another map
+                    ' Ver se podemos move-lo ao outro mapa
                     If Map(GetPlayerMap(index)).Right > 0 Then
                         PlayerWarp(index, Map(GetPlayerMap(index)).Right, 0, GetPlayerY(index))
                         DidWarp = True
@@ -1464,7 +1464,7 @@ Module S_Players
         End Select
 
         With Map(GetPlayerMap(index)).Tile(GetPlayerX(index), GetPlayerY(index))
-            ' Check to see if the tile is a warp tile, and if so warp them
+            ' Verificar se o campo/tile é de teleporte, e se sim fazê-lo
             If .Type = TileType.Warp Then
                 mapNum = .Data1
                 x = .Data2
@@ -1485,12 +1485,12 @@ Module S_Players
                 Moved = True
             End If
 
-            ' Check to see if the tile is a door tile, and if so warp them
+            ' Verificar se o campo/tile é de porta, e se sim transporta-lo
             If .Type = TileType.Door Then
                 mapNum = .Data1
                 x = .Data2
                 y = .Data3
-                ' send the animation to the map
+                ' Enviar animacao da porta ao mapa
                 SendDoorAnimation(GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index))
 
                 If Map(mapNum).Instanced = 1 Then
@@ -1506,7 +1506,7 @@ Module S_Players
                 Moved = True
             End If
 
-            ' Check for key trigger open
+            ' Verificar pelo gatilho de porta aberta
             If .Type = TileType.KeyOpen Then
                 x = .Data1
                 y = .Data2
@@ -1515,29 +1515,29 @@ Module S_Players
                     TempTile(GetPlayerMap(index)).DoorOpen(x, y) = True
                     TempTile(GetPlayerMap(index)).DoorTimer = GetTimeMs()
                     SendMapKey(index, x, y, 1)
-                    MapMsg(GetPlayerMap(index), "A door has been unlocked.", ColorType.White)
+                    MapMsg(GetPlayerMap(index), "Uma porta foi aberta.", ColorType.White)
                 End If
             End If
 
-            ' Check for a shop, and if so open it
+            ' Ver Loja, e se sim abrir
             If .Type = TileType.Shop Then
                 x = .Data1
-                If x > 0 Then ' shop exists?
-                    If Len(Trim$(Shop(x).Name)) > 0 Then ' name exists?
+                If x > 0 Then ' loja existe?
+                    If Len(Trim$(Shop(x).Name)) > 0 Then ' nome existe?
                         SendOpenShop(index, x)
-                        TempPlayer(index).InShop = x ' stops movement and the like
+                        TempPlayer(index).InShop = x ' para o movimento e coisa do tempo
                     End If
                 End If
             End If
 
-            ' Check to see if the tile is a bank, and if so send bank
+            ' Verificar se o campo/tile é um abnco, e se sim abrir
             If .Type = TileType.Bank Then
                 SendBank(index)
                 TempPlayer(index).InBank = True
                 Moved = True
             End If
 
-            ' Check if it's a heal tile
+            ' Verificar se é um campo de cura
             If .Type = TileType.Heal Then
                 VitalType = .Data1
                 amount = .Data2
@@ -1549,35 +1549,35 @@ Module S_Players
                     End If
                     SendActionMsg(GetPlayerMap(index), "+" & amount, Colour, ActionMsgType.Scroll, GetPlayerX(index) * 32, GetPlayerY(index) * 32, 1)
                     SetPlayerVital(index, VitalType, GetPlayerVital(index, VitalType) + amount)
-                    PlayerMsg(index, "You feel rejuvinating forces coarsing through your body.", ColorType.BrightGreen)
+                    PlayerMsg(index, "Você sente forças rejuvenescedoras por todo seu corpo.", ColorType.BrightGreen)
                     SendVital(index, VitalType)
-                    ' send vitals to party if in one
+                    ' Enviar os vitais ao grupo se em um
                     If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
                 End If
                 Moved = True
             End If
 
-            ' Check if it's a trap tile
+            ' Ver se é uma tile de armadilha
             If .Type = TileType.Trap Then
                 amount = .Data1
                 SendActionMsg(GetPlayerMap(index), "-" & amount, ColorType.BrightRed, ActionMsgType.Scroll, GetPlayerX(index) * 32, GetPlayerY(index) * 32, 1)
                 If GetPlayerVital(index, modEnumerators.VitalType.HP) - amount <= 0 Then
                     KillPlayer(index)
-                    PlayerMsg(index, "You've been killed by a trap.", ColorType.BrightRed)
+                    PlayerMsg(index, "Você foi morto por uma armadilha.", ColorType.BrightRed)
                 Else
                     SetPlayerVital(index, modEnumerators.VitalType.HP, GetPlayerVital(index, modEnumerators.VitalType.HP) - amount)
                     PlayerMsg(index, "You've been injured by a trap.", ColorType.BrightRed)
                     SendVital(index, modEnumerators.VitalType.HP)
-                    ' send vitals to party if in one
+                    ' Enviar os vitais ao grupo se em um
                     If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
                 End If
                 Moved = True
             End If
 
-            'Housing
+            'Moradia
             If .Type = TileType.House Then
                 If Player(index).Character(TempPlayer(index).CurChar).House.Houseindex = .Data1 Then
-                    'Do warping and such to the player's house :/
+                    'Fazer transporte a casa do jogador
                     Player(index).Character(TempPlayer(index).CurChar).LastMap = GetPlayerMap(index)
                     Player(index).Character(TempPlayer(index).CurChar).LastX = GetPlayerX(index)
                     Player(index).Character(TempPlayer(index).CurChar).LastY = GetPlayerY(index)
@@ -1588,7 +1588,7 @@ Module S_Players
                     DidWarp = True
                     Exit Sub
                 Else
-                    'Send the buy sequence and see what happens. (To be recreated in events.)
+                    'Enviar a sequência de compra e ver o que acontece. (A ser recriado nos eventos.)
                     Buffer = New ByteStream(4)
                     Buffer.WriteInt32(ServerPackets.SBuyHouse)
                     Buffer.WriteInt32(.Data1)
@@ -1598,7 +1598,7 @@ Module S_Players
                 End If
             End If
 
-            'crafting
+            'Artesanato
             If .Type = TileType.Craft Then
                 TempPlayer(index).IsCrafting = True
                 SendPlayerRecipes(index)
@@ -1619,7 +1619,7 @@ Module S_Players
             End If
         End If
 
-        ' They tried to hack
+        ' Tentaram hackear
         If Moved = False OrElse (ExpectingWarp AndAlso Not DidWarp) Then
             PlayerWarp(index, GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index))
         End If
@@ -1637,7 +1637,7 @@ Module S_Players
                     End If
                     begineventprocessing = False
                     If begineventprocessing = True Then
-                        'Process this event, it is on-touch and everything checks out.
+                        'Processar este evento, é ao toque e tudo dá certo.
                         If Map(GetPlayerMap(index)).Events(TempPlayer(index).EventMap.EventPages(i).EventId).Pages(TempPlayer(index).EventMap.EventPages(i).PageId).CommandListCount > 0 Then
                             TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).Active = 1
                             TempPlayer(index).EventProcessing(TempPlayer(index).EventMap.EventPages(i).EventId).ActionTimer = GetTimeMs()
@@ -1663,13 +1663,13 @@ Module S_Players
     Function HasItem(index As Integer, ItemNum As Integer) As Integer
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse ItemNum <= 0 OrElse ItemNum > MAX_ITEMS Then
             Exit Function
         End If
 
         For i = 1 To MAX_INV
-            ' Check to see if the player has the item
+            ' Ver se o jogador tem o item
             If GetPlayerInvItemNum(index, i) = ItemNum Then
                 If Item(ItemNum).Type = ItemType.Currency OrElse Item(ItemNum).Stackable = 1 Then
                     HasItem = GetPlayerInvItemValue(index, i)
@@ -1685,13 +1685,13 @@ Module S_Players
     Function FindItemSlot(index As Integer, ItemNum As Integer) As Integer
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse ItemNum <= 0 OrElse ItemNum > MAX_ITEMS Then
             Exit Function
         End If
 
         For i = 1 To MAX_INV
-            ' Check to see if the player has the item
+            ' Ver se o jogador tem o item
             If GetPlayerInvItemNum(index, i) = ItemNum Then
                 FindItemSlot = i
                 Exit Function
@@ -1725,19 +1725,19 @@ Module S_Players
 
         For i = 1 To MAX_MAP_ITEMS
 
-            ' See if theres even an item here
+            ' Ver se tem um item aqui
             If (MapItem(mapNum, i).Num > 0) And (MapItem(mapNum, i).Num <= MAX_ITEMS) Then
-                ' our drop?
+                ' Nosso drop?
                 If CanPlayerPickupItem(index, i) Then
-                    ' Check if item is at the same location as the player
+                    ' Ver se o item está no mesmo lugar que o jogador
                     If (MapItem(mapNum, i).X = GetPlayerX(index)) Then
                         If (MapItem(mapNum, i).Y = GetPlayerY(index)) Then
-                            ' Find open slot
+                            ' Achar espaço livre
                             n = FindOpenInvSlot(index, MapItem(mapNum, i).Num)
 
-                            ' Open slot available?
+                            ' Está disponível??
                             If n <> 0 Then
-                                ' Set item in players inventor
+                                ' Setar item no inventário do jogador
                                 itemnum = MapItem(mapNum, i).Num
 
                                 If Item(itemnum).Randomize <> 0 Then
@@ -1750,7 +1750,7 @@ Module S_Players
                                         For m = 1 To StatType.Count - 1
                                             Player(index).Character(TempPlayer(index).CurChar).RandInv(n).Stat(m) = MapItem(GetPlayerMap(index), i).RandData.Stat(m)
                                         Next m
-                                    Else ' Nothing has been generated yet!
+                                    Else ' Nada foi gerado ainda!
                                         GivePlayerRandomItem(index, itemnum, n)
                                     End If
                                 End If
@@ -1765,7 +1765,7 @@ Module S_Players
                                     Msg = CheckGrammar(Trim$(Item(GetPlayerInvItemNum(index, n)).Name), 1)
                                 End If
 
-                                ' Erase item from the map
+                                ' Apagar item do mapa
                                 MapItem(mapNum, i).Num = 0
                                 MapItem(mapNum, i).Value = 0
                                 MapItem(mapNum, i).X = 0
@@ -1778,7 +1778,7 @@ Module S_Players
                                 CheckTasks(index, QuestType.Gather, GetItemNum(Trim$(Item(GetPlayerInvItemNum(index, n)).Name)))
                                 Exit For
                             Else
-                                PlayerMsg(index, "Your inventory is full.", ColorType.BrightRed)
+                                PlayerMsg(index, "Seu inventário está cheio.", ColorType.BrightRed)
                                 Exit For
                             End If
                         End If
@@ -1793,7 +1793,7 @@ Module S_Players
 
         mapnum = GetPlayerMap(index)
 
-        ' no lock or locked to player?
+        ' Sem travas ou travado ao jogador?
         If MapItem(mapnum, mapItemNum).PlayerName = vbNullString Or MapItem(mapnum, mapItemNum).PlayerName = GetPlayerName(index).Trim Then
             CanPlayerPickupItem = True
             Exit Function
@@ -1813,13 +1813,13 @@ Module S_Players
     Function FindOpenInvSlot(index As Integer, ItemNum As Integer) As Integer
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse ItemNum <= 0 OrElse ItemNum > MAX_ITEMS Then
             Exit Function
         End If
 
         If Item(ItemNum).Type = ItemType.Currency OrElse Item(ItemNum).Stackable = 1 Then
-            ' If currency then check to see if they already have an instance of the item and add it to that
+            ' Se moeda então ver se já tem uma instancia do item e adicionar à quantidade
             For i = 1 To MAX_INV
                 If GetPlayerInvItemNum(index, i) = ItemNum Then
                     FindOpenInvSlot = i
@@ -1829,7 +1829,7 @@ Module S_Players
         End If
 
         For i = 1 To MAX_INV
-            ' Try to find an open free slot
+            ' Tentar achar um espaço livre no inventário
             If GetPlayerInvItemNum(index, i) = 0 Then
                 FindOpenInvSlot = i
                 Exit Function
@@ -1843,18 +1843,18 @@ Module S_Players
 
         TakeInvItem = False
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse ItemNum <= 0 OrElse ItemNum > MAX_ITEMS Then
             Exit Function
         End If
 
         For i = 1 To MAX_INV
 
-            ' Check to see if the player has the item
+            ' Ver se o jogador já tem o item
             If GetPlayerInvItemNum(index, i) = ItemNum Then
                 If Item(ItemNum).Type = ItemType.Currency OrElse Item(ItemNum).Stackable = 1 Then
 
-                    ' Is what we are trying to take away more then what they have?  If so just set it to zero
+                    ' Estamos tentando pegar mais do que eles tem? Se sim, setar para zero. 
                     If ItemVal >= GetPlayerInvItemValue(index, i) Then
                         TakeInvItem = True
                     Else
@@ -1868,7 +1868,7 @@ Module S_Players
                 If TakeInvItem Then
                     SetPlayerInvItemNum(index, i, 0)
                     SetPlayerInvItemValue(index, i, 0)
-                    ' Send the inventory update
+                    ' Atualizar inventário
                     SendInventoryUpdate(index, i)
                     Exit Function
                 End If
@@ -1881,7 +1881,7 @@ Module S_Players
     Function GiveInvItem(index As Integer, ItemNum As Integer, ItemVal As Integer, Optional SendUpdate As Boolean = True) As Boolean
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar subscript out of range
         If IsPlaying(index) = False OrElse ItemNum <= 0 OrElse ItemNum > MAX_ITEMS Then
             GiveInvItem = False
             Exit Function
@@ -1889,14 +1889,14 @@ Module S_Players
 
         i = FindOpenInvSlot(index, ItemNum)
 
-        ' Check to see if inventory is full
+        ' Ver se o inventário está cheio.
         If i <> 0 Then
             SetPlayerInvItemNum(index, i, ItemNum)
             SetPlayerInvItemValue(index, i, GetPlayerInvItemValue(index, i) + ItemVal)
             If SendUpdate Then SendInventoryUpdate(index, i)
             GiveInvItem = True
         Else
-            PlayerMsg(index, "Your inventory is full.", ColorType.BrightRed)
+            PlayerMsg(index, "Seu inventário está cheio.", ColorType.BrightRed)
             GiveInvItem = False
         End If
 
@@ -1905,12 +1905,13 @@ Module S_Players
     Sub PlayerMapDropItem(index As Integer, InvNum As Integer, Amount As Integer)
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse InvNum <= 0 OrElse InvNum > MAX_INV Then
             Exit Sub
         End If
 
-        ' check the player isn't doing something
+        ' Ver se o jogador não está fazendo algo
+
         If TempPlayer(index).InBank OrElse TempPlayer(index).InShop OrElse TempPlayer(index).InTrade > 0 Then Exit Sub
 
         If (GetPlayerInvItemNum(index, InvNum) > 0) Then
@@ -1928,7 +1929,7 @@ Module S_Players
 
                     If Item(GetPlayerInvItemNum(index, InvNum)).Type = ItemType.Currency OrElse Item(GetPlayerInvItemNum(index, InvNum)).Stackable = 1 Then
 
-                        ' Check if its more then they have and if so drop it all
+                        ' Ver se é mais do que ele tem, e se sim dropar tudo
                         If Amount >= GetPlayerInvItemValue(index, InvNum) Then
                             MapItem(GetPlayerMap(index), i).Value = GetPlayerInvItemValue(index, InvNum)
                             SetPlayerInvItemNum(index, InvNum, 0)
@@ -1938,23 +1939,23 @@ Module S_Players
                             MapItem(GetPlayerMap(index), i).Value = Amount
                             SetPlayerInvItemValue(index, InvNum, GetPlayerInvItemValue(index, InvNum) - Amount)
                         End If
-                        MapMsg(GetPlayerMap(index), String.Format("{0} has dropped {1} ({2}x).", GetPlayerName(index), CheckGrammar(Trim$(Item(GetPlayerInvItemNum(index, InvNum)).Name)), Amount), ColorType.Yellow)
+                        MapMsg(GetPlayerMap(index), String.Format("{0} largou {1} ({2}x).", GetPlayerName(index), CheckGrammar(Trim$(Item(GetPlayerInvItemNum(index, InvNum)).Name)), Amount), ColorType.Yellow)
                     Else
-                        ' Its not a currency object so this is easy
+                        ' Não é moeda então é fácil
                         MapItem(GetPlayerMap(index), i).Value = 0
-                        ' send message
+                        ' Enviar mensagem
 
-                        MapMsg(GetPlayerMap(index), String.Format("{0} has dropped {1}.", GetPlayerName(index), CheckGrammar(Trim$(Item(GetPlayerInvItemNum(index, InvNum)).Name))), ColorType.Yellow)
+                        MapMsg(GetPlayerMap(index), String.Format("{0} largou {1}.", GetPlayerName(index), CheckGrammar(Trim$(Item(GetPlayerInvItemNum(index, InvNum)).Name))), ColorType.Yellow)
                         SetPlayerInvItemNum(index, InvNum, 0)
                         SetPlayerInvItemValue(index, InvNum, 0)
                     End If
 
-                    ' Send inventory update
+                    ' Enviar atualização de inventário
                     SendInventoryUpdate(index, InvNum)
-                    ' Spawn the item before we set the num or we'll get a different free map item slot
+                    ' Gerar o item antes de setarmos a quantidade ou pegaremos um espaço de item diferente no mapa 
                     SpawnItemSlot(i, MapItem(GetPlayerMap(index), i).Num, Amount, GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index))
                 Else
-                    PlayerMsg(index, "Too many items already on the ground.", ColorType.Yellow)
+                    PlayerMsg(index, "Já existem muitos itens no chão.", ColorType.Yellow)
                 End If
             End If
         End If
@@ -1966,14 +1967,13 @@ Module S_Players
 
         TakeInvSlot = False
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse InvSlot <= 0 OrElse InvSlot > MAX_ITEMS Then Exit Function
 
         itemNum = GetPlayerInvItemNum(index, InvSlot)
 
         If Item(itemNum).Type = ItemType.Currency OrElse Item(itemNum).Stackable = 1 Then
-
-            ' Is what we are trying to take away more then what they have?  If so just set it to zero
+            ' Estamos tentando pegar mais do que tem? Se sim, setar para zero.
             If ItemVal >= GetPlayerInvItemValue(index, InvSlot) Then
                 TakeInvSlot = True
             Else
@@ -1995,7 +1995,7 @@ Module S_Players
         Dim InvItemNum As Integer, i As Integer, n As Integer, x As Integer, y As Integer, tempitem As Integer
         Dim m As Integer, tempdata(StatType.Count + 3) As Integer, tempstr(2) As String
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If InvNum < 1 OrElse InvNum > MAX_ITEMS Then Exit Sub
 
         If (GetPlayerInvItemNum(index, InvNum) > 0) AndAlso (GetPlayerInvItemNum(index, InvNum) <= MAX_ITEMS) Then
@@ -2003,44 +2003,44 @@ Module S_Players
 
             n = Item(InvItemNum).Data2
 
-            ' Find out what kind of item it is
+            ' Descobrir que tipo dei tem é
             Select Case Item(InvItemNum).Type
                 Case ItemType.Equipment
                     For i = 1 To StatType.Count - 1
                         If GetPlayerStat(index, i) < Item(InvItemNum).Stat_Req(i) Then
-                            PlayerMsg(index, "You do not meet the stat requirements to equip this item.", ColorType.BrightRed)
+                            PlayerMsg(index, "Você não tem os atributos necessários para equipar esse item.", ColorType.BrightRed)
                             Exit Sub
                         End If
                     Next
 
-                    ' Make sure they are the right level
+                    ' Ter certeza que tem o nível necessário
                     i = Item(InvItemNum).LevelReq
 
                     If i > GetPlayerLevel(index) Then
-                        PlayerMsg(index, "You do not meet the level requirements to equip this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem o nível necessário para equipar esse item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' Make sure they are the right class
+                    ' Classe correta
                     If Not Item(InvItemNum).ClassReq = GetPlayerClass(index) AndAlso Not Item(InvItemNum).ClassReq = 0 Then
-                        PlayerMsg(index, "You do not meet the class requirements to equip this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem a classe necessária para equipar esse item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' access requirement
+                    ' Acesso
                     If Not GetPlayerAccess(index) >= Item(InvItemNum).AccessReq Then
-                        PlayerMsg(index, "You do not meet the access requirement to equip this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem o acesso necessário para equipar esse item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    'if that went fine, we progress the subtype
+                    'Se tudo deu certo, olhar o subtipo
 
                     Select Case Item(InvItemNum).SubType
                         Case EquipmentType.Weapon
 
                             If Item(InvItemNum).TwoHanded > 0 Then
                                 If GetPlayerEquipment(index, EquipmentType.Shield) > 0 Then
-                                    PlayerMsg(index, "This is a 2Handed weapon! Please unequip shield first.", ColorType.BrightRed)
+                                    PlayerMsg(index, "Esta é uma arma de duas mãos! Desequipe seu escudo primeiro!", ColorType.BrightRed)
                                     Exit Sub
                                 End If
                             End If
@@ -2059,7 +2059,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Weapon)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Weapon).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Weapon).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Weapon).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2071,16 +2071,16 @@ Module S_Players
                             Next
 
                             If Item(InvItemNum).Randomize <> 0 Then
-                                PlayerMsg(index, "You equip " & tempstr(1) & " " & CheckGrammar(Item(InvItemNum).Name) & " " & tempstr(2), ColorType.BrightGreen)
+                                PlayerMsg(index, "Você equipou " & tempstr(1) & " " & CheckGrammar(Item(InvItemNum).Name) & " " & tempstr(2), ColorType.BrightGreen)
                             Else
-                                PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                                PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             End If
 
                             SetPlayerInvItemNum(index, InvNum, 0)
                             SetPlayerInvItemValue(index, InvNum, 0)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' give back the stored item
+                            If tempitem > 0 Then ' dar de volta o item guardado
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2105,10 +2105,10 @@ Module S_Players
                             SendInventoryUpdate(index, InvNum)
                             SendStats(index)
 
-                            ' send vitals
+                            ' enviar vitais
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case EquipmentType.Armor
@@ -2127,7 +2127,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Armor)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Armor).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Armor).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Armor).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2138,11 +2138,11 @@ Module S_Players
                                 Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Armor).Stat(i) = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Stat(i)
                             Next
 
-                            PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                            PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             TakeInvItem(index, InvItemNum, 0)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' Return their old equipment to their inventory.
+                            If tempitem > 0 Then ' Retornar o euqipamento antigo ao inventário.
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2167,10 +2167,10 @@ Module S_Players
                             SendInventory(index)
                             SendStats(index)
 
-                            ' send vitals
+                            ' enviar vitais
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case EquipmentType.Helmet
@@ -2189,7 +2189,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Helmet)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Helmet).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Helmet).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Helmet).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2200,11 +2200,11 @@ Module S_Players
                                 Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Helmet).Stat(i) = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Stat(i)
                             Next
 
-                            PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                            PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             TakeInvItem(index, InvItemNum, 1)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' give back the stored item
+                            If tempitem > 0 Then ' Retornar o euqipamento antigo ao inventário
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2228,15 +2228,15 @@ Module S_Players
                             SendInventory(index)
                             SendStats(index)
 
-                            ' send vitals
+                            ' Enviar vitais 
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case EquipmentType.Shield
                             If Item(GetPlayerEquipment(index, EquipmentType.Weapon)).TwoHanded > 0 Then
-                                PlayerMsg(index, "Please unequip your 2handed weapon first.", ColorType.BrightRed)
+                                PlayerMsg(index, "Primeiramente desequipe sua arma de duas mãos.", ColorType.BrightRed)
                                 Exit Sub
                             End If
 
@@ -2254,7 +2254,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Shield)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shield).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shield).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shield).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2265,11 +2265,11 @@ Module S_Players
                                 Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shield).Stat(i) = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Stat(i)
                             Next
 
-                            PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                            PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             TakeInvItem(index, InvItemNum, 1)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' give back the stored item
+                            If tempitem > 0 Then ' Retornar o euqipamento antigo ao inventário
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2293,10 +2293,10 @@ Module S_Players
                             SendInventory(index)
                             SendStats(index)
 
-                            ' send vitals
+                            ' Enviar vitais 
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case EquipmentType.Shoes
@@ -2314,7 +2314,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Shoes)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shoes).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shoes).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shoes).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2325,11 +2325,11 @@ Module S_Players
                                 Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Shoes).Stat(i) = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Stat(i)
                             Next
 
-                            PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                            PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             TakeInvItem(index, InvItemNum, 1)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' give back the stored item
+                            If tempitem > 0 Then ' Retornar o euqipamento antigo ao inventário
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2353,10 +2353,10 @@ Module S_Players
                             SendInventory(index)
                             SendStats(index)
 
-                            ' send vitals
+                            ' Enviar vitais 
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case EquipmentType.Gloves
@@ -2374,7 +2374,7 @@ Module S_Players
 
                             SetPlayerEquipment(index, InvItemNum, EquipmentType.Gloves)
 
-                            ' Transfer the Inventory data to the Equipment data
+                            ' Transferir os dados do inventário para o equipamento
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Gloves).Prefix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Prefix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Gloves).Suffix = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Suffix
                             Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Gloves).Damage = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Damage
@@ -2385,11 +2385,11 @@ Module S_Players
                                 Player(index).Character(TempPlayer(index).CurChar).RandEquip(EquipmentType.Gloves).Stat(i) = Player(index).Character(TempPlayer(index).CurChar).RandInv(InvNum).Stat(i)
                             Next
 
-                            PlayerMsg(index, "You equip " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
+                            PlayerMsg(index, "Você equipou " & CheckGrammar(Item(InvItemNum).Name), ColorType.BrightGreen)
                             TakeInvItem(index, InvItemNum, 1)
                             ClearRandInv(index, InvNum)
 
-                            If tempitem > 0 Then ' give back the stored item
+                            If tempitem > 0 Then ' Retornar o euqipamento antigo ao inventário
                                 m = FindOpenInvSlot(index, tempitem)
                                 SetPlayerInvItemNum(index, m, tempitem)
                                 SetPlayerInvItemValue(index, m, 0)
@@ -2413,10 +2413,10 @@ Module S_Players
                             SendInventory(index)
                             SendStats(index)
 
-                            ' send vitals
+                            ' Enviar vitais
                             SendVitals(index)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
                     End Select
 
@@ -2424,32 +2424,32 @@ Module S_Players
 
                     For i = 1 To StatType.Count - 1
                         If GetPlayerStat(index, i) < Item(InvItemNum).Stat_Req(i) Then
-                            PlayerMsg(index, "You do not meet the stat requirements to use this item.", ColorType.BrightRed)
+                            PlayerMsg(index, "Você não tem os atributos necessários para usar este item.", ColorType.BrightRed)
                             Exit Sub
                         End If
                     Next
 
-                    ' Make sure they are the right level
+                    ' Requisitos de nível
                     i = Item(InvItemNum).LevelReq
 
                     If i > GetPlayerLevel(index) Then
-                        PlayerMsg(index, "You do not meet the level requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem o nível necessário para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' Make sure they are the right class
+                    ' Requisitos de classe
                     If Not Item(InvItemNum).ClassReq = GetPlayerClass(index) AndAlso Not Item(InvItemNum).ClassReq = 0 Then
-                        PlayerMsg(index, "You do not meet the class requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem a classe necessária para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' access requirement
+                    ' Requisitos de acesso
                     If Not GetPlayerAccess(index) >= Item(InvItemNum).AccessReq Then
-                        PlayerMsg(index, "You do not meet the access requirement to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem o acesso necessária para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    'if that went fine, we progress the subtype
+                    'Se tudo foi bem, progredimos ao subtipo
 
                     Select Case Item(InvItemNum).SubType
                         Case ConsumableType.Hp
@@ -2463,7 +2463,7 @@ Module S_Players
                             End If
                             SendVital(index, VitalType.HP)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case ConsumableType.Mp
@@ -2477,7 +2477,7 @@ Module S_Players
                             End If
                             SendVital(index, VitalType.MP)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case ConsumableType.Mp
@@ -2490,7 +2490,7 @@ Module S_Players
                             End If
                             SendVital(index, VitalType.SP)
 
-                            ' send vitals to party if in one
+                            ' Enviar vitais ao grupo se em um
                             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
                         Case ConsumableType.Exp
@@ -2502,22 +2502,22 @@ Module S_Players
 
                     For i = 1 To StatType.Count - 1
                         If GetPlayerStat(index, i) < Item(InvItemNum).Stat_Req(i) Then
-                            PlayerMsg(index, "You do not meet the stat requirements to use this item.", ColorType.BrightRed)
+                            PlayerMsg(index, "Você não tem os atributos necessários para usar este item.", ColorType.BrightRed)
                             Exit Sub
                         End If
                     Next
 
-                    ' Make sure they are the right level
+                    ' Requisitos de nível
                     i = Item(InvItemNum).LevelReq
 
                     If i > GetPlayerLevel(index) Then
-                        PlayerMsg(index, "You do not meet the level requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem o nível necessário para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' Make sure they are the right class
+                    ' Requisitos de classe
                     If Not Item(InvItemNum).ClassReq = GetPlayerClass(index) AndAlso Not Item(InvItemNum).ClassReq = 0 Then
-                        PlayerMsg(index, "You do not meet the class requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem a classe necessária para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
@@ -2560,22 +2560,22 @@ Module S_Players
 
                     End Select
 
-                    ' Check if a key exists
+                    ' Ver se uma chave existe
                     If Map(GetPlayerMap(index)).Tile(x, y).Type = TileType.Key Then
 
-                        ' Check if the key they are using matches the map key
+                        ' Ver se a chave usada é a chave do mapaC
                         If InvItemNum = Map(GetPlayerMap(index)).Tile(x, y).Data1 Then
                             TempTile(GetPlayerMap(index)).DoorOpen(x, y) = True
                             TempTile(GetPlayerMap(index)).DoorTimer = GetTimeMs()
                             SendMapKey(index, x, y, 1)
-                            MapMsg(GetPlayerMap(index), "A door has been unlocked.", ColorType.Yellow)
+                            MapMsg(GetPlayerMap(index), "Uma porta foi aberta.", ColorType.Yellow)
 
                             SendAnimation(GetPlayerMap(index), Item(InvItemNum).Animation, x, y)
 
-                            ' Check if we are supposed to take away the item
+                            ' Ver se devemos retirar o item
                             If Map(GetPlayerMap(index)).Tile(x, y).Data2 = 1 Then
                                 TakeInvItem(index, InvItemNum, 0)
-                                PlayerMsg(index, "The key is destroyed in the lock.", ColorType.Yellow)
+                                PlayerMsg(index, "A chave foi destruída na fechadura.", ColorType.Yellow)
                             End If
                         End If
                     End If
@@ -2585,62 +2585,62 @@ Module S_Players
 
                     For i = 1 To StatType.Count - 1
                         If GetPlayerStat(index, i) < Item(InvItemNum).Stat_Req(i) Then
-                            PlayerMsg(index, "You do not meet the stat requirements to use this item.", ColorType.BrightRed)
+                            PlayerMsg(index, "Você não tem os atributos necessários para usar este item.", ColorType.BrightRed)
                             Exit Sub
                         End If
                     Next
 
-                    ' Make sure they are the right class
+                    ' Requisitos de classe
                     If Not Item(InvItemNum).ClassReq = GetPlayerClass(index) AndAlso Not Item(InvItemNum).ClassReq = 0 Then
-                        PlayerMsg(index, "You do not meet the class requirements to use this item.", ColorType.BrightRed)
+                        PlayerMsg(index, "Você não tem a classe necessária para usar este item.", ColorType.BrightRed)
                         Exit Sub
                     End If
 
-                    ' Get the skill num
+                    ' Pegar o num da habilidade
                     n = Item(InvItemNum).Data1
 
                     If n > 0 Then
 
-                        ' Make sure they are the right class
+                        ' Requisito de classe
                         If Skill(n).ClassReq = GetPlayerClass(index) OrElse Skill(n).ClassReq = 0 Then
-                            ' Make sure they are the right level
+                            ' Ter certeza que é o nível certo
                             i = Skill(n).LevelReq
 
                             If i <= GetPlayerLevel(index) Then
                                 i = FindOpenSkillSlot(index)
 
-                                ' Make sure they have an open skill slot
+                                ' Ter certeza que tem espaço de habilidade aberto
                                 If i > 0 Then
 
-                                    ' Make sure they dont already have the skill
+                                    ' Ter certeza que já não tem a habilidade
                                     If Not HasSkill(index, n) Then
                                         SetPlayerSkill(index, i, n)
                                         SendAnimation(GetPlayerMap(index), Item(InvItemNum).Animation, 0, 0, TargetType.Player, index)
                                         TakeInvItem(index, InvItemNum, 0)
-                                        PlayerMsg(index, "You study the skill carefully.", ColorType.Yellow)
-                                        PlayerMsg(index, "You have learned a new skill!", ColorType.BrightGreen)
+                                        PlayerMsg(index, "Você estuda a habilidade cuidadosamente.", ColorType.Yellow)
+                                        PlayerMsg(index, "Você aprendeu uma nova habilidade!", ColorType.BrightGreen)
                                     Else
-                                        PlayerMsg(index, "You have already learned this skill!", ColorType.BrightRed)
+                                        PlayerMsg(index, "Você já aprendeu essa habilidade!", ColorType.BrightRed)
                                     End If
                                 Else
-                                    PlayerMsg(index, "You have learned all that you can learn!", ColorType.BrightRed)
+                                    PlayerMsg(index, "Você já aprendeu tudo que podia!", ColorType.BrightRed)
                                 End If
                             Else
-                                PlayerMsg(index, "You must be level " & i & " to learn this skill.", ColorType.Yellow)
+                                PlayerMsg(index, "Você deve ser nível " & i & " para aprender essa habilidade.", ColorType.Yellow)
                             End If
                         Else
-                            PlayerMsg(index, "This skill can only be learned by " & CheckGrammar(GetClassName(Skill(n).ClassReq)) & ".", ColorType.Yellow)
+                            PlayerMsg(index, "Essa habilidade pode ser aprendida apenas por " & CheckGrammar(GetClassName(Skill(n).ClassReq)) & ".", ColorType.Yellow)
                         End If
                     Else
-                        PlayerMsg(index, "This scroll is not connected to a skill, please inform an admin!", ColorType.BrightRed)
+                        PlayerMsg(index, "Esse pergaminho não está vinculado a uma habilidade, informe um administrador!", ColorType.BrightRed)
                     End If
                 Case ItemType.Furniture
-                    PlayerMsg(index, "To place furniture, simply click on it in your inventory, then click in your house where you want it.", ColorType.Yellow)
+                    PlayerMsg(index, "Para colocar mobília, apenas clique nela no seu inventário e depois clique onde você quer na sua casa..", ColorType.Yellow)
 
                 Case ItemType.Recipe
 
-                    PlayerMsg(index, "Lets learn this recipe :)", ColorType.BrightGreen)
-                    ' Get the recipe num
+                    PlayerMsg(index, "Vamos aprender esta receita :)", ColorType.BrightGreen)
+                    ' Pegar o num da receita
                     n = Item(InvItemNum).Data1
                     LearnRecipe(index, n, InvNum)
                 Case ItemType.Pet
@@ -2671,7 +2671,7 @@ Module S_Players
         NewNum = GetPlayerInvItemNum(index, NewSlot)
         NewValue = GetPlayerInvItemValue(index, NewSlot)
 
-        If OldNum = NewNum AndAlso Item(NewNum).Stackable = 1 Then ' same item, if we can stack it, lets do that :P
+        If OldNum = NewNum AndAlso Item(NewNum).Stackable = 1 Then ' mesmo item, se puder empilhar, façamos :P
             SetPlayerInvItemNum(index, NewSlot, NewNum)
             SetPlayerInvItemValue(index, NewSlot, OldValue + NewValue)
             SetPlayerInvItemNum(index, OldSlot, 0)
@@ -2738,8 +2738,7 @@ Module S_Players
     Sub CheckEquippedItems(index As Integer)
         Dim itemNum As Integer
         Dim i As Integer
-
-        ' We want to check incase an admin takes away an object but they had it equipped
+        ' Queremos checar no caso de um administrador tirar um objeto mas estiver equipado
         For i = 1 To EquipmentType.Count - 1
             itemNum = GetPlayerEquipment(index, i)
 
@@ -2776,7 +2775,7 @@ Module S_Players
     Sub PlayerUnequipItem(index As Integer, EqSlot As Integer)
         Dim i As Integer, m As Integer, itemnum As Integer
 
-        If EqSlot <= 0 OrElse EqSlot > EquipmentType.Count - 1 Then Exit Sub ' exit out early if error'd
+        If EqSlot <= 0 OrElse EqSlot > EquipmentType.Count - 1 Then Exit Sub ' sair mais cedo se tiver erro
 
         If FindOpenInvSlot(index, GetPlayerEquipment(index, EqSlot)) > 0 Then
             itemnum = GetPlayerEquipment(index, EqSlot)
@@ -2796,20 +2795,20 @@ Module S_Players
 
             ClearRandEq(index, EqSlot)
 
-            PlayerMsg(index, "You unequip " & CheckGrammar(Item(GetPlayerEquipment(index, EqSlot)).Name), ColorType.Yellow)
-            ' remove equipment
+            PlayerMsg(index, "Você desequipou " & CheckGrammar(Item(GetPlayerEquipment(index, EqSlot)).Name), ColorType.Yellow)
+            ' remover equipamento
             SetPlayerEquipment(index, 0, EqSlot)
             SendWornEquipment(index)
             SendMapEquipment(index)
             SendStats(index)
             SendInventory(index)
-            ' send vitals
+            ' enviar vitais
             SendVitals(index)
 
-            ' send vitals to party if in one
+            ' enviar vitais para uma equipe se em um
             If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
         Else
-            PlayerMsg(index, "Your inventory is full.", ColorType.BrightRed)
+            PlayerMsg(index, "Seu inventário está cheio.", ColorType.BrightRed)
         End If
 
     End Sub
@@ -2821,16 +2820,16 @@ Module S_Players
     Sub JoinGame(index As Integer)
         Dim i As Integer
 
-        ' Set the flag so we know the person is in the game
+        ' Enviar a flag para que saibamos que a pessoa está no jogo
         TempPlayer(index).InGame = True
 
-        ' Notify everyone that a player has joined the game.
-        GlobalMsg(String.Format("{0} has joined {1}!", GetPlayerName(index), Settings.GameName))
+        ' Notificar a todos que o jogador entrou no jogo.
+        GlobalMsg(String.Format("{0} entrou no {1}!", GetPlayerName(index), Settings.GameName))
 
-        ' Send an ok to client to start receiving in game data
+        ' Enviar um ok para o cliente receber os dados do jogo
         SendLoadCharOk(index)
 
-        ' Set some data related to housing instances.
+        ' Seitar alguns dados relacionados a instnacias de moradia.
         If Player(index).Character(TempPlayer(index).CurChar).InHouse Then
             Player(index).Character(TempPlayer(index).CurChar).InHouse = 0
             Player(index).Character(TempPlayer(index).CurChar).X = Player(index).Character(TempPlayer(index).CurChar).LastX
@@ -2838,8 +2837,7 @@ Module S_Players
             Player(index).Character(TempPlayer(index).CurChar).Map = Player(index).Character(TempPlayer(index).CurChar).LastMap
         End If
 
-        ' Send all the required game data to the user.
-        SendTotalOnlineTo(index)
+        ' Enviar todos os dados necessários do jogo ao usuário
         CheckEquippedItems(index)
         SendGameData(index)
         SendInventory(index)
@@ -2868,13 +2866,13 @@ Module S_Players
 
         SendTotalOnlineToAll()
 
-        ' Warp the player to his saved location
+        ' Teleportar jogador a sua localização salva
         PlayerWarp(index, GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index))
 
-        ' Send welcome messages
+        ' Enviar boas-vindas
         SendWelcome(index)
 
-        ' Send the flag so they know they can start doing stuff
+        ' Enviar a flag para que saiba que pode começa a fazer coisasf
         SendInGame(index)
 
         UpdateCaption()
@@ -2888,7 +2886,7 @@ Module S_Players
             SendLeftMap(index)
             TempPlayer(index).InGame = False
 
-            ' Check if player was the only player on the map and stop npc processing if so
+            ' Verificar se o jogador era o único jogador no mapa e parar de processar npcs se sim
             If GetPlayerMap(index) > 0 Then
                 If GetTotalMapPlayers(GetPlayerMap(index)) < 1 Then
                     PlayersOnMap(GetPlayerMap(index)) = False
@@ -2905,15 +2903,15 @@ Module S_Players
                 End If
             End If
 
-            ' Check if the player was in a party, and if so cancel it out so the other player doesn't continue to get half exp
-            ' leave party.
+            ' Ver se o jogador estava em uma equipe; se sim, cancelar para que o outro jogador
+            ' não continue ganhando apenas metade da exp.
             Party_PlayerLeave(index)
 
-            ' cancel any trade they're in
+            ' Cancelar qualquer troca que ele esteja
             If TempPlayer(index).InTrade > 0 Then
                 tradeTarget = TempPlayer(index).InTrade
-                PlayerMsg(tradeTarget, String.Format("{0} has declined the trade.", GetPlayerName(index)), ColorType.BrightRed)
-                ' clear out trade
+                PlayerMsg(tradeTarget, String.Format("{0} desistiu da troca.", GetPlayerName(index)), ColorType.BrightRed)
+                ' limpar troca
                 For i = 1 To MAX_INV
                     TempPlayer(tradeTarget).TradeOffer(i).Num = 0
                     TempPlayer(tradeTarget).TradeOffer(i).Value = 0
@@ -2929,10 +2927,10 @@ Module S_Players
             SavePlayer(index)
             SaveBank(index)
 
-            ' Send a global message that he/she left
-            GlobalMsg(String.Format("{0} has left {1}!", GetPlayerName(index), Settings.GameName))
+            ' Enviar mensagem global que saiu
+            GlobalMsg(String.Format("{0} saiu de {1}!", GetPlayerName(index), Settings.GameName))
 
-            Console.WriteLine(String.Format("{0} has left {1}!", GetPlayerName(index), Settings.GameName))
+            Console.WriteLine(String.Format("{0} saiu de {1}!", GetPlayerName(index), Settings.GameName))
 
             TempPlayer(index) = Nothing
             ReDim TempPlayer(i).SkillCd(MAX_PLAYER_SKILLS)
@@ -2950,17 +2948,17 @@ Module S_Players
     Friend Sub KillPlayer(index As Integer)
         Dim exp As Integer
 
-        ' Calculate exp to give attacker
+        ' Calcular experiência para dar ao atacante
         exp = GetPlayerExp(index) \ 3
 
-        ' Make sure we dont get less then 0
+        ' Ter certeza de não pegar menos que zero
         If exp < 0 Then exp = 0
         If exp = 0 Then
-            PlayerMsg(index, "You've lost no experience.", ColorType.BrightGreen)
+            PlayerMsg(index, "Você não perdeu experiência.", ColorType.BrightGreen)
         Else
             SetPlayerExp(index, GetPlayerExp(index) - exp)
             SendExp(index)
-            PlayerMsg(index, String.Format("You've lost {0} experience.", exp), ColorType.BrightRed)
+            PlayerMsg(index, String.Format("Você perdeu {0} de experiência.", exp), ColorType.BrightRed)
         End If
 
         OnDeath(index)
@@ -2969,14 +2967,14 @@ Module S_Players
     Sub OnDeath(index As Integer)
         'Dim i As Integer
 
-        ' Set HP to nothing
+        ' Setar HP para 0
         SetPlayerVital(index, VitalType.HP, 0)
 
-        ' Warp player away
+        ' Teleportar jogador
         SetPlayerDir(index, DirectionType.Down)
 
         With Map(GetPlayerMap(index))
-            ' to the bootmap if it is set
+            ' Ao mapabase se for esse
             If .BootMap > 0 Then
                 PlayerWarp(index, .BootMap, .BootX, .BootY)
             Else
@@ -2984,21 +2982,21 @@ Module S_Players
             End If
         End With
 
-        ' Clear skill casting
+        ' Limpar conjuração de habilidade
         TempPlayer(index).SkillBuffer = 0
         TempPlayer(index).SkillBufferTimer = 0
         SendClearSkillBuffer(index)
 
-        ' Restore vitals
+        ' Restaurar vitais
         SetPlayerVital(index, VitalType.HP, GetPlayerMaxVital(index, VitalType.HP))
         SetPlayerVital(index, VitalType.MP, GetPlayerMaxVital(index, VitalType.MP))
         SetPlayerVital(index, VitalType.SP, GetPlayerMaxVital(index, VitalType.SP))
         SendVitals(index)
 
-        ' send vitals to party if in one
+        ' Enviar vitais ao grupo se em um
         If TempPlayer(index).InParty > 0 Then SendPartyVitals(TempPlayer(index).InParty, index)
 
-        ' If the player the attacker killed was a pk then take it away
+        ' Se o jogador que o atacante matou era um pk, entao retirar
         If GetPlayerPK(index) = True Then
             SetPlayerPK(index, False)
             SendPlayerData(index)
@@ -3009,7 +3007,7 @@ Module S_Players
     Function GetPlayerVitalRegen(index As Integer, Vital As VitalType) As Integer
         Dim i As Integer
 
-        ' Prevent subscript out of range
+        ' Prevenir subscript out of range
         If IsPlaying(index) = False OrElse index <= 0 OrElse index > MAX_PLAYERS Then
             GetPlayerVitalRegen = 0
             Exit Function
@@ -3029,11 +3027,10 @@ Module S_Players
     End Function
 
     Friend Sub HandleNpcKillExperience(index As Integer, NpcNum As Integer)
-        ' Get the experience we'll have to hand out. If it's negative, just ignore this method.
+        ' Pegar a experiência que temos que dar. Se é negativo, ignorar esse metodo.
         Dim Experience = Npc(NpcNum).Exp
         If Experience <= 0 Then Exit Sub
-
-        ' Is our player in a party? If so, hand out exp to everyone.
+        'Jogador em grupo? Se sim, dar experiência para todos.
         If IsPlayerInParty(index) Then
             Party_ShareExp(GetPlayerParty(index), Experience, index, GetPlayerMap(index))
         Else
@@ -3042,28 +3039,28 @@ Module S_Players
     End Sub
 
     Friend Sub HandlePlayerKillExperience(Attacker As Integer, Victim As Integer)
-        ' Calculate exp to give attacker
+        ' Calcular experiência para dar ao atacante
         Dim exp = (GetPlayerExp(Victim) \ 10)
 
-        ' Make sure we dont get less then 0
+        ' Ter certeza de não pegar menos que zero
         If exp < 0 Then
             exp = 0
         End If
 
         If exp = 0 Then
-            PlayerMsg(Victim, "You've lost no exp.", ColorType.BrightRed)
-            PlayerMsg(Attacker, "You've received no exp.", ColorType.BrightBlue)
+            PlayerMsg(Victim, "Você não perdeu experiência.", ColorType.BrightRed)
+            PlayerMsg(Attacker, "Você não recebeu experiência.", ColorType.BrightBlue)
         Else
             SetPlayerExp(Victim, GetPlayerExp(Victim) - exp)
             SendExp(Victim)
-            PlayerMsg(Victim, String.Format("You've lost {0} exp.", exp), ColorType.BrightRed)
+            PlayerMsg(Victim, String.Format("Você perdeu {0} de experiência.", exp), ColorType.BrightRed)
 
-            ' check if we're in a party
+            ' Ver se estamos em grupo
             If IsPlayerInParty(Attacker) > 0 Then
-                ' pass through party exp share function
+                ' Passar pela função de compartilhametno com a equipe
                 Party_ShareExp(GetPlayerParty(Attacker), exp, Attacker, GetPlayerMap(Attacker))
             Else
-                ' not in party, get exp for self
+                ' Não está em grupo, pegar tudo para si
                 GivePlayerExp(Attacker, exp)
             End If
         End If
@@ -3135,7 +3132,7 @@ Module S_Players
         Dim TargetType As TargetType
         Dim Target As Integer
 
-        ' Prevent subscript out of range
+        ' Prevenir subscript out of range
         If Skillslot <= 0 OrElse Skillslot > MAX_PLAYER_SKILLS Then Exit Sub
 
         skillnum = GetPlayerSkill(index, Skillslot)
@@ -3143,62 +3140,62 @@ Module S_Players
 
         If skillnum <= 0 OrElse skillnum > MAX_SKILLS Then Exit Sub
 
-        ' Make sure player has the skill
+        ' Ter certeza que o jogador tem a habilidade
         If Not HasSkill(index, skillnum) Then Exit Sub
 
-        ' see if cooldown has finished
+        ' Ver se o cooldown está ok
         If TempPlayer(index).SkillCd(Skillslot) > GetTimeMs() Then
-            PlayerMsg(index, "Skill hasn't cooled down yet!", ColorType.Yellow)
+            PlayerMsg(index, "Habilidade ainda não está preparada!", ColorType.Yellow)
             Exit Sub
         End If
 
         MPCost = Skill(skillnum).MpCost
 
-        ' Check if they have enough MP
+        ' Ver se tem PMs suficiente
         If GetPlayerVital(index, VitalType.MP) < MPCost Then
-            PlayerMsg(index, "Not enough mana!", ColorType.Yellow)
+            PlayerMsg(index, "Sem pontos de magia!", ColorType.Yellow)
             Exit Sub
         End If
 
         LevelReq = Skill(skillnum).LevelReq
 
-        ' Make sure they are the right level
+        ' Ver se estão no nível correto
         If LevelReq > GetPlayerLevel(index) Then
-            PlayerMsg(index, "You must be level " & LevelReq & " to use this skill.", ColorType.BrightRed)
+            PlayerMsg(index, "Você deve ser nível " & LevelReq & " para usar essa habilidade.", ColorType.BrightRed)
             Exit Sub
         End If
 
         AccessReq = Skill(skillnum).AccessReq
 
-        ' make sure they have the right access
+        ' Ver se tem o acesso correto
         If AccessReq > GetPlayerAccess(index) Then
-            PlayerMsg(index, "You must be an administrator to use this skill.", ColorType.BrightRed)
+            PlayerMsg(index, "Você tem que ser administrador para usar essa habilidade.", ColorType.BrightRed)
             Exit Sub
         End If
 
         ClassReq = Skill(skillnum).ClassReq
 
-        ' make sure the classreq > 0
-        If ClassReq > 0 Then ' 0 = no req
+        ' Ter certeza que o classreq > 0
+        If ClassReq > 0 Then ' 0 = sem requerimento
             If ClassReq <> GetPlayerClass(index) Then
-                PlayerMsg(index, "Only " & CheckGrammar(Trim$(Classes(ClassReq).Name)) & " can use this skill.", ColorType.Yellow)
+                PlayerMsg(index, "Apenas " & CheckGrammar(Trim$(Classes(ClassReq).Name)) & " pode usar esta habilidade.", ColorType.Yellow)
                 Exit Sub
             End If
         End If
 
-        ' find out what kind of skill it is! self cast, target or AOE
+        ' Desocbrir que tipo de habilidade é! Em si, alvo ou área de efeito
         If Skill(skillnum).Range > 0 Then
-            ' ranged attack, single target or aoe?
+            ' Ataque a distância, único alvo ou área?
             If Not Skill(skillnum).IsAoE Then
-                SkillCastType = 2 ' targetted
+                SkillCastType = 2 ' alvo
             Else
-                SkillCastType = 3 ' targetted aoe
+                SkillCastType = 3 ' alvo de área
             End If
         Else
             If Not Skill(skillnum).IsAoE Then
-                SkillCastType = 0 ' self-cast
+                SkillCastType = 0 ' em si
             Else
-                SkillCastType = 1 ' self-cast AoE
+                SkillCastType = 1 ' em si de área
             End If
         End If
 
@@ -3208,25 +3205,25 @@ Module S_Players
         HasBuffered = False
 
         Select Case SkillCastType
-            Case 0, 1 ' self-cast & self-cast AOE
+            Case 0, 1 ' em si & em si de área
                 HasBuffered = True
-            Case 2, 3 ' targeted & targeted AOE
-                ' check if have target
+            Case 2, 3 ' alvo & área de alvo
+                ' ver se tem alvo
                 If Not Target > 0 Then
-                    PlayerMsg(index, "You do not have a target.", ColorType.BrightRed)
+                    PlayerMsg(index, "Você não tem um alvo.", ColorType.BrightRed)
                 End If
                 If TargetType = TargetType.Player Then
-                    'Housing
+                    'Moradia
                     If Player(Target).Character(TempPlayer(Target).CurChar).InHouse = Player(index).Character(TempPlayer(index).CurChar).InHouse Then
                         If CanPlayerAttackPlayer(index, Target, True) Then
                             HasBuffered = True
                         End If
                     End If
-                    ' if have target, check in range
+                    ' Se tem alvo, ver o alcance
                     If Not IsInRange(range, GetPlayerX(index), GetPlayerY(index), GetPlayerX(Target), GetPlayerY(Target)) Then
-                        PlayerMsg(index, "Target not in range.", ColorType.BrightRed)
+                        PlayerMsg(index, "O alvo não está ao alcance.", ColorType.BrightRed)
                     Else
-                        ' go through skill types
+                        ' Ir pelos tipos de habilidades
                         If Skill(skillnum).Type <> SkillType.DamageHp AndAlso Skill(skillnum).Type <> SkillType.DamageMp Then
                             HasBuffered = True
                         Else
@@ -3236,12 +3233,12 @@ Module S_Players
                         End If
                     End If
                 ElseIf TargetType = TargetType.Npc Then
-                    ' if have target, check in range
+                    ' Se tiver alvo, veriicar alcance
                     If Not IsInRange(range, GetPlayerX(index), GetPlayerY(index), MapNpc(mapNum).Npc(Target).X, MapNpc(mapNum).Npc(Target).Y) Then
-                        PlayerMsg(index, "Target not in range.", ColorType.BrightRed)
+                        PlayerMsg(index, "O alvo não está ao alcance.", ColorType.BrightRed)
                         HasBuffered = False
                     Else
-                        ' go through skill types
+                        ' Ir pelos tipos de habilidades
                         If Skill(skillnum).Type <> SkillType.DamageHp AndAlso Skill(skillnum).Type <> SkillType.DamageMp Then
                             HasBuffered = True
                         Else

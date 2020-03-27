@@ -45,8 +45,7 @@
     Friend Sub GivePlayerRandomItem(index As Integer, itemnum As Integer, invslot As Integer)
         Dim RandomType As Integer, StatAmount As Integer, Rarity As Integer, TempNum As Integer, TempAmount As Double, i As Integer, ItemLevel As Integer
         Dim Prefix As String = ""
-
-        ' Check to see if we're out of range, or if the item isn't random.
+        'Verificar se estamos fora de alcance ou se o item não é aleatório
         If itemnum < 1 OrElse itemnum > MAX_ITEMS Then Exit Sub
         If index < 1 OrElse index > MAX_PLAYERS Then Exit Sub
         If Item(itemnum).Randomize = 0 Then Exit Sub
@@ -56,56 +55,56 @@
         If TempNum >= 95 Then
             Rarity = RarityType.RARITY_EPIC
             TempAmount = 0.5
-            Prefix = "Epic "
+            Prefix = "Épico "
         ElseIf TempNum >= 80 AndAlso TempNum < 95 Then
             Rarity = RarityType.RARITY_RARE
             TempAmount = 0.35
-            Prefix = "Rare "
+            Prefix = "Raro "
         ElseIf TempNum >= 60 AndAlso TempNum < 80 Then
             Rarity = RarityType.RARITY_UNCOMMON
             TempAmount = 0.2
-            Prefix = "Unrare "
+            Prefix = "Comum "
         ElseIf TempNum >= 20 AndAlso TempNum < 60 Then
             Rarity = RarityType.RARITY_COMMON
             TempAmount = 0
         Else
             Rarity = RarityType.RARITY_BROKEN
             RandomType = RandomBonusType.RANDOM_BROKEN
-            Prefix = "Broken "
+            Prefix = "Quebrado "
         End If
 
-        ' We've got a rarity! Determine the Enchant type
+        'Temos raridade! Determinar o tipo do encanto
         If Rarity <> RarityType.RARITY_BROKEN Then
             RandomType = Random(1, MAX_RANDOM_TYPES)
         End If
 
-        ' Set the item level for easy reference
+        ' Setar o nível do item para referencia mais fácil 
         ItemLevel = Item(itemnum).ItemLevel
 
-        ' set the Bonus StatAmount
+        ' Setar o StatAmount bônus
         StatAmount = ItemLevel * TempAmount
         If StatAmount < 4 AndAlso Rarity = RarityType.RARITY_EPIC Then StatAmount = 4
         If StatAmount < 3 AndAlso Rarity = RarityType.RARITY_RARE Then StatAmount = 3
         If StatAmount < 2 AndAlso Rarity = RarityType.RARITY_UNCOMMON Then StatAmount = 2
 
-        ' Give out the item based off of the randomtype
+        ' Dar item baseado no tipo
         Select Case RandomType
             Case RandomBonusType.RANDOM_SPEED
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Speed"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " da Velocidade"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed - (Item(itemnum).Speed * TempAmount)
             Case RandomBonusType.RANDOM_DAMAGE
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Damage"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Dano"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
                 If TempAmount < 1 Then TempAmount = 1
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2 + (Item(itemnum).Data2 * TempAmount)
             Case RandomBonusType.RANDOM_WARRIOR
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Warrior"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Guerreiro"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -113,7 +112,7 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Endurance) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_ARCHER
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Archer"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Arqueiro"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -121,7 +120,7 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Endurance) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_MAGE
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Mage"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Mago"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -129,7 +128,7 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Endurance) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_JESTER
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Jester"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Bobo-da-corte"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -137,7 +136,7 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Spirit) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_BATTLEMAGE
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Battlemage"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Mago de Batalha"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -145,7 +144,7 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Intelligence) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_ROGUE
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Rogue"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Vampiro"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -153,28 +152,28 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Spirit) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_TOWER
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Tower"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " da Torre"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(StatType.Endurance) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_SURVIVALIST
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Survival"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " da Sobrevivência"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(ResourceSkills.Fisherman) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_PERFECTIONIST
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Perfection"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " da Perfeição"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(ResourceSkills.Miner) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_COALMEN
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Coalmen"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Mineiro"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -182,20 +181,20 @@
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(ResourceSkills.WoodCutter) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_BOWYER
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Bowyer"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Arqueador"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Stat(ResourceSkills.WoodCutter) = ItemLevel + StatAmount
             Case RandomBonusType.RANDOM_BROKEN
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = "Broken "
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = "Quebrado "
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = ""
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = RarityType.RARITY_BROKEN
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2 - (Item(itemnum).Data2 / 10)
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed + (Item(itemnum).Speed / 10)
             Case RandomBonusType.RANDOM_PRISM
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Prism"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Prisma"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
@@ -204,7 +203,7 @@
                 Next
             Case RandomBonusType.RANDOM_CANNON
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Prefix = Prefix
-                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " of Cannon"
+                Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Suffix = " do Canhão"
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Rarity = Rarity
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Damage = Item(itemnum).Data2
                 Player(index).Character(TempPlayer(index).CurChar).RandInv(invslot).Speed = Item(itemnum).Speed
