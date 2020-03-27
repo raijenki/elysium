@@ -1294,7 +1294,7 @@ Module C_Graphics
         height = (rec.Height)
 
         'shadow first
-        RenderSprite(ShadowSprite, GameWindow, x - 1, y + 6, 0, 0, ShadowGfxInfo.Width, ShadowGfxInfo.Height)
+        RenderSprite(ShadowSprite, GameWindow, x - (ShadowGfxInfo.Width - width) / 2, y + 6, 0, 0, ShadowGfxInfo.Width, ShadowGfxInfo.Height)
 
         RenderSprite(CharacterSprite(sprite), GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height)
 

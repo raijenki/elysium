@@ -998,7 +998,7 @@ Module S_Players
     End Function
 
     Function GetPlayerNextLevel(index As Integer) As Integer
-        GetPlayerNextLevel = ((GetPlayerLevel(index) + 1) * (GetPlayerStat(index, StatType.Strength) + GetPlayerStat(index, StatType.Endurance) + GetPlayerStat(index, StatType.Intelligence) + GetPlayerStat(index, StatType.Spirit) + GetPlayerPOINTS(index)) + StatPtsPerLvl) * Classes(GetPlayerClass(index)).BaseExp '25
+        GetPlayerNextLevel = (GetPlayerLevel(index) + 1) * Classes(GetPlayerClass(index)).BaseExp
     End Function
 
     Function GetPlayerExp(index As Integer) As Integer
