@@ -21,15 +21,15 @@ Friend Module C_Time
                 Exit Select
 
             Case TimeOfDay.Day
-                AddText("Day has dawned in this region.", ColorType.Yellow)
+                AddText("O dia amanheceu nesta região.", ColorType.Yellow)
                 Exit Select
 
             Case TimeOfDay.Dusk
-                AddText("Dusk has begun darkening the skies...", ColorType.BrightRed)
+                AddText("Os céus começaram a alvorecer...", ColorType.BrightRed)
                 Exit Select
 
             Case Else
-                AddText("Night has fallen upon the weary travelers.", ColorType.DarkGray)
+                AddText("A noite caiu em cima dos cansados aventureiros.", ColorType.DarkGray)
                 Exit Select
         End Select
 

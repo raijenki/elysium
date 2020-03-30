@@ -116,12 +116,12 @@ Friend Class FrmGame
                 SendRequestAdmin()
             End If
         End If
-        'hide gui
+        'esconder interface
         If Inputs.HudToggle(e.KeyCode) Then
             HideGui = Not HideGui
         End If
 
-        'lets check for keys for inventory etc
+        'verificar comandos de inventario e afins
         If Not ChatInput.Active Then
             If Inputs.Inventory(e.KeyCode) Then PnlInventoryVisible = Not PnlInventoryVisible
             If Inputs.Character(e.KeyCode) Then PnlCharacterVisible = Not PnlCharacterVisible
@@ -135,13 +135,13 @@ Friend Class FrmGame
     Private Sub LblCurrencyOk_Click(sender As Object, e As EventArgs) Handles lblCurrencyOk.Click
         If IsNumeric(txtCurrency.Text) Then
             Select Case CurrencyMenu
-                Case 1 ' drop item
+                Case 1 ' largar item
                     SendDropItem(TmpCurrencyItem, Val(txtCurrency.Text))
-                Case 2 ' deposit item
+                Case 2 ' depositar item
                     DepositItem(TmpCurrencyItem, Val(txtCurrency.Text))
-                Case 3 ' withdraw item
+                Case 3 ' retirar item
                     WithdrawItem(TmpCurrencyItem, Val(txtCurrency.Text))
-                Case 4 ' trade item
+                Case 4 ' trocar item
                     TradeItem(TmpCurrencyItem, Val(txtCurrency.Text))
             End Select
         End If
@@ -149,7 +149,7 @@ Friend Class FrmGame
         pnlCurrency.Visible = False
         TmpCurrencyItem = 0
         txtCurrency.Text = ""
-        CurrencyMenu = 0 ' clear
+        CurrencyMenu = 0 ' limpar
     End Sub
 
 #End Region
@@ -163,32 +163,32 @@ Friend Class FrmGame
                 FrmEditor_MapEditor.MapEditorMouseDown(e.Button, e.X, e.Y, False)
             End If
 
-            ' left click
+            ' Botão esquerdo
             If e.Button = MouseButtons.Left Then
 
-                ' if we're in the middle of choose the trade target or not
+                ' Se estamos no meioo de escolher o alvo de troca ou não
                 If Not TradeRequest Then
                     If PetAlive(Myindex) Then
                         If IsInBounds() Then
                             PetMove(CurX, CurY)
                         End If
                     End If
-                    ' targetting
+                    ' Alvo
                     PlayerSearch(CurX, CurY, 0)
                 Else
-                    ' trading
+                    ' Troca
                     SendTradeRequest(Player(MyTarget).Name)
                 End If
                 PnlRClickVisible = False
                 ShowPetStats = False
 
-                ' right click
+                ' Botão direito
             ElseIf e.Button = MouseButtons.Right Then
                 If ShiftDown OrElse VbKeyShift = True Then
-                    ' admin warp if we're pressing shift and right clicking
+                    ' Transportar para administrador se estamos pressionando shift e botão direito
                     If GetPlayerAccess(Myindex) >= 2 Then AdminWarp(CurX, CurY)
                 Else
-                    ' rightclick menu
+                    ' Menu do Botão Direito
                     If PetAlive(Myindex) Then
                         If IsInBounds() AndAlso CurX = Player(Myindex).Pet.X And CurY = Player(Myindex).Pet.Y Then
                             ShowPetStats = True
@@ -212,7 +212,7 @@ Friend Class FrmGame
     End Sub
 
     Private Overloads Sub Picscreen_Paint(sender As Object, e As PaintEventArgs) Handles picscreen.Paint
-        'This is here to make sure that the box dosen't try to re-paint itself... saves time and w/e else
+        ''Aqui é para ter certeza que a caixa não se pinte... salva tempo e tudo mais.
         Exit Sub
     End Sub
 
@@ -259,7 +259,7 @@ Friend Class FrmGame
                 SendRequestAdmin()
             End If
         End If
-        'hide gui
+        'Esconder interface
         If Inputs.HudToggle(e.KeyCode) Then
             HideGui = Not HideGui
         End If

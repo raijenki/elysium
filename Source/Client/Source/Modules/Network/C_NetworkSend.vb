@@ -295,7 +295,7 @@ Module C_NetworkSend
 
         If InBank OrElse InShop Then Exit Sub
 
-        ' do basic checks
+        ' Fazer checagens básicas
         If invNum < 1 OrElse invNum > MAX_INV Then Exit Sub
         If PlayerInv(invNum).Num < 1 OrElse PlayerInv(invNum).Num > MAX_ITEMS Then Exit Sub
         If Item(GetPlayerInvItemNum(Myindex, invNum)).Type = ItemType.Currency OrElse Item(GetPlayerInvItemNum(Myindex, invNum)).Stackable = 1 Then

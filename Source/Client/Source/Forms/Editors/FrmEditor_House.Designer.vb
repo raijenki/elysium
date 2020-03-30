@@ -100,7 +100,7 @@ Partial Class frmEditor_House
         Me.DarkGroupBox2.Size = New System.Drawing.Size(408, 515)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
-        Me.DarkGroupBox2.Text = "Atributos da Casa"
+        Me.DarkGroupBox2.Text = "Atributos da Moradia"
         '
         'nudFurniture
         '
@@ -242,7 +242,7 @@ Partial Class frmEditor_House
         Me.btnCancel.Location = New System.Drawing.Point(609, 529)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "Cancelar"
@@ -252,7 +252,7 @@ Partial Class frmEditor_House
         Me.btnSave.Location = New System.Drawing.Point(488, 529)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSave.Size = New System.Drawing.Size(112, 35)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Salvar"
@@ -271,7 +271,7 @@ Partial Class frmEditor_House
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmEditor_House"
-        Me.Text = "Editor de Casa"
+        Me.Text = "Editor de Moradias"
         Me.DarkGroupBox1.ResumeLayout(False)
         Me.DarkGroupBox2.ResumeLayout(False)
         Me.DarkGroupBox2.PerformLayout()

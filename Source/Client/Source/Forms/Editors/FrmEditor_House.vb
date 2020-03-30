@@ -56,12 +56,12 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If Len(Trim$(txtName.Text)) = 0 Then
-            MsgBox("Name required.")
+            MsgBox("Nome necessário.")
             Exit Sub
         End If
 
         If nudBaseMap.Value = 0 Then
-            MsgBox("Base map required.")
+            MsgBox("Mapa base necessário.")
             Exit Sub
         End If
 

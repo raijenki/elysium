@@ -12,7 +12,7 @@ Module C_Editors
 
         With Animation(Editorindex)
 
-            ' encontra a música que definimos
+            ' Encontra a música que definimos
             FrmEditor_Animation.cmbSound.Items.Clear()
             FrmEditor_Animation.cmbSound.Items.Add("None")
 
@@ -93,7 +93,7 @@ Module C_Editors
         If Npc(Editorindex).Name Is Nothing Then Npc(Editorindex).Name = ""
 
         With frmEditor_NPC
-            'preencher  combobox's
+            'Preencher  combobox's
             .cmbAnimation.Items.Clear()
             .cmbAnimation.Items.Add("None")
             For i = 1 To MAX_ANIMATIONS
@@ -223,7 +223,7 @@ Module C_Editors
         Editorindex = frmEditor_Resource.lstIndex.SelectedIndex + 1
 
         With frmEditor_Resource
-            'preencher  combobox's
+            'Preencher  combobox's
             .cmbRewardItem.Items.Clear()
             .cmbRewardItem.Items.Add("None")
             For i = 1 To MAX_ITEMS
@@ -296,12 +296,12 @@ Module C_Editors
         If Skill(Editorindex).Name Is Nothing Then Skill(Editorindex).Name = ""
 
         With frmEditor_Skill
-            ' definir valores máximos
+            ' Definir valores máximos
             .nudAoE.Maximum = Byte.MaxValue
             .nudRange.Maximum = Byte.MaxValue
             .nudMap.Maximum = MAX_MAPS
 
-            ' criar classe combobox
+            ' Criar classe combobox
             .cmbClass.Items.Clear()
             .cmbClass.Items.Add("None")
             For i = 1 To MAX_CLASSES
@@ -327,7 +327,7 @@ Module C_Editors
             .cmbAnimCast.SelectedIndex = 0
             .cmbAnim.SelectedIndex = 0
 
-            ' definir valores
+            ' Definir valores
             .txtName.Text = Trim$(Skill(Editorindex).Name)
             .cmbType.SelectedIndex = Skill(Editorindex).Type
             .nudMp.Value = Skill(Editorindex).MpCost
@@ -447,7 +447,7 @@ Module C_Editors
 
         For i = 1 To MAX_TRADES
             With Shop(Editorindex).TradeItem(i)
-                ' se vazio, mostrar vazio
+                ' Se vazio, mostrar vazio
                 If .Item = 0 AndAlso .CostItem = 0 Then
                     frmEditor_Shop.lstTradeItem.Items.Add("Slot de comércio vazio")
                 Else
