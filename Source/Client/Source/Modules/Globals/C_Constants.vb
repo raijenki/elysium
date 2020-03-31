@@ -2,7 +2,7 @@
 
 Module C_Constants
 
-    'Chatbubble
+    'Balões de Conversa
     Friend Const ChatBubbleWidth As Integer = 100
 
     Friend Const EffectTypeFadein As Integer = 1
@@ -12,18 +12,18 @@ Module C_Constants
     Friend Const EffectTypeWeather As Integer = 5
     Friend Const EffectTypeTint As Integer = 6
 
-    ' Font variables
+    ' Variáveis de Fonte
     Friend Const FontName As String = "Arial.ttf"
 
     Friend Const FontSize As Byte = 13
 
-    ' Log Path and variables
+    ' Variáveis e Diretorio de Logs
     Friend Const LogDebug As String = "debug.txt"
 
-    ' Gfx Path and variables
+    ' Variáveis e Diretorio de Gráficos
     Friend Const GfxExt As String = ".png"
 
-    ' Menu states
+    ' Estados do Menu
     Friend Const MenuStateNewaccount As Byte = 0
 
     Friend Const MenuStateDelaccount As Byte = 1
@@ -35,43 +35,43 @@ Module C_Constants
     Friend Const MenuStateUsechar As Byte = 7
     Friend Const MenuStateInit As Byte = 8
 
-    ' Number of tiles in width in tilesets
+    ' Número de Tiles em comprimento nos tilesets
     Friend Const TilesheetWidth As Integer = 15 ' * PicX pixels
 
     Friend MapGrid As Boolean
 
-    ' Speed moving vars
+    ' Variáveis de velocidade de movimento
     Friend Const WalkSpeed As Byte = 6
 
     Friend Const RunSpeed As Byte = 10
 
-    ' Tile size constants
+    ' Constantes do Tamanho da Tile
     Friend Const PicX As Integer = 32
 
     Friend Const PicY As Integer = 32
 
-    ' Sprite, item, skill size constants
+    ' Constantes de tamanho de item, sprite e habilidades
     Friend Const SizeX As Integer = 32
 
     Friend Const SizeY As Integer = 32
 
-    ' ********************************************************
-    ' * The values below must match with the server's values *
-    ' ********************************************************
+    ' ************************************************************
+    ' * Os valores abaixo devem bater com os valores do servidor *
+    ' ************************************************************
 
-    ' Map constants
+    ' Constantes do Mapa
     Friend ScreenMapx As Byte = 35
 
     Friend ScreenMapy As Byte = 26
 
-    Friend ItemRarityColor0 = SFML.Graphics.Color.White ' white
-    Friend ItemRarityColor1 = New SFML.Graphics.Color(102, 255, 0) ' green
-    Friend ItemRarityColor2 = New SFML.Graphics.Color(73, 151, 208) ' blue
-    Friend ItemRarityColor3 = New SFML.Graphics.Color(255, 0, 0) ' red
-    Friend ItemRarityColor4 = New SFML.Graphics.Color(159, 0, 197) ' purple
-    Friend ItemRarityColor5 = New SFML.Graphics.Color(255, 215, 0) ' gold
+    Friend ItemRarityColor0 = SFML.Graphics.Color.White ' Branco
+    Friend ItemRarityColor1 = New SFML.Graphics.Color(102, 255, 0) ' Verde
+    Friend ItemRarityColor2 = New SFML.Graphics.Color(73, 151, 208) ' Azul
+    Friend ItemRarityColor3 = New SFML.Graphics.Color(255, 0, 0) ' Vermelho
+    Friend ItemRarityColor4 = New SFML.Graphics.Color(159, 0, 197) ' Roxo
+    Friend ItemRarityColor5 = New SFML.Graphics.Color(255, 215, 0) ' Dourado
 
-    ' Used to check if in editor or not and variables for use in editor
+    ' Usado para ver se está no editor ou não e variáveis para uso no editor
     Public InMapEditor As Boolean
 
     Public EditorTileX As Integer
@@ -90,7 +90,7 @@ Module C_Constants
     Friend ScreenX As Integer = (ScreenMapx + 1) * PicX
     Friend ScreenY As Integer = (ScreenMapy + 1) * PicY
 
-    'dialog types
+    'Tipos de Diálogos
     Friend Const DialogueTypeBuyhome As Byte = 1
 
     Friend Const DialogueTypeVisit As Byte = 2

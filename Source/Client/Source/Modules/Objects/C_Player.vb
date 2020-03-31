@@ -7,7 +7,7 @@ Module C_Player
 #Region "Globals"
     Friend CharSelection() As CharSelRec
     Friend Player(MAX_PLAYERS) As PlayerRec
-    Friend PlayerInv(MAX_INV) As PlayerInvStruct   ' Inventory
+    Friend PlayerInv(MAX_INV) As PlayerInvStruct   ' Inventário
 #End Region
 
 #Region "Structs"
