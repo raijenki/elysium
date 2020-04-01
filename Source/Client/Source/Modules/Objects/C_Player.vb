@@ -21,7 +21,7 @@ Module C_Player
 
     Friend Structure PlayerRec
 
-        ' General
+        ' Geral
         Dim Name As String
 
         Dim Classes As Byte
@@ -31,25 +31,25 @@ Module C_Player
         Dim Access As Byte
         Dim Pk As Byte
 
-        ' Vitals
+        ' Vitais
         Dim Vital() As Integer
 
-        ' Stats
+        ' Atributos
         Dim Stat() As Byte
 
         Dim Points As Byte
 
-        ' Worn equipment
+        ' Equipamento Usado
         Dim Equipment() As Integer
 
-        ' Position
+        ' Posição
         Dim Map As Integer
 
         Dim X As Byte
         Dim Y As Byte
         Dim Dir As Byte
 
-        ' Client use only
+        ' Apenas uso do cliente
         Dim MaxHp As Integer
 
         Dim MaxMp As Integer
@@ -67,7 +67,7 @@ Module C_Player
 
         Dim PlayerQuest() As PlayerQuestRec
 
-        'Housing
+        'Moradia
         Dim House As PlayerHouseRec
 
         Dim InHouse As Integer
@@ -84,7 +84,7 @@ Module C_Player
 
         Dim RecipeLearned() As Byte
 
-        ' Random Items
+        ' Itens aleatórios
         Dim RandInv() As RandInvStruct
 
         Dim RandEquip() As RandInvStruct
@@ -202,7 +202,7 @@ Module C_Player
     Sub CheckMovement()
 
         If IsTryingToMove() AndAlso CanMove() Then
-            ' Check if player has the shift key down for running
+            ' Ver se o jogador está segurando o shift -> correr 
             If VbKeyShift Then
                 Player(Myindex).Moving = MovementType.Running
             Else
@@ -212,7 +212,7 @@ Module C_Player
             If Map.Tile(GetPlayerX(Myindex), GetPlayerY(Myindex)).Type = TileType.Door Then
                 With TempTile(GetPlayerX(Myindex), GetPlayerY(Myindex))
                     .DoorFrame = 1
-                    .DoorAnimate = 1 ' 0 = nothing| 1 = opening | 2 = closing
+                    .DoorAnimate = 1 ' 0 = nada| 1 = abrindo | 2 = fechando
                     .DoorTimer = GetTickCount()
                 End With
             End If
@@ -267,19 +267,19 @@ Module C_Player
             Exit Function
         End If
 
-        ' Make sure they aren't trying to move when they are already moving
+        ' Ter certeza que não estão tentando mover quando já estão movendo
         If Player(Myindex).Moving <> 0 Then
             CanMove = False
             Exit Function
         End If
 
-        ' Make sure they haven't just casted a skill
+        ' Ter certeza que nao acabaram de usar uma habilidade
         If SkillBuffer > 0 Then
             CanMove = False
             Exit Function
         End If
 
-        ' make sure they're not stunned
+        ' Ter certeza que não estão estuporados
         If StunDuration > 0 Then
             CanMove = False
             Exit Function
@@ -290,13 +290,13 @@ Module C_Player
             Exit Function
         End If
 
-        ' craft
+        ' Artesanto
         If InCraft Then
             CanMove = False
             Exit Function
         End If
 
-        ' make sure they're not in a shop
+        ' Ter certeza que não está numa Loja
         If InShop > 0 Then
             CanMove = False
             Exit Function
@@ -307,7 +307,7 @@ Module C_Player
             Exit Function
         End If
 
-        ' not in bank
+        ' Não está em um banco
         If InBank > 0 Then
             CanMove = False
             Exit Function
@@ -318,12 +318,12 @@ Module C_Player
         If DirUp Then
             SetPlayerDir(Myindex, DirectionType.Up)
 
-            ' Check to see if they are trying to go out of bounds
+            ' Ver se estão tentando sair dos limites
             If GetPlayerY(Myindex) > 0 Then
                 If CheckDirection(DirectionType.Up) Then
                     CanMove = False
 
-                    ' Set the new direction if they weren't facing that direction
+                    ' Setar nova direção se não estiverem olhando para ela 
                     If d <> DirectionType.Up Then
                         SendPlayerDir()
                     End If
@@ -332,7 +332,7 @@ Module C_Player
                 End If
             Else
 
-                ' Check if they can warp to a new map
+                ' Ver se podem transportar para um novo mapa
                 If Map.Up > 0 Then
                     SendPlayerRequestNewMap()
                     GettingMap = True
@@ -347,12 +347,12 @@ Module C_Player
         If DirDown Then
             SetPlayerDir(Myindex, DirectionType.Down)
 
-            ' Check to see if they are trying to go out of bounds
+            ' Ver se estão tentando sair dos limites
             If GetPlayerY(Myindex) < Map.MaxY Then
                 If CheckDirection(DirectionType.Down) Then
                     CanMove = False
 
-                    ' Set the new direction if they weren't facing that direction
+                    '  Setar nova direção se não estiverem olhadno para ela  
                     If d <> DirectionType.Down Then
                         SendPlayerDir()
                     End If
@@ -361,7 +361,7 @@ Module C_Player
                 End If
             Else
 
-                ' Check if they can warp to a new map
+                ' Ver se podem teleportar para o novo mapa
                 If Map.Down > 0 Then
                     SendPlayerRequestNewMap()
                     GettingMap = True
@@ -376,12 +376,12 @@ Module C_Player
         If DirLeft Then
             SetPlayerDir(Myindex, DirectionType.Left)
 
-            ' Check to see if they are trying to go out of bounds
+            ' Ver se estão tentando sair dos limites
             If GetPlayerX(Myindex) > 0 Then
                 If CheckDirection(DirectionType.Left) Then
                     CanMove = False
 
-                    ' Set the new direction if they weren't facing that direction
+                    ' Setar nova direção se não estiverem olhadno para ela
                     If d <> DirectionType.Left Then
                         SendPlayerDir()
                     End If
@@ -390,7 +390,7 @@ Module C_Player
                 End If
             Else
 
-                ' Check if they can warp to a new map
+                ' Ver se podem teleportar para o novo mapa
                 If Map.Left > 0 Then
                     SendPlayerRequestNewMap()
                     GettingMap = True
@@ -405,12 +405,12 @@ Module C_Player
         If DirRight Then
             SetPlayerDir(Myindex, DirectionType.Right)
 
-            ' Check to see if they are trying to go out of bounds
+            ' Ver se estão tentando sair dos limites
             If GetPlayerX(Myindex) < Map.MaxX Then
                 If CheckDirection(DirectionType.Right) Then
                     CanMove = False
 
-                    ' Set the new direction if they weren't facing that direction
+                    ' Setar nova direção se não estiverem olhadno para ela
                     If d <> DirectionType.Right Then
                         SendPlayerDir()
                     End If
@@ -419,7 +419,7 @@ Module C_Player
                 End If
             Else
 
-                ' Check if they can warp to a new map
+                ' Ver se podem teleportar para o novo mapa
                 If Map.Right > 0 Then
                     SendPlayerRequestNewMap()
                     GettingMap = True
@@ -439,7 +439,7 @@ Module C_Player
 
         CheckDirection = False
 
-        ' check directional blocking
+        ' Ver bloqueio direcional
         If IsDirBlocked(Map.Tile(GetPlayerX(Myindex), GetPlayerY(Myindex)).DirBlock, direction + 1) Then
             CheckDirection = True
             Exit Function
@@ -460,21 +460,21 @@ Module C_Player
                 y = GetPlayerY(Myindex)
         End Select
 
-        ' Check to see if the map tile is blocked or not
+        ' Ver se a tile do mapa está bloqueiada ou não
         If Map.Tile(x, y).Type = TileType.Blocked Then
             CheckDirection = True
             Exit Function
         End If
 
-        ' Check to see if the map tile is tree or not
+        ' Ver se a tile do mapa é uma árvore ou nãoC
         If Map.Tile(x, y).Type = TileType.Resource Then
             CheckDirection = True
             Exit Function
         End If
 
-        ' Check to see if the key door is open or not
+        ' Ver se a porta chave está aberta ou não
         If Map.Tile(x, y).Type = TileType.Key Then
-            ' This actually checks if its open or not
+            ' Isso ve se está aberta ou nao
             If TempTile(x, y).DoorOpen = False Then
                 CheckDirection = True
                 Exit Function
@@ -496,7 +496,7 @@ Module C_Player
             End If
         End If
 
-        ' Check to see if a player is already on that tile
+        ' Ver se um jogador já está naquela tile
         For i = 1 To MAX_PLAYERS
             If IsPlaying(i) AndAlso GetPlayerMap(i) = GetPlayerMap(Myindex) Then
                 If Player(i).InHouse = Player(Myindex).InHouse Then
@@ -518,7 +518,7 @@ Module C_Player
             End If
         Next
 
-        ' Check to see if a npc is already on that tile
+        ' Ver se um npc já está naquela tile ou não 
         For i = 1 To MAX_MAP_NPCS
             If MapNpc(i).Num > 0 AndAlso MapNpc(i).X = x AndAlso MapNpc(i).Y = y Then
                 CheckDirection = True
@@ -542,7 +542,7 @@ Module C_Player
     Sub ProcessMovement(index As Integer)
         Dim movementSpeed As Integer
 
-        ' Check if player is walking, and if so process moving them over
+        ' Ver se o  jogador está andando, e se sim processar o movimento
         Select Case Player(index).Moving
             Case MovementType.Walking : movementSpeed = ((ElapsedTime / 1000) * (WalkSpeed * SizeX))
             Case MovementType.Running : movementSpeed = ((ElapsedTime / 1000) * (RunSpeed * SizeX))
@@ -564,7 +564,7 @@ Module C_Player
                 If Player(index).XOffset > 0 Then Player(index).XOffset = 0
         End Select
 
-        ' Check if completed walking over to the next tile
+        ' Ver se completou o andamento para próxima tile
         If Player(index).Moving > 0 Then
             If GetPlayerDir(index) = DirectionType.Right OrElse GetPlayerDir(index) = DirectionType.Down Then
                 If (Player(index).XOffset >= 0) AndAlso (Player(index).YOffset >= 0) Then
@@ -603,10 +603,10 @@ Module C_Player
 
         If VbKeyControl Then
             If InEvent = True Then Exit Sub
-            If SkillBuffer > 0 Then Exit Sub ' currently casting a skill, can't attack
-            If StunDuration > 0 Then Exit Sub ' stunned, can't attack
+            If SkillBuffer > 0 Then Exit Sub ' atualmente usnado habilidade, nao pode atacar
+            If StunDuration > 0 Then Exit Sub ' estuporado, não pode atacar
 
-            ' speed from weapon
+            ' velocidade da arma
             If GetPlayerEquipment(Myindex, EquipmentType.Weapon) > 0 Then
                 attackspeed = Item(GetPlayerEquipment(Myindex, EquipmentType.Weapon)).Speed * 1000
             Else
@@ -661,17 +661,17 @@ Module C_Player
     Friend Sub PlayerCastSkill(skillslot As Integer)
         Dim buffer As New ByteStream(4)
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If skillslot < 1 OrElse skillslot > MAX_PLAYER_SKILLS Then Exit Sub
 
         If SkillCd(skillslot) > 0 Then
-            AddText("Skill has not cooled down yet!", QColorType.AlertColor)
+            AddText("A habilidade ainda não está preparada!", QColorType.AlertColor)
             Exit Sub
         End If
 
-        ' Check if player has enough MP
+        ' Ver se tem MP suficiente
         If GetPlayerVital(Myindex, VitalType.MP) < Skill(PlayerSkills(skillslot)).MpCost Then
-            AddText("Not enough MP to cast " & Trim$(Skill(PlayerSkills(skillslot)).Name) & ".", QColorType.AlertColor)
+            AddText("Não tem mana suficiente para usar " & Trim$(Skill(PlayerSkills(skillslot)).Name) & ".", QColorType.AlertColor)
             Exit Sub
         End If
 
@@ -687,11 +687,11 @@ Module C_Player
                     SkillBuffer = skillslot
                     SkillBufferTimer = GetTickCount()
                 Else
-                    AddText("Cannot cast while walking!", QColorType.AlertColor)
+                    AddText("Não dá para usar a habilidade enquanto anda!", QColorType.AlertColor)
                 End If
             End If
         Else
-            AddText("No skill here.", QColorType.AlertColor)
+            AddText("Sem habilidade aqui.", QColorType.AlertColor)
         End If
 
     End Sub
@@ -700,7 +700,7 @@ Module C_Player
 #Region "Data Set & Retrieval"
     Function IsPlaying(index As Integer) As Boolean
 
-        ' if the player doesn't exist, the name will equal 0
+        ' Se o jogador não existe o nome é igual a zero
         If Len(GetPlayerName(index)) > 0 Then
             IsPlaying = True
         End If
@@ -950,17 +950,17 @@ Module C_Player
 
         If spritenum < 1 OrElse spritenum > NumCharacters Then Exit Sub
 
-        ' speed from weapon
+        ' velocidade da arma
         If GetPlayerEquipment(index, EquipmentType.Weapon) > 0 Then
             attackspeed = Item(GetPlayerEquipment(index, EquipmentType.Weapon)).Speed
         Else
             attackspeed = 1000
         End If
 
-        ' Reset frame
+        ' Resetar frame
         anim = 0
 
-        ' Check for attacking animation
+        ' Verificar pela animação de ataque
         If Player(index).AttackTimer + (attackspeed / 2) > GetTickCount() Then
             If Player(index).Attacking = 1 Then
                 If attackSprite = 1 Then
@@ -970,7 +970,7 @@ Module C_Player
                 End If
             End If
         Else
-            ' If not attacking, walk normally
+            ' Se não estiver atacando, andar normalmente
             Select Case GetPlayerDir(index)
                 Case DirectionType.Up
 
@@ -988,7 +988,7 @@ Module C_Player
 
         End If
 
-        ' Check to see if we want to stop making him attack
+        ' Ver se queremos parar de fazê-lo atacar 
         With Player(index)
             If .AttackTimer + attackspeed < GetTickCount() Then
                 .Attacking = 0
@@ -997,7 +997,7 @@ Module C_Player
 
         End With
 
-        ' Set the left
+        ' Setar a esquerda
         Select Case GetPlayerDir(index)
             Case DirectionType.Up
                 spriteleft = 3
@@ -1015,26 +1015,26 @@ Module C_Player
             srcrec = New Rectangle((anim) * (CharacterGfxInfo(spritenum).Width / 4), spriteleft * (CharacterGfxInfo(spritenum).Height / 4), (CharacterGfxInfo(spritenum).Width / 4), (CharacterGfxInfo(spritenum).Height / 4))
         End If
 
-        ' Calculate the X
+        ' Calcular o X
         If attackSprite = 1 Then
             x = GetPlayerX(index) * PicX + Player(index).XOffset - ((CharacterGfxInfo(spritenum).Width / 5 - 32) / 2)
         Else
             x = GetPlayerX(index) * PicX + Player(index).XOffset - ((CharacterGfxInfo(spritenum).Width / 4 - 32) / 2)
         End If
 
-        ' Is the player's height more than 32..?
+        ' Se a altura do jogador é maior que 32...
         If (CharacterGfxInfo(spritenum).Height) > 32 Then
-            ' Create a 32 pixel offset for larger sprites
+            ' Criar um offset de 32 pixels para sprites maiores
             y = GetPlayerY(index) * PicY + Player(index).YOffset - ((CharacterGfxInfo(spritenum).Height / 4) - 32)
         Else
-            ' Proceed as normal
+            ' Proceder normalmente
             y = GetPlayerY(index) * PicY + Player(index).YOffset
         End If
 
-        ' render the actual sprite
+        ' Renderizar a sprite do personagem
         DrawCharacter(spritenum, x, y, srcrec)
 
-        'check for paperdolling
+        'Verificar paperdoll
         For i = 1 To EquipmentType.Count - 1
             If GetPlayerEquipment(index, i) > 0 Then
                 If Item(GetPlayerEquipment(index, i)).Paperdoll > 0 Then
@@ -1043,7 +1043,7 @@ Module C_Player
             End If
         Next
 
-        ' Check to see if we want to stop showing emote
+        ' Verificar se queremos parar de mostrar emotes
         With Player(index)
             If .EmoteTimer < GetTickCount() Then
                 .Emote = 0
@@ -1051,7 +1051,7 @@ Module C_Player
             End If
         End With
 
-        'check for emotes
+        'Verificar emotes
         'Player(Index).Emote = 4
         If Player(index).Emote > 0 Then
             DrawEmotes(x, y, Player(index).Emote)
@@ -1064,7 +1064,7 @@ Module C_Player
         Dim color As SFML.Graphics.Color, backcolor As SFML.Graphics.Color
         Dim name As String
 
-        ' Check access level
+        ' Verificar nível de acesso
         If GetPlayerPk(index) = False Then
 
             Select Case GetPlayerAccess(index)
@@ -1089,17 +1089,17 @@ Module C_Player
         End If
 
         name = Trim$(Player(index).Name)
-        ' calc pos
+        ' Calcular  posição
         textX = ConvertMapX(GetPlayerX(index) * PicX) + Player(index).XOffset + (PicX \ 2)
         textX = textX - (GetTextWidth((Trim$(name))) / 2)
         If GetPlayerSprite(index) < 1 OrElse GetPlayerSprite(index) > NumCharacters Then
             textY = ConvertMapY(GetPlayerY(index) * PicY) + Player(index).YOffset - 16
         Else
-            ' Determine location for text
+            ' Determinar localização para o texto
             textY = ConvertMapY(GetPlayerY(index) * PicY) + Player(index).YOffset - (CharacterGfxInfo(GetPlayerSprite(index)).Height / 4) + 16
         End If
 
-        ' Draw name
+        ' Desenhar o nome
         DrawText(textX, textY, Trim$(name), color, backcolor, GameWindow)
     End Sub
 
@@ -1111,10 +1111,10 @@ Module C_Player
 
         If NumItems = 0 Then Exit Sub
 
-        'first render panel
+        'Primeiramente renderizar o painel
         RenderSprite(CharPanelSprite, GameWindow, CharWindowX, CharWindowY, 0, 0, CharPanelGfxInfo.Width, CharPanelGfxInfo.Height)
 
-        'lets get player sprite to render
+        'Vamos botar a sprite od jogador para renderizar
         playersprite = GetPlayerSprite(Myindex)
 
         With rec
@@ -1137,7 +1137,7 @@ Module C_Player
                     LoadTexture(itempic, 4)
                 End If
 
-                'seeying we still use it, lets update timer
+                'Vendo que ainda vamos utilizar, atualizar temporizador
                 With ItemsGfxInfo(itempic)
                     .TextureTimer = GetTickCount() + 100000
                 End With
@@ -1160,7 +1160,7 @@ Module C_Player
                 ItemsSprite(itempic).Position = New Vector2f(recPos.X, recPos.Y)
                 GameWindow.Draw(ItemsSprite(itempic))
 
-                ' set the name
+                ' Setar o nome
                 If Item(itemnum).Randomize <> 0 Then
                     tmprarity = Player(Myindex).RandEquip(i).Rarity
                 Else
@@ -1168,17 +1168,17 @@ Module C_Player
                 End If
 
                 Select Case tmprarity
-                    Case 0 ' White
+                    Case 0 ' Branco
                         tempRarityColor = ItemRarityColor0
-                    Case 1 ' green
+                    Case 1 ' Verde
                         tempRarityColor = ItemRarityColor1
-                    Case 2 ' blue
+                    Case 2 ' Azul
                         tempRarityColor = ItemRarityColor2
-                    Case 3 ' maroon
+                    Case 3 ' Marrom
                         tempRarityColor = ItemRarityColor3
-                    Case 4 ' purple
+                    Case 4 ' Roxo
                         tempRarityColor = ItemRarityColor4
-                    Case 5 'gold
+                    Case 5 'Ouro
                         tempRarityColor = ItemRarityColor5
                 End Select
 
@@ -1194,57 +1194,57 @@ Module C_Player
 
         Next
 
-        ' Set the character windows
-        'name
+        ' Setar janelas dos personagens
+        'nome
         DrawText(CharWindowX + 10, CharWindowY + 14, Language.Character.name & GetPlayerName(Myindex), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-        'class
+        'classe
         DrawText(CharWindowX + 10, CharWindowY + 33, Language.Character.ClassType & Trim(Classes(GetPlayerClass(Myindex)).Name), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-        'level
+        'nível
         DrawText(CharWindowX + 150, CharWindowY + 14, Language.Character.Level & GetPlayerLevel(Myindex), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-        'points
+        'pontos
         DrawText(CharWindowX + 6, CharWindowY + 200, Language.Character.Points & GetPlayerPoints(Myindex), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
-        'Header
+        'cabeçalho
         DrawText(CharWindowX + 250, CharWindowY + 14, Language.Character.StatsLabel, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
-        'strength stat
+        'atributos de força
         DrawText(CharWindowX + 210, CharWindowY + 30, Language.Character.Strength & GetPlayerStat(Myindex, StatType.Strength), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'endurance stat
+        'atributos de resistência
         DrawText(CharWindowX + 210, CharWindowY + 50, Language.Character.endurance & GetPlayerStat(Myindex, StatType.Endurance), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'vitality stat
+        'atributo de vitalidade
         DrawText(CharWindowX + 210, CharWindowY + 70, Language.Character.Vitality & GetPlayerStat(Myindex, StatType.Vitality), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'intelligence stat
+        'atributo de inteligência
         DrawText(CharWindowX + 210, CharWindowY + 90, Language.Character.intelligence & GetPlayerStat(Myindex, StatType.Intelligence), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'luck stat
+        'atributo de sorte
         DrawText(CharWindowX + 210, CharWindowY + 110, Language.Character.Luck & GetPlayerStat(Myindex, StatType.Luck), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'spirit stat
+        'atributo de espírito
         DrawText(CharWindowX + 210, CharWindowY + 130, Language.Character.spirit & GetPlayerStat(Myindex, StatType.Spirit), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
 
         If GetPlayerPoints(Myindex) > 0 Then
-            'strength upgrade
+            'aumento de força
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + StrengthUpgradeX, CharWindowY + StrengthUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
-            'endurance upgrade
+            'aumento de resistencia
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + EnduranceUpgradeX, CharWindowY + EnduranceUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
-            'vitality upgrade
+            'aumento de vitalidade
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + VitalityUpgradeX, CharWindowY + VitalityUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
-            'intelligence upgrade
+            'aumento de inteligencia
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + IntellectUpgradeX, CharWindowY + IntellectUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
-            'willpower upgrade
+            'aumento de força de vontade
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + LuckUpgradeX, CharWindowY + LuckUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
-            'spirit upgrade
+            'aumento de espirtio
             RenderSprite(CharPanelPlusSprite, GameWindow, CharWindowX + SpiritUpgradeX, CharWindowY + SpiritUpgradeY + 4, 0, 0, CharPanelPlusGfxInfo.Width, CharPanelPlusGfxInfo.Height)
         End If
 
-        'gather skills
-        'Header
+        'habilidades de pegar
+        'cabeçalho
         DrawText(CharWindowX + 250, CharWindowY + 145, Language.Character.SkillLabel, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-        'herbalist skill
+        'herbalista
         DrawText(CharWindowX + 210, CharWindowY + 164, String.Format(Language.Character.Herbalist & GetPlayerGatherSkillLvl(Myindex, ResourceSkills.Herbalist)) & Language.Character.Exp & GetPlayerGatherSkillExp(Myindex, ResourceSkills.Herbalist) & "/" & GetPlayerGatherSkillMaxExp(Myindex, ResourceSkills.Herbalist), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'woodcutter
+        'lenhador
         DrawText(CharWindowX + 210, CharWindowY + 184, String.Format(Language.Character.Woodcutter & GetPlayerGatherSkillLvl(Myindex, ResourceSkills.WoodCutter)) & Language.Character.Exp & GetPlayerGatherSkillExp(Myindex, ResourceSkills.WoodCutter) & "/" & GetPlayerGatherSkillMaxExp(Myindex, ResourceSkills.WoodCutter), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'miner
+        'mineração
         DrawText(CharWindowX + 210, CharWindowY + 204, String.Format(Language.Character.Miner & GetPlayerGatherSkillLvl(Myindex, ResourceSkills.Miner)) & Language.Character.Exp & GetPlayerGatherSkillExp(Myindex, ResourceSkills.Miner) & "/" & GetPlayerGatherSkillMaxExp(Myindex, ResourceSkills.Miner), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
-        'fisherman
+        'pesca
         DrawText(CharWindowX + 210, CharWindowY + 224, String.Format(Language.Character.Fisherman & GetPlayerGatherSkillLvl(Myindex, ResourceSkills.Fisherman)) & Language.Character.Exp & GetPlayerGatherSkillExp(Myindex, ResourceSkills.Fisherman) & "/" & GetPlayerGatherSkillMaxExp(Myindex, ResourceSkills.Fisherman), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 11)
     End Sub
 #End Region
@@ -1262,7 +1262,7 @@ Module C_Player
 
         If GetPlayerMaxVital(Myindex, VitalType.HP) > 0 Then
             LblHpText = GetPlayerVital(Myindex, VitalType.HP) & "/" & GetPlayerMaxVital(Myindex, VitalType.HP)
-            ' hp bar
+            ' barra de hp
             PicHpWidth = Int(((GetPlayerVital(Myindex, VitalType.HP) / 169) / (GetPlayerMaxVital(Myindex, VitalType.HP) / 169)) * 169)
         End If
 
@@ -1335,9 +1335,9 @@ Module C_Player
             Player(i).RecipeLearned(x) = buffer.ReadInt32
         Next
 
-        ' Check if the player is the client player
+        ' Ver se o jogador é o jogador cliente
         If i = Myindex Then
-            ' Reset directions
+            ' resetar direções
             DirUp = False
             DirDown = False
             DirLeft = False
@@ -1346,7 +1346,7 @@ Module C_Player
             UpdateCharacterPanel = True
         End If
 
-        ' Make sure they aren't walking
+        ' Ter certeza que não estão andando
         Player(i).Moving = 0
         Player(i).XOffset = 0
         Player(i).YOffset = 0
@@ -1428,7 +1428,7 @@ Module C_Player
         SetPlayerY(Myindex, y)
         SetPlayerDir(Myindex, dir)
 
-        ' Make sure they aren't walking
+        ' Ter certeza que nao estao andando
         Player(Myindex).Moving = 0
         Player(Myindex).XOffset = 0
         Player(Myindex).YOffset = 0

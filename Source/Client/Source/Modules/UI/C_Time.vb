@@ -17,7 +17,7 @@ Friend Module C_Time
 
         Select Case Time.Instance.TimeOfDay
             Case TimeOfDay.Dawn
-                AddText("A chilling, refreshing, breeze has come with the morning.", ColorType.BrightBlue)
+                AddText("Uma brisa fria e refrescante veio com a manhã.", ColorType.BrightBlue)
                 Exit Select
 
             Case TimeOfDay.Day
