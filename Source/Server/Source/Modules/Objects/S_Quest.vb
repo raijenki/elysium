@@ -6,7 +6,7 @@ Friend Module S_Quest
 
 #Region "Constants"
 
-    'Constants
+    'Constantes
     Friend Const MAX_QUESTS As Integer = 250
 
     'Friend Const MAX_TASKS As Byte = 10
@@ -30,14 +30,14 @@ Friend Module S_Quest
     'Friend Const QUEST_COMPLETED As Byte = 2
     'Friend Const QUEST_REPEATABLE As Byte = 3
 
-    'Types
+    'Tipo
     Friend Quest(MAX_QUESTS) As QuestRec
 
     <Serializable>
     Friend Structure PlayerQuestRec
-        Dim Status As Integer '0=not started, 1=started, 2=completed, 3=completed but repeatable
+        Dim Status As Integer '0=nao iniciado, 1=iniciado, 2=completo, 3=completo mas repetível
         Dim ActualTask As Integer
-        Dim CurrentCount As Integer 'Used to handle the Amount property
+        Dim CurrentCount As Integer 'Usado para lidar com o atributo de quantidade
     End Structure
 
 #End Region
@@ -183,7 +183,7 @@ Friend Module S_Quest
     Sub ClearQuest(QuestNum As Integer)
         Dim I As Integer
 
-        ' clear the Quest
+        ' limpar a Quest
         Quest(QuestNum).Name = ""
         Quest(QuestNum).QuestLog = ""
         Quest(QuestNum).Repeat = 0
@@ -246,7 +246,7 @@ Friend Module S_Quest
 #Region "Incoming Packets"
 
     Sub Packet_RequestEditQuest(index As Integer, ByRef data() As Byte)
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
@@ -258,7 +258,7 @@ Friend Module S_Quest
     Sub Packet_SaveQuest(index As Integer, ByRef data() As Byte)
         Dim QuestNum As Integer
         Dim buffer As New ByteStream(data)
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         QuestNum = buffer.ReadInt32
@@ -266,13 +266,14 @@ Friend Module S_Quest
 
         Quest(QuestNum) = DeserializeData(buffer)
 
+
         buffer.Dispose()
 
-        ' Save it
+        ' Salvar
         SendQuests(index) ' editor
-        SendUpdateQuestToAll(QuestNum) 'players
+        SendUpdateQuestToAll(QuestNum) 'jogadores
         SaveQuest(QuestNum)
-        Addlog(GetPlayerLogin(index) & " saved Quest #" & QuestNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou a Quest #" & QuestNum & ".", ADMIN_LOG)
     End Sub
 
     Sub Packet_RequestQuests(index As Integer, ByRef data() As Byte)
@@ -283,19 +284,19 @@ Friend Module S_Quest
         Dim QuestNum As Integer, Order As Integer ', I As Integer
         Dim buffer As New ByteStream(data)
         QuestNum = buffer.ReadInt32
-        Order = buffer.ReadInt32 '1 = accept, 2 = cancel
+        Order = buffer.ReadInt32 '1 = aceitar, 2 = cancelar
 
         If Order = 1 Then
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.Started '1
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).ActualTask = 1
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = 0
-            PlayerMsg(index, "New quest accepted: " & Trim$(Quest(QuestNum).Name) & "!", ColorType.BrightGreen)
+            PlayerMsg(index, "Nova quest aceita: " & Trim$(Quest(QuestNum).Name) & "!", ColorType.BrightGreen)
         ElseIf Order = 2 Then
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.NotStarted '2
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).ActualTask = 1
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = 0
 
-            PlayerMsg(index, Trim$(Quest(QuestNum).Name) & " has been canceled!", ColorType.BrightRed)
+            PlayerMsg(index, Trim$(Quest(QuestNum).Name) & " foi cancelada!", ColorType.BrightRed)
 
             If GetPlayerAccess(index) > 0 AndAlso QuestNum = 1 Then
                 For I = 1 To MAX_QUESTS
@@ -401,7 +402,7 @@ Friend Module S_Quest
         buffer.Dispose()
     End Sub
 
-    'sends a message to the client that is shown on the screen
+    'envia mensagem que é mostrada na tela para o cliente 
     Friend Sub QuestMessage(index As Integer, QuestNum As Integer, message As String, QuestNumForStart As Integer)
         If message = "" Then Exit Sub
 
@@ -439,24 +440,24 @@ Friend Module S_Quest
         If QuestNum < 1 OrElse QuestNum > MAX_QUESTS Then Exit Function
         If QuestInProgress(index, QuestNum) Then Exit Function
 
-        'Check if player has the quest 0 (not started) or 3 (completed but it can be started again)
+        'Ver se o o jogador tem a quest 0 (não iniciada) ou 3 (completa mas pode fazer de novo)
         If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.NotStarted OrElse Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.Repeatable Then
             For i = 1 To Quest(QuestNum).ReqCount
-                'Check if item is needed
+                'Ver se algum item é necessário
                 If Quest(QuestNum).Requirement(i) = 1 Then
                     If Quest(QuestNum).RequirementIndex(i) > 0 AndAlso Quest(QuestNum).RequirementIndex(i) <= MAX_ITEMS Then
                         If HasItem(index, Quest(QuestNum).RequirementIndex(i)) = 0 Then
-                            PlayerMsg(index, "You need " & Item(Quest(QuestNum).RequirementIndex(i)).Name & " to take this quest!", ColorType.Yellow)
+                            PlayerMsg(index, "Você precisa de " & Item(Quest(QuestNum).RequirementIndex(i)).Name & " para essa quest!", ColorType.Yellow)
                             Exit Function
                         End If
                     End If
                 End If
 
-                'Check if previous quest is needed
+                'Ver se uma quest anterior é necessária
                 If Quest(QuestNum).Requirement(i) = 2 Then
                     If Quest(QuestNum).RequirementIndex(i) > 0 AndAlso Quest(QuestNum).RequirementIndex(i) <= MAX_QUESTS Then
                         If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).RequirementIndex(i)).Status = QuestStatusType.NotStarted OrElse Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).RequirementIndex(i)).Status = QuestStatusType.Started Then
-                            PlayerMsg(index, "You need to complete the " & Trim$(Quest(Quest(QuestNum).RequirementIndex(i)).Name) & " quest in order to take this quest!", ColorType.Yellow)
+                            PlayerMsg(index, "Você precisa completar a quest " & Trim$(Quest(Quest(QuestNum).RequirementIndex(i)).Name) & " para começar esta!", ColorType.Yellow)
                             Exit Function
                         End If
                     End If
@@ -464,10 +465,10 @@ Friend Module S_Quest
 
             Next
 
-            'Go on :)
+            'Siga em frente :)
             CanStartQuest = True
         Else
-            'PlayerMsg Index, "You can't start that quest again!", BrightRed
+            'PlayerMsg Index, "Você não pode começar aquela quest de novo!", BrightRed
         End If
     End Function
 
@@ -482,7 +483,7 @@ Friend Module S_Quest
         End If
     End Function
 
-    'Tells if the quest is in progress or not
+    'Fala se a quest está em progresso ou não
     Friend Function QuestInProgress(index As Integer, QuestNum As Integer) As Boolean
         QuestInProgress = False
         If QuestNum < 1 OrElse QuestNum > MAX_QUESTS Then Exit Function
@@ -501,7 +502,7 @@ Friend Module S_Quest
         End If
     End Function
 
-    'Gets the quest reference num (id) from the quest name (it shall be unique)
+    'Pegar o numero de referencia da quest do nome da quest (deve ser único)
     Friend Function GetQuestNum(QuestName As String) As Integer
         Dim I As Integer
         GetQuestNum = 0
@@ -526,9 +527,9 @@ Friend Module S_Quest
         Next
     End Function
 
-    ' /////////////////////
-    ' // General Purpose //
-    ' /////////////////////
+    ' ////////////////////////
+    ' // Propósitos Gerais //
+    ' ///////////////////////
 
     Friend Sub CheckTasks(index As Integer, TaskType As Integer, Targetindex As Integer)
         Dim I As Integer
@@ -547,30 +548,30 @@ Friend Module S_Quest
         If ActualTask >= Quest(QuestNum).Task.Length Then Exit Sub
 
         Select Case TaskType
-            Case QuestType.Slay 'defeat X amount of X npc's.
+            Case QuestType.Slay 'derrotar X quantidade de X npc's.
 
-                'is npc defeated id same as the npc i have to defeat?
+                'o id do npc derrotado é o mesmo que tenho que derrotar?
                 If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
-                    'Count +1
+                    'Contador +1
                     Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount + 1
-                    'did i finish the work?
+                    'acabei o trabalho?
                     If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount >= Quest(QuestNum).Task(ActualTask).Amount Then
-                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Task completed", 0)
+                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Tarefa completa", 0)
                         'is the quest's end?
                         If CanEndQuest(index, QuestNum) Then
                             EndQuest(index, QuestNum)
                         Else
-                            'otherwise continue to the next task
+                            'Caso contrário, continuar para a próxima
                             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).ActualTask = ActualTask + 1
                         End If
                     End If
                 End If
 
-            Case QuestType.Collect 'Gather X amount of X item.
+            Case QuestType.Collect 'Pegar X quantidade de X item.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).Item Then
                     Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount + 1
                     If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount >= Quest(QuestNum).Task(ActualTask).Amount Then
-                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Task completed", 0)
+                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Tarefa completa", 0)
                         If CanEndQuest(index, QuestNum) Then
                             EndQuest(index, QuestNum)
                         Else
@@ -579,7 +580,7 @@ Friend Module S_Quest
                     End If
                 End If
 
-            Case QuestType.Talk 'Interact with X npc.
+            Case QuestType.Talk 'Interagir com X npc.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).NPC AndAlso Quest(QuestNum).Task(ActualTask).Amount = 0 Then
                     QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
                     If CanEndQuest(index, QuestNum) Then
@@ -591,7 +592,7 @@ Friend Module S_Quest
 
             Case QuestType.Reach 'Reach X map.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).Map Then
-                    QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Task completed", 0)
+                    QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Tarefa completa", 0)
                     If CanEndQuest(index, QuestNum) Then
                         EndQuest(index, QuestNum)
                     Else
@@ -599,7 +600,7 @@ Friend Module S_Quest
                     End If
                 End If
 
-            Case QuestType.Give 'Give X amount of X item to X npc.
+            Case QuestType.Give 'Dar X quantidade de X item para X npc.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
                     For I = 1 To MAX_INV
                         If GetPlayerInvItemNum(index, I) = Quest(QuestNum).Task(ActualTask).Item Then
@@ -617,10 +618,10 @@ Friend Module S_Quest
                     Next
                 End If
 
-            Case QuestType.Kill 'Kill X amount of players.
+            Case QuestType.Kill 'Matar X quantidade de jogadores.
                 Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount + 1
                 If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount >= Quest(QuestNum).Task(ActualTask).Amount Then
-                    QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Task completed", 0)
+                    QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Tarefa completa", 0)
                     If CanEndQuest(index, QuestNum) Then
                         EndQuest(index, QuestNum)
                     Else
@@ -628,11 +629,11 @@ Friend Module S_Quest
                     End If
                 End If
 
-            Case QuestType.Gather 'Hit X amount of times X resource.
+            Case QuestType.Gather 'Atingir X quantidade de vezes X recurso.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).Resource Then
                     Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount + 1
                     If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount >= Quest(QuestNum).Task(ActualTask).Amount Then
-                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Task completed", 0)
+                        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Task(ActualTask).TaskLog) & " - Tarefa completa", 0)
                         If CanEndQuest(index, QuestNum) Then
                             EndQuest(index, QuestNum)
                         Else
@@ -641,7 +642,7 @@ Friend Module S_Quest
                     End If
                 End If
 
-            Case QuestType.Fetch 'Get X amount of X item from X npc.
+            Case QuestType.Fetch 'Pegar X quantidade de X item do X npc.
                 If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
                     GiveInvItem(index, Quest(QuestNum).Task(ActualTask).Item, Quest(QuestNum).Task(ActualTask).Amount)
                     QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
@@ -658,12 +659,12 @@ Friend Module S_Quest
 
     Friend Sub ShowQuest(index As Integer, QuestNum As Integer)
         If QuestInProgress(index, QuestNum) Then
-            QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Chat(2)), 0) 'show meanwhile message
+            QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Chat(2)), 0) 'mostrar mensagem enquanto isso
             Exit Sub
         End If
         If Not CanStartQuest(index, QuestNum) Then Exit Sub
 
-        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Chat(1)), QuestNum) 'chat 1 = request message
+        QuestMessage(index, QuestNum, Trim$(Quest(QuestNum).Chat(1)), QuestNum) 'chat 1 = pedir mensagem
     End Sub
 
     Friend Sub EndQuest(index As Integer, QuestNum As Integer)
@@ -673,7 +674,7 @@ Friend Module S_Quest
 
         For I = 1 To Quest(QuestNum).RewardCount
             If Quest(QuestNum).RewardItem(I) > 0 Then
-                PlayerMsg(index, "You recieved " & Quest(QuestNum).RewardItemAmount(I) & " " & Trim(Item(Quest(QuestNum).RewardItem(I)).Name), ColorType.BrightGreen)
+                PlayerMsg(index, "Você recebeu " & Quest(QuestNum).RewardItemAmount(I) & " " & Trim(Item(Quest(QuestNum).RewardItem(I)).Name), ColorType.BrightGreen)
             End If
             GiveInvItem(index, Quest(QuestNum).RewardItem(I), Quest(QuestNum).RewardItemAmount(I))
         Next
@@ -681,17 +682,17 @@ Friend Module S_Quest
         If Quest(QuestNum).RewardExp > 0 Then
             SetPlayerExp(index, GetPlayerExp(index) + Quest(QuestNum).RewardExp)
             SendExp(index)
-            ' Check for level up
+            ' Verificar subida de nível
             CheckPlayerLevelUp(index)
         End If
 
-        'Check if quest is repeatable, set it as completed
+        'Ver se quest é repetível, setar como completa
         If Quest(QuestNum).Repeat = True Then
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.Repeatable
         Else
             Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).Status = QuestStatusType.Completed
         End If
-        PlayerMsg(index, Trim$(Quest(QuestNum).Name) & ": quest completed", ColorType.BrightGreen)
+        PlayerMsg(index, Trim$(Quest(QuestNum).Name) & ": quest completa", ColorType.BrightGreen)
 
         SavePlayer(index)
         SendPlayerData(index)

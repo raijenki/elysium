@@ -4,7 +4,7 @@
     Friend ConsoleText As String
     Friend ErrorCount As Integer
 
-    ' Used for closing key doors again
+    ' Usado para fechar portas importantes de novo
     Friend KeyTimer As Integer
 
     ' Usado para dar HP de volta aos NPCs gradualmente

@@ -35,9 +35,9 @@ Friend Module modTime
         buffer.WriteBytes(BitConverter.GetBytes(Time.Instance.Time.Ticks))
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-        AddDebug("Sent SMSG: SClock")
+        AddDebug("Enviada SMSG: SClock")
 
-        AddDebug(" Player: " & GetPlayerName(index) & " : " & " GameSpeed: " & Time.Instance.GameSpeed & " Instance Time Ticks: " & Time.Instance.Time.Ticks)
+        AddDebug(" Jogador: " & GetPlayerName(index) & " : " & " Velocidade do Jogo: " & Time.Instance.GameSpeed & " Ticks de Tempo Instanciados: " & Time.Instance.Time.Ticks)
 
         buffer.Dispose()
     End Sub
@@ -59,9 +59,9 @@ Friend Module modTime
         buffer.WriteByte(Time.Instance.TimeOfDay)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
-        AddDebug("Sent SMSG: STime")
+        AddDebug("Enviada SMSG: STime")
 
-        AddDebug(" Player: " & GetPlayerName(index) & " : " & " Time Of Day: " & Time.Instance.TimeOfDay)
+        AddDebug(" Jogador: " & GetPlayerName(index) & " : " & " Hora: " & Time.Instance.TimeOfDay)
 
         buffer.Dispose()
     End Sub

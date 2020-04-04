@@ -30,7 +30,7 @@ Module S_Npc
         Dim i = 0
         Dim spawned As Boolean
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNpcNum <= 0 OrElse mapNpcNum > MAX_MAP_NPCS OrElse mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS Then Exit Sub
 
         npcNum = Map(mapNum).Npc(mapNpcNum)
@@ -40,7 +40,7 @@ Module S_Npc
 
             MapNpc(mapNum).Npc(mapNpcNum).Num = npcNum
             MapNpc(mapNum).Npc(mapNpcNum).Target = 0
-            MapNpc(mapNum).Npc(mapNpcNum).TargetType = 0 ' clear
+            MapNpc(mapNum).Npc(mapNpcNum).TargetType = 0 ' limpar
 
             MapNpc(mapNum).Npc(mapNpcNum).Vital(VitalType.HP) = GetNpcMaxVital(npcNum, VitalType.HP)
             MapNpc(mapNum).Npc(mapNpcNum).Vital(VitalType.MP) = GetNpcMaxVital(npcNum, VitalType.MP)
@@ -48,7 +48,7 @@ Module S_Npc
 
             MapNpc(mapNum).Npc(mapNpcNum).Dir = Int(Rnd() * 4)
 
-            'Check if theres a spawn tile for the specific npc
+            'Verificar se há uma tile para gerar o NPC
             For x = 0 To Map(mapNum).MaxX
                 For y = 0 To Map(mapNum).MaxY
                     If Map(mapNum).Tile(x, y).Type = TileType.NpcSpawn Then
@@ -64,7 +64,7 @@ Module S_Npc
             Next x
 
             If Not spawned Then
-                ' Well try 100 times to randomly place the sprite
+                ' Tentar 100 vezes colocar a sprite aleatoriamente
                 While i < 100
                     x = Random(0, Map(mapNum).MaxX)
                     y = Random(0, Map(mapNum).MaxY)
@@ -72,7 +72,7 @@ Module S_Npc
                     If x > Map(mapNum).MaxX Then x = Map(mapNum).MaxX
                     If y > Map(mapNum).MaxY Then y = Map(mapNum).MaxY
 
-                    ' Check if the tile is walkable
+                    ' Verificar se a tile é andável
                     If NpcTileIsOpen(mapNum, x, y) Then
                         MapNpc(mapNum).Npc(mapNpcNum).X = x
                         MapNpc(mapNum).Npc(mapNpcNum).Y = y
@@ -83,7 +83,7 @@ Module S_Npc
                 End While
             End If
 
-            ' Didn't spawn, so now we'll just try to find a free tile
+            ' Não gerou, então vamos tentar encontrar uma tile livre
             If Not spawned Then
                 For x = 0 To Map(mapNum).MaxX
                     For y = 0 To Map(mapNum).MaxY
@@ -96,7 +96,7 @@ Module S_Npc
                 Next
             End If
 
-            ' If we suceeded in spawning then send it to everyone
+            ' Se houve sucesso em gerar os NPCs, mandar para todos
             If spawned Then
                 buffer.WriteInt32(ServerPackets.SSpawnNpc)
                 buffer.WriteInt32(mapNpcNum)
@@ -105,7 +105,7 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Dir)
 
-                AddDebug("Recieved SMSG: SSpawnNpc")
+                AddDebug("Recebida SMSG: SSpawnNpc")
 
                 For i = 1 To VitalType.Count - 1
                     buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Vital(i))
@@ -156,7 +156,7 @@ Module S_Npc
         Dim x As Integer
         Dim y As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS OrElse MapNpcNum <= 0 OrElse MapNpcNum > MAX_MAP_NPCS OrElse Dir < DirectionType.Up OrElse Dir > DirectionType.Right Then
             Exit Function
         End If
@@ -168,17 +168,17 @@ Module S_Npc
         Select Case Dir
             Case DirectionType.Up
 
-                ' Check to make sure not outside of boundries
+                ' Verificar se não tá fora dos limites
                 If y > 0 Then
                     n = Map(mapNum).Tile(x, y - 1).Type
 
-                    ' Check to make sure that the tile is walkable
+                    ' Verificar se a tile é andável
                     If n <> TileType.None AndAlso n <> TileType.Item AndAlso n <> TileType.NpcSpawn Then
                         CanNpcMove = False
                         Exit Function
                     End If
 
-                    ' Check to make sure that there is not a player in the way
+                    ' Ter certeza que não há um jogador no caminho
                     For i = 1 To GetPlayersOnline()
                         If IsPlaying(i) Then
                             If (GetPlayerMap(i) = mapNum) AndAlso (GetPlayerX(i) = MapNpc(mapNum).Npc(MapNpcNum).X) AndAlso (GetPlayerY(i) = MapNpc(mapNum).Npc(MapNpcNum).Y - 1) Then
@@ -188,7 +188,7 @@ Module S_Npc
                         End If
                     Next
 
-                    ' Check to make sure that there is not another npc in the way
+                    ' Verificar se não há um NPC no caminho
                     For i = 1 To MAX_MAP_NPCS
                         If (i <> MapNpcNum) AndAlso (MapNpc(mapNum).Npc(i).Num > 0) AndAlso (MapNpc(mapNum).Npc(i).X = MapNpc(mapNum).Npc(MapNpcNum).X) AndAlso (MapNpc(mapNum).Npc(i).Y = MapNpc(mapNum).Npc(MapNpcNum).Y - 1) Then
                             CanNpcMove = False
@@ -201,17 +201,17 @@ Module S_Npc
 
             Case DirectionType.Down
 
-                ' Check to make sure not outside of boundries
+                ' Ter certeza que não estamos fora do limite
                 If y < Map(mapNum).MaxY Then
                     n = Map(mapNum).Tile(x, y + 1).Type
 
-                    ' Check to make sure that the tile is walkable
+                    ' Ter certeza que a tile é andável
                     If n <> TileType.None AndAlso n <> TileType.Item AndAlso n <> TileType.NpcSpawn Then
                         CanNpcMove = False
                         Exit Function
                     End If
 
-                    ' Check to make sure that there is not a player in the way
+                    ' Ter certeza que não há um jogador no caminho
                     For i = 1 To GetPlayersOnline()
                         If IsPlaying(i) Then
                             If (GetPlayerMap(i) = mapNum) AndAlso (GetPlayerX(i) = MapNpc(mapNum).Npc(MapNpcNum).X) AndAlso (GetPlayerY(i) = MapNpc(mapNum).Npc(MapNpcNum).Y + 1) Then
@@ -221,7 +221,7 @@ Module S_Npc
                         End If
                     Next
 
-                    ' Check to make sure that there is not another npc in the way
+                    ' Verificar se não há um NPC no caminho
                     For i = 1 To MAX_MAP_NPCS
                         If (i <> MapNpcNum) AndAlso (MapNpc(mapNum).Npc(i).Num > 0) AndAlso (MapNpc(mapNum).Npc(i).X = MapNpc(mapNum).Npc(MapNpcNum).X) AndAlso (MapNpc(mapNum).Npc(i).Y = MapNpc(mapNum).Npc(MapNpcNum).Y + 1) Then
                             CanNpcMove = False
@@ -234,17 +234,17 @@ Module S_Npc
 
             Case DirectionType.Left
 
-                ' Check to make sure not outside of boundries
+                ' Ter certeza que não estamos fora do limite
                 If x > 0 Then
                     n = Map(mapNum).Tile(x - 1, y).Type
 
-                    ' Check to make sure that the tile is walkable
+                    ' Ter certeza que a tile é andável
                     If n <> TileType.None AndAlso n <> TileType.Item AndAlso n <> TileType.NpcSpawn Then
                         CanNpcMove = False
                         Exit Function
                     End If
 
-                    ' Check to make sure that there is not a player in the way
+                    ' Ter certeza que não há um jogador no caminho
                     For i = 1 To GetPlayersOnline()
                         If IsPlaying(i) Then
                             If (GetPlayerMap(i) = mapNum) AndAlso (GetPlayerX(i) = MapNpc(mapNum).Npc(MapNpcNum).X - 1) AndAlso (GetPlayerY(i) = MapNpc(mapNum).Npc(MapNpcNum).Y) Then
@@ -254,7 +254,7 @@ Module S_Npc
                         End If
                     Next
 
-                    ' Check to make sure that there is not another npc in the way
+                    ' Verificar se não há um NPC no caminho
                     For i = 1 To MAX_MAP_NPCS
                         If (i <> MapNpcNum) AndAlso (MapNpc(mapNum).Npc(i).Num > 0) AndAlso (MapNpc(mapNum).Npc(i).X = MapNpc(mapNum).Npc(MapNpcNum).X - 1) AndAlso (MapNpc(mapNum).Npc(i).Y = MapNpc(mapNum).Npc(MapNpcNum).Y) Then
                             CanNpcMove = False
@@ -267,17 +267,17 @@ Module S_Npc
 
             Case DirectionType.Right
 
-                ' Check to make sure not outside of boundries
+                ' Ter certeza que não estamos fora do limite
                 If x < Map(mapNum).MaxX Then
                     n = Map(mapNum).Tile(x + 1, y).Type
 
-                    ' Check to make sure that the tile is walkable
+                    ' Ter certeza que a tile é andável
                     If n <> TileType.None AndAlso n <> TileType.Item AndAlso n <> TileType.NpcSpawn Then
                         CanNpcMove = False
                         Exit Function
                     End If
 
-                    ' Check to make sure that there is not a player in the way
+                    ' Ter certeza que não há um jogador no caminho
                     For i = 1 To GetPlayersOnline()
                         If IsPlaying(i) Then
                             If (GetPlayerMap(i) = mapNum) AndAlso (GetPlayerX(i) = MapNpc(mapNum).Npc(MapNpcNum).X + 1) AndAlso (GetPlayerY(i) = MapNpc(mapNum).Npc(MapNpcNum).Y) Then
@@ -287,7 +287,7 @@ Module S_Npc
                         End If
                     Next
 
-                    ' Check to make sure that there is not another npc in the way
+                    ' Verificar se não há um NPC no caminho
                     For i = 1 To MAX_MAP_NPCS
                         If (i <> MapNpcNum) AndAlso (MapNpc(mapNum).Npc(i).Num > 0) AndAlso (MapNpc(mapNum).Npc(i).X = MapNpc(mapNum).Npc(MapNpcNum).X + 1) AndAlso (MapNpc(mapNum).Npc(i).Y = MapNpc(mapNum).Npc(MapNpcNum).Y) Then
                             CanNpcMove = False
@@ -307,7 +307,7 @@ Module S_Npc
     Sub NpcMove(mapNum As Integer, MapNpcNum As Integer, Dir As Integer, Movement As Integer)
         Dim buffer As New ByteStream(4)
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS OrElse MapNpcNum <= 0 OrElse MapNpcNum > MAX_MAP_NPCS OrElse Dir < DirectionType.Up OrElse Dir > DirectionType.Right OrElse Movement < 1 OrElse Movement > 2 Then
             Exit Sub
         End If
@@ -325,8 +325,8 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
 
-                Addlog("Sent SMSG: SNpcMove Up", PACKET_LOG)
-                Console.WriteLine("Sent SMSG: SNpcMove Up")
+                Addlog("Enviada SMSG: SNpcMove Up", PACKET_LOG)
+                Console.WriteLine("Enviada SMSG: SNpcMove Up")
 
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Down
@@ -339,8 +339,8 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
 
-                Addlog("Sent SMSG: SNpcMove Down", PACKET_LOG)
-                Console.WriteLine("Sent SMSG: SNpcMove Down")
+                Addlog("Enviada SMSG: SNpcMove Down", PACKET_LOG)
+                Console.WriteLine("Enviada SMSG: SNpcMove Down")
 
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Left
@@ -353,8 +353,8 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
 
-                Addlog("Sent SMSG: SNpcMove Left", PACKET_LOG)
-                Console.WriteLine("Sent SMSG: SNpcMove Left")
+                Addlog("Enviada SMSG: SNpcMove Left", PACKET_LOG)
+                Console.WriteLine("Enviada SMSG: SNpcMove Left")
 
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Right
@@ -367,8 +367,8 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
 
-                Addlog("Sent SMSG: SNpcMove Right", PACKET_LOG)
-                Console.WriteLine("Sent SMSG: SNpcMove Right")
+                Addlog("Enviada SMSG: SNpcMove Right", PACKET_LOG)
+                Console.WriteLine("Enviada SMSG: SNpcMove Right")
 
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
         End Select
@@ -379,7 +379,7 @@ Module S_Npc
     Sub NpcDir(mapNum As Integer, MapNpcNum As Integer, Dir As Integer)
         Dim buffer As New ByteStream(4)
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS OrElse MapNpcNum <= 0 OrElse MapNpcNum > MAX_MAP_NPCS OrElse Dir < DirectionType.Up OrElse Dir > DirectionType.Right Then
             Exit Sub
         End If
@@ -390,7 +390,7 @@ Module S_Npc
         buffer.WriteInt32(MapNpcNum)
         buffer.WriteInt32(Dir)
 
-        Addlog("Sent SMSG: SNpcDir", PACKET_LOG)
+        Addlog("Enviada SMSG: SNpcDir", PACKET_LOG)
         Console.WriteLine("Sent SMSG: SNpcDir")
 
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
@@ -1028,7 +1028,7 @@ Module S_Npc
 
         buffer.WriteInt32(ServerPackets.SMapNpcData)
 
-        AddDebug("Sent SMSG: SMapNpcData")
+        AddDebug("Enviada SMSG: SMapNpcData")
 
         For i = 1 To MAX_MAP_NPCS
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).Num)
@@ -1049,16 +1049,16 @@ Module S_Npc
 #Region "Incoming Packets"
 
     Sub Packet_EditNpc(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestEditNpc")
+        AddDebug("Recebida EMSG: RequestEditNpc")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SNpcEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SNpcEditor")
+        AddDebug("Enviada SMSG: SNpcEditor")
 
         Buffer.Dispose()
     End Sub
@@ -1067,19 +1067,20 @@ Module S_Npc
         Dim NpcNum As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveNpc")
+        AddDebug("Recebida EMSG: SaveNpc")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         NpcNum = buffer.ReadInt32
 
         Npc(NpcNum) = DeserializeData(buffer)
 
+
         ' Save it
         SendUpdateNpcToAll(NpcNum)
         SaveNpc(NpcNum)
-        Addlog(GetPlayerLogin(index) & " saved Npc #" & NpcNum & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou NPC #" & NpcNum & ".", ADMIN_LOG)
 
         buffer.Dispose()
     End Sub
@@ -1100,7 +1101,7 @@ Module S_Npc
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SUpdateNpc)
 
-        AddDebug("Sent SMSG: SUpdateNpc")
+        AddDebug("Enviada SMSG: SUpdateNpc")
 
         buffer.WriteInt32(NpcNum)
         buffer.WriteBlock(SerializeData(Npc(NpcNum)))
@@ -1114,7 +1115,7 @@ Module S_Npc
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SUpdateNpc)
 
-        AddDebug("Sent SMSG: SUpdateNpc To All")
+        AddDebug("Enviada SMSG: SUpdateNpc Para Todos")
 
         buffer.WriteInt32(NpcNum)
         buffer.WriteBlock(SerializeData(Npc(NpcNum)))
@@ -1130,7 +1131,7 @@ Module S_Npc
 
         buffer.WriteInt32(ServerPackets.SMapNpcData)
 
-        AddDebug("Sent SMSG: SMapNpcData")
+        AddDebug("Enviada SMSG: SMapNpcData")
 
         For i = 1 To MAX_MAP_NPCS
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).Num)
@@ -1152,7 +1153,7 @@ Module S_Npc
 
         buffer.WriteInt32(ServerPackets.SMapNpcUpdate)
 
-        AddDebug("Sent SMSG: SMapNpcUpdate")
+        AddDebug("Enviada SMSG: SMapNpcUpdate")
 
         buffer.WriteInt32(MapNpcNum)
 
@@ -1178,7 +1179,7 @@ Module S_Npc
         buffer.WriteInt32(ServerPackets.SMapNpcVitals)
         buffer.WriteInt32(MapNpcNum)
 
-        AddDebug("Sent SMSG: SMapNpcVitals")
+        AddDebug("Enviada SMSG: SMapNpcVitals")
 
         For i = 1 To VitalType.Count - 1
             buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Vital(i))
@@ -1193,7 +1194,7 @@ Module S_Npc
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SAttack)
 
-        AddDebug("Sent SMSG: SNpcAttack")
+        AddDebug("Enviada SMSG: SNpcAttack")
 
         Buffer.WriteInt32(NpcNum)
         SendDataToMap(GetPlayerMap(index), Buffer.Data, Buffer.Head)
@@ -1204,7 +1205,7 @@ Module S_Npc
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SNpcDead)
 
-        AddDebug("Sent SMSG: SNpcDead")
+        AddDebug("Enviada SMSG: SNpcDead")
 
         Buffer.WriteInt32(index)
         SendDataToMap(mapNum, Buffer.Data, Buffer.Head)

@@ -17,11 +17,11 @@ Module S_General
         myStopWatch.Start()
 
         If Debugger.IsAttached Then
-            ' Since there is a debugger attached,
-            ' assume we are running from the IDE
+            ' Como há um debugger embarcado,
+            ' assuma que estamos rodando da IDE
             Debugging = True
         Else
-            ' Assume we aren't running from the IDE
+            ' Assumir que não estamos rodando da IDE
             Dim currentDomain As AppDomain = AppDomain.CurrentDomain
             AddHandler currentDomain.UnhandledException, AddressOf ErrorHandler
         End If
@@ -36,20 +36,20 @@ Module S_General
 
         time1 = GetTimeMs()
 
-        ' Initialize the random-number generator
+        ' Inicializar o gerador de números aleatórios
         Randomize()
 
-        ' LOAD ENCRYPTION
+        ' Carregar Encriptação
         Dim fi = Application.StartupPath & "\AsyncKeys.xml"
         If Not File.Exists(fi) Then
             EKeyPair.GenerateKeys()
-            EKeyPair.ExportKey(fi, True) ' True exports private key too.
-            ' Remember never pass private to client!
-            ' Exporting the Key above saves it as a file for later reuse.
+            EKeyPair.ExportKey(fi, True) ' Verdadeiro exporta chave privada também.
+            ' Lembrar de nunca passar a chave privada para o cliente!
+            ' Exportar a chave salva como arquivo para uso posterior.
         Else
             EKeyPair.ImportKey(fi)
         End If
-        ' END LOAD ENCRYPTION
+        ' FIM DA ENCRIPTACAO
 
         ReDim Map(MAX_CACHED_MAPS)
 
@@ -63,12 +63,12 @@ Module S_General
         ReDim Quest(MAX_QUESTS)
         ClearQuests()
 
-        'event
+        'eventos
         ReDim Switches(MAX_SWITCHES)
         ReDim Variables(MAX_VARIABLES)
         ReDim TempEventMap(MAX_CACHED_MAPS)
 
-        'Housing
+        'Moradias
         ReDim HouseConfig(MAX_HOUSES)
 
         For i = 0 To MAX_CACHED_MAPS
@@ -91,7 +91,7 @@ Module S_General
         ReDim Player(MAX_PLAYERS)
 
         For i = 1 To MAX_PLAYERS
-            'multi char
+            'multi personagens
             ReDim Player(i).Character(MAX_CHARS)
             For x = 1 To MAX_CHARS
                 ReDim Player(i).Character(x).Switches(MAX_SWITCHES)
@@ -152,14 +152,14 @@ Module S_General
         ReDim MapProjectiles(MAX_CACHED_MAPS, MAX_PROJECTILES)
         ReDim Projectiles(MAX_PROJECTILES)
 
-        'parties
+        'equipes
         ClearParties()
 
         'pets
         ReDim Pet(MAX_PETS)
         ClearPets()
 
-        ' Check if the directory is there, if its not make it
+        ' Verificar se o diretório existe; caso contrário, fazer
         CheckDir(Path.Database)
         CheckDir(Path.Items)
         CheckDir(Path.Maps)
@@ -176,17 +176,17 @@ Module S_General
         CheckDir(Path.Projectiles)
         CheckDir(Path.Quests)
 
-        ' Get that network READY SUN! ~ SpiceyWOlf
+        ' Inicializar rede
         InitNetwork()
 
-        ' Init all the player sockets
+        ' Inicializar todas as sockets dos jogadores
         Console.WriteLine("Inicializando vetor de jogadores...")
 
         For x = 1 To MAX_PLAYERS
             ClearPlayer(x)
         Next
 
-        ' Serves as a constructor
+        ' Serve como construtor
         ClearGameData()
         LoadGameData()
         Console.WriteLine("Gerando itens dos mapas...")
@@ -194,12 +194,12 @@ Module S_General
         Console.WriteLine("Gerando NPCs dos mapas...")
         SpawnAllMapNpcs()
 
-        ' Check if the master charlist file exists for checking duplicate names, and if it doesnt make it
+        ' Verificar se a lista com nomes de personagens existe para evitar duplicatas; caso contrário, fazer.
         If Not File.Exists("data\accounts\charlist.txt") Then
             F = FreeFile()
         End If
 
-        'resource system
+        'Sistema de Recursos
         LoadSkillExp()
 
         InitTime()
@@ -227,13 +227,13 @@ Module S_General
 
         UpdateCaption()
 
-        ' reset shutdown value
+        ' Resetar valor de desligamento
         isShuttingDown = False
 
-        ' Start listener now that everything is loaded
+        ' Ativar o listener agora que tudo está carregado
         Socket.StartListening(Settings.Port, 5)
 
-        ' Starts the server loop
+        ' Inicia o loop do servidor
         ServerLoop()
 
     End Sub
@@ -241,7 +241,7 @@ Module S_General
     Private Function ConsoleEventCallback(eventType As Integer) As Boolean
         If eventType = 2 Then
             Console.WriteLine("Janela do console fechando, morte iminente")
-            'cleanup and close
+            'Limpar e fechar
             DestroyServer()
         End If
         Return False
@@ -249,8 +249,8 @@ Module S_General
 
     Private handler As ConsoleEventDelegate
 
-    ' Keeps it from getting garbage collected
-    ' Pinvoke
+    ' Evita que isso tenha garbage collected
+
     Private Delegate Function ConsoleEventDelegate(eventType As Integer) As Boolean
 
     <Runtime.InteropServices.DllImport("kernel32.dll", SetLastError:=True)>
@@ -322,7 +322,7 @@ Module S_General
         Console.WriteLine("Carregando Pets...") : LoadPets()
     End Sub
 
-    ' Used for checking validity of names
+    ' Usado para verificar a validade dos nomes
     Function IsNameLegal(sInput As Integer) As Boolean
 
         If (sInput >= 65 AndAlso sInput <= 90) OrElse (sInput >= 97 AndAlso sInput <= 122) OrElse (sInput = 95) OrElse (sInput = 32) OrElse (sInput >= 48 AndAlso sInput <= 57) Then

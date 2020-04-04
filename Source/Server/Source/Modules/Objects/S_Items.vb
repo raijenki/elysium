@@ -38,7 +38,6 @@ Friend Module S_Items
         Dim s As Integer
 
         filename = Path.Item(ItemNum)
-
         LoadObject(Item(ItemNum), filename)
 
     End Sub
@@ -103,7 +102,7 @@ Friend Module S_Items
 
         buffer.WriteInt32(ServerPackets.SMapItemData)
 
-        AddDebug("Sent SMSG: SMapItemData")
+        AddDebug("Enviada SMSG: SMapItemData")
 
         For i = 1 To MAX_MAP_ITEMS
             buffer.WriteInt32(MapItem(mapNum, i).Num)
@@ -124,7 +123,7 @@ Friend Module S_Items
 
         buffer.WriteInt32(ServerPackets.SMapItemData)
 
-        AddDebug("Sent SMSG: SMapItemData To All")
+        AddDebug("Enviada SMSG: SMapItemData To All")
 
         For i = 1 To MAX_MAP_ITEMS
             buffer.WriteInt32(MapItem(mapNum, i).Num)
@@ -141,10 +140,10 @@ Friend Module S_Items
     Sub SpawnItem(itemNum As Integer, ItemVal As Integer, mapNum As Integer, x As Integer, y As Integer)
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Checar por subscript out of range
         If itemNum < 1 OrElse itemNum > MAX_ITEMS OrElse mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS Then Exit Sub
 
-        ' Find open map item slot
+        ' Encontrar espaço de item aberto no mapa
         i = FindOpenMapItemSlot(mapNum)
 
         If i = 0 Then Exit Sub
@@ -156,7 +155,7 @@ Friend Module S_Items
         Dim i As Integer
         Dim buffer As New ByteStream(4)
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If MapItemSlot <= 0 OrElse MapItemSlot > MAX_MAP_ITEMS OrElse itemNum < 0 OrElse itemNum > MAX_ITEMS OrElse mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS Then Exit Sub
 
         i = MapItemSlot
@@ -175,7 +174,7 @@ Friend Module S_Items
                 buffer.WriteInt32(x)
                 buffer.WriteInt32(y)
 
-                AddDebug("Sent SMSG: SSpawnItem MapItemSlot")
+                AddDebug("Enviada SMSG: SSpawnItem MapItemSlot")
 
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             End If
@@ -189,7 +188,7 @@ Friend Module S_Items
         Dim i As Integer
         FindOpenMapItemSlot = 0
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS Then Exit Function
 
         For i = 1 To MAX_MAP_ITEMS
@@ -214,16 +213,15 @@ Friend Module S_Items
         Dim x As Integer
         Dim y As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If mapNum <= 0 OrElse mapNum > MAX_CACHED_MAPS Then Exit Sub
 
-        ' Spawn what we have
+        ' Gerar o que temos
         For x = 0 To Map(mapNum).MaxX
             For y = 0 To Map(mapNum).MaxY
-                ' Check if the tile type is an item or a saved tile incase someone drops something
+                ' Verificar se o tipo do tile é um item em caso de alguém largar algo
                 If (Map(mapNum).Tile(x, y).Type = TileType.Item) Then
-
-                    ' Check to see if its a currency and if they set the value to 0 set it to 1 automatically
+                    ' Verificar se é dinheiro e se setaram o valor para zero, mudar para 1 automaticamente
                     If Item(Map(mapNum).Tile(x, y).Data1).Type = ItemType.Currency OrElse Item(Map(mapNum).Tile(x, y).Data1).Stackable = 1 Then
                         If Map(mapNum).Tile(x, y).Data2 <= 0 Then
                             SpawnItem(Map(mapNum).Tile(x, y).Data1, 1, mapNum, x, y)
@@ -244,15 +242,15 @@ Friend Module S_Items
 #Region "Incoming Packets"
 
     Sub Packet_RequestItems(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CRequestItems")
+        AddDebug("Recebida CMSG: CRequestItems")
 
         SendItems(index)
     End Sub
 
     Sub Packet_EditItem(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestEditItem")
+        AddDebug("Recebida EMSG: RequestEditItem")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
@@ -260,7 +258,7 @@ Friend Module S_Items
         Buffer.WriteInt32(ServerPackets.SItemEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
-        AddDebug("Sent SMSG: SItemEditor")
+        AddDebug("Enviada SMSG: SItemEditor")
 
         Buffer.Dispose()
     End Sub
@@ -269,9 +267,9 @@ Friend Module S_Items
         Dim n As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved EMSG: SaveItem")
+        AddDebug("Recebida EMSG: SaveItem")
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         n = buffer.ReadInt32
@@ -280,15 +278,15 @@ Friend Module S_Items
 
         Item(n) = DeserializeData(buffer)
 
-        ' Save it
+        ' Salvar
         SendUpdateItemToAll(n)
         SaveItem(n)
-        Addlog(GetPlayerLogin(index) & " saved item #" & n & ".", ADMIN_LOG)
+        Addlog(GetPlayerLogin(index) & " salvou o item #" & n & ".", ADMIN_LOG)
         buffer.Dispose()
     End Sub
 
     Sub Packet_GetItem(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved CMSG: CMapGetItem")
+        AddDebug("Recebida CMSG: CMapGetItem")
 
         PlayerMapGetItem(index)
     End Sub
@@ -297,7 +295,7 @@ Friend Module S_Items
         Dim InvNum As Integer, Amount As Integer
         Dim buffer As New ByteStream(data)
 
-        AddDebug("Recieved CMSG: CMapDropItem")
+        AddDebug("Recebida CMSG: CMapDropItem")
 
         InvNum = buffer.ReadInt32
         Amount = buffer.ReadInt32
@@ -305,14 +303,14 @@ Friend Module S_Items
 
         If TempPlayer(index).InBank OrElse TempPlayer(index).InShop Then Exit Sub
 
-        ' Prevent hacking
+        ' Prevenir hacking
         If InvNum < 1 OrElse InvNum > MAX_INV Then Exit Sub
         If GetPlayerInvItemNum(index, InvNum) < 1 OrElse GetPlayerInvItemNum(index, InvNum) > MAX_ITEMS Then Exit Sub
         If Item(GetPlayerInvItemNum(index, InvNum)).Type = ItemType.Currency OrElse Item(GetPlayerInvItemNum(index, InvNum)).Stackable = 1 Then
             If Amount < 1 OrElse Amount > GetPlayerInvItemValue(index, InvNum) Then Exit Sub
         End If
 
-        ' everything worked out fine
+        ' Todo funcionou bem
         PlayerMapDropItem(index, InvNum, Amount)
     End Sub
 
@@ -338,7 +336,7 @@ Friend Module S_Items
 
         buffer.WriteBlock(ItemData(itemNum))
 
-        AddDebug("Sent SMSG: SUpdateItem")
+        AddDebug("Enviada SMSG: SUpdateItem")
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -351,7 +349,7 @@ Friend Module S_Items
 
         buffer.WriteBlock(ItemData(itemNum))
 
-        AddDebug("Sent SMSG: SUpdateItem To All")
+        AddDebug("Enviada SMSG: SUpdateItem To All")
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
