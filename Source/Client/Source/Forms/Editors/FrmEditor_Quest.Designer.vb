@@ -26,10 +26,6 @@ Partial Class frmEditor_Quest
         Me.fraQuestList = New DarkUI.Controls.DarkGroupBox()
         Me.lstIndex = New System.Windows.Forms.ListBox()
         Me.DarkGroupBox2 = New DarkUI.Controls.DarkGroupBox()
-        Me.DarkGroupBox5 = New DarkUI.Controls.DarkGroupBox()
-        Me.btnRemoveTask = New DarkUI.Controls.DarkButton()
-        Me.btnAddTask = New DarkUI.Controls.DarkButton()
-        Me.lstTasks = New System.Windows.Forms.ListBox()
         Me.DarkGroupBox4 = New DarkUI.Controls.DarkGroupBox()
         Me.lstRequirements = New System.Windows.Forms.ListBox()
         Me.btnRemoveRequirement = New DarkUI.Controls.DarkButton()
@@ -54,10 +50,36 @@ Partial Class frmEditor_Quest
         Me.chkRepeat = New DarkUI.Controls.DarkCheckBox()
         Me.txtName = New DarkUI.Controls.DarkTextBox()
         Me.DarkLabel1 = New DarkUI.Controls.DarkLabel()
+        Me.DarkGroupBox5 = New DarkUI.Controls.DarkGroupBox()
+        Me.btnRemoveTask = New DarkUI.Controls.DarkButton()
+        Me.btnAddTask = New DarkUI.Controls.DarkButton()
+        Me.lstTasks = New System.Windows.Forms.ListBox()
         Me.DarkLabel8 = New DarkUI.Controls.DarkLabel()
         Me.btnSave = New DarkUI.Controls.DarkButton()
         Me.btnCancel = New DarkUI.Controls.DarkButton()
         Me.fraTasks = New DarkUI.Controls.DarkGroupBox()
+        Me.fraRequirements = New DarkUI.Controls.DarkGroupBox()
+        Me.DarkGroupBox6 = New DarkUI.Controls.DarkGroupBox()
+        Me.btnRequirementCancel = New DarkUI.Controls.DarkButton()
+        Me.btnRequirementSave = New DarkUI.Controls.DarkButton()
+        Me.nudTakeAmount = New DarkUI.Controls.DarkNumericUpDown()
+        Me.DarkLabel23 = New DarkUI.Controls.DarkLabel()
+        Me.cmbEndItem = New DarkUI.Controls.DarkComboBox()
+        Me.DarkLabel24 = New DarkUI.Controls.DarkLabel()
+        Me.nudGiveAmount = New DarkUI.Controls.DarkNumericUpDown()
+        Me.DarkLabel22 = New DarkUI.Controls.DarkLabel()
+        Me.cmbStartItem = New DarkUI.Controls.DarkComboBox()
+        Me.DarkLabel21 = New DarkUI.Controls.DarkLabel()
+        Me.cmbClassReq = New DarkUI.Controls.DarkComboBox()
+        Me.DarkLabel20 = New DarkUI.Controls.DarkLabel()
+        Me.rdbClassReq = New DarkUI.Controls.DarkRadioButton()
+        Me.cmbQuestReq = New DarkUI.Controls.DarkComboBox()
+        Me.DarkLabel19 = New DarkUI.Controls.DarkLabel()
+        Me.rdbQuestReq = New DarkUI.Controls.DarkRadioButton()
+        Me.cmbItemReq = New DarkUI.Controls.DarkComboBox()
+        Me.DarkLabel18 = New DarkUI.Controls.DarkLabel()
+        Me.rdbItemReq = New DarkUI.Controls.DarkRadioButton()
+        Me.rdbNoneReq = New DarkUI.Controls.DarkRadioButton()
         Me.btnCancelTask = New DarkUI.Controls.DarkButton()
         Me.btnSaveTask = New DarkUI.Controls.DarkButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -88,43 +110,21 @@ Partial Class frmEditor_Quest
         Me.DarkLabel10 = New DarkUI.Controls.DarkLabel()
         Me.txtTaskLog = New DarkUI.Controls.DarkTextBox()
         Me.DarkLabel9 = New DarkUI.Controls.DarkLabel()
-        Me.fraRequirements = New DarkUI.Controls.DarkGroupBox()
-        Me.DarkGroupBox6 = New DarkUI.Controls.DarkGroupBox()
-        Me.btnRequirementCancel = New DarkUI.Controls.DarkButton()
-        Me.btnRequirementSave = New DarkUI.Controls.DarkButton()
-        Me.nudTakeAmount = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel23 = New DarkUI.Controls.DarkLabel()
-        Me.cmbEndItem = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel24 = New DarkUI.Controls.DarkLabel()
-        Me.nudGiveAmount = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel22 = New DarkUI.Controls.DarkLabel()
-        Me.cmbStartItem = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel21 = New DarkUI.Controls.DarkLabel()
-        Me.cmbClassReq = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel20 = New DarkUI.Controls.DarkLabel()
-        Me.rdbClassReq = New DarkUI.Controls.DarkRadioButton()
-        Me.cmbQuestReq = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel19 = New DarkUI.Controls.DarkLabel()
-        Me.rdbQuestReq = New DarkUI.Controls.DarkRadioButton()
-        Me.cmbItemReq = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel18 = New DarkUI.Controls.DarkLabel()
-        Me.rdbItemReq = New DarkUI.Controls.DarkRadioButton()
-        Me.rdbNoneReq = New DarkUI.Controls.DarkRadioButton()
         Me.fraQuestList.SuspendLayout()
         Me.DarkGroupBox2.SuspendLayout()
-        Me.DarkGroupBox5.SuspendLayout()
         Me.DarkGroupBox4.SuspendLayout()
         Me.DarkGroupBox3.SuspendLayout()
         CType(Me.nudItemRewValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudExpReward, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.DarkGroupBox5.SuspendLayout()
         Me.fraTasks.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        CType(Me.nudAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.fraRequirements.SuspendLayout()
         Me.DarkGroupBox6.SuspendLayout()
         CType(Me.nudTakeAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudGiveAmount, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.nudAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'fraQuestList
@@ -175,50 +175,6 @@ Partial Class frmEditor_Quest
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
         Me.DarkGroupBox2.Text = "Configurações basicas"
-        '
-        'DarkGroupBox5
-        '
-        Me.DarkGroupBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DarkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.DarkGroupBox5.Controls.Add(Me.btnRemoveTask)
-        Me.DarkGroupBox5.Controls.Add(Me.btnAddTask)
-        Me.DarkGroupBox5.Controls.Add(Me.lstTasks)
-        Me.DarkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox5.Location = New System.Drawing.Point(249, 254)
-        Me.DarkGroupBox5.Name = "DarkGroupBox5"
-        Me.DarkGroupBox5.Size = New System.Drawing.Size(243, 199)
-        Me.DarkGroupBox5.TabIndex = 12
-        Me.DarkGroupBox5.TabStop = False
-        Me.DarkGroupBox5.Text = "Tarefas"
-        '
-        'btnRemoveTask
-        '
-        Me.btnRemoveTask.Location = New System.Drawing.Point(121, 170)
-        Me.btnRemoveTask.Name = "btnRemoveTask"
-        Me.btnRemoveTask.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRemoveTask.Size = New System.Drawing.Size(118, 23)
-        Me.btnRemoveTask.TabIndex = 5
-        Me.btnRemoveTask.Text = "Remover task"
-        '
-        'btnAddTask
-        '
-        Me.btnAddTask.Location = New System.Drawing.Point(4, 170)
-        Me.btnAddTask.Name = "btnAddTask"
-        Me.btnAddTask.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnAddTask.Size = New System.Drawing.Size(111, 23)
-        Me.btnAddTask.TabIndex = 4
-        Me.btnAddTask.Text = "Adicionar task"
-        '
-        'lstTasks
-        '
-        Me.lstTasks.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lstTasks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstTasks.ForeColor = System.Drawing.Color.Gainsboro
-        Me.lstTasks.FormattingEnabled = True
-        Me.lstTasks.Location = New System.Drawing.Point(6, 19)
-        Me.lstTasks.Name = "lstTasks"
-        Me.lstTasks.Size = New System.Drawing.Size(231, 145)
-        Me.lstTasks.TabIndex = 3
         '
         'DarkGroupBox4
         '
@@ -491,6 +447,50 @@ Partial Class frmEditor_Quest
         Me.DarkLabel1.TabIndex = 0
         Me.DarkLabel1.Text = "Nome da quest :"
         '
+        'DarkGroupBox5
+        '
+        Me.DarkGroupBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.DarkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.DarkGroupBox5.Controls.Add(Me.btnRemoveTask)
+        Me.DarkGroupBox5.Controls.Add(Me.btnAddTask)
+        Me.DarkGroupBox5.Controls.Add(Me.lstTasks)
+        Me.DarkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro
+        Me.DarkGroupBox5.Location = New System.Drawing.Point(249, 254)
+        Me.DarkGroupBox5.Name = "DarkGroupBox5"
+        Me.DarkGroupBox5.Size = New System.Drawing.Size(243, 199)
+        Me.DarkGroupBox5.TabIndex = 12
+        Me.DarkGroupBox5.TabStop = False
+        Me.DarkGroupBox5.Text = "Tarefas"
+        '
+        'btnRemoveTask
+        '
+        Me.btnRemoveTask.Location = New System.Drawing.Point(121, 170)
+        Me.btnRemoveTask.Name = "btnRemoveTask"
+        Me.btnRemoveTask.Padding = New System.Windows.Forms.Padding(5)
+        Me.btnRemoveTask.Size = New System.Drawing.Size(118, 23)
+        Me.btnRemoveTask.TabIndex = 5
+        Me.btnRemoveTask.Text = "Remover task"
+        '
+        'btnAddTask
+        '
+        Me.btnAddTask.Location = New System.Drawing.Point(4, 170)
+        Me.btnAddTask.Name = "btnAddTask"
+        Me.btnAddTask.Padding = New System.Windows.Forms.Padding(5)
+        Me.btnAddTask.Size = New System.Drawing.Size(111, 23)
+        Me.btnAddTask.TabIndex = 4
+        Me.btnAddTask.Text = "Adicionar task"
+        '
+        'lstTasks
+        '
+        Me.lstTasks.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.lstTasks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lstTasks.ForeColor = System.Drawing.Color.Gainsboro
+        Me.lstTasks.FormattingEnabled = True
+        Me.lstTasks.Location = New System.Drawing.Point(6, 19)
+        Me.lstTasks.Name = "lstTasks"
+        Me.lstTasks.Size = New System.Drawing.Size(231, 145)
+        Me.lstTasks.TabIndex = 3
+        '
         'DarkLabel8
         '
         Me.DarkLabel8.AutoSize = True
@@ -523,7 +523,6 @@ Partial Class frmEditor_Quest
         '
         Me.fraTasks.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.fraTasks.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.fraTasks.Controls.Add(Me.fraRequirements)
         Me.fraTasks.Controls.Add(Me.btnCancelTask)
         Me.fraTasks.Controls.Add(Me.btnSaveTask)
         Me.fraTasks.Controls.Add(Me.Panel2)
@@ -535,6 +534,305 @@ Partial Class frmEditor_Quest
         Me.fraTasks.TabIndex = 5
         Me.fraTasks.TabStop = False
         Me.fraTasks.Text = "Tarefas"
+        '
+        'fraRequirements
+        '
+        Me.fraRequirements.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.fraRequirements.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.fraRequirements.Controls.Add(Me.DarkGroupBox6)
+        Me.fraRequirements.Controls.Add(Me.cmbClassReq)
+        Me.fraRequirements.Controls.Add(Me.DarkLabel20)
+        Me.fraRequirements.Controls.Add(Me.rdbClassReq)
+        Me.fraRequirements.Controls.Add(Me.cmbQuestReq)
+        Me.fraRequirements.Controls.Add(Me.DarkLabel19)
+        Me.fraRequirements.Controls.Add(Me.rdbQuestReq)
+        Me.fraRequirements.Controls.Add(Me.cmbItemReq)
+        Me.fraRequirements.Controls.Add(Me.DarkLabel18)
+        Me.fraRequirements.Controls.Add(Me.rdbItemReq)
+        Me.fraRequirements.Controls.Add(Me.rdbNoneReq)
+        Me.fraRequirements.ForeColor = System.Drawing.Color.Gainsboro
+        Me.fraRequirements.Location = New System.Drawing.Point(724, 3)
+        Me.fraRequirements.Name = "fraRequirements"
+        Me.fraRequirements.Size = New System.Drawing.Size(431, 497)
+        Me.fraRequirements.TabIndex = 6
+        Me.fraRequirements.TabStop = False
+        Me.fraRequirements.Text = "Requerimentos"
+        Me.fraRequirements.Visible = False
+        '
+        'DarkGroupBox6
+        '
+        Me.DarkGroupBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.DarkGroupBox6.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.DarkGroupBox6.Controls.Add(Me.btnRequirementCancel)
+        Me.DarkGroupBox6.Controls.Add(Me.btnRequirementSave)
+        Me.DarkGroupBox6.Controls.Add(Me.nudTakeAmount)
+        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel23)
+        Me.DarkGroupBox6.Controls.Add(Me.cmbEndItem)
+        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel24)
+        Me.DarkGroupBox6.Controls.Add(Me.nudGiveAmount)
+        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel22)
+        Me.DarkGroupBox6.Controls.Add(Me.cmbStartItem)
+        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel21)
+        Me.DarkGroupBox6.ForeColor = System.Drawing.Color.Gainsboro
+        Me.DarkGroupBox6.Location = New System.Drawing.Point(6, 159)
+        Me.DarkGroupBox6.Name = "DarkGroupBox6"
+        Me.DarkGroupBox6.Size = New System.Drawing.Size(338, 288)
+        Me.DarkGroupBox6.TabIndex = 10
+        Me.DarkGroupBox6.TabStop = False
+        Me.DarkGroupBox6.Text = "Itens necessarios para a quest"
+        '
+        'btnRequirementCancel
+        '
+        Me.btnRequirementCancel.Location = New System.Drawing.Point(257, 259)
+        Me.btnRequirementCancel.Name = "btnRequirementCancel"
+        Me.btnRequirementCancel.Padding = New System.Windows.Forms.Padding(5)
+        Me.btnRequirementCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnRequirementCancel.TabIndex = 9
+        Me.btnRequirementCancel.Text = "Cancelar"
+        '
+        'btnRequirementSave
+        '
+        Me.btnRequirementSave.Location = New System.Drawing.Point(176, 259)
+        Me.btnRequirementSave.Name = "btnRequirementSave"
+        Me.btnRequirementSave.Padding = New System.Windows.Forms.Padding(5)
+        Me.btnRequirementSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnRequirementSave.TabIndex = 8
+        Me.btnRequirementSave.Text = "Salvar"
+        '
+        'nudTakeAmount
+        '
+        Me.nudTakeAmount.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.nudTakeAmount.ForeColor = System.Drawing.Color.Gainsboro
+        Me.nudTakeAmount.Location = New System.Drawing.Point(262, 73)
+        Me.nudTakeAmount.Name = "nudTakeAmount"
+        Me.nudTakeAmount.Size = New System.Drawing.Size(70, 20)
+        Me.nudTakeAmount.TabIndex = 7
+        Me.nudTakeAmount.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
+        'DarkLabel23
+        '
+        Me.DarkLabel23.AutoSize = True
+        Me.DarkLabel23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel23.Location = New System.Drawing.Point(210, 75)
+        Me.DarkLabel23.Name = "DarkLabel23"
+        Me.DarkLabel23.Size = New System.Drawing.Size(30, 13)
+        Me.DarkLabel23.TabIndex = 6
+        Me.DarkLabel23.Text = "Qnt :"
+        '
+        'cmbEndItem
+        '
+        Me.cmbEndItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.cmbEndItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.cmbEndItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        Me.cmbEndItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmbEndItem.ButtonIcon = CType(resources.GetObject("cmbEndItem.ButtonIcon"), System.Drawing.Bitmap)
+        Me.cmbEndItem.DrawDropdownHoverOutline = False
+        Me.cmbEndItem.DrawFocusRectangle = False
+        Me.cmbEndItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbEndItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEndItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbEndItem.ForeColor = System.Drawing.Color.Gainsboro
+        Me.cmbEndItem.FormattingEnabled = True
+        Me.cmbEndItem.Location = New System.Drawing.Point(67, 72)
+        Me.cmbEndItem.Name = "cmbEndItem"
+        Me.cmbEndItem.Size = New System.Drawing.Size(137, 21)
+        Me.cmbEndItem.TabIndex = 5
+        Me.cmbEndItem.Text = Nothing
+        Me.cmbEndItem.TextPadding = New System.Windows.Forms.Padding(2)
+        '
+        'DarkLabel24
+        '
+        Me.DarkLabel24.AutoSize = True
+        Me.DarkLabel24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel24.Location = New System.Drawing.Point(6, 75)
+        Me.DarkLabel24.Name = "DarkLabel24"
+        Me.DarkLabel24.Size = New System.Drawing.Size(62, 13)
+        Me.DarkLabel24.TabIndex = 4
+        Me.DarkLabel24.Text = "Tomar item:"
+        '
+        'nudGiveAmount
+        '
+        Me.nudGiveAmount.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.nudGiveAmount.ForeColor = System.Drawing.Color.Gainsboro
+        Me.nudGiveAmount.Location = New System.Drawing.Point(262, 29)
+        Me.nudGiveAmount.Name = "nudGiveAmount"
+        Me.nudGiveAmount.Size = New System.Drawing.Size(70, 20)
+        Me.nudGiveAmount.TabIndex = 3
+        Me.nudGiveAmount.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
+        'DarkLabel22
+        '
+        Me.DarkLabel22.AutoSize = True
+        Me.DarkLabel22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel22.Location = New System.Drawing.Point(210, 31)
+        Me.DarkLabel22.Name = "DarkLabel22"
+        Me.DarkLabel22.Size = New System.Drawing.Size(30, 13)
+        Me.DarkLabel22.TabIndex = 2
+        Me.DarkLabel22.Text = "Qnt :"
+        '
+        'cmbStartItem
+        '
+        Me.cmbStartItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.cmbStartItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.cmbStartItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        Me.cmbStartItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmbStartItem.ButtonIcon = CType(resources.GetObject("cmbStartItem.ButtonIcon"), System.Drawing.Bitmap)
+        Me.cmbStartItem.DrawDropdownHoverOutline = False
+        Me.cmbStartItem.DrawFocusRectangle = False
+        Me.cmbStartItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbStartItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStartItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbStartItem.ForeColor = System.Drawing.Color.Gainsboro
+        Me.cmbStartItem.FormattingEnabled = True
+        Me.cmbStartItem.Location = New System.Drawing.Point(67, 28)
+        Me.cmbStartItem.Name = "cmbStartItem"
+        Me.cmbStartItem.Size = New System.Drawing.Size(137, 21)
+        Me.cmbStartItem.TabIndex = 1
+        Me.cmbStartItem.Text = Nothing
+        Me.cmbStartItem.TextPadding = New System.Windows.Forms.Padding(2)
+        '
+        'DarkLabel21
+        '
+        Me.DarkLabel21.AutoSize = True
+        Me.DarkLabel21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel21.Location = New System.Drawing.Point(6, 31)
+        Me.DarkLabel21.Name = "DarkLabel21"
+        Me.DarkLabel21.Size = New System.Drawing.Size(49, 13)
+        Me.DarkLabel21.TabIndex = 0
+        Me.DarkLabel21.Text = "Dar item:"
+        '
+        'cmbClassReq
+        '
+        Me.cmbClassReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.cmbClassReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.cmbClassReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        Me.cmbClassReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmbClassReq.ButtonIcon = CType(resources.GetObject("cmbClassReq.ButtonIcon"), System.Drawing.Bitmap)
+        Me.cmbClassReq.DrawDropdownHoverOutline = False
+        Me.cmbClassReq.DrawFocusRectangle = False
+        Me.cmbClassReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbClassReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbClassReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbClassReq.ForeColor = System.Drawing.Color.Gainsboro
+        Me.cmbClassReq.FormattingEnabled = True
+        Me.cmbClassReq.Location = New System.Drawing.Point(185, 127)
+        Me.cmbClassReq.Name = "cmbClassReq"
+        Me.cmbClassReq.Size = New System.Drawing.Size(159, 21)
+        Me.cmbClassReq.TabIndex = 9
+        Me.cmbClassReq.Text = Nothing
+        Me.cmbClassReq.TextPadding = New System.Windows.Forms.Padding(2)
+        '
+        'DarkLabel20
+        '
+        Me.DarkLabel20.AutoSize = True
+        Me.DarkLabel20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel20.Location = New System.Drawing.Point(80, 130)
+        Me.DarkLabel20.Name = "DarkLabel20"
+        Me.DarkLabel20.Size = New System.Drawing.Size(91, 13)
+        Me.DarkLabel20.TabIndex = 8
+        Me.DarkLabel20.Text = "Classe requerida :"
+        '
+        'rdbClassReq
+        '
+        Me.rdbClassReq.AutoSize = True
+        Me.rdbClassReq.Location = New System.Drawing.Point(10, 128)
+        Me.rdbClassReq.Name = "rdbClassReq"
+        Me.rdbClassReq.Size = New System.Drawing.Size(56, 17)
+        Me.rdbClassReq.TabIndex = 7
+        Me.rdbClassReq.TabStop = True
+        Me.rdbClassReq.Text = "Classe"
+        '
+        'cmbQuestReq
+        '
+        Me.cmbQuestReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.cmbQuestReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.cmbQuestReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        Me.cmbQuestReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmbQuestReq.ButtonIcon = CType(resources.GetObject("cmbQuestReq.ButtonIcon"), System.Drawing.Bitmap)
+        Me.cmbQuestReq.DrawDropdownHoverOutline = False
+        Me.cmbQuestReq.DrawFocusRectangle = False
+        Me.cmbQuestReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbQuestReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbQuestReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbQuestReq.ForeColor = System.Drawing.Color.Gainsboro
+        Me.cmbQuestReq.FormattingEnabled = True
+        Me.cmbQuestReq.Location = New System.Drawing.Point(185, 91)
+        Me.cmbQuestReq.Name = "cmbQuestReq"
+        Me.cmbQuestReq.Size = New System.Drawing.Size(159, 21)
+        Me.cmbQuestReq.TabIndex = 6
+        Me.cmbQuestReq.Text = Nothing
+        Me.cmbQuestReq.TextPadding = New System.Windows.Forms.Padding(2)
+        '
+        'DarkLabel19
+        '
+        Me.DarkLabel19.AutoSize = True
+        Me.DarkLabel19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel19.Location = New System.Drawing.Point(80, 94)
+        Me.DarkLabel19.Name = "DarkLabel19"
+        Me.DarkLabel19.Size = New System.Drawing.Size(88, 13)
+        Me.DarkLabel19.TabIndex = 5
+        Me.DarkLabel19.Text = "Quest requerida :"
+        '
+        'rdbQuestReq
+        '
+        Me.rdbQuestReq.AutoSize = True
+        Me.rdbQuestReq.Location = New System.Drawing.Point(10, 92)
+        Me.rdbQuestReq.Name = "rdbQuestReq"
+        Me.rdbQuestReq.Size = New System.Drawing.Size(53, 17)
+        Me.rdbQuestReq.TabIndex = 4
+        Me.rdbQuestReq.TabStop = True
+        Me.rdbQuestReq.Text = "Quest"
+        '
+        'cmbItemReq
+        '
+        Me.cmbItemReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.cmbItemReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.cmbItemReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        Me.cmbItemReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmbItemReq.ButtonIcon = CType(resources.GetObject("cmbItemReq.ButtonIcon"), System.Drawing.Bitmap)
+        Me.cmbItemReq.DrawDropdownHoverOutline = False
+        Me.cmbItemReq.DrawFocusRectangle = False
+        Me.cmbItemReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbItemReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbItemReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbItemReq.ForeColor = System.Drawing.Color.Gainsboro
+        Me.cmbItemReq.FormattingEnabled = True
+        Me.cmbItemReq.Location = New System.Drawing.Point(185, 55)
+        Me.cmbItemReq.Name = "cmbItemReq"
+        Me.cmbItemReq.Size = New System.Drawing.Size(159, 21)
+        Me.cmbItemReq.TabIndex = 3
+        Me.cmbItemReq.Text = Nothing
+        Me.cmbItemReq.TextPadding = New System.Windows.Forms.Padding(2)
+        '
+        'DarkLabel18
+        '
+        Me.DarkLabel18.AutoSize = True
+        Me.DarkLabel18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.DarkLabel18.Location = New System.Drawing.Point(80, 58)
+        Me.DarkLabel18.Name = "DarkLabel18"
+        Me.DarkLabel18.Size = New System.Drawing.Size(80, 13)
+        Me.DarkLabel18.TabIndex = 2
+        Me.DarkLabel18.Text = "Item requerido :"
+        '
+        'rdbItemReq
+        '
+        Me.rdbItemReq.AutoSize = True
+        Me.rdbItemReq.Location = New System.Drawing.Point(10, 56)
+        Me.rdbItemReq.Name = "rdbItemReq"
+        Me.rdbItemReq.Size = New System.Drawing.Size(45, 17)
+        Me.rdbItemReq.TabIndex = 1
+        Me.rdbItemReq.TabStop = True
+        Me.rdbItemReq.Text = "Item"
+        '
+        'rdbNoneReq
+        '
+        Me.rdbNoneReq.AutoSize = True
+        Me.rdbNoneReq.Location = New System.Drawing.Point(10, 21)
+        Me.rdbNoneReq.Name = "rdbNoneReq"
+        Me.rdbNoneReq.Size = New System.Drawing.Size(65, 17)
+        Me.rdbNoneReq.TabIndex = 0
+        Me.rdbNoneReq.TabStop = True
+        Me.rdbNoneReq.Text = "Nenhum"
         '
         'btnCancelTask
         '
@@ -898,305 +1196,6 @@ Partial Class frmEditor_Quest
         Me.DarkLabel9.TabIndex = 0
         Me.DarkLabel9.Text = "Log da tarefa"
         '
-        'fraRequirements
-        '
-        Me.fraRequirements.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.fraRequirements.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.fraRequirements.Controls.Add(Me.DarkGroupBox6)
-        Me.fraRequirements.Controls.Add(Me.cmbClassReq)
-        Me.fraRequirements.Controls.Add(Me.DarkLabel20)
-        Me.fraRequirements.Controls.Add(Me.rdbClassReq)
-        Me.fraRequirements.Controls.Add(Me.cmbQuestReq)
-        Me.fraRequirements.Controls.Add(Me.DarkLabel19)
-        Me.fraRequirements.Controls.Add(Me.rdbQuestReq)
-        Me.fraRequirements.Controls.Add(Me.cmbItemReq)
-        Me.fraRequirements.Controls.Add(Me.DarkLabel18)
-        Me.fraRequirements.Controls.Add(Me.rdbItemReq)
-        Me.fraRequirements.Controls.Add(Me.rdbNoneReq)
-        Me.fraRequirements.ForeColor = System.Drawing.Color.Gainsboro
-        Me.fraRequirements.Location = New System.Drawing.Point(0, 0)
-        Me.fraRequirements.Name = "fraRequirements"
-        Me.fraRequirements.Size = New System.Drawing.Size(431, 497)
-        Me.fraRequirements.TabIndex = 6
-        Me.fraRequirements.TabStop = False
-        Me.fraRequirements.Text = "Requerimentos"
-        Me.fraRequirements.Visible = False
-        '
-        'DarkGroupBox6
-        '
-        Me.DarkGroupBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DarkGroupBox6.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.DarkGroupBox6.Controls.Add(Me.btnRequirementCancel)
-        Me.DarkGroupBox6.Controls.Add(Me.btnRequirementSave)
-        Me.DarkGroupBox6.Controls.Add(Me.nudTakeAmount)
-        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel23)
-        Me.DarkGroupBox6.Controls.Add(Me.cmbEndItem)
-        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel24)
-        Me.DarkGroupBox6.Controls.Add(Me.nudGiveAmount)
-        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel22)
-        Me.DarkGroupBox6.Controls.Add(Me.cmbStartItem)
-        Me.DarkGroupBox6.Controls.Add(Me.DarkLabel21)
-        Me.DarkGroupBox6.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox6.Location = New System.Drawing.Point(6, 159)
-        Me.DarkGroupBox6.Name = "DarkGroupBox6"
-        Me.DarkGroupBox6.Size = New System.Drawing.Size(338, 288)
-        Me.DarkGroupBox6.TabIndex = 10
-        Me.DarkGroupBox6.TabStop = False
-        Me.DarkGroupBox6.Text = "Itens necessarios para a quest"
-        '
-        'btnRequirementCancel
-        '
-        Me.btnRequirementCancel.Location = New System.Drawing.Point(257, 259)
-        Me.btnRequirementCancel.Name = "btnRequirementCancel"
-        Me.btnRequirementCancel.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRequirementCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnRequirementCancel.TabIndex = 9
-        Me.btnRequirementCancel.Text = "Cancelar"
-        '
-        'btnRequirementSave
-        '
-        Me.btnRequirementSave.Location = New System.Drawing.Point(176, 259)
-        Me.btnRequirementSave.Name = "btnRequirementSave"
-        Me.btnRequirementSave.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRequirementSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnRequirementSave.TabIndex = 8
-        Me.btnRequirementSave.Text = "Salvar"
-        '
-        'nudTakeAmount
-        '
-        Me.nudTakeAmount.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.nudTakeAmount.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudTakeAmount.Location = New System.Drawing.Point(262, 73)
-        Me.nudTakeAmount.Name = "nudTakeAmount"
-        Me.nudTakeAmount.Size = New System.Drawing.Size(70, 20)
-        Me.nudTakeAmount.TabIndex = 7
-        Me.nudTakeAmount.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'DarkLabel23
-        '
-        Me.DarkLabel23.AutoSize = True
-        Me.DarkLabel23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel23.Location = New System.Drawing.Point(210, 75)
-        Me.DarkLabel23.Name = "DarkLabel23"
-        Me.DarkLabel23.Size = New System.Drawing.Size(30, 13)
-        Me.DarkLabel23.TabIndex = 6
-        Me.DarkLabel23.Text = "Qnt :"
-        '
-        'cmbEndItem
-        '
-        Me.cmbEndItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbEndItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbEndItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbEndItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbEndItem.ButtonIcon = CType(resources.GetObject("cmbEndItem.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbEndItem.DrawDropdownHoverOutline = False
-        Me.cmbEndItem.DrawFocusRectangle = False
-        Me.cmbEndItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbEndItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEndItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbEndItem.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbEndItem.FormattingEnabled = True
-        Me.cmbEndItem.Location = New System.Drawing.Point(67, 72)
-        Me.cmbEndItem.Name = "cmbEndItem"
-        Me.cmbEndItem.Size = New System.Drawing.Size(137, 21)
-        Me.cmbEndItem.TabIndex = 5
-        Me.cmbEndItem.Text = Nothing
-        Me.cmbEndItem.TextPadding = New System.Windows.Forms.Padding(2)
-        '
-        'DarkLabel24
-        '
-        Me.DarkLabel24.AutoSize = True
-        Me.DarkLabel24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel24.Location = New System.Drawing.Point(6, 75)
-        Me.DarkLabel24.Name = "DarkLabel24"
-        Me.DarkLabel24.Size = New System.Drawing.Size(62, 13)
-        Me.DarkLabel24.TabIndex = 4
-        Me.DarkLabel24.Text = "Tomar item:"
-        '
-        'nudGiveAmount
-        '
-        Me.nudGiveAmount.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.nudGiveAmount.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudGiveAmount.Location = New System.Drawing.Point(262, 29)
-        Me.nudGiveAmount.Name = "nudGiveAmount"
-        Me.nudGiveAmount.Size = New System.Drawing.Size(70, 20)
-        Me.nudGiveAmount.TabIndex = 3
-        Me.nudGiveAmount.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'DarkLabel22
-        '
-        Me.DarkLabel22.AutoSize = True
-        Me.DarkLabel22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel22.Location = New System.Drawing.Point(210, 31)
-        Me.DarkLabel22.Name = "DarkLabel22"
-        Me.DarkLabel22.Size = New System.Drawing.Size(30, 13)
-        Me.DarkLabel22.TabIndex = 2
-        Me.DarkLabel22.Text = "Qnt :"
-        '
-        'cmbStartItem
-        '
-        Me.cmbStartItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbStartItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbStartItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbStartItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbStartItem.ButtonIcon = CType(resources.GetObject("cmbStartItem.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbStartItem.DrawDropdownHoverOutline = False
-        Me.cmbStartItem.DrawFocusRectangle = False
-        Me.cmbStartItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbStartItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbStartItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbStartItem.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbStartItem.FormattingEnabled = True
-        Me.cmbStartItem.Location = New System.Drawing.Point(67, 28)
-        Me.cmbStartItem.Name = "cmbStartItem"
-        Me.cmbStartItem.Size = New System.Drawing.Size(137, 21)
-        Me.cmbStartItem.TabIndex = 1
-        Me.cmbStartItem.Text = Nothing
-        Me.cmbStartItem.TextPadding = New System.Windows.Forms.Padding(2)
-        '
-        'DarkLabel21
-        '
-        Me.DarkLabel21.AutoSize = True
-        Me.DarkLabel21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel21.Location = New System.Drawing.Point(6, 31)
-        Me.DarkLabel21.Name = "DarkLabel21"
-        Me.DarkLabel21.Size = New System.Drawing.Size(49, 13)
-        Me.DarkLabel21.TabIndex = 0
-        Me.DarkLabel21.Text = "Dar item:"
-        '
-        'cmbClassReq
-        '
-        Me.cmbClassReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbClassReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbClassReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbClassReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbClassReq.ButtonIcon = CType(resources.GetObject("cmbClassReq.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbClassReq.DrawDropdownHoverOutline = False
-        Me.cmbClassReq.DrawFocusRectangle = False
-        Me.cmbClassReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbClassReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbClassReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbClassReq.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbClassReq.FormattingEnabled = True
-        Me.cmbClassReq.Location = New System.Drawing.Point(185, 127)
-        Me.cmbClassReq.Name = "cmbClassReq"
-        Me.cmbClassReq.Size = New System.Drawing.Size(159, 21)
-        Me.cmbClassReq.TabIndex = 9
-        Me.cmbClassReq.Text = Nothing
-        Me.cmbClassReq.TextPadding = New System.Windows.Forms.Padding(2)
-        '
-        'DarkLabel20
-        '
-        Me.DarkLabel20.AutoSize = True
-        Me.DarkLabel20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel20.Location = New System.Drawing.Point(80, 130)
-        Me.DarkLabel20.Name = "DarkLabel20"
-        Me.DarkLabel20.Size = New System.Drawing.Size(91, 13)
-        Me.DarkLabel20.TabIndex = 8
-        Me.DarkLabel20.Text = "Classe requerida :"
-        '
-        'rdbClassReq
-        '
-        Me.rdbClassReq.AutoSize = True
-        Me.rdbClassReq.Location = New System.Drawing.Point(10, 128)
-        Me.rdbClassReq.Name = "rdbClassReq"
-        Me.rdbClassReq.Size = New System.Drawing.Size(56, 17)
-        Me.rdbClassReq.TabIndex = 7
-        Me.rdbClassReq.TabStop = True
-        Me.rdbClassReq.Text = "Classe"
-        '
-        'cmbQuestReq
-        '
-        Me.cmbQuestReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbQuestReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbQuestReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbQuestReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbQuestReq.ButtonIcon = CType(resources.GetObject("cmbQuestReq.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbQuestReq.DrawDropdownHoverOutline = False
-        Me.cmbQuestReq.DrawFocusRectangle = False
-        Me.cmbQuestReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbQuestReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbQuestReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbQuestReq.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbQuestReq.FormattingEnabled = True
-        Me.cmbQuestReq.Location = New System.Drawing.Point(185, 91)
-        Me.cmbQuestReq.Name = "cmbQuestReq"
-        Me.cmbQuestReq.Size = New System.Drawing.Size(159, 21)
-        Me.cmbQuestReq.TabIndex = 6
-        Me.cmbQuestReq.Text = Nothing
-        Me.cmbQuestReq.TextPadding = New System.Windows.Forms.Padding(2)
-        '
-        'DarkLabel19
-        '
-        Me.DarkLabel19.AutoSize = True
-        Me.DarkLabel19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel19.Location = New System.Drawing.Point(80, 94)
-        Me.DarkLabel19.Name = "DarkLabel19"
-        Me.DarkLabel19.Size = New System.Drawing.Size(88, 13)
-        Me.DarkLabel19.TabIndex = 5
-        Me.DarkLabel19.Text = "Quest requerida :"
-        '
-        'rdbQuestReq
-        '
-        Me.rdbQuestReq.AutoSize = True
-        Me.rdbQuestReq.Location = New System.Drawing.Point(10, 92)
-        Me.rdbQuestReq.Name = "rdbQuestReq"
-        Me.rdbQuestReq.Size = New System.Drawing.Size(53, 17)
-        Me.rdbQuestReq.TabIndex = 4
-        Me.rdbQuestReq.TabStop = True
-        Me.rdbQuestReq.Text = "Quest"
-        '
-        'cmbItemReq
-        '
-        Me.cmbItemReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbItemReq.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbItemReq.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbItemReq.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbItemReq.ButtonIcon = CType(resources.GetObject("cmbItemReq.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbItemReq.DrawDropdownHoverOutline = False
-        Me.cmbItemReq.DrawFocusRectangle = False
-        Me.cmbItemReq.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbItemReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbItemReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbItemReq.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbItemReq.FormattingEnabled = True
-        Me.cmbItemReq.Location = New System.Drawing.Point(185, 55)
-        Me.cmbItemReq.Name = "cmbItemReq"
-        Me.cmbItemReq.Size = New System.Drawing.Size(159, 21)
-        Me.cmbItemReq.TabIndex = 3
-        Me.cmbItemReq.Text = Nothing
-        Me.cmbItemReq.TextPadding = New System.Windows.Forms.Padding(2)
-        '
-        'DarkLabel18
-        '
-        Me.DarkLabel18.AutoSize = True
-        Me.DarkLabel18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel18.Location = New System.Drawing.Point(80, 58)
-        Me.DarkLabel18.Name = "DarkLabel18"
-        Me.DarkLabel18.Size = New System.Drawing.Size(80, 13)
-        Me.DarkLabel18.TabIndex = 2
-        Me.DarkLabel18.Text = "Item requerido :"
-        '
-        'rdbItemReq
-        '
-        Me.rdbItemReq.AutoSize = True
-        Me.rdbItemReq.Location = New System.Drawing.Point(10, 56)
-        Me.rdbItemReq.Name = "rdbItemReq"
-        Me.rdbItemReq.Size = New System.Drawing.Size(45, 17)
-        Me.rdbItemReq.TabIndex = 1
-        Me.rdbItemReq.TabStop = True
-        Me.rdbItemReq.Text = "Item"
-        '
-        'rdbNoneReq
-        '
-        Me.rdbNoneReq.AutoSize = True
-        Me.rdbNoneReq.Location = New System.Drawing.Point(10, 21)
-        Me.rdbNoneReq.Name = "rdbNoneReq"
-        Me.rdbNoneReq.Size = New System.Drawing.Size(65, 17)
-        Me.rdbNoneReq.TabIndex = 0
-        Me.rdbNoneReq.TabStop = True
-        Me.rdbNoneReq.Text = "Nenhum"
-        '
         'frmEditor_Quest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1204,6 +1203,7 @@ Partial Class frmEditor_Quest
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1158, 507)
         Me.ControlBox = False
+        Me.Controls.Add(Me.fraRequirements)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.DarkLabel8)
@@ -1217,24 +1217,24 @@ Partial Class frmEditor_Quest
         Me.fraQuestList.ResumeLayout(False)
         Me.DarkGroupBox2.ResumeLayout(False)
         Me.DarkGroupBox2.PerformLayout()
-        Me.DarkGroupBox5.ResumeLayout(False)
         Me.DarkGroupBox4.ResumeLayout(False)
         Me.DarkGroupBox3.ResumeLayout(False)
         Me.DarkGroupBox3.PerformLayout()
         CType(Me.nudItemRewValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudExpReward, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.DarkGroupBox5.ResumeLayout(False)
         Me.fraTasks.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        CType(Me.nudAmount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.fraRequirements.ResumeLayout(False)
         Me.fraRequirements.PerformLayout()
         Me.DarkGroupBox6.ResumeLayout(False)
         Me.DarkGroupBox6.PerformLayout()
         CType(Me.nudTakeAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudGiveAmount, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.nudAmount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

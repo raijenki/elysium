@@ -403,13 +403,15 @@ Friend Module S_Quest
 
     'sends a message to the client that is shown on the screen
     Friend Sub QuestMessage(index As Integer, QuestNum As Integer, message As String, QuestNumForStart As Integer)
+        If message = "" Then Exit Sub
+
         Dim buffer As ByteStream
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SQuestMessage)
 
         buffer.WriteInt32(QuestNum)
-        buffer.WriteString((Trim$(message)))
+        buffer.WriteString(message)
         buffer.WriteInt32(QuestNumForStart)
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -444,7 +446,7 @@ Friend Module S_Quest
                 If Quest(QuestNum).Requirement(i) = 1 Then
                     If Quest(QuestNum).RequirementIndex(i) > 0 AndAlso Quest(QuestNum).RequirementIndex(i) <= MAX_ITEMS Then
                         If HasItem(index, Quest(QuestNum).RequirementIndex(i)) = 0 Then
-                            PlayerMsg(index, "You need " & Item(Quest(QuestNum).Requirement(2)).Name & " to take this quest!", ColorType.Yellow)
+                            PlayerMsg(index, "You need " & Item(Quest(QuestNum).RequirementIndex(i)).Name & " to take this quest!", ColorType.Yellow)
                             Exit Function
                         End If
                     End If
@@ -453,8 +455,8 @@ Friend Module S_Quest
                 'Check if previous quest is needed
                 If Quest(QuestNum).Requirement(i) = 2 Then
                     If Quest(QuestNum).RequirementIndex(i) > 0 AndAlso Quest(QuestNum).RequirementIndex(i) <= MAX_QUESTS Then
-                        If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).Requirement(2)).Status = QuestStatusType.NotStarted OrElse Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).Requirement(2)).Status = QuestStatusType.Started Then
-                            PlayerMsg(index, "You need to complete the " & Trim$(Quest(Quest(QuestNum).Requirement(2)).Name) & " quest in order to take this quest!", ColorType.Yellow)
+                        If Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).RequirementIndex(i)).Status = QuestStatusType.NotStarted OrElse Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(Quest(QuestNum).RequirementIndex(i)).Status = QuestStatusType.Started Then
+                            PlayerMsg(index, "You need to complete the " & Trim$(Quest(Quest(QuestNum).RequirementIndex(i)).Name) & " quest in order to take this quest!", ColorType.Yellow)
                             Exit Function
                         End If
                     End If
@@ -603,7 +605,7 @@ Friend Module S_Quest
                         If GetPlayerInvItemNum(index, I) = Quest(QuestNum).Task(ActualTask).Item Then
                             If GetPlayerInvItemValue(index, I) >= Quest(QuestNum).Task(ActualTask).Amount Then
                                 TakeInvItem(index, GetPlayerInvItemNum(index, I), Quest(QuestNum).Task(ActualTask).Amount)
-                                QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
+                                If Quest(QuestNum).Task(ActualTask).Speech <> "" Then QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
                                 If CanEndQuest(index, QuestNum) Then
                                     EndQuest(index, QuestNum)
                                 Else

@@ -389,8 +389,8 @@
 
         If lstRequirements.SelectedIndex < 0 Then Exit Sub
 
-        ReDim tmpRequirement(Quest(Editorindex).ReqCount - 1)
-        ReDim tmpRequirementIndex(Quest(Editorindex).ReqCount - 1)
+        ReDim tmpRequirement(Quest(Editorindex).ReqCount)
+        ReDim tmpRequirementIndex(Quest(Editorindex).ReqCount)
 
         For i = 1 To Quest(Editorindex).ReqCount
             If Not i = lstRequirements.SelectedIndex + 1 Then

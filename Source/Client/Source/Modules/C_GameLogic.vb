@@ -997,10 +997,13 @@ Continue1:
         ' Exit out for everything else except equipment
         If Item(itemnum).Type <> ItemType.Equipment Then
             ' Clear other labels
-            ItemDescSpeed =
-            ItemDescStr = ItemDescEnd = ItemDescInt =
-            ItemDescSpr = ItemDescVit = ItemDescLuck =
-                    Language.ItemDescription.NotAvailable
+            ItemDescSpeed = Language.ItemDescription.NotAvailable
+            ItemDescStr = Language.ItemDescription.NotAvailable
+            ItemDescEnd = Language.ItemDescription.NotAvailable
+            ItemDescInt = Language.ItemDescription.NotAvailable
+            ItemDescSpr = Language.ItemDescription.NotAvailable
+            ItemDescVit = Language.ItemDescription.NotAvailable
+            ItemDescLuck = Language.ItemDescription.NotAvailable
             Exit Sub
         End If
 

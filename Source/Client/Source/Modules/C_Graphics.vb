@@ -798,7 +798,7 @@ Module C_Graphics
             If index <= 0 OrElse index > NumItems Then Exit Sub
 
             'Load texture first, dont care about memory streams (just use the filename)
-            ItemsGfx(index) = New Texture(Path.Graphics & "items\" & index & GfxExt)
+            ItemsGfx(index) = New Texture(Path.Graphics & "Items\" & index & GfxExt)
             ItemsSprite(index) = New Sprite(ItemsGfx(index))
 
             'Cache the width and height
@@ -1691,6 +1691,8 @@ Module C_Graphics
                 End If
             Next
         End If
+
+        If FrmEditor_Animation.Visible Then EditorAnim_DrawAnim()
 
         ' Y-based render. Renders Players, Npcs and Resources based on Y-axis.
         For y = 0 To Map.MaxY
@@ -2851,13 +2853,19 @@ NextLoop:
     End Sub
 
     Friend Sub DrawDialogPanel()
+        Dim y As Long
         'first render panel
         RenderSprite(EventChatSprite, GameWindow, DialogPanelX, DialogPanelY, 0, 0, EventChatGfxInfo.Width, EventChatGfxInfo.Height)
 
         DrawText(DialogPanelX + 175, DialogPanelY + 10, Trim(DialogMsg1), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
         If Len(DialogMsg2) > 0 Then
-            DrawText(DialogPanelX + 60, DialogPanelY + 30, Trim(DialogMsg2), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
+            'DrawText(DialogPanelX + 60, DialogPanelY + 30, Trim(DialogMsg2), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
+            For Each str As String In WordWrap(Trim$(DialogMsg2), 60, WrapMode.Characters, WrapType.BreakWord)
+                'description
+                DrawText(DialogPanelX + 60, DialogPanelY + 30 + y, str, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
+                y = y + 15
+            Next
         End If
 
         If Len(DialogMsg3) > 0 Then

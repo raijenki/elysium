@@ -1775,7 +1775,7 @@ Module S_Players
                                 SpawnItemSlot(i, 0, 0, GetPlayerMap(index), 0, 0)
 
                                 SendActionMsg(GetPlayerMap(index), Msg, ColorType.White, 1, (GetPlayerX(index) * 32), (GetPlayerY(index) * 32))
-                                CheckTasks(index, QuestType.Gather, GetItemNum(Trim$(Item(GetPlayerInvItemNum(index, n)).Name)))
+                                CheckTasks(index, QuestType.Gather, GetPlayerInvItemNum(index, n))
                                 Exit For
                             Else
                                 PlayerMsg(index, "Your inventory is full.", ColorType.BrightRed)

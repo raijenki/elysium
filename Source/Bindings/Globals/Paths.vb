@@ -11,7 +11,7 @@
         ''' <summary> Retorna o diretório de conteúdos </summary>
         Friend ReadOnly Property Contents As String
             Get
-                Return Application.StartupPath() & "/Contents/"
+                Return Application.StartupPath() & "\Contents"
             End Get
         End Property
 
@@ -45,28 +45,28 @@
         ''' <summary> Retorna o diretório gráfico </summary>
         Friend ReadOnly Property Graphics As String
             Get
-                Return Contents & "/Graphics/"
+                Return Contents & "\Graphics\"
             End Get
         End Property
 
         ''' <summary> Retorna o diretório gui </summary>
         Friend ReadOnly Property Gui As String
             Get
-                Return Contents & "/Gui/"
+                Return Contents & "\Gui\"
             End Get
         End Property
 
         ''' <summary> Retorna o diretório de músicas </summary>
         Friend ReadOnly Property Music As String
             Get
-                Return Contents & "/Music/"
+                Return Contents & "\Music\"
             End Get
         End Property
 
         ''' <summary> Retorna o diretório de sons </summary>
         Friend ReadOnly Property Sounds As String
             Get
-                Return Contents & "/Sounds/"
+                Return Contents & "\Sounds\"
             End Get
         End Property
 

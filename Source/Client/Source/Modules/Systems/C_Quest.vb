@@ -459,7 +459,7 @@ Friend Module C_Quest
             Case QuestType.Give
                 'give x amount of items to npc
                 Dim npcName As String = Npc(Quest(questNum).Task(curTask).Npc).Name
-                Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
+                Dim curCount As Integer = HasItem(Myindex, Quest(questNum).Task(curTask).Item)
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim itemName As String = Item(Quest(questNum).Task(curTask).Item).Name
                 ActualTaskText = String.Format(Language.Quest.TurnIn, npcName, itemName, curCount, maxAmount)'"Give " & NpcName & " the " & ItemName & CurCount & "/" & MaxAmount & " they requested"
@@ -529,19 +529,20 @@ Friend Module C_Quest
         y = 0
         For Each str As String In WordWrap(Trim$(QuestDialogText), 40, WrapMode.Characters, WrapType.BreakWord)
             'description
-            DrawText(QuestLogX + 204, QuestLogY + 218 + y, str, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
+            DrawText(QuestLogX + 204, QuestLogY + 218 + y, str.Replace(vbCrLf, String.Empty), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
             y = y + 15
         Next
         DrawText(QuestLogX + 280, QuestLogY + 263, Trim$(QuestStatus2Text), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
-        'DrawText(QuestLogX + 285, QuestLogY + 288, Trim$(QuestRequirementsText), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
-        y = 0
-        For i = 1 To QuestRewardsText.Length - 1
-            'description
-            DrawText(QuestLogX + 255, QuestLogY + 292 + y, Trim$(QuestRewardsText(i)), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-            y = y + 15
-        Next
+        If Not (QuestRewardsText Is Nothing) Then
+            y = 0
+            For i = 1 To QuestRewardsText.Length - 1
+                'description
+                DrawText(QuestLogX + 255, QuestLogY + 292 + y, Trim$(QuestRewardsText(i)), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
+                y = y + 15
+            Next
+        End If
 
     End Sub
 
@@ -614,6 +615,8 @@ Friend Module C_Quest
     'Subroutine that load the desired task in the form
     Friend Sub LoadTask(QuestNum As Integer, TaskNum As Integer)
         Dim TaskToLoad As TaskRec
+        If TaskNum >= Quest(QuestNum).Task.Length Then Exit Sub
+
         TaskToLoad = Quest(QuestNum).Task(TaskNum)
 
         With frmEditor_Quest
@@ -639,6 +642,7 @@ Friend Module C_Quest
 
             'Load textboxes
             .txtTaskLog.Text = "" & Trim$(TaskToLoad.TaskLog)
+            .txtTaskSpeech.Text = "" & Trim(TaskToLoad.Speech)
 
             'Populate combo boxes
             .cmbNpc.Items.Clear()

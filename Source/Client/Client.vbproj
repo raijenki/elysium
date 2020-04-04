@@ -588,9 +588,6 @@
     <None Include="Contents\Gui\MPBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Contents\Graphics\Items\10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1071,6 +1068,7 @@
     <None Include="Contents\Graphics\Tilesets\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Contents\Graphics\Items\1.png" />
     <Content Include="My Project\Icon.ico" />
     <Content Include="License\Eclipse Public License v1.1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
