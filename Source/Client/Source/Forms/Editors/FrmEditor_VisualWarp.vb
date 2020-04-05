@@ -12,8 +12,8 @@ Friend Class frmEditor_VisualWarp
         EditorWarpX = e.Location.X \ PicX
         EditorWarpY = e.Location.Y \ PicY
 
-        lblSelX.Text = "Selected X: " & EditorWarpX
-        lblSelY.Text = "Selected Y: " & EditorWarpY
+        lblSelX.Text = "X Selecionado: " & EditorWarpX
+        lblSelY.Text = "Y Selecionado: " & EditorWarpY
     End Sub
 
     Private Sub BtnWarpOK_Click(sender As Object, e As EventArgs) Handles btnWarpOK.Click
@@ -21,7 +21,7 @@ Friend Class frmEditor_VisualWarp
     End Sub
 
     Private Overloads Sub PicPreview_Paint(sender As Object, e As PaintEventArgs)
-        'This is here to make sure that the box dosen't try to re-paint itself... saves time and w/e else
+        'Aqui [e onde temos certeza que a caixa não tenta se pintar...
         Exit Sub
     End Sub
 
@@ -54,12 +54,12 @@ Friend Class frmEditor_VisualWarp
 
             g.Dispose()
         Else
-            MsgBox("This map is not in the chache yet, please save the destination map first!")
+            MsgBox("Este mapa não está no cache; por favor salve o mapa de destino primeiro!")
         End If
     End Sub
 
     Private Sub PnlPreview_Paint(sender As Object, e As PaintEventArgs) Handles pnlPreview.Paint
-        'nothing
+        'nada
     End Sub
 
     Private Sub PnlPreview_Scroll(sender As Object, e As ScrollEventArgs) Handles pnlPreview.Scroll

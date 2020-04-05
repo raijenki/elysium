@@ -120,7 +120,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Draw the Character for new char creation.
+    ''' Desenhar personagem para nova criação.
     ''' </summary>
     Sub DrawCharacter()
         If pnlNewChar.Visible = True Then
@@ -162,7 +162,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Draw the character for the char select screen.
+    ''' Desenhar personagem para tela de seleção de personagens.
     ''' </summary>
     Sub DrawCharacterSelect()
         Dim g As Graphics
@@ -173,7 +173,7 @@ Friend Class FrmMenu
             Dim filename As String
             Dim charwidth As Integer, charheight As Integer
 
-            'first
+            'primeiro
             If CharSelection(1).Sprite > 0 Then
                 g = picChar1.CreateGraphics
 
@@ -202,7 +202,7 @@ Friend Class FrmMenu
                 picChar1.Refresh()
             End If
 
-            'second
+            '2o
             If CharSelection(2).Sprite > 0 Then
                 g = picChar2.CreateGraphics
 
@@ -231,7 +231,7 @@ Friend Class FrmMenu
                 picChar2.Refresh()
             End If
 
-            'third
+            'terceiro
             If CharSelection(3).Sprite > 0 Then
                 g = picChar3.CreateGraphics
 
@@ -264,10 +264,10 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Stop the NewChar panel from repainting itself.
+    ''' Parar o painel de novo personagem de se repintar.
     ''' </summary>
     Private Sub PnlNewChar_Paint(sender As Object, e As PaintEventArgs) Handles pnlNewChar.Paint
-        'nada here
+        'nada aqui
     End Sub
 
 #End Region

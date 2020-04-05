@@ -24,117 +24,117 @@ Partial Class FrmEditor_Events
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show Text")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show Choices")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Add Chatbox Text")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show ChatBubble")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mensagens", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3, TreeNode4})
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Player Variable")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Player Switch")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Self Switch")
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Processamento de Evento", New System.Windows.Forms.TreeNode() {TreeNode6, TreeNode7, TreeNode8})
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Conditional Branch")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop Event Processing")
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Label")
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("GoTo Label")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Controle de Fluxo", New System.Windows.Forms.TreeNode() {TreeNode10, TreeNode11, TreeNode12, TreeNode13})
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Items")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Restore HP")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Restore MP")
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Level Up")
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Level")
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Skills")
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Class")
-        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Sprite")
-        Dim TreeNode23 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Gender")
-        Dim TreeNode24 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change PK")
-        Dim TreeNode25 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Give Experience")
-        Dim TreeNode26 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Opções do Jogador", New System.Windows.Forms.TreeNode() {TreeNode15, TreeNode16, TreeNode17, TreeNode18, TreeNode19, TreeNode20, TreeNode21, TreeNode22, TreeNode23, TreeNode24, TreeNode25})
-        Dim TreeNode27 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Warp Player")
-        Dim TreeNode28 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Move Route")
-        Dim TreeNode29 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Wait for Route Completion")
-        Dim TreeNode30 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Force Spawn Npc")
-        Dim TreeNode31 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Hold Player")
-        Dim TreeNode32 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Release Player")
-        Dim TreeNode33 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Movimento", New System.Windows.Forms.TreeNode() {TreeNode27, TreeNode28, TreeNode29, TreeNode30, TreeNode31, TreeNode32})
-        Dim TreeNode34 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Animation")
-        Dim TreeNode35 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Animação", New System.Windows.Forms.TreeNode() {TreeNode34})
-        Dim TreeNode36 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Begin Quest")
-        Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Complete Task")
-        Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("End Quest")
-        Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Questing", New System.Windows.Forms.TreeNode() {TreeNode36, TreeNode37, TreeNode38})
-        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Fog")
-        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Weather")
-        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Map Tinting")
-        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Funções de Mapa", New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42})
-        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Play BGM")
-        Dim TreeNode45 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop BGM")
-        Dim TreeNode46 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Play Sound")
-        Dim TreeNode47 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop Sounds")
-        Dim TreeNode48 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Músicas e Sons", New System.Windows.Forms.TreeNode() {TreeNode44, TreeNode45, TreeNode46, TreeNode47})
-        Dim TreeNode49 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Wait...")
-        Dim TreeNode50 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Access")
-        Dim TreeNode51 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Custom Script")
-        Dim TreeNode52 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Etc...", New System.Windows.Forms.TreeNode() {TreeNode49, TreeNode50, TreeNode51})
-        Dim TreeNode53 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Open Bank")
-        Dim TreeNode54 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Open Shop")
-        Dim TreeNode55 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Loja e Banco", New System.Windows.Forms.TreeNode() {TreeNode53, TreeNode54})
-        Dim TreeNode56 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Fade In")
-        Dim TreeNode57 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Fade Out")
-        Dim TreeNode58 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Opções de Cutscenes", New System.Windows.Forms.TreeNode() {TreeNode56, TreeNode57})
+        Dim TreeNode117 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show Text")
+        Dim TreeNode118 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show Choices")
+        Dim TreeNode119 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Add Chatbox Text")
+        Dim TreeNode120 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Show ChatBubble")
+        Dim TreeNode121 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mensagens", New System.Windows.Forms.TreeNode() {TreeNode117, TreeNode118, TreeNode119, TreeNode120})
+        Dim TreeNode122 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Player Variable")
+        Dim TreeNode123 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Player Switch")
+        Dim TreeNode124 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Self Switch")
+        Dim TreeNode125 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Processamento de Evento", New System.Windows.Forms.TreeNode() {TreeNode122, TreeNode123, TreeNode124})
+        Dim TreeNode126 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Conditional Branch")
+        Dim TreeNode127 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop Event Processing")
+        Dim TreeNode128 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Label")
+        Dim TreeNode129 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("GoTo Label")
+        Dim TreeNode130 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Controle de Fluxo", New System.Windows.Forms.TreeNode() {TreeNode126, TreeNode127, TreeNode128, TreeNode129})
+        Dim TreeNode131 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Items")
+        Dim TreeNode132 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Restore HP")
+        Dim TreeNode133 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Restore MP")
+        Dim TreeNode134 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Level Up")
+        Dim TreeNode135 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Level")
+        Dim TreeNode136 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Skills")
+        Dim TreeNode137 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Class")
+        Dim TreeNode138 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Sprite")
+        Dim TreeNode139 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change Gender")
+        Dim TreeNode140 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Change PK")
+        Dim TreeNode141 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Give Experience")
+        Dim TreeNode142 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Opções do Jogador", New System.Windows.Forms.TreeNode() {TreeNode131, TreeNode132, TreeNode133, TreeNode134, TreeNode135, TreeNode136, TreeNode137, TreeNode138, TreeNode139, TreeNode140, TreeNode141})
+        Dim TreeNode143 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Warp Player")
+        Dim TreeNode144 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Move Route")
+        Dim TreeNode145 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Wait for Route Completion")
+        Dim TreeNode146 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Force Spawn Npc")
+        Dim TreeNode147 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Hold Player")
+        Dim TreeNode148 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Release Player")
+        Dim TreeNode149 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Movimento", New System.Windows.Forms.TreeNode() {TreeNode143, TreeNode144, TreeNode145, TreeNode146, TreeNode147, TreeNode148})
+        Dim TreeNode150 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Animation")
+        Dim TreeNode151 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Animação", New System.Windows.Forms.TreeNode() {TreeNode150})
+        Dim TreeNode152 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Begin Quest")
+        Dim TreeNode153 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Complete Task")
+        Dim TreeNode154 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("End Quest")
+        Dim TreeNode155 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tarefas", New System.Windows.Forms.TreeNode() {TreeNode152, TreeNode153, TreeNode154})
+        Dim TreeNode156 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Fog")
+        Dim TreeNode157 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Weather")
+        Dim TreeNode158 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Map Tinting")
+        Dim TreeNode159 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Funções de Mapa", New System.Windows.Forms.TreeNode() {TreeNode156, TreeNode157, TreeNode158})
+        Dim TreeNode160 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Play BGM")
+        Dim TreeNode161 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop BGM")
+        Dim TreeNode162 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Play Sound")
+        Dim TreeNode163 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Stop Sounds")
+        Dim TreeNode164 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Músicas e Sons", New System.Windows.Forms.TreeNode() {TreeNode160, TreeNode161, TreeNode162, TreeNode163})
+        Dim TreeNode165 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Wait...")
+        Dim TreeNode166 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Set Access")
+        Dim TreeNode167 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Custom Script")
+        Dim TreeNode168 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Etc...", New System.Windows.Forms.TreeNode() {TreeNode165, TreeNode166, TreeNode167})
+        Dim TreeNode169 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Open Bank")
+        Dim TreeNode170 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Open Shop")
+        Dim TreeNode171 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Loja e Banco", New System.Windows.Forms.TreeNode() {TreeNode169, TreeNode170})
+        Dim TreeNode172 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Fade In")
+        Dim TreeNode173 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Fade Out")
+        Dim TreeNode174 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Opções de Cutscenes", New System.Windows.Forms.TreeNode() {TreeNode172, TreeNode173})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEditor_Events))
-        Dim ListViewGroup1 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Movement", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup2 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Wait", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup3 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Turning", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup4 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Speed", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup5 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Walk Animation", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup6 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Fixed Direction", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup7 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("WalkThrough", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup8 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Set Position", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup9 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Set Graphic", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Up")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Down")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move left")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Right")
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Randomly")
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move To Player***")
-        Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move from Player***")
-        Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Step Forwards")
-        Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Step Backwards")
-        Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 100Ms")
-        Dim ListViewItem11 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 500Ms")
-        Dim ListViewItem12 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 1000Ms")
-        Dim ListViewItem13 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Up")
-        Dim ListViewItem14 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Down")
-        Dim ListViewItem15 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Left")
-        Dim ListViewItem16 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Right")
-        Dim ListViewItem17 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 90DG Right")
-        Dim ListViewItem18 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 90DG Left")
-        Dim ListViewItem19 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 180DG")
-        Dim ListViewItem20 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Randomly")
-        Dim ListViewItem21 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn To Player***")
-        Dim ListViewItem22 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn From Player***")
-        Dim ListViewItem23 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 8x Slower")
-        Dim ListViewItem24 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 4x Slower")
-        Dim ListViewItem25 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 2x Slower")
-        Dim ListViewItem26 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed To Normal")
-        Dim ListViewItem27 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 2x Faster")
-        Dim ListViewItem28 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 4x Faster")
-        Dim ListViewItem29 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Lowest")
-        Dim ListViewItem30 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Lower")
-        Dim ListViewItem31 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Normal")
-        Dim ListViewItem32 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Higher")
-        Dim ListViewItem33 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Highest")
-        Dim ListViewItem34 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walking Animation ON")
-        Dim ListViewItem35 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walking Animation OFF")
-        Dim ListViewItem36 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Fixed Direction ON")
-        Dim ListViewItem37 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Fixed Direction OFF")
-        Dim ListViewItem38 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walkthrough ON")
-        Dim ListViewItem39 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walkthrough ON")
-        Dim ListViewItem40 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Position Below Player")
-        Dim ListViewItem41 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set PositionWith Player")
-        Dim ListViewItem42 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Position Above Player")
-        Dim ListViewItem43 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Graphic...")
+        Dim ListViewGroup19 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Movement", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup20 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Wait", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup21 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Turning", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup22 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Speed", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup23 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Walk Animation", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup24 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Fixed Direction", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup25 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("WalkThrough", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup26 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Set Position", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup27 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("Set Graphic", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewItem87 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Up")
+        Dim ListViewItem88 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Down")
+        Dim ListViewItem89 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move left")
+        Dim ListViewItem90 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Right")
+        Dim ListViewItem91 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move Randomly")
+        Dim ListViewItem92 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move To Player***")
+        Dim ListViewItem93 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Move from Player***")
+        Dim ListViewItem94 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Step Forwards")
+        Dim ListViewItem95 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Step Backwards")
+        Dim ListViewItem96 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 100Ms")
+        Dim ListViewItem97 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 500Ms")
+        Dim ListViewItem98 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Wait 1000Ms")
+        Dim ListViewItem99 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Up")
+        Dim ListViewItem100 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Down")
+        Dim ListViewItem101 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Left")
+        Dim ListViewItem102 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Right")
+        Dim ListViewItem103 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 90DG Right")
+        Dim ListViewItem104 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 90DG Left")
+        Dim ListViewItem105 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn 180DG")
+        Dim ListViewItem106 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn Randomly")
+        Dim ListViewItem107 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn To Player***")
+        Dim ListViewItem108 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Turn From Player***")
+        Dim ListViewItem109 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 8x Slower")
+        Dim ListViewItem110 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 4x Slower")
+        Dim ListViewItem111 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 2x Slower")
+        Dim ListViewItem112 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed To Normal")
+        Dim ListViewItem113 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 2x Faster")
+        Dim ListViewItem114 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Speed 4x Faster")
+        Dim ListViewItem115 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Lowest")
+        Dim ListViewItem116 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Lower")
+        Dim ListViewItem117 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Normal")
+        Dim ListViewItem118 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Higher")
+        Dim ListViewItem119 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Freq. To Highest")
+        Dim ListViewItem120 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walking Animation ON")
+        Dim ListViewItem121 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walking Animation OFF")
+        Dim ListViewItem122 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Fixed Direction ON")
+        Dim ListViewItem123 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Fixed Direction OFF")
+        Dim ListViewItem124 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walkthrough ON")
+        Dim ListViewItem125 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Walkthrough ON")
+        Dim ListViewItem126 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Position Below Player")
+        Dim ListViewItem127 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set PositionWith Player")
+        Dim ListViewItem128 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Position Above Player")
+        Dim ListViewItem129 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Set Graphic...")
         Me.tvCommands = New System.Windows.Forms.TreeView()
         Me.fraPageSetUp = New DarkUI.Controls.DarkGroupBox()
         Me.chkGlobal = New DarkUI.Controls.DarkCheckBox()
@@ -641,123 +641,123 @@ Partial Class FrmEditor_Events
         Me.tvCommands.Location = New System.Drawing.Point(9, 5)
         Me.tvCommands.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tvCommands.Name = "tvCommands"
-        TreeNode1.Name = "Node1"
-        TreeNode1.Text = "Show Text"
-        TreeNode2.Name = "Node2"
-        TreeNode2.Text = "Show Choices"
-        TreeNode3.Name = "Node3"
-        TreeNode3.Text = "Add Chatbox Text"
-        TreeNode4.Name = "Node5"
-        TreeNode4.Text = "Show ChatBubble"
-        TreeNode5.Name = "NodeMessages"
-        TreeNode5.Text = "Mensagens"
-        TreeNode6.Name = "Node1"
-        TreeNode6.Text = "Set Player Variable"
-        TreeNode7.Name = "Node2"
-        TreeNode7.Text = "Set Player Switch"
-        TreeNode8.Name = "Node3"
-        TreeNode8.Text = "Set Self Switch"
-        TreeNode9.Name = "NodeProcessing"
-        TreeNode9.Text = "Processamento de Evento"
-        TreeNode10.Name = "Node1"
-        TreeNode10.Text = "Conditional Branch"
-        TreeNode11.Name = "Node2"
-        TreeNode11.Text = "Stop Event Processing"
-        TreeNode12.Name = "Node3"
-        TreeNode12.Text = "Label"
-        TreeNode13.Name = "Node4"
-        TreeNode13.Text = "GoTo Label"
-        TreeNode14.Name = "NodeFlowControl"
-        TreeNode14.Text = "Controle de Fluxo"
-        TreeNode15.Name = "Node1"
-        TreeNode15.Text = "Change Items"
-        TreeNode16.Name = "Node2"
-        TreeNode16.Text = "Restore HP"
-        TreeNode17.Name = "Node3"
-        TreeNode17.Text = "Restore MP"
-        TreeNode18.Name = "Node4"
-        TreeNode18.Text = "Level Up"
-        TreeNode19.Name = "Node5"
-        TreeNode19.Text = "Change Level"
-        TreeNode20.Name = "Node6"
-        TreeNode20.Text = "Change Skills"
-        TreeNode21.Name = "Node7"
-        TreeNode21.Text = "Change Class"
-        TreeNode22.Name = "Node8"
-        TreeNode22.Text = "Change Sprite"
-        TreeNode23.Name = "Node9"
-        TreeNode23.Text = "Change Gender"
-        TreeNode24.Name = "Node10"
-        TreeNode24.Text = "Change PK"
-        TreeNode25.Name = "Node11"
-        TreeNode25.Text = "Give Experience"
-        TreeNode26.Name = "NodePlayerOptions"
-        TreeNode26.Text = "Opções do Jogador"
-        TreeNode27.Name = "Node1"
-        TreeNode27.Text = "Warp Player"
-        TreeNode28.Name = "Node2"
-        TreeNode28.Text = "Set Move Route"
-        TreeNode29.Name = "Node3"
-        TreeNode29.Text = "Wait for Route Completion"
-        TreeNode30.Name = "Node4"
-        TreeNode30.Text = "Force Spawn Npc"
-        TreeNode31.Name = "Node5"
-        TreeNode31.Text = "Hold Player"
-        TreeNode32.Name = "Node6"
-        TreeNode32.Text = "Release Player"
-        TreeNode33.Name = "NodeMovement"
-        TreeNode33.Text = "Movimento"
-        TreeNode34.Name = "Node1"
-        TreeNode34.Text = "Animation"
-        TreeNode35.Name = "NodeAnimation"
-        TreeNode35.Text = "Animação"
-        TreeNode36.Name = "Node1"
-        TreeNode36.Text = "Begin Quest"
-        TreeNode37.Name = "Node2"
-        TreeNode37.Text = "Complete Task"
-        TreeNode38.Name = "Node3"
-        TreeNode38.Text = "End Quest"
-        TreeNode39.Name = "NodeQuesting"
-        TreeNode39.Text = "Questing"
-        TreeNode40.Name = "Node1"
-        TreeNode40.Text = "Set Fog"
-        TreeNode41.Name = "Node2"
-        TreeNode41.Text = "Set Weather"
-        TreeNode42.Name = "Node3"
-        TreeNode42.Text = "Set Map Tinting"
-        TreeNode43.Name = "NodeMapFunctions"
-        TreeNode43.Text = "Funções de Mapa"
-        TreeNode44.Name = "Node1"
-        TreeNode44.Text = "Play BGM"
-        TreeNode45.Name = "Node2"
-        TreeNode45.Text = "Stop BGM"
-        TreeNode46.Name = "Node3"
-        TreeNode46.Text = "Play Sound"
-        TreeNode47.Name = "Node4"
-        TreeNode47.Text = "Stop Sounds"
-        TreeNode48.Name = "NodeSound"
-        TreeNode48.Text = "Músicas e Sons"
-        TreeNode49.Name = "Node1"
-        TreeNode49.Text = "Wait..."
-        TreeNode50.Name = "Node2"
-        TreeNode50.Text = "Set Access"
-        TreeNode51.Name = "Node3"
-        TreeNode51.Text = "Custom Script"
-        TreeNode52.Name = "NodeEtc"
-        TreeNode52.Text = "Etc..."
-        TreeNode53.Name = "Node1"
-        TreeNode53.Text = "Open Bank"
-        TreeNode54.Name = "Node2"
-        TreeNode54.Text = "Open Shop"
-        TreeNode55.Name = "NodeShopBank"
-        TreeNode55.Text = "Loja e Banco"
-        TreeNode56.Name = "Node1"
-        TreeNode56.Text = "Fade In"
-        TreeNode57.Name = "Node2"
-        TreeNode57.Text = "Fade Out"
-        TreeNode58.Name = "Node0"
-        TreeNode58.Text = "Opções de Cutscenes"
-        Me.tvCommands.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode9, TreeNode14, TreeNode26, TreeNode33, TreeNode35, TreeNode39, TreeNode43, TreeNode48, TreeNode52, TreeNode55, TreeNode58})
+        TreeNode117.Name = "Node1"
+        TreeNode117.Text = "Show Text"
+        TreeNode118.Name = "Node2"
+        TreeNode118.Text = "Show Choices"
+        TreeNode119.Name = "Node3"
+        TreeNode119.Text = "Add Chatbox Text"
+        TreeNode120.Name = "Node5"
+        TreeNode120.Text = "Show ChatBubble"
+        TreeNode121.Name = "NodeMessages"
+        TreeNode121.Text = "Mensagens"
+        TreeNode122.Name = "Node1"
+        TreeNode122.Text = "Set Player Variable"
+        TreeNode123.Name = "Node2"
+        TreeNode123.Text = "Set Player Switch"
+        TreeNode124.Name = "Node3"
+        TreeNode124.Text = "Set Self Switch"
+        TreeNode125.Name = "NodeProcessing"
+        TreeNode125.Text = "Processamento de Evento"
+        TreeNode126.Name = "Node1"
+        TreeNode126.Text = "Conditional Branch"
+        TreeNode127.Name = "Node2"
+        TreeNode127.Text = "Stop Event Processing"
+        TreeNode128.Name = "Node3"
+        TreeNode128.Text = "Label"
+        TreeNode129.Name = "Node4"
+        TreeNode129.Text = "GoTo Label"
+        TreeNode130.Name = "NodeFlowControl"
+        TreeNode130.Text = "Controle de Fluxo"
+        TreeNode131.Name = "Node1"
+        TreeNode131.Text = "Change Items"
+        TreeNode132.Name = "Node2"
+        TreeNode132.Text = "Restore HP"
+        TreeNode133.Name = "Node3"
+        TreeNode133.Text = "Restore MP"
+        TreeNode134.Name = "Node4"
+        TreeNode134.Text = "Level Up"
+        TreeNode135.Name = "Node5"
+        TreeNode135.Text = "Change Level"
+        TreeNode136.Name = "Node6"
+        TreeNode136.Text = "Change Skills"
+        TreeNode137.Name = "Node7"
+        TreeNode137.Text = "Change Class"
+        TreeNode138.Name = "Node8"
+        TreeNode138.Text = "Change Sprite"
+        TreeNode139.Name = "Node9"
+        TreeNode139.Text = "Change Gender"
+        TreeNode140.Name = "Node10"
+        TreeNode140.Text = "Change PK"
+        TreeNode141.Name = "Node11"
+        TreeNode141.Text = "Give Experience"
+        TreeNode142.Name = "NodePlayerOptions"
+        TreeNode142.Text = "Opções do Jogador"
+        TreeNode143.Name = "Node1"
+        TreeNode143.Text = "Warp Player"
+        TreeNode144.Name = "Node2"
+        TreeNode144.Text = "Set Move Route"
+        TreeNode145.Name = "Node3"
+        TreeNode145.Text = "Wait for Route Completion"
+        TreeNode146.Name = "Node4"
+        TreeNode146.Text = "Force Spawn Npc"
+        TreeNode147.Name = "Node5"
+        TreeNode147.Text = "Hold Player"
+        TreeNode148.Name = "Node6"
+        TreeNode148.Text = "Release Player"
+        TreeNode149.Name = "NodeMovement"
+        TreeNode149.Text = "Movimento"
+        TreeNode150.Name = "Node1"
+        TreeNode150.Text = "Animation"
+        TreeNode151.Name = "NodeAnimation"
+        TreeNode151.Text = "Animação"
+        TreeNode152.Name = "Node1"
+        TreeNode152.Text = "Begin Quest"
+        TreeNode153.Name = "Node2"
+        TreeNode153.Text = "Complete Task"
+        TreeNode154.Name = "Node3"
+        TreeNode154.Text = "End Quest"
+        TreeNode155.Name = "NodeQuesting"
+        TreeNode155.Text = "Tarefas"
+        TreeNode156.Name = "Node1"
+        TreeNode156.Text = "Set Fog"
+        TreeNode157.Name = "Node2"
+        TreeNode157.Text = "Set Weather"
+        TreeNode158.Name = "Node3"
+        TreeNode158.Text = "Set Map Tinting"
+        TreeNode159.Name = "NodeMapFunctions"
+        TreeNode159.Text = "Funções de Mapa"
+        TreeNode160.Name = "Node1"
+        TreeNode160.Text = "Play BGM"
+        TreeNode161.Name = "Node2"
+        TreeNode161.Text = "Stop BGM"
+        TreeNode162.Name = "Node3"
+        TreeNode162.Text = "Play Sound"
+        TreeNode163.Name = "Node4"
+        TreeNode163.Text = "Stop Sounds"
+        TreeNode164.Name = "NodeSound"
+        TreeNode164.Text = "Músicas e Sons"
+        TreeNode165.Name = "Node1"
+        TreeNode165.Text = "Wait..."
+        TreeNode166.Name = "Node2"
+        TreeNode166.Text = "Set Access"
+        TreeNode167.Name = "Node3"
+        TreeNode167.Text = "Custom Script"
+        TreeNode168.Name = "NodeEtc"
+        TreeNode168.Text = "Etc..."
+        TreeNode169.Name = "Node1"
+        TreeNode169.Text = "Open Bank"
+        TreeNode170.Name = "Node2"
+        TreeNode170.Text = "Open Shop"
+        TreeNode171.Name = "NodeShopBank"
+        TreeNode171.Text = "Loja e Banco"
+        TreeNode172.Name = "Node1"
+        TreeNode172.Text = "Fade In"
+        TreeNode173.Name = "Node2"
+        TreeNode173.Text = "Fade Out"
+        TreeNode174.Name = "Node0"
+        TreeNode174.Text = "Opções de Cutscenes"
+        Me.tvCommands.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode121, TreeNode125, TreeNode130, TreeNode142, TreeNode149, TreeNode151, TreeNode155, TreeNode159, TreeNode164, TreeNode168, TreeNode171, TreeNode174})
         Me.tvCommands.Size = New System.Drawing.Size(570, 680)
         Me.tvCommands.TabIndex = 1
         '
@@ -798,7 +798,7 @@ Partial Class FrmEditor_Events
         Me.btnClearPage.Location = New System.Drawing.Point(1060, 25)
         Me.btnClearPage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnClearPage.Name = "btnClearPage"
-        Me.btnClearPage.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnClearPage.Padding = New System.Windows.Forms.Padding(8)
         Me.btnClearPage.Size = New System.Drawing.Size(112, 35)
         Me.btnClearPage.TabIndex = 6
         Me.btnClearPage.Text = "Limpar "
@@ -808,7 +808,7 @@ Partial Class FrmEditor_Events
         Me.btnDeletePage.Location = New System.Drawing.Point(933, 25)
         Me.btnDeletePage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDeletePage.Name = "btnDeletePage"
-        Me.btnDeletePage.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnDeletePage.Padding = New System.Windows.Forms.Padding(8)
         Me.btnDeletePage.Size = New System.Drawing.Size(118, 35)
         Me.btnDeletePage.TabIndex = 5
         Me.btnDeletePage.Text = "Deletar "
@@ -818,7 +818,7 @@ Partial Class FrmEditor_Events
         Me.btnPastePage.Location = New System.Drawing.Point(812, 25)
         Me.btnPastePage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPastePage.Name = "btnPastePage"
-        Me.btnPastePage.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPastePage.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPastePage.Size = New System.Drawing.Size(112, 35)
         Me.btnPastePage.TabIndex = 4
         Me.btnPastePage.Text = "Colar"
@@ -828,7 +828,7 @@ Partial Class FrmEditor_Events
         Me.btnCopyPage.Location = New System.Drawing.Point(690, 25)
         Me.btnCopyPage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCopyPage.Name = "btnCopyPage"
-        Me.btnCopyPage.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCopyPage.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCopyPage.Size = New System.Drawing.Size(112, 35)
         Me.btnCopyPage.TabIndex = 3
         Me.btnCopyPage.Text = "Copiar"
@@ -838,7 +838,7 @@ Partial Class FrmEditor_Events
         Me.btnNewPage.Location = New System.Drawing.Point(568, 25)
         Me.btnNewPage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnNewPage.Name = "btnNewPage"
-        Me.btnNewPage.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnNewPage.Padding = New System.Windows.Forms.Padding(8)
         Me.btnNewPage.Size = New System.Drawing.Size(112, 35)
         Me.btnNewPage.TabIndex = 2
         Me.btnNewPage.Text = "Nova"
@@ -922,7 +922,7 @@ Partial Class FrmEditor_Events
         Me.btnCancelCommand.Location = New System.Drawing.Point(468, 695)
         Me.btnCancelCommand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancelCommand.Name = "btnCancelCommand"
-        Me.btnCancelCommand.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancelCommand.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCancelCommand.Size = New System.Drawing.Size(112, 35)
         Me.btnCancelCommand.TabIndex = 2
         Me.btnCancelCommand.Text = "Cancelar"
@@ -950,7 +950,7 @@ Partial Class FrmEditor_Events
         Me.btnClearCommand.Location = New System.Drawing.Point(468, 29)
         Me.btnClearCommand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnClearCommand.Name = "btnClearCommand"
-        Me.btnClearCommand.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnClearCommand.Padding = New System.Windows.Forms.Padding(8)
         Me.btnClearCommand.Size = New System.Drawing.Size(112, 35)
         Me.btnClearCommand.TabIndex = 3
         Me.btnClearCommand.Text = "Clear"
@@ -960,7 +960,7 @@ Partial Class FrmEditor_Events
         Me.btnDeleteCommand.Location = New System.Drawing.Point(318, 29)
         Me.btnDeleteCommand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDeleteCommand.Name = "btnDeleteCommand"
-        Me.btnDeleteCommand.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnDeleteCommand.Padding = New System.Windows.Forms.Padding(8)
         Me.btnDeleteCommand.Size = New System.Drawing.Size(112, 35)
         Me.btnDeleteCommand.TabIndex = 2
         Me.btnDeleteCommand.Text = "Delete"
@@ -970,7 +970,7 @@ Partial Class FrmEditor_Events
         Me.btnEditCommand.Location = New System.Drawing.Point(162, 29)
         Me.btnEditCommand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnEditCommand.Name = "btnEditCommand"
-        Me.btnEditCommand.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnEditCommand.Padding = New System.Windows.Forms.Padding(8)
         Me.btnEditCommand.Size = New System.Drawing.Size(112, 35)
         Me.btnEditCommand.TabIndex = 1
         Me.btnEditCommand.Text = "Edit"
@@ -980,7 +980,7 @@ Partial Class FrmEditor_Events
         Me.btnAddCommand.Location = New System.Drawing.Point(9, 29)
         Me.btnAddCommand.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddCommand.Name = "btnAddCommand"
-        Me.btnAddCommand.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddCommand.Padding = New System.Windows.Forms.Padding(8)
         Me.btnAddCommand.Size = New System.Drawing.Size(112, 35)
         Me.btnAddCommand.TabIndex = 0
         Me.btnAddCommand.Text = "Add"
@@ -1006,7 +1006,7 @@ Partial Class FrmEditor_Events
         Me.DarkLabel10.Name = "DarkLabel10"
         Me.DarkLabel10.Size = New System.Drawing.Size(300, 46)
         Me.DarkLabel10.TabIndex = 7
-        Me.DarkLabel10.Text = "** If global, only the first page will be processed. For shop keepers etc."
+        Me.DarkLabel10.Text = "** Se global, apenas a primeira página será processada."
         '
         'DarkLabel9
         '
@@ -1016,7 +1016,7 @@ Partial Class FrmEditor_Events
         Me.DarkLabel9.Name = "DarkLabel9"
         Me.DarkLabel9.Size = New System.Drawing.Size(302, 52)
         Me.DarkLabel9.TabIndex = 6
-        Me.DarkLabel9.Text = "* Self Switches are always global and will reset on server restart."
+        Me.DarkLabel9.Text = "* Auto-Switches são sempre globais e reiniciam quando o servidor reinicia."
         '
         'DarkGroupBox7
         '
@@ -1032,7 +1032,7 @@ Partial Class FrmEditor_Events
         Me.DarkGroupBox7.Size = New System.Drawing.Size(300, 69)
         Me.DarkGroupBox7.TabIndex = 5
         Me.DarkGroupBox7.TabStop = False
-        Me.DarkGroupBox7.Text = "Ícone da Quest"
+        Me.DarkGroupBox7.Text = "Ícone da Tarefa"
         '
         'cmbEventQuest
         '
@@ -1063,9 +1063,9 @@ Partial Class FrmEditor_Events
         Me.DarkLabel8.Location = New System.Drawing.Point(10, 31)
         Me.DarkLabel8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel8.Name = "DarkLabel8"
-        Me.DarkLabel8.Size = New System.Drawing.Size(56, 20)
+        Me.DarkLabel8.Size = New System.Drawing.Size(59, 20)
         Me.DarkLabel8.TabIndex = 0
-        Me.DarkLabel8.Text = "Quest:"
+        Me.DarkLabel8.Text = "Tarefa:"
         '
         'DarkGroupBox5
         '
@@ -1096,13 +1096,13 @@ Partial Class FrmEditor_Events
         Me.cmbTrigger.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbTrigger.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbTrigger.FormattingEnabled = True
-        Me.cmbTrigger.Items.AddRange(New Object() {"Action Button", "Player Touch", "Parallel Process"})
+        Me.cmbTrigger.Items.AddRange(New Object() {"Botão de Ação", "Toque do Jogador", "Processo Paralelo"})
         Me.cmbTrigger.Location = New System.Drawing.Point(9, 29)
         Me.cmbTrigger.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbTrigger.Name = "cmbTrigger"
         Me.cmbTrigger.Size = New System.Drawing.Size(282, 27)
         Me.cmbTrigger.TabIndex = 0
-        Me.cmbTrigger.Text = "Action Button"
+        Me.cmbTrigger.Text = "Botão de Ação"
         Me.cmbTrigger.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkGroupBox4
@@ -1134,13 +1134,13 @@ Partial Class FrmEditor_Events
         Me.cmbPositioning.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbPositioning.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbPositioning.FormattingEnabled = True
-        Me.cmbPositioning.Items.AddRange(New Object() {"Below Characters", "Same as Characters", "Above Characters"})
+        Me.cmbPositioning.Items.AddRange(New Object() {"Abaixo dos Personagens", "Mesmo dos Personagens", "Acima dos Personagens"})
         Me.cmbPositioning.Location = New System.Drawing.Point(9, 29)
         Me.cmbPositioning.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbPositioning.Name = "cmbPositioning"
         Me.cmbPositioning.Size = New System.Drawing.Size(282, 27)
         Me.cmbPositioning.TabIndex = 0
-        Me.cmbPositioning.Text = "Below Characters"
+        Me.cmbPositioning.Text = "Abaixo dos Personagens"
         Me.cmbPositioning.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkGroupBox3
@@ -1189,13 +1189,13 @@ Partial Class FrmEditor_Events
         Me.cmbMoveFreq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbMoveFreq.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbMoveFreq.FormattingEnabled = True
-        Me.cmbMoveFreq.Items.AddRange(New Object() {"Lowest", "Lower", "Normal", "Higher", "Highest"})
+        Me.cmbMoveFreq.Items.AddRange(New Object() {"Mais Baixa", "Baixa", "Normal", "Alta", "Mais Alta"})
         Me.cmbMoveFreq.Location = New System.Drawing.Point(104, 149)
         Me.cmbMoveFreq.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbMoveFreq.Name = "cmbMoveFreq"
         Me.cmbMoveFreq.Size = New System.Drawing.Size(186, 27)
         Me.cmbMoveFreq.TabIndex = 5
-        Me.cmbMoveFreq.Text = "Lowest"
+        Me.cmbMoveFreq.Text = "Mais Baixa"
         Me.cmbMoveFreq.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel6
@@ -1237,7 +1237,7 @@ Partial Class FrmEditor_Events
         Me.btnMoveRoute.Location = New System.Drawing.Point(178, 63)
         Me.btnMoveRoute.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMoveRoute.Name = "btnMoveRoute"
-        Me.btnMoveRoute.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMoveRoute.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMoveRoute.Size = New System.Drawing.Size(112, 35)
         Me.btnMoveRoute.TabIndex = 2
         Me.btnMoveRoute.Text = "Move Route"
@@ -1256,13 +1256,13 @@ Partial Class FrmEditor_Events
         Me.cmbMoveType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbMoveType.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbMoveType.FormattingEnabled = True
-        Me.cmbMoveType.Items.AddRange(New Object() {"Fixed Position", "Random", "Move Route"})
+        Me.cmbMoveType.Items.AddRange(New Object() {"Posição Fixa", "Aleatório", "Rota de Movimento"})
         Me.cmbMoveType.Location = New System.Drawing.Point(104, 22)
         Me.cmbMoveType.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbMoveType.Name = "cmbMoveType"
         Me.cmbMoveType.Size = New System.Drawing.Size(186, 27)
         Me.cmbMoveType.TabIndex = 1
-        Me.cmbMoveType.Text = "Fixed Position"
+        Me.cmbMoveType.Text = "Posição Fixa"
         Me.cmbMoveType.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel5
@@ -1344,13 +1344,13 @@ Partial Class FrmEditor_Events
         Me.cmbSelfSwitchCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbSelfSwitchCompare.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbSelfSwitchCompare.FormattingEnabled = True
-        Me.cmbSelfSwitchCompare.Items.AddRange(New Object() {"False = 0", "True = 1"})
+        Me.cmbSelfSwitchCompare.Items.AddRange(New Object() {"Falso = 0", "Verdade = 1"})
         Me.cmbSelfSwitchCompare.Location = New System.Drawing.Point(334, 151)
         Me.cmbSelfSwitchCompare.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbSelfSwitchCompare.Name = "cmbSelfSwitchCompare"
         Me.cmbSelfSwitchCompare.Size = New System.Drawing.Size(132, 27)
         Me.cmbSelfSwitchCompare.TabIndex = 14
-        Me.cmbSelfSwitchCompare.Text = "False = 0"
+        Me.cmbSelfSwitchCompare.Text = "Falso = 0"
         Me.cmbSelfSwitchCompare.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel4
@@ -1360,9 +1360,9 @@ Partial Class FrmEditor_Events
         Me.DarkLabel4.Location = New System.Drawing.Point(304, 155)
         Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(20, 20)
+        Me.DarkLabel4.Size = New System.Drawing.Size(18, 20)
         Me.DarkLabel4.TabIndex = 13
-        Me.DarkLabel4.Text = "is"
+        Me.DarkLabel4.Text = "é"
         '
         'cmbSelfSwitch
         '
@@ -1378,13 +1378,13 @@ Partial Class FrmEditor_Events
         Me.cmbSelfSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbSelfSwitch.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbSelfSwitch.FormattingEnabled = True
-        Me.cmbSelfSwitch.Items.AddRange(New Object() {"None", "1 - A", "2 - B", "3 - C", "4 - D"})
+        Me.cmbSelfSwitch.Items.AddRange(New Object() {"Nenhum", "1 - A", "2 - B", "3 - C", "4 - D"})
         Me.cmbSelfSwitch.Location = New System.Drawing.Point(162, 151)
         Me.cmbSelfSwitch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbSelfSwitch.Name = "cmbSelfSwitch"
         Me.cmbSelfSwitch.Size = New System.Drawing.Size(132, 27)
         Me.cmbSelfSwitch.TabIndex = 12
-        Me.cmbSelfSwitch.Text = "None"
+        Me.cmbSelfSwitch.Text = "Nenhum"
         Me.cmbSelfSwitch.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'chkSelfSwitch
@@ -1393,9 +1393,9 @@ Partial Class FrmEditor_Events
         Me.chkSelfSwitch.Location = New System.Drawing.Point(9, 154)
         Me.chkSelfSwitch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkSelfSwitch.Name = "chkSelfSwitch"
-        Me.chkSelfSwitch.Size = New System.Drawing.Size(120, 24)
+        Me.chkSelfSwitch.Size = New System.Drawing.Size(127, 24)
         Me.chkSelfSwitch.TabIndex = 11
-        Me.chkSelfSwitch.Text = "Self Switch*"
+        Me.chkSelfSwitch.Text = "Auto-Switch*"
         '
         'cmbHasItem
         '
@@ -1491,9 +1491,9 @@ Partial Class FrmEditor_Events
         Me.chkPlayerSwitch.Location = New System.Drawing.Point(9, 71)
         Me.chkPlayerSwitch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkPlayerSwitch.Name = "chkPlayerSwitch"
-        Me.chkPlayerSwitch.Size = New System.Drawing.Size(129, 24)
+        Me.chkPlayerSwitch.Size = New System.Drawing.Size(166, 24)
         Me.chkPlayerSwitch.TabIndex = 5
-        Me.chkPlayerSwitch.Text = "Player Switch"
+        Me.chkPlayerSwitch.Text = "Switch do Jogador"
         '
         'nudPlayerVariable
         '
@@ -1568,9 +1568,9 @@ Partial Class FrmEditor_Events
         Me.chkPlayerVar.Location = New System.Drawing.Point(9, 29)
         Me.chkPlayerVar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkPlayerVar.Name = "chkPlayerVar"
-        Me.chkPlayerVar.Size = New System.Drawing.Size(140, 24)
+        Me.chkPlayerVar.Size = New System.Drawing.Size(175, 24)
         Me.chkPlayerVar.TabIndex = 0
-        Me.chkPlayerVar.Text = "Player Variable"
+        Me.chkPlayerVar.Text = "Variável do Jogador"
         '
         'DarkGroupBox6
         '
@@ -1596,9 +1596,9 @@ Partial Class FrmEditor_Events
         Me.chkShowName.Location = New System.Drawing.Point(9, 135)
         Me.chkShowName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkShowName.Name = "chkShowName"
-        Me.chkShowName.Size = New System.Drawing.Size(121, 24)
+        Me.chkShowName.Size = New System.Drawing.Size(135, 24)
         Me.chkShowName.TabIndex = 3
-        Me.chkShowName.Text = "Show Name"
+        Me.chkShowName.Text = "Mostrar Nome"
         '
         'chkWalkThrough
         '
@@ -1606,9 +1606,9 @@ Partial Class FrmEditor_Events
         Me.chkWalkThrough.Location = New System.Drawing.Point(9, 100)
         Me.chkWalkThrough.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkWalkThrough.Name = "chkWalkThrough"
-        Me.chkWalkThrough.Size = New System.Drawing.Size(133, 24)
+        Me.chkWalkThrough.Size = New System.Drawing.Size(145, 24)
         Me.chkWalkThrough.TabIndex = 2
-        Me.chkWalkThrough.Text = "Walk Through"
+        Me.chkWalkThrough.Text = "Andar por Tudo"
         '
         'chkDirFix
         '
@@ -1616,9 +1616,9 @@ Partial Class FrmEditor_Events
         Me.chkDirFix.Location = New System.Drawing.Point(9, 65)
         Me.chkDirFix.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkDirFix.Name = "chkDirFix"
-        Me.chkDirFix.Size = New System.Drawing.Size(140, 24)
+        Me.chkDirFix.Size = New System.Drawing.Size(123, 24)
         Me.chkDirFix.TabIndex = 1
-        Me.chkDirFix.Text = "Direction Fixed"
+        Me.chkDirFix.Text = "Direção Fixa"
         '
         'chkWalkAnim
         '
@@ -1626,16 +1626,16 @@ Partial Class FrmEditor_Events
         Me.chkWalkAnim.Location = New System.Drawing.Point(9, 29)
         Me.chkWalkAnim.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkWalkAnim.Name = "chkWalkAnim"
-        Me.chkWalkAnim.Size = New System.Drawing.Size(169, 24)
+        Me.chkWalkAnim.Size = New System.Drawing.Size(212, 24)
         Me.chkWalkAnim.TabIndex = 0
-        Me.chkWalkAnim.Text = "No Walk Animation"
+        Me.chkWalkAnim.Text = "Sem Animação de Andar"
         '
         'btnLabeling
         '
         Me.btnLabeling.Location = New System.Drawing.Point(4, 898)
         Me.btnLabeling.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnLabeling.Name = "btnLabeling"
-        Me.btnLabeling.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnLabeling.Padding = New System.Windows.Forms.Padding(8)
         Me.btnLabeling.Size = New System.Drawing.Size(255, 35)
         Me.btnLabeling.TabIndex = 6
         Me.btnLabeling.Text = "Editar Variáveis / Switches"
@@ -1645,7 +1645,7 @@ Partial Class FrmEditor_Events
         Me.btnCancel.Location = New System.Drawing.Point(1078, 898)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 7
         Me.btnCancel.Text = "Cancelar"
@@ -1655,7 +1655,7 @@ Partial Class FrmEditor_Events
         Me.btnOk.Location = New System.Drawing.Point(957, 898)
         Me.btnOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnOk.Name = "btnOk"
-        Me.btnOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnOk.Size = New System.Drawing.Size(112, 35)
         Me.btnOk.TabIndex = 8
         Me.btnOk.Text = "Confirmar"
@@ -1687,7 +1687,7 @@ Partial Class FrmEditor_Events
         Me.btnMoveRouteOk.Location = New System.Drawing.Point(963, 663)
         Me.btnMoveRouteOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMoveRouteOk.Name = "btnMoveRouteOk"
-        Me.btnMoveRouteOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMoveRouteOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMoveRouteOk.Size = New System.Drawing.Size(112, 35)
         Me.btnMoveRouteOk.TabIndex = 7
         Me.btnMoveRouteOk.Text = "Ok"
@@ -1697,7 +1697,7 @@ Partial Class FrmEditor_Events
         Me.btnMoveRouteCancel.Location = New System.Drawing.Point(1084, 663)
         Me.btnMoveRouteCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMoveRouteCancel.Name = "btnMoveRouteCancel"
-        Me.btnMoveRouteCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMoveRouteCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMoveRouteCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnMoveRouteCancel.TabIndex = 6
         Me.btnMoveRouteCancel.Text = "Cancel"
@@ -1746,73 +1746,73 @@ Partial Class FrmEditor_Events
         Me.lstvwMoveRoute.Dock = System.Windows.Forms.DockStyle.Top
         Me.lstvwMoveRoute.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstvwMoveRoute.ForeColor = System.Drawing.Color.Gainsboro
-        ListViewGroup1.Header = "Movement"
-        ListViewGroup1.Name = "lstVgMovement"
-        ListViewGroup2.Header = "Wait"
-        ListViewGroup2.Name = "lstVgWait"
-        ListViewGroup3.Header = "Turning"
-        ListViewGroup3.Name = "lstVgTurn"
-        ListViewGroup4.Header = "Speed"
-        ListViewGroup4.Name = "lstVgSpeed"
-        ListViewGroup5.Header = "Walk Animation"
-        ListViewGroup5.Name = "lstVgWalk"
-        ListViewGroup6.Header = "Fixed Direction"
-        ListViewGroup6.Name = "lstVgDirection"
-        ListViewGroup7.Header = "WalkThrough"
-        ListViewGroup7.Name = "lstVgWalkThrough"
-        ListViewGroup8.Header = "Set Position"
-        ListViewGroup8.Name = "lstVgSetposition"
-        ListViewGroup9.Header = "Set Graphic"
-        ListViewGroup9.Name = "lstVgSetGraphic"
-        Me.lstvwMoveRoute.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup1, ListViewGroup2, ListViewGroup3, ListViewGroup4, ListViewGroup5, ListViewGroup6, ListViewGroup7, ListViewGroup8, ListViewGroup9})
+        ListViewGroup19.Header = "Movement"
+        ListViewGroup19.Name = "lstVgMovement"
+        ListViewGroup20.Header = "Wait"
+        ListViewGroup20.Name = "lstVgWait"
+        ListViewGroup21.Header = "Turning"
+        ListViewGroup21.Name = "lstVgTurn"
+        ListViewGroup22.Header = "Speed"
+        ListViewGroup22.Name = "lstVgSpeed"
+        ListViewGroup23.Header = "Walk Animation"
+        ListViewGroup23.Name = "lstVgWalk"
+        ListViewGroup24.Header = "Fixed Direction"
+        ListViewGroup24.Name = "lstVgDirection"
+        ListViewGroup25.Header = "WalkThrough"
+        ListViewGroup25.Name = "lstVgWalkThrough"
+        ListViewGroup26.Header = "Set Position"
+        ListViewGroup26.Name = "lstVgSetposition"
+        ListViewGroup27.Header = "Set Graphic"
+        ListViewGroup27.Name = "lstVgSetGraphic"
+        Me.lstvwMoveRoute.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup19, ListViewGroup20, ListViewGroup21, ListViewGroup22, ListViewGroup23, ListViewGroup24, ListViewGroup25, ListViewGroup26, ListViewGroup27})
         Me.lstvwMoveRoute.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
         Me.lstvwMoveRoute.HideSelection = False
-        ListViewItem1.Group = ListViewGroup1
-        ListViewItem2.Group = ListViewGroup1
-        ListViewItem2.IndentCount = 1
-        ListViewItem3.Group = ListViewGroup1
-        ListViewItem4.Group = ListViewGroup1
-        ListViewItem4.IndentCount = 1
-        ListViewItem5.Group = ListViewGroup1
-        ListViewItem6.Group = ListViewGroup1
-        ListViewItem7.Group = ListViewGroup1
-        ListViewItem8.Group = ListViewGroup1
-        ListViewItem9.Group = ListViewGroup1
-        ListViewItem10.Group = ListViewGroup2
-        ListViewItem11.Group = ListViewGroup2
-        ListViewItem12.Group = ListViewGroup2
-        ListViewItem13.Group = ListViewGroup3
-        ListViewItem14.Group = ListViewGroup3
-        ListViewItem15.Group = ListViewGroup3
-        ListViewItem16.Group = ListViewGroup3
-        ListViewItem17.Group = ListViewGroup3
-        ListViewItem18.Group = ListViewGroup3
-        ListViewItem19.Group = ListViewGroup3
-        ListViewItem20.Group = ListViewGroup3
-        ListViewItem21.Group = ListViewGroup3
-        ListViewItem22.Group = ListViewGroup3
-        ListViewItem23.Group = ListViewGroup4
-        ListViewItem24.Group = ListViewGroup4
-        ListViewItem25.Group = ListViewGroup4
-        ListViewItem26.Group = ListViewGroup4
-        ListViewItem27.Group = ListViewGroup4
-        ListViewItem28.Group = ListViewGroup4
-        ListViewItem29.Group = ListViewGroup4
-        ListViewItem30.Group = ListViewGroup4
-        ListViewItem31.Group = ListViewGroup4
-        ListViewItem32.Group = ListViewGroup4
-        ListViewItem33.Group = ListViewGroup4
-        ListViewItem34.Group = ListViewGroup5
-        ListViewItem35.Group = ListViewGroup5
-        ListViewItem36.Group = ListViewGroup6
-        ListViewItem37.Group = ListViewGroup6
-        ListViewItem38.Group = ListViewGroup7
-        ListViewItem39.Group = ListViewGroup7
-        ListViewItem40.Group = ListViewGroup8
-        ListViewItem41.Group = ListViewGroup8
-        ListViewItem42.Group = ListViewGroup8
-        ListViewItem43.Group = ListViewGroup9
-        Me.lstvwMoveRoute.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5, ListViewItem6, ListViewItem7, ListViewItem8, ListViewItem9, ListViewItem10, ListViewItem11, ListViewItem12, ListViewItem13, ListViewItem14, ListViewItem15, ListViewItem16, ListViewItem17, ListViewItem18, ListViewItem19, ListViewItem20, ListViewItem21, ListViewItem22, ListViewItem23, ListViewItem24, ListViewItem25, ListViewItem26, ListViewItem27, ListViewItem28, ListViewItem29, ListViewItem30, ListViewItem31, ListViewItem32, ListViewItem33, ListViewItem34, ListViewItem35, ListViewItem36, ListViewItem37, ListViewItem38, ListViewItem39, ListViewItem40, ListViewItem41, ListViewItem42, ListViewItem43})
+        ListViewItem87.Group = ListViewGroup19
+        ListViewItem88.Group = ListViewGroup19
+        ListViewItem88.IndentCount = 1
+        ListViewItem89.Group = ListViewGroup19
+        ListViewItem90.Group = ListViewGroup19
+        ListViewItem90.IndentCount = 1
+        ListViewItem91.Group = ListViewGroup19
+        ListViewItem92.Group = ListViewGroup19
+        ListViewItem93.Group = ListViewGroup19
+        ListViewItem94.Group = ListViewGroup19
+        ListViewItem95.Group = ListViewGroup19
+        ListViewItem96.Group = ListViewGroup20
+        ListViewItem97.Group = ListViewGroup20
+        ListViewItem98.Group = ListViewGroup20
+        ListViewItem99.Group = ListViewGroup21
+        ListViewItem100.Group = ListViewGroup21
+        ListViewItem101.Group = ListViewGroup21
+        ListViewItem102.Group = ListViewGroup21
+        ListViewItem103.Group = ListViewGroup21
+        ListViewItem104.Group = ListViewGroup21
+        ListViewItem105.Group = ListViewGroup21
+        ListViewItem106.Group = ListViewGroup21
+        ListViewItem107.Group = ListViewGroup21
+        ListViewItem108.Group = ListViewGroup21
+        ListViewItem109.Group = ListViewGroup22
+        ListViewItem110.Group = ListViewGroup22
+        ListViewItem111.Group = ListViewGroup22
+        ListViewItem112.Group = ListViewGroup22
+        ListViewItem113.Group = ListViewGroup22
+        ListViewItem114.Group = ListViewGroup22
+        ListViewItem115.Group = ListViewGroup22
+        ListViewItem116.Group = ListViewGroup22
+        ListViewItem117.Group = ListViewGroup22
+        ListViewItem118.Group = ListViewGroup22
+        ListViewItem119.Group = ListViewGroup22
+        ListViewItem120.Group = ListViewGroup23
+        ListViewItem121.Group = ListViewGroup23
+        ListViewItem122.Group = ListViewGroup24
+        ListViewItem123.Group = ListViewGroup24
+        ListViewItem124.Group = ListViewGroup25
+        ListViewItem125.Group = ListViewGroup25
+        ListViewItem126.Group = ListViewGroup26
+        ListViewItem127.Group = ListViewGroup26
+        ListViewItem128.Group = ListViewGroup26
+        ListViewItem129.Group = ListViewGroup27
+        Me.lstvwMoveRoute.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem87, ListViewItem88, ListViewItem89, ListViewItem90, ListViewItem91, ListViewItem92, ListViewItem93, ListViewItem94, ListViewItem95, ListViewItem96, ListViewItem97, ListViewItem98, ListViewItem99, ListViewItem100, ListViewItem101, ListViewItem102, ListViewItem103, ListViewItem104, ListViewItem105, ListViewItem106, ListViewItem107, ListViewItem108, ListViewItem109, ListViewItem110, ListViewItem111, ListViewItem112, ListViewItem113, ListViewItem114, ListViewItem115, ListViewItem116, ListViewItem117, ListViewItem118, ListViewItem119, ListViewItem120, ListViewItem121, ListViewItem122, ListViewItem123, ListViewItem124, ListViewItem125, ListViewItem126, ListViewItem127, ListViewItem128, ListViewItem129})
         Me.lstvwMoveRoute.LabelWrap = False
         Me.lstvwMoveRoute.Location = New System.Drawing.Point(4, 24)
         Me.lstvwMoveRoute.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -1916,7 +1916,7 @@ Partial Class FrmEditor_Events
         Me.btnGraphicOk.Location = New System.Drawing.Point(978, 877)
         Me.btnGraphicOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGraphicOk.Name = "btnGraphicOk"
-        Me.btnGraphicOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGraphicOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGraphicOk.Size = New System.Drawing.Size(112, 35)
         Me.btnGraphicOk.TabIndex = 8
         Me.btnGraphicOk.Text = "Ok"
@@ -1926,7 +1926,7 @@ Partial Class FrmEditor_Events
         Me.btnGraphicCancel.Location = New System.Drawing.Point(1100, 877)
         Me.btnGraphicCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGraphicCancel.Name = "btnGraphicCancel"
-        Me.btnGraphicCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGraphicCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGraphicCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnGraphicCancel.TabIndex = 7
         Me.btnGraphicCancel.Text = "Cancel"
@@ -2111,13 +2111,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_Time.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_Time.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_Time.FormattingEnabled = True
-        Me.cmbCondition_Time.Items.AddRange(New Object() {"Day", "Night", "Dawn", "Dusk"})
+        Me.cmbCondition_Time.Items.AddRange(New Object() {"Dia", "Noite", "Alvorecer", "Crepúsculo"})
         Me.cmbCondition_Time.Location = New System.Drawing.Point(358, 531)
         Me.cmbCondition_Time.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_Time.Name = "cmbCondition_Time"
         Me.cmbCondition_Time.Size = New System.Drawing.Size(214, 27)
         Me.cmbCondition_Time.TabIndex = 33
-        Me.cmbCondition_Time.Text = Nothing
+        Me.cmbCondition_Time.Text = "Day"
         Me.cmbCondition_Time.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'optCondition9
@@ -2136,7 +2136,7 @@ Partial Class FrmEditor_Events
         Me.btnConditionalBranchOk.Location = New System.Drawing.Point(339, 640)
         Me.btnConditionalBranchOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnConditionalBranchOk.Name = "btnConditionalBranchOk"
-        Me.btnConditionalBranchOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnConditionalBranchOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnConditionalBranchOk.Size = New System.Drawing.Size(112, 35)
         Me.btnConditionalBranchOk.TabIndex = 31
         Me.btnConditionalBranchOk.Text = "Confirmar"
@@ -2146,7 +2146,7 @@ Partial Class FrmEditor_Events
         Me.btnConditionalBranchCancel.Location = New System.Drawing.Point(460, 640)
         Me.btnConditionalBranchCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnConditionalBranchCancel.Name = "btnConditionalBranchCancel"
-        Me.btnConditionalBranchCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnConditionalBranchCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnConditionalBranchCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnConditionalBranchCancel.TabIndex = 30
         Me.btnConditionalBranchCancel.Text = "Cancelar"
@@ -2165,13 +2165,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_Gender.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_Gender.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_Gender.FormattingEnabled = True
-        Me.cmbCondition_Gender.Items.AddRange(New Object() {"Male", "Female"})
+        Me.cmbCondition_Gender.Items.AddRange(New Object() {"Masculino", "Feminino"})
         Me.cmbCondition_Gender.Location = New System.Drawing.Point(358, 489)
         Me.cmbCondition_Gender.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_Gender.Name = "cmbCondition_Gender"
         Me.cmbCondition_Gender.Size = New System.Drawing.Size(214, 27)
         Me.cmbCondition_Gender.TabIndex = 29
-        Me.cmbCondition_Gender.Text = Nothing
+        Me.cmbCondition_Gender.Text = "Masculino"
         Me.cmbCondition_Gender.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'optCondition8
@@ -2203,18 +2203,18 @@ Partial Class FrmEditor_Events
         Me.fraConditions_Quest.Size = New System.Drawing.Size(564, 118)
         Me.fraConditions_Quest.TabIndex = 27
         Me.fraConditions_Quest.TabStop = False
-        Me.fraConditions_Quest.Text = "Condições da Quest"
+        Me.fraConditions_Quest.Text = "Condições da Tarefa"
         '
         'DarkLabel20
         '
         Me.DarkLabel20.AutoSize = True
         Me.DarkLabel20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel20.Location = New System.Drawing.Point(184, 72)
+        Me.DarkLabel20.Location = New System.Drawing.Point(136, 75)
         Me.DarkLabel20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel20.Name = "DarkLabel20"
-        Me.DarkLabel20.Size = New System.Drawing.Size(135, 20)
+        Me.DarkLabel20.Size = New System.Drawing.Size(208, 20)
         Me.DarkLabel20.TabIndex = 5
-        Me.DarkLabel20.Text = "Player is on task..."
+        Me.DarkLabel20.Text = "Jogador está na subtarefa..."
         '
         'nudCondition_QuestTask
         '
@@ -2241,25 +2241,25 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_General.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_General.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_General.FormattingEnabled = True
-        Me.cmbCondition_General.Items.AddRange(New Object() {"Not Started", "Started", "Completed", "Can Start", "Can End"})
+        Me.cmbCondition_General.Items.AddRange(New Object() {"Não Iniciada", "Completa", "Pode Iniciar", "Pode Finalizar"})
         Me.cmbCondition_General.Location = New System.Drawing.Point(350, 28)
         Me.cmbCondition_General.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_General.Name = "cmbCondition_General"
         Me.cmbCondition_General.Size = New System.Drawing.Size(204, 27)
         Me.cmbCondition_General.TabIndex = 3
-        Me.cmbCondition_General.Text = "Not Started"
+        Me.cmbCondition_General.Text = "Não Iniciada"
         Me.cmbCondition_General.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel19
         '
         Me.DarkLabel19.AutoSize = True
         Me.DarkLabel19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel19.Location = New System.Drawing.Point(184, 32)
+        Me.DarkLabel19.Location = New System.Drawing.Point(148, 31)
         Me.DarkLabel19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel19.Name = "DarkLabel19"
-        Me.DarkLabel19.Size = New System.Drawing.Size(154, 20)
+        Me.DarkLabel19.Size = New System.Drawing.Size(194, 20)
         Me.DarkLabel19.TabIndex = 2
-        Me.DarkLabel19.Text = "If selected quest is..."
+        Me.DarkLabel19.Text = "Se a tarefa seleciona está"
         '
         'optCondition_Quest1
         '
@@ -2267,10 +2267,10 @@ Partial Class FrmEditor_Events
         Me.optCondition_Quest1.Location = New System.Drawing.Point(9, 69)
         Me.optCondition_Quest1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition_Quest1.Name = "optCondition_Quest1"
-        Me.optCondition_Quest1.Size = New System.Drawing.Size(80, 24)
+        Me.optCondition_Quest1.Size = New System.Drawing.Size(105, 24)
         Me.optCondition_Quest1.TabIndex = 1
         Me.optCondition_Quest1.TabStop = True
-        Me.optCondition_Quest1.Text = "Tarefa"
+        Me.optCondition_Quest1.Text = "Subtarefa"
         '
         'optCondition_Quest0
         '
@@ -2278,10 +2278,10 @@ Partial Class FrmEditor_Events
         Me.optCondition_Quest0.Location = New System.Drawing.Point(9, 29)
         Me.optCondition_Quest0.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition_Quest0.Name = "optCondition_Quest0"
-        Me.optCondition_Quest0.Size = New System.Drawing.Size(91, 24)
+        Me.optCondition_Quest0.Size = New System.Drawing.Size(73, 24)
         Me.optCondition_Quest0.TabIndex = 0
         Me.optCondition_Quest0.TabStop = True
-        Me.optCondition_Quest0.Text = "General"
+        Me.optCondition_Quest0.Text = "Geral"
         '
         'nudCondition_Quest
         '
@@ -2311,10 +2311,10 @@ Partial Class FrmEditor_Events
         Me.optCondition7.Location = New System.Drawing.Point(9, 323)
         Me.optCondition7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition7.Name = "optCondition7"
-        Me.optCondition7.Size = New System.Drawing.Size(128, 24)
+        Me.optCondition7.Size = New System.Drawing.Size(161, 24)
         Me.optCondition7.TabIndex = 24
         Me.optCondition7.TabStop = True
-        Me.optCondition7.Text = "Quest Status"
+        Me.optCondition7.Text = "Estado da Tarefa:"
         '
         'cmbCondition_SelfSwitchCondition
         '
@@ -2330,13 +2330,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_SelfSwitchCondition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_SelfSwitchCondition.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_SelfSwitchCondition.FormattingEnabled = True
-        Me.cmbCondition_SelfSwitchCondition.Items.AddRange(New Object() {"False", "True"})
+        Me.cmbCondition_SelfSwitchCondition.Items.AddRange(New Object() {"Falso", "Verdadeiro"})
         Me.cmbCondition_SelfSwitchCondition.Location = New System.Drawing.Point(393, 282)
         Me.cmbCondition_SelfSwitchCondition.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_SelfSwitchCondition.Name = "cmbCondition_SelfSwitchCondition"
         Me.cmbCondition_SelfSwitchCondition.Size = New System.Drawing.Size(180, 27)
         Me.cmbCondition_SelfSwitchCondition.TabIndex = 23
-        Me.cmbCondition_SelfSwitchCondition.Text = "False"
+        Me.cmbCondition_SelfSwitchCondition.Text = "Falso"
         Me.cmbCondition_SelfSwitchCondition.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel17
@@ -2346,9 +2346,9 @@ Partial Class FrmEditor_Events
         Me.DarkLabel17.Location = New System.Drawing.Point(351, 286)
         Me.DarkLabel17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel17.Name = "DarkLabel17"
-        Me.DarkLabel17.Size = New System.Drawing.Size(20, 20)
+        Me.DarkLabel17.Size = New System.Drawing.Size(18, 20)
         Me.DarkLabel17.TabIndex = 22
-        Me.DarkLabel17.Text = "is"
+        Me.DarkLabel17.Text = "é"
         '
         'cmbCondition_SelfSwitch
         '
@@ -2378,10 +2378,10 @@ Partial Class FrmEditor_Events
         Me.optCondition6.Location = New System.Drawing.Point(9, 283)
         Me.optCondition6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition6.Name = "optCondition6"
-        Me.optCondition6.Size = New System.Drawing.Size(113, 24)
+        Me.optCondition6.Size = New System.Drawing.Size(120, 24)
         Me.optCondition6.TabIndex = 20
         Me.optCondition6.TabStop = True
-        Me.optCondition6.Text = "Self Switch"
+        Me.optCondition6.Text = "Auto-Switch"
         '
         'nudCondition_LevelAmount
         '
@@ -2400,10 +2400,10 @@ Partial Class FrmEditor_Events
         Me.optCondition5.Location = New System.Drawing.Point(9, 242)
         Me.optCondition5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition5.Name = "optCondition5"
-        Me.optCondition5.Size = New System.Drawing.Size(86, 24)
+        Me.optCondition5.Size = New System.Drawing.Size(82, 24)
         Me.optCondition5.TabIndex = 18
         Me.optCondition5.TabStop = True
-        Me.optCondition5.Text = "Level is"
+        Me.optCondition5.Text = "Nível É"
         '
         'cmbCondition_LevelCompare
         '
@@ -2419,13 +2419,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_LevelCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_LevelCompare.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_LevelCompare.FormattingEnabled = True
-        Me.cmbCondition_LevelCompare.Items.AddRange(New Object() {"Equal To", "Great Than OrElse Equal To", "Less Than or Equal To", "Greater Than", "Less Than", "Does Not Equal"})
+        Me.cmbCondition_LevelCompare.Items.AddRange(New Object() {"Igual a", "Maior ou Igual à", "Menor ou Igual à", "Maior Que", "Menor Que", "Diferente de"})
         Me.cmbCondition_LevelCompare.Location = New System.Drawing.Point(160, 240)
         Me.cmbCondition_LevelCompare.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_LevelCompare.Name = "cmbCondition_LevelCompare"
         Me.cmbCondition_LevelCompare.Size = New System.Drawing.Size(232, 27)
         Me.cmbCondition_LevelCompare.TabIndex = 17
-        Me.cmbCondition_LevelCompare.Text = "Equal To"
+        Me.cmbCondition_LevelCompare.Text = "Igual a"
         Me.cmbCondition_LevelCompare.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'cmbCondition_LearntSkill
@@ -2456,10 +2456,10 @@ Partial Class FrmEditor_Events
         Me.optCondition4.Location = New System.Drawing.Point(9, 200)
         Me.optCondition4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition4.Name = "optCondition4"
-        Me.optCondition4.Size = New System.Drawing.Size(113, 24)
+        Me.optCondition4.Size = New System.Drawing.Size(144, 24)
         Me.optCondition4.TabIndex = 15
         Me.optCondition4.TabStop = True
-        Me.optCondition4.Text = "Knows Skill"
+        Me.optCondition4.Text = "Tem Habilidade"
         '
         'cmbCondition_ClassIs
         '
@@ -2489,10 +2489,10 @@ Partial Class FrmEditor_Events
         Me.optCondition3.Location = New System.Drawing.Point(9, 158)
         Me.optCondition3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition3.Name = "optCondition3"
-        Me.optCondition3.Size = New System.Drawing.Size(90, 24)
+        Me.optCondition3.Size = New System.Drawing.Size(97, 24)
         Me.optCondition3.TabIndex = 13
         Me.optCondition3.TabStop = True
-        Me.optCondition3.Text = "Class Is"
+        Me.optCondition3.Text = "Classe É"
         '
         'nudCondition_HasItem
         '
@@ -2544,10 +2544,10 @@ Partial Class FrmEditor_Events
         Me.optCondition2.Location = New System.Drawing.Point(9, 117)
         Me.optCondition2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition2.Name = "optCondition2"
-        Me.optCondition2.Size = New System.Drawing.Size(99, 24)
+        Me.optCondition2.Size = New System.Drawing.Size(101, 24)
         Me.optCondition2.TabIndex = 9
         Me.optCondition2.TabStop = True
-        Me.optCondition2.Text = "Has Item"
+        Me.optCondition2.Text = "Tem Item"
         '
         'optCondition1
         '
@@ -2555,10 +2555,10 @@ Partial Class FrmEditor_Events
         Me.optCondition1.Location = New System.Drawing.Point(9, 75)
         Me.optCondition1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition1.Name = "optCondition1"
-        Me.optCondition1.Size = New System.Drawing.Size(128, 24)
+        Me.optCondition1.Size = New System.Drawing.Size(165, 24)
         Me.optCondition1.TabIndex = 8
         Me.optCondition1.TabStop = True
-        Me.optCondition1.Text = "Player Switch"
+        Me.optCondition1.Text = "Switch de Jogador"
         '
         'DarkLabel15
         '
@@ -2585,13 +2585,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondtion_PlayerSwitchCondition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondtion_PlayerSwitchCondition.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondtion_PlayerSwitchCondition.FormattingEnabled = True
-        Me.cmbCondtion_PlayerSwitchCondition.Items.AddRange(New Object() {"False", "True"})
+        Me.cmbCondtion_PlayerSwitchCondition.Items.AddRange(New Object() {"Falso", "Verdadeiro"})
         Me.cmbCondtion_PlayerSwitchCondition.Location = New System.Drawing.Point(393, 74)
         Me.cmbCondtion_PlayerSwitchCondition.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondtion_PlayerSwitchCondition.Name = "cmbCondtion_PlayerSwitchCondition"
         Me.cmbCondtion_PlayerSwitchCondition.Size = New System.Drawing.Size(180, 27)
         Me.cmbCondtion_PlayerSwitchCondition.TabIndex = 6
-        Me.cmbCondtion_PlayerSwitchCondition.Text = "False"
+        Me.cmbCondtion_PlayerSwitchCondition.Text = "Falso"
         Me.cmbCondtion_PlayerSwitchCondition.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'cmbCondition_PlayerSwitch
@@ -2641,13 +2641,13 @@ Partial Class FrmEditor_Events
         Me.cmbCondition_PlayerVarCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbCondition_PlayerVarCompare.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbCondition_PlayerVarCompare.FormattingEnabled = True
-        Me.cmbCondition_PlayerVarCompare.Items.AddRange(New Object() {"Equal To", "Great Than OrElse Equal To", "Less Than or Equal To", "Greater Than", "Less Than", "Does Not Equal"})
+        Me.cmbCondition_PlayerVarCompare.Items.AddRange(New Object() {"Igual à", "Maior Que ou Igual à", "Menor Que ou Equal à", "Maior Que", "Menor Que", "Diferente de"})
         Me.cmbCondition_PlayerVarCompare.Location = New System.Drawing.Point(354, 32)
         Me.cmbCondition_PlayerVarCompare.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbCondition_PlayerVarCompare.Name = "cmbCondition_PlayerVarCompare"
         Me.cmbCondition_PlayerVarCompare.Size = New System.Drawing.Size(130, 27)
         Me.cmbCondition_PlayerVarCompare.TabIndex = 3
-        Me.cmbCondition_PlayerVarCompare.Text = "Equal To"
+        Me.cmbCondition_PlayerVarCompare.Text = "Igual à"
         Me.cmbCondition_PlayerVarCompare.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel14
@@ -2689,10 +2689,10 @@ Partial Class FrmEditor_Events
         Me.optCondition0.Location = New System.Drawing.Point(9, 34)
         Me.optCondition0.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.optCondition0.Name = "optCondition0"
-        Me.optCondition0.Size = New System.Drawing.Size(139, 24)
+        Me.optCondition0.Size = New System.Drawing.Size(174, 24)
         Me.optCondition0.TabIndex = 0
         Me.optCondition0.TabStop = True
-        Me.optCondition0.Text = "Player Variable"
+        Me.optCondition0.Text = "Variável de Jogador"
         '
         'fraPlayAnimation
         '
@@ -2725,7 +2725,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayAnimationOk.Location = New System.Drawing.Point(129, 203)
         Me.btnPlayAnimationOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayAnimationOk.Name = "btnPlayAnimationOk"
-        Me.btnPlayAnimationOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayAnimationOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayAnimationOk.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayAnimationOk.TabIndex = 36
         Me.btnPlayAnimationOk.Text = "Ok"
@@ -2735,7 +2735,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayAnimationCancel.Location = New System.Drawing.Point(250, 203)
         Me.btnPlayAnimationCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayAnimationCancel.Name = "btnPlayAnimationCancel"
-        Me.btnPlayAnimationCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayAnimationCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayAnimationCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayAnimationCancel.TabIndex = 35
         Me.btnPlayAnimationCancel.Text = "Cancel"
@@ -2897,7 +2897,7 @@ Partial Class FrmEditor_Events
         Me.btnMoveWaitCancel.Location = New System.Drawing.Point(250, 71)
         Me.btnMoveWaitCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMoveWaitCancel.Name = "btnMoveWaitCancel"
-        Me.btnMoveWaitCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMoveWaitCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMoveWaitCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnMoveWaitCancel.TabIndex = 26
         Me.btnMoveWaitCancel.Text = "Cancel"
@@ -2907,7 +2907,7 @@ Partial Class FrmEditor_Events
         Me.btnMoveWaitOk.Location = New System.Drawing.Point(129, 71)
         Me.btnMoveWaitOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMoveWaitOk.Name = "btnMoveWaitOk"
-        Me.btnMoveWaitOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMoveWaitOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMoveWaitOk.Size = New System.Drawing.Size(112, 35)
         Me.btnMoveWaitOk.TabIndex = 27
         Me.btnMoveWaitOk.Text = "Ok"
@@ -2991,7 +2991,7 @@ Partial Class FrmEditor_Events
         Me.btnCustomScriptCancel.Location = New System.Drawing.Point(242, 69)
         Me.btnCustomScriptCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCustomScriptCancel.Name = "btnCustomScriptCancel"
-        Me.btnCustomScriptCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCustomScriptCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCustomScriptCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCustomScriptCancel.TabIndex = 24
         Me.btnCustomScriptCancel.Text = "Cancel"
@@ -3001,7 +3001,7 @@ Partial Class FrmEditor_Events
         Me.btnCustomScriptOk.Location = New System.Drawing.Point(120, 69)
         Me.btnCustomScriptOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCustomScriptOk.Name = "btnCustomScriptOk"
-        Me.btnCustomScriptOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCustomScriptOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCustomScriptOk.Size = New System.Drawing.Size(112, 35)
         Me.btnCustomScriptOk.TabIndex = 25
         Me.btnCustomScriptOk.Text = "Ok"
@@ -3032,7 +3032,7 @@ Partial Class FrmEditor_Events
         Me.btnSetWeatherOk.Location = New System.Drawing.Point(69, 102)
         Me.btnSetWeatherOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetWeatherOk.Name = "btnSetWeatherOk"
-        Me.btnSetWeatherOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetWeatherOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetWeatherOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSetWeatherOk.TabIndex = 34
         Me.btnSetWeatherOk.Text = "Ok"
@@ -3042,7 +3042,7 @@ Partial Class FrmEditor_Events
         Me.btnSetWeatherCancel.Location = New System.Drawing.Point(190, 102)
         Me.btnSetWeatherCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetWeatherCancel.Name = "btnSetWeatherCancel"
-        Me.btnSetWeatherCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetWeatherCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetWeatherCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSetWeatherCancel.TabIndex = 33
         Me.btnSetWeatherCancel.Text = "Cancel"
@@ -3126,7 +3126,7 @@ Partial Class FrmEditor_Events
         Me.btnSpawnNpcOk.Location = New System.Drawing.Point(69, 72)
         Me.btnSpawnNpcOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSpawnNpcOk.Name = "btnSpawnNpcOk"
-        Me.btnSpawnNpcOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSpawnNpcOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSpawnNpcOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSpawnNpcOk.TabIndex = 27
         Me.btnSpawnNpcOk.Text = "Ok"
@@ -3136,7 +3136,7 @@ Partial Class FrmEditor_Events
         Me.btnSpawnNpcCancel.Location = New System.Drawing.Point(190, 72)
         Me.btnSpawnNpcCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSpawnNpcCancel.Name = "btnSpawnNpcCancel"
-        Me.btnSpawnNpcCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSpawnNpcCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSpawnNpcCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSpawnNpcCancel.TabIndex = 26
         Me.btnSpawnNpcCancel.Text = "Cancel"
@@ -3187,7 +3187,7 @@ Partial Class FrmEditor_Events
         Me.btnGiveExpOk.Location = New System.Drawing.Point(75, 69)
         Me.btnGiveExpOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGiveExpOk.Name = "btnGiveExpOk"
-        Me.btnGiveExpOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGiveExpOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGiveExpOk.Size = New System.Drawing.Size(112, 35)
         Me.btnGiveExpOk.TabIndex = 27
         Me.btnGiveExpOk.Text = "Ok"
@@ -3197,7 +3197,7 @@ Partial Class FrmEditor_Events
         Me.btnGiveExpCancel.Location = New System.Drawing.Point(196, 69)
         Me.btnGiveExpCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGiveExpCancel.Name = "btnGiveExpCancel"
-        Me.btnGiveExpCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGiveExpCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGiveExpCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnGiveExpCancel.TabIndex = 26
         Me.btnGiveExpCancel.Text = "Cancel"
@@ -3248,7 +3248,7 @@ Partial Class FrmEditor_Events
         Me.btnEndQuestOk.Location = New System.Drawing.Point(69, 68)
         Me.btnEndQuestOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnEndQuestOk.Name = "btnEndQuestOk"
-        Me.btnEndQuestOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnEndQuestOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnEndQuestOk.Size = New System.Drawing.Size(112, 35)
         Me.btnEndQuestOk.TabIndex = 30
         Me.btnEndQuestOk.Text = "Ok"
@@ -3258,7 +3258,7 @@ Partial Class FrmEditor_Events
         Me.btnEndQuestCancel.Location = New System.Drawing.Point(190, 68)
         Me.btnEndQuestCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnEndQuestCancel.Name = "btnEndQuestCancel"
-        Me.btnEndQuestCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnEndQuestCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnEndQuestCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnEndQuestCancel.TabIndex = 29
         Me.btnEndQuestCancel.Text = "Cancel"
@@ -3308,7 +3308,7 @@ Partial Class FrmEditor_Events
         Me.btnSetAccessOk.Location = New System.Drawing.Point(69, 74)
         Me.btnSetAccessOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetAccessOk.Name = "btnSetAccessOk"
-        Me.btnSetAccessOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetAccessOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetAccessOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSetAccessOk.TabIndex = 27
         Me.btnSetAccessOk.Text = "Ok"
@@ -3318,7 +3318,7 @@ Partial Class FrmEditor_Events
         Me.btnSetAccessCancel.Location = New System.Drawing.Point(190, 74)
         Me.btnSetAccessCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetAccessCancel.Name = "btnSetAccessCancel"
-        Me.btnSetAccessCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetAccessCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetAccessCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSetAccessCancel.TabIndex = 26
         Me.btnSetAccessCancel.Text = "Cancel"
@@ -3372,7 +3372,7 @@ Partial Class FrmEditor_Events
         Me.btnSetWaitOk.Location = New System.Drawing.Point(75, 89)
         Me.btnSetWaitOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetWaitOk.Name = "btnSetWaitOk"
-        Me.btnSetWaitOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetWaitOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetWaitOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSetWaitOk.TabIndex = 37
         Me.btnSetWaitOk.Text = "Ok"
@@ -3382,7 +3382,7 @@ Partial Class FrmEditor_Events
         Me.btnSetWaitCancel.Location = New System.Drawing.Point(196, 89)
         Me.btnSetWaitCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetWaitCancel.Name = "btnSetWaitCancel"
-        Me.btnSetWaitCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetWaitCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetWaitCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSetWaitCancel.TabIndex = 36
         Me.btnSetWaitCancel.Text = "Cancel"
@@ -3466,7 +3466,7 @@ Partial Class FrmEditor_Events
         Me.btnShowPicOk.Location = New System.Drawing.Point(129, 298)
         Me.btnShowPicOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowPicOk.Name = "btnShowPicOk"
-        Me.btnShowPicOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowPicOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowPicOk.Size = New System.Drawing.Size(112, 35)
         Me.btnShowPicOk.TabIndex = 55
         Me.btnShowPicOk.Text = "Ok"
@@ -3476,7 +3476,7 @@ Partial Class FrmEditor_Events
         Me.btnShowPicCancel.Location = New System.Drawing.Point(250, 298)
         Me.btnShowPicCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowPicCancel.Name = "btnShowPicCancel"
-        Me.btnShowPicCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowPicCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowPicCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnShowPicCancel.TabIndex = 54
         Me.btnShowPicCancel.Text = "Cancel"
@@ -3661,7 +3661,7 @@ Partial Class FrmEditor_Events
         Me.btnOpenShopOk.Location = New System.Drawing.Point(66, 72)
         Me.btnOpenShopOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnOpenShopOk.Name = "btnOpenShopOk"
-        Me.btnOpenShopOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnOpenShopOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnOpenShopOk.Size = New System.Drawing.Size(112, 35)
         Me.btnOpenShopOk.TabIndex = 27
         Me.btnOpenShopOk.Text = "Ok"
@@ -3671,7 +3671,7 @@ Partial Class FrmEditor_Events
         Me.btnOpenShopCancel.Location = New System.Drawing.Point(188, 72)
         Me.btnOpenShopCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnOpenShopCancel.Name = "btnOpenShopCancel"
-        Me.btnOpenShopCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnOpenShopCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnOpenShopCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnOpenShopCancel.TabIndex = 26
         Me.btnOpenShopCancel.Text = "Cancel"
@@ -3722,7 +3722,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeLevelOk.Location = New System.Drawing.Point(69, 69)
         Me.btnChangeLevelOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeLevelOk.Name = "btnChangeLevelOk"
-        Me.btnChangeLevelOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeLevelOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeLevelOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeLevelOk.TabIndex = 27
         Me.btnChangeLevelOk.Text = "Ok"
@@ -3732,7 +3732,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeLevelCancel.Location = New System.Drawing.Point(190, 69)
         Me.btnChangeLevelCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeLevelCancel.Name = "btnChangeLevelCancel"
-        Me.btnChangeLevelCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeLevelCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeLevelCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeLevelCancel.TabIndex = 26
         Me.btnChangeLevelCancel.Text = "Cancel"
@@ -3783,7 +3783,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeGenderOk.Location = New System.Drawing.Point(58, 65)
         Me.btnChangeGenderOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeGenderOk.Name = "btnChangeGenderOk"
-        Me.btnChangeGenderOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeGenderOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeGenderOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeGenderOk.TabIndex = 27
         Me.btnChangeGenderOk.Text = "Ok"
@@ -3793,7 +3793,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeGenderCancel.Location = New System.Drawing.Point(180, 65)
         Me.btnChangeGenderCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeGenderCancel.Name = "btnChangeGenderCancel"
-        Me.btnChangeGenderCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeGenderCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeGenderCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeGenderCancel.TabIndex = 26
         Me.btnChangeGenderCancel.Text = "Cancel"
@@ -3844,7 +3844,7 @@ Partial Class FrmEditor_Events
         Me.btnGoToLabelOk.Location = New System.Drawing.Point(129, 68)
         Me.btnGoToLabelOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGoToLabelOk.Name = "btnGoToLabelOk"
-        Me.btnGoToLabelOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGoToLabelOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGoToLabelOk.Size = New System.Drawing.Size(112, 35)
         Me.btnGoToLabelOk.TabIndex = 27
         Me.btnGoToLabelOk.Text = "Ok"
@@ -3854,7 +3854,7 @@ Partial Class FrmEditor_Events
         Me.btnGoToLabelCancel.Location = New System.Drawing.Point(250, 68)
         Me.btnGoToLabelCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnGoToLabelCancel.Name = "btnGoToLabelCancel"
-        Me.btnGoToLabelCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnGoToLabelCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnGoToLabelCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnGoToLabelCancel.TabIndex = 26
         Me.btnGoToLabelCancel.Text = "Cancel"
@@ -3905,7 +3905,7 @@ Partial Class FrmEditor_Events
         Me.btnHidePicOk.Location = New System.Drawing.Point(129, 62)
         Me.btnHidePicOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnHidePicOk.Name = "btnHidePicOk"
-        Me.btnHidePicOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnHidePicOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnHidePicOk.Size = New System.Drawing.Size(112, 35)
         Me.btnHidePicOk.TabIndex = 27
         Me.btnHidePicOk.Text = "Ok"
@@ -3915,7 +3915,7 @@ Partial Class FrmEditor_Events
         Me.btnHidePicCancel.Location = New System.Drawing.Point(250, 62)
         Me.btnHidePicCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnHidePicCancel.Name = "btnHidePicCancel"
-        Me.btnHidePicCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnHidePicCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnHidePicCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnHidePicCancel.TabIndex = 26
         Me.btnHidePicCancel.Text = "Cancel"
@@ -3966,7 +3966,7 @@ Partial Class FrmEditor_Events
         Me.btnBeginQuestOk.Location = New System.Drawing.Point(129, 72)
         Me.btnBeginQuestOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnBeginQuestOk.Name = "btnBeginQuestOk"
-        Me.btnBeginQuestOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnBeginQuestOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnBeginQuestOk.Size = New System.Drawing.Size(112, 35)
         Me.btnBeginQuestOk.TabIndex = 27
         Me.btnBeginQuestOk.Text = "Ok"
@@ -3976,7 +3976,7 @@ Partial Class FrmEditor_Events
         Me.btnBeginQuestCancel.Location = New System.Drawing.Point(250, 72)
         Me.btnBeginQuestCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnBeginQuestCancel.Name = "btnBeginQuestCancel"
-        Me.btnBeginQuestCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnBeginQuestCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnBeginQuestCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnBeginQuestCancel.TabIndex = 26
         Me.btnBeginQuestCancel.Text = "Cancel"
@@ -4160,7 +4160,7 @@ Partial Class FrmEditor_Events
         Me.btnShowChoicesOk.Location = New System.Drawing.Point(126, 469)
         Me.btnShowChoicesOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowChoicesOk.Name = "btnShowChoicesOk"
-        Me.btnShowChoicesOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowChoicesOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowChoicesOk.Size = New System.Drawing.Size(112, 35)
         Me.btnShowChoicesOk.TabIndex = 25
         Me.btnShowChoicesOk.Text = "Ok"
@@ -4181,7 +4181,7 @@ Partial Class FrmEditor_Events
         Me.btnShowChoicesCancel.Location = New System.Drawing.Point(248, 469)
         Me.btnShowChoicesCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowChoicesCancel.Name = "btnShowChoicesCancel"
-        Me.btnShowChoicesCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowChoicesCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowChoicesCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnShowChoicesCancel.TabIndex = 24
         Me.btnShowChoicesCancel.Text = "Cancel"
@@ -4265,7 +4265,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayerVarOk.Location = New System.Drawing.Point(126, 191)
         Me.btnPlayerVarOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayerVarOk.Name = "btnPlayerVarOk"
-        Me.btnPlayerVarOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayerVarOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayerVarOk.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayerVarOk.TabIndex = 27
         Me.btnPlayerVarOk.Text = "Ok"
@@ -4275,7 +4275,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayerVarCancel.Location = New System.Drawing.Point(248, 191)
         Me.btnPlayerVarCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayerVarCancel.Name = "btnPlayerVarCancel"
-        Me.btnPlayerVarCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayerVarCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayerVarCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayerVarCancel.TabIndex = 26
         Me.btnPlayerVarCancel.Text = "Cancel"
@@ -4437,7 +4437,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeSpriteOk.Location = New System.Drawing.Point(126, 137)
         Me.btnChangeSpriteOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeSpriteOk.Name = "btnChangeSpriteOk"
-        Me.btnChangeSpriteOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeSpriteOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeSpriteOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeSpriteOk.TabIndex = 30
         Me.btnChangeSpriteOk.Text = "Ok"
@@ -4447,7 +4447,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeSpriteCancel.Location = New System.Drawing.Point(248, 137)
         Me.btnChangeSpriteCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeSpriteCancel.Name = "btnChangeSpriteCancel"
-        Me.btnChangeSpriteCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeSpriteCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeSpriteCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeSpriteCancel.TabIndex = 29
         Me.btnChangeSpriteCancel.Text = "Cancel"
@@ -4511,7 +4511,7 @@ Partial Class FrmEditor_Events
         Me.btnSelfswitchOk.Location = New System.Drawing.Point(126, 112)
         Me.btnSelfswitchOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSelfswitchOk.Name = "btnSelfswitchOk"
-        Me.btnSelfswitchOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSelfswitchOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSelfswitchOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSelfswitchOk.TabIndex = 27
         Me.btnSelfswitchOk.Text = "Ok"
@@ -4521,7 +4521,7 @@ Partial Class FrmEditor_Events
         Me.btnSelfswitchCancel.Location = New System.Drawing.Point(248, 112)
         Me.btnSelfswitchCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSelfswitchCancel.Name = "btnSelfswitchCancel"
-        Me.btnSelfswitchCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSelfswitchCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSelfswitchCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSelfswitchCancel.TabIndex = 26
         Me.btnSelfswitchCancel.Text = "Cancel"
@@ -4623,7 +4623,7 @@ Partial Class FrmEditor_Events
         Me.btnMapTintOk.Location = New System.Drawing.Point(126, 177)
         Me.btnMapTintOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMapTintOk.Name = "btnMapTintOk"
-        Me.btnMapTintOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMapTintOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMapTintOk.Size = New System.Drawing.Size(112, 35)
         Me.btnMapTintOk.TabIndex = 45
         Me.btnMapTintOk.Text = "Ok"
@@ -4633,7 +4633,7 @@ Partial Class FrmEditor_Events
         Me.btnMapTintCancel.Location = New System.Drawing.Point(248, 177)
         Me.btnMapTintCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMapTintCancel.Name = "btnMapTintCancel"
-        Me.btnMapTintCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnMapTintCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnMapTintCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnMapTintCancel.TabIndex = 44
         Me.btnMapTintCancel.Text = "Cancel"
@@ -4757,7 +4757,7 @@ Partial Class FrmEditor_Events
         Me.btnShowChatBubbleOk.Location = New System.Drawing.Point(126, 172)
         Me.btnShowChatBubbleOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowChatBubbleOk.Name = "btnShowChatBubbleOk"
-        Me.btnShowChatBubbleOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowChatBubbleOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowChatBubbleOk.Size = New System.Drawing.Size(112, 35)
         Me.btnShowChatBubbleOk.TabIndex = 31
         Me.btnShowChatBubbleOk.Text = "Ok"
@@ -4767,7 +4767,7 @@ Partial Class FrmEditor_Events
         Me.btnShowChatBubbleCancel.Location = New System.Drawing.Point(248, 172)
         Me.btnShowChatBubbleCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowChatBubbleCancel.Name = "btnShowChatBubbleCancel"
-        Me.btnShowChatBubbleCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowChatBubbleCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowChatBubbleCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnShowChatBubbleCancel.TabIndex = 30
         Me.btnShowChatBubbleCancel.Text = "Cancel"
@@ -4884,7 +4884,7 @@ Partial Class FrmEditor_Events
         Me.btnPlaySoundOk.Location = New System.Drawing.Point(126, 71)
         Me.btnPlaySoundOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlaySoundOk.Name = "btnPlaySoundOk"
-        Me.btnPlaySoundOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlaySoundOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlaySoundOk.Size = New System.Drawing.Size(112, 35)
         Me.btnPlaySoundOk.TabIndex = 27
         Me.btnPlaySoundOk.Text = "Ok"
@@ -4894,7 +4894,7 @@ Partial Class FrmEditor_Events
         Me.btnPlaySoundCancel.Location = New System.Drawing.Point(248, 71)
         Me.btnPlaySoundCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlaySoundCancel.Name = "btnPlaySoundCancel"
-        Me.btnPlaySoundCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlaySoundCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlaySoundCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnPlaySoundCancel.TabIndex = 26
         Me.btnPlaySoundCancel.Text = "Cancel"
@@ -4944,7 +4944,7 @@ Partial Class FrmEditor_Events
         Me.btnChangePkOk.Location = New System.Drawing.Point(120, 71)
         Me.btnChangePkOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangePkOk.Name = "btnChangePkOk"
-        Me.btnChangePkOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangePkOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangePkOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangePkOk.TabIndex = 27
         Me.btnChangePkOk.Text = "Ok"
@@ -4954,7 +4954,7 @@ Partial Class FrmEditor_Events
         Me.btnChangePkCancel.Location = New System.Drawing.Point(242, 71)
         Me.btnChangePkCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangePkCancel.Name = "btnChangePkCancel"
-        Me.btnChangePkCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangePkCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangePkCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangePkCancel.TabIndex = 26
         Me.btnChangePkCancel.Text = "Cancel"
@@ -5006,7 +5006,7 @@ Partial Class FrmEditor_Events
         Me.btnCreatelabelOk.Location = New System.Drawing.Point(126, 69)
         Me.btnCreatelabelOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCreatelabelOk.Name = "btnCreatelabelOk"
-        Me.btnCreatelabelOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCreatelabelOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCreatelabelOk.Size = New System.Drawing.Size(112, 35)
         Me.btnCreatelabelOk.TabIndex = 27
         Me.btnCreatelabelOk.Text = "Ok"
@@ -5016,7 +5016,7 @@ Partial Class FrmEditor_Events
         Me.btnCreatelabelCancel.Location = New System.Drawing.Point(248, 69)
         Me.btnCreatelabelCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCreatelabelCancel.Name = "btnCreatelabelCancel"
-        Me.btnCreatelabelCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCreatelabelCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCreatelabelCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCreatelabelCancel.TabIndex = 26
         Me.btnCreatelabelCancel.Text = "Cancel"
@@ -5067,7 +5067,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeClassOk.Location = New System.Drawing.Point(126, 71)
         Me.btnChangeClassOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeClassOk.Name = "btnChangeClassOk"
-        Me.btnChangeClassOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeClassOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeClassOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeClassOk.TabIndex = 27
         Me.btnChangeClassOk.Text = "Ok"
@@ -5077,7 +5077,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeClassCancel.Location = New System.Drawing.Point(248, 71)
         Me.btnChangeClassCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeClassCancel.Name = "btnChangeClassCancel"
-        Me.btnChangeClassCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeClassCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeClassCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeClassCancel.TabIndex = 26
         Me.btnChangeClassCancel.Text = "Cancel"
@@ -5141,7 +5141,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeSkillsOk.Location = New System.Drawing.Point(126, 103)
         Me.btnChangeSkillsOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeSkillsOk.Name = "btnChangeSkillsOk"
-        Me.btnChangeSkillsOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeSkillsOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeSkillsOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeSkillsOk.TabIndex = 27
         Me.btnChangeSkillsOk.Text = "Ok"
@@ -5151,7 +5151,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeSkillsCancel.Location = New System.Drawing.Point(248, 103)
         Me.btnChangeSkillsCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeSkillsCancel.Name = "btnChangeSkillsCancel"
-        Me.btnChangeSkillsCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeSkillsCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeSkillsCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeSkillsCancel.TabIndex = 26
         Me.btnChangeSkillsCancel.Text = "Cancel"
@@ -5237,7 +5237,7 @@ Partial Class FrmEditor_Events
         Me.btnCompleteQuestTaskOk.Location = New System.Drawing.Point(126, 114)
         Me.btnCompleteQuestTaskOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCompleteQuestTaskOk.Name = "btnCompleteQuestTaskOk"
-        Me.btnCompleteQuestTaskOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCompleteQuestTaskOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCompleteQuestTaskOk.Size = New System.Drawing.Size(112, 35)
         Me.btnCompleteQuestTaskOk.TabIndex = 27
         Me.btnCompleteQuestTaskOk.Text = "Ok"
@@ -5247,7 +5247,7 @@ Partial Class FrmEditor_Events
         Me.btnCompleteQuestTaskCancel.Location = New System.Drawing.Point(248, 114)
         Me.btnCompleteQuestTaskCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCompleteQuestTaskCancel.Name = "btnCompleteQuestTaskCancel"
-        Me.btnCompleteQuestTaskCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCompleteQuestTaskCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCompleteQuestTaskCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCompleteQuestTaskCancel.TabIndex = 26
         Me.btnCompleteQuestTaskCancel.Text = "Cancel"
@@ -5338,7 +5338,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayerWarpOk.Location = New System.Drawing.Point(124, 105)
         Me.btnPlayerWarpOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayerWarpOk.Name = "btnPlayerWarpOk"
-        Me.btnPlayerWarpOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayerWarpOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayerWarpOk.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayerWarpOk.TabIndex = 46
         Me.btnPlayerWarpOk.Text = "Ok"
@@ -5348,7 +5348,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayerWarpCancel.Location = New System.Drawing.Point(246, 105)
         Me.btnPlayerWarpCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayerWarpCancel.Name = "btnPlayerWarpCancel"
-        Me.btnPlayerWarpCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayerWarpCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayerWarpCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayerWarpCancel.TabIndex = 45
         Me.btnPlayerWarpCancel.Text = "Cancel"
@@ -5481,7 +5481,7 @@ Partial Class FrmEditor_Events
         Me.btnSetFogOk.Location = New System.Drawing.Point(126, 103)
         Me.btnSetFogOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetFogOk.Name = "btnSetFogOk"
-        Me.btnSetFogOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetFogOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetFogOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSetFogOk.TabIndex = 41
         Me.btnSetFogOk.Text = "Ok"
@@ -5491,7 +5491,7 @@ Partial Class FrmEditor_Events
         Me.btnSetFogCancel.Location = New System.Drawing.Point(248, 103)
         Me.btnSetFogCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetFogCancel.Name = "btnSetFogCancel"
-        Me.btnSetFogCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetFogCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetFogCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSetFogCancel.TabIndex = 40
         Me.btnSetFogCancel.Text = "Cancel"
@@ -5613,7 +5613,7 @@ Partial Class FrmEditor_Events
         Me.btnShowTextCancel.Location = New System.Drawing.Point(250, 388)
         Me.btnShowTextCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowTextCancel.Name = "btnShowTextCancel"
-        Me.btnShowTextCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowTextCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowTextCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnShowTextCancel.TabIndex = 24
         Me.btnShowTextCancel.Text = "Cancelar"
@@ -5623,7 +5623,7 @@ Partial Class FrmEditor_Events
         Me.btnShowTextOk.Location = New System.Drawing.Point(129, 388)
         Me.btnShowTextOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnShowTextOk.Name = "btnShowTextOk"
-        Me.btnShowTextOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnShowTextOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnShowTextOk.Size = New System.Drawing.Size(112, 35)
         Me.btnShowTextOk.TabIndex = 25
         Me.btnShowTextOk.Text = "Confirmar"
@@ -5646,9 +5646,9 @@ Partial Class FrmEditor_Events
         Me.DarkLabel26.Location = New System.Drawing.Point(165, 345)
         Me.DarkLabel26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel26.Name = "DarkLabel26"
-        Me.DarkLabel26.Size = New System.Drawing.Size(49, 20)
+        Me.DarkLabel26.Size = New System.Drawing.Size(56, 20)
         Me.DarkLabel26.TabIndex = 22
-        Me.DarkLabel26.Text = "Face:"
+        Me.DarkLabel26.Text = "Rosto:"
         '
         'nudShowTextFace
         '
@@ -5689,7 +5689,7 @@ Partial Class FrmEditor_Events
         Me.btnAddTextOk.Location = New System.Drawing.Point(82, 240)
         Me.btnAddTextOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddTextOk.Name = "btnAddTextOk"
-        Me.btnAddTextOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddTextOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnAddTextOk.Size = New System.Drawing.Size(112, 35)
         Me.btnAddTextOk.TabIndex = 9
         Me.btnAddTextOk.Text = "Ok"
@@ -5699,7 +5699,7 @@ Partial Class FrmEditor_Events
         Me.btnAddTextCancel.Location = New System.Drawing.Point(204, 240)
         Me.btnAddTextCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddTextCancel.Name = "btnAddTextCancel"
-        Me.btnAddTextCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddTextCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnAddTextCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnAddTextCancel.TabIndex = 8
         Me.btnAddTextCancel.Text = "Cancel"
@@ -5797,7 +5797,7 @@ Partial Class FrmEditor_Events
         Me.btnSetPlayerSwitchOk.Location = New System.Drawing.Point(30, 111)
         Me.btnSetPlayerSwitchOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetPlayerSwitchOk.Name = "btnSetPlayerSwitchOk"
-        Me.btnSetPlayerSwitchOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetPlayerSwitchOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetPlayerSwitchOk.Size = New System.Drawing.Size(112, 35)
         Me.btnSetPlayerSwitchOk.TabIndex = 9
         Me.btnSetPlayerSwitchOk.Text = "Confirmar"
@@ -5807,7 +5807,7 @@ Partial Class FrmEditor_Events
         Me.btnSetPlayerswitchCancel.Location = New System.Drawing.Point(152, 111)
         Me.btnSetPlayerswitchCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSetPlayerswitchCancel.Name = "btnSetPlayerswitchCancel"
-        Me.btnSetPlayerswitchCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSetPlayerswitchCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSetPlayerswitchCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnSetPlayerswitchCancel.TabIndex = 8
         Me.btnSetPlayerswitchCancel.Text = "Cancelar"
@@ -5907,7 +5907,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeItemsOk.Location = New System.Drawing.Point(38, 140)
         Me.btnChangeItemsOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeItemsOk.Name = "btnChangeItemsOk"
-        Me.btnChangeItemsOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeItemsOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeItemsOk.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeItemsOk.TabIndex = 7
         Me.btnChangeItemsOk.Text = "Ok"
@@ -5917,7 +5917,7 @@ Partial Class FrmEditor_Events
         Me.btnChangeItemsCancel.Location = New System.Drawing.Point(159, 140)
         Me.btnChangeItemsCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnChangeItemsCancel.Name = "btnChangeItemsCancel"
-        Me.btnChangeItemsCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnChangeItemsCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnChangeItemsCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnChangeItemsCancel.TabIndex = 6
         Me.btnChangeItemsCancel.Text = "Cancel"
@@ -6022,7 +6022,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayBgmOk.Location = New System.Drawing.Point(69, 71)
         Me.btnPlayBgmOk.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayBgmOk.Name = "btnPlayBgmOk"
-        Me.btnPlayBgmOk.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayBgmOk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayBgmOk.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayBgmOk.TabIndex = 27
         Me.btnPlayBgmOk.Text = "Ok"
@@ -6032,7 +6032,7 @@ Partial Class FrmEditor_Events
         Me.btnPlayBgmCancel.Location = New System.Drawing.Point(190, 71)
         Me.btnPlayBgmCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnPlayBgmCancel.Name = "btnPlayBgmCancel"
-        Me.btnPlayBgmCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnPlayBgmCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPlayBgmCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnPlayBgmCancel.TabIndex = 26
         Me.btnPlayBgmCancel.Text = "Cancel"

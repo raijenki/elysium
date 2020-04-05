@@ -491,7 +491,7 @@ Partial Class FrmAdmin
         Me.btnQuest.Name = "btnQuest"
         Me.btnQuest.Size = New System.Drawing.Size(168, 38)
         Me.btnQuest.TabIndex = 62
-        Me.btnQuest.Text = "Editor de Quests"
+        Me.btnQuest.Text = "Editor de Tarefas"
         Me.btnQuest.UseVisualStyleBackColor = True
         '
         'btnhouseEditor

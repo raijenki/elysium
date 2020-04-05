@@ -37,7 +37,7 @@
         If Editorindex <= 0 OrElse Editorindex > MaxQuests Then Exit Sub
 
         If Len(Trim$(txtName.Text)) = 0 Then
-            MsgBox("Name required.")
+            MsgBox("Nome necessário.")
         Else
             QuestEditorOk()
         End If
@@ -415,11 +415,11 @@
         For i = 1 To Quest(Editorindex).ReqCount
             Select Case Quest(Editorindex).Requirement(i)
                 Case 1
-                    lstRequirements.Items.Add(i & ":" & "Item Requirement: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Item: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case 2
-                    lstRequirements.Items.Add(i & ":" & "Quest Requirement: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Tarefa: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case 3
-                    lstRequirements.Items.Add(i & ":" & "Class Requirement: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Classe: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case Else
                     lstRequirements.Items.Add(i & ":")
             End Select
@@ -454,11 +454,11 @@
         For i = 1 To Quest(Editorindex).ReqCount
             Select Case Quest(Editorindex).Requirement(i)
                 Case 1
-                    lstRequirements.Items.Add(i & ":" & "Item Requirement: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Item: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case 2
-                    lstRequirements.Items.Add(i & ":" & "Quest Requirement: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Tarefa: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case 3
-                    lstRequirements.Items.Add(i & ":" & "Class Requirement: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
+                    lstRequirements.Items.Add(i & ":" & "Requerimento de Classe: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
                 Case Else
                     lstRequirements.Items.Add(i & ":")
             End Select

@@ -61,11 +61,11 @@ Public Class FrmEditor_MapEditor
     End Sub
 
     Private Sub PicBackSelect_Paint(ByVal sender As Object, ByVal e As PaintEventArgs) Handles picBackSelect.Paint
-        'Overrides the paint sub
+        'Sobrepor a funçãb de pintar
     End Sub
 
     Private Sub PnlBack_Paint(ByVal sender As Object, ByVal e As PaintEventArgs) Handles pnlBack.Paint
-        'Overrides the paint sub
+        'Sobrepor a funçãb de pintar
     End Sub
 
     Private Sub ScrlPictureY_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlPictureY.ValueChanged
@@ -105,7 +105,7 @@ Public Class FrmEditor_MapEditor
 #Region "Attributes"
 
     Private Sub ScrlMapWarpMap_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlMapWarpMap.ValueChanged
-        lblMapWarpMap.Text = "Map: " & scrlMapWarpMap.Value
+        lblMapWarpMap.Text = "Mapa: " & scrlMapWarpMap.Value
     End Sub
 
     Private Sub ScrlMapWarpX_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlMapWarpX.ValueChanged
@@ -237,7 +237,7 @@ Public Class FrmEditor_MapEditor
     End Sub
 
     Private Sub ScrlResource_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlResource.ValueChanged
-        lblResource.Text = "Resource: " & Resource(scrlResource.Value).Name
+        lblResource.Text = "Recurso: " & Resource(scrlResource.Value).Name
     End Sub
 
     Private Sub OptResource_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles optResource.CheckedChanged
@@ -265,7 +265,7 @@ Public Class FrmEditor_MapEditor
             If Map.Npc(n) > 0 Then
                 lstNpc.Items.Add(n & ": " & Npc(Map.Npc(n)).Name)
             Else
-                lstNpc.Items.Add(n & ": No Npc")
+                lstNpc.Items.Add(n & ": Nenhum Npc")
             End If
         Next n
 
@@ -299,7 +299,7 @@ Public Class FrmEditor_MapEditor
     End Sub
 
     Private Sub ScrlHeal_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlHeal.ValueChanged
-        lblHeal.Text = "Amount: " & scrlHeal.Value
+        lblHeal.Text = "Quant.: " & scrlHeal.Value
     End Sub
 
     Private Sub OptHeal_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles optHeal.CheckedChanged
@@ -311,7 +311,7 @@ Public Class FrmEditor_MapEditor
     End Sub
 
     Private Sub ScrlTrap_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles scrlTrap.ValueChanged
-        lblTrap.Text = "Amount: " & scrlTrap.Value
+        lblTrap.Text = "Quant.: " & scrlTrap.Value
     End Sub
 
     Private Sub BtnTrap_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnTrap.Click
@@ -335,13 +335,13 @@ Public Class FrmEditor_MapEditor
     Private Sub ScrlNpcDir_Scroll(sender As Object, e As EventArgs) Handles scrlNpcDir.ValueChanged
         Select Case scrlNpcDir.Value
             Case 0
-                lblNpcDir.Text = "Direction: Up"
+                lblNpcDir.Text = "Direção: Cima"
             Case 1
-                lblNpcDir.Text = "Direction: Down"
+                lblNpcDir.Text = "Direção: Baixo"
             Case 2
-                lblNpcDir.Text = "Direction: Left"
+                lblNpcDir.Text = "Direção: Esquerda"
             Case 3
-                lblNpcDir.Text = "Direction: Right"
+                lblNpcDir.Text = "Direção: Direita"
         End Select
     End Sub
 
@@ -406,7 +406,7 @@ Public Class FrmEditor_MapEditor
                 lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = cmbNpcList.SelectedIndex & ": " & Npc(cmbNpcList.SelectedIndex).Name
                 Map.Npc(lstMapNpc.SelectedIndex + 1) = cmbNpcList.SelectedIndex
             Else
-                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = "No NPC"
+                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = "Nenhum NPC"
                 Map.Npc(lstMapNpc.SelectedIndex + 1) = 0
             End If
 
@@ -445,12 +445,12 @@ Public Class FrmEditor_MapEditor
             .BootX = Val(txtBootX.Text)
             .BootY = Val(txtBootY.Text)
 
-            ' set the data before changing it
+            ' setar dados antes de alterá-los
             tempArr = Map.Tile.Clone
 
             x2 = Map.MaxX
             y2 = Map.MaxY
-            ' change the data
+            ' alterar dados
             .MaxX = Val(txtMaxX.Text)
             .MaxY = Val(txtMaxY.Text)
             ReDim Map.Tile(0 To .MaxX, 0 To .MaxY)
@@ -498,24 +498,24 @@ Public Class FrmEditor_MapEditor
     Private Sub BtnCopyEvent_Click(sender As Object, e As EventArgs) Handles btnCopyEvent.Click
         If EventCopy = False Then
             EventCopy = True
-            lblCopyMode.Text = "CopyMode On"
+            lblCopyMode.Text = "ModoCopiar Ligado"
             EventPaste = False
-            lblPasteMode.Text = "PasteMode Off"
+            lblPasteMode.Text = "ModoCola Desligado"
         Else
             EventCopy = False
-            lblCopyMode.Text = "CopyMode Off"
+            lblCopyMode.Text = "ModoCopiar Desligado"
         End If
     End Sub
 
     Private Sub BtnPasteEvent_Click(sender As Object, e As EventArgs) Handles btnPasteEvent.Click
         If EventPaste = False Then
             EventPaste = True
-            lblPasteMode.Text = "PasteMode On"
+            lblPasteMode.Text = "ModoCola Ligado"
             EventCopy = False
-            lblCopyMode.Text = "CopyMode Off"
+            lblCopyMode.Text = "CopyMode Desligado"
         Else
             EventPaste = False
-            lblPasteMode.Text = "PasteMode Off"
+            lblPasteMode.Text = "ModoCola Desligado"
         End If
     End Sub
 
@@ -529,22 +529,22 @@ Public Class FrmEditor_MapEditor
 
     Private Sub ScrlFog_Scroll(sender As Object, e As EventArgs) Handles scrlFog.ValueChanged
         Map.Fogindex = scrlFog.Value
-        lblFogIndex.Text = "Fog: " & scrlFog.Value
+        lblFogIndex.Text = "Névoa: " & scrlFog.Value
     End Sub
 
     Private Sub ScrlIntensity_Scroll(sender As Object, e As EventArgs) Handles scrlIntensity.ValueChanged
         Map.WeatherIntensity = scrlIntensity.Value
-        lblIntensity.Text = "Intensity: " & scrlIntensity.Value
+        lblIntensity.Text = "Intensidade: " & scrlIntensity.Value
     End Sub
 
     Private Sub ScrlFogSpeed_Scroll(sender As Object, e As EventArgs) Handles scrlFogSpeed.ValueChanged
         Map.FogSpeed = scrlFogSpeed.Value
-        lblFogSpeed.Text = "FogSpeed: " & scrlFogSpeed.Value
+        lblFogSpeed.Text = "Velocidade: " & scrlFogSpeed.Value
     End Sub
 
     Private Sub ScrlFogAlpha_Scroll(sender As Object, e As EventArgs) Handles scrlFogAlpha.ValueChanged
         Map.FogAlpha = scrlFogAlpha.Value
-        lblFogAlpha.Text = "Fog Alpha: " & scrlFogAlpha.Value
+        lblFogAlpha.Text = "Transparência: " & scrlFogAlpha.Value
     End Sub
 
     Private Sub ChkUseTint_CheckedChanged(sender As Object, e As EventArgs) Handles chkUseTint.CheckedChanged
@@ -557,17 +557,17 @@ Public Class FrmEditor_MapEditor
 
     Private Sub ScrlMapRed_Scroll(sender As Object, e As EventArgs) Handles scrlMapRed.ValueChanged
         Map.MapTintR = scrlMapRed.Value
-        lblMapRed.Text = "Red: " & scrlMapRed.Value
+        lblMapRed.Text = "Vermelho: " & scrlMapRed.Value
     End Sub
 
     Private Sub ScrlMapGreen_Scroll(sender As Object, e As EventArgs) Handles scrlMapGreen.ValueChanged
         Map.MapTintG = scrlMapGreen.Value
-        lblMapGreen.Text = "Green: " & scrlMapGreen.Value
+        lblMapGreen.Text = "Verde: " & scrlMapGreen.Value
     End Sub
 
     Private Sub ScrlMapBlue_Scroll(sender As Object, e As EventArgs) Handles scrlMapBlue.ValueChanged
         Map.MapTintB = scrlMapBlue.Value
-        lblMapBlue.Text = "Blue: " & scrlMapBlue.Value
+        lblMapBlue.Text = "Azul: " & scrlMapBlue.Value
     End Sub
 
     Private Sub ScrlMapAlpha_Scroll(sender As Object, e As EventArgs) Handles scrlMapAlpha.ValueChanged
@@ -592,10 +592,10 @@ Public Class FrmEditor_MapEditor
 
         txtName.Text = Trim$(Map.Name)
 
-        ' find the music we have set
+        ' encontrar a música que setamos
 
         lstMusic.Items.Clear()
-        lstMusic.Items.Add("None")
+        lstMusic.Items.Add("Nenhum")
 
         If UBound(MusicCache) > 0 Then
             For i = 1 To UBound(MusicCache)
@@ -603,7 +603,7 @@ Public Class FrmEditor_MapEditor
             Next
         End If
 
-        If Trim$(Map.Music) = "None" Then
+        If Trim$(Map.Music) = "Nenhum" Then
             lstMusic.SelectedIndex = 0
         Else
             For i = 1 To lstMusic.Items.Count
@@ -614,7 +614,7 @@ Public Class FrmEditor_MapEditor
             Next
         End If
 
-        ' rest of it
+        ' resto
         txtUp.Text = Map.Up
         txtDown.Text = Map.Down
         txtLeft.Text = Map.Left
@@ -628,7 +628,7 @@ Public Class FrmEditor_MapEditor
 
         For X = 1 To MAX_MAP_NPCS
             If Map.Npc(X) = 0 Then
-                lstMapNpc.Items.Add("No NPC")
+                lstMapNpc.Items.Add("Nenhum NPC")
             Else
                 lstMapNpc.Items.Add(X & ": " & Trim$(Npc(Map.Npc(X)).Name))
             End If
@@ -636,13 +636,13 @@ Public Class FrmEditor_MapEditor
         Next
 
         cmbNpcList.Items.Clear()
-        cmbNpcList.Items.Add("No NPC")
+        cmbNpcList.Items.Add("Nenhum NPC")
 
         For Y = 1 To MAX_NPCS
             cmbNpcList.Items.Add(Y & ": " & Trim$(Npc(Y).Name))
         Next
 
-        lblMap.Text = "Current map: " & "?"
+        lblMap.Text = "Mapa Atual: " & "?"
         txtMaxX.Text = Map.MaxX
         txtMaxY.Text = Map.MaxY
 
@@ -652,37 +652,37 @@ Public Class FrmEditor_MapEditor
 
         cmbWeather.SelectedIndex = Map.WeatherType
         scrlFog.Value = Map.Fogindex
-        lblFogIndex.Text = "Fog: " & scrlFog.Value
+        lblFogIndex.Text = "Névoa: " & scrlFog.Value
         scrlIntensity.Value = Map.WeatherIntensity
-        lblIntensity.Text = "Intensity: " & scrlIntensity.Value
+        lblIntensity.Text = "Intensidade: " & scrlIntensity.Value
 
         cmbPanorama.Items.Clear()
-        cmbPanorama.Items.Add("None")
+        cmbPanorama.Items.Add("Nenhum")
         For i = 1 To NumPanorama
             cmbPanorama.Items.Add("Panorama" & i)
         Next
 
         cmbParallax.Items.Clear()
-        cmbParallax.Items.Add("None")
+        cmbParallax.Items.Add("Nenhum")
         For i = 1 To NumParallax
             cmbParallax.Items.Add("Parallax" & i)
         Next
 
-        ' render the tiles
+        ' renderizar tiles
         EditorMap_DrawTileset()
 
         tabpages.SelectedIndex = 0
 
-        ' show the form
+        ' mostrar o formulario
         Visible = True
 
     End Sub
 
     Public Sub MapEditorInit()
-        ' we're in the map editor
+        ' estamos no editor de mapas
         InMapEditor = True
 
-        ' set the scrolly bars
+        ' setar barras de scroll
         If Map.Tileset = 0 Then Map.Tileset = 1
         If Map.Tileset > NumTileSets Then Map.Tileset = 1
 
@@ -694,24 +694,24 @@ Public Class FrmEditor_MapEditor
         If TileSetTextureInfo(LastTileset).IsLoaded = False Then
             LoadTexture(LastTileset, 1)
         End If
-        ' we use it, lets update timer
+        ' atualizar contador
         With TileSetTextureInfo(LastTileset)
             .TextureTimer = GetTickCount() + 100000
         End With
 
-        ' set the scrollbars
+        ' setar barras de scroll
 
         scrlPictureY.Maximum = (TileSetTextureInfo(LastTileset).Height \ PicY) \ 2
         scrlPictureX.Maximum = (TileSetTextureInfo(LastTileset).Width \ PicX) \ 2
         'height = TileSetTextureInfo(tileset).Height
         'width = TileSetTextureInfo(tileset).Width
 
-        ' set shops for the shop attribute
-        cmbShop.Items.Add("None")
+        ' setar lojas para os atributos
+        cmbShop.Items.Add("Nenhum")
         For i = 1 To MAX_SHOPS
             cmbShop.Items.Add(i & ": " & Shop(i).Name)
         Next
-        ' we're not in a shop
+        ' nao estamos em uma loja
         cmbShop.SelectedIndex = 0
 
         optBlocked.Checked = True
@@ -737,7 +737,7 @@ Public Class FrmEditor_MapEditor
 
     Public Sub MapEditorChooseTile(ByVal Button As Integer, ByVal X As Single, ByVal Y As Single)
 
-        If Button = MouseButtons.Left Then 'Left Mouse Button
+        If Button = MouseButtons.Left Then 'Botao esqueod do mouse
 
             EditorTileWidth = 1
             EditorTileHeight = 1
@@ -747,16 +747,16 @@ Public Class FrmEditor_MapEditor
                     Case 1 ' autotile
                         EditorTileWidth = 2
                         EditorTileHeight = 3
-                    Case 2 ' fake autotile
+                    Case 2 ' falso autotile
                         EditorTileWidth = 1
                         EditorTileHeight = 1
-                    Case 3 ' animated
+                    Case 3 ' animado
                         EditorTileWidth = 6
                         EditorTileHeight = 3
-                    Case 4 ' cliff
+                    Case 4 ' penhasco
                         EditorTileWidth = 2
                         EditorTileHeight = 2
-                    Case 5 ' waterfall
+                    Case 5 ' cachoeira
                         EditorTileWidth = 2
                         EditorTileHeight = 3
                 End Select
@@ -774,26 +774,26 @@ Public Class FrmEditor_MapEditor
 
     Public Sub MapEditorDrag(ByVal Button As Integer, ByVal X As Single, ByVal Y As Single)
 
-        If Button = MouseButtons.Left Then 'Left Mouse Button
-            ' convert the pixel number to tile number
+        If Button = MouseButtons.Left Then 'botao esquerdo do mouse
+            ' converter o numero do pixel para o numero do tile
             X = (X \ PicX) + 1
             Y = (Y \ PicY) + 1
-            ' check it's not out of bounds
+            ' ver se nao está fora dos limites
             If X < 0 Then X = 0
             If X > picBackSelect.Width / PicX Then X = picBackSelect.Width / PicX
             If Y < 0 Then Y = 0
             If Y > picBackSelect.Height / PicY Then Y = picBackSelect.Height / PicY
-            ' find out what to set the width + height of map editor to
+            ' descobrir qual deve ser o comprimento + altura 
             If X > EditorTileX Then ' drag right
                 'EditorTileWidth = X
                 EditorTileWidth = X - EditorTileX
-            Else ' drag left
+            Else ' levar a esquerda
                 ' TO DO
             End If
-            If Y > EditorTileY Then ' drag down
+            If Y > EditorTileY Then ' levar para baixo
                 'EditorTileHeight = Y
                 EditorTileHeight = Y - EditorTileY
-            Else ' drag up
+            Else ' levar para cima
                 ' TO DO
             End If
 
@@ -812,7 +812,7 @@ Public Class FrmEditor_MapEditor
         If Not IsInBounds() Then Exit Sub
         If Button = MouseButtons.Left Then
             If tabpages.SelectedTab Is tpTiles Then
-                If EditorTileWidth = 1 AndAlso EditorTileHeight = 1 Then 'single tile
+                If EditorTileWidth = 1 AndAlso EditorTileHeight = 1 Then 'unica tile
 
                     MapEditorSetTile(CurX, CurY, CurLayer, False, cmbAutoTile.SelectedIndex)
                 Else ' multi tile!
@@ -824,107 +824,107 @@ Public Class FrmEditor_MapEditor
                 End If
             ElseIf tabpages.SelectedTab Is tpAttributes Then
                 With Map.Tile(CurX, CurY)
-                    ' blocked tile
+                    ' tile bloqueada
                     If optBlocked.Checked = True Then .Type = TileType.Blocked
-                    ' warp tile
+                    ' tile de teleporte
                     If optWarp.Checked = True Then
                         .Type = TileType.Warp
                         .Data1 = EditorWarpMap
                         .Data2 = EditorWarpX
                         .Data3 = EditorWarpY
                     End If
-                    ' item spawn
+                    ' aparecimento de item
                     If optItem.Checked = True Then
                         .Type = TileType.Item
                         .Data1 = ItemEditorNum
                         .Data2 = ItemEditorValue
                         .Data3 = 0
                     End If
-                    ' npc avoid
+                    ' evitar npc
                     If optNPCAvoid.Checked = True Then
                         .Type = TileType.NpcAvoid
                         .Data1 = 0
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    ' key
+                    ' chave
                     If optKey.Checked = True Then
                         .Type = TileType.Key
                         .Data1 = KeyEditorNum
                         .Data2 = KeyEditorTake
                         .Data3 = 0
                     End If
-                    ' key open
+                    ' abrir chve
                     If optKeyOpen.Checked = True Then
                         .Type = TileType.KeyOpen
                         .Data1 = KeyOpenEditorX
                         .Data2 = KeyOpenEditorY
                         .Data3 = 0
                     End If
-                    ' resource
+                    ' recurso
                     If optResource.Checked = True Then
                         .Type = TileType.Resource
                         .Data1 = ResourceEditorNum
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    ' door
+                    ' porta
                     If optDoor.Checked = True Then
                         .Type = TileType.Door
                         .Data1 = EditorWarpMap
                         .Data2 = EditorWarpX
                         .Data3 = EditorWarpY
                     End If
-                    ' npc spawn
+                    ' gerar npc
                     If optNPCSpawn.Checked = True Then
                         .Type = TileType.NpcSpawn
                         .Data1 = SpawnNpcNum
                         .Data2 = SpawnNpcDir
                         .Data3 = 0
                     End If
-                    ' shop
+                    ' loja
                     If optShop.Checked = True Then
                         .Type = TileType.Shop
                         .Data1 = EditorShop
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    ' bank
+                    ' banco
                     If optBank.Checked = True Then
                         .Type = TileType.Bank
                         .Data1 = 0
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    ' heal
+                    ' cura
                     If optHeal.Checked = True Then
                         .Type = TileType.Heal
                         .Data1 = MapEditorHealType
                         .Data2 = MapEditorHealAmount
                         .Data3 = 0
                     End If
-                    ' trap
+                    ' armadilha
                     If optTrap.Checked = True Then
                         .Type = TileType.Trap
                         .Data1 = MapEditorHealAmount
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    'Housing
+                    'moradia
                     If optHouse.Checked Then
                         .Type = TileType.House
                         .Data1 = HouseTileindex
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    'craft tile
+                    'tile de artesenato
                     If optCraft.Checked Then
                         .Type = TileType.Craft
                         .Data1 = 0
                         .Data2 = 0
                         .Data3 = 0
                     End If
-                    'light
+                    'luz
                     If optLight.Checked Then
                         .Type = TileType.Light
                         .Data1 = 0
@@ -934,14 +934,14 @@ Public Class FrmEditor_MapEditor
                 End With
             ElseIf tabpages.SelectedTab Is tpDirBlock Then
                 If movedMouse Then Exit Sub
-                ' find what tile it is
+                ' descobrir que tile é
                 X -= ((X \ PicX) * PicX)
                 Y -= ((Y \ PicY) * PicY)
-                ' see if it hits an arrow
+                ' ver se inverte uma seta
                 For i = 1 To 4
                     If X >= DirArrowX(i) AndAlso X <= DirArrowX(i) + 8 Then
                         If Y >= DirArrowY(i) AndAlso Y <= DirArrowY(i) + 8 Then
-                            ' flip the value.
+                            ' inverter o valor.
                             SetDirBlock(Map.Tile(CurX, CurY).DirBlock, (i), Not IsDirBlocked(Map.Tile(CurX, CurY).DirBlock, (i)))
                             Exit Sub
                         End If
@@ -964,13 +964,13 @@ Public Class FrmEditor_MapEditor
             If tabpages.SelectedTab Is tpTiles Then
 
                 With Map.Tile(CurX, CurY)
-                    ' clear layer
+                    ' limpar camada
                     .Layer(CurLayer).X = 0
                     .Layer(CurLayer).Y = 0
                     .Layer(CurLayer).Tileset = 0
                     If .Layer(CurLayer).AutoTile > 0 Then
                         .Layer(CurLayer).AutoTile = 0
-                        ' do a re-init so we can see our changes
+                        ' reiniciar para ver nossas mundaças
                         InitAutotiles()
                     End If
                     CacheRenderState(X, Y, CurLayer)
@@ -978,7 +978,7 @@ Public Class FrmEditor_MapEditor
 
             ElseIf tabpages.SelectedTab Is tpAttributes Then
                 With Map.Tile(CurX, CurY)
-                    ' clear attribute
+                    ' limpar atributos
                     .Type = 0
                     .Data1 = 0
                     .Data2 = 0
@@ -1014,21 +1014,21 @@ Public Class FrmEditor_MapEditor
 
         If theAutotile > 0 Then
             With Map.Tile(X, Y)
-                ' set layer
+                ' setar camada
                 .Layer(CurLayer).X = EditorTileX
                 .Layer(CurLayer).Y = EditorTileY
                 .Layer(CurLayer).Tileset = cmbTileSets.SelectedIndex + 1
                 .Layer(CurLayer).AutoTile = theAutotile
                 CacheRenderState(X, Y, CurLayer)
             End With
-            ' do a re-init so we can see our changes
+            ' reiniciar  para ver nossas mundaças
             InitAutotiles()
             Exit Sub
         End If
 
-        If Not multitile Then ' single
+        If Not multitile Then ' unica
             With Map.Tile(X, Y)
-                ' set layer
+                ' setar camada
                 .Layer(CurLayer).X = EditorTileX
                 .Layer(CurLayer).Y = EditorTileY
                 .Layer(CurLayer).Tileset = cmbTileSets.SelectedIndex + 1
@@ -1036,9 +1036,9 @@ Public Class FrmEditor_MapEditor
                 CacheRenderState(X, Y, CurLayer)
             End With
         Else ' multitile
-            y2 = 0 ' starting tile for y axis
+            y2 = 0 ' tile inicial para eixo y
             For Y = CurY To CurY + EditorTileHeight - 1
-                x2 = 0 ' re-set x count every y loop
+                x2 = 0 ' resetar o contador x a cada loop y  
                 For X = CurX To CurX + EditorTileWidth - 1
                     If X >= 0 AndAlso X <= Map.MaxX Then
                         If Y >= 0 AndAlso Y <= Map.MaxY Then
@@ -1067,8 +1067,8 @@ Public Class FrmEditor_MapEditor
 
         If CurLayer = 0 Then Exit Sub
 
-        ' ask to clear layer
-        If MsgBox("Are you sure you wish to clear this layer?", vbYesNo, "MapEditor") = vbYes Then
+        ' perguntar para limar camada
+        If MsgBox("Tem certeza que quer limpar esta camada?", vbYesNo, "Editor de Mapas") = vbYes Then
             For X = 0 To Map.MaxX
                 For Y = 0 To Map.MaxY
                     With Map.Tile(X, Y)
@@ -1090,7 +1090,7 @@ Public Class FrmEditor_MapEditor
 
         CurLayer = cmbLayers.SelectedIndex + 1
 
-        If MsgBox("Are you sure you wish to fill this layer?", vbYesNo, "Map Editor") = vbYes Then
+        If MsgBox("Tem certeza que quer preencher esta camada?", vbYesNo, "Editor de Mapas") = vbYes Then
             If theAutotile > 0 Then
                 For X = 0 To Map.MaxX
                     For Y = 0 To Map.MaxY
@@ -1102,7 +1102,7 @@ Public Class FrmEditor_MapEditor
                     Next
                 Next
 
-                ' do a re-init so we can see our changes
+                ' reiniciar para ver nossas mudanças
                 InitAutotiles()
             Else
                 For X = 0 To Map.MaxX
@@ -1136,7 +1136,7 @@ Public Class FrmEditor_MapEditor
         Dim X As Integer
         Dim Y As Integer
 
-        If MsgBox("Are you sure you wish to clear the attributes on this map?", vbYesNo, "MapEditor") = vbYes Then
+        If MsgBox("Tem certeza que quer limpar os atributos deste mapa?", vbYesNo, "Editor de Mapas") = vbYes Then
 
             For X = 0 To Map.MaxX
                 For Y = 0 To Map.MaxY
@@ -1151,7 +1151,7 @@ Public Class FrmEditor_MapEditor
     Public Sub MapEditorLeaveMap()
 
         If InMapEditor Then
-            If MsgBox("Save changes to current map?", vbYesNo) = vbYes Then
+            If MsgBox("Salvar Mudanças para Este Mapa?", vbYesNo) = vbYes Then
                 MapEditorSend()
             Else
                 MapEditorCancel()
@@ -1172,10 +1172,10 @@ Public Class FrmEditor_MapEditor
         TilesetWindow.DispatchEvents()
         TilesetWindow.Clear(SFML.Graphics.Color.Black)
 
-        ' find tileset number
+        ' encontrar numero da tileset
         tileset = Me.cmbTileSets.SelectedIndex + 1
 
-        ' exit out if doesn't exist
+        ' sair se nao existir
         If tileset <= 0 OrElse tileset > NumTileSets Then Exit Sub
 
         Dim rec2 As New RectangleShape With {
@@ -1187,7 +1187,7 @@ Public Class FrmEditor_MapEditor
         If TileSetTextureInfo(tileset).IsLoaded = False Then
             LoadTexture(tileset, 1)
         End If
-        ' we use it, lets update timer
+        ' atualizar contador
         With TileSetTextureInfo(tileset)
             .TextureTimer = GetTickCount() + 100000
         End With
@@ -1199,22 +1199,22 @@ Public Class FrmEditor_MapEditor
 
         'TilesetWindow.SetView(New SFML.Graphics.View(New FloatRect(0, 0, picbackleft + Me.picBackSelect.Width, picbacktop + Me.picBackSelect.Height)))
 
-        ' change selected shape for autotiles
+        ' alterar forma selecionada para autotile
         If Me.cmbAutoTile.SelectedIndex > 0 Then
             Select Case Me.cmbAutoTile.SelectedIndex
                 Case 1 ' autotile
                     EditorTileWidth = 2
                     EditorTileHeight = 3
-                Case 2 ' fake autotile
+                Case 2 ' autotile falsa
                     EditorTileWidth = 1
                     EditorTileHeight = 1
-                Case 3 ' animated
+                Case 3 ' animada
                     EditorTileWidth = 6
                     EditorTileHeight = 3
-                Case 4 ' cliff
+                Case 4 ' penhasco
                     EditorTileWidth = 2
                     EditorTileHeight = 2
-                Case 5 ' waterfall
+                Case 5 ' cachoeira
                     EditorTileWidth = 2
                     EditorTileHeight = 3
                 Case Else
@@ -1235,7 +1235,7 @@ Public Class FrmEditor_MapEditor
         rec2.Position = New Vector2f((EditorTileSelStart.X * PicX - picbackleft), (EditorTileSelStart.Y * PicY - picbacktop))
         TilesetWindow.Draw(rec2)
 
-        'and finally show everything on screen
+        'mostrar tudo na tela
         TilesetWindow.Display()
 
         LastTileset = tileset
@@ -1272,6 +1272,10 @@ Public Class FrmEditor_MapEditor
 
     End Sub
 
+    Private Sub optLight_CheckedChanged(sender As Object, e As EventArgs) Handles optLight.CheckedChanged
+
+    End Sub
+
     Friend Sub DrawTileOutline()
         Dim rec As Rectangle
         If Me.tabpages.SelectedTab Is Me.tpDirBlock Then Exit Sub
@@ -1295,7 +1299,7 @@ Public Class FrmEditor_MapEditor
             If TileSetTextureInfo(Me.cmbTileSets.SelectedIndex + 1).IsLoaded = False Then
                 LoadTexture(Me.cmbTileSets.SelectedIndex + 1, 1)
             End If
-            ' we use it, lets update timer
+            ' atualizar contador
             With TileSetTextureInfo(Me.cmbTileSets.SelectedIndex + 1)
                 .TextureTimer = GetTickCount() + 100000
             End With

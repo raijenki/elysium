@@ -32,15 +32,15 @@
     End Sub
 
     Private Sub PicItem_Paint(sender As Object, e As PaintEventArgs) Handles picItem.Paint
-        'Dont let it auto paint ;)
+        'Não deixar pintar automaticamente
     End Sub
 
     Private Sub PicPaperdoll_Paint(sender As Object, e As PaintEventArgs) Handles picPaperdoll.Paint
-        'Dont let it auto paint :0
+        'Não deixar pintar automaticamente
     End Sub
 
     Private Sub PicFurniture_Paint(sender As Object, e As PaintEventArgs) Handles picFurniture.Paint
-        'Dont let it auto paint ;)
+        'Não deixar pintar automaticamente
     End Sub
 
     Private Sub FrmEditor_Item_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -97,16 +97,16 @@
         If (cmbType.SelectedIndex = ItemType.Equipment) Then
             fraEquipment.Visible = True
 
-            ' Build subtype cmb
+            ' Construir subtips
             cmbSubType.Items.Clear()
-            cmbSubType.Items.Add("None")
+            cmbSubType.Items.Add("Nenhum")
 
-            cmbSubType.Items.Add("Weapon")
-            cmbSubType.Items.Add("Armor")
-            cmbSubType.Items.Add("Helmet")
-            cmbSubType.Items.Add("Shield")
-            cmbSubType.Items.Add("Shoes")
-            cmbSubType.Items.Add("Gloves")
+            cmbSubType.Items.Add("Arma")
+            cmbSubType.Items.Add("Armdura")
+            cmbSubType.Items.Add("Capacete")
+            cmbSubType.Items.Add("Escudo")
+            cmbSubType.Items.Add("Calçados")
+            cmbSubType.Items.Add("Luvas")
 
             cmbSubType.Enabled = True
             cmbSubType.SelectedIndex = Item(Editorindex).SubType
@@ -117,9 +117,9 @@
         If (cmbType.SelectedIndex = ItemType.Consumable) Then
             fraVitals.Visible = True
 
-            ' Build subtype cmb
+            ' Construir subtipos
             cmbSubType.Items.Clear()
-            cmbSubType.Items.Add("None")
+            cmbSubType.Items.Add("Nenhum")
 
             cmbSubType.Items.Add("Hp")
             cmbSubType.Items.Add("Mp")
@@ -427,7 +427,7 @@
             LoadTexture(nudFurniture.Value, 10)
         End If
 
-        'seeying we still use it, lets update timer
+        'atualizar contador
         With FurnitureGFXInfo(nudFurniture.Value)
             .TextureTimer = GetTickCount() + 100000
         End With
