@@ -6,14 +6,14 @@ Module C_Items
 
 #Region "Globals & Types"
 
-    ' inv drag + drop
+    ' arrastar e soltar do inventário
     Friend DragInvSlotNum As Integer
 
     Friend InvX As Integer
     Friend InvY As Integer
 
-    Friend InvItemFrame(MAX_INV) As Byte ' Used for animated items
-    Friend LastItemDesc As Integer ' Stores the last item we showed in desc
+    Friend InvItemFrame(MAX_INV) As Byte ' Usado para itens animados
+    Friend LastItemDesc As Integer ' Guarda o último item que mostramos no desc
 
 #End Region
 
@@ -71,11 +71,11 @@ Module C_Items
 
         buffer.Dispose()
 
-        ' changes to inventory, need to clear any drop menu
+        ' Muda para o inventário, precisa limpar qualquer drop menu
         FrmGame.pnlCurrency.Visible = False
         FrmGame.txtCurrency.Text = ""
         TmpCurrencyItem = 0
-        CurrencyMenu = 0 ' clear
+        CurrencyMenu = 0 ' limpeza
 
     End Sub
 

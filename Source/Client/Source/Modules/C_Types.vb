@@ -1,6 +1,6 @@
 ﻿Module C_Types2
 
-    ' client-side stuff
+    ' Coisas do lado do cliente
     Friend ActionMsg(Byte.MaxValue) As ActionMsgRec
 
     Friend Blood(Byte.MaxValue) As BloodRec

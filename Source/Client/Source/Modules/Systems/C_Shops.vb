@@ -5,8 +5,8 @@ Module C_Shops
 
 #Region "Globals & Types"
 
-    Friend InShop As Integer ' is the player in a shop?
-    Friend ShopAction As Byte ' stores the current shop action
+    Friend InShop As Integer ' o jogador está em uma loja?
+    Friend ShopAction As Byte ' guarda a ação atual na loja
 
 #End Region
 
@@ -110,37 +110,37 @@ Module C_Shops
 
         If Not InGame OrElse PnlShopVisible = False Then Exit Sub
 
-        'first render panel
+        'primeiramente renderizar painel
         RenderSprite(ShopPanelSprite, GameWindow, ShopWindowX, ShopWindowY, 0, 0, ShopPanelGfxInfo.Width, ShopPanelGfxInfo.Height)
 
         If Shop(InShop).Face > 0 Then
-            'render face
+            'renderizar rosto
             If FacesGfxInfo(Shop(InShop).Face).IsLoaded = False Then
                 LoadTexture(Shop(InShop).Face, 7)
             End If
 
-            'seeying we still use it, lets update timer
+            'se estivermos utilizando, atualizar contador
             With FacesGfxInfo(Shop(InShop).Face)
                 .TextureTimer = GetTickCount() + 100000
             End With
             RenderSprite(FacesSprite(Shop(InShop).Face), GameWindow, ShopWindowX + ShopFaceX, ShopWindowY + ShopFaceY, 0, 0, FacesGfxInfo(Shop(InShop).Face).Width, FacesGfxInfo(Shop(InShop).Face).Height)
         End If
 
-        'draw text
+        'desenhar texto
         DrawText(ShopWindowX + ShopLeft, ShopWindowY + 10, Trim(Shop(InShop).Name), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
-        DrawText(ShopWindowX + 10, ShopWindowY + 10, "Hello, and welcome", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
-        DrawText(ShopWindowX + 10, ShopWindowY + 25, "to the shop!", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        DrawText(ShopWindowX + 10, ShopWindowY + 10, "Olá e bem-vindo", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        DrawText(ShopWindowX + 10, ShopWindowY + 25, "à loja!", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
-        'render buy button
+        'renderizar botão de compra
         If CurMouseX > ShopWindowX + ShopButtonBuyX AndAlso CurMouseX < ShopWindowX + ShopButtonBuyX + ButtonGfxInfo.Width And
              CurMouseY > ShopWindowY + ShopButtonBuyY AndAlso CurMouseY < ShopWindowY + ShopButtonBuyY + ButtonGfxInfo.Height Then
-            DrawButton("Buy Item", ShopWindowX + ShopButtonBuyX, ShopWindowY + ShopButtonBuyY, 1)
+            DrawButton("Comprar Item", ShopWindowX + ShopButtonBuyX, ShopWindowY + ShopButtonBuyY, 1)
         Else
-            DrawButton("Buy Item", ShopWindowX + ShopButtonBuyX, ShopWindowY + ShopButtonBuyY, 0)
+            DrawButton("Comprar Item", ShopWindowX + ShopButtonBuyX, ShopWindowY + ShopButtonBuyY, 0)
         End If
 
-        'render sell button
+        'renderizar botão de venda
         If CurMouseX > ShopWindowX + ShopButtonSellX AndAlso CurMouseX < ShopWindowX + ShopButtonSellX + ButtonGfxInfo.Width And
              CurMouseY > ShopWindowY + ShopButtonSellY AndAlso CurMouseY < ShopWindowY + ShopButtonSellY + ButtonGfxInfo.Height Then
             DrawButton("Sell Item", ShopWindowX + ShopButtonSellX, ShopWindowY + ShopButtonSellY, 1)
@@ -151,9 +151,9 @@ Module C_Shops
         'render close button
         If CurMouseX > ShopWindowX + ShopButtonCloseX AndAlso CurMouseX < ShopWindowX + ShopButtonCloseX + ButtonGfxInfo.Width And
              CurMouseY > ShopWindowY + ShopButtonCloseY AndAlso CurMouseY < ShopWindowY + ShopButtonCloseY + ButtonGfxInfo.Height Then
-            DrawButton("Close Shop", ShopWindowX + ShopButtonCloseX, ShopWindowY + ShopButtonCloseY, 1)
+            DrawButton("Fechar Loja", ShopWindowX + ShopButtonCloseX, ShopWindowY + ShopButtonCloseY, 1)
         Else
-            DrawButton("Close Shop", ShopWindowX + ShopButtonCloseX, ShopWindowY + ShopButtonCloseY, 0)
+            DrawButton("Fechar Loja", ShopWindowX + ShopButtonCloseX, ShopWindowY + ShopButtonCloseY, 0)
         End If
 
         For i = 1 To MAX_TRADES
@@ -166,7 +166,7 @@ Module C_Shops
                         LoadTexture(itempic, 4)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'se estivermos utilizando, atualizar contador
                     With ItemsGfxInfo(itempic)
                         .TextureTimer = GetTickCount() + 100000
                     End With
@@ -187,13 +187,13 @@ Module C_Shops
 
                     RenderSprite(ItemsSprite(itempic), GameWindow, recPos.X, recPos.Y, rec.X, rec.Y, rec.Width, rec.Height)
 
-                    ' If item is a stack - draw the amount you have
+                    ' Se o item é uma pilha, desenhar a quantidade que temos
                     If Shop(InShop).TradeItem(i).ItemValue > 1 Then
                         y = recPos.Top + 22
                         x = recPos.Left - 4
                         amount = Shop(InShop).TradeItem(i).ItemValue
                         colour = SFML.Graphics.Color.White
-                        ' Draw currency but with k, m, b etc. using a convertion function
+                        ' Desenhar moeda mas com k, m, b, etc.
                         If CLng(amount) < 1000000 Then
                             colour = SFML.Graphics.Color.White
                         ElseIf CLng(amount) > 1000000 AndAlso CLng(amount) < 10000000 Then

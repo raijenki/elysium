@@ -14,19 +14,19 @@
     End Sub
 
     Private Sub btnSaveSettings_Click(sender As Object, e As EventArgs) Handles btnSaveSettings.Click
-        'music
+        'musica
         If optMOn.Checked = True Then
             Settings.Music = True
-            ' start music playing
+            ' começar a toca rmúsicar
             PlayMusic(Trim$(Map.Music))
         Else
             Settings.Music = False
-            ' stop music playing
+            ' parar de tocar música
             StopMusic()
             CurMusic = ""
         End If
 
-        'sound
+        'som
         If optSOn.Checked = True Then
             Settings.Sound = True
         Else
@@ -34,7 +34,7 @@
             StopSound()
         End If
 
-        'screensize
+        'resolução de tela
         Settings.ScreenSize = cmbScreenSize.SelectedIndex
 
         If chkHighEnd.Checked Then
@@ -49,7 +49,7 @@
             Settings.ShowNpcBar = 0
         End If
 
-        ' save to config.ini
+        ' salvar ao config.ini
         SaveSettings()
 
         RePositionGui()

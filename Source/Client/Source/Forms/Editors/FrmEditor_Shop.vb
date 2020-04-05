@@ -50,7 +50,7 @@ Friend Class frmEditor_Shop
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If Len(Trim$(txtName.Text)) = 0 Then
-            MsgBox("Name required.")
+            MsgBox("Nome necessário.")
         Else
             ShopEditorOk()
         End If

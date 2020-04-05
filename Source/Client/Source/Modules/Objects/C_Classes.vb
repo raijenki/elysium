@@ -22,20 +22,20 @@ Module C_Classes
                 .Vital(VitalType.MP) = buffer.ReadInt32
                 .Vital(VitalType.SP) = buffer.ReadInt32
 
-                ' get array size
+                ' Pegar tamanho de vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim no vetor
                 ReDim .MaleSprite(z + 1)
-                ' loop-receive data
+                ' loop de recebimento de dados
                 For x = 1 To z + 1
                     .MaleSprite(x) = buffer.ReadInt32
                 Next
 
-                ' get array size
+                ' Pegar tamanho de vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim no vetor
                 ReDim .FemaleSprite(z + 1)
-                ' loop-receive data
+                ' loop de recebimento de dados
                 For x = 1 To z + 1
                     .FemaleSprite(x) = buffer.ReadInt32
                 Next
@@ -67,7 +67,7 @@ Module C_Classes
 
         buffer.Dispose()
 
-        ' Used for if the player is creating a new character
+        ' Usado para caso o jogador esteja criando um novo personagem 
         Frmmenuvisible = True
         Pnlloadvisible = False
         PnlCreditsVisible = False
@@ -104,20 +104,20 @@ Module C_Classes
                 .Vital(VitalType.MP) = buffer.ReadInt32
                 .Vital(VitalType.SP) = buffer.ReadInt32
 
-                ' get array size
+                ' Pegar tamanho de vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim vetor
                 ReDim .MaleSprite(z + 1)
-                ' loop-receive data
+                ' loop de recebimento de dados
                 For x = 1 To z + 1
                     .MaleSprite(x) = buffer.ReadInt32
                 Next
 
-                ' get array size
+                ' Pegar tamanho de vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim vetor
                 ReDim .FemaleSprite(z + 1)
-                ' loop-receive data
+                ' loop de recebimento de dados
                 For x = 1 To z + 1
                     .FemaleSprite(x) = buffer.ReadInt32
                 Next

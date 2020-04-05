@@ -371,16 +371,16 @@
                 Editor = EDITOR_PET
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_PETS
                     .lstIndex.Items.Add(i & ": " & Trim$(Pet(i).Name))
                 Next
 
                 .cmbEvolve.Items.Clear()
 
-                .cmbEvolve.Items.Add("None")
+                .cmbEvolve.Items.Add("Nenhum")
 
-                ' Add the names
+                ' Adicionar os nomes
                 For i = 1 To MAX_PETS
                     .cmbEvolve.Items.Add(i & ": " & Trim$(Pet(i).Name))
                 Next
@@ -398,8 +398,8 @@
                 Editor = EditorTasks
                 .lstIndex.Items.Clear()
                 .cmbQuestReq.Items.Clear()
-                .cmbQuestReq.Items.Add("None")
-                ' Add the names
+                .cmbQuestReq.Items.Add("Nenhum")
+                ' Adcionar nomes
                 For I = 1 To MaxQuests
                     .lstIndex.Items.Add(I & ": " & Trim$(Quest(I).Name))
                     .cmbQuestReq.Items.Add(I & ": " & Trim$(Quest(I).Name))
@@ -417,7 +417,7 @@
                 Editor = EDITOR_ANIMATION
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_ANIMATIONS
                     .lstIndex.Items.Add(i & ": " & Trim$(Animation(i).Name))
                 Next
@@ -456,7 +456,7 @@
                 Editor = EDITOR_RESOURCE
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_RESOURCES
                     If Resource(i).Name Is Nothing Then Resource(i).Name = ""
                     If Resource(i).SuccessMessage Is Nothing Then Resource(i).SuccessMessage = ""
@@ -476,7 +476,7 @@
                 Editor = EDITOR_NPC
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_NPCS
                     .lstIndex.Items.Add(i & ": " & Trim$(Npc(i).Name))
                 Next
@@ -493,7 +493,7 @@
                 Editor = EDITOR_SKILL
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_SKILLS
                     .lstIndex.Items.Add(i & ": " & Trim$(Skill(i).Name))
                 Next
@@ -510,7 +510,7 @@
                 Editor = EDITOR_SHOP
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_SHOPS
                     .lstIndex.Items.Add(i & ": " & Trim$(Shop(i).Name))
                 Next
@@ -527,7 +527,7 @@
                 Editor = EDITOR_ANIMATION
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MAX_ANIMATIONS
                     .lstIndex.Items.Add(i & ": " & Trim$(Animation(i).Name))
                 Next
@@ -544,7 +544,7 @@
                 Editor = EDITOR_HOUSE
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MaxHouses
                     .lstIndex.Items.Add(i & ": " & Trim$(House(i).ConfigName))
                 Next
@@ -563,7 +563,7 @@
                 Editor = EditorProjectile
                 .lstIndex.Items.Clear()
 
-                ' Add the names
+                ' Adcionar nomes
                 For i = 1 To MaxProjectiles
                     .lstIndex.Items.Add(i & ": " & Trim$(Projectiles(i).Name))
                 Next
@@ -671,18 +671,18 @@
 
         If UpdateDialog = True Then
             If DialogType = DialogueTypeBuyhome OrElse DialogType = DialogueTypeVisit Then 'house offer & visit
-                DialogButton1Text = "Accept"
-                DialogButton2Text = "Decline"
+                DialogButton1Text = "Aceitar"
+                DialogButton2Text = "Recusar"
                 DialogPanelVisible = True
             ElseIf DialogType = DialogueTypeParty OrElse DialogType = DialogueTypeTrade Then
-                DialogButton1Text = "Accept"
-                DialogButton2Text = "Decline"
+                DialogButton1Text = "Aceitar"
+                DialogButton2Text = "Recusar"
                 DialogPanelVisible = True
             ElseIf DialogType = DialogueTypeQuest Then
-                DialogButton1Text = "Accept"
-                DialogButton2Text = "Ok"
+                DialogButton1Text = "Aceitar"
+                DialogButton2Text = "Certo"
                 If QuestAcceptTag > 0 Then
-                    DialogButton2Text = "Decline"
+                    DialogButton2Text = "Recusar"
                 End If
                 DialogPanelVisible = True
             End If
@@ -717,49 +717,49 @@
         If InitEventEditorForm = True Then
             FrmEditor_Events.InitEventEditorForm()
 
-            ' populate form
+            ' popular formulário
             With FrmEditor_Events
-                ' set the tabs
+                ' setar abas
                 .tabPages.TabPages.Clear()
 
                 For i = 1 To TmpEvent.PageCount
                     .tabPages.TabPages.Add(Str(i))
                 Next
-                ' items
+                ' item=ns
                 .cmbHasItem.Items.Clear()
-                .cmbHasItem.Items.Add("None")
+                .cmbHasItem.Items.Add("Nenhum")
                 For i = 1 To MAX_ITEMS
                     .cmbHasItem.Items.Add(i & ": " & Trim$(Item(i).Name))
                 Next
-                ' variables
+                ' variáveis
                 .cmbPlayerVar.Items.Clear()
-                .cmbPlayerVar.Items.Add("None")
+                .cmbPlayerVar.Items.Add("Nenhum")
                 For i = 1 To MaxVariables
                     .cmbPlayerVar.Items.Add(i & ". " & Variables(i))
                 Next
-                ' variables
+                ' variáveis
                 .cmbPlayerSwitch.Items.Clear()
                 .cmbPlayerSwitch.Items.Add("None")
                 For i = 1 To MaxSwitches
                     .cmbPlayerSwitch.Items.Add(i & ". " & Switches(i))
                 Next
-                ' name
+                ' nome
                 .txtName.Text = TmpEvent.Name
-                ' enable delete button
+                ' ativar botao de deletar
                 If TmpEvent.PageCount > 1 Then
                     .btnDeletePage.Enabled = True
                 Else
                     .btnDeletePage.Enabled = False
                 End If
                 .btnPastePage.Enabled = False
-                ' Load page 1 to start off with
+                ' carregar pagina 1 pra coemçar
                 CurPageNum = 1
                 EventEditorLoadPage(CurPageNum)
 
                 .nudShowTextFace.Maximum = NumFaces
                 .nudShowChoicesFace.Maximum = NumFaces
             End With
-            ' show the editor
+            ' mostrar o editor
             FrmEditor_Events.Show()
 
             InitEventEditorForm = False
@@ -767,7 +767,7 @@
 
         If OptionsVisible = True Then
 
-            ' show in GUI
+            ' mostrar na GUI
             If Settings.Music = 1 Then
                 FrmOptions.optMOn.Checked = True
             Else

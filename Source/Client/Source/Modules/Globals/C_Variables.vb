@@ -2,14 +2,14 @@
 
 Module C_Variables
 
-    'char creation/selecting
+    'Criação/Seleção de Personagem
     Friend SelectedChar As Byte
 
     Friend MaxChars As Byte
 
     Friend TotalOnline As Integer
 
-    ' for directional blocking
+    ' Para bloqueios direcionais
     Friend DirArrowX(4) As Byte
 
     Friend DirArrowY(4) As Byte
@@ -21,21 +21,21 @@ Module C_Variables
     Friend FadeAmount As Integer
     Friend FlashTimer As Integer
 
-    ' targetting
+    ' Alvos
     Friend MyTarget As Integer
     Friend MyTargetType As Integer
 
-    ' chat bubble
+    ' Bolhas de Conversas
     Friend ChatBubble(Byte.MaxValue) As ChatBubbleRec
     Friend ChatBubbleindex As Integer
 
-    ' skill drag + drop
+    ' Drag&Drop (Arrastar e Soltar) de Habilidades
     Friend DragSkillSlotNum As Integer
 
     Friend SkillX As Integer
     Friend SkillY As Integer
 
-    ' gui
+    ' Interface de Usuário
     Friend EqX As Integer
 
     Friend EqY As Integer
@@ -44,15 +44,15 @@ Module C_Variables
     Friend PingToDraw As String
     Friend ShowRClick As Boolean
 
-    Friend LastSkillDesc As Integer ' Stores the last skill we showed in desc
+    Friend LastSkillDesc As Integer ' Guardar a última habilidade que mostramos no desc
 
     Friend TmpCurrencyItem As Integer
 
     Friend CurrencyMenu As Byte
     Friend HideGui As Boolean
 
-    ' Player variables
-    Friend Myindex As Integer ' Index of actual player
+    ' Variáveis do jogador
+    Friend Myindex As Integer ' Índice do jogador atual
 
 
     Friend PlayerSkills(MAX_PLAYER_SKILLS) As Byte
@@ -63,25 +63,25 @@ Module C_Variables
     Friend StunDuration As Integer
     Friend NextlevelExp As Integer
 
-    ' Stops movement when updating a map
+    ' Para o movimento quando atualiza o mapa
     Friend CanMoveNow As Boolean
 
-    ' Controls main gameloop
+    ' Controla o Loop Principal do Jogo
     Friend InGame As Boolean
 
     Friend IsLogging As Boolean
     Friend MapData As Boolean
     Friend PlayerData As Boolean
 
-    ' Text variables
+    ' Variáveis de Texto
 
-    ' Draw map name location
+    ' Desenhar o nome da Localização do Mapa
     Friend DrawMapNameX As Single = 110
 
     Friend DrawMapNameY As Single = 70
     Friend DrawMapNameColor As SFML.Graphics.Color
 
-    ' Game direction vars
+    ' Variáveis da direção de jogo
     Friend DirUp As Boolean
 
     Friend DirDown As Boolean
@@ -90,65 +90,65 @@ Module C_Variables
     Friend ShiftDown As Boolean
     Friend ControlDown As Boolean
 
-    ' Used for dragging Picture Boxes
+    ' Usado para arrastar Picture Boxes
     Friend SOffsetX As Integer
 
     Friend SOffsetY As Integer
 
-    ' Used to freeze controls when getting a new map
+    ' Usado para congelar controles quando entrando em novo mapa
     Friend GettingMap As Boolean = True
 
-    ' Used to check if FPS needs to be drawn
+    ' Usado pra ver se o FPS precisa ser desenhado
     Friend Bfps As Boolean
 
     Friend Blps As Boolean
     Friend BLoc As Boolean
 
-    ' FPS and Time-based movement vars
+    ' Variáveis de movimento baseado em FPS e tempo
     Friend ElapsedTime As Integer
 
     Friend GameFps As Integer
     Friend GameLps As Integer
 
-    ' Text vars
+    ' Variáveis de Texto
     Friend VbQuote As String
 
-    ' Mouse cursor tile location
+    ' Localização do cursor do mouse com base na tile
     Friend CurX As Integer
 
     Friend CurY As Integer
     Friend CurMouseX As Integer
     Friend CurMouseY As Integer
 
-    ' Game editors
+    ' Editores de Jogo
     Friend Editor As Byte
 
     Friend Editorindex As Integer
 
-    ' Used to check if in editor or not and variables for use in editor
+    ' Usado para ver se está em um editor ou não e variáveis para uso no editor
     Friend SpawnNpcNum As Integer
 
     Friend SpawnNpcDir As Byte
 
-    ' Used for map item editor
+    ' Usado para o editor de itens no mapa
     Friend ItemEditorNum As Integer
 
     Friend ItemEditorValue As Integer
 
-    ' Used for map key editor
+    ' Usado para o editor de chaves no mapa
     Friend KeyEditorNum As Integer
 
     Friend KeyEditorTake As Integer
 
-    ' Used for map key open editor
+    ' Usado para o editor de abrir chaves no mapaU
     Friend KeyOpenEditorX As Integer
 
     Friend KeyOpenEditorY As Integer
 
-    ' Map Resources
+    ' Recursos do Mapa
     Friend ResourceEditorNum As Integer
 
-    ' Used for map editor heal & trap & slide tiles
+    ' Usado para o editor de cura/armadilha/escorregar
     Friend MapEditorHealType As Integer
 
     Friend MapEditorHealAmount As Integer
@@ -163,20 +163,20 @@ Module C_Variables
     Friend PingEnd As Integer
     Friend Ping As Integer
 
-    ' indexing
+    ' Indexação
     Friend ActionMsgIndex As Byte
 
     Friend BloodIndex As Byte
 
 
-    ' New char
+    ' Novo Personagem
     Friend NewCharSprite As Integer
 
     Friend NewCharClass As Integer
 
     Friend TempMapData() As Byte
 
-    'dialog
+    'Janelas
     Friend DialogType As Byte
 
     Friend DialogMsg1 As String
@@ -186,7 +186,7 @@ Module C_Variables
     Friend DialogButton1Text As String
     Friend DialogButton2Text As String
 
-    'store news here
+    'Guardar notícias aqui
     Friend News As String
 
     Friend UpdateNews As Boolean
@@ -201,7 +201,7 @@ Module C_Variables
 
     Friend EKeyPair As New ASFW.IO.Encryption.KeyPair()
 
-    ' Editor edited items array
+    ' O Editor alterou um vetor de itens
     Friend Item_Changed(MAX_ITEMS) As Boolean
     Friend NPC_Changed(MAX_NPCS) As Boolean
     Friend Resource_Changed(MAX_RESOURCES) As Boolean
@@ -213,7 +213,7 @@ Module C_Variables
     Friend AnimEditorFrame(1) As Integer
     Friend AnimEditorTimer(1) As Integer
 
-    'Editors
+    'Editores
     Friend InitEditor As Boolean
     Friend InitMapEditor As Boolean
     Friend InitPetEditor As Boolean
@@ -226,7 +226,7 @@ Module C_Variables
     Friend InitClassEditor As Boolean
     Friend InitAutoMapper As Boolean
 
-    ' Game editor constants
+    ' Constantes dos Editores do Jogo
     Friend Const EDITOR_ITEM As Byte = 1
     Friend Const EDITOR_NPC As Byte = 2
     Friend Const EDITOR_SKILL As Byte = 3

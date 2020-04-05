@@ -59,7 +59,7 @@ Module C_Maps
         Dim Panorama As Byte
         Dim Parallax As Byte
 
-        'Client Side Only -- Temporary
+        'Apenas para o lado do cliente -- Temporário
         Dim CurrentEvents As Integer
 
         Dim MapEvents() As MapEventStruct
@@ -85,7 +85,7 @@ Module C_Maps
         Dim Y As Byte
         Dim Dir As Byte
 
-        ' Client use only
+        ' Uso apenas do cliente
         Dim XOffset As Integer
 
         Dim YOffset As Integer
@@ -99,7 +99,7 @@ Module C_Maps
         Dim DoorOpen As Byte
         Dim DoorFrame As Byte
         Dim DoorTimer As Integer
-        Dim DoorAnimate As Byte ' 0 = nothing| 1 = opening | 2 = closing
+        Dim DoorAnimate As Byte ' 0 = nada| 1 = abrir | 2 = fechar
     End Structure
 #End Region
 
@@ -217,28 +217,28 @@ Module C_Maps
         Dim buffer As New ByteStream(data)
         GettingMap = True
 
-        ' Erase all players except self
+        ' Apagar todos os jogadores exceto si próprio
         For i = 1 To TotalOnline 'MAX_PLAYERS
             If i <> Myindex Then
                 SetPlayerMap(i, 0)
             End If
         Next
 
-        ' Erase all temporary tile values
+        ' Apagar todos os valores temporários de tiles
         ClearTempTile()
         ClearMapNpcs()
         ClearMapItems()
         ClearBlood()
         ClearMap()
 
-        ' Get map num
+        ' Pegar o map num
         x = buffer.ReadInt32
-        ' Get revision
+        ' Pegar revisão
         y = buffer.ReadInt32
 
         needMap = 1
 
-        ' Either the revisions didn't match or we dont have the map, so we need it
+        ' Ou as revisÕes não bateram ou nao temos o mapa, então precisamos dele
         buffer = New ByteStream(4)
         buffer.WriteInt32(ClientPackets.CNeedMap)
         buffer.WriteInt32(needMap)
@@ -312,7 +312,7 @@ Module C_Maps
                     Next
                 Next
 
-                'Event Data!
+                'Dados de Eventos!
                 ResetEventdata()
 
                 Map.EventCount = buffer.ReadInt32
@@ -439,7 +439,7 @@ Module C_Maps
                         End If
                     Next
                 End If
-                'End Event Data
+                'Fim dos Dados de Eventos
             End If
 
             For i = 1 To MAX_MAP_ITEMS
@@ -653,7 +653,7 @@ Module C_Maps
             Next
         Next
 
-        'Event Data
+        'Dados de Eventos
         buffer.WriteInt32(Map.EventCount)
         If Map.EventCount > 0 Then
             For i = 1 To Map.EventCount
@@ -760,7 +760,7 @@ Module C_Maps
                 End If
             Next
         End If
-        'End Event Data
+        'Fim dos Dados de Eventos
 
         data = buffer.ToArray
 
@@ -795,12 +795,12 @@ Module C_Maps
 
         For i = LayerType.Ground To LayerType.Mask2
             If Map.Tile(x, y).Layer Is Nothing Then Exit Sub
-            ' skip tile if tileset isn't set
+            ' Pular tile se a tileset não estiver setadas
             If Map.Tile(x, y).Layer(i).Tileset > 0 AndAlso Map.Tile(x, y).Layer(i).Tileset <= NumTileSets Then
                 If TileSetTextureInfo(Map.Tile(x, y).Layer(i).Tileset).IsLoaded = False Then
                     LoadTexture(Map.Tile(x, y).Layer(i).Tileset, 1)
                 End If
-                ' we use it, lets update timer
+                ' Usamos, então atualizar temporizador
                 With TileSetTextureInfo(Map.Tile(x, y).Layer(i).Tileset)
                     .TextureTimer = GetTickCount() + 100000
                 End With
@@ -815,7 +815,7 @@ Module C_Maps
                     RenderSprite(TileSetSprite(Map.Tile(x, y).Layer(i).Tileset), GameWindow, ConvertMapX(x * PicX), ConvertMapY(y * PicY), srcrect.X, srcrect.Y, srcrect.Width, srcrect.Height)
 
                 ElseIf Autotile(x, y).Layer(i).RenderState = RenderStateAutotile Then
-                    ' Draw autotiles
+                    ' Desenhar autotiles
                     DrawAutoTile(i, ConvertMapX(x * PicX), ConvertMapY(y * PicY), 1, x, y, 0, False)
                     DrawAutoTile(i, ConvertMapX(x * PicX) + 16, ConvertMapY(y * PicY), 2, x, y, 0, False)
                     DrawAutoTile(i, ConvertMapX(x * PicX), ConvertMapY(y * PicY) + 16, 3, x, y, 0, False)
@@ -837,18 +837,18 @@ Module C_Maps
 
         For i = LayerType.Fringe To LayerType.Fringe2
             If Map.Tile(x, y).Layer Is Nothing Then Exit Sub
-            ' skip tile if tileset isn't set
+            ' Pular tile se a tileset não estiver setadas
             If Map.Tile(x, y).Layer(i).Tileset > 0 AndAlso Map.Tile(x, y).Layer(i).Tileset <= NumTileSets Then
                 If TileSetTextureInfo(Map.Tile(x, y).Layer(i).Tileset).IsLoaded = False Then
                     LoadTexture(Map.Tile(x, y).Layer(i).Tileset, 1)
                 End If
 
-                ' we use it, lets update timer
+                ' Usamos, então atualizar temporizador
                 With TileSetTextureInfo(Map.Tile(x, y).Layer(i).Tileset)
                     .TextureTimer = GetTickCount() + 100000
                 End With
 
-                ' render
+                ' Renderizar
                 If Autotile(x, y).Layer(i).RenderState = RenderStateNormal Then
                     With srcrect
                         .X = Map.Tile(x, y).Layer(i).X * 32
@@ -860,7 +860,7 @@ Module C_Maps
                     RenderSprite(TileSetSprite(Map.Tile(x, y).Layer(i).Tileset), GameWindow, ConvertMapX(x * PicX), ConvertMapY(y * PicY), srcrect.X, srcrect.Y, srcrect.Width, srcrect.Height)
 
                 ElseIf Autotile(x, y).Layer(i).RenderState = RenderStateAutotile Then
-                    ' Draw autotiles
+                    ' Desenhar autotiles
                     DrawAutoTile(i, ConvertMapX(x * PicX), ConvertMapY(y * PicY), 1, x, y, 0, False)
                     DrawAutoTile(i, ConvertMapX(x * PicX) + 16, ConvertMapY(y * PicY), 2, x, y, 0, False)
                     DrawAutoTile(i, ConvertMapX(x * PicX), ConvertMapY(y * PicY) + 16, 3, x, y, 0, False)

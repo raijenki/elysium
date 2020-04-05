@@ -60,13 +60,13 @@ Module C_Trade
         Dim buffer As New ByteStream(data)
         datatype = buffer.ReadInt32
 
-        If datatype = 0 Then ' ours!
+        If datatype = 0 Then ' nossa!
             For i = 1 To MAX_INV
                 TradeYourOffer(i).Num = buffer.ReadInt32
                 TradeYourOffer(i).Value = buffer.ReadInt32
             Next
             YourWorth = String.Format(Language.Trade.Value, buffer.ReadInt32) & "g"
-        ElseIf datatype = 1 Then 'theirs
+        ElseIf datatype = 1 Then 'dele
             For i = 1 To MAX_INV
                 TradeTheirOffer(i).Num = buffer.ReadInt32
                 TradeTheirOffer(i).Value = buffer.ReadInt32
@@ -85,10 +85,10 @@ Module C_Trade
         tradestatus = buffer.ReadInt32
 
         Select Case tradestatus
-            Case 0 ' clear
-            Case 1 ' they've accepted
+            Case 0 ' limpo
+            Case 1 ' ele aceitou
                 AddText(Language.Trade.StatusOther, ColorType.White)
-            Case 2 ' you've accepted
+            Case 2 ' você aceitou
                 AddText(Language.Trade.StatusSelf, ColorType.White)
         End Select
 
@@ -177,16 +177,16 @@ Module C_Trade
 
         If Not InGame Then Exit Sub
 
-        'first render panel
+        'renderizar painel primeiro
         RenderSprite(TradePanelSprite, GameWindow, TradeWindowX, TradeWindowY, 0, 0, TradePanelGfxInfo.Width, TradePanelGfxInfo.Height)
 
-        'Headertext
-        DrawText(TradeWindowX + 70, TradeWindowY + 6, "Your Offer", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        'cabeçalho texto
+        DrawText(TradeWindowX + 70, TradeWindowY + 6, "Sua Oferta", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
-        DrawText(TradeWindowX + 260, TradeWindowY + 6, Tradername & "'s Offer.", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        DrawText(TradeWindowX + 260, TradeWindowY + 6, "Oferta de " & Tradername, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
         For i = 1 To MAX_INV
-            ' blt your own offer
+            ' blt sua própria oferta
             itemnum = GetPlayerInvItemNum(Myindex, TradeYourOffer(i).Num)
 
             If itemnum > 0 AndAlso itemnum <= MAX_ITEMS Then
@@ -198,7 +198,7 @@ Module C_Trade
                         LoadTexture(itempic, 4)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'vendo que ainda vamos utilizar, atualizar contador
                     With ItemsGfxInfo(itempic)
                         .TextureTimer = GetTickCount() + 100000
                     End With
@@ -219,12 +219,12 @@ Module C_Trade
 
                     RenderSprite(ItemsSprite(itempic), GameWindow, recPos.X, recPos.Y, rec.X, rec.Y, rec.Width, rec.Height)
 
-                    ' If item is a stack - draw the amount you have
+                    ' Se o item é uma pilha, desenhar a quantidade que tem 
                     If TradeYourOffer(i).Value >= 1 Then
                         y = recPos.Top + 22
                         x = recPos.Left - 4
 
-                        ' Draw currency but with k, m, b etc. using a convertion function
+                        ' Desenhar dinheiro, mas com k, m, b, usando uma função de conversão
                         If amount < 1000000 Then
                             colour = SFML.Graphics.Color.White
                         ElseIf amount > 1000000 AndAlso CLng(amount) < 10000000 Then
@@ -243,7 +243,7 @@ Module C_Trade
         DrawText(TradeWindowX + 8, TradeWindowY + 288, YourWorth, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 13)
 
         For i = 1 To MAX_INV
-            ' blt their offer
+            ' blt oferta contrária
             itemnum = TradeTheirOffer(i).Num
             'itemnum = GetPlayerInvItemNum(MyIndex, TradeYourOffer(i).Num)
             If itemnum > 0 AndAlso itemnum <= MAX_ITEMS Then
@@ -254,7 +254,7 @@ Module C_Trade
                         LoadTexture(itempic, 4)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'vendo que ainda vamos utilizar, atualizar contador
                     With ItemsGfxInfo(itempic)
                         .TextureTimer = GetTickCount() + 100000
                     End With
@@ -275,12 +275,12 @@ Module C_Trade
 
                     RenderSprite(ItemsSprite(itempic), GameWindow, recPos.X, recPos.Y, rec.X, rec.Y, rec.Width, rec.Height)
 
-                    ' If item is a stack - draw the amount they have
+                    ' Se o item é uma pilha, desenhar a quantidade que ele tem
                     If TradeTheirOffer(i).Value >= 1 Then
                         y = recPos.Top + 22
                         x = recPos.Left - 4
 
-                        ' Draw currency but with k, m, b etc. using a convertion function
+                        ' Desenhar dinheiro, mas com k, m, b, usando uma função de conversão
                         If amount < 1000000 Then
                             colour = SFML.Graphics.Color.White
                         ElseIf amount > 1000000 AndAlso CLng(amount) < 10000000 Then
@@ -298,11 +298,11 @@ Module C_Trade
 
         DrawText(TradeWindowX + 208, TradeWindowY + 288, TheirWorth, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 13)
 
-        'render accept button
-        DrawButton("Accept Trade", TradeWindowX + TradeButtonAcceptX, TradeWindowY + TradeButtonAcceptY, 0)
+        'Renderizar botão de aceitar
+        DrawButton("Aceitar Troca", TradeWindowX + TradeButtonAcceptX, TradeWindowY + TradeButtonAcceptY, 0)
 
-        'render decline button
-        DrawButton("Decline Trade", TradeWindowX + TradeButtonDeclineX, TradeWindowY + TradeButtonDeclineY, 0)
+        'renderizar botão de recusar
+        DrawButton("Recusar Troca", TradeWindowX + TradeButtonDeclineX, TradeWindowY + TradeButtonDeclineY, 0)
     End Sub
 
 #End Region

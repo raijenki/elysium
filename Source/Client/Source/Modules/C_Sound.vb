@@ -4,7 +4,7 @@ Imports SFML.Audio
 
 Module C_Sound
 
-    'Music + Sound Players
+    'Tocadores de Músicas e Sons/Efeitos
     Friend SoundPlayer As Sound
 
     Friend ExtraSoundPlayer As Sound

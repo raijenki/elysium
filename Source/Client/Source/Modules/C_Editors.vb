@@ -12,9 +12,9 @@ Module C_Editors
 
         With Animation(Editorindex)
 
-            ' encontra a música que definimos
+            ' Encontra a música que definimos
             FrmEditor_Animation.cmbSound.Items.Clear()
-            FrmEditor_Animation.cmbSound.Items.Add("None")
+            FrmEditor_Animation.cmbSound.Items.Add("Nenhum")
 
             If UBound(SoundCache) > 0 Then
                 For i = 1 To UBound(SoundCache)
@@ -22,7 +22,7 @@ Module C_Editors
                 Next
             End If
 
-            If Trim$(Animation(Editorindex).Sound) = "None" OrElse Trim$(Animation(Editorindex).Sound) = "" Then
+            If Trim$(Animation(Editorindex).Sound) = "Nenhum" OrElse Trim$(Animation(Editorindex).Sound) = "" Then
                 FrmEditor_Animation.cmbSound.SelectedIndex = 0
             Else
                 For i = 1 To FrmEditor_Animation.cmbSound.Items.Count
@@ -93,15 +93,15 @@ Module C_Editors
         If Npc(Editorindex).Name Is Nothing Then Npc(Editorindex).Name = ""
 
         With frmEditor_NPC
-            'preencher  combobox's
+            'Preencher  combobox's
             .cmbAnimation.Items.Clear()
-            .cmbAnimation.Items.Add("None")
+            .cmbAnimation.Items.Add("Nenhum")
             For i = 1 To MAX_ANIMATIONS
                 .cmbAnimation.Items.Add(i & ": " & Animation(i).Name)
             Next
 
             .cmbQuest.Items.Clear()
-            .cmbQuest.Items.Add("None")
+            .cmbQuest.Items.Add("Nenhum")
             For i = 1 To MaxQuests
                 .cmbQuest.Items.Add(i & ": " & Quest(i).Name)
             Next
@@ -148,12 +148,12 @@ Module C_Editors
             .cmbSkill5.Items.Clear()
             .cmbSkill6.Items.Clear()
 
-            .cmbSkill1.Items.Add("None")
-            .cmbSkill2.Items.Add("None")
-            .cmbSkill3.Items.Add("None")
-            .cmbSkill4.Items.Add("None")
-            .cmbSkill5.Items.Add("None")
-            .cmbSkill6.Items.Add("None")
+            .cmbSkill1.Items.Add("Nenhum")
+            .cmbSkill2.Items.Add("Nenhum")
+            .cmbSkill3.Items.Add("Nenhum")
+            .cmbSkill4.Items.Add("Nenhum")
+            .cmbSkill5.Items.Add("Nenhum")
+            .cmbSkill6.Items.Add("Nenhum")
 
             For i = 1 To MAX_SKILLS
                 If Len(Skill(i).Name) > 0 Then
@@ -223,15 +223,15 @@ Module C_Editors
         Editorindex = frmEditor_Resource.lstIndex.SelectedIndex + 1
 
         With frmEditor_Resource
-            'preencher  combobox's
+            'Preencher  combobox's
             .cmbRewardItem.Items.Clear()
-            .cmbRewardItem.Items.Add("None")
+            .cmbRewardItem.Items.Add("Nenhum")
             For i = 1 To MAX_ITEMS
                 .cmbRewardItem.Items.Add(i & ": " & Item(i).Name)
             Next
 
             .cmbAnimation.Items.Clear()
-            .cmbAnimation.Items.Add("None")
+            .cmbAnimation.Items.Add("Nenhum")
             For i = 1 To MAX_ANIMATIONS
                 .cmbAnimation.Items.Add(i & ": " & Animation(i).Name)
             Next
@@ -296,30 +296,30 @@ Module C_Editors
         If Skill(Editorindex).Name Is Nothing Then Skill(Editorindex).Name = ""
 
         With frmEditor_Skill
-            ' definir valores máximos
+            ' Definir valores máximos
             .nudAoE.Maximum = Byte.MaxValue
             .nudRange.Maximum = Byte.MaxValue
             .nudMap.Maximum = MAX_MAPS
 
-            ' criar classe combobox
+            ' Criar classe combobox
             .cmbClass.Items.Clear()
-            .cmbClass.Items.Add("None")
+            .cmbClass.Items.Add("Nenhum")
             For i = 1 To MAX_CLASSES
                 .cmbClass.Items.Add(Trim$(Classes(i).Name))
             Next
             .cmbClass.SelectedIndex = 0
 
             .cmbProjectile.Items.Clear()
-            .cmbProjectile.Items.Add("None")
+            .cmbProjectile.Items.Add("Nenhum")
             For i = 1 To MaxProjectiles
                 .cmbProjectile.Items.Add(Trim$(Projectiles(i).Name))
             Next
             .cmbProjectile.SelectedIndex = 0
 
             .cmbAnimCast.Items.Clear()
-            .cmbAnimCast.Items.Add("None")
+            .cmbAnimCast.Items.Add("Nenhum")
             .cmbAnim.Items.Clear()
-            .cmbAnim.Items.Add("None")
+            .cmbAnim.Items.Add("Nenhum")
             For i = 1 To MAX_ANIMATIONS
                 .cmbAnimCast.Items.Add(Trim$(Animation(i).Name))
                 .cmbAnim.Items.Add(Trim$(Animation(i).Name))
@@ -327,7 +327,7 @@ Module C_Editors
             .cmbAnimCast.SelectedIndex = 0
             .cmbAnim.SelectedIndex = 0
 
-            ' definir valores
+            ' Definir valores
             .txtName.Text = Trim$(Skill(Editorindex).Name)
             .cmbType.SelectedIndex = Skill(Editorindex).Type
             .nudMp.Value = Skill(Editorindex).MpCost
@@ -424,9 +424,9 @@ Module C_Editors
         End If
 
         frmEditor_Shop.cmbItem.Items.Clear()
-        frmEditor_Shop.cmbItem.Items.Add("None")
+        frmEditor_Shop.cmbItem.Items.Add("Nenhum")
         frmEditor_Shop.cmbCostItem.Items.Clear()
-        frmEditor_Shop.cmbCostItem.Items.Add("None")
+        frmEditor_Shop.cmbCostItem.Items.Add("Nenhum")
 
         For i = 1 To MAX_ITEMS
             frmEditor_Shop.cmbItem.Items.Add(i & ": " & Trim$(Item(i).Name))
@@ -447,11 +447,11 @@ Module C_Editors
 
         For i = 1 To MAX_TRADES
             With Shop(Editorindex).TradeItem(i)
-                ' se vazio, mostrar vazio
+                ' Se vazio, mostrar vazio
                 If .Item = 0 AndAlso .CostItem = 0 Then
-                    frmEditor_Shop.lstTradeItem.Items.Add("Slot de comércio vazio")
+                    frmEditor_Shop.lstTradeItem.Items.Add("Espaço de comércio vazio")
                 Else
-                    frmEditor_Shop.lstTradeItem.Items.Add(i & ": " & .ItemValue & "x " & Trim$(Item(.Item).Name) & " for " & .CostValue & "x " & Trim$(Item(.CostItem).Name))
+                    frmEditor_Shop.lstTradeItem.Items.Add(i & ": " & .ItemValue & "x " & Trim$(Item(.Item).Name) & " para " & .CostValue & "x " & Trim$(Item(.CostItem).Name))
                 End If
             End With
         Next
@@ -520,7 +520,7 @@ Module C_Editors
 
         frmEditor_Classes.cmbItems.Items.Clear()
 
-        frmEditor_Classes.cmbItems.Items.Add("None")
+        frmEditor_Classes.cmbItems.Items.Add("Nenhum")
         For i = 1 To MAX_ITEMS
             frmEditor_Classes.cmbItems.Items.Add(Trim(Item(i).Name))
         Next
@@ -581,7 +581,7 @@ Module C_Editors
             If Classes(Editorindex).StartItem(i) > 0 Then
                 frmEditor_Classes.lstStartItems.Items.Add(Item(Classes(Editorindex).StartItem(i)).Name & " X " & Classes(Editorindex).StartValue(i))
             Else
-                frmEditor_Classes.lstStartItems.Items.Add("None")
+                frmEditor_Classes.lstStartItems.Items.Add("Nenhum")
             End If
         Next
 
@@ -621,37 +621,37 @@ Module C_Editors
         With Item(Editorindex)
             'preencher combobox's
             frmEditor_Item.cmbAnimation.Items.Clear()
-            frmEditor_Item.cmbAnimation.Items.Add("None")
+            frmEditor_Item.cmbAnimation.Items.Add("Nenhum")
             For i = 1 To MAX_ANIMATIONS
                 frmEditor_Item.cmbAnimation.Items.Add(i & ": " & Animation(i).Name)
             Next
 
             frmEditor_Item.cmbAmmo.Items.Clear()
-            frmEditor_Item.cmbAmmo.Items.Add("None")
+            frmEditor_Item.cmbAmmo.Items.Add("Nenhum")
             For i = 1 To MAX_ITEMS
                 frmEditor_Item.cmbAmmo.Items.Add(i & ": " & Item(i).Name)
             Next
 
             frmEditor_Item.cmbProjectile.Items.Clear()
-            frmEditor_Item.cmbProjectile.Items.Add("None")
+            frmEditor_Item.cmbProjectile.Items.Add("Nenhum")
             For i = 1 To MaxProjectiles
                 frmEditor_Item.cmbProjectile.Items.Add(i & ": " & Projectiles(i).Name)
             Next
 
             frmEditor_Item.cmbSkills.Items.Clear()
-            frmEditor_Item.cmbSkills.Items.Add("None")
+            frmEditor_Item.cmbSkills.Items.Add("Nenhum")
             For i = 1 To MAX_SKILLS
                 frmEditor_Item.cmbSkills.Items.Add(i & ": " & Skill(i).Name)
             Next
 
             frmEditor_Item.cmbPet.Items.Clear()
-            frmEditor_Item.cmbPet.Items.Add("None")
+            frmEditor_Item.cmbPet.Items.Add("Nenhum")
             For i = 1 To MAX_PETS
                 frmEditor_Item.cmbPet.Items.Add(i & ": " & Pet(i).Name)
             Next
 
             frmEditor_Item.cmbRecipe.Items.Clear()
-            frmEditor_Item.cmbRecipe.Items.Add("None")
+            frmEditor_Item.cmbRecipe.Items.Add("Nenhum")
             For i = 1 To MAX_RECIPE
                 frmEditor_Item.cmbRecipe.Items.Add(i & ": " & Recipe(i).Name)
             Next
@@ -761,7 +761,7 @@ Module C_Editors
 
             ' Construção da cmbClassReq
             frmEditor_Item.cmbClassReq.Items.Clear()
-            frmEditor_Item.cmbClassReq.Items.Add("None")
+            frmEditor_Item.cmbClassReq.Items.Add("Nenhum")
 
             For i = 1 To MAX_CLASSES
                 frmEditor_Item.cmbClassReq.Items.Add(Classes(i).Name)

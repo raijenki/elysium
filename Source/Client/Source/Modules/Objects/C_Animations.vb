@@ -159,7 +159,7 @@ Module C_Animations
 
         If frameCount <= 0 Then Exit Sub
 
-        ' total width divided by frame count
+        ' Comprimento total dividido pelo numero de frames
         width = AnimationsGfxInfo(sprite).Width / frameCount
         height = AnimationsGfxInfo(sprite).Height
 
@@ -168,56 +168,56 @@ Module C_Animations
         sRect.X = (AnimInstance(index).FrameIndex(layer) - 1) * width
         sRect.Width = width
 
-        ' change x or y if locked
-        If AnimInstance(index).LockType > TargetType.None Then ' if <> none
-            ' is a player
+        ' alterar x ou y se travado
+        If AnimInstance(index).LockType > TargetType.None Then ' se <> nenhum
+            ' é um jogador
             If AnimInstance(index).LockType = TargetType.Player Then
-                ' quick save the index
+                ' fazer quick save no índice
                 lockindex = AnimInstance(index).lockindex
-                ' check if is ingame
+                ' ver se está no jogo
                 If IsPlaying(lockindex) Then
-                    ' check if on same map
+                    ' ver se está no mesmo mapa
                     If GetPlayerMap(lockindex) = GetPlayerMap(Myindex) Then
-                        ' is on map, is playing, set x & y
+                        ' está no mapa e jogando, setar x e y
                         x = (GetPlayerX(lockindex) * PicX) + 16 - (width / 2) + Player(lockindex).XOffset
                         y = (GetPlayerY(lockindex) * PicY) + 16 - (height / 2) + Player(lockindex).YOffset
                     End If
                 End If
             ElseIf AnimInstance(index).LockType = TargetType.Npc Then
-                ' quick save the index
+                ' fazer quick save no índice
                 lockindex = AnimInstance(index).lockindex
-                ' check if NPC exists
+                ' ver se NPC existe
                 If MapNpc(lockindex).Num > 0 Then
-                    ' check if alive
+                    ' ver se está vivo
                     If MapNpc(lockindex).Vital(VitalType.HP) > 0 Then
-                        ' exists, is alive, set x & y
+                        ' existe e está vivo, setar x & y
                         x = (MapNpc(lockindex).X * PicX) + 16 - (width / 2) + MapNpc(lockindex).XOffset
                         y = (MapNpc(lockindex).Y * PicY) + 16 - (height / 2) + MapNpc(lockindex).YOffset
                     Else
-                        ' npc not alive anymore, kill the animation
+                        '  npc morto, matar a animação
                         ClearAnimInstance(index)
                         Exit Sub
                     End If
                 Else
-                    ' npc not alive anymore, kill the animation
+                    ' npc morto, matar a animação
                     ClearAnimInstance(index)
                     Exit Sub
                 End If
             ElseIf AnimInstance(index).LockType = TargetType.Pet Then
-                ' quick save the index
+                ' fazer quick save no índice
                 lockindex = AnimInstance(index).lockindex
-                ' check if is ingame
+                ' ver se está no jogo
                 If IsPlaying(lockindex) AndAlso PetAlive(lockindex) = True Then
-                    ' check if on same map
+                    ' ver se está no mesmo mapa
                     If GetPlayerMap(lockindex) = GetPlayerMap(Myindex) Then
-                        ' is on map, is playing, set x & y
+                        ' está no mapa, está jogando, setar x e y
                         x = (Player(lockindex).Pet.X * PicX) + 16 - (width / 2) + Player(lockindex).Pet.XOffset
                         y = (Player(lockindex).Pet.Y * PicY) + 16 - (height / 2) + Player(lockindex).Pet.YOffset
                     End If
                 End If
             End If
         Else
-            ' no lock, default x + y
+            ' sem trava, padrão é x + y
             x = (AnimInstance(index).X * 32) + 16 - (width / 2)
             y = (AnimInstance(index).Y * 32) + 16 - (height / 2)
         End If
@@ -225,7 +225,7 @@ Module C_Animations
         x = ConvertMapX(x)
         y = ConvertMapY(y)
 
-        ' Clip to screen
+        ' Clipar para tela
         If y < 0 Then
 
             With sRect
@@ -257,7 +257,7 @@ Module C_Animations
         Dim layer As Integer, sound As String
         Dim frameCount As Integer
 
-        ' if doesn't exist then exit sub
+        ' Se não existir, sair da função
         If AnimInstance(index).Animation <= 0 Then Exit Sub
         If AnimInstance(index).Animation >= MAX_ANIMATIONS Then Exit Sub
 
@@ -268,13 +268,13 @@ Module C_Animations
                 looptime = Animation(AnimInstance(index).Animation).LoopTime(layer)
                 frameCount = Animation(AnimInstance(index).Animation).Frames(layer)
 
-                ' if zero'd then set so we don't have extra loop and/or frame
+                ' Se zerada, então setamos para que não tenhamos outro loop ou frame
                 If AnimInstance(index).FrameIndex(layer) = 0 Then AnimInstance(index).FrameIndex(layer) = 1
                 If AnimInstance(index).LoopIndex(layer) = 0 Then AnimInstance(index).LoopIndex(layer) = 1
 
-                ' check if frame timer is set, and needs to have a frame change
+                ' Ver se o temporizador de frame está ajustado e se precisa de mudanças de frame
                 If AnimInstance(index).Timer(layer) + looptime <= GetTickCount() Then
-                    ' check if out of range
+                    ' Ver se está fora de alcance
                     If AnimInstance(index).FrameIndex(layer) >= frameCount Then
                         AnimInstance(index).LoopIndex(layer) = AnimInstance(index).LoopIndex(layer) + 1
                         If AnimInstance(index).LoopIndex(layer) > Animation(AnimInstance(index).Animation).LoopCount(layer) Then
@@ -290,7 +290,7 @@ Module C_Animations
             End If
         Next
 
-        ' if neither layer is used, clear
+        ' Se nenhuma camada for usada, limpar
         If AnimInstance(index).Used(0) = False AndAlso AnimInstance(index).Used(1) = False Then
             ClearAnimInstance(index)
         Else

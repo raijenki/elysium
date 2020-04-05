@@ -149,14 +149,14 @@ Friend Module C_Housing
 
         DialogType = DialogueTypeBuyhome
         If HouseConfig(i).MaxFurniture > 0 Then
-            ' ask to buy house
-            DialogMsg1 = "Would you like to buy the house: " & Trim$(HouseConfig(i).ConfigName)
-            DialogMsg2 = "Cost: " & HouseConfig(i).Price
-            DialogMsg3 = "Furniture Limit: " & HouseConfig(i).MaxFurniture
+            ' pedir para comprar uma casa
+            DialogMsg1 = "Você gostaria de comprar a casa: " & Trim$(HouseConfig(i).ConfigName)
+            DialogMsg2 = "Custo: " & HouseConfig(i).Price
+            DialogMsg3 = "Limite de Mobília: " & HouseConfig(i).MaxFurniture
         Else
-            DialogMsg1 = "Would you like to buy the house: " & Trim$(HouseConfig(i).ConfigName)
-            DialogMsg2 = "Cost: " & HouseConfig(i).Price
-            DialogMsg3 = "Furniture Limit: None."
+            DialogMsg1 = "Você gostaria de comprar a casa: " & Trim$(HouseConfig(i).ConfigName)
+            DialogMsg2 = "Custo: " & HouseConfig(i).Price
+            DialogMsg3 = "Limite de Mobília: Zero."
         End If
 
         UpdateDialog = True
@@ -172,7 +172,7 @@ Friend Module C_Housing
 
         DialogType = DialogueTypeVisit
 
-        DialogMsg1 = "You have been invited to visit " & Trim$(GetPlayerName(i)) & "'s house."
+        DialogMsg1 = "Você foi convidado para vistiar a casa de " & Trim$(GetPlayerName(i))
         DialogMsg2 = ""
         DialogMsg3 = ""
 
@@ -295,7 +295,7 @@ Friend Module C_Housing
             LoadTexture(i, 10)
         End If
 
-        'seeying we still use it, lets update timer
+        'vendo que ainda vamos usar, atualizar contador
         With FurnitureGfxInfo(i)
             .TextureTimer = GetTickCount() + 100000
         End With
@@ -307,14 +307,14 @@ Friend Module C_Housing
         If height > 4 Then height = 4
         If i <= 0 OrElse i > NumFurniture Then Exit Sub
 
-        ' make sure it's not out of map
+        ' ter certeza que não está fora do mapa
         If Furniture(index).X > Map.MaxX Then Exit Sub
         If Furniture(index).Y > Map.MaxY Then Exit Sub
 
         For x1 = 0 To width - 1
             For y1 = 0 To height
                 If Item(Furniture(index).ItemNum).FurnitureFringe(x1, y1) = layer Then
-                    ' Set base x + y, then the offset due to size
+                    ' setar base x + y, e então o offset devido ao tamanho
                     x = (Furniture(index).X * 32) + (x1 * 32)
                     y = (Furniture(index).Y * 32 - (height * 32)) + (y1 * 32)
                     x = ConvertMapX(x)

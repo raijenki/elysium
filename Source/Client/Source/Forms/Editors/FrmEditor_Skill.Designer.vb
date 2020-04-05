@@ -116,9 +116,11 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox1.Controls.Add(Me.lstIndex)
         Me.DarkGroupBox1.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.DarkGroupBox1.Location = New System.Drawing.Point(4, 5)
+        Me.DarkGroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox1.Name = "DarkGroupBox1"
-        Me.DarkGroupBox1.Size = New System.Drawing.Size(183, 394)
+        Me.DarkGroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox1.Size = New System.Drawing.Size(274, 606)
         Me.DarkGroupBox1.TabIndex = 0
         Me.DarkGroupBox1.TabStop = False
         Me.DarkGroupBox1.Text = "Lista de habilidades"
@@ -129,9 +131,11 @@ Partial Class frmEditor_Skill
         Me.lstIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstIndex.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstIndex.FormattingEnabled = True
-        Me.lstIndex.Location = New System.Drawing.Point(6, 19)
+        Me.lstIndex.ItemHeight = 20
+        Me.lstIndex.Location = New System.Drawing.Point(9, 29)
+        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstIndex.Name = "lstIndex"
-        Me.lstIndex.Size = New System.Drawing.Size(171, 366)
+        Me.lstIndex.Size = New System.Drawing.Size(256, 562)
         Me.lstIndex.TabIndex = 1
         '
         'DarkGroupBox2
@@ -144,37 +148,42 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox2.Controls.Add(Me.DarkGroupBox5)
         Me.DarkGroupBox2.Controls.Add(Me.DarkGroupBox3)
         Me.DarkGroupBox2.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox2.Location = New System.Drawing.Point(192, 3)
+        Me.DarkGroupBox2.Location = New System.Drawing.Point(288, 5)
+        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox2.Name = "DarkGroupBox2"
-        Me.DarkGroupBox2.Size = New System.Drawing.Size(619, 394)
+        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox2.Size = New System.Drawing.Size(928, 606)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
         Me.DarkGroupBox2.Text = "Caracteristicas da habilidade"
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(134, 365)
+        Me.btnDelete.Location = New System.Drawing.Point(201, 562)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
+        Me.btnDelete.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnDelete.Size = New System.Drawing.Size(112, 35)
         Me.btnDelete.TabIndex = 4
         Me.btnDelete.Text = "Excluir"
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(261, 365)
+        Me.btnCancel.Location = New System.Drawing.Point(392, 562)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 3
         Me.btnCancel.Text = "Cancelar"
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(6, 365)
+        Me.btnSave.Location = New System.Drawing.Point(9, 562)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSave.Size = New System.Drawing.Size(112, 35)
         Me.btnSave.TabIndex = 2
         Me.btnSave.Text = "Salvar"
         '
@@ -186,9 +195,11 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox5.Controls.Add(Me.DarkGroupBox7)
         Me.DarkGroupBox5.Controls.Add(Me.DarkGroupBox6)
         Me.DarkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox5.Location = New System.Drawing.Point(342, 19)
+        Me.DarkGroupBox5.Location = New System.Drawing.Point(513, 29)
+        Me.DarkGroupBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox5.Name = "DarkGroupBox5"
-        Me.DarkGroupBox5.Size = New System.Drawing.Size(267, 367)
+        Me.DarkGroupBox5.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox5.Size = New System.Drawing.Size(400, 565)
         Me.DarkGroupBox5.TabIndex = 1
         Me.DarkGroupBox5.TabStop = False
         Me.DarkGroupBox5.Text = "Data"
@@ -211,12 +222,14 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox8.Controls.Add(Me.nudRange)
         Me.DarkGroupBox8.Controls.Add(Me.DarkLabel17)
         Me.DarkGroupBox8.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox8.Location = New System.Drawing.Point(6, 181)
+        Me.DarkGroupBox8.Location = New System.Drawing.Point(9, 278)
+        Me.DarkGroupBox8.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox8.Name = "DarkGroupBox8"
-        Me.DarkGroupBox8.Size = New System.Drawing.Size(254, 181)
+        Me.DarkGroupBox8.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox8.Size = New System.Drawing.Size(381, 278)
         Me.DarkGroupBox8.TabIndex = 2
         Me.DarkGroupBox8.TabStop = False
-        Me.DarkGroupBox8.Text = "Cast Settings"
+        Me.DarkGroupBox8.Text = "Configurações de Uso"
         '
         'cmbAnim
         '
@@ -232,9 +245,10 @@ Partial Class frmEditor_Skill
         Me.cmbAnim.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbAnim.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbAnim.FormattingEnabled = True
-        Me.cmbAnim.Location = New System.Drawing.Point(104, 153)
+        Me.cmbAnim.Location = New System.Drawing.Point(156, 235)
+        Me.cmbAnim.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbAnim.Name = "cmbAnim"
-        Me.cmbAnim.Size = New System.Drawing.Size(144, 21)
+        Me.cmbAnim.Size = New System.Drawing.Size(214, 27)
         Me.cmbAnim.TabIndex = 12
         Me.cmbAnim.Text = Nothing
         Me.cmbAnim.TextPadding = New System.Windows.Forms.Padding(2)
@@ -243,11 +257,12 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel23.AutoSize = True
         Me.DarkLabel23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel23.Location = New System.Drawing.Point(6, 156)
+        Me.DarkLabel23.Location = New System.Drawing.Point(9, 240)
+        Me.DarkLabel23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel23.Name = "DarkLabel23"
-        Me.DarkLabel23.Size = New System.Drawing.Size(56, 13)
+        Me.DarkLabel23.Size = New System.Drawing.Size(84, 20)
         Me.DarkLabel23.TabIndex = 11
-        Me.DarkLabel23.Text = "Animation:"
+        Me.DarkLabel23.Text = "Animação:"
         '
         'cmbAnimCast
         '
@@ -263,9 +278,10 @@ Partial Class frmEditor_Skill
         Me.cmbAnimCast.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbAnimCast.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbAnimCast.FormattingEnabled = True
-        Me.cmbAnimCast.Location = New System.Drawing.Point(104, 126)
+        Me.cmbAnimCast.Location = New System.Drawing.Point(156, 194)
+        Me.cmbAnimCast.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbAnimCast.Name = "cmbAnimCast"
-        Me.cmbAnimCast.Size = New System.Drawing.Size(144, 21)
+        Me.cmbAnimCast.Size = New System.Drawing.Size(214, 27)
         Me.cmbAnimCast.TabIndex = 10
         Me.cmbAnimCast.Text = Nothing
         Me.cmbAnimCast.TextPadding = New System.Windows.Forms.Padding(2)
@@ -274,19 +290,21 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel22.AutoSize = True
         Me.DarkLabel22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel22.Location = New System.Drawing.Point(6, 129)
+        Me.DarkLabel22.Location = New System.Drawing.Point(9, 198)
+        Me.DarkLabel22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel22.Name = "DarkLabel22"
-        Me.DarkLabel22.Size = New System.Drawing.Size(80, 13)
+        Me.DarkLabel22.Size = New System.Drawing.Size(139, 20)
         Me.DarkLabel22.TabIndex = 9
-        Me.DarkLabel22.Text = "Cast Animation:"
+        Me.DarkLabel22.Text = "Animação de Uso:"
         '
         'nudStun
         '
         Me.nudStun.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudStun.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudStun.Location = New System.Drawing.Point(150, 95)
+        Me.nudStun.Location = New System.Drawing.Point(225, 146)
+        Me.nudStun.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudStun.Name = "nudStun"
-        Me.nudStun.Size = New System.Drawing.Size(75, 20)
+        Me.nudStun.Size = New System.Drawing.Size(112, 26)
         Me.nudStun.TabIndex = 8
         Me.nudStun.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -294,29 +312,32 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel21.AutoSize = True
         Me.DarkLabel21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel21.Location = New System.Drawing.Point(6, 97)
+        Me.DarkLabel21.Location = New System.Drawing.Point(9, 149)
+        Me.DarkLabel21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel21.Name = "DarkLabel21"
-        Me.DarkLabel21.Size = New System.Drawing.Size(103, 13)
+        Me.DarkLabel21.Size = New System.Drawing.Size(156, 20)
         Me.DarkLabel21.TabIndex = 7
-        Me.DarkLabel21.Text = "Stun Duration(secs):"
+        Me.DarkLabel21.Text = "Duração do Estupor:"
         '
         'DarkLabel20
         '
         Me.DarkLabel20.AutoSize = True
         Me.DarkLabel20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel20.Location = New System.Drawing.Point(107, 71)
+        Me.DarkLabel20.Location = New System.Drawing.Point(160, 109)
+        Me.DarkLabel20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel20.Name = "DarkLabel20"
-        Me.DarkLabel20.Size = New System.Drawing.Size(118, 13)
+        Me.DarkLabel20.Size = New System.Drawing.Size(204, 20)
         Me.DarkLabel20.TabIndex = 6
-        Me.DarkLabel20.Text = "Tiles. Hint: 0 is self-cast"
+        Me.DarkLabel20.Text = "Tiles. Dica: 0 é usado em si."
         '
         'nudAoE
         '
         Me.nudAoE.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudAoE.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudAoE.Location = New System.Drawing.Point(54, 69)
+        Me.nudAoE.Location = New System.Drawing.Point(81, 106)
+        Me.nudAoE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudAoE.Name = "nudAoE"
-        Me.nudAoE.Size = New System.Drawing.Size(47, 20)
+        Me.nudAoE.Size = New System.Drawing.Size(70, 26)
         Me.nudAoE.TabIndex = 5
         Me.nudAoE.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -324,38 +345,42 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel19.AutoSize = True
         Me.DarkLabel19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel19.Location = New System.Drawing.Point(6, 71)
+        Me.DarkLabel19.Location = New System.Drawing.Point(9, 109)
+        Me.DarkLabel19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel19.Name = "DarkLabel19"
-        Me.DarkLabel19.Size = New System.Drawing.Size(30, 13)
+        Me.DarkLabel19.Size = New System.Drawing.Size(44, 20)
         Me.DarkLabel19.TabIndex = 4
         Me.DarkLabel19.Text = "AoE:"
         '
         'chkAoE
         '
         Me.chkAoE.AutoSize = True
-        Me.chkAoE.Location = New System.Drawing.Point(9, 46)
+        Me.chkAoE.Location = New System.Drawing.Point(14, 71)
+        Me.chkAoE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkAoE.Name = "chkAoE"
-        Me.chkAoE.Size = New System.Drawing.Size(79, 17)
+        Me.chkAoE.Size = New System.Drawing.Size(253, 24)
         Me.chkAoE.TabIndex = 3
-        Me.chkAoE.Text = "Is AoE Skill"
+        Me.chkAoE.Text = "É Habilidade de Área de Efeito"
         '
         'DarkLabel18
         '
         Me.DarkLabel18.AutoSize = True
         Me.DarkLabel18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel18.Location = New System.Drawing.Point(107, 23)
+        Me.DarkLabel18.Location = New System.Drawing.Point(160, 35)
+        Me.DarkLabel18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel18.Name = "DarkLabel18"
-        Me.DarkLabel18.Size = New System.Drawing.Size(118, 13)
+        Me.DarkLabel18.Size = New System.Drawing.Size(204, 20)
         Me.DarkLabel18.TabIndex = 2
-        Me.DarkLabel18.Text = "Tiles. Hint: 0 is self-cast"
+        Me.DarkLabel18.Text = "Tiles. Dica; 0 é usado em si."
         '
         'nudRange
         '
         Me.nudRange.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudRange.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudRange.Location = New System.Drawing.Point(54, 20)
+        Me.nudRange.Location = New System.Drawing.Point(81, 31)
+        Me.nudRange.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudRange.Name = "nudRange"
-        Me.nudRange.Size = New System.Drawing.Size(47, 20)
+        Me.nudRange.Size = New System.Drawing.Size(70, 26)
         Me.nudRange.TabIndex = 1
         Me.nudRange.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -363,11 +388,12 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel17.AutoSize = True
         Me.DarkLabel17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel17.Location = New System.Drawing.Point(6, 23)
+        Me.DarkLabel17.Location = New System.Drawing.Point(9, 35)
+        Me.DarkLabel17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel17.Name = "DarkLabel17"
-        Me.DarkLabel17.Size = New System.Drawing.Size(42, 13)
+        Me.DarkLabel17.Size = New System.Drawing.Size(70, 20)
         Me.DarkLabel17.TabIndex = 0
-        Me.DarkLabel17.Text = "Range:"
+        Me.DarkLabel17.Text = "Alcance:"
         '
         'DarkGroupBox7
         '
@@ -380,20 +406,23 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox7.Controls.Add(Me.nudVital)
         Me.DarkGroupBox7.Controls.Add(Me.DarkLabel14)
         Me.DarkGroupBox7.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox7.Location = New System.Drawing.Point(6, 98)
+        Me.DarkGroupBox7.Location = New System.Drawing.Point(9, 151)
+        Me.DarkGroupBox7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox7.Name = "DarkGroupBox7"
-        Me.DarkGroupBox7.Size = New System.Drawing.Size(254, 77)
+        Me.DarkGroupBox7.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox7.Size = New System.Drawing.Size(381, 118)
         Me.DarkGroupBox7.TabIndex = 1
         Me.DarkGroupBox7.TabStop = False
-        Me.DarkGroupBox7.Text = "HoT & DoT Settings "
+        Me.DarkGroupBox7.Text = "Configurações de HoT & DoT"
         '
         'nudInterval
         '
         Me.nudInterval.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudInterval.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudInterval.Location = New System.Drawing.Point(203, 45)
+        Me.nudInterval.Location = New System.Drawing.Point(304, 69)
+        Me.nudInterval.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudInterval.Name = "nudInterval"
-        Me.nudInterval.Size = New System.Drawing.Size(45, 20)
+        Me.nudInterval.Size = New System.Drawing.Size(68, 26)
         Me.nudInterval.TabIndex = 5
         Me.nudInterval.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -401,19 +430,21 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel16.AutoSize = True
         Me.DarkLabel16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel16.Location = New System.Drawing.Point(152, 47)
+        Me.DarkLabel16.Location = New System.Drawing.Point(228, 72)
+        Me.DarkLabel16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel16.Name = "DarkLabel16"
-        Me.DarkLabel16.Size = New System.Drawing.Size(45, 13)
+        Me.DarkLabel16.Size = New System.Drawing.Size(74, 20)
         Me.DarkLabel16.TabIndex = 4
-        Me.DarkLabel16.Text = "Interval:"
+        Me.DarkLabel16.Text = "Intervalo:"
         '
         'nudDuration
         '
         Me.nudDuration.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudDuration.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudDuration.Location = New System.Drawing.Point(90, 45)
+        Me.nudDuration.Location = New System.Drawing.Point(135, 69)
+        Me.nudDuration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudDuration.Name = "nudDuration"
-        Me.nudDuration.Size = New System.Drawing.Size(45, 20)
+        Me.nudDuration.Size = New System.Drawing.Size(68, 26)
         Me.nudDuration.TabIndex = 3
         Me.nudDuration.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -421,19 +452,21 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel15.AutoSize = True
         Me.DarkLabel15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel15.Location = New System.Drawing.Point(6, 47)
+        Me.DarkLabel15.Location = New System.Drawing.Point(9, 72)
+        Me.DarkLabel15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel15.Name = "DarkLabel15"
-        Me.DarkLabel15.Size = New System.Drawing.Size(78, 13)
+        Me.DarkLabel15.Size = New System.Drawing.Size(96, 20)
         Me.DarkLabel15.TabIndex = 2
-        Me.DarkLabel15.Text = "Duration(secs):"
+        Me.DarkLabel15.Text = "Duração (s):"
         '
         'nudVital
         '
         Me.nudVital.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudVital.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudVital.Location = New System.Drawing.Point(146, 19)
+        Me.nudVital.Location = New System.Drawing.Point(219, 29)
+        Me.nudVital.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudVital.Name = "nudVital"
-        Me.nudVital.Size = New System.Drawing.Size(102, 20)
+        Me.nudVital.Size = New System.Drawing.Size(153, 26)
         Me.nudVital.TabIndex = 1
         Me.nudVital.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -441,11 +474,12 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel14.AutoSize = True
         Me.DarkLabel14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel14.Location = New System.Drawing.Point(6, 21)
+        Me.DarkLabel14.Location = New System.Drawing.Point(9, 32)
+        Me.DarkLabel14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel14.Name = "DarkLabel14"
-        Me.DarkLabel14.Size = New System.Drawing.Size(134, 13)
+        Me.DarkLabel14.Size = New System.Drawing.Size(162, 20)
         Me.DarkLabel14.TabIndex = 0
-        Me.DarkLabel14.Text = "Amount to heal or damage:"
+        Me.DarkLabel14.Text = "Qtd. de cura ou dano:"
         '
         'DarkGroupBox6
         '
@@ -460,20 +494,23 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox6.Controls.Add(Me.nudMap)
         Me.DarkGroupBox6.Controls.Add(Me.DarkLabel10)
         Me.DarkGroupBox6.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox6.Location = New System.Drawing.Point(6, 14)
+        Me.DarkGroupBox6.Location = New System.Drawing.Point(9, 22)
+        Me.DarkGroupBox6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox6.Name = "DarkGroupBox6"
-        Me.DarkGroupBox6.Size = New System.Drawing.Size(254, 78)
+        Me.DarkGroupBox6.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox6.Size = New System.Drawing.Size(381, 120)
         Me.DarkGroupBox6.TabIndex = 0
         Me.DarkGroupBox6.TabStop = False
-        Me.DarkGroupBox6.Text = "Warp Settings"
+        Me.DarkGroupBox6.Text = "Configurações de Teleporte"
         '
         'nudY
         '
         Me.nudY.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudY.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudY.Location = New System.Drawing.Point(176, 45)
+        Me.nudY.Location = New System.Drawing.Point(264, 69)
+        Me.nudY.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudY.Name = "nudY"
-        Me.nudY.Size = New System.Drawing.Size(69, 20)
+        Me.nudY.Size = New System.Drawing.Size(104, 26)
         Me.nudY.TabIndex = 7
         Me.nudY.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -481,9 +518,10 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel13.AutoSize = True
         Me.DarkLabel13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel13.Location = New System.Drawing.Point(118, 47)
+        Me.DarkLabel13.Location = New System.Drawing.Point(177, 72)
+        Me.DarkLabel13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel13.Name = "DarkLabel13"
-        Me.DarkLabel13.Size = New System.Drawing.Size(17, 13)
+        Me.DarkLabel13.Size = New System.Drawing.Size(24, 20)
         Me.DarkLabel13.TabIndex = 6
         Me.DarkLabel13.Text = "Y:"
         '
@@ -491,9 +529,10 @@ Partial Class frmEditor_Skill
         '
         Me.nudX.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudX.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudX.Location = New System.Drawing.Point(43, 45)
+        Me.nudX.Location = New System.Drawing.Point(64, 69)
+        Me.nudX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudX.Name = "nudX"
-        Me.nudX.Size = New System.Drawing.Size(69, 20)
+        Me.nudX.Size = New System.Drawing.Size(104, 26)
         Me.nudX.TabIndex = 5
         Me.nudX.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -501,9 +540,10 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel12.AutoSize = True
         Me.DarkLabel12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel12.Location = New System.Drawing.Point(6, 47)
+        Me.DarkLabel12.Location = New System.Drawing.Point(9, 72)
+        Me.DarkLabel12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel12.Name = "DarkLabel12"
-        Me.DarkLabel12.Size = New System.Drawing.Size(17, 13)
+        Me.DarkLabel12.Size = New System.Drawing.Size(24, 20)
         Me.DarkLabel12.TabIndex = 4
         Me.DarkLabel12.Text = "X:"
         '
@@ -521,31 +561,34 @@ Partial Class frmEditor_Skill
         Me.cmbDir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbDir.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbDir.FormattingEnabled = True
-        Me.cmbDir.Items.AddRange(New Object() {"Up", "Down", "Left", "Right"})
-        Me.cmbDir.Location = New System.Drawing.Point(176, 18)
+        Me.cmbDir.Items.AddRange(New Object() {"Cima", "Baixo", "Esquerda", "Direita"})
+        Me.cmbDir.Location = New System.Drawing.Point(264, 28)
+        Me.cmbDir.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbDir.Name = "cmbDir"
-        Me.cmbDir.Size = New System.Drawing.Size(69, 21)
+        Me.cmbDir.Size = New System.Drawing.Size(102, 27)
         Me.cmbDir.TabIndex = 3
-        Me.cmbDir.Text = "Up"
+        Me.cmbDir.Text = "Cima"
         Me.cmbDir.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel11
         '
         Me.DarkLabel11.AutoSize = True
         Me.DarkLabel11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel11.Location = New System.Drawing.Point(118, 21)
+        Me.DarkLabel11.Location = New System.Drawing.Point(177, 32)
+        Me.DarkLabel11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel11.Name = "DarkLabel11"
-        Me.DarkLabel11.Size = New System.Drawing.Size(52, 13)
+        Me.DarkLabel11.Size = New System.Drawing.Size(68, 20)
         Me.DarkLabel11.TabIndex = 2
-        Me.DarkLabel11.Text = "Direction:"
+        Me.DarkLabel11.Text = "Direção:"
         '
         'nudMap
         '
         Me.nudMap.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudMap.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudMap.Location = New System.Drawing.Point(43, 19)
+        Me.nudMap.Location = New System.Drawing.Point(64, 29)
+        Me.nudMap.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudMap.Name = "nudMap"
-        Me.nudMap.Size = New System.Drawing.Size(69, 20)
+        Me.nudMap.Size = New System.Drawing.Size(104, 26)
         Me.nudMap.TabIndex = 1
         Me.nudMap.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -553,11 +596,12 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel10.AutoSize = True
         Me.DarkLabel10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel10.Location = New System.Drawing.Point(6, 21)
+        Me.DarkLabel10.Location = New System.Drawing.Point(9, 32)
+        Me.DarkLabel10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel10.Name = "DarkLabel10"
-        Me.DarkLabel10.Size = New System.Drawing.Size(31, 13)
+        Me.DarkLabel10.Size = New System.Drawing.Size(53, 20)
         Me.DarkLabel10.TabIndex = 0
-        Me.DarkLabel10.Text = "Map:"
+        Me.DarkLabel10.Text = "Mapa:"
         '
         'DarkGroupBox3
         '
@@ -582,9 +626,11 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox3.Controls.Add(Me.txtName)
         Me.DarkGroupBox3.Controls.Add(Me.DarkLabel1)
         Me.DarkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox3.Location = New System.Drawing.Point(6, 19)
+        Me.DarkGroupBox3.Location = New System.Drawing.Point(9, 29)
+        Me.DarkGroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox3.Name = "DarkGroupBox3"
-        Me.DarkGroupBox3.Size = New System.Drawing.Size(330, 323)
+        Me.DarkGroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox3.Size = New System.Drawing.Size(495, 497)
         Me.DarkGroupBox3.TabIndex = 0
         Me.DarkGroupBox3.TabStop = False
         Me.DarkGroupBox3.Text = "Caracteristicas basicas"
@@ -592,9 +638,10 @@ Partial Class frmEditor_Skill
         'chkKnockBack
         '
         Me.chkKnockBack.AutoSize = True
-        Me.chkKnockBack.Location = New System.Drawing.Point(9, 158)
+        Me.chkKnockBack.Location = New System.Drawing.Point(14, 243)
+        Me.chkKnockBack.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkKnockBack.Name = "chkKnockBack"
-        Me.chkKnockBack.Size = New System.Drawing.Size(81, 17)
+        Me.chkKnockBack.Size = New System.Drawing.Size(118, 24)
         Me.chkKnockBack.TabIndex = 61
         Me.chkKnockBack.Text = "É rebote de"
         '
@@ -613,9 +660,10 @@ Partial Class frmEditor_Skill
         Me.cmbKnockBackTiles.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbKnockBackTiles.FormattingEnabled = True
         Me.cmbKnockBackTiles.Items.AddRange(New Object() {"No KnockBack", "1 Tile", "2 Tiles", "3 Tiles", "4 Tiles", "5 Tiles"})
-        Me.cmbKnockBackTiles.Location = New System.Drawing.Point(153, 156)
+        Me.cmbKnockBackTiles.Location = New System.Drawing.Point(230, 240)
+        Me.cmbKnockBackTiles.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbKnockBackTiles.Name = "cmbKnockBackTiles"
-        Me.cmbKnockBackTiles.Size = New System.Drawing.Size(171, 21)
+        Me.cmbKnockBackTiles.Size = New System.Drawing.Size(254, 27)
         Me.cmbKnockBackTiles.TabIndex = 60
         Me.cmbKnockBackTiles.Text = "No KnockBack"
         Me.cmbKnockBackTiles.TextPadding = New System.Windows.Forms.Padding(2)
@@ -634,9 +682,10 @@ Partial Class frmEditor_Skill
         Me.cmbProjectile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbProjectile.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbProjectile.FormattingEnabled = True
-        Me.cmbProjectile.Location = New System.Drawing.Point(153, 129)
+        Me.cmbProjectile.Location = New System.Drawing.Point(230, 198)
+        Me.cmbProjectile.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbProjectile.Name = "cmbProjectile"
-        Me.cmbProjectile.Size = New System.Drawing.Size(171, 21)
+        Me.cmbProjectile.Size = New System.Drawing.Size(254, 27)
         Me.cmbProjectile.TabIndex = 59
         Me.cmbProjectile.Text = Nothing
         Me.cmbProjectile.TextPadding = New System.Windows.Forms.Padding(2)
@@ -644,9 +693,10 @@ Partial Class frmEditor_Skill
         'chkProjectile
         '
         Me.chkProjectile.AutoSize = True
-        Me.chkProjectile.Location = New System.Drawing.Point(9, 131)
+        Me.chkProjectile.Location = New System.Drawing.Point(14, 202)
+        Me.chkProjectile.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkProjectile.Name = "chkProjectile"
-        Me.chkProjectile.Size = New System.Drawing.Size(92, 17)
+        Me.chkProjectile.Size = New System.Drawing.Size(135, 24)
         Me.chkProjectile.TabIndex = 58
         Me.chkProjectile.Text = "É um projetil ?"
         '
@@ -654,9 +704,10 @@ Partial Class frmEditor_Skill
         '
         Me.nudIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudIcon.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudIcon.Location = New System.Drawing.Point(72, 93)
+        Me.nudIcon.Location = New System.Drawing.Point(108, 143)
+        Me.nudIcon.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudIcon.Name = "nudIcon"
-        Me.nudIcon.Size = New System.Drawing.Size(80, 20)
+        Me.nudIcon.Size = New System.Drawing.Size(120, 26)
         Me.nudIcon.TabIndex = 57
         Me.nudIcon.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -664,18 +715,20 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel9.AutoSize = True
         Me.DarkLabel9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel9.Location = New System.Drawing.Point(6, 95)
+        Me.DarkLabel9.Location = New System.Drawing.Point(9, 146)
+        Me.DarkLabel9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel9.Name = "DarkLabel9"
-        Me.DarkLabel9.Size = New System.Drawing.Size(37, 13)
+        Me.DarkLabel9.Size = New System.Drawing.Size(53, 20)
         Me.DarkLabel9.TabIndex = 56
-        Me.DarkLabel9.Text = "Icone:"
+        Me.DarkLabel9.Text = "Ícone:"
         '
         'picSprite
         '
         Me.picSprite.BackColor = System.Drawing.Color.Black
-        Me.picSprite.Location = New System.Drawing.Point(158, 91)
+        Me.picSprite.Location = New System.Drawing.Point(237, 140)
+        Me.picSprite.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.picSprite.Name = "picSprite"
-        Me.picSprite.Size = New System.Drawing.Size(32, 32)
+        Me.picSprite.Size = New System.Drawing.Size(48, 49)
         Me.picSprite.TabIndex = 55
         Me.picSprite.TabStop = False
         '
@@ -683,9 +736,10 @@ Partial Class frmEditor_Skill
         '
         Me.nudCool.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudCool.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudCool.Location = New System.Drawing.Point(247, 67)
+        Me.nudCool.Location = New System.Drawing.Point(370, 103)
+        Me.nudCool.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudCool.Name = "nudCool"
-        Me.nudCool.Size = New System.Drawing.Size(77, 20)
+        Me.nudCool.Size = New System.Drawing.Size(116, 26)
         Me.nudCool.TabIndex = 12
         Me.nudCool.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -693,19 +747,21 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel8.AutoSize = True
         Me.DarkLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel8.Location = New System.Drawing.Point(158, 69)
+        Me.DarkLabel8.Location = New System.Drawing.Point(237, 106)
+        Me.DarkLabel8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel8.Name = "DarkLabel8"
-        Me.DarkLabel8.Size = New System.Drawing.Size(95, 13)
+        Me.DarkLabel8.Size = New System.Drawing.Size(121, 20)
         Me.DarkLabel8.TabIndex = 11
-        Me.DarkLabel8.Text = "Tempo cooldown :"
+        Me.DarkLabel8.Text = "Esfriamento (s):"
         '
         'nudCast
         '
         Me.nudCast.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudCast.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudCast.Location = New System.Drawing.Point(72, 67)
+        Me.nudCast.Location = New System.Drawing.Point(108, 103)
+        Me.nudCast.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudCast.Name = "nudCast"
-        Me.nudCast.Size = New System.Drawing.Size(80, 20)
+        Me.nudCast.Size = New System.Drawing.Size(120, 26)
         Me.nudCast.TabIndex = 10
         Me.nudCast.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -713,11 +769,12 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel7.AutoSize = True
         Me.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel7.Location = New System.Drawing.Point(6, 69)
+        Me.DarkLabel7.Location = New System.Drawing.Point(9, 106)
+        Me.DarkLabel7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel7.Name = "DarkLabel7"
-        Me.DarkLabel7.Size = New System.Drawing.Size(69, 13)
+        Me.DarkLabel7.Size = New System.Drawing.Size(117, 20)
         Me.DarkLabel7.TabIndex = 9
-        Me.DarkLabel7.Text = "Tempo cast :"
+        Me.DarkLabel7.Text = "Tempo de Uso:"
         '
         'DarkGroupBox4
         '
@@ -730,9 +787,11 @@ Partial Class frmEditor_Skill
         Me.DarkGroupBox4.Controls.Add(Me.nudLevel)
         Me.DarkGroupBox4.Controls.Add(Me.DarkLabel4)
         Me.DarkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox4.Location = New System.Drawing.Point(6, 227)
+        Me.DarkGroupBox4.Location = New System.Drawing.Point(9, 349)
+        Me.DarkGroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox4.Name = "DarkGroupBox4"
-        Me.DarkGroupBox4.Size = New System.Drawing.Size(318, 87)
+        Me.DarkGroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox4.Size = New System.Drawing.Size(477, 134)
         Me.DarkGroupBox4.TabIndex = 8
         Me.DarkGroupBox4.TabStop = False
         Me.DarkGroupBox4.Text = "Requerimentos"
@@ -741,9 +800,10 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel6.AutoSize = True
         Me.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel6.Location = New System.Drawing.Point(6, 48)
+        Me.DarkLabel6.Location = New System.Drawing.Point(9, 74)
+        Me.DarkLabel6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel6.Name = "DarkLabel6"
-        Me.DarkLabel6.Size = New System.Drawing.Size(38, 13)
+        Me.DarkLabel6.Size = New System.Drawing.Size(57, 20)
         Me.DarkLabel6.TabIndex = 11
         Me.DarkLabel6.Text = "Classe"
         '
@@ -761,9 +821,10 @@ Partial Class frmEditor_Skill
         Me.cmbClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbClass.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbClass.FormattingEnabled = True
-        Me.cmbClass.Location = New System.Drawing.Point(94, 45)
+        Me.cmbClass.Location = New System.Drawing.Point(141, 69)
+        Me.cmbClass.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbClass.Name = "cmbClass"
-        Me.cmbClass.Size = New System.Drawing.Size(218, 21)
+        Me.cmbClass.Size = New System.Drawing.Size(325, 27)
         Me.cmbClass.TabIndex = 10
         Me.cmbClass.Text = Nothing
         Me.cmbClass.TextPadding = New System.Windows.Forms.Padding(2)
@@ -782,21 +843,23 @@ Partial Class frmEditor_Skill
         Me.cmbAccessReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbAccessReq.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbAccessReq.FormattingEnabled = True
-        Me.cmbAccessReq.Items.AddRange(New Object() {"Player", "Monitor", "Mapper", "Developer", "Creator"})
-        Me.cmbAccessReq.Location = New System.Drawing.Point(241, 18)
+        Me.cmbAccessReq.Items.AddRange(New Object() {"Jogador", "Monitor", "Mapeador", "Desenvolvedor", "Criador"})
+        Me.cmbAccessReq.Location = New System.Drawing.Point(362, 28)
+        Me.cmbAccessReq.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbAccessReq.Name = "cmbAccessReq"
-        Me.cmbAccessReq.Size = New System.Drawing.Size(71, 21)
+        Me.cmbAccessReq.Size = New System.Drawing.Size(104, 27)
         Me.cmbAccessReq.TabIndex = 9
-        Me.cmbAccessReq.Text = "Player"
+        Me.cmbAccessReq.Text = "Jogador"
         Me.cmbAccessReq.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel5
         '
         Me.DarkLabel5.AutoSize = True
         Me.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel5.Location = New System.Drawing.Point(144, 21)
+        Me.DarkLabel5.Location = New System.Drawing.Point(216, 32)
+        Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(84, 13)
+        Me.DarkLabel5.Size = New System.Drawing.Size(121, 20)
         Me.DarkLabel5.TabIndex = 8
         Me.DarkLabel5.Text = "Nivel de Acesso"
         '
@@ -804,9 +867,10 @@ Partial Class frmEditor_Skill
         '
         Me.nudLevel.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudLevel.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudLevel.Location = New System.Drawing.Point(94, 19)
+        Me.nudLevel.Location = New System.Drawing.Point(141, 29)
+        Me.nudLevel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudLevel.Name = "nudLevel"
-        Me.nudLevel.Size = New System.Drawing.Size(44, 20)
+        Me.nudLevel.Size = New System.Drawing.Size(66, 26)
         Me.nudLevel.TabIndex = 7
         Me.nudLevel.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -814,19 +878,21 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel4.AutoSize = True
         Me.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel4.Location = New System.Drawing.Point(6, 21)
+        Me.DarkLabel4.Location = New System.Drawing.Point(9, 32)
+        Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(33, 13)
+        Me.DarkLabel4.Size = New System.Drawing.Size(42, 20)
         Me.DarkLabel4.TabIndex = 6
-        Me.DarkLabel4.Text = "Level"
+        Me.DarkLabel4.Text = "Nível"
         '
         'nudMp
         '
         Me.nudMp.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudMp.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudMp.Location = New System.Drawing.Point(247, 40)
+        Me.nudMp.Location = New System.Drawing.Point(370, 62)
+        Me.nudMp.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudMp.Name = "nudMp"
-        Me.nudMp.Size = New System.Drawing.Size(77, 20)
+        Me.nudMp.Size = New System.Drawing.Size(116, 26)
         Me.nudMp.TabIndex = 5
         Me.nudMp.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -834,9 +900,10 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel3.AutoSize = True
         Me.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel3.Location = New System.Drawing.Point(191, 43)
+        Me.DarkLabel3.Location = New System.Drawing.Point(286, 66)
+        Me.DarkLabel3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel3.Name = "DarkLabel3"
-        Me.DarkLabel3.Size = New System.Drawing.Size(56, 13)
+        Me.DarkLabel3.Size = New System.Drawing.Size(82, 20)
         Me.DarkLabel3.TabIndex = 4
         Me.DarkLabel3.Text = "Custo MP:"
         '
@@ -855,9 +922,10 @@ Partial Class frmEditor_Skill
         Me.cmbType.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbType.FormattingEnabled = True
         Me.cmbType.Items.AddRange(New Object() {"Damage HP", "Damage MP", "Heal HP", "Heal MP", "Warp"})
-        Me.cmbType.Location = New System.Drawing.Point(72, 40)
+        Me.cmbType.Location = New System.Drawing.Point(108, 62)
+        Me.cmbType.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbType.Name = "cmbType"
-        Me.cmbType.Size = New System.Drawing.Size(90, 21)
+        Me.cmbType.Size = New System.Drawing.Size(133, 27)
         Me.cmbType.TabIndex = 3
         Me.cmbType.Text = "Damage HP"
         Me.cmbType.TextPadding = New System.Windows.Forms.Padding(2)
@@ -866,9 +934,10 @@ Partial Class frmEditor_Skill
         '
         Me.DarkLabel2.AutoSize = True
         Me.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel2.Location = New System.Drawing.Point(6, 43)
+        Me.DarkLabel2.Location = New System.Drawing.Point(9, 66)
+        Me.DarkLabel2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel2.Name = "DarkLabel2"
-        Me.DarkLabel2.Size = New System.Drawing.Size(31, 13)
+        Me.DarkLabel2.Size = New System.Drawing.Size(43, 20)
         Me.DarkLabel2.TabIndex = 2
         Me.DarkLabel2.Text = "Tipo:"
         '
@@ -877,31 +946,34 @@ Partial Class frmEditor_Skill
         Me.txtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtName.Location = New System.Drawing.Point(72, 14)
+        Me.txtName.Location = New System.Drawing.Point(108, 22)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(252, 20)
+        Me.txtName.Size = New System.Drawing.Size(377, 26)
         Me.txtName.TabIndex = 1
         '
         'DarkLabel1
         '
         Me.DarkLabel1.AutoSize = True
         Me.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel1.Location = New System.Drawing.Point(6, 16)
+        Me.DarkLabel1.Location = New System.Drawing.Point(9, 25)
+        Me.DarkLabel1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel1.Name = "DarkLabel1"
-        Me.DarkLabel1.Size = New System.Drawing.Size(38, 13)
+        Me.DarkLabel1.Size = New System.Drawing.Size(55, 20)
         Me.DarkLabel1.TabIndex = 0
         Me.DarkLabel1.Text = "Nome:"
         '
         'frmEditor_Skill
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(816, 401)
+        Me.ClientSize = New System.Drawing.Size(1224, 617)
         Me.ControlBox = False
         Me.Controls.Add(Me.DarkGroupBox2)
         Me.Controls.Add(Me.DarkGroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmEditor_Skill"
         Me.Text = "Editor de Habilidades"
         Me.DarkGroupBox1.ResumeLayout(False)

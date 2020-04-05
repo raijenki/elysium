@@ -14,8 +14,8 @@ Friend Module C_NetworkConfig
     End Sub
 
     Friend Sub DestroyNetwork()
-        ' Calling a disconnect is not necessary when using destroy network as
-        ' Dispose already calls it and cleans up the memory internally.
+        ' Chamar uma desconexão não é necessário quando usa o destroy network, já que
+        ' o Dispose já chama e ainda limpa a memória internamente.
         Socket.Dispose()
     End Sub
 
@@ -30,13 +30,13 @@ Friend Module C_NetworkConfig
     End Sub
 
     Private Sub Socket_ConnectionLost() Handles Socket.ConnectionLost
-        MsgBox("Connection was terminated!")
+        MsgBox("A conexão foi terminada!")
         DestroyNetwork()
         DestroyGame()
     End Sub
 
     Private Sub Socket_CrashReport(err As String) Handles Socket.CrashReport
-        MsgBox("There was a network error -> Report: " & err)
+        MsgBox("Houve um erro de rede -> Relatório: " & err)
         DestroyNetwork()
         DestroyGame()
     End Sub
@@ -44,21 +44,21 @@ Friend Module C_NetworkConfig
 #If DEBUG Then
 
     Private Sub Socket_TrafficReceived(size As Integer, ByRef data() As Byte) Handles Socket.TrafficReceived
-        Console.WriteLine("Traffic Received : [Size: " & size & "]")
+        Console.WriteLine("Tráfego Recebio : [Tamanho: " & size & "]")
         Dim tmpData = data
-#Disable Warning BC42024 ' Unused local variable
+#Disable Warning BC42024 ' Variável local não usada
         Dim breakPointDummy As Integer
-#Enable Warning BC42024 ' Unused local variable
-        'Put breakline on BreakPointDummy to look at what is contained in data at runtime in the VS logger.
+#Enable Warning BC42024 ' Variável local não usada
+        'Colocar quebra de linha no BreakPointDummy para olhar o que está contido nos dados do logger do VStudio em tempo de execução.
     End Sub
 
     Private Sub Socket_PacketReceived(size As Integer, header As Integer, ByRef data() As Byte) Handles Socket.PacketReceived
-        Console.WriteLine("Packet Received : [Size: " & size & "| Packet: " & CType(header, ServerPackets).ToString() & "]")
+        Console.WriteLine("Pacote Recebido : [Tamanho: " & size & "| Packet: " & CType(header, ServerPackets).ToString() & "]")
         Dim tmpData = data
-#Disable Warning BC42024 ' Unused local variable
+#Disable Warning BC42024 ' Variável local não usada
         Dim breakPointDummy As Integer
-#Enable Warning BC42024 ' Unused local variable
-        'Put breakline on BreakPointDummy to look at what is contained in data at runtime in the VS logger.
+#Enable Warning BC42024 ' Variável local não usada
+        'Colocar quebra de linha no BreakPointDummy para olhar o que está contido nos dados do logger do VStudio em tempo de execução.
     End Sub
 
 #End If
