@@ -14,6 +14,9 @@ Module C_Text
     Friend ScrollMod As Integer = 0
 
     Friend Sub DrawText(x As Integer, y As Integer, text As String, color As Color, backColor As Color, ByRef target As RenderWindow, Optional textSize As Byte = FontSize)
+        'Não queremos caracteres inexistentes ò-ó
+        text = text.Replace(vbCrLf, String.Empty)
+
         Dim backString As Text = New Text(text, SfmlGameFont)
         Dim frontString As Text = New Text(text, SfmlGameFont)
         backString.CharacterSize = textSize
@@ -63,7 +66,7 @@ Module C_Text
         If Npc(npcNum).Sprite < 1 OrElse Npc(npcNum).Sprite > NumCharacters Then
             textY = ConvertMapY(MapNpc(mapNpcNum).Y * PicY) + MapNpc(mapNpcNum).YOffset - 16
         Else
-            textY = ConvertMapY(MapNpc(mapNpcNum).Y * PicY) + MapNpc(mapNpcNum).YOffset - (CharacterGfxInfo(Npc(npcNum).Sprite).Height / 4) + 16
+            textY = ConvertMapY(MapNpc(mapNpcNum).Y * PicY) + MapNpc(mapNpcNum).YOffset - (CharacterGfxInfo(Npc(npcNum).Sprite).Height / 4)
         End If
 
         ' Desenhar nome

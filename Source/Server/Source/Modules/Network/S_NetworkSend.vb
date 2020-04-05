@@ -27,6 +27,7 @@ Module S_NetworkSend
     End Sub
 
     Sub PlayerMsg(index As Integer, Msg As String, Colour As Integer)
+        On Error Resume Next
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPlayerMsg)
         'buffer.Writestring((Msg)

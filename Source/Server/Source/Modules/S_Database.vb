@@ -1317,7 +1317,7 @@ Module modDatabase
         Dim i As Integer, n As Integer, q As Integer
         Dim buffer As New ByteStream(4)
 
-        For i = 1 To Max_Classes
+        For i = 1 To MAX_CLASSES
             buffer.WriteString((GetClassName(i).Trim))
             buffer.WriteString((Classes(i).Desc.Trim))
             buffer.WriteInt32(GetClassMaxVital(i, VitalType.HP))

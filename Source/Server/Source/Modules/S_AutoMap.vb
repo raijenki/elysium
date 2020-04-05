@@ -353,7 +353,7 @@ Module S_AutoMap
                     If _resources(0) Is "" Then Exit Sub
 
                     If Random(1, ResourceFreq) = 1 Then
-                        resourceNum = Val(_resources(Random(1, UBound(_resources))))
+                        resourceNum = Val(_resources(Random(0, UBound(_resources))))
                         Map(mapNum).Tile(x, y).Type = TileType.Resource
                         Map(mapNum).Tile(x, y).Data1 = resourceNum
                     End If

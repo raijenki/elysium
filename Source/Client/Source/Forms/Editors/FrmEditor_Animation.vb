@@ -83,4 +83,8 @@
     Private Sub DarkGroupBox1_Enter(sender As Object, e As EventArgs) Handles DarkGroupBox1.Enter
 
     End Sub
+
+    Private Sub nudSprite1_ValueChanged_1(sender As Object, e As EventArgs) Handles nudSprite1.ValueChanged
+
+    End Sub
 End Class

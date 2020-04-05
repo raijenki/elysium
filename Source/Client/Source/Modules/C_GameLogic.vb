@@ -996,11 +996,15 @@ Continue1:
 
         ' Sair para tudo exceto equips
         If Item(itemnum).Type <> ItemType.Equipment Then
+
             ' Limpar outros marcadores
-            ItemDescSpeed =
-            ItemDescStr = ItemDescEnd = ItemDescInt =
-            ItemDescSpr = ItemDescVit = ItemDescLuck =
-                    Language.ItemDescription.NotAvailable
+            ItemDescSpeed = Language.ItemDescription.NotAvailable
+            ItemDescStr = Language.ItemDescription.NotAvailable
+            ItemDescEnd = Language.ItemDescription.NotAvailable
+            ItemDescInt = Language.ItemDescription.NotAvailable
+            ItemDescSpr = Language.ItemDescription.NotAvailable
+            ItemDescVit = Language.ItemDescription.NotAvailable
+            ItemDescLuck = Language.ItemDescription.NotAvailable
             Exit Sub
         End If
 
