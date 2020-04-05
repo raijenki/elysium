@@ -85,7 +85,7 @@ Friend Module C_Weather
             LoadTexture(fogNum, 8)
         End If
 
-        'seeying we still use it, lets update timer
+        'Vendo que ainda vamos utilizar, atualizar contador
         With FogGfxInfo(fogNum)
             .TextureTimer = GetTickCount() + 100000
         End With
@@ -115,7 +115,7 @@ Friend Module C_Weather
             End If
             x = Rand(1, 101 - CurrentWeatherIntensity)
             If x = 1 Then
-                'Add a new particle
+                'Adicionar uma nova partícula
                 For i = 1 To MaxWeatherParticles
                     If WeatherParticle(i).InUse = 0 Then
                         If Rand(1, 3) = 1 Then
@@ -131,7 +131,7 @@ Friend Module C_Weather
                             WeatherParticle(i).X = ((TileView.Left * 32) + Rand(-32, GameWindow.Size.X))
                             WeatherParticle(i).Y = (TileView.Top * 32) - 32
                         End If
-                        'Exit For
+                        'Sair do laço
                     End If
                 Next
             End If
@@ -141,7 +141,7 @@ Friend Module C_Weather
         If CurrentWeather = WeatherType.Storm Then
             x = Rand(1, 400 - CurrentWeatherIntensity)
             If x = 1 Then
-                'Draw Thunder
+                'Desenhar trovão
                 DrawThunder = Rand(15, 22)
                 PlayExtraSound("Thunder.ogg")
             End If

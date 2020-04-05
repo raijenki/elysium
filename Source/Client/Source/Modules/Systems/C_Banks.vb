@@ -7,12 +7,12 @@ Module C_Banks
 
     Friend Bank As BankStruct
 
-    ' Stores the last bank item we showed in desc
+    ' guarda o último item do banco que mostramos no desc 
     Friend LastBankDesc As Integer
 
     Friend InBank As Integer
 
-    ' bank drag + drop
+    ' arrastar e soltar no banco
     Friend DragBankSlotNum As Integer
 
     Friend BankX As Integer
@@ -104,14 +104,14 @@ Module C_Banks
         Dim sRect As Rectangle, dRect As Rectangle
         Dim sprite As Integer, colour As SFML.Graphics.Color
 
-        'first render panel
+        'renderizar painel
         RenderSprite(BankPanelSprite, GameWindow, BankWindowX, BankWindowY, 0, 0, BankPanelGfxInfo.Width, BankPanelGfxInfo.Height)
 
-        'Headertext
-        DrawText(BankWindowX + 140, BankWindowY + 6, "Your Bank", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        'cabeçalho
+        DrawText(BankWindowX + 140, BankWindowY + 6, "Seu Banco", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
-        'close
-        DrawText(BankWindowX + 140, BankWindowY + BankPanelGfxInfo.Height - 20, "Close Bank", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
+        'fechar
+        DrawText(BankWindowX + 140, BankWindowY + BankPanelGfxInfo.Height - 20, "Fechar Banco", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow, 15)
 
         For i = 1 To MAX_BANK
             itemnum = GetBankItemNum(i)
@@ -123,7 +123,7 @@ Module C_Banks
                     LoadTexture(sprite, 4)
                 End If
 
-                'seeying we still use it, lets update timer
+                'se ainda utilizar, atualizar contador
                 With ItemsGfxInfo(sprite)
                     .TextureTimer = GetTickCount() + 100000
                 End With
@@ -144,14 +144,14 @@ Module C_Banks
 
                 RenderSprite(ItemsSprite(sprite), GameWindow, dRect.X, dRect.Y, sRect.X, sRect.Y, sRect.Width, sRect.Height)
 
-                ' If item is a stack - draw the amount you have
+                ' Se o item está em pilha, desenhar a quantidade
                 If GetBankItemValue(i) > 1 Then
                     y = dRect.Top + 22
                     x = dRect.Left - 4
 
                     amount = GetBankItemValue(i)
                     colour = SFML.Graphics.Color.White
-                    ' Draw currency but with k, m, b etc. using a convertion function
+                    ' Desenhar valores com k, m, b, etc
                     If CLng(amount) < 1000000 Then
                         colour = SFML.Graphics.Color.White
                     ElseIf CLng(amount) > 1000000 AndAlso CLng(amount) < 10000000 Then
@@ -182,7 +182,7 @@ Module C_Banks
                 LoadTexture(sprite, 4)
             End If
 
-            'seeying we still use it, lets update timer
+            'Vendo que ainda vamos utilizar, atualizar contador
             With ItemsGfxInfo(sprite)
                 .TextureTimer = GetTickCount() + 100000
             End With

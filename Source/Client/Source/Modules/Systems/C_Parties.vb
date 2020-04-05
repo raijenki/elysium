@@ -38,8 +38,8 @@ Module C_Parties
 
         DialogType = DialogueTypeParty
 
-        DialogMsg1 = "Party Invite"
-        DialogMsg2 = Trim$(name) & " has invited you to a party. Would you like to join?"
+        DialogMsg1 = "Convite para Equipe"
+        DialogMsg2 = Trim$(name) & " te convidou para uma equipe. Quer entrar?"
 
         UpdateDialog = True
 
@@ -51,15 +51,15 @@ Module C_Parties
         Dim buffer As New ByteStream(data)
         inParty = buffer.ReadInt32
 
-        ' exit out if we're not in a party
+        ' sair se não estamos em uma equipe
         If inParty = 0 Then
             ClearParty()
-            ' exit out early
+            ' sair mais cedo
             buffer.Dispose()
             Exit Sub
         End If
 
-        ' carry on otherwise
+        ' continuar caso contrario
         Party.Leader = buffer.ReadInt32
         For I = 1 To MAX_PARTY_MEMBERS
             Party.Member(I) = buffer.ReadInt32
@@ -72,20 +72,20 @@ Module C_Parties
     Sub Packet_PartyVitals(ByRef data() As Byte)
         Dim playerNum As Integer, partyindex As Integer
         Dim buffer As New ByteStream(data)
-        ' which player?
+        ' que jogador?
         playerNum = buffer.ReadInt32
 
-        ' find the party number
+        ' encontrar o numero da equipe
         For I = 1 To MAX_PARTY_MEMBERS
             If Party.Member(I) = playerNum Then
                 partyindex = I
             End If
         Next
 
-        ' exit out if wrong data
+        ' sair se info errada
         If partyindex <= 0 OrElse partyindex > MAX_PARTY_MEMBERS Then Exit Sub
 
-        ' set vitals
+        ' setar vitais
         Player(playerNum).MaxHp = buffer.ReadInt32
         Player(playerNum).Vital(VitalType.HP) = buffer.ReadInt32
 
@@ -156,24 +156,24 @@ Module C_Parties
         Dim I As Integer, x As Integer, y As Integer, barwidth As Integer, playerNum As Integer, theName As String
         Dim rec(1) As Rectangle
 
-        ' render the window
+        ' renderizar a janela
 
-        ' draw the bars
-        If Party.Leader > 0 Then ' make sure we're in a party
-            ' draw leader
+        ' desenhar barras
+        If Party.Leader > 0 Then ' ter certeza que estamos na equipe
+            ' desenhar lider
             playerNum = Party.Leader
-            ' name
+            ' nome
             theName = Trim$(GetPlayerName(playerNum))
-            ' draw name
+            ' desenhar nome
             y = 100
             x = 10
             DrawText(x, y, theName, SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
 
-            ' draw hp
+            ' desenhar hp
             If Player(playerNum).Vital(VitalType.HP) > 0 Then
-                ' calculate the width to fill
+                ' calcular o comprimnto para preencher
                 barwidth = ((Player(playerNum).Vital(VitalType.HP) / (GetPlayerMaxVital(playerNum, VitalType.HP)) * 64))
-                ' draw bars
+                ' desenhar barras
                 rec(1) = New Rectangle(x, y, barwidth, 6)
                 Dim rectShape As New RectangleShape(New Vector2f(barwidth, 6)) With {
                     .Position = New Vector2f(x, y + 15),
@@ -181,11 +181,11 @@ Module C_Parties
                 }
                 GameWindow.Draw(rectShape)
             End If
-            ' draw mp
+            ' desenhar mp
             If Player(playerNum).Vital(VitalType.MP) > 0 Then
-                ' calculate the width to fill
+                ' calcular comprimento para preencher
                 barwidth = ((Player(playerNum).Vital(VitalType.MP) / (GetPlayerMaxVital(playerNum, VitalType.MP)) * 64))
-                ' draw bars
+                ' desenhar barras
                 rec(1) = New Rectangle(x, y, barwidth, 6)
                 Dim rectShape2 As New RectangleShape(New Vector2f(barwidth, 6)) With {
                     .Position = New Vector2f(x, y + 24),
@@ -194,22 +194,22 @@ Module C_Parties
                 GameWindow.Draw(rectShape2)
             End If
 
-            ' draw members
+            ' desenhar membros
             For I = 1 To MAX_PARTY_MEMBERS
                 If Party.Member(I) > 0 Then
                     If Party.Member(I) <> Party.Leader Then
-                        ' cache the index
+                        ' fazer cache do index
                         playerNum = Party.Member(I)
-                        ' name
+                        ' nome
                         theName = Trim$(GetPlayerName(playerNum))
-                        ' draw name
+                        ' desenhar nome
                         y = 100 + ((I - 1) * 30)
 
                         DrawText(x, y, theName, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
-                        ' draw hp
+                        ' desenhar hp
                         y = 115 + ((I - 1) * 30)
 
-                        ' make sure we actually have the data before rendering
+                        ' ter certeza que temos os dados antes de renderizar
                         If GetPlayerVital(playerNum, VitalType.HP) > 0 AndAlso GetPlayerMaxVital(playerNum, VitalType.HP) > 0 Then
                             barwidth = ((Player(playerNum).Vital(VitalType.HP) / (GetPlayerMaxVital(playerNum, VitalType.HP)) * 64))
                         End If
@@ -219,9 +219,9 @@ Module C_Parties
                             .FillColor = SFML.Graphics.Color.Red
                         }
                         GameWindow.Draw(rectShape)
-                        ' draw mp
+                        ' desenhar mp
                         y = 115 + ((I - 1) * 30)
-                        ' make sure we actually have the data before rendering
+                        ' ter certeza que temos os dados antes de renderizar
                         If GetPlayerVital(playerNum, VitalType.MP) > 0 AndAlso GetPlayerMaxVital(playerNum, VitalType.MP) > 0 Then
                             barwidth = ((Player(playerNum).Vital(VitalType.MP) / (GetPlayerMaxVital(playerNum, VitalType.MP)) * 64))
                         End If

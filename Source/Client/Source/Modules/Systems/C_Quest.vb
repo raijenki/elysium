@@ -4,7 +4,7 @@ Friend Module C_Quest
 
 #Region "Global Info"
 
-    'Constants
+    'Constantes
     Friend Const MaxQuests As Integer = 250
 
     'Friend Const MAX_TASKS As Byte = 10
@@ -33,7 +33,7 @@ Friend Module C_Quest
 
     Friend QuestEditorShow As Boolean
 
-    'questlog variables
+    'variáveis de log
 
     Friend Const MaxActivequests = 10
 
@@ -51,7 +51,7 @@ Friend Module C_Quest
     Friend QuestRequirementsText As String = ""
     Friend QuestRewardsText() As String
 
-    'here we store temp info because off UpdateUI >.<
+    'guardar informacoes temporarias
     Friend UpdateQuestWindow As Boolean
 
     Friend UpdateQuestChat As Boolean
@@ -60,13 +60,13 @@ Friend Module C_Quest
     Friend QuestMessage As String
     Friend QuestAcceptTag As Integer
 
-    'Types
+    'Tipes
     Friend Quest(MaxQuests) As QuestRec
 
     Friend Structure PlayerQuestRec
-        Dim Status As Integer '0=not started, 1=started, 2=completed, 3=completed but repeatable
+        Dim Status As Integer '0=nao iniciado, 1=iniciado, 2=completo, 3=completo mas repetitivel
         Dim ActualTask As Integer
-        Dim CurrentCount As Integer 'Used to handle the Amount property
+        Dim CurrentCount As Integer 'Usado para lidar com a propriedade de quantidade
     End Structure
 
 
@@ -79,7 +79,7 @@ Friend Module C_Quest
     Sub ClearQuest(questNum As Integer)
         Dim I As Integer
 
-        ' clear the Quest
+        ' limpar a Quest
         Quest(questNum).Name = ""
         Quest(questNum).QuestLog = ""
         Quest(questNum).Repeat = 0
@@ -235,7 +235,7 @@ Friend Module C_Quest
 
         buffer.WriteInt32(ClientPackets.CPlayerHandleQuest)
         buffer.WriteInt32(questNum)
-        buffer.WriteInt32(order) '1=accept quest, 2=cancel quest
+        buffer.WriteInt32(order) '1=aceitar, 2=cancelar
 
         Socket.SendData(buffer.Data, buffer.Head)
         buffer.Dispose()
@@ -256,12 +256,12 @@ Friend Module C_Quest
 
 #Region "Support Functions"
 
-    'Tells if the quest is in progress or not
+    'Diz se a quest está em progresso ou não
     Friend Function QuestInProgress(questNum As Integer) As Boolean
         QuestInProgress = False
         If questNum < 1 OrElse questNum > MaxQuests Then Exit Function
 
-        If Player(Myindex).PlayerQuest(questNum).Status = QuestStatusType.Started Then 'Status=1 means started
+        If Player(Myindex).PlayerQuest(questNum).Status = QuestStatusType.Started Then 'Status=1 significa que começou
             QuestInProgress = True
         End If
     End Function
@@ -299,11 +299,11 @@ Friend Module C_Quest
         If questNum < 1 OrElse questNum > MaxQuests Then Exit Function
         If QuestInProgress(questNum) Then Exit Function
 
-        'Check if player has the quest 0 (not started) or 3 (completed but it can be started again)
+        'ver se o jogador tem a quest 0 (não iniciada) ou 3 (completa mas repetitível)
         If Player(Myindex).PlayerQuest(questNum).Status = QuestStatusType.NotStarted OrElse Player(Myindex).PlayerQuest(questNum).Status = QuestStatusType.Repeatable Then
 
             For i = 1 To Quest(questNum).ReqCount
-                'Check if item is needed
+                'ver se item é necessário
                 If Quest(questNum).Requirement(i) = 1 Then
                     If Quest(questNum).RequirementIndex(i) > 0 AndAlso Quest(questNum).RequirementIndex(i) <= MAX_ITEMS Then
                         If HasItem(Myindex, Quest(questNum).RequirementIndex(i)) = 0 Then
@@ -312,7 +312,7 @@ Friend Module C_Quest
                     End If
                 End If
 
-                'Check if previous quest is needed
+                'ver se tarefa anterior é necessário
                 If Quest(questNum).Requirement(i) = 2 Then
                     If Quest(questNum).RequirementIndex(i) > 0 AndAlso Quest(questNum).RequirementIndex(i) <= MaxQuests Then
                         If Player(Myindex).PlayerQuest(Quest(questNum).RequirementIndex(i)).Status = QuestStatusType.NotStarted OrElse Player(Myindex).PlayerQuest(Quest(questNum).RequirementIndex(i)).Status = QuestStatusType.Started Then
@@ -323,7 +323,7 @@ Friend Module C_Quest
 
             Next
 
-            'Go on :)
+            'Seguir
             CanStartQuest = True
         Else
             CanStartQuest = False
@@ -344,14 +344,14 @@ Friend Module C_Quest
     Function HasItem(index As Integer, itemNum As Integer) As Integer
         Dim i As Integer
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If IsPlaying(index) = False OrElse itemNum <= 0 OrElse itemNum > MAX_ITEMS Then
             Exit Function
         End If
 
         For i = 1 To MAX_INV
 
-            ' Check to see if the player has the item
+            ' Ver se o jogador tem o item
             If GetPlayerInvItemNum(index, i) = itemNum Then
                 If Item(itemNum).Type = ItemType.Currency OrElse Item(itemNum).Stackable = 1 Then
                     HasItem = GetPlayerInvItemValue(index, i)
@@ -384,9 +384,9 @@ Friend Module C_Quest
 
     End Sub
 
-    ' ////////////////////////
-    ' // Visual Interaction //
-    ' ////////////////////////
+    ' ///////////////////////
+    ' // Interação Visual  //
+    ' ///////////////////////
 
     Friend Sub LoadQuestlogBox()
         Dim questNum As Integer, curTask As Integer, I As Integer
@@ -405,13 +405,13 @@ Friend Module C_Quest
 
         If curTask >= Quest(questNum).Task.Length Then Exit Sub
 
-        'Quest Log (Main Task)
+        'Quest Log (Tarefa Principal)
         QuestTaskLogText = Trim$(Quest(questNum).QuestLog)
 
-        'Actual Task
+        'Tarefa Atual
         QuestTaskLogText = Trim$(Quest(questNum).Task(curTask).TaskLog)
 
-        'Last dialog
+        'Última janela de diálogo
         If Player(Myindex).PlayerQuest(questNum).ActualTask > 1 Then
             If Len(Trim$(Quest(questNum).Task(curTask - 1).Speech)) > 0 Then
                 QuestDialogText = Trim$(Quest(questNum).Task(curTask - 1).Speech).Replace("$playername$", GetPlayerName(Myindex))
@@ -422,7 +422,7 @@ Friend Module C_Quest
             QuestDialogText = Trim$(Quest(questNum).Chat(1).Replace("$playername$", GetPlayerName(Myindex)))
         End If
 
-        'Quest Status
+        'Status da Tarefa
         If Player(Myindex).PlayerQuest(questNum).Status = QuestStatusType.Started Then
             QuestStatus2Text = Language.Quest.Started
             AbandonQuestText = Language.Quest.Cancel
@@ -436,56 +436,56 @@ Friend Module C_Quest
         End If
 
         Select Case Quest(questNum).Task(curTask).TaskType
-                'defeat x amount of Npc
+                'derrotar x npcs
             Case QuestType.Slay
                 Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim npcName As String = Npc(Quest(questNum).Task(curTask).Npc).Name
-                ActualTaskText = String.Format(Language.Quest.Slay, curCount, maxAmount, npcName)'"Defeat " & CurCount & "/" & MaxAmount & " " & NpcName
-                'gather x amount of items
+                ActualTaskText = String.Format(Language.Quest.Slay, curCount, maxAmount, npcName)'"Derrotar " & CurCount & "/" & MaxAmount & " " & NpcName
+                'pegar x quantidade de itens
             Case QuestType.Collect
                 Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim itemName As String = Item(Quest(questNum).Task(curTask).Item).Name
-                ActualTaskText = String.Format(Language.Quest.Collect, curCount, maxAmount, itemName)'"Collect " & CurCount & "/" & MaxAmount & " " & ItemName
-                'go talk to npc
+                ActualTaskText = String.Format(Language.Quest.Collect, curCount, maxAmount, itemName)'"Coletar " & CurCount & "/" & MaxAmount & " " & ItemName
+                'falar com npc
             Case QuestType.Talk
                 Dim npcName As String = Npc(Quest(questNum).Task(curTask).Npc).Name
-                ActualTaskText = String.Format(Language.Quest.Talk, npcName)'"Go talk to  " & NpcName
-                'reach certain map
+                ActualTaskText = String.Format(Language.Quest.Talk, npcName)'"Falar com  " & NpcName
+                'chegar a certo mapa
             Case QuestType.Reach
                 Dim mapName As String = MapNames(Quest(questNum).Task(curTask).Map)
-                ActualTaskText = String.Format(Language.Quest.Reach, mapName)'"Go to " & MapName
+                ActualTaskText = String.Format(Language.Quest.Reach, mapName)'"Ir para " & MapName
             Case QuestType.Give
-                'give x amount of items to npc
+                'dar x quantidade de itens para npc
                 Dim npcName As String = Npc(Quest(questNum).Task(curTask).Npc).Name
                 Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim itemName As String = Item(Quest(questNum).Task(curTask).Item).Name
-                ActualTaskText = String.Format(Language.Quest.TurnIn, npcName, itemName, curCount, maxAmount)'"Give " & NpcName & " the " & ItemName & CurCount & "/" & MaxAmount & " they requested"
-                'defeat certain amount of players
+                ActualTaskText = String.Format(Language.Quest.TurnIn, npcName, itemName, curCount, maxAmount)'"Dar a" & NpcName & " o " & ItemName & CurCount & "/" & MaxAmount & " que ele pediu"
+                'derrotar certa quantidade de jogadores
             Case QuestType.Kill
                 Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
-                ActualTaskText = String.Format(Language.Quest.Kill, curCount, maxAmount)'"Defeat " & CurCount & "/" & MaxAmount & " Players in Battle"
-                'go collect resources
+                ActualTaskText = String.Format(Language.Quest.Kill, curCount, maxAmount)'"Derrotar " & CurCount & "/" & MaxAmount & " JOgadores em batalha"
+                'ir coletar recursos
             Case QuestType.Gather
                 Dim curCount As Integer = Player(Myindex).PlayerQuest(questNum).CurrentCount
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim resourceName As String = Resource(Quest(questNum).Task(curTask).Resource).Name
                 ActualTaskText = String.Format(Language.Quest.Gather, curCount, maxAmount, resourceName)'"Gather " & CurCount & "/" & MaxAmount & " " & ResourceName
-                'fetch x amount of items from npc
+                'pegar x quantidade de itens de npcs
             Case QuestType.Fetch
                 Dim npcName As String = Item(Quest(questNum).Task(curTask).Npc).Name
                 Dim maxAmount As Integer = Quest(questNum).Task(curTask).Amount
                 Dim itemName As String = Item(Quest(questNum).Task(curTask).Item).Name
-                ActualTaskText = String.Format(Language.Quest.Fetch, itemName, maxAmount, npcName) '"Fetch " & ItemName & "X" & MaxAmount & " from " & NpcName
+                ActualTaskText = String.Format(Language.Quest.Fetch, itemName, maxAmount, npcName) '"Pegar " & ItemName & "X" & MaxAmount & " de " & NpcName
             Case Else
                 'ToDo
                 ActualTaskText = "errr..."
         End Select
 
-        'Rewards
+        'Recompensa
         ReDim QuestRewardsText(Quest(questNum).RewardCount + 1)
         For I = 1 To Quest(questNum).RewardCount
             QuestRewardsText(I) = Item(Quest(questNum).RewardItem(I)).Name & " X" & Str(Quest(questNum).RewardItemAmount(I))
@@ -498,10 +498,10 @@ Friend Module C_Quest
 
         y = 10
 
-        'first render panel
+        'Renderizar painel
         RenderSprite(QuestSprite, GameWindow, QuestLogX, QuestLogY, 0, 0, QuestGfxInfo.Width, QuestGfxInfo.Height)
 
-        'draw quest names
+        'desenhar nome da quest
         For i = 1 To MaxActivequests
             If Len(Trim$(QuestNames(i))) > 0 Then
                 DrawText(QuestLogX + 7, QuestLogY + y, Trim$(QuestNames(i)), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
@@ -511,24 +511,24 @@ Friend Module C_Quest
 
         If SelectedQuest <= 0 Then Exit Sub
 
-        'quest log text
+        'texto do log da tarefa
         y = 0
         For Each str As String In WordWrap(Trim$(QuestTaskLogText), 35, WrapMode.Characters, WrapType.BreakWord)
-            'description
+            'descrição
             DrawText(QuestLogX + 204, QuestLogY + 30 + y, str, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
             y = y + 15
         Next
 
         y = 0
         For Each str As String In WordWrap(Trim$(ActualTaskText), 40, WrapMode.Characters, WrapType.BreakWord)
-            'description
+            'descrição
             DrawText(QuestLogX + 204, QuestLogY + 147 + y, str, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
             y = y + 15
         Next
 
         y = 0
         For Each str As String In WordWrap(Trim$(QuestDialogText), 40, WrapMode.Characters, WrapType.BreakWord)
-            'description
+            'descrição
             DrawText(QuestLogX + 204, QuestLogY + 218 + y, str, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
             y = y + 15
         Next
@@ -538,7 +538,7 @@ Friend Module C_Quest
 
         y = 0
         For i = 1 To QuestRewardsText.Length - 1
-            'description
+            'descrição
             DrawText(QuestLogX + 255, QuestLogY + 292 + y, Trim$(QuestRewardsText(i)), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
             y = y + 15
         Next
@@ -564,23 +564,23 @@ Friend Module C_Quest
         Dim i As Integer
 
         With frmEditor_Quest
-            'Populate combo boxes
+            'Encher comboboxes
             .cmbItemReq.Items.Clear()
-            .cmbItemReq.Items.Add("None")
+            .cmbItemReq.Items.Add("Nenhum")
 
             For i = 1 To MAX_ITEMS
                 .cmbItemReq.Items.Add(i & ": " & Item(i).Name)
             Next
 
             .cmbQuestReq.Items.Clear()
-            .cmbQuestReq.Items.Add("None")
+            .cmbQuestReq.Items.Add("Nenhum")
 
             For i = 1 To MaxQuests
                 .cmbQuestReq.Items.Add(i & ": " & Quest(i).Name)
             Next
 
             .cmbClassReq.Items.Clear()
-            .cmbClassReq.Items.Add("None")
+            .cmbClassReq.Items.Add("Nenhum")
 
             For i = 1 To MAX_CLASSES
                 .cmbClassReq.Items.Add(i & ": " & Classes(i).Name)
@@ -611,13 +611,13 @@ Friend Module C_Quest
 
     End Sub
 
-    'Subroutine that load the desired task in the form
+    'Subrotina que carrega a tarefa no formulário
     Friend Sub LoadTask(QuestNum As Integer, TaskNum As Integer)
         Dim TaskToLoad As TaskRec
         TaskToLoad = Quest(QuestNum).Task(TaskNum)
 
         With frmEditor_Quest
-            'Load the task type
+            'Carregar o tipo de tarefa
             Select Case TaskToLoad.Order
                 Case 0
                     .optTask0.Checked = True
@@ -637,39 +637,39 @@ Friend Module C_Quest
                     .optTask7.Checked = True
             End Select
 
-            'Load textboxes
+            'Carregar caixas de textos
             .txtTaskLog.Text = "" & Trim$(TaskToLoad.TaskLog)
 
-            'Populate combo boxes
+            'Encher combo boxes
             .cmbNpc.Items.Clear()
-            .cmbNpc.Items.Add("None")
+            .cmbNpc.Items.Add("Nenhum")
 
             For i = 1 To MAX_NPCS
                 .cmbNpc.Items.Add(i & ": " & Npc(i).Name)
             Next
 
             .cmbItem.Items.Clear()
-            .cmbItem.Items.Add("None")
+            .cmbItem.Items.Add("Nenhum")
 
             For i = 1 To MAX_ITEMS
                 .cmbItem.Items.Add(i & ": " & Item(i).Name)
             Next
 
             .cmbMap.Items.Clear()
-            .cmbMap.Items.Add("None")
+            .cmbMap.Items.Add("Nenhum")
 
             For i = 1 To MAX_MAPS
                 .cmbMap.Items.Add(i)
             Next
 
             .cmbResource.Items.Clear()
-            .cmbResource.Items.Add("None")
+            .cmbResource.Items.Add("Nenhum")
 
             For i = 1 To MAX_RESOURCES
                 .cmbResource.Items.Add(i & ": " & Resource(i).Name)
             Next
 
-            'Set combo to 0 and disable them so they can be enabled when needed
+            'Setar  combo para 0 e desativar para que possam ser ativados quando for necessário
             .cmbNpc.SelectedIndex = 0
             .cmbItem.SelectedIndex = 0
             .cmbMap.SelectedIndex = 0
@@ -689,7 +689,7 @@ Friend Module C_Quest
             End If
 
             Select Case TaskToLoad.Order
-                Case 0 'Nothing
+                Case 0 'Nada
 
                 Case QuestType.Slay '1
                     .cmbNpc.Enabled = True
@@ -736,7 +736,7 @@ Friend Module C_Quest
                     .txtTaskSpeech.Text = "" & Trim$(TaskToLoad.Speech)
             End Select
 
-            .lblTaskNum.Text = "Task Number: " & TaskNum
+            .lblTaskNum.Text = "Número da Tarefa: " & TaskNum
         End With
     End Sub
 
@@ -779,10 +779,10 @@ Friend Module C_Quest
             .cmbItemReq.Items.Clear()
             .cmbEndItem.Items.Clear()
             .cmbItemReward.Items.Clear()
-            .cmbStartItem.Items.Add("None")
-            .cmbItemReq.Items.Add("None")
-            .cmbEndItem.Items.Add("None")
-            .cmbItemReward.Items.Add("None")
+            .cmbStartItem.Items.Add("Nenhum")
+            .cmbItemReq.Items.Add("Nenhum")
+            .cmbEndItem.Items.Add("Nenhum")
+            .cmbItemReward.Items.Add("Nenhum")
 
             For i = 1 To MAX_ITEMS
                 .cmbStartItem.Items.Add(i & ": " & Item(i).Name)
@@ -797,7 +797,7 @@ Friend Module C_Quest
             .cmbItemReward.SelectedIndex = 0
 
             .cmbClassReq.Items.Clear()
-            .cmbClassReq.Items.Add("None")
+            .cmbClassReq.Items.Add("Nenhum")
             For i = 1 To MAX_CLASSES
                 .cmbClassReq.Items.Add(Trim(Classes(i).Name))
             Next
@@ -822,11 +822,11 @@ Friend Module C_Quest
 
                 Select Case Quest(Editorindex).Requirement(i)
                     Case 1
-                        .lstRequirements.Items.Add(i & ":" & "Item Requirement: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
+                        .lstRequirements.Items.Add(i & ":" & "Requerimento de Item: " & Trim(Item(Quest(Editorindex).RequirementIndex(i)).Name))
                     Case 2
-                        .lstRequirements.Items.Add(i & ":" & "Quest Requirement: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
+                        .lstRequirements.Items.Add(i & ":" & "Requerimento de Tarefa: " & Trim(Quest(Quest(Editorindex).RequirementIndex(i)).Name))
                     Case 3
-                        .lstRequirements.Items.Add(i & ":" & "Class Requirement: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
+                        .lstRequirements.Items.Add(i & ":" & "Requerimento de Classe: " & Trim(Classes(Quest(Editorindex).RequirementIndex(i)).Name))
                     Case Else
                         .lstRequirements.Items.Add(i & ":")
                 End Select

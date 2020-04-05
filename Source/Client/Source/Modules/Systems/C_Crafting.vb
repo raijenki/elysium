@@ -79,10 +79,10 @@ Friend Module C_Crafting
     Sub Packet_UpdateRecipe(ByRef data() As Byte)
         Dim n As Integer, i As Integer
         Dim buffer As New ByteStream(data)
-        'recipe index
+        ' Índice de Receitas
         n = buffer.ReadInt32
 
-        ' Update the Recipe
+        ' Atualizar a Receita
         Recipe(n) = DeserializeData(buffer)
 
         buffer.Dispose()
@@ -165,12 +165,12 @@ Friend Module C_Crafting
 
         If recipeindex <= 0 Then Exit Sub
 
-        'check,check, double check
+        ' checar e checar
 
-        'we dont even know the damn recipe xD
+        'sequer sabemos a receita ainda
         If Player(Myindex).RecipeLearned(recipeindex) = 0 Then Exit Sub
 
-        'enough ingredients?
+        'ingredientes suficientes?
         For i = 1 To MAX_INGREDIENT
             If Recipe(recipeindex).Ingredients(i).ItemNum > 0 AndAlso HasItem(Myindex, Recipe(recipeindex).Ingredients(i).ItemNum) < (amount * Recipe(recipeindex).Ingredients(i).Value) Then
                 AddText(Language.Crafting.NotEnough, ColorType.Red)
@@ -178,7 +178,7 @@ Friend Module C_Crafting
             End If
         Next
 
-        'all seems fine...
+        'tudo parece bem...
 
         buffer.WriteInt32(ClientPackets.CStartCraft)
 
@@ -221,17 +221,17 @@ Friend Module C_Crafting
             Editor = EDITOR_RECIPE
             .lstIndex.Items.Clear()
 
-            ' Add the names
+            ' Adicionar os nomes
             For i = 1 To MAX_RECIPE
                 .lstIndex.Items.Add(i & ": " & Trim$(Recipe(i).Name))
             Next
 
-            'fill comboboxes
+            'Preencher comboboxes
             .cmbMakeItem.Items.Clear()
             .cmbIngredient.Items.Clear()
 
-            .cmbMakeItem.Items.Add("None")
-            .cmbIngredient.Items.Add("None")
+            .cmbMakeItem.Items.Add("Nenhum")
+            .cmbIngredient.Items.Add("Nenhum")
             For i = 1 To MAX_ITEMS
                 .cmbMakeItem.Items.Add(Trim$(Item(i).Name))
                 .cmbIngredient.Items.Add(Trim$(Item(i).Name))
@@ -297,9 +297,9 @@ Friend Module C_Crafting
 
         For i = 1 To MAX_INGREDIENT
             With Recipe(Editorindex).Ingredients(i)
-                ' if none, show as none
+                ' se nenhum ,mostrar como nenhum
                 If .ItemNum <= 0 AndAlso .Value = 0 Then
-                    frmEditor_Recipe.lstIngredients.Items.Add("Empty")
+                    frmEditor_Recipe.lstIngredients.Items.Add("Vazio")
                 Else
                     frmEditor_Recipe.lstIngredients.Items.Add(Trim$(Item(.ItemNum).Name) & " X " & .Value)
                 End If
@@ -385,12 +385,12 @@ Friend Module C_Crafting
         Dim i As Integer, y As Integer
         Dim rec As Rectangle, pgbvalue As Integer
 
-        'first render panel
+        'primeiramente renderizar painel
         RenderSprite(CraftSprite, GameWindow, CraftPanelX, CraftPanelY, 0, 0, CraftGfxInfo.Width, CraftGfxInfo.Height)
 
         y = 10
 
-        'draw recipe names
+        'desenhar nomes das receitas
         For i = 1 To MAX_RECIPE
             If Len(Trim$(RecipeNames(i))) > 0 Then
                 DrawText(CraftPanelX + 12, CraftPanelY + y, Trim$(RecipeNames(i)), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
@@ -398,7 +398,7 @@ Friend Module C_Crafting
             End If
         Next
 
-        'progress bar
+        'barra de progresso
         pgbvalue = (CraftProgressValue / 100) * 100
 
         With rec
@@ -410,7 +410,7 @@ Friend Module C_Crafting
 
         RenderSprite(ProgBarSprite, GameWindow, CraftPanelX + 410, CraftPanelY + 417, rec.X, rec.Y, rec.Width, rec.Height)
 
-        'amount controls
+        'controle de quantidade
         RenderSprite(CharPanelMinSprite, GameWindow, CraftPanelX + 340, CraftPanelY + 422, 0, 0, CharPanelMinGfxInfo.Width, CharPanelMinGfxInfo.Height)
 
         DrawText(CraftPanelX + 367, CraftPanelY + 418, Trim$(CraftAmountValue), SFML.Graphics.Color.Black, SFML.Graphics.Color.White, GameWindow)
@@ -424,7 +424,7 @@ Friend Module C_Crafting
                 LoadTexture(PicProductindex, 4)
             End If
 
-            'seeying we still use it, lets update timer
+            'vendo que ainda vmaos utilizar, atualizar contador
             With ItemsGfxInfo(PicProductindex)
                 .TextureTimer = GetTickCount() + 100000
             End With
@@ -444,7 +444,7 @@ Friend Module C_Crafting
                     LoadTexture(PicMaterialIndex(i), 4)
                 End If
 
-                'seeying we still use it, lets update timer
+                'vendo que ainda vmaos utilizar, atualizar contador
                 With ItemsGfxInfo(PicMaterialIndex(i))
                     .TextureTimer = GetTickCount() + 100000
                 End With
@@ -462,7 +462,7 @@ Friend Module C_Crafting
     End Sub
 
     Friend Sub ResetCraftPanel()
-        'reset the panel's info
+        'resetar as infos do painel
         ReDim RecipeNames(MAX_RECIPE)
 
         For i = 1 To MAX_RECIPE
