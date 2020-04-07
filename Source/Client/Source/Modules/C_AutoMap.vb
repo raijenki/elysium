@@ -1,4 +1,5 @@
-﻿Imports Ini = ASFW.IO.FileIO.TextFile
+﻿Imports System.IO
+Imports Ini = ASFW.IO.FileIO.TextFile
 
 Module C_AutoMap
     ' Automapper System
@@ -174,6 +175,9 @@ Module C_AutoMap
         ResourceFreq = buffer.ReadInt32
 
         Dim cf = Path.Contents & "AutoMapper.ini"
+
+        If Not File.Exists(cf) Then Exit Sub
+
         Ini.Write(cf, "Resources", "ResourcesNum", buffer.ReadString())
 
         For Prefab = 1 To TilePrefab.Count - 1

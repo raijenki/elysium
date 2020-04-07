@@ -14,6 +14,8 @@ Module C_Text
     Friend ScrollMod As Integer = 0
 
     Friend Sub DrawText(x As Integer, y As Integer, text As String, color As Color, backColor As Color, ByRef target As RenderWindow, Optional textSize As Byte = FontSize)
+        If text Is Nothing Then Exit Sub
+
         'Não queremos caracteres inexistentes ò-ó
         text = text.Replace(vbCrLf, String.Empty)
 

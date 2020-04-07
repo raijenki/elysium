@@ -798,8 +798,10 @@ Module S_NetworkSend
     Sub SendActionMsg(mapNum As Integer, Message As String, Color As Integer, MsgType As Integer, X As Integer, Y As Integer, Optional PlayerOnlyNum As Integer = 0)
         Dim buffer As New ByteStream(4)
 
+        If Message Is Nothing Then Exit Sub
+
         buffer.WriteInt32(ServerPackets.SActionMsg)
-        buffer.WriteString((Message.Trim))
+        buffer.WriteString(Message)
         buffer.WriteInt32(Color)
         buffer.WriteInt32(MsgType)
         buffer.WriteInt32(X)
