@@ -20,13 +20,13 @@ Module C_Pets
 
     Friend ShowPetStats As Boolean
 
-    'Pet Constants
-    Friend Const PetBehaviourFollow As Byte = 0 'The pet will attack all npcs around
+    'Constantes do Pet
+    Friend Const PetBehaviourFollow As Byte = 0 'O pet irá atacar todos os NPCs ao redor
 
-    Friend Const PetBehaviourGoto As Byte = 1 'If attacked, the pet will fight back
-    Friend Const PetAttackBehaviourAttackonsight As Byte = 2 'The pet will attack all npcs around
-    Friend Const PetAttackBehaviourGuard As Byte = 3 'If attacked, the pet will fight back
-    Friend Const PetAttackBehaviourDonothing As Byte = 4 'The pet will not attack even if attacked
+    Friend Const PetBehaviourGoto As Byte = 1 'Se atacado, pet lutará de volta
+    Friend Const PetAttackBehaviourAttackonsight As Byte = 2 'O pet irá atacar todos os NPCs ao redor
+    Friend Const PetAttackBehaviourGuard As Byte = 3 'Se atacado, pet lutará de volta
+    Friend Const PetAttackBehaviourDonothing As Byte = 4 'O pet não atacará mesmo se atacado
 
     Friend Structure PlayerPetRec
         Dim Num As Integer
@@ -46,7 +46,7 @@ Module C_Pets
         Dim Exp As Integer
         Dim Tnl As Integer
 
-        'Client Use Only
+        'Uso do cliente apenas
         Dim XOffset As Integer
 
         Dim YOffset As Integer
@@ -300,7 +300,7 @@ Module C_Pets
         Dim buffer As New ByteStream(data)
         i = buffer.ReadInt32
 
-        ' Set pet to attacking
+        ' Colocar pet para atacar
         Player(i).Pet.Attacking = 1
         Player(i).Pet.AttackTimer = GetTickCount()
 
@@ -330,7 +330,7 @@ Module C_Pets
 
     Sub ProcessPetMovement(index As Integer)
 
-        ' Check if pet is walking, and if so process moving them over
+        ' Ver se o pet está andando, e se sim processar o movimento
 
         If Player(index).Pet.Moving = MovementType.Walking Then
 
@@ -353,7 +353,7 @@ Module C_Pets
 
             End Select
 
-            ' Check if completed walking over to the next tile
+            ' Ver se completou o movimento para o próximo tile
             If Player(index).Pet.Moving > 0 Then
                 If Player(index).Pet.Dir = DirectionType.Right OrElse Player(index).Pet.Dir = DirectionType.Down Then
                     If (Player(index).Pet.XOffset >= 0) AndAlso (Player(index).Pet.YOffset >= 0) Then
@@ -408,7 +408,7 @@ Module C_Pets
 
         attackspeed = 1000
 
-        ' Reset frame
+        ' Resetar frame
         If Player(index).Pet.Steps = 3 Then
             anim = 0
         ElseIf Player(index).Pet.Steps = 1 Then
@@ -417,13 +417,13 @@ Module C_Pets
             anim = 3
         End If
 
-        ' Check for attacking animation
+        ' Checar a animação de atauqe
         If Player(index).Pet.AttackTimer + (attackspeed / 2) > GetTickCount() Then
             If Player(index).Pet.Attacking = 1 Then
                 anim = 3
             End If
         Else
-            ' If not attacking, walk normally
+            ' Se não está atacando, andar normalmente
             Select Case Player(index).Pet.Dir
                 Case DirectionType.Up
                     If (Player(index).Pet.YOffset > 8) Then anim = Player(index).Pet.Steps
@@ -436,7 +436,7 @@ Module C_Pets
             End Select
         End If
 
-        ' Check to see if we want to stop making him attack
+        ' Ver se queremos fazer parar de atacar
         With Player(index).Pet
             If .AttackTimer + attackspeed < GetTickCount() Then
                 .Attacking = 0
@@ -444,7 +444,7 @@ Module C_Pets
             End If
         End With
 
-        ' Set the left
+        ' Setar a esquerda
         Select Case Player(index).Pet.Dir
             Case DirectionType.Up
                 spriteleft = 3
@@ -458,19 +458,19 @@ Module C_Pets
 
         srcrec = New Rectangle((anim) * (CharacterGfxInfo(sprite).Width / 4), spriteleft * (CharacterGfxInfo(sprite).Height / 4), (CharacterGfxInfo(sprite).Width / 4), (CharacterGfxInfo(sprite).Height / 4))
 
-        ' Calculate the X
+        ' Calcular o X
         x = Player(index).Pet.X * PicX + Player(index).Pet.XOffset - ((CharacterGfxInfo(sprite).Width / 4 - 32) / 2)
 
-        ' Is the player's height more than 32..?
+        ' A altura do jogador é maior que 32..?
         If (CharacterGfxInfo(sprite).Height / 4) > 32 Then
-            ' Create a 32 pixel offset for larger sprites
+            ' Criar um offset de 32 pixels para sprites mais largas
             y = Player(index).Pet.Y * PicY + Player(index).Pet.YOffset - ((CharacterGfxInfo(sprite).Width / 4) - 32)
         Else
-            ' Proceed as normal
+            ' Proceder normalmente
             y = Player(index).Pet.Y * PicY + Player(index).Pet.YOffset
         End If
 
-        ' render the actual sprite
+        ' renderizar a sprite necessária
         DrawCharacter(sprite, x, y, srcrec)
 
     End Sub
@@ -481,7 +481,7 @@ Module C_Pets
         Dim color As SFML.Graphics.Color, backcolor As SFML.Graphics.Color
         Dim name As String
 
-        ' Check access level
+        ' Ver nível de acesso
         If GetPlayerPk(index) = False Then
 
             Select Case GetPlayerAccess(index)
@@ -506,16 +506,16 @@ Module C_Pets
         End If
 
         name = Trim$(GetPlayerName(index)) & "'s " & Trim$(Pet(Player(index).Pet.Num).Name)
-        ' calc pos
+        ' calcular posição
         textX = ConvertMapX(Player(index).Pet.X * PicX) + Player(index).Pet.XOffset + (PicX \ 2) - GetTextWidth(name) / 2
         If Pet(Player(index).Pet.Num).Sprite < 1 OrElse Pet(Player(index).Pet.Num).Sprite > NumCharacters Then
             textY = ConvertMapY(Player(index).Pet.Y * PicY) + Player(index).Pet.YOffset - 16
         Else
-            ' Determine location for text
+            ' Determinar local do texto
             textY = ConvertMapY(Player(index).Pet.Y * PicY) + Player(index).Pet.YOffset - (CharacterGfxInfo(Pet(Player(index).Pet.Num).Sprite).Height / 4) + 16
         End If
 
-        ' Draw name
+        ' Desenhar nome
         DrawText(textX, textY, Trim$(name), color, backcolor, GameWindow)
 
     End Sub
@@ -541,7 +541,7 @@ Module C_Pets
                         LoadTexture(skillpic, 9)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'Vendo que ainda utilizamos isso, atualizemos o contador
                     With SkillIconsGfxInfo(skillpic)
                         .TextureTimer = GetTickCount() + 100000
                     End With
@@ -579,10 +579,10 @@ Module C_Pets
 
         If Not ShowPetStats Then Exit Sub
 
-        'draw panel
+        'desenhar painel
         RenderSprite(PetStatsSprite, GameWindow, PetStatX, PetStatY, 0, 0, PetStatsGfxInfo.Width, PetStatsGfxInfo.Height)
 
-        'lets get player sprite to render
+        'vamos renderizar a sprite do jogador
         sprite = Pet(Player(Myindex).Pet.Num).Sprite
 
         With rec
@@ -594,20 +594,20 @@ Module C_Pets
 
         Dim petname As String = Trim$(Pet(Player(Myindex).Pet.Num).Name)
 
-        DrawText(PetStatX + 70, PetStatY + 10, petname & " Lvl: " & Player(Myindex).Pet.Level, SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 70, PetStatY + 10, petname & " Nível: " & Player(Myindex).Pet.Level, SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
 
         RenderSprite(CharacterSprite(sprite), GameWindow, PetStatX + 10, PetStatY + 10 + (PetStatsGfxInfo.Height / 4) - (rec.Height / 2), rec.X, rec.Y, rec.Width, rec.Height)
 
-        'stats
-        DrawText(PetStatX + 65, PetStatY + 50, "Strength: " & Player(Myindex).Pet.Stat(StatType.Strength), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
-        DrawText(PetStatX + 65, PetStatY + 65, "Endurance: " & Player(Myindex).Pet.Stat(StatType.Endurance), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
-        DrawText(PetStatX + 65, PetStatY + 80, "Vitality: " & Player(Myindex).Pet.Stat(StatType.Vitality), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        'Atributos
+        DrawText(PetStatX + 65, PetStatY + 50, "Força: " & Player(Myindex).Pet.Stat(StatType.Strength), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 65, PetStatY + 65, "Resistência: " & Player(Myindex).Pet.Stat(StatType.Endurance), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 65, PetStatY + 80, "Vitalidade: " & Player(Myindex).Pet.Stat(StatType.Vitality), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
 
-        DrawText(PetStatX + 165, PetStatY + 50, "Luck: " & Player(Myindex).Pet.Stat(StatType.Luck), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
-        DrawText(PetStatX + 165, PetStatY + 65, "Intelligence: " & Player(Myindex).Pet.Stat(StatType.Intelligence), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
-        DrawText(PetStatX + 165, PetStatY + 80, "Spirit: " & Player(Myindex).Pet.Stat(StatType.Spirit), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 165, PetStatY + 50, "Sorte: " & Player(Myindex).Pet.Stat(StatType.Luck), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 165, PetStatY + 65, "Inteligência: " & Player(Myindex).Pet.Stat(StatType.Intelligence), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 165, PetStatY + 80, "Espírito: " & Player(Myindex).Pet.Stat(StatType.Spirit), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
 
-        DrawText(PetStatX + 65, PetStatY + 95, "Experience: " & Player(Myindex).Pet.Exp & "/" & Player(Myindex).Pet.Tnl, SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
+        DrawText(PetStatX + 65, PetStatY + 95, "Experiência: " & Player(Myindex).Pet.Exp & "/" & Player(Myindex).Pet.Tnl, SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow)
     End Sub
 
 #End Region
@@ -667,16 +667,16 @@ Module C_Pets
         Editorindex = frmEditor_Pet.lstIndex.SelectedIndex + 1
 
         With frmEditor_Pet
-            'populate skill combo's
+            'Popular combos de habilidades
             .cmbSkill1.Items.Clear()
             .cmbSkill2.Items.Clear()
             .cmbSkill3.Items.Clear()
             .cmbSkill4.Items.Clear()
 
-            .cmbSkill1.Items.Add("None")
-            .cmbSkill2.Items.Add("None")
-            .cmbSkill3.Items.Add("None")
-            .cmbSkill4.Items.Add("None")
+            .cmbSkill1.Items.Add("Nennhum")
+            .cmbSkill2.Items.Add("Nennhum")
+            .cmbSkill3.Items.Add("Nennhum")
+            .cmbSkill4.Items.Add("Nennhum")
 
             For i = 1 To MAX_SKILLS
                 .cmbSkill1.Items.Add(i & ": " & Skill(i).Name)
@@ -714,7 +714,7 @@ Module C_Pets
 
             .nudMaxLevel.Value = Pet(Editorindex).MaxLevel
 
-            'Set skills
+            'Setar habilidades
             .cmbSkill1.SelectedIndex = Pet(Editorindex).Skill(1)
 
             .cmbSkill2.SelectedIndex = Pet(Editorindex).Skill(2)

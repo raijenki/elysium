@@ -3,12 +3,12 @@ Imports SFML.Window
 
 Module C_Text
     Friend Const MaxChatDisplayLines As Byte = 8
-    Friend Const ChatLineSpacing As Byte = FontSize ' Should be same height as font
+    Friend Const ChatLineSpacing As Byte = FontSize ' Deve ser mesma altura da fonte
     Friend Const MyChatTextLimit As Integer = 40
     Friend Const MyAmountValueLimit As Integer = 3
     Friend Const AllChatLineWidth As Integer = 40
     Friend Const ChatboxPadding As Integer = 10 + 16 + 2 ' 10 = left and right border padding +2 each (3+2+3+2), 16 = scrollbar width, +2 for padding between scrollbar and text
-    Friend Const ChatEntryPadding As Integer = 10 ' 5 on left and right
+    Friend Const ChatEntryPadding As Integer = 10 ' 5 na esquerda e direita
     Friend FirstLineindex As Integer = 0
     Friend LastLineindex As Integer = 0
     Friend ScrollMod As Integer = 0
@@ -53,13 +53,13 @@ Module C_Text
         npcNum = MapNpc(mapNpcNum).Num
 
         Select Case Npc(npcNum).Behaviour
-            Case 0 ' attack on sight
+            Case 0 ' atacar ao ver
                 color = Color.Red
                 backcolor = Color.Black
-            Case 1, 4 ' attack when attacked + guard
+            Case 1, 4 ' atacar quando atacado + defender 
                 color = Color.Green
                 backcolor = Color.Black
-            Case 2, 3, 5 ' friendly + shopkeeper + quest
+            Case 2, 3, 5 ' amigavel + lojista + quest
                 color = Color.Yellow
                 backcolor = Color.Black
         End Select
@@ -71,7 +71,7 @@ Module C_Text
             textY = ConvertMapY(MapNpc(mapNpcNum).Y * PicY) + MapNpc(mapNpcNum).YOffset - (CharacterGfxInfo(Npc(npcNum).Sprite).Height / 4)
         End If
 
-        ' Draw name
+        ' Desenhar nome
         DrawText(textX, textY, Trim$(Npc(npcNum).Name), color, backcolor, GameWindow)
     End Sub
 
@@ -86,7 +86,7 @@ Module C_Text
 
         name = Trim$(Map.MapEvents(index).Name)
 
-        ' calc pos
+        ' Calcular posição
         textX = ConvertMapX(Map.MapEvents(index).X * PicX) + Map.MapEvents(index).XOffset + (PicX \ 2) - GetTextWidth(Trim$(name)) \ 2
         If Map.MapEvents(index).GraphicType = 0 Then
             textY = ConvertMapY(Map.MapEvents(index).Y * PicY) + Map.MapEvents(index).YOffset - 16
@@ -94,7 +94,7 @@ Module C_Text
             If Map.MapEvents(index).GraphicNum < 1 OrElse Map.MapEvents(index).GraphicNum > NumCharacters Then
                 textY = ConvertMapY(Map.MapEvents(index).Y * PicY) + Map.MapEvents(index).YOffset - 16
             Else
-                ' Determine location for text
+                ' Determinar local para o texto
                 textY = ConvertMapY(Map.MapEvents(index).Y * PicY) + Map.MapEvents(index).YOffset - (CharacterGfxInfo(Map.MapEvents(index).GraphicNum).Height \ 4) + 16
             End If
         ElseIf Map.MapEvents(index).GraphicType = 2 Then
@@ -106,14 +106,14 @@ Module C_Text
             End If
         End If
 
-        ' Draw name
+        ' Desenhar nome
         DrawText(textX, textY, Trim$(name), color, backcolor, GameWindow)
 
         'For i = 1 To MaxQuests
-        '    'check if the npc is the starter to any quest: [!] symbol
-        '    'can accept the quest as a new one?
+        '    'ver se o npc é o inicial para qualquer quest: [!] symbol
+        '    'pode aceitar a quest como nova?
         '    If Player(MyIndex).PlayerQuest(i).Status = QuestStatusType.NotStarted OrElse Player(MyIndex).PlayerQuest(i).Status = QuestStatusType.Repeatable OrElse (Player(MyIndex).PlayerQuest(i).Status = QuestStatusType.Completed AndAlso Quest(i).Repeat = 1) Then
-        '        'the npc gives this quest?
+        '        'o npc dá essa quest?
         '        If Map.MapEvents(Index).questnum = i Then
         '            Name = "[!]"
         '            TextX = ConvertMapX(Map.MapEvents(Index).X * PicX) + Map.MapEvents(Index).XOffset + (PicX \ 2) - GetTextWidth((Trim$("[!]"))) + 8
@@ -196,7 +196,7 @@ Module C_Text
     Sub DrawActionMsg(index As Integer)
         Dim x As Integer, y As Integer, i As Integer, time As Integer
 
-        ' how long we want each message to appear
+        ' por quanto tempo queremos que a mensagem apareça?
         Select Case ActionMsg(index).Type
             Case ActionMsgType.Static
                 time = 1500
@@ -225,7 +225,7 @@ Module C_Text
             Case ActionMsgType.Screen
                 time = 3000
 
-                ' This will kill any action screen messages that there in the system
+                ' Isso irá destruir qualquer mensagem de ação que há no sistema 
                 For i = Byte.MaxValue To 1 Step -1
                     If ActionMsg(i).Type = ActionMsgType.Screen Then
                         If i <> index Then
@@ -444,7 +444,7 @@ Module C_Text
 
             Dim word As String = str.Substring(startindex, index - startindex)
             Dim nextChar As Char = str.Substring(index, 1)(0)
-            ' Dashes and the likes should stick to the word occuring before it. Whitespace doesn't have to.
+            ' Traços e coisas do tipo devem ficar na palavra antes dele. Espaço não.
             If Char.IsWhiteSpace(nextChar) Then
                 parts.Add(word)
                 parts.Add(nextChar.ToString())
@@ -462,59 +462,59 @@ Module C_Text
 
         With ChatBubble(index)
             If .TargetType = TargetType.Player Then
-                ' it's a player
+                ' É um jogador
                 If GetPlayerMap(.Target) = GetPlayerMap(Myindex) Then
-                    ' it's on our map - get co-ords
+                    ' Está no nosso mapa, pegar coordenadas
                     x = ConvertMapX((Player(.Target).X * 32) + Player(.Target).XOffset) + 16
                     y = ConvertMapY((Player(.Target).Y * 32) + Player(.Target).YOffset) - 40
                 End If
             ElseIf .TargetType = TargetType.Npc Then
-                ' it's on our map - get co-ords
+                ' Está no nosso mapa, pegar coordenadas
                 x = ConvertMapX((MapNpc(.Target).X * 32) + MapNpc(.Target).XOffset) + 16
                 y = ConvertMapY((MapNpc(.Target).Y * 32) + MapNpc(.Target).YOffset) - 40
             ElseIf .TargetType = TargetType.Event Then
                 x = ConvertMapX((Map.MapEvents(.Target).X * 32) + Map.MapEvents(.Target).XOffset) + 16
                 y = ConvertMapY((Map.MapEvents(.Target).Y * 32) + Map.MapEvents(.Target).YOffset) - 40
             End If
-            ' word wrap the text
+            ' organizar o texto
             theArray = WordWrap(.Msg, ChatBubbleWidth, WrapMode.Font)
-            ' find max width
+            ' encontrar comprimento maximo
             For i = 0 To theArray.Count - 1
                 If GetTextWidth(theArray(i)) > maxWidth Then maxWidth = GetTextWidth(theArray(i))
             Next
-            ' calculate the new position
+            ' calcular a nova posição
             x2 = x - (maxWidth \ 2)
             y2 = y - (theArray.Count * 12)
 
-            ' render bubble - top left
+            ' renderizar bolha - canto superior esquerdo
             RenderTextures(ChatBubbleGfx, GameWindow, x2 - 9, y2 - 5, 0, 0, 9, 5, 9, 5)
-            ' top right
+            ' superior direito
             RenderTextures(ChatBubbleGfx, GameWindow, x2 + maxWidth, y2 - 5, 119, 0, 9, 5, 9, 5)
-            ' top
+            ' superior
             RenderTextures(ChatBubbleGfx, GameWindow, x2, y2 - 5, 10, 0, maxWidth, 5, 5, 5)
-            ' bottom left
+            ' inferior esquerda
             RenderTextures(ChatBubbleGfx, GameWindow, x2 - 9, y, 0, 19, 9, 6, 9, 6)
-            ' bottom right
+            ' inferior right
             RenderTextures(ChatBubbleGfx, GameWindow, x2 + maxWidth, y, 119, 19, 9, 6, 9, 6)
-            ' bottom - left half
+            ' inferior - metade esquerda
             RenderTextures(ChatBubbleGfx, GameWindow, x2, y, 10, 19, (maxWidth \ 2) - 5, 6, 9, 6)
-            ' bottom - right half
+            ' inferior - metade direita
             RenderTextures(ChatBubbleGfx, GameWindow, x2 + (maxWidth \ 2) + 6, y, 10, 19, (maxWidth \ 2) - 5, 6, 9, 6)
-            ' left
+            ' esquerda
             RenderTextures(ChatBubbleGfx, GameWindow, x2 - 9, y2, 0, 6, 9, (theArray.Count * 12), 9, 1)
-            ' right
+            ' direita
             RenderTextures(ChatBubbleGfx, GameWindow, x2 + maxWidth, y2, 119, 6, 9, (theArray.Count * 12), 9, 1)
             ' center
             RenderTextures(ChatBubbleGfx, GameWindow, x2, y2, 9, 5, maxWidth, (theArray.Count * 12), 1, 1)
-            ' little pointy bit
+            ' pequena parte
             RenderTextures(ChatBubbleGfx, GameWindow, x - 5, y, 58, 19, 11, 11, 11, 11)
 
-            ' render each line centralised
+            ' renderizar cada linha centralizada 
             For i = 0 To theArray.Count - 1
                 DrawText(x - (GetTextWidth(theArray(i)) / 2), y2, theArray(i), ToSfmlColor(Drawing.ColorTranslator.FromOle(QBColor(.Colour))), Color.Black, GameWindow)
                 y2 = y2 + 12
             Next
-            ' check if it's timed out - close it if so
+            ' ver se deu time out - fechar se sim
             If .Timer + 5000 < GetTickCount() Then
                 .Active = False
             End If

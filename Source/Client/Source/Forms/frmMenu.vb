@@ -7,14 +7,14 @@ Friend Class FrmMenu
 #Region "Form Functions"
 
     ''' <summary>
-    ''' clean up and close the game.
+    ''' limpar e fechar o jogo.
     ''' </summary>
     Private Sub FrmMenu_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         DestroyGame()
     End Sub
 
     ''' <summary>
-    ''' On load, get GUI ready.
+    ''' Ao carregar, preparar interface de usuário.
     ''' </summary>
     Private Sub Frmmenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -29,7 +29,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Draw Char select when its needed.
+    ''' Desenhar seleção de personagem quando necessário.
     ''' </summary>
     Private Sub PnlCharSelect_VisibleChanged(sender As Object, e As EventArgs) Handles pnlCharSelect.VisibleChanged
         DrawCharacterSelect()
@@ -40,16 +40,16 @@ Friend Class FrmMenu
 #Region "Draw Functions"
 
     ''' <summary>
-    ''' Preload the images in the menu.
+    ''' Precarregar imagens no menu.
     ''' </summary>
     Friend Sub LoadMenuGraphics()
 
-        'main menu
+        'Menu Principal
         If File.Exists(Path.Gui & "Menu\menu" & GfxExt) Then
             BackgroundImage = Image.FromFile(Path.Gui & "Menu\menu" & GfxExt)
         End If
 
-        'main menu buttons
+        'Botões do Menu Principal
         If File.Exists(Path.Gui & "Menu\button" & GfxExt) Then
             btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
@@ -62,7 +62,7 @@ Friend Class FrmMenu
             btnCreateAccount.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
         End If
 
-        'main menu panels
+        'Paineis do Menu Principal
         If File.Exists(Path.Gui & "Menu\panel" & GfxExt) Then
             pnlMainMenu.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
             pnlLogin.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
@@ -77,7 +77,7 @@ Friend Class FrmMenu
             picLogo.BackgroundImage = Image.FromFile(Path.Gui & "Menu\logo" & GfxExt)
         End If
 
-        ' Main
+        ' Principal
         lblStatusHeader.Text = Language.MainMenu.ServerStatus
         lblNewsHeader.Text = Language.MainMenu.newsheader
         lblNews.Text = Language.MainMenu.News
@@ -93,7 +93,7 @@ Friend Class FrmMenu
         chkSavePass.Text = Language.MainMenu.LoginCheckBox
         btnLogin.Text = Language.MainMenu.LoginButton
 
-        ' New Character
+        ' Novo personagem
         lblNewChar.Text = Language.MainMenu.NewCharacter
         lblNewCharName.Text = Language.MainMenu.NewCharacterName
         lblNewCharClass.Text = Language.MainMenu.NewCharacterClass
@@ -103,24 +103,24 @@ Friend Class FrmMenu
         lblNewCharSprite.Text = Language.MainMenu.NewCharacterSprite
         btnCreateCharacter.Text = Language.MainMenu.NewCharacterButton
 
-        ' Use Character
+        ' Usar personagem
         lblCharSelect.Text = Language.MainMenu.UseCharacter
         btnNewChar.Text = Language.MainMenu.UseCharacterNew
         btnUseChar.Text = Language.MainMenu.UseCharacteruse
         btnDelChar.Text = Language.MainMenu.UseCharacterDel
 
-        ' Registration
+        ' Registro
         lblNewAccount.Text = Language.MainMenu.Register
         lblNewAccName.Text = Language.MainMenu.RegisterName
         lblNewAccPass.Text = Language.MainMenu.RegisterPass1
         lblNewAccPass2.Text = Language.MainMenu.RegisterPass2
 
-        ' Credits
+        ' Creditos
         lblCreditsTop.Text = Language.MainMenu.Credits
     End Sub
 
     ''' <summary>
-    ''' Draw the Character for new char creation.
+    ''' Desenhar personagem para nova criação.
     ''' </summary>
     Sub DrawCharacter()
         If pnlNewChar.Visible = True Then
@@ -162,7 +162,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Draw the character for the char select screen.
+    ''' Desenhar personagem para tela de seleção de personagens.
     ''' </summary>
     Sub DrawCharacterSelect()
         Dim g As Graphics
@@ -173,7 +173,7 @@ Friend Class FrmMenu
             Dim filename As String
             Dim charwidth As Integer, charheight As Integer
 
-            'first
+            'primeiro
             If CharSelection(1).Sprite > 0 Then
                 g = picChar1.CreateGraphics
 
@@ -202,7 +202,7 @@ Friend Class FrmMenu
                 picChar1.Refresh()
             End If
 
-            'second
+            '2o
             If CharSelection(2).Sprite > 0 Then
                 g = picChar2.CreateGraphics
 
@@ -231,7 +231,7 @@ Friend Class FrmMenu
                 picChar2.Refresh()
             End If
 
-            'third
+            'terceiro
             If CharSelection(3).Sprite > 0 Then
                 g = picChar3.CreateGraphics
 
@@ -264,10 +264,10 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Stop the NewChar panel from repainting itself.
+    ''' Parar o painel de novo personagem de se repintar.
     ''' </summary>
     Private Sub PnlNewChar_Paint(sender As Object, e As PaintEventArgs) Handles pnlNewChar.Paint
-        'nada here
+        'nada aqui
     End Sub
 
 #End Region
@@ -275,7 +275,7 @@ Friend Class FrmMenu
 #Region "Credits"
 
     ''' <summary>
-    ''' This timer handles the scrolling credits.
+    ''' Este temporizador lida com os créditos deslizantes.
     ''' </summary>
     Private Sub TmrCredits_Tick(sender As Object, e As EventArgs) Handles tmrCredits.Tick
         Dim credits As String
@@ -302,7 +302,7 @@ Friend Class FrmMenu
 #Region "Login"
 
     ''' <summary>
-    ''' Handles press enter on login name txtbox.
+    ''' Lidar com o enter no txtbox do nome de login.
     ''' </summary>
     Private Sub TxtLogin_KeyDown(sender As Object, e As KeyEventArgs) Handles txtLogin.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -311,7 +311,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles press enter on login password txtbox.
+    ''' Lidar com o pressionamento do enter nas caixas de texto de senha.
     ''' </summary>
     Private Sub TxtPassword_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPassword.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -320,7 +320,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handle the SavePas checkbox.
+    ''' Lidar com a caixa de salvar senha.
     ''' </summary>
     Private Sub ChkSavePass_CheckedChanged(sender As Object, e As EventArgs) Handles chkSavePass.CheckedChanged
         ChkSavePassChecked = chkSavePass.Checked
@@ -331,7 +331,7 @@ Friend Class FrmMenu
 #Region "Char Creation"
 
     ''' <summary>
-    ''' Changes selected class.
+    ''' Mudar classes selecionadas.
     ''' </summary>
     Private Sub CmbClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbClass.SelectedIndexChanged
         NewCharClass = cmbClass.SelectedIndex + 1
@@ -340,21 +340,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Switches to male gender.
+    ''' Troca para o gênero masculino.
     ''' </summary>
     Private Sub RdoMale_CheckedChanged(sender As Object, e As EventArgs) Handles rdoMale.CheckedChanged
         DrawCharacter()
     End Sub
 
     ''' <summary>
-    ''' Switches to female gender.
+    ''' Troca para o fêmalo feminino.
     ''' </summary>
     Private Sub RdoFemale_CheckedChanged(sender As Object, e As EventArgs) Handles rdoFemale.CheckedChanged
         DrawCharacter()
     End Sub
 
     ''' <summary>
-    ''' Switches sprite for selected class to next one, if any.
+    ''' Troca sprite para a classe selecionada para a próxima, se houver
     ''' </summary>
     Private Sub LblNextChar_Click(sender As Object, e As EventArgs) Handles lblNextChar.Click
         NewCharSprite = NewCharSprite + 1
@@ -367,7 +367,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Switches sprite for selected class to previous one, if any.
+    ''' Troca sprite para a classe selecionada para a anterior, se houver
     ''' </summary>
     Private Sub LblPrevChar_Click(sender As Object, e As EventArgs) Handles lblPrevChar.Click
         NewCharSprite = NewCharSprite - 1
@@ -380,7 +380,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Initial drawing of new char.
+    ''' Desenho inicial do novo personagem.
     ''' </summary>
     Private Sub PnlNewChar_VisibleChanged(sender As Object, e As EventArgs) Handles pnlNewChar.VisibleChanged
         DrawCharacter()
@@ -391,7 +391,7 @@ Friend Class FrmMenu
 #Region "Buttons"
 
     ''' <summary>
-    ''' Handle Play button press.
+    ''' Lidar com o botão de Jogar.
     ''' </summary>
     Private Sub BtnPlay_Click(sender As Object, e As EventArgs) Handles btnPlay.Click
         If Socket.IsConnected() = True Then
@@ -410,21 +410,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Mandar estado de hover do botão.
     ''' </summary>
     Private Sub BtnPlay_MouseEnter(sender As Object, e As EventArgs) Handles btnPlay.MouseEnter
         btnPlay.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnPlay_MouseLeave(sender As Object, e As EventArgs) Handles btnPlay.MouseLeave
         btnPlay.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handle Register button press.
+    ''' Lida com o botão de Registrar.
     ''' </summary>
     Private Sub BtnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If Socket.IsConnected() = True Then
@@ -437,21 +437,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover.
     ''' </summary>
     Private Sub BtnRegister_MouseEnter(sender As Object, e As EventArgs) Handles btnRegister.MouseEnter
         btnRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnRegister_MouseLeave(sender As Object, e As EventArgs) Handles btnRegister.MouseLeave
         btnRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handle Credits button press.
+    ''' Lida com o botão de créditos.
     ''' </summary>
     Private Sub BtnCredits_Click(sender As Object, e As EventArgs) Handles btnCredits.Click
         PlaySound("Click.ogg")
@@ -465,21 +465,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover.
     ''' </summary>
     Private Sub BtnCredits_MouseEnter(sender As Object, e As EventArgs) Handles btnCredits.MouseEnter
         btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnCredits_MouseLeave(sender As Object, e As EventArgs) Handles btnCredits.MouseLeave
         btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handles Exit button press.
+    ''' Lida com o botão de sair.
     ''' </summary>
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         PlaySound("Click.ogg")
@@ -487,21 +487,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover..
     ''' </summary>
     Private Sub BtnExit_MouseEnter(sender As Object, e As EventArgs) Handles btnExit.MouseEnter
         btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
         btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handles Login button press.
+    ''' Lida com o botão de login.
     ''' </summary>
     Private Sub BtnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If IsLoginLegal(txtLogin.Text, txtPassword.Text) Then
@@ -510,21 +510,21 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover..
     ''' </summary>
     Private Sub BtnLogin_MouseEnter(sender As Object, e As EventArgs) Handles btnLogin.MouseEnter
         btnLogin.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnLogin_MouseLeave(sender As Object, e As EventArgs) Handles btnLogin.MouseLeave
         btnLogin.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handles CreateAccount button press.
+    ''' Lida com o botão de Criar conta.
     ''' </summary>
     Private Sub BtnCreateAccount_Click(sender As Object, e As EventArgs) Handles btnCreateAccount.Click
         Dim name As String
@@ -536,7 +536,7 @@ Friend Class FrmMenu
 
         If IsLoginLegal(name, password) Then
             If password <> passwordAgain Then
-                MsgBox("Passwords don't match.")
+                MsgBox("As senhas não batem.")
                 Exit Sub
             End If
 
@@ -547,42 +547,42 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover.
     ''' </summary>
     Private Sub BtnCreateAccount_MouseEnter(sender As Object, e As EventArgs) Handles btnCreateAccount.MouseEnter
         btnCreateAccount.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnCreateAccount_MouseLeave(sender As Object, e As EventArgs) Handles btnCreateAccount.MouseLeave
         btnCreateAccount.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handles CreateCharacter button press.
+    ''' Lida com o botão de criar personagem.
     ''' </summary>
     Private Sub BtnCreateCharacter_Click(sender As Object, e As EventArgs) Handles btnCreateCharacter.Click
         MenuState(MenuStateAddchar)
     End Sub
 
     ''' <summary>
-    ''' Changes to hover state on button.
+    ''' Muda o botão para o estado de hover.
     ''' </summary>
     Private Sub BtnCreateCharacter_MouseEnter(sender As Object, e As EventArgs) Handles btnCreateCharacter.MouseEnter
         btnCreateCharacter.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Changes to normal state on button.
+    ''' Muda o botão para o estado normal.
     ''' </summary>
     Private Sub BtnCreateCharacter_MouseLeave(sender As Object, e As EventArgs) Handles btnCreateCharacter.MouseLeave
         btnCreateCharacter.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
-    ''' Handles selecting character 1.
+    ''' Selecionar personagem 1.
     ''' </summary>
     Private Sub PicChar1_Click(sender As Object, e As EventArgs) Handles picChar1.Click
         SelectedChar = 1
@@ -590,7 +590,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles selecting character 2.
+    ''' Selecionar personagem 2.
     ''' </summary>
     Private Sub PicChar2_Click(sender As Object, e As EventArgs) Handles picChar2.Click
         SelectedChar = 2
@@ -598,7 +598,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles selecting character 3.
+    ''' Selecionar personagem 3.
     ''' </summary>
     Private Sub PicChar3_Click(sender As Object, e As EventArgs) Handles picChar3.Click
         SelectedChar = 3
@@ -606,7 +606,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles NewChar button press.
+    ''' Lida com o botão de novo personagem.
     ''' </summary>
     Private Sub BtnNewChar_Click(sender As Object, e As EventArgs) Handles btnNewChar.Click
         Dim i As Integer, newSelectedChar As Byte
@@ -630,7 +630,7 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles UseChar button press.
+    ''' Lidar com o botão de usar personagem.
     ''' </summary>
     Private Sub BtnUseChar_Click(sender As Object, e As EventArgs) Handles btnUseChar.Click
         Pnlloadvisible = True
@@ -646,10 +646,10 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Handles DelChar button press.
+    ''' Lidar com o botão de apagar personagem.
     ''' </summary>
     Private Sub BtnDelChar_Click(sender As Object, e As EventArgs) Handles btnDelChar.Click
-        Dim result1 As DialogResult = MessageBox.Show("Sure you want to delete character " & SelectedChar & "?", "You sure?", MessageBoxButtons.YesNo)
+        Dim result1 As DialogResult = MessageBox.Show("Tem certeza que quer deletar o personagem " & SelectedChar & "?", "Tem certeza?", MessageBoxButtons.YesNo)
         If result1 = DialogResult.Yes Then
             Dim buffer As New ByteStream(4)
             buffer.WriteInt32(ClientPackets.CDelChar)

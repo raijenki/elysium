@@ -182,7 +182,7 @@ Friend Module C_Projectiles
         Dim i As Integer
         Dim sprite As Integer
 
-        ' check to see if it's time to move the Projectile
+        ' Ver se é hora de mover o projétil
         If GetTickCount() > MapProjectiles(projectileNum).TravelTime Then
             Select Case MapProjectiles(projectileNum).Dir
                 Case DirectionType.Up
@@ -201,18 +201,18 @@ Friend Module C_Projectiles
         x = MapProjectiles(projectileNum).X
         y = MapProjectiles(projectileNum).Y
 
-        'Check if its been going for over 1 minute, if so clear.
+        'Ver se ele está indo há 1 minuto; se sim, limpar.
         If MapProjectiles(projectileNum).Timer < GetTickCount() Then canClearProjectile = True
 
         If x > Map.MaxX OrElse x < 0 Then canClearProjectile = True
         If y > Map.MaxY OrElse y < 0 Then canClearProjectile = True
 
-        'Check for blocked wall collision
-        If canClearProjectile = False Then 'Add a check to prevent crashing
+        'Verificar se bateu em parede bloqueada
+        If canClearProjectile = False Then 'Adicionar uma verificaçao para evitar crash
             If Map.Tile(x, y).Type = TileType.Blocked Then canClearProjectile = True
         End If
 
-        'Check for npc collision
+        'Verificar por colisÕes com NPCs
         For i = 1 To MAX_MAP_NPCS
             If MapNpc(i).X = x AndAlso MapNpc(i).Y = y Then
                 canClearProjectile = True
@@ -223,7 +223,7 @@ Friend Module C_Projectiles
             End If
         Next
 
-        'Check for player collision
+        'Verificar por colisão com jogador
         For i = 1 To MAX_PLAYERS
             If IsPlaying(i) AndAlso GetPlayerMap(i) = GetPlayerMap(Myindex) Then
                 If GetPlayerX(i) = x AndAlso GetPlayerY(i) = y Then
@@ -232,7 +232,7 @@ Friend Module C_Projectiles
                     collisionType = TargetType.Player
                     collisionZone = -1
                     If MapProjectiles(projectileNum).OwnerType = TargetType.Player Then
-                        If MapProjectiles(projectileNum).Owner = i Then canClearProjectile = False ' Reset if its the owner of projectile
+                        If MapProjectiles(projectileNum).Owner = i Then canClearProjectile = False ' Resetar se for o dono do projetil
                     End If
                     Exit For
                 End If
@@ -240,12 +240,12 @@ Friend Module C_Projectiles
             End If
         Next
 
-        'Check if it has hit its maximum range
+        'Ver se atingiu seu alcance maximo
         If MapProjectiles(projectileNum).Range >= Projectiles(MapProjectiles(projectileNum).ProjectileNum).Range + 1 Then canClearProjectile = True
 
-        'Clear the projectile if possible
+        'Limpar o projetil se possível
         If canClearProjectile = True Then
-            'Only send the clear to the server if you're the projectile caster or the one hit (only if owner is not a player)
+            'Apenas enviar o CLEAR para o servidor se você for o usuário do projétil ou o atingido (apenas se o dono nao for um jogador)
             If (MapProjectiles(projectileNum).OwnerType = TargetType.Player AndAlso MapProjectiles(projectileNum).Owner = Myindex) Then
                 SendClearProjectile(projectileNum, collisionindex, collisionType, collisionZone)
             End If
@@ -261,7 +261,7 @@ Friend Module C_Projectiles
             LoadTexture(sprite, 11)
         End If
 
-        'seeying we still use it, lets update timer
+        'Vendo que ainda vmaos utilizar, atualizar temporizador
         With ProjectileGfxInfo(sprite)
             .TextureTimer = GetTickCount() + 100000
         End With
@@ -274,7 +274,7 @@ Friend Module C_Projectiles
             .Right = .Left + PicX
         End With
 
-        'Find the offset
+        'Encontrar o offset
         Select Case MapProjectiles(projectileNum).Dir
             Case DirectionType.Up
                 yOffset = ((MapProjectiles(projectileNum).TravelTime - GetTickCount()) / Projectiles(MapProjectiles(projectileNum).ProjectileNum).Speed) * PicY

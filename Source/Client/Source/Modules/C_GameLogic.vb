@@ -48,17 +48,17 @@ Module C_GameLogic
                 End If
             End If
 
-            'Update the UI
+            'Atualizar a UI
             UpdateUi()
 
             If GameStarted() = True Then
                 tick = GetTickCount()
-                ElapsedTime = tick - frameTime ' Set the time difference for time-based movement
+                ElapsedTime = tick - frameTime ' Setar a diferença de tempo para movimentos baseados em tempo
 
                 frameTime = tick
                 Frmmaingamevisible = True
 
-                'Calculate FPS
+                'Calcular FPS
                 If starttime < tick Then
                     Fps = tmpfps
                     Lps = tmplps
@@ -69,7 +69,7 @@ Module C_GameLogic
                 tmplps = tmplps + 1
                 tmpfps = tmpfps + 1
 
-                ' Update inv animation
+                ' Atualizar animação de inventário
                 If NumItems > 0 Then
                     If tmr100 < tick Then
 
@@ -101,7 +101,7 @@ Module C_GameLogic
 
                 If tmr10000 < tick Then
                     If Settings.HighEnd = 0 Then
-                        'clear any unused gfx
+                        'limpar qualquer gráfico nao usado
                         ClearGfx()
                     End If
 
@@ -117,7 +117,7 @@ Module C_GameLogic
                     tmr1000 = tick + 1000
                 End If
 
-                'crafting timer
+                'temporizador de artesanato
                 If CraftTimerEnabled Then
                     If CraftTimer < tick Then
                         CraftProgressValue = CraftProgressValue + (100 / Recipe(GetRecipeIndex(RecipeNames(SelectedRecipe))).CreateTime)
@@ -129,7 +129,7 @@ Module C_GameLogic
                     End If
                 End If
 
-                'screenshake timer
+                'temporizador de chacoalhaento d tela
                 If ShakeTimerEnabled Then
                     If ShakeTimer < tick Then
                         If ShakeCount < 10 Then
@@ -152,7 +152,7 @@ Module C_GameLogic
                     End If
                 End If
 
-                ' check if trade timed out
+                ' ver se a troca deu timeout
                 If TradeRequest = True Then
                     If TradeTimer < tick Then
                         AddText(Language.Trade.Timeout, ColorType.Yellow)
@@ -161,7 +161,7 @@ Module C_GameLogic
                     End If
                 End If
 
-                ' check if we need to end the CD icon
+                ' ver se precisamos encerrar o ícone de CD
                 If NumSkillIcons > 0 Then
                     For i = 1 To MAX_PLAYER_SKILLS
                         If PlayerSkills(i) > 0 Then
@@ -175,14 +175,14 @@ Module C_GameLogic
                     Next
                 End If
 
-                ' check if we need to unlock the player's skill casting restriction
+                ' ver se precisamso destravar as restrições de habilidades do jogador 
                 If SkillBuffer > 0 Then
                     If SkillBufferTimer + (Skill(PlayerSkills(SkillBuffer)).CastTime * 1000) < tick Then
                         SkillBuffer = 0
                         SkillBufferTimer = 0
                     End If
                 End If
-                ' check if we need to unlock the pets's spell casting restriction
+                ' ver se precisamso destravar as restrições de habilidades do pet 
                 If PetSkillBuffer > 0 Then
                     If PetSkillBufferTimer + (Skill(Pet(Player(Myindex).Pet.Num).Skill(PetSkillBuffer)).CastTime * 1000) < tick Then
                         PetSkillBuffer = 0
@@ -192,11 +192,11 @@ Module C_GameLogic
 
                 SyncLock MapLock
                     If CanMoveNow Then
-                        CheckMovement() ' Check if player is trying to move
-                        CheckAttack()   ' Check to see if player is trying to attack
+                        CheckMovement() ' Ver se o jogador está tentando mover
+                        CheckAttack()   ' Ver se o jogador está tentando atacar
                     End If
 
-                    ' Process input before rendering, otherwise input will be behind by 1 frame
+                    ' Processar entradas antes de renderizar
                     If walkTimer < tick Then
 
                         For i = 1 To TotalOnline 'MAX_PLAYERS
@@ -208,7 +208,7 @@ Module C_GameLogic
                             End If
                         Next
 
-                        ' Process npc movements (actually move them)
+                        ' Processar movimentos dos NPCs (move-los, na verdade)
                         For i = 1 To MAX_MAP_NPCS
                             If Map.Npc(i) > 0 Then
                                 ProcessNpcMovement(i)
@@ -221,16 +221,16 @@ Module C_GameLogic
                             Next i
                         End If
 
-                        walkTimer = tick + 30 ' edit this value to change WalkTimer
+                        walkTimer = tick + 30 ' editar este valor para alterar WalkTimer
                     End If
 
-                    ' fog scrolling
+                    ' scroolling de nevoa
                     If fogtmr < tick Then
                         If CurrentFogSpeed > 0 Then
-                            ' move
+                            ' mover
                             FogOffsetX = FogOffsetX - 1
                             FogOffsetY = FogOffsetY - 1
-                            ' reset
+                            ' resetar
                             If FogOffsetX < -255 Then FogOffsetX = 1
                             If FogOffsetY < -255 Then FogOffsetY = 1
                             fogtmr = tick + 255 - CurrentFogSpeed
@@ -238,7 +238,7 @@ Module C_GameLogic
                     End If
 
                     If tmr500 < tick Then
-                        ' animate waterfalls
+                        ' animar cachoeiras
                         Select Case WaterfallFrame
                             Case 0
                                 WaterfallFrame = 1
@@ -247,7 +247,7 @@ Module C_GameLogic
                             Case 2
                                 WaterfallFrame = 0
                         End Select
-                        ' animate autotiles
+                        ' animar autotiles
                         Select Case AutoTileFrame
                             Case 0
                                 AutoTileFrame = 1
@@ -304,7 +304,7 @@ Module C_GameLogic
             End If
 
             If rendercount < tick Then
-                'Actual Game Loop Stuff :/
+                'Coisas do GameLoop
                 Render_Graphics()
                 tmplps = tmplps + 1
                 rendercount = tick + 16
@@ -336,7 +336,7 @@ Module C_GameLogic
 
     Sub ProcessNpcMovement(mapNpcNum As Integer)
 
-        ' Check if NPC is walking, and if so process moving them over
+        ' Ver se o NPC está andando, e se sim processar o movimento 
         If MapNpc(mapNpcNum).Moving = MovementType.Walking Then
 
             Select Case MapNpc(mapNpcNum).Dir
@@ -358,7 +358,7 @@ Module C_GameLogic
 
             End Select
 
-            ' Check if completed walking over to the next tile
+            ' Ver se terminou de andar para a próxima tile
             If MapNpc(mapNpcNum).Moving > 0 Then
                 If MapNpc(mapNpcNum).Dir = DirectionType.Right OrElse MapNpc(mapNpcNum).Dir = DirectionType.Down Then
                     If (MapNpc(mapNpcNum).XOffset >= 0) AndAlso (MapNpc(mapNpcNum).YOffset >= 0) Then
@@ -448,7 +448,7 @@ Module C_GameLogic
         Return GameRand.Next(minNumber, maxNumber)
     End Function
 
-    ' BitWise Operators for directional blocking
+    ' Operadores BitWise para bloqueamento direcional
     Friend Sub SetDirBlock(ByRef blockvar As Byte, ByRef dir As Byte, block As Boolean)
         If block Then
             blockvar = blockvar Or (2 ^ dir)
@@ -503,19 +503,19 @@ Module C_GameLogic
             End If
         End If
 
-        ' Broadcast message
+        ' Mandar mensagem
         If Left$(chatText, 1) = "'" Then
             chatText = Mid$(chatText, 2, Len(chatText) - 1)
 
             If Len(chatText) > 0 Then
-                BroadcastMsg(chatText) '("Привет, русский чат")
+                BroadcastMsg(chatText)
             End If
 
             ChatInput.CurrentMessage = ""
             Exit Sub
         End If
 
-        ' party message
+        ' mensagem de equipe
         If Left$(chatText, 1) = "-" Then
             ChatInput.CurrentMessage = Mid$(chatText, 2, Len(chatText) - 1)
 
@@ -527,12 +527,12 @@ Module C_GameLogic
             Exit Sub
         End If
 
-        ' Player message
+        ' Mensagem do jogador
         If Left$(chatText, 1) = "!" Then
             chatText = Mid$(chatText, 2, Len(chatText) - 1)
             name = ""
 
-            ' Get the desired player from the user text
+            ' Pegar o jogador desejado a partir do texto 
             For i = 1 To Len(chatText)
 
                 If Mid$(chatText, i, 1) <> Space(1) Then
@@ -545,9 +545,9 @@ Module C_GameLogic
 
             ChatInput.CurrentMessage = Trim$(Mid$(chatText, i, Len(chatText) - 1))
 
-            ' Make sure they are actually sending something
+            ' Ter certeza que estao enviando algo
             If Len(ChatInput.CurrentMessage) > 0 Then
-                ' Send the message to the player
+                ' Enviar a mensagem ao jogador
                 PlayerMsg(ChatInput.CurrentMessage, name)
             Else
                 AddText(Language.Chat.PlayerMsg, ColorType.Yellow)
@@ -561,7 +561,7 @@ Module C_GameLogic
 
             Select Case command(0)
                 Case "/emote"
-                    ' Checks to make sure we have more than one string in the array
+                    ' Ver se temos mais que uma string no vetor
                     If UBound(command) < 1 OrElse Not IsNumeric(command(1)) Then
                         AddText(Language.Chat.Emote, ColorType.Yellow)
                         GoTo Continue1
@@ -569,16 +569,16 @@ Module C_GameLogic
 
                     SendUseEmote(command(1))
 
-                Case "/help"
+                Case "/ajuda"
                     AddText(Language.Chat.Help1, ColorType.Yellow)
                     AddText(Language.Chat.Help2, ColorType.Yellow)
                     AddText(Language.Chat.Help3, ColorType.Yellow)
                     AddText(Language.Chat.Help4, ColorType.Yellow)
                     AddText(Language.Chat.Help5, ColorType.Yellow)
 
-                Case "/houseinvite"
+                Case "/convidarmoradia"
 
-                    ' Checks to make sure we have more than one string in the array
+                    ' Ter certeza que tem mais de uma string no vetor
                     If UBound(command) < 1 OrElse IsNumeric(command(1)) Then
                         AddText(Language.Chat.HouseInvite, ColorType.Yellow)
                         GoTo Continue1
@@ -586,14 +586,14 @@ Module C_GameLogic
 
                     SendInvite(command(1))
 
-                Case "/sellhouse"
+                Case "/vendermoradia"
                     buffer = New ByteStream(4)
                     buffer.WriteInt32(ClientPackets.CSellHouse)
                     Socket.SendData(buffer.Data, buffer.Head)
                     buffer.Dispose()
                 Case "/info"
 
-                    ' Checks to make sure we have more than one string in the array
+                    ' Ter certeza que temos mais de uma string no vetor
                     If UBound(command) < 1 OrElse IsNumeric(command(1)) Then
                         AddText(Language.Chat.Info, ColorType.Yellow)
                         GoTo Continue1
@@ -604,22 +604,22 @@ Module C_GameLogic
                     buffer.WriteString((command(1)))
                     Socket.SendData(buffer.Data, buffer.Head)
                     buffer.Dispose()
-                ' Whos Online
-                Case "/who"
+                ' Quem está online
+                Case "/quem"
                     SendWhosOnline()
-                ' Checking fps
+                ' Ver fps
                 Case "/fps"
                     Bfps = Not Bfps
                 Case "/lps"
                     Blps = Not Blps
-                ' Request stats
-                Case "/stats"
+                ' Pedir atributos
+                Case "/atributos"
                     buffer = New ByteStream(4)
                     buffer.WriteInt32(ClientPackets.CGetStats)
                     Socket.SendData(buffer.Data, buffer.Head)
                     buffer.Dispose()
-                Case "/party"
-                    ' Make sure they are actually sending something
+                Case "/equipe"
+                    ' Ter certeza que estao enviando algo
                     If UBound(command) < 1 OrElse IsNumeric(command(1)) Then
                         AddText(Language.Chat.Party, ColorType.Yellow)
                         GoTo Continue1
@@ -627,20 +627,20 @@ Module C_GameLogic
 
                     SendPartyRequest(command(1))
 
-                ' Join party
-                Case "/join"
+                ' Entrar em equipe
+                Case "/entrar"
                     SendAcceptParty()
                 ' Leave party
-                Case "/leave"
+                Case "/sair"
                     SendLeaveParty()
 
-                'release pet
-                Case "/releasepet"
+                'soltar
+                Case "/soltarpet"
                     SendReleasePet()
 
-                ' // Monitor Admin Commands //
+                ' // Comandos de Monitor //
 
-                Case "/questreset"
+                Case "/resetartarefa"
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
                         GoTo Continue1
@@ -653,14 +653,14 @@ Module C_GameLogic
 
                     n = command(1)
 
-                    ' Check to make sure its a valid map #
+                    ' Ter certeza que é um numero de mapa válido
                     If n > 0 AndAlso n <= MaxQuests Then
                         QuestReset(n)
                     Else
                         AddText(Language.Chat.InvalidQuest, QColorType.AlertColor)
                     End If
 
-                ' Admin Help
+                ' Ajuda de admin
                 Case "/admin"
 
                     If GetPlayerAccess(Myindex) < AdminType.Monitor Then
@@ -672,8 +672,8 @@ Module C_GameLogic
                     AddText(Language.Chat.Admin2, ColorType.Yellow)
                     AddText(Language.Chat.AdminGblMsg, ColorType.Yellow)
                     AddText(Language.Chat.AdminPvtMsg, ColorType.Yellow)
-                ' Kicking a player
-                Case "/kick"
+                ' Chutar jogador
+                Case "/chutar"
 
                     If GetPlayerAccess(Myindex) < AdminType.Monitor Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -686,8 +686,8 @@ Module C_GameLogic
                     End If
 
                     SendKick(command(1))
-                ' // Mapper Admin Commands //
-                ' Location
+                ' // Comandos de Mapeador //
+                ' Localização
                 Case "/loc"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
@@ -696,8 +696,8 @@ Module C_GameLogic
                     End If
 
                     BLoc = Not BLoc
-                ' Warping to a player
-                Case "/warpmeto"
+                ' Teleporte para o jogador
+                Case "/melevarpara"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -710,8 +710,8 @@ Module C_GameLogic
                     End If
 
                     WarpMeTo(command(1))
-                ' Warping a player to you
-                Case "/warptome"
+                ' Trazer um jogador a voce
+                Case "/metraga"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -724,8 +724,8 @@ Module C_GameLogic
                     End If
 
                     WarpToMe(command(1))
-                ' Warping to a map
-                Case "/warpto"
+                ' IR para um mapa
+                Case "/irpara"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -739,14 +739,14 @@ Module C_GameLogic
 
                     n = command(1)
 
-                    ' Check to make sure its a valid map #
+                    ' Ter certeza que é um mapa válido
                     If n > 0 AndAlso n <= MAX_MAPS Then
                         WarpTo(n)
                     Else
                         AddText(Language.Chat.InvalidMap, QColorType.AlertColor)
                     End If
 
-                ' Setting sprite
+                ' Setar sprite
                 Case "/sprite"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
@@ -769,7 +769,7 @@ Module C_GameLogic
                     End If
 
                     SendRequestMapreport()
-                ' Respawn request
+                ' Regerar requests
                 Case "/respawn"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
@@ -778,8 +778,8 @@ Module C_GameLogic
                     End If
 
                     SendMapRespawn()
-                ' Welcome change
-                Case "/welcome"
+                ' Mudar boas-vindas
+                Case "/boasvindas"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -792,7 +792,7 @@ Module C_GameLogic
                     End If
 
                     SendMotdChange(Right$(chatText, Len(chatText) - 5))
-                ' Check the ban list
+                ' Mandar a lista de bans
                 Case "/banlist"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
@@ -801,8 +801,8 @@ Module C_GameLogic
                     End If
 
                     SendBanList()
-                ' Banning a player
-                Case "/ban"
+                ' Banir jogador
+                Case "/banir"
 
                     If GetPlayerAccess(Myindex) < AdminType.Mapper Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -815,11 +815,11 @@ Module C_GameLogic
                     End If
 
                     SendBan(command(1))
-                ' // Developer Admin Commands //
+                ' // Comandos do Desenvolvedor //
 
-                ' // Creator Admin Commands //
-                ' Giving another player access
-                Case "/access"
+                ' // Comandos do Criador //
+                ' Dar acesso ao utro jogador
+                Case "/acesso"
 
                     If GetPlayerAccess(Myindex) < AdminType.Creator Then
                         AddText(Language.Chat.AccessAlert, QColorType.AlertColor)
@@ -838,7 +838,7 @@ Module C_GameLogic
                     AddText(Language.Chat.InvalidCmd, QColorType.AlertColor)
             End Select
 
-        ElseIf Len(chatText) > 0 Then ' Say message
+        ElseIf Len(chatText) > 0 Then
             SayMsg(chatText)
         End If
 
@@ -865,19 +865,19 @@ Continue1:
         Dim theName As String = "", tmpRarity As Integer
 
         If Item(itemnum).Randomize <> 0 AndAlso invNum <> 0 Then
-            If windowType = 0 Then ' inventory
+            If windowType = 0 Then ' inventario
                 theName = Trim(Player(Myindex).RandInv(invNum).Prefix) & " " & Trim(Item(itemnum).Name) & " " & Trim(Player(Myindex).RandInv(invNum).Suffix)
                 tmpRarity = Player(Myindex).RandInv(invNum).Rarity
-            ElseIf windowType = 1 Then ' equip
+            ElseIf windowType = 1 Then ' equips
                 theName = Trim(Player(Myindex).RandEquip(invNum).Prefix) & " " & Trim(Item(itemnum).Name) & " " & Trim(Player(Myindex).RandEquip(invNum).Suffix)
                 tmpRarity = Player(Myindex).RandEquip(invNum).Rarity
-            ElseIf windowType = 2 Then ' bank
+            ElseIf windowType = 2 Then ' banco
                 theName = Trim(Bank.ItemRand(invNum).Prefix) & " " & Trim(Item(itemnum).Name) & " " & Trim(Bank.ItemRand(invNum).Suffix)
                 tmpRarity = Bank.ItemRand(invNum).Rarity
-            ElseIf windowType = 3 Then ' shop
+            ElseIf windowType = 3 Then ' loja
                 theName = Trim(Player(Myindex).RandEquip(invNum).Prefix) & " " & Trim(Item(itemnum).Name) & " " & Trim(Player(Myindex).RandEquip(invNum).Suffix)
                 tmpRarity = Player(Myindex).RandEquip(invNum).Rarity
-            ElseIf windowType = 4 Then ' trade
+            ElseIf windowType = 4 Then ' troca
                 theName = Trim(Player(Myindex).RandEquip(invNum).Prefix) & " " & Trim(Item(itemnum).Name) & " " & Trim(Player(Myindex).RandEquip(invNum).Suffix)
                 tmpRarity = Player(Myindex).RandEquip(invNum).Rarity
             End If
@@ -892,31 +892,31 @@ Continue1:
 
         If LastItemDesc = itemnum Then Exit Sub
 
-        ' set the name
+        ' setar o nome
         Select Case tmpRarity
-            Case 0 ' White
+            Case 0 ' Brabco
                 ItemDescRarityColor = ItemRarityColor0
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
-            Case 1 ' green
+            Case 1 ' Verde
                 ItemDescRarityColor = ItemRarityColor1
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
-            Case 2 ' blue
+            Case 2 ' Azul
                 ItemDescRarityColor = ItemRarityColor2
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
-            Case 3 ' red
+            Case 3 ' Vermelho
                 ItemDescRarityColor = ItemRarityColor3
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
-            Case 4 ' purple
+            Case 4 ' Purpura
                 ItemDescRarityColor = ItemRarityColor4
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
-            Case 5 'gold
+            Case 5 'Dourado
                 ItemDescRarityColor = ItemRarityColor5
                 ItemDescRarityBackColor = SFML.Graphics.Color.Black
         End Select
 
         ItemDescDescription = Item(itemnum).Description
 
-        ' For the stats label
+        ' Para os atributos
         Select Case Item(itemnum).Type
             Case ItemType.None
                 ItemDescInfo = Language.ItemDescription.NotAvailable
@@ -978,12 +978,12 @@ Continue1:
                 ItemDescInfo = Language.ItemDescription.Furniture
         End Select
 
-        ' Currency
+        ' Moeda
         ItemDescCost = Item(itemnum).Price & "g"
 
-        ' If currency, exit out before all the other shit
+        ' Se moeda, sair antes de tudo
         If Item(itemnum).Type = ItemType.Currency OrElse Item(itemnum).Type = ItemType.None Then
-            ' Clear other labels
+            ' Limpar outros labels
             ItemDescLevel = Language.ItemDescription.NotAvailable
             ItemDescSpeed = Language.ItemDescription.NotAvailable
             ItemDescStr = Language.ItemDescription.NotAvailable
@@ -995,12 +995,13 @@ Continue1:
             Exit Sub
         End If
 
-        ' Potions + crap
+        ' Poções e etc
         ItemDescLevel = Item(itemnum).LevelReq
 
-        ' Exit out for everything else except equipment
+        ' Sair para tudo exceto equips
         If Item(itemnum).Type <> ItemType.Equipment Then
-            ' Clear other labels
+
+            ' Limpar outros marcadores
             ItemDescSpeed = Language.ItemDescription.NotAvailable
             ItemDescStr = Language.ItemDescription.NotAvailable
             ItemDescEnd = Language.ItemDescription.NotAvailable
@@ -1011,7 +1012,7 @@ Continue1:
             Exit Sub
         End If
 
-        ' Equipment specific
+        ' Coisas de Equpiamento
         If Item(itemnum).Randomize <> 0 Then
             If windowType = 0 Then
 
@@ -1207,25 +1208,25 @@ Continue1:
     Friend Sub AddChatBubble(target As Integer, targetType As Byte, msg As String, colour As Integer)
         Dim i As Integer, index As Integer
 
-        ' set the global index
+        ' setar o indice global
 
         ChatBubbleindex = ChatBubbleindex + 1
         If ChatBubbleindex < 1 OrElse ChatBubbleindex > Byte.MaxValue Then ChatBubbleindex = 1
-        ' default to new bubble
+        ' padrao para nova bolha
         index = ChatBubbleindex
-        ' loop through and see if that player/npc already has a chat bubble
+        ' fazer um loop para ver se aquele jogador/npc ja tem uma bolha
         For i = 1 To Byte.MaxValue
             If ChatBubble(i).TargetType = targetType Then
                 If ChatBubble(i).Target = target Then
-                    ' reset master index
+                    ' resetar indice mestre
                     If ChatBubbleindex > 1 Then ChatBubbleindex = ChatBubbleindex - 1
-                    ' we use this one now, yes?
+                    ' usaremos esse agora
                     index = i
                     Exit For
                 End If
             End If
         Next
-        ' set the bubble up
+        ' colocar a bolha
         With ChatBubble(index)
             .Target = target
             .TargetType = targetType

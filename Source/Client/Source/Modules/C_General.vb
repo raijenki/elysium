@@ -103,7 +103,7 @@ Module C_General
     Friend Function IsStringLegal(sInput As String) As Boolean
         Dim i As Integer
 
-        ' Prevent high ascii chars
+        ' Evita caracteres ascii muito altos
         For i = 1 To Len(sInput)
 
             If (Asc(Mid$(sInput, i, 1))) < 32 OrElse Asc(Mid$(sInput, i, 1)) > 126 Then
@@ -120,10 +120,10 @@ Module C_General
     Sub GameInit()
         Pnlloadvisible = False
 
-        ' Set the focus
+        ' Setar o foco
         FrmGame.picscreen.Focus()
 
-        'stop the song playing
+        'Parar a música tocando
         StopMusic()
     End Sub
 
@@ -183,7 +183,7 @@ Module C_General
         Dim until As Integer
         ConnectToServer = False
 
-        ' Check to see if we are already connected, if so just exit
+        ' Ver se já estmaos conectados; se sim, só sair
         If Socket.IsConnected() Then
             ConnectToServer = True
             Exit Function
@@ -196,13 +196,13 @@ Module C_General
 
         SetStatus(String.Format(Language.MainMenu.ConnectToServer, i))
 
-        ' Wait until connected or a few seconds have passed and report the server being down
+        ' Esperar até que conectado ou alguns segundos se passaram e avisar do servidor offline
         Do While (Not Socket.IsConnected()) AndAlso (GetTickCount() <= until)
             Application.DoEvents()
             Thread.Sleep(10)
         Loop
 
-        ' return value
+        ' valor de retorno
         If Socket.IsConnected() Then
             ConnectToServer = True
         End If
@@ -215,7 +215,7 @@ Module C_General
 
     Friend Sub RePositionGui()
 
-        'first change the tiles
+        'primeiramente mudar o titulo
         If Settings.ScreenSize = 0 Then ' 800x600
             ScreenMapx = 25
             ScreenMapy = 19
@@ -227,7 +227,7 @@ Module C_General
             ScreenMapy = 26
         End If
 
-        'then the window
+        'entao a janela
         FrmGame.ClientSize = New Drawing.Size((ScreenMapx) * PicX + PicX, (ScreenMapy) * PicY + PicY)
         FrmGame.picscreen.Width = (ScreenMapx) * PicX + PicX
         FrmGame.picscreen.Height = (ScreenMapy) * PicY + PicY
@@ -239,7 +239,7 @@ Module C_General
 
         GameWindow.SetView(New SFML.Graphics.View(New SFML.Graphics.FloatRect(0, 0, (ScreenMapx) * PicX + PicX, (ScreenMapy) * PicY + PicY)))
 
-        'Then we can recalculate the positions
+        'entao recalcular as posicoes
 
         'chatwindow
         ChatWindowX = 1
@@ -265,30 +265,30 @@ Module C_General
             PetbarY = HotbarY - 34
         End If
 
-        'action panel
+        'painel de acao
         ActionPanelX = FrmGame.Width - ActionPanelGfxInfo.Width - 25
         ActionPanelY = FrmGame.Height - ActionPanelGfxInfo.Height - 45
 
-        'Char Window
+        'janela de personagem
         CharWindowX = FrmGame.Width - CharPanelGfxInfo.Width - 26
         CharWindowY = FrmGame.Height - CharPanelGfxInfo.Height - ActionPanelGfxInfo.Height - 50
 
-        'inv Window
+        'janela de inventario
         InvWindowX = FrmGame.Width - InvPanelGfxInfo.Width - 26
         InvWindowY = FrmGame.Height - InvPanelGfxInfo.Height - ActionPanelGfxInfo.Height - 50
 
-        'skill window
+        'janela de habilidades
         SkillWindowX = FrmGame.Width - SkillPanelGfxInfo.Width - 26
         SkillWindowY = FrmGame.Height - SkillPanelGfxInfo.Height - ActionPanelGfxInfo.Height - 50
 
-        'petstat window
+        'janelas de atributos de pet
         PetStatX = PetbarX
         PetStatY = PetbarY - PetStatsGfxInfo.Height - 10
     End Sub
 
     Friend Sub DestroyGame()
         'SendLeaveGame()
-        ' break out of GameLoop
+        ' sair do gameloop
         InGame = False
 
         DestroyGraphics()
@@ -313,7 +313,7 @@ Module C_General
         Dim st As StackTrace = New StackTrace(ex, True)
         For Each sf As StackFrame In st.GetFrames
             If sf.GetFileLineNumber() > 0 Then
-                result &= "Line:" & sf.GetFileLineNumber() & " Filename: " & IO.Path.GetFileName(sf.GetFileName) & Environment.NewLine
+                result &= "Linha:" & sf.GetFileLineNumber() & " Arquivo: " & IO.Path.GetFileName(sf.GetFileName) & Environment.NewLine
             End If
         Next
         Return result

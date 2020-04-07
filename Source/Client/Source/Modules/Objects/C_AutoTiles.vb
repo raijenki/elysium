@@ -10,7 +10,7 @@
     Friend Const AutoVertical As Byte = 4
     Friend Const AutoFill As Byte = 5
 
-    ' Autotile types
+    ' Tipos de Autotile
     Friend Const AutotileNone As Byte = 0
 
     Friend Const AutotileNormal As Byte = 1
@@ -19,7 +19,7 @@
     Friend Const AutotileCliff As Byte = 4
     Friend Const AutotileWaterfall As Byte = 5
 
-    ' Rendering
+    ' Renderização
     Friend Const RenderStateNone As Integer = 0
 
     Friend Const RenderStateNormal As Integer = 1
@@ -33,7 +33,7 @@
     Friend AutoSw(4) As PointRec
     Friend AutoSe(4) As PointRec
 
-    ' Map animations
+    ' Animações de Mapa
     Friend WaterfallFrame As Integer
 
     Friend AutoTileFrame As Integer
@@ -46,15 +46,15 @@
     End Structure
 
     Friend Structure QuarterTileRec
-        Dim QuarterTile() As PointRec '1 To 4
+        Dim QuarterTile() As PointRec '1 até 4
         Dim RenderState As Byte
-        Dim SrcX() As Integer '1 To 4
-        Dim SrcY() As Integer '1 To 4
+        Dim SrcX() As Integer '1 até 4
+        Dim SrcY() As Integer '1 até 4
     End Structure
 
     Friend Structure AutotileRec
-        Dim Layer() As QuarterTileRec '1 To MapLayer.Count - 1
-        Dim ExLayer() As QuarterTileRec '1 To ExMapLayer.Count - 1
+        Dim Layer() As QuarterTileRec '1 até MapLayer.Count - 1
+        Dim ExLayer() As QuarterTileRec '1 até ExMapLayer.Count - 1
     End Structure
 
 #End Region
@@ -77,7 +77,7 @@
     End Sub
 
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    '   All of this code is for auto tiles and the math behind generating them.
+    '   Todo este código é para as auto tiles e a matemática por trás deles.
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     Friend Sub PlaceAutotile(layerNum As Integer, x As Integer, y As Integer, tileQuarter As Byte, autoTileLetter As String)
 
@@ -238,7 +238,7 @@
             Next
         Next
 
-        ' Inner tiles (Top right subtile region)
+        ' Tiles interiores (Região superior direita, subtile)
         ' NW - a
         AutoIn(1).X = 32
         AutoIn(1).Y = 0
@@ -251,7 +251,7 @@
         ' SE - d
         AutoIn(4).X = 48
         AutoIn(4).Y = 16
-        ' Outer Tiles - NW (bottom subtile region)
+        ' Tiles exteriores - NW (região inferior, subtile)
         ' NW - e
         AutoNw(1).X = 0
         AutoNw(1).Y = 32
@@ -264,7 +264,7 @@
         ' SE - h
         AutoNw(4).X = 16
         AutoNw(4).Y = 48
-        ' Outer Tiles - NE (bottom subtile region)
+        ' Tiles exteriores - NE (região inferior, subtile)
         ' NW - i
         AutoNe(1).X = 32
         AutoNe(1).Y = 32
@@ -277,7 +277,7 @@
         ' SE - l
         AutoNe(4).X = 48
         AutoNe(4).Y = 48
-        ' Outer Tiles - SW (bottom subtile region)
+        ' Tiles Exterior - SW (região inferior, subtile)
         ' NW - m
         AutoSw(1).X = 0
         AutoSw(1).Y = 64
@@ -290,7 +290,7 @@
         ' SE - p
         AutoSw(4).X = 16
         AutoSw(4).Y = 80
-        ' Outer Tiles - SE (bottom subtile region)
+        ' Tiles Exteriores - SE (região inferior, subtile)
         ' NW - q
         AutoSe(1).X = 32
         AutoSe(1).Y = 64
@@ -307,9 +307,9 @@
         For x = 0 To Map.MaxX
             For y = 0 To Map.MaxY
                 For layerNum = 1 To LayerType.Count - 1
-                    ' calculate the subtile positions and place them
+                    ' calculas o número de posições de subtiles e colocá-las
                     CalculateAutotile(x, y, layerNum)
-                    ' cache the rendering state of the tiles and set them
+                    ' fazer cache do estado de renderização das tiles e setá-las 
                     CacheRenderState(x, y, layerNum)
                 Next
             Next

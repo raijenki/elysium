@@ -137,11 +137,11 @@ Friend Class frmEditor_Classes
     End Sub
 
     Private Sub PicMale_Paint(sender As Object, e As EventArgs) Handles picMale.Paint
-        'nope
+        'nada
     End Sub
 
     Private Sub PicFemale_Paint(sender As Object, e As EventArgs) Handles picFemale.Paint
-        'nope
+        'nada
     End Sub
 
 #End Region

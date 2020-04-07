@@ -7,7 +7,7 @@ Module C_Resources
 
 #Region "Globals & Types"
 
-    ' Cache the Resources in an array
+    ' Cachear os Recursos em um vetor
     Friend MapResource() As MapResourceRec
 
     Friend ResourceIndex As Integer
@@ -122,7 +122,7 @@ Module C_Resources
             LoadTexture(resource, 5)
         End If
 
-        'seeying we still use it, lets update timer
+        'Vendo que ainda vamos utilizar isso, atualizar o temporizador
         With ResourcesGfxInfo(resource)
             .TextureTimer = GetTickCount() + 100000
         End With
@@ -144,19 +144,19 @@ Module C_Resources
 
         If MapResource(resourceNum).X > Map.MaxX OrElse MapResource(resourceNum).Y > Map.MaxY Then Exit Sub
 
-        ' Get the Resource type
+        ' Pegar o tipo do Recurso
         resourceMaster = Map.Tile(MapResource(resourceNum).X, MapResource(resourceNum).Y).Data1
 
         If resourceMaster = 0 Then Exit Sub
 
         If Resource(resourceMaster).ResourceImage = 0 Then Exit Sub
 
-        ' Get the Resource state
+        ' Pegar o estado do recurso
         resourceState = MapResource(resourceNum).ResourceState
 
         If resourceState = 0 Then ' normal
             resourceSprite = Resource(resourceMaster).ResourceImage
-        ElseIf resourceState = 1 Then ' used
+        ElseIf resourceState = 1 Then ' usado
             resourceSprite = Resource(resourceMaster).ExhaustedImage
         End If
 
@@ -168,7 +168,7 @@ Module C_Resources
             .Width = ResourcesGfxInfo(resourceSprite).Width
         End With
 
-        ' Set base x + y, then the offset due to size
+        ' Setar x + y de base, e então o offset devido ao tamanho
         x = (MapResource(resourceNum).X * PicX) - (ResourcesGfxInfo(resourceSprite).Width / 2) + 16
         y = (MapResource(resourceNum).Y * PicY) - ResourcesGfxInfo(resourceSprite).Height + 32
 

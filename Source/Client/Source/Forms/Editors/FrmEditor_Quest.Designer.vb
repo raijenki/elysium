@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmEditor_Quest
     Inherits System.Windows.Forms.Form
 
@@ -133,9 +133,11 @@ Partial Class frmEditor_Quest
         Me.fraQuestList.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.fraQuestList.Controls.Add(Me.lstIndex)
         Me.fraQuestList.ForeColor = System.Drawing.Color.Gainsboro
-        Me.fraQuestList.Location = New System.Drawing.Point(3, 3)
+        Me.fraQuestList.Location = New System.Drawing.Point(4, 5)
+        Me.fraQuestList.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.fraQuestList.Name = "fraQuestList"
-        Me.fraQuestList.Size = New System.Drawing.Size(212, 497)
+        Me.fraQuestList.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.fraQuestList.Size = New System.Drawing.Size(318, 765)
         Me.fraQuestList.TabIndex = 0
         Me.fraQuestList.TabStop = False
         Me.fraQuestList.Text = "Lista de quests"
@@ -146,9 +148,11 @@ Partial Class frmEditor_Quest
         Me.lstIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstIndex.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstIndex.FormattingEnabled = True
-        Me.lstIndex.Location = New System.Drawing.Point(9, 19)
+        Me.lstIndex.ItemHeight = 20
+        Me.lstIndex.Location = New System.Drawing.Point(14, 29)
+        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstIndex.Name = "lstIndex"
-        Me.lstIndex.Size = New System.Drawing.Size(194, 470)
+        Me.lstIndex.Size = New System.Drawing.Size(290, 722)
         Me.lstIndex.TabIndex = 1
         '
         'DarkGroupBox2
@@ -169,9 +173,11 @@ Partial Class frmEditor_Quest
         Me.DarkGroupBox2.Controls.Add(Me.DarkLabel1)
         Me.DarkGroupBox2.Controls.Add(Me.DarkGroupBox5)
         Me.DarkGroupBox2.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox2.Location = New System.Drawing.Point(221, 3)
+        Me.DarkGroupBox2.Location = New System.Drawing.Point(332, 5)
+        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox2.Name = "DarkGroupBox2"
-        Me.DarkGroupBox2.Size = New System.Drawing.Size(497, 458)
+        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox2.Size = New System.Drawing.Size(746, 705)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
         Me.DarkGroupBox2.Text = "Configurações basicas"
@@ -185,9 +191,11 @@ Partial Class frmEditor_Quest
         Me.DarkGroupBox4.Controls.Add(Me.btnAddRequirement)
         Me.DarkGroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DarkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox4.Location = New System.Drawing.Point(0, 254)
+        Me.DarkGroupBox4.Location = New System.Drawing.Point(0, 391)
+        Me.DarkGroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox4.Name = "DarkGroupBox4"
-        Me.DarkGroupBox4.Size = New System.Drawing.Size(243, 199)
+        Me.DarkGroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox4.Size = New System.Drawing.Size(364, 306)
         Me.DarkGroupBox4.TabIndex = 11
         Me.DarkGroupBox4.TabStop = False
         Me.DarkGroupBox4.Text = "Requerimentos"
@@ -198,26 +206,30 @@ Partial Class frmEditor_Quest
         Me.lstRequirements.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstRequirements.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstRequirements.FormattingEnabled = True
-        Me.lstRequirements.Location = New System.Drawing.Point(6, 19)
+        Me.lstRequirements.ItemHeight = 20
+        Me.lstRequirements.Location = New System.Drawing.Point(9, 29)
+        Me.lstRequirements.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstRequirements.Name = "lstRequirements"
-        Me.lstRequirements.Size = New System.Drawing.Size(231, 145)
+        Me.lstRequirements.Size = New System.Drawing.Size(346, 222)
         Me.lstRequirements.TabIndex = 2
         '
         'btnRemoveRequirement
         '
-        Me.btnRemoveRequirement.Location = New System.Drawing.Point(110, 170)
+        Me.btnRemoveRequirement.Location = New System.Drawing.Point(165, 262)
+        Me.btnRemoveRequirement.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnRemoveRequirement.Name = "btnRemoveRequirement"
-        Me.btnRemoveRequirement.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRemoveRequirement.Size = New System.Drawing.Size(129, 23)
+        Me.btnRemoveRequirement.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnRemoveRequirement.Size = New System.Drawing.Size(194, 35)
         Me.btnRemoveRequirement.TabIndex = 1
         Me.btnRemoveRequirement.Text = "Remover req."
         '
         'btnAddRequirement
         '
-        Me.btnAddRequirement.Location = New System.Drawing.Point(4, 170)
+        Me.btnAddRequirement.Location = New System.Drawing.Point(6, 262)
+        Me.btnAddRequirement.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddRequirement.Name = "btnAddRequirement"
-        Me.btnAddRequirement.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnAddRequirement.Size = New System.Drawing.Size(102, 23)
+        Me.btnAddRequirement.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddRequirement.Size = New System.Drawing.Size(153, 35)
         Me.btnAddRequirement.TabIndex = 0
         Me.btnAddRequirement.Text = "Adicionar req."
         '
@@ -235,9 +247,11 @@ Partial Class frmEditor_Quest
         Me.DarkGroupBox3.Controls.Add(Me.btnAddReward)
         Me.DarkGroupBox3.Controls.Add(Me.lstRewards)
         Me.DarkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro
-        Me.DarkGroupBox3.Location = New System.Drawing.Point(6, 143)
+        Me.DarkGroupBox3.Location = New System.Drawing.Point(9, 220)
+        Me.DarkGroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DarkGroupBox3.Name = "DarkGroupBox3"
-        Me.DarkGroupBox3.Size = New System.Drawing.Size(485, 105)
+        Me.DarkGroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox3.Size = New System.Drawing.Size(728, 162)
         Me.DarkGroupBox3.TabIndex = 10
         Me.DarkGroupBox3.TabStop = False
         Me.DarkGroupBox3.Text = "Recompensas"
@@ -246,9 +260,10 @@ Partial Class frmEditor_Quest
         '
         Me.nudItemRewValue.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudItemRewValue.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudItemRewValue.Location = New System.Drawing.Point(399, 79)
+        Me.nudItemRewValue.Location = New System.Drawing.Point(598, 122)
+        Me.nudItemRewValue.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudItemRewValue.Name = "nudItemRewValue"
-        Me.nudItemRewValue.Size = New System.Drawing.Size(80, 20)
+        Me.nudItemRewValue.Size = New System.Drawing.Size(120, 26)
         Me.nudItemRewValue.TabIndex = 8
         Me.nudItemRewValue.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -256,9 +271,10 @@ Partial Class frmEditor_Quest
         '
         Me.DarkLabel7.AutoSize = True
         Me.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel7.Location = New System.Drawing.Point(328, 81)
+        Me.DarkLabel7.Location = New System.Drawing.Point(492, 125)
+        Me.DarkLabel7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel7.Name = "DarkLabel7"
-        Me.DarkLabel7.Size = New System.Drawing.Size(65, 13)
+        Me.DarkLabel7.Size = New System.Drawing.Size(96, 20)
         Me.DarkLabel7.TabIndex = 7
         Me.DarkLabel7.Text = "Quantidade:"
         '
@@ -276,9 +292,10 @@ Partial Class frmEditor_Quest
         Me.cmbItemReward.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbItemReward.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbItemReward.FormattingEnabled = True
-        Me.cmbItemReward.Location = New System.Drawing.Point(364, 52)
+        Me.cmbItemReward.Location = New System.Drawing.Point(546, 80)
+        Me.cmbItemReward.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbItemReward.Name = "cmbItemReward"
-        Me.cmbItemReward.Size = New System.Drawing.Size(115, 21)
+        Me.cmbItemReward.Size = New System.Drawing.Size(170, 27)
         Me.cmbItemReward.TabIndex = 6
         Me.cmbItemReward.Text = Nothing
         Me.cmbItemReward.TextPadding = New System.Windows.Forms.Padding(2)
@@ -287,9 +304,10 @@ Partial Class frmEditor_Quest
         '
         Me.DarkLabel6.AutoSize = True
         Me.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel6.Location = New System.Drawing.Point(328, 55)
+        Me.DarkLabel6.Location = New System.Drawing.Point(492, 85)
+        Me.DarkLabel6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel6.Name = "DarkLabel6"
-        Me.DarkLabel6.Size = New System.Drawing.Size(30, 13)
+        Me.DarkLabel6.Size = New System.Drawing.Size(45, 20)
         Me.DarkLabel6.TabIndex = 5
         Me.DarkLabel6.Text = "Item:"
         '
@@ -297,10 +315,11 @@ Partial Class frmEditor_Quest
         '
         Me.nudExpReward.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudExpReward.ForeColor = System.Drawing.Color.Gainsboro
-        Me.nudExpReward.Location = New System.Drawing.Point(399, 22)
+        Me.nudExpReward.Location = New System.Drawing.Point(598, 34)
+        Me.nudExpReward.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudExpReward.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.nudExpReward.Name = "nudExpReward"
-        Me.nudExpReward.Size = New System.Drawing.Size(80, 20)
+        Me.nudExpReward.Size = New System.Drawing.Size(120, 26)
         Me.nudExpReward.TabIndex = 4
         Me.nudExpReward.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
@@ -308,27 +327,30 @@ Partial Class frmEditor_Quest
         '
         Me.DarkLabel5.AutoSize = True
         Me.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel5.Location = New System.Drawing.Point(328, 24)
+        Me.DarkLabel5.Location = New System.Drawing.Point(492, 37)
+        Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(57, 13)
+        Me.DarkLabel5.Size = New System.Drawing.Size(83, 20)
         Me.DarkLabel5.TabIndex = 3
         Me.DarkLabel5.Text = "XP ganho:"
         '
         'btnRemoveReward
         '
-        Me.btnRemoveReward.Location = New System.Drawing.Point(247, 76)
+        Me.btnRemoveReward.Location = New System.Drawing.Point(370, 117)
+        Me.btnRemoveReward.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnRemoveReward.Name = "btnRemoveReward"
-        Me.btnRemoveReward.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnRemoveReward.Size = New System.Drawing.Size(75, 23)
+        Me.btnRemoveReward.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnRemoveReward.Size = New System.Drawing.Size(112, 35)
         Me.btnRemoveReward.TabIndex = 2
         Me.btnRemoveReward.Text = "Remover"
         '
         'btnAddReward
         '
-        Me.btnAddReward.Location = New System.Drawing.Point(247, 19)
+        Me.btnAddReward.Location = New System.Drawing.Point(370, 29)
+        Me.btnAddReward.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddReward.Name = "btnAddReward"
-        Me.btnAddReward.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnAddReward.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddReward.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddReward.Size = New System.Drawing.Size(112, 35)
         Me.btnAddReward.TabIndex = 1
         Me.btnAddReward.Text = "Adicionar"
         '
@@ -338,18 +360,21 @@ Partial Class frmEditor_Quest
         Me.lstRewards.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstRewards.ForeColor = System.Drawing.Color.Gainsboro
         Me.lstRewards.FormattingEnabled = True
-        Me.lstRewards.Location = New System.Drawing.Point(6, 19)
+        Me.lstRewards.ItemHeight = 20
+        Me.lstRewards.Location = New System.Drawing.Point(9, 29)
+        Me.lstRewards.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.lstRewards.Name = "lstRewards"
-        Me.lstRewards.Size = New System.Drawing.Size(235, 80)
+        Me.lstRewards.Size = New System.Drawing.Size(352, 122)
         Me.lstRewards.TabIndex = 0
         '
         'DarkLabel4
         '
         Me.DarkLabel4.AutoSize = True
         Me.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel4.Location = New System.Drawing.Point(323, 56)
+        Me.DarkLabel4.Location = New System.Drawing.Point(484, 86)
+        Me.DarkLabel4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel4.Name = "DarkLabel4"
-        Me.DarkLabel4.Size = New System.Drawing.Size(87, 13)
+        Me.DarkLabel4.Size = New System.Drawing.Size(128, 20)
         Me.DarkLabel4.TabIndex = 9
         Me.DarkLabel4.Text = "Texto ao finalizar"
         '
@@ -357,9 +382,10 @@ Partial Class frmEditor_Quest
         '
         Me.DarkLabel3.AutoSize = True
         Me.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel3.Location = New System.Drawing.Point(163, 56)
+        Me.DarkLabel3.Location = New System.Drawing.Point(244, 86)
+        Me.DarkLabel3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel3.Name = "DarkLabel3"
-        Me.DarkLabel3.Size = New System.Drawing.Size(100, 13)
+        Me.DarkLabel3.Size = New System.Drawing.Size(149, 20)
         Me.DarkLabel3.TabIndex = 8
         Me.DarkLabel3.Text = "Texto em progresso"
         '
@@ -368,11 +394,12 @@ Partial Class frmEditor_Quest
         Me.txtEndText.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtEndText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtEndText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtEndText.Location = New System.Drawing.Point(326, 72)
+        Me.txtEndText.Location = New System.Drawing.Point(489, 111)
+        Me.txtEndText.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtEndText.Multiline = True
         Me.txtEndText.Name = "txtEndText"
         Me.txtEndText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEndText.Size = New System.Drawing.Size(154, 65)
+        Me.txtEndText.Size = New System.Drawing.Size(230, 99)
         Me.txtEndText.TabIndex = 7
         '
         'txtProgressText
@@ -380,20 +407,22 @@ Partial Class frmEditor_Quest
         Me.txtProgressText.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtProgressText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtProgressText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtProgressText.Location = New System.Drawing.Point(166, 72)
+        Me.txtProgressText.Location = New System.Drawing.Point(249, 111)
+        Me.txtProgressText.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtProgressText.Multiline = True
         Me.txtProgressText.Name = "txtProgressText"
         Me.txtProgressText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtProgressText.Size = New System.Drawing.Size(154, 65)
+        Me.txtProgressText.Size = New System.Drawing.Size(230, 99)
         Me.txtProgressText.TabIndex = 6
         '
         'DarkLabel2
         '
         Me.DarkLabel2.AutoSize = True
         Me.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel2.Location = New System.Drawing.Point(6, 56)
+        Me.DarkLabel2.Location = New System.Drawing.Point(9, 86)
+        Me.DarkLabel2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel2.Name = "DarkLabel2"
-        Me.DarkLabel2.Size = New System.Drawing.Size(102, 13)
+        Me.DarkLabel2.Size = New System.Drawing.Size(149, 20)
         Me.DarkLabel2.TabIndex = 5
         Me.DarkLabel2.Text = "Texto de introdução"
         '
@@ -402,28 +431,31 @@ Partial Class frmEditor_Quest
         Me.txtStartText.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtStartText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtStartText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtStartText.Location = New System.Drawing.Point(6, 72)
+        Me.txtStartText.Location = New System.Drawing.Point(9, 111)
+        Me.txtStartText.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtStartText.Multiline = True
         Me.txtStartText.Name = "txtStartText"
         Me.txtStartText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtStartText.Size = New System.Drawing.Size(154, 65)
+        Me.txtStartText.Size = New System.Drawing.Size(230, 99)
         Me.txtStartText.TabIndex = 4
         '
         'chkQuestCancel
         '
         Me.chkQuestCancel.AutoSize = True
-        Me.chkQuestCancel.Location = New System.Drawing.Point(372, 20)
+        Me.chkQuestCancel.Location = New System.Drawing.Point(558, 31)
+        Me.chkQuestCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkQuestCancel.Name = "chkQuestCancel"
-        Me.chkQuestCancel.Size = New System.Drawing.Size(104, 17)
+        Me.chkQuestCancel.Size = New System.Drawing.Size(149, 24)
         Me.chkQuestCancel.TabIndex = 3
         Me.chkQuestCancel.Text = "Pode cancelar ?"
         '
         'chkRepeat
         '
         Me.chkRepeat.AutoSize = True
-        Me.chkRepeat.Location = New System.Drawing.Point(279, 20)
+        Me.chkRepeat.Location = New System.Drawing.Point(418, 31)
+        Me.chkRepeat.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkRepeat.Name = "chkRepeat"
-        Me.chkRepeat.Size = New System.Drawing.Size(67, 17)
+        Me.chkRepeat.Size = New System.Drawing.Size(97, 24)
         Me.chkRepeat.TabIndex = 2
         Me.chkRepeat.Text = "Repete?"
         '
@@ -432,20 +464,72 @@ Partial Class frmEditor_Quest
         Me.txtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.txtName.Location = New System.Drawing.Point(97, 19)
+        Me.txtName.Location = New System.Drawing.Point(146, 29)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(176, 20)
+        Me.txtName.Size = New System.Drawing.Size(263, 26)
         Me.txtName.TabIndex = 1
         '
         'DarkLabel1
         '
         Me.DarkLabel1.AutoSize = True
         Me.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel1.Location = New System.Drawing.Point(6, 21)
+        Me.DarkLabel1.Location = New System.Drawing.Point(9, 32)
+        Me.DarkLabel1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel1.Name = "DarkLabel1"
-        Me.DarkLabel1.Size = New System.Drawing.Size(85, 13)
+        Me.DarkLabel1.Size = New System.Drawing.Size(127, 20)
         Me.DarkLabel1.TabIndex = 0
-        Me.DarkLabel1.Text = "Nome da quest :"
+        Me.DarkLabel1.Text = "Nome da Tarefa:"
+        '
+        'DarkGroupBox5
+        '
+        Me.DarkGroupBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.DarkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.DarkGroupBox5.Controls.Add(Me.btnRemoveTask)
+        Me.DarkGroupBox5.Controls.Add(Me.btnAddTask)
+        Me.DarkGroupBox5.Controls.Add(Me.lstTasks)
+        Me.DarkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro
+        Me.DarkGroupBox5.Location = New System.Drawing.Point(374, 391)
+        Me.DarkGroupBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox5.Name = "DarkGroupBox5"
+        Me.DarkGroupBox5.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DarkGroupBox5.Size = New System.Drawing.Size(364, 306)
+        Me.DarkGroupBox5.TabIndex = 12
+        Me.DarkGroupBox5.TabStop = False
+        Me.DarkGroupBox5.Text = "Subtarefas"
+        '
+        'btnRemoveTask
+        '
+        Me.btnRemoveTask.Location = New System.Drawing.Point(182, 262)
+        Me.btnRemoveTask.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnRemoveTask.Name = "btnRemoveTask"
+        Me.btnRemoveTask.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnRemoveTask.Size = New System.Drawing.Size(177, 35)
+        Me.btnRemoveTask.TabIndex = 5
+        Me.btnRemoveTask.Text = "Remover sub"
+        '
+        'btnAddTask
+        '
+        Me.btnAddTask.Location = New System.Drawing.Point(6, 262)
+        Me.btnAddTask.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnAddTask.Name = "btnAddTask"
+        Me.btnAddTask.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnAddTask.Size = New System.Drawing.Size(166, 35)
+        Me.btnAddTask.TabIndex = 4
+        Me.btnAddTask.Text = "Adicionar sub"
+        '
+        'lstTasks
+        '
+        Me.lstTasks.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.lstTasks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lstTasks.ForeColor = System.Drawing.Color.Gainsboro
+        Me.lstTasks.FormattingEnabled = True
+        Me.lstTasks.ItemHeight = 20
+        Me.lstTasks.Location = New System.Drawing.Point(9, 29)
+        Me.lstTasks.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstTasks.Name = "lstTasks"
+        Me.lstTasks.Size = New System.Drawing.Size(346, 222)
+        Me.lstTasks.TabIndex = 3
         '
         'DarkGroupBox5
         '
@@ -495,27 +579,30 @@ Partial Class frmEditor_Quest
         '
         Me.DarkLabel8.AutoSize = True
         Me.DarkLabel8.ForeColor = System.Drawing.Color.Red
-        Me.DarkLabel8.Location = New System.Drawing.Point(221, 464)
+        Me.DarkLabel8.Location = New System.Drawing.Point(332, 714)
+        Me.DarkLabel8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel8.Name = "DarkLabel8"
-        Me.DarkLabel8.Size = New System.Drawing.Size(234, 13)
+        Me.DarkLabel8.Size = New System.Drawing.Size(349, 20)
         Me.DarkLabel8.TabIndex = 2
         Me.DarkLabel8.Text = "Use /questreset # para resetar a quest pra teste"
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(553, 467)
+        Me.btnSave.Location = New System.Drawing.Point(830, 718)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSave.Size = New System.Drawing.Size(112, 35)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Salvar"
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(634, 467)
+        Me.btnCancel.Location = New System.Drawing.Point(951, 718)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(5)
-        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 4
         Me.btnCancel.Text = "Cancelar"
         '
@@ -528,9 +615,11 @@ Partial Class frmEditor_Quest
         Me.fraTasks.Controls.Add(Me.Panel2)
         Me.fraTasks.Controls.Add(Me.Panel1)
         Me.fraTasks.ForeColor = System.Drawing.Color.Gainsboro
-        Me.fraTasks.Location = New System.Drawing.Point(724, 3)
+        Me.fraTasks.Location = New System.Drawing.Point(1086, 5)
+        Me.fraTasks.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.fraTasks.Name = "fraTasks"
-        Me.fraTasks.Size = New System.Drawing.Size(431, 497)
+        Me.fraTasks.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.fraTasks.Size = New System.Drawing.Size(646, 765)
         Me.fraTasks.TabIndex = 5
         Me.fraTasks.TabStop = False
         Me.fraTasks.Text = "Tarefas"
@@ -551,6 +640,7 @@ Partial Class frmEditor_Quest
         Me.fraRequirements.Controls.Add(Me.rdbItemReq)
         Me.fraRequirements.Controls.Add(Me.rdbNoneReq)
         Me.fraRequirements.ForeColor = System.Drawing.Color.Gainsboro
+
         Me.fraRequirements.Location = New System.Drawing.Point(724, 3)
         Me.fraRequirements.Name = "fraRequirements"
         Me.fraRequirements.Size = New System.Drawing.Size(431, 497)
@@ -574,15 +664,17 @@ Partial Class frmEditor_Quest
         Me.DarkGroupBox6.Controls.Add(Me.cmbStartItem)
         Me.DarkGroupBox6.Controls.Add(Me.DarkLabel21)
         Me.DarkGroupBox6.ForeColor = System.Drawing.Color.Gainsboro
+
         Me.DarkGroupBox6.Location = New System.Drawing.Point(6, 159)
         Me.DarkGroupBox6.Name = "DarkGroupBox6"
         Me.DarkGroupBox6.Size = New System.Drawing.Size(338, 288)
         Me.DarkGroupBox6.TabIndex = 10
         Me.DarkGroupBox6.TabStop = False
-        Me.DarkGroupBox6.Text = "Itens necessarios para a quest"
+    Me.DarkGroupBox6.Text = "Itens necessarios para a Tarefa"
         '
         'btnRequirementCancel
         '
+
         Me.btnRequirementCancel.Location = New System.Drawing.Point(257, 259)
         Me.btnRequirementCancel.Name = "btnRequirementCancel"
         Me.btnRequirementCancel.Padding = New System.Windows.Forms.Padding(5)
@@ -592,6 +684,7 @@ Partial Class frmEditor_Quest
         '
         'btnRequirementSave
         '
+
         Me.btnRequirementSave.Location = New System.Drawing.Point(176, 259)
         Me.btnRequirementSave.Name = "btnRequirementSave"
         Me.btnRequirementSave.Padding = New System.Windows.Forms.Padding(5)
@@ -617,7 +710,7 @@ Partial Class frmEditor_Quest
         Me.DarkLabel23.Name = "DarkLabel23"
         Me.DarkLabel23.Size = New System.Drawing.Size(30, 13)
         Me.DarkLabel23.TabIndex = 6
-        Me.DarkLabel23.Text = "Qnt :"
+    Me.DarkLabel23.Text = "Qntd.:"
         '
         'cmbEndItem
         '
@@ -652,6 +745,7 @@ Partial Class frmEditor_Quest
         '
         'nudGiveAmount
         '
+
         Me.nudGiveAmount.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudGiveAmount.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudGiveAmount.Location = New System.Drawing.Point(262, 29)
@@ -662,16 +756,18 @@ Partial Class frmEditor_Quest
         '
         'DarkLabel22
         '
+
         Me.DarkLabel22.AutoSize = True
         Me.DarkLabel22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.DarkLabel22.Location = New System.Drawing.Point(210, 31)
         Me.DarkLabel22.Name = "DarkLabel22"
         Me.DarkLabel22.Size = New System.Drawing.Size(30, 13)
         Me.DarkLabel22.TabIndex = 2
-        Me.DarkLabel22.Text = "Qnt :"
+    Me.DarkLabel22.Text = "Qtd.:"
         '
         'cmbStartItem
         '
+
         Me.cmbStartItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.cmbStartItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.cmbStartItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
@@ -730,7 +826,7 @@ Partial Class frmEditor_Quest
         Me.DarkLabel20.Name = "DarkLabel20"
         Me.DarkLabel20.Size = New System.Drawing.Size(91, 13)
         Me.DarkLabel20.TabIndex = 8
-        Me.DarkLabel20.Text = "Classe requerida :"
+    Me.DarkLabel20.Text = "Classe necessária :"
         '
         'rdbClassReq
         '
@@ -771,17 +867,18 @@ Partial Class frmEditor_Quest
         Me.DarkLabel19.Name = "DarkLabel19"
         Me.DarkLabel19.Size = New System.Drawing.Size(88, 13)
         Me.DarkLabel19.TabIndex = 5
-        Me.DarkLabel19.Text = "Quest requerida :"
+        Me.DarkLabel19.Text = "Tarefa necessária:"
         '
         'rdbQuestReq
         '
+
         Me.rdbQuestReq.AutoSize = True
         Me.rdbQuestReq.Location = New System.Drawing.Point(10, 92)
         Me.rdbQuestReq.Name = "rdbQuestReq"
         Me.rdbQuestReq.Size = New System.Drawing.Size(53, 17)
         Me.rdbQuestReq.TabIndex = 4
         Me.rdbQuestReq.TabStop = True
-        Me.rdbQuestReq.Text = "Quest"
+    Me.rdbQuestReq.Text = "Tarefa"
         '
         'cmbItemReq
         '
@@ -812,7 +909,7 @@ Partial Class frmEditor_Quest
         Me.DarkLabel18.Name = "DarkLabel18"
         Me.DarkLabel18.Size = New System.Drawing.Size(80, 13)
         Me.DarkLabel18.TabIndex = 2
-        Me.DarkLabel18.Text = "Item requerido :"
+    Me.DarkLabel18.Text = "Item necessário:"
         '
         'rdbItemReq
         '
@@ -826,6 +923,7 @@ Partial Class frmEditor_Quest
         '
         'rdbNoneReq
         '
+
         Me.rdbNoneReq.AutoSize = True
         Me.rdbNoneReq.Location = New System.Drawing.Point(10, 21)
         Me.rdbNoneReq.Name = "rdbNoneReq"
@@ -1198,10 +1296,10 @@ Partial Class frmEditor_Quest
         '
         'frmEditor_Quest
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1158, 507)
+        Me.ClientSize = New System.Drawing.Size(1737, 780)
         Me.ControlBox = False
         Me.Controls.Add(Me.fraRequirements)
         Me.Controls.Add(Me.btnCancel)
@@ -1212,8 +1310,9 @@ Partial Class frmEditor_Quest
         Me.Controls.Add(Me.fraTasks)
         Me.ForeColor = System.Drawing.Color.Gainsboro
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmEditor_Quest"
-        Me.Text = "Quest Editor"
+        Me.Text = "Editor de Tarefas"
         Me.fraQuestList.ResumeLayout(False)
         Me.DarkGroupBox2.ResumeLayout(False)
         Me.DarkGroupBox2.PerformLayout()

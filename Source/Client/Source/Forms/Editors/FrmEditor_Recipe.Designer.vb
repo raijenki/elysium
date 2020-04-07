@@ -115,7 +115,7 @@ Partial Class frmEditor_Recipe
         Me.btnCancel.Location = New System.Drawing.Point(418, 471)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnCancel.Padding = New System.Windows.Forms.Padding(8)
         Me.btnCancel.Size = New System.Drawing.Size(112, 35)
         Me.btnCancel.TabIndex = 13
         Me.btnCancel.Text = "Cancelar"
@@ -125,7 +125,7 @@ Partial Class frmEditor_Recipe
         Me.btnDelete.Location = New System.Drawing.Point(214, 471)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnDelete.Padding = New System.Windows.Forms.Padding(8)
         Me.btnDelete.Size = New System.Drawing.Size(112, 35)
         Me.btnDelete.TabIndex = 12
         Me.btnDelete.Text = "Excluir"
@@ -135,7 +135,7 @@ Partial Class frmEditor_Recipe
         Me.btnSave.Location = New System.Drawing.Point(14, 471)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnSave.Padding = New System.Windows.Forms.Padding(8)
         Me.btnSave.Size = New System.Drawing.Size(112, 35)
         Me.btnSave.TabIndex = 11
         Me.btnSave.Text = "Salvar"
@@ -187,7 +187,7 @@ Partial Class frmEditor_Recipe
         Me.btnIngredientAdd.Location = New System.Drawing.Point(262, 157)
         Me.btnIngredientAdd.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnIngredientAdd.Name = "btnIngredientAdd"
-        Me.btnIngredientAdd.Padding = New System.Windows.Forms.Padding(8, 8, 8, 8)
+        Me.btnIngredientAdd.Padding = New System.Windows.Forms.Padding(8)
         Me.btnIngredientAdd.Size = New System.Drawing.Size(216, 35)
         Me.btnIngredientAdd.TabIndex = 6
         Me.btnIngredientAdd.Text = "Atualizar Lista"
@@ -329,7 +329,7 @@ Partial Class frmEditor_Recipe
         Me.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbType.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbType.FormattingEnabled = True
-        Me.cmbType.Items.AddRange(New Object() {"Herbalist", "WoodWorking", "MetalWorking"})
+        Me.cmbType.Items.AddRange(New Object() {"Herbalista", "Madereireiro", "Metalista"})
         Me.cmbType.Location = New System.Drawing.Point(130, 83)
         Me.cmbType.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmbType.Name = "cmbType"

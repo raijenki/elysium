@@ -7,7 +7,7 @@ Friend Module C_HotBar
 
     Friend Const MaxHotbar As Byte = 7
 
-    'hotbar constants
+    'Constantes da Hotbar
     Friend Const HotbarTop As Byte = 2
 
     Friend Const HotbarLeft As Byte = 2
@@ -104,7 +104,7 @@ Friend Module C_HotBar
                         LoadTexture(pic, 9)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'Ver se ainda usamos, vamos atualizar o temporizador
                     With SkillIconsGfxInfo(pic)
                         .TextureTimer = GetTickCount() + 100000
                     End With
@@ -141,7 +141,7 @@ Friend Module C_HotBar
                         LoadTexture(pic, 4)
                     End If
 
-                    'seeying we still use it, lets update timer
+                    'Vendo se ainda vamos utilizar, atualizar temporizador
                     With ItemsGfxInfo(pic)
                         .TextureTimer = GetTickCount() + 100000
                     End With

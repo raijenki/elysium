@@ -2,10 +2,7 @@
 Imports Ini = ASFW.IO.FileIO.TextFile
 
 Module C_AutoMap
-    ' Automapper System
-    ' Version: 1.0
-    ' Author: Lucas Tardivo (boasfesta)
-    ' Map analysis and tips: Richard Johnson, Luan Meireles (Alenzinho)
+    ' Sistema de Auto-mapeamento
 
 #Region "Globals And Types"
 
@@ -224,7 +221,7 @@ Module C_AutoMap
         buffer.WriteInt32(DetailFreq)
         buffer.WriteInt32(ResourceFreq)
 
-        'envio informações xml
+        'Envio de informações xml
         buffer.WriteString((Ini.Read(cf, "Resources", "ResourcesNum")))
 
         For Prefab = 1 To TilePrefab.Count - 1

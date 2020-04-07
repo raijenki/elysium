@@ -90,7 +90,7 @@ Module C_NetworkReceive
         Socket.PacketId(ServerPackets.SPlayerQuests) = AddressOf Packet_PlayerQuests
         Socket.PacketId(ServerPackets.SQuestMessage) = AddressOf Packet_QuestMessage
 
-        'Housing
+        'Moradia
         Socket.PacketId(ServerPackets.SHouseConfigs) = AddressOf Packet_HouseConfigurations
         Socket.PacketId(ServerPackets.SBuyHouse) = AddressOf Packet_HouseOffer
         Socket.PacketId(ServerPackets.SVisit) = AddressOf Packet_Visit
@@ -99,7 +99,7 @@ Module C_NetworkReceive
         'hotbar
         Socket.PacketId(ServerPackets.SHotbar) = AddressOf Packet_Hotbar
 
-        'Events
+        'Eventos
         Socket.PacketId(ServerPackets.SSpawnEvent) = AddressOf Packet_SpawnEvent
         Socket.PacketId(ServerPackets.SEventMove) = AddressOf Packet_EventMove
         Socket.PacketId(ServerPackets.SEventDir) = AddressOf Packet_EventDir
@@ -120,16 +120,16 @@ Module C_NetworkReceive
         Socket.PacketId(ServerPackets.SUpdateProjectile) = AddressOf HandleUpdateProjectile
         Socket.PacketId(ServerPackets.SMapProjectile) = AddressOf HandleMapProjectile
 
-        'craft
+        'Artesanato
         Socket.PacketId(ServerPackets.SUpdateRecipe) = AddressOf Packet_UpdateRecipe
         Socket.PacketId(ServerPackets.SSendPlayerRecipe) = AddressOf Packet_SendPlayerRecipe
         Socket.PacketId(ServerPackets.SOpenCraft) = AddressOf Packet_OpenCraft
         Socket.PacketId(ServerPackets.SUpdateCraft) = AddressOf Packet_UpdateCraft
 
-        'emotes
+        'Emotes
         Socket.PacketId(ServerPackets.SEmote) = AddressOf Packet_Emote
 
-        'party
+        'Equipe
         Socket.PacketId(ServerPackets.SPartyInvite) = AddressOf Packet_PartyInvite
         Socket.PacketId(ServerPackets.SPartyUpdate) = AddressOf Packet_PartyUpdate
         Socket.PacketId(ServerPackets.SPartyVitals) = AddressOf Packet_PartyVitals
@@ -148,7 +148,7 @@ Module C_NetworkReceive
         Socket.PacketId(ServerPackets.SClock) = AddressOf Packet_Clock
         Socket.PacketId(ServerPackets.STime) = AddressOf Packet_Time
 
-        ' EDITOR PACKETS ONLY
+        ' APENAS PACKETS DO EDITOR
         Socket.PacketId(ServerPackets.SItemEditor) = AddressOf Packet_EditItem
         Socket.PacketId(ServerPackets.SREditor) = AddressOf Packet_ResourceEditor
         Socket.PacketId(ServerPackets.SNpcEditor) = AddressOf Packet_NPCEditor
@@ -196,7 +196,7 @@ Module C_NetworkReceive
 
     Private Sub Packet_LoadCharOk(ByRef data() As Byte)
         Dim buffer As New ByteStream(data)
-        ' Now we can receive game data
+        ' Agora podemos receber dados do jogo 
         Myindex = buffer.ReadInt32
 
         buffer.Dispose()
@@ -209,7 +209,7 @@ Module C_NetworkReceive
         Dim charName As String, sprite As Integer
         Dim level As Integer, className As String, gender As Byte
 
-        ' save options
+        ' Salvar opções
         Settings.SavePass = ChkSavePassChecked
         Settings.Username = Trim$(TempUserName)
 
@@ -221,17 +221,17 @@ Module C_NetworkReceive
 
         SaveSettings()
 
-        ' Request classes.
+        ' Pedir classes.
         SendRequestClasses()
 
         Dim buffer As New ByteStream(data)
-        ' Now we can receive char data
+        ' Agora podemos receber dados dos personagens
         MaxChars = buffer.ReadInt32
         ReDim CharSelection(MaxChars)
 
         SelectedChar = 1
 
-        'reset for deleting chars
+        'Resetar para deletar personagens
         For i = 1 To MaxChars
             CharSelection(i).Name = ""
             CharSelection(i).Sprite = 0
@@ -256,7 +256,7 @@ Module C_NetworkReceive
 
         buffer.Dispose()
 
-        ' Used for if the player is creating a new character
+        ' Usado caso o jogador esteja criando um novo personagem
         Frmmenuvisible = True
         Pnlloadvisible = False
         PnlCreditsVisible = False
@@ -299,7 +299,7 @@ Module C_NetworkReceive
             Player(Myindex).RandInv(i).Speed = buffer.ReadInt32
         Next
 
-        ' changes to inventory, need to clear any drop menu
+        ' Muda para o inventário, precisa limpar qualquer outro drop menu
         FrmGame.pnlCurrency.Visible = False
         FrmGame.txtCurrency.Text = ""
         TmpCurrencyItem = 0
@@ -324,11 +324,11 @@ Module C_NetworkReceive
         Player(Myindex).RandInv(n).Damage = buffer.ReadInt32
         Player(Myindex).RandInv(n).Speed = buffer.ReadInt32
 
-        ' changes, clear drop menu
+        ' Mudanças, limpar qualquer drop menu
         FrmGame.pnlCurrency.Visible = False
         FrmGame.txtCurrency.Text = ""
         TmpCurrencyItem = 0
-        CurrencyMenu = 0 ' clear
+        CurrencyMenu = 0 ' limpeza
 
         buffer.Dispose()
     End Sub
@@ -352,12 +352,12 @@ Module C_NetworkReceive
             Next
         Next
 
-        ' changes to inventory, need to clear any drop menu
+        ' mudanças no inventário, limpar qualquer drop menu
 
         FrmGame.pnlCurrency.Visible = False
         FrmGame.txtCurrency.Text = ""
         TmpCurrencyItem = 0
-        CurrencyMenu = 0 ' clear
+        CurrencyMenu = 0 ' limpeza
 
         buffer.Dispose()
     End Sub
@@ -416,7 +416,7 @@ Module C_NetworkReceive
         Dim buffer As New ByteStream(data)
         i = buffer.ReadInt32
 
-        ' Set player to attacking
+        ' Colocar jogador para atacar
         Player(i).Attacking = 1
         Player(i).AttackTimer = GetTickCount()
 
@@ -428,7 +428,7 @@ Module C_NetworkReceive
         Dim buffer As New ByteStream(data)
         i = buffer.ReadInt32
 
-        ' Set npc to attacking
+        ' Colocar NPC para atacar
         MapNpc(i).Attacking = 1
         MapNpc(i).AttackTimer = GetTickCount()
 
@@ -501,7 +501,7 @@ Module C_NetworkReceive
             For i = 1 To VitalType.Count - 1
                 .Vital(i) = buffer.ReadInt32
             Next
-            ' Client use only
+            ' Uso do cliente apenas
             .XOffset = 0
             .YOffset = 0
             .Moving = 0
@@ -585,7 +585,7 @@ Module C_NetworkReceive
         y = buffer.ReadInt32
         With TempTile(x, y)
             .DoorFrame = 1
-            .DoorAnimate = 1 ' 0 = nothing| 1 = opening | 2 = closing
+            .DoorAnimate = 1 ' 0 = nada| 1 = abrir | 2 = fechar
             .DoorTimer = GetTickCount()
         End With
 
@@ -612,7 +612,7 @@ Module C_NetworkReceive
         x = buffer.ReadInt32
         y = buffer.ReadInt32
 
-        ' randomise sprite
+        ' Aleatorizar sprite
         sprite = Rand(1, 3)
 
         BloodIndex = BloodIndex + 1
@@ -698,9 +698,9 @@ Module C_NetworkReceive
         Dim n As Integer, i As Integer, z As Integer, x As Integer, a As Integer, b As Integer
         Dim buffer As New ByteStream(Compression.DecompressBytes(data))
 
-        '\\\Read Class Data\\\
+        '\\\Ler dados de classe\\\
 
-        ' Max classes
+        ' Número Máximo de Classes
 
         For i = 0 To MAX_CLASSES
             ReDim Classes(i).Stat(StatType.Count - 1)
@@ -720,20 +720,20 @@ Module C_NetworkReceive
                 .Vital(VitalType.MP) = buffer.ReadInt32
                 .Vital(VitalType.SP) = buffer.ReadInt32
 
-                ' get array size
+                ' Pegar tamanho do vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim no vetor
                 ReDim .MaleSprite(z)
-                ' loop-receive data
+                ' Loop de receber dados
                 For x = 0 To z
                     .MaleSprite(x) = buffer.ReadInt32
                 Next
 
-                ' get array size
+                ' Pegar tamanho do vetor
                 z = buffer.ReadInt32
-                ' redim array
+                ' redim no vetor
                 ReDim .FemaleSprite(z)
-                ' loop-receive data
+                ' Loop de receber dados
                 For x = 0 To z
                     .FemaleSprite(x) = buffer.ReadInt32
                 Next
@@ -766,9 +766,9 @@ Module C_NetworkReceive
         n = 0
         z = 0
 
-        '\\\End Read Class Data\\\
+        '\\\Fim da Leitura dos Dados de Classe\\\
 
-        '\\\Read Item Data\\\\\\\
+        '\\\Ler Dados de Item\\\\\\\
         x = buffer.ReadInt32
 
         For i = 1 To x
@@ -777,21 +777,21 @@ Module C_NetworkReceive
             Item(n) = DeserializeData(buffer)
         Next
 
-        ' changes to inventory, need to clear any drop menu
+        ' Mudanças no inventário, tem que limpar qualquer drop menu
 
         FrmGame.pnlCurrency.Visible = False
         FrmGame.txtCurrency.Text = ""
         TmpCurrencyItem = 0
-        CurrencyMenu = 0 ' clear
+        CurrencyMenu = 0 ' limpeza
 
         i = 0
         n = 0
         x = 0
         z = 0
 
-        '\\\End Read Item Data\\\\\\\
+        '\\\Fim da Leitura dos Dados de Itens\\\\\\\
 
-        '\\\Read Animation Data\\\\\\\
+        '\\\Leitura dos dados de animação\\\\\\\
         x = buffer.ReadInt32
 
         For i = 1 To x
@@ -805,9 +805,9 @@ Module C_NetworkReceive
         x = 0
         z = 0
 
-        '\\\End Read Animation Data\\\\\\\
+        '\\\Fim da Leitura dos Dados de Animação\\\\\\\
 
-        '\\\Read NPC Data\\\\\\\
+        '\\\Leitura dos Dados de NPC\\\\\\\
         x = buffer.ReadInt32
         For i = 1 To x
             n = buffer.ReadInt32
@@ -822,9 +822,9 @@ Module C_NetworkReceive
         x = 0
         z = 0
 
-        '\\\End Read NPC Data\\\\\\\
+        '\\\Fim da Leitura dos Dados de NPC\\\\\\\
 
-        '\\\Read Shop Data\\\\\\\
+        '\\\Ler Dados de Loja\\\\\\\
         x = buffer.ReadInt32
 
         For i = 1 To x
@@ -840,9 +840,9 @@ Module C_NetworkReceive
         x = 0
         z = 0
 
-        '\\\End Read Shop Data\\\\\\\
+        '\\\Fim da Leitura dos Dados de Loja\\\\\\\
 
-        '\\\Read Skills Data\\\\\\\\\\
+        '\\\Ler Dados de Habilidade\\\\\\\\\\
         x = buffer.ReadInt32
 
         For i = 1 To x
@@ -858,9 +858,9 @@ Module C_NetworkReceive
         n = 0
         z = 0
 
-        '\\\End Read Skills Data\\\\\\\\\\
+        '\\\Fim da Leitura dos Dados de Habilidade\\\\\\\\\\
 
-        '\\\Read Resource Data\\\\\\\\\\\\
+        '\\\Leitura de Dados de Recursos\\\\\\\\\\\\
         x = buffer.ReadInt32
 
         For i = 1 To x
@@ -878,7 +878,7 @@ Module C_NetworkReceive
         x = 0
         z = 0
 
-        '\\\End Read Resource Data\\\\\\\\\\\\
+        '\\\Fim da Leitura dos Dados de Recursos\\\\\\\\\\\\
 
         buffer.Dispose()
     End Sub
@@ -978,9 +978,9 @@ Module C_NetworkReceive
         DestroyGame()
     End Sub
 
-    '**********************
-    '***  EDITOR STUFF  ***
-    '**********************
+    '**************************
+    '***  COISAS DO EDITOR  ***
+    '**************************
 
     Private Sub Packet_EditAnimation(ByRef data() As Byte)
         InitAnimationEditor = True

@@ -167,14 +167,14 @@ Public Class FrmEditor_Events
             End If
         Next
 
-        'set up all quest combo's
+        'ajeitar todos as combos das quests
         cmbBeginQuest.Items.Clear()
         cmbCompleteQuest.Items.Clear()
         cmbEndQuest.Items.Clear()
 
-        cmbBeginQuest.Items.Add("None")
-        cmbCompleteQuest.Items.Add("None")
-        cmbEndQuest.Items.Add("None")
+        cmbBeginQuest.Items.Add("Nenhum")
+        cmbCompleteQuest.Items.Add("Nenhum")
+        cmbEndQuest.Items.Add("Nenhum")
 
         For i = 1 To MaxQuests
             cmbBeginQuest.Items.Add(i & ". " & Trim$(Quest(i).Name))
@@ -185,7 +185,7 @@ Public Class FrmEditor_Events
         cmbSpawnNpc.SelectedIndex = 0
         nudFogData0.Maximum = NumFogs
         cmbEventQuest.Items.Clear()
-        cmbEventQuest.Items.Add("None")
+        cmbEventQuest.Items.Add("Nenhum")
         For i = 1 To MaxQuests
             cmbEventQuest.Items.Add(i & ". " & Trim$(Quest(i).Name))
         Next
@@ -240,18 +240,18 @@ Public Class FrmEditor_Events
         'MsgBox(tvCommands.SelectedNode.Text)
 
         Select Case tvCommands.SelectedNode.Text
-           'Messages
+           'Mensagens
 
-            'show text
-            Case "Show Text"
+            'mostras texto
+            Case "Mostrar Texto"
                 txtShowText.Text = ""
                 fraDialogue.Visible = True
                 fraShowText.Visible = True
                 nudShowTextFace.Value = 0
                 nudShowTextFace.Maximum = NumFaces
                 fraCommands.Visible = False
-            'show choices
-            Case "Show Choices"
+            'mostra escolhas
+            Case "Mostrar Escolhas"
                 txtChoicePrompt.Text = ""
                 txtChoices1.Text = ""
                 txtChoices2.Text = ""
@@ -261,15 +261,15 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraShowChoices.Visible = True
                 fraCommands.Visible = False
-            'chatbox text
-            Case "Add Chatbox Text"
+            'texto de chatbox
+            Case "Adicionar Texto de Caixa de Chat"
                 txtAddText_Text.Text = ""
                 optAddText_Player.Checked = True
                 fraDialogue.Visible = True
                 fraAddText.Visible = True
                 fraCommands.Visible = False
             'chat bubble
-            Case "Show ChatBubble"
+            Case "Mostrar Bolha de Char"
                 txtChatbubbleText.Text = ""
                 cmbChatBubbleTargetType.SelectedIndex = 0
                 cmbChatBubbleTarget.Visible = False
@@ -278,7 +278,7 @@ Public Class FrmEditor_Events
                 fraCommands.Visible = False
         'event progression
             'player variable
-            Case "Set Player Variable"
+            Case "Setar Variável de Jogador"
                 nudVariableData0.Value = 0
                 nudVariableData1.Value = 0
                 nudVariableData2.Value = 0
@@ -291,22 +291,22 @@ Public Class FrmEditor_Events
                 fraPlayerVariable.Visible = True
                 fraCommands.Visible = False
             'player switch
-            Case "Set Player Switch"
+            Case "Setar Switch de Jogador"
                 cmbPlayerSwitchSet.SelectedIndex = 0
                 cmbSwitch.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraPlayerSwitch.Visible = True
                 fraCommands.Visible = False
-            'self switch
-            Case "Set Self Switch"
+            'auto-switch
+            Case "Setar Auto Switch"
                 cmbSetSelfSwitchTo.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraSetSelfSwitch.Visible = True
                 fraCommands.Visible = False
-        'flow control
+        'controle de fluxo
 
-            'conditional branch
-            Case "Conditional Branch"
+            'ramo de condição
+            Case "Ramo de Condição"
                 fraDialogue.Visible = True
                 fraConditionalBranch.Visible = True
                 optCondition0.Checked = True
@@ -315,62 +315,62 @@ Public Class FrmEditor_Events
                 cmbCondition_PlayerVarCompare.Enabled = True
                 nudCondition_PlayerVarCondition.Enabled = True
                 fraCommands.Visible = False
-            'Exit Event Process
-            Case "Stop Event Processing"
+            'Parar Processameno e Evento
+            Case "Parar Processamento de Evento"
                 AddCommand(EventType.EvExitProcess)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Label
-            Case "Label"
+            'Marcador
+            Case "Marcador"
                 txtLabelName.Text = ""
                 fraCreateLabel.Visible = True
                 fraCommands.Visible = False
                 fraDialogue.Visible = True
-            'GoTo Label
-            Case "GoTo Label"
+            'Ir para Marcador
+            Case "Ir para Marcador"
                 txtGotoLabel.Text = ""
                 fraGoToLabel.Visible = True
                 fraCommands.Visible = False
                 fraDialogue.Visible = True
-        'Player Control
+        'Controle de Jogador
 
-            'Change Items
-            Case "Change Items"
+            'Mudar Itens
+            Case "Alterar Itens"
                 cmbChangeItemIndex.SelectedIndex = 0
                 optChangeItemSet.Checked = True
                 nudChangeItemsAmount.Value = 0
                 fraDialogue.Visible = True
                 fraChangeItems.Visible = True
                 fraCommands.Visible = False
-            'Restore Hp
-            Case "Restore HP"
+            'Restaurar HP
+            Case "Restaurar HP"
                 AddCommand(EventType.EvRestoreHp)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Restore Mp
-            Case "Restore Mp"
+            'Restaurar Mp
+            Case "Restaurar Mp"
                 AddCommand(EventType.EvRestoreMp)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Level Up
-            Case "Level Up"
+            'Subir de Nível
+            Case "Subir de Nível"
                 AddCommand(EventType.EvLevelUp)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Change Level
-            Case "Change Level"
+            'Alterar nível
+            Case "Alterar nível"
                 nudChangeLevel.Value = 1
                 fraDialogue.Visible = True
                 fraChangeLevel.Visible = True
                 fraCommands.Visible = False
-            'Change Skills
-            Case "Change Skills"
+            'Alterar Habilidades
+            Case "Alterar Habilidades"
                 cmbChangeSkills.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraChangeSkills.Visible = True
                 fraCommands.Visible = False
-            'Change Class
-            Case "Change Class"
+            'Alterar Classe
+            Case "Alterar Classe"
                 If MAX_CLASSES > 0 Then
                     If cmbChangeClass.Items.Count = 0 Then
                         cmbChangeClass.Items.Clear()
@@ -384,34 +384,34 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraChangeClass.Visible = True
                 fraCommands.Visible = False
-            'Change Sprite
-            Case "Change Sprite"
+            'Alterar Sprite
+            Case "Alterar Sprite"
                 nudChangeSprite.Value = 1
                 fraDialogue.Visible = True
                 fraChangeSprite.Visible = True
                 fraCommands.Visible = False
-            'Change Gender
-            Case "Change Gender"
+            'Alterar Sexo
+            Case "Alterar Sexo"
                 optChangeSexMale.Checked = True
                 fraDialogue.Visible = True
                 fraChangeGender.Visible = True
                 fraCommands.Visible = False
-            'Change PK
-            Case "Change PK"
+            'Alterar PK
+            Case "Alterar PK"
                 cmbSetPK.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraChangePK.Visible = True
                 fraCommands.Visible = False
-            'Give Exp
-            Case "Give Experience"
+            'Dar Experiência
+            Case "Dar Experiência"
                 nudGiveExp.Value = 0
                 fraDialogue.Visible = True
                 fraGiveExp.Visible = True
                 fraCommands.Visible = False
-        'Movement
+        'Movimento
 
-            'Warp Player
-            Case "Warp Player"
+            'Teleportar Jogador
+            Case "Teleportar Jogador"
                 nudWPMap.Value = 0
                 nudWPX.Value = 0
                 nudWPY.Value = 0
@@ -419,14 +419,14 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraPlayerWarp.Visible = True
                 fraCommands.Visible = False
-            'Set Move Route
-            Case "Set Move Route"
+            'Setar Rota de Movimento
+            Case "Setar Rota de Movimento"
                 fraMoveRoute.Visible = True
                 lstMoveRoute.Items.Clear()
                 cmbEvent.Items.Clear()
                 ReDim ListOfEvents(0 To Map.EventCount)
                 ListOfEvents(0) = EditorEvent
-                cmbEvent.Items.Add("This Event")
+                cmbEvent.Items.Add("Este Evento")
                 cmbEvent.SelectedIndex = 0
                 cmbEvent.Enabled = True
                 For i = 1 To Map.EventCount
@@ -445,11 +445,11 @@ Public Class FrmEditor_Events
                 fraMoveRoute.BringToFront()
                 fraCommands.Visible = False
             'Wait for Route Completion
-            Case "Wait for Route Completion"
+            Case "Esperar pela Rota ser Completada"
                 cmbMoveWait.Items.Clear()
                 ReDim ListOfEvents(0 To Map.EventCount)
                 ListOfEvents(0) = EditorEvent
-                cmbMoveWait.Items.Add("This Event")
+                cmbMoveWait.Items.Add("Este Evento")
                 cmbMoveWait.SelectedIndex = 0
                 cmbMoveWait.Enabled = True
                 For i = 1 To Map.EventCount
@@ -462,9 +462,9 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraMoveRouteWait.Visible = True
                 fraCommands.Visible = False
-            'Force Spawn Npc
-            Case "Force Spawn Npc"
-                'lets populate the combobox
+            'Forçar Gerar NPC
+            Case "Forçar Gerar NPC"
+                'Popular a Combobox
                 cmbSpawnNpc.Items.Clear()
                 For i = 1 To MAX_NPCS
                     cmbSpawnNpc.Items.Add(Trim(Npc(i).Name))
@@ -473,20 +473,20 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraSpawnNpc.Visible = True
                 fraCommands.Visible = False
-            'Hold Player
-            Case "Hold Player"
+            'Segurar Jogador
+            Case "Segurar Jogador"
                 AddCommand(EventType.EvHoldPlayer)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Release Player
-            Case "Release Player"
+            'Soltar Jogador
+            Case "Soltar Jogador"
                 AddCommand(EventType.EvReleasePlayer)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-        'Animation
+        'Animação
 
-            'Play Animation
-            Case "Play Animation"
+            'Tocar Animação
+            Case "Tocar Animação"
                 cmbPlayAnimEvent.Items.Clear()
 
                 For i = 1 To Map.EventCount
@@ -507,46 +507,46 @@ Public Class FrmEditor_Events
                 nudPlayAnimTileX.Visible = False
                 nudPlayAnimTileY.Visible = False
                 cmbPlayAnimEvent.Visible = False
-        'Quests
+        'Tarefas
 
-            'Begin Quest
-            Case "Begin Quest"
+            'Iniciar Tarefa
+            Case "Iniciar Tarefa"
                 cmbBeginQuest.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraBeginQuest.Visible = True
                 fraCommands.Visible = False
-            'Complete Task
-            Case "Complete Task"
+            'Completar Subtarefa
+            Case "Completar Subtarefa"
                 cmbCompleteQuest.SelectedIndex = 0
                 nudCompleteQuestTask.Value = 0
                 fraDialogue.Visible = True
                 fraCompleteTask.Visible = True
                 fraCommands.Visible = False
-            'End Quest
-            Case "End Quest"
+            'Finalizar
+            Case "Finalizar Tarefa"
                 cmbEndQuest.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraEndQuest.Visible = True
                 fraCommands.Visible = False
-        'Map Functions
+        'Funções do Mapa
 
-            'Set Fog
-            Case "Set Fog"
+            'Setar nevoa
+            Case "Setar Névoa"
                 nudFogData0.Value = 0
                 nudFogData1.Value = 0
                 nudFogData2.Value = 0
                 fraDialogue.Visible = True
                 fraSetFog.Visible = True
                 fraCommands.Visible = False
-            'Set Weather
-            Case "Set Weather"
+            'Setar Tempo
+            Case "Setar Tempo"
                 CmbWeather.SelectedIndex = 0
                 nudWeatherIntensity.Value = 0
                 fraDialogue.Visible = True
                 fraSetWeather.Visible = True
                 fraCommands.Visible = False
-            'Set Map Tinting
-            Case "Set Map Tinting"
+            'Setar Coloração do Mapa
+            Case "Setar Coloração do Mapa"
                 nudMapTintData0.Value = 0
                 nudMapTintData1.Value = 0
                 nudMapTintData2.Value = 0
@@ -554,87 +554,87 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraMapTint.Visible = True
                 fraCommands.Visible = False
-        'Music and Sound
+        'Som e música
 
-            'PlayBGM
-            Case "Play BGM"
+            'Tocar BGM
+            Case "Tocar música"
                 cmbPlayBGM.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraPlayBGM.Visible = True
                 fraCommands.Visible = False
-            'Stop BGM
-            Case "Stop BGM"
+            'Parar BGM
+            Case "Parar música"
                 AddCommand(EventType.EvFadeoutBgm)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Play Sound
-            Case "Play Sound"
+            'Tocar Som
+            Case "Tocar Som"
                 cmbPlaySound.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraPlaySound.Visible = True
                 fraCommands.Visible = False
-            'Stop Sounds
-            Case "Stop Sounds"
+            'Parar Sons
+            Case "Parar Sons"
                 AddCommand(EventType.EvStopSound)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
         'Etc...
 
-            'Wait...
-            Case "Wait..."
+            'Esperar...
+            Case "Esperar..."
                 nudWaitAmount.Value = 1
                 fraDialogue.Visible = True
                 fraSetWait.Visible = True
                 fraCommands.Visible = False
-            'Set Access
-            Case "Set Access"
+            'Setar Acesso
+            Case "Setar Acesso"
                 cmbSetAccess.SelectedIndex = 0
                 fraDialogue.Visible = True
                 fraSetAccess.Visible = True
                 fraCommands.Visible = False
-            'Custom Script
-            Case "Custom Script"
+            'Script Customizado
+            Case "Script Customizado"
                 nudCustomScript.Value = 0
                 fraDialogue.Visible = True
                 fraCustomScript.Visible = True
                 fraCommands.Visible = False
 
-            'Shop, bank etc
+            'Loja, banco, etc
 
-            'Open bank
-            Case "Open bank"
+            'Abrir banco
+            Case "Abrir banco"
                 AddCommand(EventType.EvOpenBank)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Open shop
-            Case "Open shop"
+            'Abrir loja
+            Case "Abrir loja"
                 fraDialogue.Visible = True
                 fraOpenShop.Visible = True
                 cmbOpenShop.SelectedIndex = 0
                 fraCommands.Visible = False
-            'Open Mail
+            'Abrir Correio
             Case 45
                 AddCommand(EventType.EvOpenMail)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-        'cutscene options
+        'opções de cutscenes
 
-            'Fade in
-            Case "Fade In"
+            'Transição
+            Case "Transição de Entrada"
                 AddCommand(EventType.EvFadeIn)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Fade out
-            Case "Fade Out"
+            'Esmeacemento
+            Case "Esmaecer"
                 AddCommand(EventType.EvFadeOut)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Flash white
+            'Piscar em branco
             Case 48
                 AddCommand(EventType.EvFlashWhite)
                 fraCommands.Visible = False
                 fraDialogue.Visible = False
-            'Show pic
+            'Mostrar imagem
             Case 49
                 cmbPicIndex.SelectedIndex = 0
                 nudShowPicture.Value = 1
@@ -644,7 +644,7 @@ Public Class FrmEditor_Events
                 fraDialogue.Visible = True
                 fraShowPic.Visible = True
                 fraCommands.Visible = False
-            'Hide pic
+            'Esconder imagem
             Case 50
                 nudHidePic.Value = 0
                 fraDialogue.Visible = True
@@ -671,18 +671,18 @@ Public Class FrmEditor_Events
         Dim pageCount As Integer, i As Integer
 
         If chkGlobal.Checked = True Then
-            MsgBox("You cannot have multiple pages on global events!")
+            MsgBox("Você não pode ter várias páginas em eventos globais!")
             Exit Sub
         End If
 
         pageCount = TmpEvent.PageCount + 1
 
-        ' redim the array
+        ' redim no vetor
         ReDim Preserve TmpEvent.Pages(pageCount)
 
         TmpEvent.PageCount = pageCount
 
-        ' set the tabs
+        ' setar tabs
         tabPages.TabPages.Clear()
 
         For i = 1 To TmpEvent.PageCount
@@ -703,26 +703,26 @@ Public Class FrmEditor_Events
 
     Private Sub BtnDeletePage_Click(sender As Object, e As EventArgs) Handles btnDeletePage.Click
         TmpEvent.Pages(CurPageNum) = Nothing
-        ' move everything else down a notch
+        ' mover tudo para baixo
         If CurPageNum < TmpEvent.PageCount Then
             For i = CurPageNum To TmpEvent.PageCount - 1
                 TmpEvent.Pages(i + 1) = TmpEvent.Pages(i)
             Next
         End If
         TmpEvent.PageCount = TmpEvent.PageCount - 1
-        ' set the tabs
+        ' setar tabulação
         tabPages.TabPages.Clear()
 
         For i = 1 To TmpEvent.PageCount
             tabPages.TabPages.Add("0", Str(i), "")
         Next
-        ' set the tab back
+        ' setar tabs de volta
         If CurPageNum <= TmpEvent.PageCount Then
             tabPages.SelectedIndex = tabPages.TabPages.IndexOfKey(CurPageNum)
         Else
             tabPages.SelectedIndex = tabPages.TabPages.IndexOfKey(TmpEvent.PageCount)
         End If
-        ' make sure we disable
+        ' ter certeza que desativamos
         If TmpEvent.PageCount <= 1 Then
             btnDeletePage.Enabled = False
         End If
@@ -847,12 +847,12 @@ Public Class FrmEditor_Events
     Private Sub CmbGraphic_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbGraphic.SelectedIndexChanged
         If cmbGraphic.SelectedIndex = -1 Then Exit Sub
         TmpEvent.Pages(CurPageNum).GraphicType = cmbGraphic.SelectedIndex
-        ' set the max on the scrollbar
+        ' setar o máximo na scrollbar
         Select Case cmbGraphic.SelectedIndex
-            Case 0 ' None
+            Case 0 ' Nada
                 nudGraphic.Value = 1
                 nudGraphic.Enabled = False
-            Case 1 ' character
+            Case 1 ' Personagem
                 nudGraphic.Maximum = NumCharacters
                 nudGraphic.Enabled = True
             Case 2 ' Tileset
@@ -885,7 +885,7 @@ Public Class FrmEditor_Events
         Dim selH As Integer = Math.Ceiling(Y \ PicY) - GraphicSelY
 
         If Me.cmbGraphic.SelectedIndex = 2 Then
-            'Tileset... hard one....
+            'Tileset... 
             If Control.ModifierKeys = Keys.Shift Then
                 If GraphicSelX > -1 AndAlso GraphicSelY > -1 Then
                     If selW >= 0 AndAlso selH >= 0 Then
@@ -956,7 +956,7 @@ Public Class FrmEditor_Events
         fraMoveRoute.BringToFront()
         lstMoveRoute.Items.Clear()
         cmbEvent.Items.Clear()
-        cmbEvent.Items.Add("This Event")
+        cmbEvent.Items.Add("Este Evento")
         cmbEvent.SelectedIndex = 0
         cmbEvent.Enabled = False
         IsMoveRouteCommand = False
@@ -964,96 +964,96 @@ Public Class FrmEditor_Events
         chkRepeatRoute.Checked = TmpEvent.Pages(CurPageNum).RepeatMoveRoute
         TempMoveRouteCount = TmpEvent.Pages(CurPageNum).MoveRouteCount
 
-        'Will it let me do this?
+        'Vai deixar eu fazer isso?
         TempMoveRoute = TmpEvent.Pages(CurPageNum).MoveRoute
         For i = 1 To TempMoveRouteCount
             Select Case TempMoveRoute(i).Index
                 Case 1
-                    lstMoveRoute.Items.Add("Move Up")
+                    lstMoveRoute.Items.Add("Mover para Cima")
                 Case 2
-                    lstMoveRoute.Items.Add("Move Down")
+                    lstMoveRoute.Items.Add("Mover para Baixo")
                 Case 3
-                    lstMoveRoute.Items.Add("Move Left")
+                    lstMoveRoute.Items.Add("Mover para Esquerda")
                 Case 4
-                    lstMoveRoute.Items.Add("Move Right")
+                    lstMoveRoute.Items.Add("Mover para Direita")
                 Case 5
-                    lstMoveRoute.Items.Add("Move Randomly")
+                    lstMoveRoute.Items.Add("Mover aleatoriamente")
                 Case 6
-                    lstMoveRoute.Items.Add("Move Towards Player")
+                    lstMoveRoute.Items.Add("Mover em Direção ao Jogador")
                 Case 7
-                    lstMoveRoute.Items.Add("Move Away From Player")
+                    lstMoveRoute.Items.Add("Mover para Longe do Jogador")
                 Case 8
-                    lstMoveRoute.Items.Add("Step Forward")
+                    lstMoveRoute.Items.Add("Passo a frente")
                 Case 9
-                    lstMoveRoute.Items.Add("Step Back")
+                    lstMoveRoute.Items.Add("Passo atrás")
                 Case 10
-                    lstMoveRoute.Items.Add("Wait 100ms")
+                    lstMoveRoute.Items.Add("Esperar 100ms")
                 Case 11
-                    lstMoveRoute.Items.Add("Wait 500ms")
+                    lstMoveRoute.Items.Add("Esperar 500ms")
                 Case 12
-                    lstMoveRoute.Items.Add("Wait 1000ms")
+                    lstMoveRoute.Items.Add("Esperar 1000ms")
                 Case 13
-                    lstMoveRoute.Items.Add("Turn Up")
+                    lstMoveRoute.Items.Add("Girar para Cima")
                 Case 14
-                    lstMoveRoute.Items.Add("Turn Down")
+                    lstMoveRoute.Items.Add("Girar para Baixo")
                 Case 15
-                    lstMoveRoute.Items.Add("Turn Left")
+                    lstMoveRoute.Items.Add("Girar para Esquerda")
                 Case 16
-                    lstMoveRoute.Items.Add("Turn Right")
+                    lstMoveRoute.Items.Add("Girar para Direita")
                 Case 17
-                    lstMoveRoute.Items.Add("Turn 90 Degrees To the Right")
+                    lstMoveRoute.Items.Add("Virar 90 graus à Direita")
                 Case 18
-                    lstMoveRoute.Items.Add("Turn 90 Degrees To the Left")
+                    lstMoveRoute.Items.Add("Virar 90 graus à Esquerda")
                 Case 19
-                    lstMoveRoute.Items.Add("Turn Around 180 Degrees")
+                    lstMoveRoute.Items.Add("Virar em 180 graus")
                 Case 20
-                    lstMoveRoute.Items.Add("Turn Randomly")
+                    lstMoveRoute.Items.Add("Virar aleatoriamente")
                 Case 21
-                    lstMoveRoute.Items.Add("Turn Towards Player")
+                    lstMoveRoute.Items.Add("Virar em Direção ao Jogador")
                 Case 22
-                    lstMoveRoute.Items.Add("Turn Away from Player")
+                    lstMoveRoute.Items.Add("Virar em Direção Oposta ao Jogador")
                 Case 23
-                    lstMoveRoute.Items.Add("Set Speed 8x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 8x Mais Lento")
                 Case 24
-                    lstMoveRoute.Items.Add("Set Speed 4x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 4x Mais Lento")
                 Case 25
-                    lstMoveRoute.Items.Add("Set Speed 2x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 2x Mais Lento")
                 Case 26
-                    lstMoveRoute.Items.Add("Set Speed to Normal")
+                    lstMoveRoute.Items.Add("Setar Velocidade para Normal")
                 Case 27
-                    lstMoveRoute.Items.Add("Set Speed 2x Faster")
+                    lstMoveRoute.Items.Add("Setar Velocidade 2x Mais Rápido")
                 Case 28
-                    lstMoveRoute.Items.Add("Set Speed 4x Faster")
+                    lstMoveRoute.Items.Add("Setar Velocidade 4x Mais Rápido")
                 Case 29
-                    lstMoveRoute.Items.Add("Set Frequency Lowest")
+                    lstMoveRoute.Items.Add("Setar Frequência para Mais Baixa")
                 Case 30
-                    lstMoveRoute.Items.Add("Set Frequency Lower")
+                    lstMoveRoute.Items.Add("Setar Frequência para Baixa")
                 Case 31
-                    lstMoveRoute.Items.Add("Set Frequency Normal")
+                    lstMoveRoute.Items.Add("Setar Frequência para Normal")
                 Case 32
-                    lstMoveRoute.Items.Add("Set Frequency Higher")
+                    lstMoveRoute.Items.Add("Setar Frequência para Alta")
                 Case 33
-                    lstMoveRoute.Items.Add("Set Frequency Highest")
+                    lstMoveRoute.Items.Add("Setar Frequência para Mais Alta")
                 Case 34
-                    lstMoveRoute.Items.Add("Turn On Walking Animation")
+                    lstMoveRoute.Items.Add("Ligar Animação de Andar")
                 Case 35
-                    lstMoveRoute.Items.Add("Turn Off Walking Animation")
+                    lstMoveRoute.Items.Add("Desligar Animação de Andar")
                 Case 36
-                    lstMoveRoute.Items.Add("Turn On Fixed Direction")
+                    lstMoveRoute.Items.Add("Ligar Direção Fixa")
                 Case 37
-                    lstMoveRoute.Items.Add("Turn Off Fixed Direction")
+                    lstMoveRoute.Items.Add("Desligar Direção Fixa")
                 Case 38
-                    lstMoveRoute.Items.Add("Turn On Walk Through")
+                    lstMoveRoute.Items.Add("Ligar Andar por Tudo")
                 Case 39
-                    lstMoveRoute.Items.Add("Turn Off Walk Through")
+                    lstMoveRoute.Items.Add("Desligar Andar por Tudo")
                 Case 40
-                    lstMoveRoute.Items.Add("Set Position Below Player")
+                    lstMoveRoute.Items.Add("Setar Posição Abaixo do Jogador")
                 Case 41
-                    lstMoveRoute.Items.Add("Set Position at Player Level")
+                    lstMoveRoute.Items.Add("Setar Posição ao Nível do Jogador")
                 Case 42
-                    lstMoveRoute.Items.Add("Set Position Above Player")
+                    lstMoveRoute.Items.Add("Setar Posição Acima do Jogador")
                 Case 43
-                    lstMoveRoute.Items.Add("Set Graphic")
+                    lstMoveRoute.Items.Add("Setar Gráfico")
             End Select
         Next
 
@@ -1095,7 +1095,7 @@ Public Class FrmEditor_Events
 
     Private Sub ChkGlobal_CheckedChanged(sender As Object, e As EventArgs) Handles chkGlobal.CheckedChanged
         If TmpEvent.PageCount > 1 Then
-            If MsgBox("If you set the event to global you will lose all pages except for your first one. Do you want to continue?", vbYesNo) = vbNo Then
+            If MsgBox("Se você setar o evento como global, perderá todas as suas páginas exceto a primeira. Ainda quer continuar?", vbYesNo) = vbNo Then
                 Exit Sub
             End If
         End If
@@ -1193,7 +1193,7 @@ Public Class FrmEditor_Events
     End Sub
 
     Private Sub BtnClearCommand_Click(sender As Object, e As EventArgs) Handles btnClearCommand.Click
-        If MsgBox("Are you sure you want to clear all event commands?", vbYesNo, "Clear Event Commands?") = vbYes Then
+        If MsgBox("Tem certeza que quer limpar todos os comandos?", vbYesNo, "Limpar comandos de eventos?") = vbYes Then
             ClearEventCommands()
         End If
     End Sub
@@ -1202,7 +1202,7 @@ Public Class FrmEditor_Events
 
 #Region "Variables/Switches"
 
-    '    'Renaming Variables/Switches
+    '    'Renomar Variaveis e Switches
     Private Sub BtnLabeling_Click(sender As Object, e As EventArgs) Handles btnLabeling.Click
         pnlVariableSwitches.Visible = True
         pnlVariableSwitches.BringToFront()
@@ -1228,7 +1228,7 @@ Public Class FrmEditor_Events
     Private Sub BtnRename_Ok_Click(sender As Object, e As EventArgs) Handles btnRename_Ok.Click
         Select Case RenameType
             Case 1
-                'Variable
+                'Variavel
                 If Renameindex > 0 AndAlso Renameindex <= MaxVariables + 1 Then
                     Variables(Renameindex) = txtRename.Text
                     FraRenaming.Visible = False
@@ -1286,7 +1286,7 @@ Public Class FrmEditor_Events
         If lstVariables.SelectedIndex > -1 AndAlso lstVariables.SelectedIndex < MaxVariables Then
             FraRenaming.Visible = True
             fraLabeling.Visible = False
-            lblEditing.Text = "Editing Variable #" & CStr(lstVariables.SelectedIndex + 1)
+            lblEditing.Text = "Editando Variável #" & CStr(lstVariables.SelectedIndex + 1)
             txtRename.Text = Variables(lstVariables.SelectedIndex + 1)
             RenameType = 1
             Renameindex = lstVariables.SelectedIndex + 1
@@ -1297,7 +1297,7 @@ Public Class FrmEditor_Events
         If lstSwitches.SelectedIndex > -1 AndAlso lstSwitches.SelectedIndex < MaxSwitches Then
             FraRenaming.Visible = True
             fraLabeling.Visible = False
-            lblEditing.Text = "Editing Switch #" & CStr(lstSwitches.SelectedIndex + 1)
+            lblEditing.Text = "Editando Switch #" & CStr(lstSwitches.SelectedIndex + 1)
             txtRename.Text = Switches(lstSwitches.SelectedIndex + 1)
             RenameType = 2
             Renameindex = lstSwitches.SelectedIndex + 1
@@ -1308,7 +1308,7 @@ Public Class FrmEditor_Events
         If lstVariables.SelectedIndex > -1 AndAlso lstVariables.SelectedIndex < MaxVariables Then
             FraRenaming.Visible = True
             fraLabeling.Visible = False
-            lblEditing.Text = "Editing Variable #" & CStr(lstVariables.SelectedIndex + 1)
+            lblEditing.Text = "Editando Variável #" & CStr(lstVariables.SelectedIndex + 1)
             txtRename.Text = Variables(lstVariables.SelectedIndex + 1)
             RenameType = 1
             Renameindex = lstVariables.SelectedIndex + 1
@@ -1318,7 +1318,7 @@ Public Class FrmEditor_Events
     Private Sub BtnRenameSwitch_Click(sender As Object, e As EventArgs) Handles btnRenameSwitch.Click
         If lstSwitches.SelectedIndex > -1 AndAlso lstSwitches.SelectedIndex < MaxSwitches Then
             FraRenaming.Visible = True
-            lblEditing.Text = "Editing Switch #" & CStr(lstSwitches.SelectedIndex + 1)
+            lblEditing.Text = "Editando Switch #" & CStr(lstSwitches.SelectedIndex + 1)
             txtRename.Text = Switches(lstSwitches.SelectedIndex + 1)
             RenameType = 2
             Renameindex = lstSwitches.SelectedIndex + 1
@@ -1339,12 +1339,12 @@ Public Class FrmEditor_Events
 
 #Region "Move Route"
 
-    'MoveRoute Commands
+    'Comandos da Rota de Movimento
     Private Sub LstvwMoveRoute_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstvwMoveRoute.Click
         If lstvwMoveRoute.SelectedItems.Count = 0 Then Exit Sub
 
         Select Case lstvwMoveRoute.SelectedItems(0).Index + 1
-            'Set Graphic
+            'Setar Gráfico
             Case 43
                 fraGraphic.Width = 841
                 fraGraphic.Height = 585
@@ -1358,7 +1358,7 @@ Public Class FrmEditor_Events
 
     Private Sub LstMoveRoute_KeyDown(sender As Object, e As KeyEventArgs) Handles lstMoveRoute.KeyDown
         If e.KeyCode = Keys.Delete Then
-            'remove move route command lol
+            'Remover Comando de Rota de Movimento 
             If lstMoveRoute.SelectedIndex > -1 Then
                 RemoveMoveRouteCommand(lstMoveRoute.SelectedIndex)
             End If
@@ -1377,7 +1377,7 @@ Public Class FrmEditor_Events
                 TempMoveRoute(X + 1) = TempMoveRoute(X)
             Next
             TempMoveRoute(i).Index = Index
-            'if set graphic then...
+            'se setamos gráficos, então...
             If Index = 43 Then
                 TempMoveRoute(i).Data1 = cmbGraphic.SelectedIndex
                 TempMoveRoute(i).Data2 = nudGraphic.Value
@@ -1432,91 +1432,91 @@ Public Class FrmEditor_Events
         For i = 1 To TempMoveRouteCount
             Select Case TempMoveRoute(i).Index
                 Case 1
-                    lstMoveRoute.Items.Add("Move Up")
+                    lstMoveRoute.Items.Add("Mover para Cima")
                 Case 2
-                    lstMoveRoute.Items.Add("Move Down")
+                    lstMoveRoute.Items.Add("Mover para Baixo")
                 Case 3
-                    lstMoveRoute.Items.Add("Move Left")
+                    lstMoveRoute.Items.Add("Mover para Esquerda")
                 Case 4
-                    lstMoveRoute.Items.Add("Move Right")
+                    lstMoveRoute.Items.Add("Mover para Direita")
                 Case 5
-                    lstMoveRoute.Items.Add("Move Randomly")
+                    lstMoveRoute.Items.Add("Mover aleatoriamente")
                 Case 6
-                    lstMoveRoute.Items.Add("Move Towards Player")
+                    lstMoveRoute.Items.Add("Mover em Direção ao Jogador")
                 Case 7
-                    lstMoveRoute.Items.Add("Move Away From Player")
+                    lstMoveRoute.Items.Add("Mover para Longe do Jogador")
                 Case 8
-                    lstMoveRoute.Items.Add("Step Forward")
+                    lstMoveRoute.Items.Add("Passo a frente")
                 Case 9
-                    lstMoveRoute.Items.Add("Step Back")
+                    lstMoveRoute.Items.Add("Passo atrás")
                 Case 10
-                    lstMoveRoute.Items.Add("Wait 100ms")
+                    lstMoveRoute.Items.Add("Esperar 100ms")
                 Case 11
-                    lstMoveRoute.Items.Add("Wait 500ms")
+                    lstMoveRoute.Items.Add("Esperar 500ms")
                 Case 12
-                    lstMoveRoute.Items.Add("Wait 1000ms")
+                    lstMoveRoute.Items.Add("Esperar 1000ms")
                 Case 13
-                    lstMoveRoute.Items.Add("Turn Up")
+                    lstMoveRoute.Items.Add("Girar para Cima")
                 Case 14
-                    lstMoveRoute.Items.Add("Turn Down")
+                    lstMoveRoute.Items.Add("Girar para Baixo")
                 Case 15
-                    lstMoveRoute.Items.Add("Turn Left")
+                    lstMoveRoute.Items.Add("Girar para Esquerda")
                 Case 16
-                    lstMoveRoute.Items.Add("Turn Right")
+                    lstMoveRoute.Items.Add("Girar para Direita")
                 Case 17
-                    lstMoveRoute.Items.Add("Turn 90 Degrees To the Right")
+                    lstMoveRoute.Items.Add("Virar 90 graus à Direita")
                 Case 18
-                    lstMoveRoute.Items.Add("Turn 90 Degrees To the Left")
+                    lstMoveRoute.Items.Add("Virar 90 graus à Esquerda")
                 Case 19
-                    lstMoveRoute.Items.Add("Turn Around 180 Degrees")
+                    lstMoveRoute.Items.Add("Virar em 180 graus")
                 Case 20
-                    lstMoveRoute.Items.Add("Turn Randomly")
+                    lstMoveRoute.Items.Add("Virar aleatoriamente")
                 Case 21
-                    lstMoveRoute.Items.Add("Turn Towards Player")
+                    lstMoveRoute.Items.Add("Virar em Direção ao Jogador")
                 Case 22
-                    lstMoveRoute.Items.Add("Turn Away from Player")
+                    lstMoveRoute.Items.Add("Virar em Direção Oposta ao Jogador")
                 Case 23
-                    lstMoveRoute.Items.Add("Set Speed 8x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 8x Mais Lento")
                 Case 24
-                    lstMoveRoute.Items.Add("Set Speed 4x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 4x Mais Lento")
                 Case 25
-                    lstMoveRoute.Items.Add("Set Speed 2x Slower")
+                    lstMoveRoute.Items.Add("Setar Velocidade 2x Mais Lento")
                 Case 26
-                    lstMoveRoute.Items.Add("Set Speed to Normal")
+                    lstMoveRoute.Items.Add("Setar Velocidade para Normal")
                 Case 27
-                    lstMoveRoute.Items.Add("Set Speed 2x Faster")
+                    lstMoveRoute.Items.Add("Setar Velocidade 2x Mais Rápido")
                 Case 28
-                    lstMoveRoute.Items.Add("Set Speed 4x Faster")
+                    lstMoveRoute.Items.Add("Setar Velocidade 4x Mais Rápido")
                 Case 29
-                    lstMoveRoute.Items.Add("Set Frequency Lowest")
+                    lstMoveRoute.Items.Add("Setar Frequência para Mais Baixa")
                 Case 30
-                    lstMoveRoute.Items.Add("Set Frequency Lower")
+                    lstMoveRoute.Items.Add("Setar Frequência para Baixa")
                 Case 31
-                    lstMoveRoute.Items.Add("Set Frequency Normal")
+                    lstMoveRoute.Items.Add("Setar Frequência para Normal")
                 Case 32
-                    lstMoveRoute.Items.Add("Set Frequency Higher")
+                    lstMoveRoute.Items.Add("Setar Frequência para Alta")
                 Case 33
-                    lstMoveRoute.Items.Add("Set Frequency Highest")
+                    lstMoveRoute.Items.Add("Setar Frequência para Mais Alta")
                 Case 34
-                    lstMoveRoute.Items.Add("Turn On Walking Animation")
+                    lstMoveRoute.Items.Add("Ligar Animação de Andar")
                 Case 35
-                    lstMoveRoute.Items.Add("Turn Off Walking Animation")
+                    lstMoveRoute.Items.Add("Desligar Animação de Andar")
                 Case 36
-                    lstMoveRoute.Items.Add("Turn On Fixed Direction")
+                    lstMoveRoute.Items.Add("Ligar Direção Fixa")
                 Case 37
-                    lstMoveRoute.Items.Add("Turn Off Fixed Direction")
+                    lstMoveRoute.Items.Add("Desligar Direção Fixa")
                 Case 38
-                    lstMoveRoute.Items.Add("Turn On Walk Through")
+                    lstMoveRoute.Items.Add("Ligar Andar por Tudo")
                 Case 39
-                    lstMoveRoute.Items.Add("Turn Off Walk Through")
+                    lstMoveRoute.Items.Add("Desligar Andar por Tudo")
                 Case 40
-                    lstMoveRoute.Items.Add("Set Position Below Player")
+                    lstMoveRoute.Items.Add("Setar Posição Abaixo do Jogador")
                 Case 41
-                    lstMoveRoute.Items.Add("Set Position at Player Level")
+                    lstMoveRoute.Items.Add("Setar Posição ao Nível do Jogador")
                 Case 42
-                    lstMoveRoute.Items.Add("Set Position Above Player")
+                    lstMoveRoute.Items.Add("Setar Posição Acima do Jogador")
                 Case 43
-                    lstMoveRoute.Items.Add("Set Graphic")
+                    lstMoveRoute.Items.Add("Setar Gráfico")
             End Select
         Next
 
@@ -1586,7 +1586,7 @@ Public Class FrmEditor_Events
             EditCommand()
         End If
 
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraShowText.Visible = False
         fraCommands.Visible = False
@@ -1608,7 +1608,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraAddText.Visible = False
         fraCommands.Visible = False
@@ -1630,7 +1630,7 @@ Public Class FrmEditor_Events
                 picShowChoicesFace.BackgroundImage = Image.FromFile(Path.Graphics & "Faces\" & nudShowChoicesFace.Value & GfxExt)
             End If
         Else
-            picShowChoicesFace.Text = "Face: None"
+            picShowChoicesFace.Text = "Rosto: Nenhum"
             picShowChoicesFace.BackgroundImage = Nothing
         End If
     End Sub
@@ -1641,7 +1641,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraShowChoices.Visible = False
         fraCommands.Visible = False
@@ -1690,7 +1690,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraShowChatBubble.Visible = False
         fraCommands.Visible = False
@@ -1772,7 +1772,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlayerVariable.Visible = False
         fraCommands.Visible = False
@@ -1794,7 +1794,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlayerSwitch.Visible = False
         fraCommands.Visible = False
@@ -1816,7 +1816,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSetSelfSwitch.Visible = False
         fraCommands.Visible = False
@@ -1923,7 +1923,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraCommands.Visible = False
         fraConditionalBranch.Visible = False
@@ -1945,7 +1945,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraCreateLabel.Visible = False
         fraCommands.Visible = False
@@ -1967,7 +1967,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraGoToLabel.Visible = False
         fraCommands.Visible = False
@@ -1989,7 +1989,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraCommands.Visible = False
         fraChangeItems.Visible = False
@@ -2015,7 +2015,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangeLevel.Visible = False
         fraCommands.Visible = False
@@ -2037,7 +2037,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangeSkills.Visible = False
         fraCommands.Visible = False
@@ -2059,7 +2059,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangeClass.Visible = False
         fraCommands.Visible = False
@@ -2081,7 +2081,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangeSprite.Visible = False
         fraCommands.Visible = False
@@ -2103,7 +2103,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangeGender.Visible = False
         fraCommands.Visible = False
@@ -2125,7 +2125,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraChangePK.Visible = False
         fraCommands.Visible = False
@@ -2147,7 +2147,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraGiveExp.Visible = False
         fraCommands.Visible = False
@@ -2169,7 +2169,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlayerWarp.Visible = False
         fraCommands.Visible = False
@@ -2191,7 +2191,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraMoveRouteWait.Visible = False
         fraCommands.Visible = False
@@ -2213,7 +2213,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSpawnNpc.Visible = False
         fraCommands.Visible = False
@@ -2259,7 +2259,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlayAnimation.Visible = False
         fraCommands.Visible = False
@@ -2281,7 +2281,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraBeginQuest.Visible = False
         fraCommands.Visible = False
@@ -2303,7 +2303,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraCompleteTask.Visible = False
         fraCommands.Visible = False
@@ -2325,7 +2325,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraEndQuest.Visible = False
         fraCommands.Visible = False
@@ -2347,7 +2347,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSetFog.Visible = False
         fraCommands.Visible = False
@@ -2369,7 +2369,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSetWeather.Visible = False
         fraCommands.Visible = False
@@ -2391,7 +2391,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraMapTint.Visible = False
         fraCommands.Visible = False
@@ -2413,7 +2413,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlayBGM.Visible = False
         fraCommands.Visible = False
@@ -2435,7 +2435,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraPlaySound.Visible = False
         fraCommands.Visible = False
@@ -2457,7 +2457,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSetWait.Visible = False
         fraCommands.Visible = False
@@ -2479,7 +2479,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraSetAccess.Visible = False
         fraCommands.Visible = False
@@ -2501,7 +2501,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraCustomScript.Visible = False
         fraCommands.Visible = False
@@ -2523,7 +2523,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraShowPic.Visible = False
         fraCommands.Visible = False
@@ -2545,7 +2545,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraHidePic.Visible = False
         fraCommands.Visible = False
@@ -2567,7 +2567,7 @@ Public Class FrmEditor_Events
         Else
             EditCommand()
         End If
-        ' hide
+        ' esconder
         fraDialogue.Visible = False
         fraOpenShop.Visible = False
         fraCommands.Visible = False

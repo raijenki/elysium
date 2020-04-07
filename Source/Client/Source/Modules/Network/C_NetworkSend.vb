@@ -295,7 +295,7 @@ Module C_NetworkSend
 
         If InBank OrElse InShop Then Exit Sub
 
-        ' do basic checks
+        ' Fazer checagens básicas
         If invNum < 1 OrElse invNum > MAX_INV Then Exit Sub
         If PlayerInv(invNum).Num < 1 OrElse PlayerInv(invNum).Num > MAX_ITEMS Then Exit Sub
         If Item(GetPlayerInvItemNum(Myindex, invNum)).Type = ItemType.Currency OrElse Item(GetPlayerInvItemNum(Myindex, invNum)).Stackable = 1 Then
@@ -357,18 +357,18 @@ Module C_NetworkSend
     Friend Sub ForgetSkill(skillslot As Integer)
         Dim buffer As New ByteStream(4)
 
-        ' Check for subscript out of range
+        ' Verificar por subscript out of range
         If skillslot < 1 OrElse skillslot > MAX_PLAYER_SKILLS Then Exit Sub
 
-        ' dont let them forget a skill which is in CD
+        ' Não deixar esquecer uma habilidade que ainda está preparando
         If SkillCd(skillslot) > 0 Then
-            AddText("Cannot forget a skill which is cooling down!", QColorType.AlertColor)
+            AddText("Não dá para esquecer uma habilidade que está em preparo!", QColorType.AlertColor)
             Exit Sub
         End If
 
-        ' dont let them forget a skill which is buffered
+        ' Não deixar esquecer uma habilidade que está em buffer
         If SkillBuffer = skillslot Then
-            AddText("Cannot forget a skill which you are casting!", QColorType.AlertColor)
+            AddText("Não dá para esquecer uma habilidade que você está usando!", QColorType.AlertColor)
             Exit Sub
         End If
 
@@ -377,7 +377,7 @@ Module C_NetworkSend
             buffer.WriteInt32(skillslot)
             Socket.SendData(buffer.Data, buffer.Head)
         Else
-            AddText("No skill found.", QColorType.AlertColor)
+            AddText("Habilidade não encontrada.", QColorType.AlertColor)
         End If
 
         buffer.Dispose()
@@ -530,24 +530,24 @@ Module C_NetworkSend
             buffer.WriteString((Trim$(Classes(i).Name)))
             buffer.WriteString((Trim$(Classes(i).Desc)))
 
-            ' set sprite array size
+            ' Setar o tamanho do vetor da sprite
             n = UBound(Classes(i).MaleSprite)
 
-            ' send array size
+            ' Enviar tamanho do vetor
             buffer.WriteInt32(n)
 
-            ' loop around sending each sprite
+            ' Fazer o loop enviando cada sprite 
             For q = 0 To n
                 buffer.WriteInt32(Classes(i).MaleSprite(q))
             Next
 
-            ' set sprite array size
+            ' Setar o tamanho do vetor da sprite
             n = UBound(Classes(i).FemaleSprite)
 
-            ' send array size
+            ' Enviar tamanho do vetor
             buffer.WriteInt32(n)
 
-            ' loop around sending each sprite
+            ' Fazer o loop enviando cada sprite
             For q = 0 To n
                 buffer.WriteInt32(Classes(i).FemaleSprite(q))
             Next
