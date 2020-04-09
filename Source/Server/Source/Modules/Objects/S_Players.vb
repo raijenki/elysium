@@ -363,7 +363,7 @@ Module S_Players
 
                 ' Saída mais cedo
                 If IsSkill Then
-                    If Npc(NpcNum).Behaviour <> NpcBehavior.Friendly AndAlso Npc(NpcNum).Behaviour <> NpcBehavior.ShopKeeper Then
+                    If Npc(NpcNum).Behaviour <> NpcBehavior.Friendly AndAlso Npc(NpcNum).Behaviour <> NpcBehavior.ShopKeeper AndAlso Npc(NpcNum).Behaviour <> NpcBehavior.Quest Then
                         CanPlayerAttackNpc = True
                         Exit Function
                     End If

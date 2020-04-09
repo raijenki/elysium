@@ -814,7 +814,7 @@ Module S_Pets
     End Sub
 
     Sub ReCallPet(index As Integer)
-        PlayerMsg(index, "Você lembrou de " & GetPetName(index).Trim & "!", ColorType.BrightGreen)
+        PlayerMsg(index, "Você recolheu " & GetPetName(index).Trim & "!", ColorType.BrightGreen)
         Player(index).Character(TempPlayer(index).CurChar).Pet.Alive = 0
         SendUpdatePlayerPet(index, False)
     End Sub

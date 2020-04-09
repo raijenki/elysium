@@ -2044,7 +2044,7 @@ Module C_Graphics
                 'Debug.Print("pethealth:" & Player(Myindex).Pet.Health)
                 ' foco no jogador
                 tmpX = Player(Myindex).Pet.X * PicX + Player(Myindex).Pet.XOffset
-                tmpY = Player(Myindex).Pet.Y * PicX + Player(Myindex).Pet.YOffset + 35
+                tmpY = Player(Myindex).Pet.Y * PicX + Player(Myindex).Pet.YOffset + 48
                 ' calcular comprimento para preencher
                 barWidth = ((Player(Myindex).Pet.Health) / (Player(Myindex).Pet.MaxHp)) * 32
                 ' desenhar barras
@@ -2784,6 +2784,8 @@ NextLoop:
             DrawText(xoffset - DescriptionGfxInfo.Width + 10, yoffset + 12 + y, str, ItemDescRarityColor, ItemDescRarityBackColor, GameWindow)
             y += 15
         Next
+
+        DrawText(xoffset - DescriptionGfxInfo.Width + 10, yoffset + 44, "Shift para detalhes", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow)
 
         If ShiftDown OrElse VbKeyShift = True Then
             'info

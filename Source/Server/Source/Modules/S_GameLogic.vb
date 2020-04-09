@@ -69,17 +69,12 @@
 
         FirstLetter = LCase$(Left$(Word, 1))
 
+        CheckGrammar = Word
+
         If FirstLetter = "$" Then
             CheckGrammar = (Mid$(Word, 2, Len(Word) - 1))
             Exit Function
         End If
-
-        'Não é necessário isso
-        'If FirstLetter Like "*[aeiou]*" Then
-        ' If Caps Then CheckGrammar = "An " & Word Else CheckGrammar = "an " & Word
-        'Else
-        ' If Caps Then CheckGrammar = "A " & Word Else CheckGrammar = "a " & Word
-        'End If
     End Function
 
 End Module

@@ -434,8 +434,8 @@ Module S_NetworkSend
         Next
 
         For i = 1 To EquipmentType.Count - 1
-            buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Prefix.Trim.Length))
-            buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Suffix.Trim.Length))
+            buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Prefix.Trim))
+            buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Suffix.Trim))
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Damage)
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Speed)
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).RandEquip(i).Rarity)
