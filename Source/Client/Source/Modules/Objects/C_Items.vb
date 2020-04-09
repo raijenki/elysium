@@ -63,7 +63,7 @@ Module C_Items
 #Region "Incoming Packets"
 
     Friend Sub Packet_UpdateItem(ByRef data() As Byte)
-        Dim n As Integer, i As Integer
+        Dim n As Integer ', i As Integer
         Dim buffer As New ByteStream(data)
         n = buffer.ReadInt32
 

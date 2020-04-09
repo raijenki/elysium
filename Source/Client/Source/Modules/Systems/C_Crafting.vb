@@ -77,7 +77,7 @@ Friend Module C_Crafting
 #Region "Incoming Packets"
 
     Sub Packet_UpdateRecipe(ByRef data() As Byte)
-        Dim n As Integer, i As Integer
+        Dim n As Integer ', i As Integer
         Dim buffer As New ByteStream(data)
         ' Índice de Receitas
         n = buffer.ReadInt32

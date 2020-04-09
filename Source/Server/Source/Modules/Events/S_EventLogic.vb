@@ -335,9 +335,9 @@ Friend Module S_EventLogic
                                 Buffer.WriteInt32(.QuestNum)
                             End With
                             Socket.SendDataTo(i, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
                             AddDebug("Enviada SMSG: SSpawnEvent Gerar Novos Eventos")
-
+#End If
                             Buffer.Dispose()
                             z = 1
                         End If
@@ -1261,9 +1261,9 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1)
                                                             buffer.WriteString((Trim(ParseEventText(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1))))
                                                             buffer.WriteInt32(0)
-
+#If DEBUG Then
                                                             AddDebug("Enviada SMSG: SEventChat evShowText")
-
+#End If
                                                             If Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).CommandCount > .CurSlot Then
                                                                 If Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot + 1).Index = EventType.EvShowText OrElse Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot + 1).Index = EventType.EvShowChoices Then
                                                                     buffer.WriteInt32(1)
@@ -1285,9 +1285,9 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(.PageId)
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data5)
                                                             buffer.WriteString((Trim(ParseEventText(i, Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1))))
-
+#If DEBUG Then
                                                             AddDebug("Enviada SMSG: SEventChat evShowChoices")
-
+#End If
                                                             If Len(Trim$(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text2)) > 0 Then
                                                                 w = 1
                                                                 If Len(Trim$(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text3)) > 0 Then
@@ -2601,9 +2601,9 @@ Friend Module S_EventLogic
                     buffer.WriteInt32(Map(mapNum).Events(.EventId).Pages(.PageId).QuestNum)
                 End With
                 Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                 AddDebug("Enviada SMSG: SSpawnEvent Para Jogador")
-
+#End If
                 buffer.Dispose()
             Next
         End If

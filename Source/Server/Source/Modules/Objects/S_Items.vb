@@ -35,7 +35,7 @@ Friend Module S_Items
 
     Sub LoadItem(ItemNum As Integer)
         Dim filename As String
-        Dim s As Integer
+        ' Dim s As Integer
 
         filename = Path.Item(ItemNum)
         LoadObject(Item(ItemNum), filename)
@@ -101,9 +101,9 @@ Friend Module S_Items
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SMapItemData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapItemData")
-
+#End If
         For i = 1 To MAX_MAP_ITEMS
             buffer.WriteInt32(MapItem(mapNum, i).Num)
             buffer.WriteInt32(MapItem(mapNum, i).Value)
@@ -122,9 +122,9 @@ Friend Module S_Items
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SMapItemData)
-
-        AddDebug("Enviada SMSG: SMapItemData To All")
-
+#If DEBUG Then
+        AddDebug("Enviada SMSG: SMapItemData Para Todos")
+#End If
         For i = 1 To MAX_MAP_ITEMS
             buffer.WriteInt32(MapItem(mapNum, i).Num)
             buffer.WriteInt32(MapItem(mapNum, i).Value)
@@ -173,9 +173,9 @@ Friend Module S_Items
                 buffer.WriteInt32(ItemVal)
                 buffer.WriteInt32(x)
                 buffer.WriteInt32(y)
-
+#If DEBUG Then
                 AddDebug("Enviada SMSG: SSpawnItem MapItemSlot")
-
+#End If
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             End If
 
@@ -242,14 +242,17 @@ Friend Module S_Items
 #Region "Incoming Packets"
 
     Sub Packet_RequestItems(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida CMSG: CRequestItems")
+#End If
 
         SendItems(index)
     End Sub
 
     Sub Packet_EditItem(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida EMSG: RequestEditItem")
-
+#End If
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
@@ -257,18 +260,18 @@ Friend Module S_Items
 
         Buffer.WriteInt32(ServerPackets.SItemEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SItemEditor")
-
+#End If
         Buffer.Dispose()
     End Sub
 
     Sub Packet_SaveItem(index As Integer, ByRef data() As Byte)
         Dim n As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida EMSG: SaveItem")
-
+#End If
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
@@ -286,17 +289,18 @@ Friend Module S_Items
     End Sub
 
     Sub Packet_GetItem(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida CMSG: CMapGetItem")
-
+#End If
         PlayerMapGetItem(index)
     End Sub
 
     Sub Packet_DropItem(index As Integer, ByRef data() As Byte)
         Dim InvNum As Integer, Amount As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida CMSG: CMapDropItem")
-
+#End If
         InvNum = buffer.ReadInt32
         Amount = buffer.ReadInt32
         buffer.Dispose()
@@ -335,9 +339,9 @@ Friend Module S_Items
         buffer.WriteInt32(ServerPackets.SUpdateItem)
 
         buffer.WriteBlock(ItemData(itemNum))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateItem")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -348,8 +352,9 @@ Friend Module S_Items
         buffer.WriteInt32(ServerPackets.SUpdateItem)
 
         buffer.WriteBlock(ItemData(itemNum))
-
-        AddDebug("Enviada SMSG: SUpdateItem To All")
+#If DEBUG Then
+        AddDebug("Enviada SMSG: SUpdateItem Para Todos")
+#End If
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()

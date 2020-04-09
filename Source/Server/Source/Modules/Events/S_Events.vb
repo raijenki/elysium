@@ -1750,9 +1750,9 @@ Friend Module S_Events
     Sub Packet_EventChatReply(index As Integer, ByRef data() As Byte)
         Dim eventId As Integer, pageId As Integer, reply As Integer, i As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida CMSG: CEventChatReply")
-
+#End If
         eventId = buffer.ReadInt32
         pageId = buffer.ReadInt32
         reply = buffer.ReadInt32
@@ -1802,8 +1802,9 @@ Friend Module S_Events
         Dim x As Integer, y As Integer
         Dim buffer As New ByteStream(data)
 
+#If DEBUG Then
         AddDebug("Recebida CMSG: CEvent")
-
+#End If
         i = buffer.ReadInt32
         buffer.Dispose()
 
@@ -1862,17 +1863,18 @@ Friend Module S_Events
     End Sub
 
     Sub Packet_RequestSwitchesAndVariables(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida CMSG: CRequestSwitchesAndVariables")
-
+#End If
         SendSwitchesAndVariables(index)
     End Sub
 
     Sub Packet_SwitchesAndVariables(index As Integer, ByRef data() As Byte)
         Dim i As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida CMSG: CSwitchesAndVariables")
-
+#End If
         For i = 1 To MAX_SWITCHES
             Switches(i) = buffer.ReadString
         Next
@@ -1898,9 +1900,9 @@ Friend Module S_Events
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SSpecialEffect)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SSpecialEffect")
-
+#End If
         Select Case effectType
             Case EffectTypeFadein
                 buffer.WriteInt32(effectType)
@@ -1934,9 +1936,9 @@ Friend Module S_Events
         Dim buffer As New ByteStream(4), i As Integer
 
         buffer.WriteInt32(ServerPackets.SSwitchesAndVariables)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SSwitchesAndVariables")
-
+#End If
         For i = 1 To MAX_SWITCHES
             buffer.WriteString((Trim(Switches(i))))
         Next
@@ -1961,8 +1963,9 @@ Friend Module S_Events
 
         buffer.WriteInt32(ServerPackets.SMapEventData)
         mapNum = GetPlayerMap(index)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapEventData")
+#End If
 
         'Dados de Evento
         buffer.WriteInt32(Map(mapNum).EventCount)

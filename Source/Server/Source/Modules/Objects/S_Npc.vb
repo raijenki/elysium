@@ -104,9 +104,9 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).X)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Dir)
-
+#If DEBUG Then
                 AddDebug("Recebida SMSG: SSpawnNpc")
-
+#End If
                 For i = 1 To VitalType.Count - 1
                     buffer.WriteInt32(MapNpc(mapNum).Npc(mapNpcNum).Vital(i))
                 Next
@@ -1027,9 +1027,9 @@ Module S_Npc
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SMapNpcData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapNpcData")
-
+#End If
         For i = 1 To MAX_MAP_NPCS
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).Num)
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).X)
@@ -1049,25 +1049,27 @@ Module S_Npc
 #Region "Incoming Packets"
 
     Sub Packet_EditNpc(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida EMSG: RequestEditNpc")
-
+#End If
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SNpcEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SNpcEditor")
-
+#End If
         Buffer.Dispose()
     End Sub
 
     Sub Packet_SaveNPC(index As Integer, ByRef data() As Byte)
         Dim NpcNum As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida EMSG: SaveNpc")
+#End If
 
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
@@ -1097,12 +1099,12 @@ Module S_Npc
     End Sub
 
     Sub SendUpdateNpcTo(index As Integer, NpcNum As Integer)
-        Dim buffer As ByteStream, i As Integer
+        Dim buffer As ByteStream ', i As Integer
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SUpdateNpc)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateNpc")
-
+#End If
         buffer.WriteInt32(NpcNum)
         buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
@@ -1111,12 +1113,12 @@ Module S_Npc
     End Sub
 
     Sub SendUpdateNpcToAll(NpcNum As Integer)
-        Dim buffer As ByteStream, i As Integer
+        Dim buffer As ByteStream ', i As Integer
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SUpdateNpc)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateNpc Para Todos")
-
+#End If
         buffer.WriteInt32(NpcNum)
         buffer.WriteBlock(SerializeData(Npc(NpcNum)))
 
@@ -1130,9 +1132,9 @@ Module S_Npc
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SMapNpcData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapNpcData")
-
+#End If
         For i = 1 To MAX_MAP_NPCS
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).Num)
             buffer.WriteInt32(MapNpc(mapNum).Npc(i).X)
@@ -1152,9 +1154,9 @@ Module S_Npc
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SMapNpcUpdate)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapNpcUpdate")
-
+#End If
         buffer.WriteInt32(MapNpcNum)
 
         With MapNpc(mapNum).Npc(MapNpcNum)
@@ -1178,9 +1180,9 @@ Module S_Npc
 
         buffer.WriteInt32(ServerPackets.SMapNpcVitals)
         buffer.WriteInt32(MapNpcNum)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapNpcVitals")
-
+#End If
         For i = 1 To VitalType.Count - 1
             buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Vital(i))
         Next
@@ -1193,8 +1195,9 @@ Module S_Npc
     Sub SendNpcAttack(index As Integer, NpcNum As Integer)
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SAttack)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SNpcAttack")
+#End If
 
         Buffer.WriteInt32(NpcNum)
         SendDataToMap(GetPlayerMap(index), Buffer.Data, Buffer.Head)
@@ -1204,9 +1207,9 @@ Module S_Npc
     Sub SendNpcDead(mapNum As Integer, index As Integer)
         Dim Buffer = New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SNpcDead)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SNpcDead")
-
+#End If
         Buffer.WriteInt32(index)
         SendDataToMap(mapNum, Buffer.Data, Buffer.Head)
         Buffer.Dispose()

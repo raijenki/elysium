@@ -8,9 +8,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SAlertMsg)
         buffer.WriteString((Msg))
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SAlertMsg")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -20,9 +20,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SGlobalMsg)
         buffer.WriteString((Msg))
         SendDataToAll(buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SGlobalMsg")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -33,9 +33,9 @@ Module S_NetworkSend
         'buffer.Writestring((Msg)
         buffer.WriteString((Msg))
         buffer.WriteInt32(Colour)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerMsg")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -98,9 +98,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SCloseTrade)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SCloseTrade")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -111,9 +111,9 @@ Module S_NetworkSend
         buffer.WriteInt32(index)
         buffer.WriteInt32(GetPlayerExp(index))
         buffer.WriteInt32(GetPlayerNextLevel(index))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerEXP")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -123,9 +123,9 @@ Module S_NetworkSend
         Buffer.WriteInt32(ServerPackets.SLoadCharOk)
         Buffer.WriteInt32(index)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SLoadCharOk")
-
+#End If
         Buffer.Dispose()
     End Sub
 
@@ -134,9 +134,9 @@ Module S_NetworkSend
         Buffer.WriteInt32(ServerPackets.SLoginOk)
         Buffer.WriteInt32(index)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SLoginOk")
-
+#End If
         Buffer.Dispose()
     End Sub
 
@@ -144,9 +144,9 @@ Module S_NetworkSend
         Dim Buffer As New ByteStream(4)
         Buffer.WriteInt32(ServerPackets.SInGame)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SInGame")
-
+#End If
         Buffer.Dispose()
     End Sub
 
@@ -154,9 +154,9 @@ Module S_NetworkSend
         'Dim i As Integer, n As Integer, q As Integer
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SClassesData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SClassesData")
-
+#End If
         buffer.WriteBlock(ClassData)
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -167,9 +167,9 @@ Module S_NetworkSend
         'Dim i As Integer, n As Integer, q As Integer
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SClassesData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SClassesData To All")
-
+#End If
         buffer.WriteBlock(ClassData)
 
         SendDataToAll(buffer.Data, buffer.Head)
@@ -181,9 +181,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SPlayerInv)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerInv")
-
+#End If
         For i = 1 To MAX_INV
             buffer.WriteInt32(GetPlayerInvItemNum(index, i))
             buffer.WriteInt32(GetPlayerInvItemValue(index, i))
@@ -208,9 +208,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SLeftMap)
         buffer.WriteInt32(index)
         SendDataToAllBut(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SLeftMap")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -234,9 +234,9 @@ Module S_NetworkSend
         buffer.WriteInt32(GetPlayerEquipment(index, EquipmentType.Shield))
         buffer.WriteInt32(GetPlayerEquipment(index, EquipmentType.Shoes))
         buffer.WriteInt32(GetPlayerEquipment(index, EquipmentType.Gloves))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapWornEq")
-
+#End If
         SendDataToMap(GetPlayerMap(index), buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -253,9 +253,9 @@ Module S_NetworkSend
         buffer.WriteInt32(GetPlayerEquipment(PlayerNum, EquipmentType.Shield))
         buffer.WriteInt32(GetPlayerEquipment(index, EquipmentType.Shoes))
         buffer.WriteInt32(GetPlayerEquipment(index, EquipmentType.Gloves))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapWornEq To")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -317,9 +317,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateSkill)
         buffer.WriteInt32(skillnum)
         buffer.WriteBlock(SerializeData(Skill(skillnum)))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateSkill")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -330,9 +330,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SUpdateSkill)
         buffer.WriteInt32(skillnum)
         buffer.WriteBlock(SerializeData(Skill(skillnum)))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateSkill Para Todos")
-
+#End If
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -349,9 +349,9 @@ Module S_NetworkSend
         buffer.WriteInt32(GetPlayerStat(index, StatType.Intelligence))
         buffer.WriteInt32(GetPlayerStat(index, StatType.Spirit))
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerStats")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -368,13 +368,19 @@ Module S_NetworkSend
         Select Case Vital
             Case VitalType.HP
                 buffer.WriteInt32(ServerPackets.SPlayerHp)
+#If DEBUG Then
                 AddDebug("Enviada SMSG: SPlayerHp")
+#End If
             Case VitalType.MP
                 buffer.WriteInt32(ServerPackets.SPlayerMp)
+#If DEBUG Then
                 AddDebug("Enviada SMSG: SPlayerMp")
+#End If
             Case VitalType.SP
                 buffer.WriteInt32(ServerPackets.SPlayerSp)
+#If DEBUG Then
                 AddDebug("Enviada SMSG: SPlayerSp")
+#End If
         End Select
 
         ' Modificar e enviar dado relacionado.
@@ -426,9 +432,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SPlayerWornEq)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerWornEq")
-
+#End If
         For i = 1 To EquipmentType.Count - 1
             buffer.WriteInt32(GetPlayerEquipment(index, i))
         Next
@@ -652,9 +658,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SMapData)
         buffer.WriteBlock(data)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapData")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -697,9 +703,9 @@ Module S_NetworkSend
         buffer.WriteInt32(GetPlayerDir(index))
         buffer.WriteInt32(GetPlayerAccess(index))
         buffer.WriteInt32(GetPlayerPK(index))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerData")
-
+#End If
         For i = 1 To StatType.Count - 1
             buffer.WriteInt32(GetPlayerStat(index, i))
         Next
@@ -730,9 +736,9 @@ Module S_NetworkSend
         buffer.WriteInt32(GetPlayerDir(index))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerXY")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -747,9 +753,9 @@ Module S_NetworkSend
         buffer.WriteInt32(Movement)
 
         SendDataToMapBut(index, GetPlayerMap(index), buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerMove")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -759,9 +765,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SDoorAnimation)
         buffer.WriteInt32(X)
         buffer.WriteInt32(Y)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SDoorAnimation")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -774,9 +780,9 @@ Module S_NetworkSend
         buffer.WriteInt32(X)
         buffer.WriteInt32(Y)
         buffer.WriteInt32(Value)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapKey")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -787,9 +793,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.SMapMsg)
         buffer.WriteString((Msg.Trim))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapMsg")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -806,9 +812,9 @@ Module S_NetworkSend
         buffer.WriteInt32(MsgType)
         buffer.WriteInt32(X)
         buffer.WriteInt32(Y)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SActionMsg")
-
+#End If
         If PlayerOnlyNum > 0 Then
             Socket.SendDataTo(PlayerOnlyNum, buffer.Data, buffer.Head)
         Else
@@ -828,9 +834,9 @@ Module S_NetworkSend
         buffer.WriteString(Message.Trim)
         buffer.WriteString(("[Mapa] "))
         buffer.WriteInt32(SayColour)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SSayMsg")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -849,9 +855,9 @@ Module S_NetworkSend
         buffer.WriteInt32(Y)
         buffer.WriteInt32(Value)
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapKey")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -934,9 +940,9 @@ Module S_NetworkSend
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SGameData)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SGameData")
-
+#End If
         buffer.WriteBlock(data)
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -954,8 +960,9 @@ Module S_NetworkSend
         buffer.WriteString(Message.Trim)
         buffer.WriteString(("[Global] "))
         buffer.WriteInt32(SayColour)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SSayMsg Global")
+#End If
 
         SendDataToAll(buffer.Data, buffer.Head)
 
@@ -969,8 +976,9 @@ Module S_NetworkSend
         buffer.WriteInt32(InvSlot)
         buffer.WriteInt32(GetPlayerInvItemNum(index, InvSlot))
         buffer.WriteInt32(GetPlayerInvItemValue(index, InvSlot))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerInvUpdate")
+#End If
 
         buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandInv(InvSlot).Prefix.Trim))
         buffer.WriteString((Player(index).Character(TempPlayer(index).CurChar).RandInv(InvSlot).Suffix.Trim))
@@ -992,9 +1000,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SOpenShop)
         buffer.WriteInt32(ShopNum)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SOpenShop")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -1002,9 +1010,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SResetShopAction)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SResetShopAction")
-
+#End If
         SendDataToAll(buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1015,9 +1023,9 @@ Module S_NetworkSend
         Dim i As Integer
 
         buffer.WriteInt32(ServerPackets.SBank)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SBank")
-
+#End If
         For i = 1 To MAX_BANK
             buffer.WriteBlock(SerializeData(Bank(index)))
         Next
@@ -1031,9 +1039,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SClearSkillBuffer)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SClearSkillBuffer")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1043,9 +1051,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SClearTradeTimer)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SClearTradeTimer")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1055,9 +1063,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.STradeInvite)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STradeInvite")
-
+#End If
         buffer.WriteInt32(Tradeindex)
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -1072,9 +1080,9 @@ Module S_NetworkSend
         buffer.WriteInt32(TradeTarget)
         buffer.WriteString(GetPlayerName(TradeTarget).Trim)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STrade")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -1088,9 +1096,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.STradeUpdate)
         buffer.WriteInt32(DataType)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STradeUpdate")
-
+#End If
         If DataType = 0 Then ' proprio inventario
 
             For i = 1 To MAX_INV
@@ -1141,9 +1149,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.STradeStatus)
         buffer.WriteInt32(Status)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STradeStatus")
-
+#End If
         buffer.Dispose()
     End Sub
 
@@ -1152,9 +1160,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.SStunned)
         buffer.WriteInt32(TempPlayer(index).StunDuration)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SStunned")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1166,9 +1174,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.SBlood)
         buffer.WriteInt32(X)
         buffer.WriteInt32(Y)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SBlood")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1179,9 +1187,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SSkills)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SSkills")
-
+#End If
         For i = 1 To MAX_PLAYER_SKILLS
             buffer.WriteInt32(GetPlayerSkill(index, i))
         Next
@@ -1195,9 +1203,9 @@ Module S_NetworkSend
 
         buffer.WriteInt32(ServerPackets.SCooldown)
         buffer.WriteInt32(Slot)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SCooldown")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1209,8 +1217,9 @@ Module S_NetworkSend
         buffer.WriteInt32(ServerPackets.STarget)
         buffer.WriteInt32(Target)
         buffer.WriteInt32(TargetType)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STarget")
+#End If
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
@@ -1222,9 +1231,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4), I As Integer
 
         buffer.WriteInt32(ServerPackets.SMapReport)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapReport")
-
+#End If
         For I = 1 To MAX_MAPS
             buffer.WriteString(Map(I).Name.Trim)
         Next
@@ -1238,8 +1247,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SAdmin)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SAdmin")
+#End If
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
@@ -1250,9 +1260,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4), I As Integer
 
         buffer.WriteInt32(ServerPackets.SMapNames)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SMapNames")
-
+#End If
         For I = 1 To MAX_MAPS
             buffer.WriteString(Map(I).Name.Trim)
         Next
@@ -1266,9 +1276,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4), i As Integer
 
         buffer.WriteInt32(ServerPackets.SHotbar)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SHotbar")
-
+#End If
         For i = 1 To MAX_HOTBAR
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).Hotbar(i).Slot)
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).Hotbar(i).SlotType)
@@ -1283,9 +1293,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SCritical)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SCritical")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1305,9 +1315,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SNews)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SNews")
-
+#End If
         buffer.WriteString(Settings.GameName.Trim)
         buffer.WriteString(GetFileContents(Path.Database & "news.txt").Trim)
 
@@ -1320,9 +1330,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SrClick)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SrClick")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1332,9 +1342,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SClassEditor)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SClassEditor")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -1344,9 +1354,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SEmote)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SEmote")
-
+#End If
         buffer.WriteInt32(index)
         buffer.WriteInt32(Emote)
 
@@ -1359,9 +1369,9 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SChatBubble)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SChatBubble")
-
+#End If
         buffer.WriteInt32(Target)
         buffer.WriteInt32(TargetType)
         buffer.WriteString(Message.Trim)
@@ -1376,9 +1386,9 @@ Module S_NetworkSend
         Dim Buffer As New ByteStream(4)
 
         Buffer.WriteInt32(ServerPackets.SAttack)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SPlayerAttack")
-
+#End If
         Buffer.WriteInt32(index)
         SendDataToMapBut(index, GetPlayerMap(index), Buffer.Data, Buffer.Head)
         Buffer.Dispose()
@@ -1388,9 +1398,9 @@ Module S_NetworkSend
         Dim Buffer As New ByteStream(4)
 
         Buffer.WriteInt32(ServerPackets.STotalOnline)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STotalOnline")
-
+#End If
         Buffer.WriteInt32(GetPlayersOnline)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
 
@@ -1401,9 +1411,9 @@ Module S_NetworkSend
         Dim Buffer As New ByteStream(4)
 
         Buffer.WriteInt32(ServerPackets.STotalOnline)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: STotalOnline Para Todos")
-
+#End If
         Buffer.WriteInt32(GetPlayersOnline)
         SendDataToAll(Buffer.Data, Buffer.Head)
 
