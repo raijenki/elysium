@@ -88,7 +88,7 @@ Module C_Animations
 #Region "Incoming Traffic"
 
     Sub Packet_UpdateAnimation(ByRef data() As Byte)
-        Dim n As Integer, i As Integer
+        Dim n As Integer ', i As Integer
         Dim buffer As New ByteStream(data)
 
         n = buffer.ReadInt32

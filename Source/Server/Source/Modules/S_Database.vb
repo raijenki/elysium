@@ -189,7 +189,7 @@ Module modDatabase
 
     Sub SaveMap(mapNum As Integer)
         Dim filename As String
-        Dim x As Integer, y As Integer, l As Integer
+        'Dim x As Integer, y As Integer, l As Integer
 
         filename = Path.Map(mapNum)
         SaveObject(Map(mapNum), filename)
@@ -471,9 +471,9 @@ Module modDatabase
 
     Sub LoadMap(mapNum As Integer)
         Dim filename As String
-        Dim x As Integer
-        Dim y As Integer
-        Dim l As Integer
+        'Dim x As Integer
+        'Dim y As Integer
+        'Dim l As Integer
 
         filename = Path.Map(mapNum)
 
@@ -549,7 +549,7 @@ Module modDatabase
 
     Sub SaveNpc(NpcNum As Integer)
         Dim filename As String
-        Dim i As Integer
+        'Dim i As Integer
         filename = Path.Npc(NpcNum)
 
         SaveObject(Npc(NpcNum), filename)
@@ -569,7 +569,7 @@ Module modDatabase
 
     Sub LoadNpc(NpcNum As Integer)
         Dim filename As String
-        Dim n As Integer
+        'Dim n As Integer
 
         filename = Path.Npc(NpcNum)
         LoadObject(Npc(NpcNum), filename)
@@ -654,7 +654,7 @@ Module modDatabase
     End Sub
 
     Sub SaveShop(shopNum As Integer)
-        Dim i As Integer
+        'Dim i As Integer
         Dim filename As String
 
         filename = Path.Shop(shopNum)
@@ -677,7 +677,7 @@ Module modDatabase
 
     Sub LoadShop(ShopNum As Integer)
         Dim filename As String
-        Dim x As Integer
+        'Dim x As Integer
 
         filename = Path.Shop(ShopNum)
 

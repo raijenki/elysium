@@ -194,8 +194,9 @@ Module S_AutoMap
 #Region "Incoming Packets"
 
     Sub Packet_RequestAutoMap(index As Integer, ByRef data() As Byte)
-        AddDebug("Recieved EMSG: RequestAutoMap")
-
+#If DEBUG Then
+        AddDebug("Recebida EMSG: RequestAutoMap")
+#End If
         If GetPlayerAccess(index) = AdminType.Player Then Exit Sub
 
         SendAutoMapper(index)
@@ -205,9 +206,9 @@ Module S_AutoMap
         Dim Layer As Integer
         Dim buffer As New ByteStream(data)
         Dim cf = Path.Database & "AutoMapper.ini"
-
-        AddDebug("Recieved EMSG: SaveAutoMap")
-
+#If DEBUG Then
+        AddDebug("Recebida EMSG: SaveAutoMap")
+#End If
         If GetPlayerAccess(index) = AdminType.Player Then Exit Sub
 
         MapStart = buffer.ReadInt32
@@ -247,9 +248,9 @@ Module S_AutoMap
         Dim cf = Path.Database & "AutoMapper.ini"
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SAutoMapper)
-
-        AddDebug("Sent SMSG: SAutoMapper")
-
+#If DEBUG Then
+        AddDebug("Enviada SMSG: SAutoMapper")
+#End If
         buffer.WriteInt32(MapStart)
         buffer.WriteInt32(MapSize)
         buffer.WriteInt32(MapX)

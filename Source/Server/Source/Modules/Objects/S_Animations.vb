@@ -97,7 +97,9 @@ Friend Module S_Animations
 #Region "Incoming Packets"
 
     Sub Packet_EditAnimation(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recieved EMSG: RequestEditAnimation")
+#End If
 
         ' Prevent hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
@@ -111,9 +113,9 @@ Friend Module S_Animations
     Sub Packet_SaveAnimation(index As Integer, ByRef data() As Byte)
         Dim AnimNum As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida EMSG: SaveAnimation")
-
+#End If
         AnimNum = buffer.ReadInt32
 
         Animation(AnimNum) = DeserializeData(buffer)
@@ -128,8 +130,9 @@ Friend Module S_Animations
     End Sub
 
     Sub Packet_RequestAnimations(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida CMSG: CRequestAnimations")
-
+#End If
         SendAnimations(index)
     End Sub
 
@@ -145,9 +148,9 @@ Friend Module S_Animations
         buffer.WriteInt32(Y)
         buffer.WriteInt32(LockType)
         buffer.WriteInt32(Lockindex)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SAnimation")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()
@@ -172,9 +175,9 @@ Friend Module S_Animations
         buffer.WriteInt32(ServerPackets.SUpdateAnimation)
 
         buffer.WriteBlock(AnimationData(AnimationNum))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateAnimation")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -185,9 +188,9 @@ Friend Module S_Animations
         buffer.WriteInt32(ServerPackets.SUpdateAnimation)
 
         buffer.WriteBlock(AnimationData(AnimationNum))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateAnimation To All")
-
+#End If
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub

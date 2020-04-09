@@ -357,7 +357,7 @@ Friend Module S_Quest
     End Sub
 
     Sub SendUpdateQuestTo(index As Integer, QuestNum As Integer)
-        Dim buffer As ByteStream, I As Integer
+        Dim buffer As ByteStream ', I As Integer
         buffer = New ByteStream(4)
 
         buffer.WriteInt32(ServerPackets.SUpdateQuest)

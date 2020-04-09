@@ -35,7 +35,7 @@ Module C_Banks
 #Region "Incoming Packets"
 
     Friend Sub Packet_OpenBank(ByRef data() As Byte)
-        Dim i As Integer, x As Integer
+        'Dim i As Integer, x As Integer
         Dim buffer As New ByteStream(data)
 
         Bank = DeserializeData(buffer)

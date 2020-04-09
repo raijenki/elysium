@@ -52,7 +52,7 @@ Module S_Pets
     End Sub
 
     Sub SavePet(petNum As Integer)
-        Dim filename As String, i As Integer
+        Dim filename As String ', i As Integer
 
         filename = Path.Pet(petNum)
 
@@ -74,7 +74,7 @@ Module S_Pets
 
     Sub LoadPet(petNum As Integer)
         Dim reader As New ByteStream()
-        Dim filename As String, i As Integer
+        Dim filename As String ', i As Integer
 
         filename = Path.Pet(petNum)
 

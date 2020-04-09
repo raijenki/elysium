@@ -520,7 +520,7 @@ Module C_NetworkReceive
     End Sub
 
     Private Sub Packet_UpdateNPC(ByRef data() As Byte)
-        Dim i As Integer, x As Integer
+        Dim i As Integer ', x As Integer
         Dim buffer As New ByteStream(data)
         i = buffer.ReadInt32
 
@@ -695,7 +695,7 @@ Module C_NetworkReceive
     End Sub
 
     Private Sub Packet_GameData(ByRef data() As Byte)
-        Dim n As Integer, i As Integer, z As Integer, x As Integer, a As Integer, b As Integer
+        Dim n As Integer, i As Integer, z As Integer, x As Integer ', a As Integer, b As Integer
         Dim buffer As New ByteStream(Compression.DecompressBytes(data))
 
         '\\\Ler dados de classe\\\

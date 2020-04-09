@@ -242,26 +242,26 @@ Friend Module S_Resources
 
     Sub Packet_EditResource(index As Integer, ByRef data() As Byte)
         Dim Buffer As New ByteStream(4)
-
+#If DEBUG Then
         AddDebug("Recebida EMSG: RequestEditResource")
-
+#End If
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
         Buffer.WriteInt32(ServerPackets.SResourceEditor)
         Socket.SendDataTo(index, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SResourceEditor")
-
+#End If
         Buffer.Dispose()
     End Sub
 
     Sub Packet_SaveResource(index As Integer, ByRef data() As Byte)
         Dim resourcenum As Integer
         Dim buffer As New ByteStream(data)
-
+#If DEBUG Then
         AddDebug("Recebida EMSG: SaveResource")
-
+#End If
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
@@ -282,8 +282,9 @@ Friend Module S_Resources
     End Sub
 
     Sub Packet_RequestResources(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         AddDebug("Recebida CMSG: CRequestResources")
-
+#End If
         SendResources(index)
     End Sub
 
@@ -299,9 +300,9 @@ Friend Module S_Resources
 
         buffer.WriteInt32(ServerPackets.SResourceCache)
         buffer.WriteInt32(ResourceCache(mapnum).ResourceCount)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SResourcesCache")
-
+#End If
         If ResourceCache(mapnum).ResourceCount > 0 Then
 
             For i = 0 To ResourceCache(mapnum).ResourceCount
@@ -322,9 +323,9 @@ Friend Module S_Resources
 
         buffer.WriteInt32(ServerPackets.SResourceCache)
         buffer.WriteInt32(ResourceCache(mapNum).ResourceCount)
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SResourceCache")
-
+#End If
         If ResourceCache(mapNum).ResourceCount > 0 Then
 
             For i = 0 To ResourceCache(mapNum).ResourceCount
@@ -357,9 +358,9 @@ Friend Module S_Resources
 
         buffer.WriteInt32(ServerPackets.SUpdateResource)
         buffer.WriteBlock(ResourceData(ResourceNum))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateResources")
-
+#End If
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
         buffer.Dispose()
     End Sub
@@ -370,8 +371,9 @@ Friend Module S_Resources
         buffer.WriteInt32(ServerPackets.SUpdateResource)
 
         buffer.WriteBlock(ResourceData(ResourceNum))
-
+#If DEBUG Then
         AddDebug("Enviada SMSG: SUpdateResource")
+#End If
 
         SendDataToAll(buffer.Data, buffer.Head)
         buffer.Dispose()

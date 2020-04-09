@@ -363,7 +363,7 @@ Module S_General
         Next
         Return Result
     End Function
-
+#If DEBUG Then
     Friend Sub AddDebug(Msg As String)
         If DebugTxt = True Then
             Addlog(Msg, PACKET_LOG)
@@ -371,5 +371,5 @@ Module S_General
         End If
 
     End Sub
-
+#End If
 End Module

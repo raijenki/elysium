@@ -25,7 +25,7 @@
 
     Function DeserializeData(ByRef buffer As ASFW.ByteStream) As Object
         Dim byteCount As Integer = buffer.ReadInt32
-        Dim element As Object
+        Dim element As Object = Nothing
         Deserialize(element, buffer.ReadBlock(byteCount))
         Return element
     End Function
