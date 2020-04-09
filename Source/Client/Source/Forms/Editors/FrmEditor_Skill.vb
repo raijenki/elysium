@@ -65,14 +65,6 @@
         Skill(Editorindex).Vital = nudVital.Value
     End Sub
 
-    Private Sub NudDuration_Scroll(sender As Object, e As EventArgs) Handles nudDuration.ValueChanged
-        Skill(Editorindex).Duration = nudDuration.Value
-    End Sub
-
-    Private Sub NudInterval_Scroll(sender As Object, e As EventArgs) Handles nudInterval.ValueChanged
-        Skill(Editorindex).Interval = nudInterval.Value
-    End Sub
-
     Private Sub NudRange_Scroll(sender As Object, e As EventArgs) Handles nudRange.ValueChanged
         Skill(Editorindex).Range = nudRange.Value
     End Sub

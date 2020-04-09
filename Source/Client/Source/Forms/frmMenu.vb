@@ -335,6 +335,7 @@ Friend Class FrmMenu
     ''' </summary>
     Private Sub CmbClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbClass.SelectedIndexChanged
         NewCharClass = cmbClass.SelectedIndex + 1
+        NewCharSprite = 0
         txtDescription.Text = Classes(NewCharClass).Desc
         DrawCharacter()
     End Sub

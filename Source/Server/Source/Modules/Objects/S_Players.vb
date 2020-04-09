@@ -1931,10 +1931,10 @@ Module S_Players
 
                         ' Ver se é mais do que ele tem, e se sim dropar tudo
                         If Amount >= GetPlayerInvItemValue(index, InvNum) Then
-                            MapItem(GetPlayerMap(index), i).Value = GetPlayerInvItemValue(index, InvNum)
+                            Amount = GetPlayerInvItemValue(index, InvNum)
+                            MapItem(GetPlayerMap(index), i).Value = Amount
                             SetPlayerInvItemNum(index, InvNum, 0)
                             SetPlayerInvItemValue(index, InvNum, 0)
-                            Amount = GetPlayerInvItemValue(index, InvNum)
                         Else
                             MapItem(GetPlayerMap(index), i).Value = Amount
                             SetPlayerInvItemValue(index, InvNum, GetPlayerInvItemValue(index, InvNum) - Amount)
