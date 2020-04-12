@@ -104,12 +104,6 @@
     <Import Include="System.Xml.Xsl" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ASFW\ByteStream.vb" />
-    <Compile Include="ASFW\IO\Compression.vb" />
-    <Compile Include="ASFW\IO\Encryption.vb" />
-    <Compile Include="ASFW\IO\FileHandler.vb" />
-    <Compile Include="ASFW\IO\Serialization.vb" />
-    <Compile Include="ASFW\Network\Server.vb" />
     <Compile Include="My Project\GlobalSuppressions.vb" />
     <Compile Include="Source\Modules\Network\S_Binder.vb" />
     <Compile Include="Source\Modules\Network\S_NetworkConfig.vb" />

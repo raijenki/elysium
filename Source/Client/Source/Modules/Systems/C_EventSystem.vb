@@ -713,13 +713,13 @@ newlist:
                                         End Select
                                     Case 9
                                         Select Case TmpEvent.Pages(CurPageNum).CommandList(curlist).Commands(i).ConditionalBranch.Data1
-                                            Case Engine.TimeOfDay.Day
+                                            Case TimeOfDay.Day
                                                 FrmEditor_Events.lstCommands.Items.Add(indent & "@>" & "Ramo de Condição: A Hora é Dia")
-                                            Case Engine.TimeOfDay.Night
+                                            Case TimeOfDay.Night
                                                 FrmEditor_Events.lstCommands.Items.Add(indent & "@>" & "Ramo de Condição: A Hora é Noite")
-                                            Case Engine.TimeOfDay.Dawn
+                                            Case TimeOfDay.Dawn
                                                 FrmEditor_Events.lstCommands.Items.Add(indent & "@>" & "Ramo de Condição: A Hora é Alvorecer")
-                                            Case Engine.TimeOfDay.Dusk
+                                            Case TimeOfDay.Dusk
                                                 FrmEditor_Events.lstCommands.Items.Add(indent & "@>" & "Ramo de Condição: A Hora é Crepúsculo")
                                         End Select
                                 End Select

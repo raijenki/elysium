@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Namespace Global.Engine
+Namespace Global
 
     Friend Structure ChatCursor
         Friend X As Integer

@@ -1008,7 +1008,7 @@ Partial Class FrmEditor_MapEditor
         '
         'tsbSave
         '
-        Me.tsbSave.Image = Global.Engine.My.Resources.Resources.Save
+        Me.tsbSave.Image = Global.My.Resources.Resources.Save
         Me.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbSave.Name = "tsbSave"
         Me.tsbSave.Size = New System.Drawing.Size(87, 29)
@@ -1016,7 +1016,7 @@ Partial Class FrmEditor_MapEditor
         '
         'tsbDiscard
         '
-        Me.tsbDiscard.Image = Global.Engine.My.Resources.Resources._Exit
+        Me.tsbDiscard.Image = Global.My.Resources.Resources._Exit
         Me.tsbDiscard.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbDiscard.Name = "tsbDiscard"
         Me.tsbDiscard.Size = New System.Drawing.Size(114, 29)
@@ -1029,7 +1029,7 @@ Partial Class FrmEditor_MapEditor
         '
         'tsbMapGrid
         '
-        Me.tsbMapGrid.Image = Global.Engine.My.Resources.Resources.Grid
+        Me.tsbMapGrid.Image = Global.My.Resources.Resources.Grid
         Me.tsbMapGrid.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbMapGrid.Name = "tsbMapGrid"
         Me.tsbMapGrid.Size = New System.Drawing.Size(88, 29)
@@ -1042,7 +1042,7 @@ Partial Class FrmEditor_MapEditor
         '
         'tsbFill
         '
-        Me.tsbFill.Image = Global.Engine.My.Resources.Resources.Fill
+        Me.tsbFill.Image = Global.My.Resources.Resources.Fill
         Me.tsbFill.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbFill.Name = "tsbFill"
         Me.tsbFill.Size = New System.Drawing.Size(187, 29)
@@ -1051,7 +1051,7 @@ Partial Class FrmEditor_MapEditor
         '
         'tsbClear
         '
-        Me.tsbClear.Image = Global.Engine.My.Resources.Resources.Clear
+        Me.tsbClear.Image = Global.My.Resources.Resources.Clear
         Me.tsbClear.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbClear.Name = "tsbClear"
         Me.tsbClear.Size = New System.Drawing.Size(164, 29)
