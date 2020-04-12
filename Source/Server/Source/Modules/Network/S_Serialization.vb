@@ -1,4 +1,5 @@
-﻿Module S_Serialization
+﻿
+Module S_Serialization
     Function Serialize(ByVal Entity As Object) As Byte()
         Dim formatter As New Runtime.Serialization.Formatters.Binary.BinaryFormatter()
         Using ms = New System.IO.MemoryStream()

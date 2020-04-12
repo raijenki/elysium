@@ -52,8 +52,8 @@ Friend Module modSettings
 
         If Not File.Exists(cf) Then
             File.Create(cf).Dispose()
-            SaveXml(Of SettingsDef)(cf, New SettingsDef)
-        End If : Settings = LoadXml(Of SettingsDef)(cf)
+            ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, New SettingsDef)
+        End If : Settings = ASFW.IO.Serialization.LoadXml(Of SettingsDef)(cf)
 
 #If CLIENT Then ' Update Gui
         FrmOptions.optMOn.Checked = Settings.Music
@@ -71,7 +71,7 @@ Friend Module modSettings
             Directory.CreateDirectory(cf)
         End If : cf = cf & "\Settings.xml"
 
-        SaveXml(Of SettingsDef)(cf, Settings)
+        ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, Settings)
     End Sub
 
 End Module

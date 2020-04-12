@@ -270,8 +270,8 @@ Friend Module modLanguage
 
         If Not File.Exists(cf) Then
             File.Create(cf).Dispose()
-            SaveXml(Of LanguageDef)(cf, New LanguageDef)
-        End If : Language = LoadXml(Of LanguageDef)(cf)
+            ASFW.IO.Serialization.SaveXml(Of LanguageDef)(cf, New LanguageDef)
+        End If : Language = ASFW.IO.Serialization.LoadXml(Of LanguageDef)(cf)
     End Sub
 End Module
 #End If
