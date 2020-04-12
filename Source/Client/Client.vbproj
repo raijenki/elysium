@@ -7,8 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{531B337C-BC02-44ED-90C2-C448FE5190A2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Engine.My.MyApplication</StartupObject>
-    <RootNamespace>Engine</RootNamespace>
+    <StartupObject>My.MyApplication</StartupObject>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Elysium Client</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
@@ -73,9 +74,6 @@
     <DefineConstants>CLIENT</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CS-ASFW, Version=2.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CS-ASFW.2.0.0.6\lib\net45\CS-ASFW.dll</HintPath>
-    </Reference>
     <Reference Include="DarkUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DarkUI.1.0.0.1\lib\DarkUI.dll</HintPath>
     </Reference>
@@ -263,6 +261,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>

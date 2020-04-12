@@ -8,7 +8,8 @@
     <ProjectGuid>{B554FD23-0844-49D1-A05A-D79CEAD3FA7A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <StartupObject>Sub Main</StartupObject>
-    <RootNamespace>Engine</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Elysium Server</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
@@ -67,9 +68,6 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="CS-ASFW, Version=2.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CS-ASFW.2.0.0.6\lib\net45\CS-ASFW.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -78,13 +76,32 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Import Include="ASFW" />
+    <Import Include="ASFW.IO" />
+    <Import Include="ASFW.IO.Encryption" />
+    <Import Include="ASFW.IO.FileIO" />
+    <Import Include="ASFW.Network" />
     <Import Include="Microsoft.VisualBasic" />
+    <Import Include="My" />
+    <Import Include="My.Resources" />
+    <Import Include="Path" />
     <Import Include="System" />
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.Security.Cryptography" />
+    <Import Include="System.Timers" />
     <Import Include="System.Windows.Forms" />
+    <Import Include="System.Xml" />
+    <Import Include="System.Xml.Resolvers" />
+    <Import Include="System.Xml.Schema" />
+    <Import Include="System.Xml.Serialization" />
+    <Import Include="System.Xml.Serialization.Advanced" />
+    <Import Include="System.Xml.Serialization.Configuration" />
+    <Import Include="System.Xml.XmlConfiguration" />
+    <Import Include="System.Xml.XPath" />
+    <Import Include="System.Xml.Xsl" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\GlobalSuppressions.vb" />
@@ -122,6 +139,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -204,6 +222,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Bindings\Bindings.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

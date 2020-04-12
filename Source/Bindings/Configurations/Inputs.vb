@@ -135,7 +135,7 @@ Friend Module modInputs
 
         If Not File.Exists(cf) Then
             File.Create(cf).Dispose()
-            SaveXml(Of InputsDef)(cf, New InputsDef)
+            ASFW.IO.Serialization.SaveXml(Of InputsDef)(cf, New InputsDef)
         End If : Inputs = LoadXml(Of InputsDef)(cf)
     End Sub
 
@@ -145,7 +145,7 @@ Friend Module modInputs
             Directory.CreateDirectory(cf)
         End If : cf = cf & "\Inputs.xml"
 
-        SaveXml(Of InputsDef)(cf, Inputs)
+        ASFW.IO.Serialization.SaveXml(Of InputsDef)(cf, Inputs)
     End Sub
 
 End Module
