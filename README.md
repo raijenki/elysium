@@ -5,7 +5,8 @@ A Elysium.NET é um motor de jogos onlines 2D (ORPGs) escrito em Visual Basic .N
 
 # Qual o estágio atual do desenvolvimento?
 Inicial, com as traduções parcialmente realizadas no servidor e no cliente. A parte de experiência de usuário ainda precisa de ajustes.
-![Estado do Cliente](https://raw.githubusercontent.com/raijenki/elysium/master/cliente.jpg | width=300) ![Estado do Servidor](https://raw.githubusercontent.com/raijenki/elysium/master/servidor.jpg | width=300)
+![Estado do Cliente](https://raw.githubusercontent.com/raijenki/elysium/master/cliente.jpg | width=300) 
+![Estado do Servidor](https://raw.githubusercontent.com/raijenki/elysium/master/servidor.jpg | width=300)
 
 ## O que norteia o desenvolvimento deste motor?
 A frase "Fácil, mas poderoso" guia o desenvolvimento da Elysium.NET. Tal frase pode ser desmembrada nos seguintes princípios:
