@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
+Imports Server.ASFW
 
 Module S_Pets
 
@@ -46,7 +47,7 @@ Module S_Pets
 
         For i = 1 To MAX_PETS
             SavePet(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -54,7 +55,7 @@ Module S_Pets
     Sub SavePet(petNum As Integer)
         Dim filename As String ', i As Integer
 
-        filename = Path.Pet(petNum)
+        filename = System.Reflection.Assembly.GetExecutingAssembly().Location & "/Database/Pets/" & petNum & ".dat"
 
         SaveObject(Pet(petNum), filename)
 
@@ -76,7 +77,7 @@ Module S_Pets
         Dim reader As New ByteStream()
         Dim filename As String ', i As Integer
 
-        filename = Path.Pet(petNum)
+        filename = System.Reflection.Assembly.GetExecutingAssembly().Location & "/Database/Pets/" & petNum & ".dat"
 
         LoadObject(Pet(petNum), filename)
 
@@ -84,7 +85,7 @@ Module S_Pets
 
     Sub CheckPets()
         For i = 1 To MAX_PETS
-            If Not File.Exists(Application.StartupPath & "\Data\pets\pet" & i & ".dat") Then
+            If Not File.Exists(System.Reflection.Assembly.GetExecutingAssembly().Location & "\Data\pets\pet" & i & ".dat") Then
                 SavePet(i)
             End If
         Next
@@ -1424,7 +1425,7 @@ Module S_Pets
 
         Dim tim As Integer, sX As Integer, sY As Integer, pos(,) As Integer, reachable As Boolean, j As Integer, lastSum As Integer, sum As Integer, fx As Integer, fy As Integer, i As Integer
 
-        Dim path() As Point, lastX As Integer, lastY As Integer, did As Boolean
+        Dim path() As Drawing.Point, lastX As Integer, lastY As Integer, did As Boolean
 
         'Fase de Inicialização
 
@@ -1506,7 +1507,7 @@ Module S_Pets
                         End If
                     End If
 
-                    Application.DoEvents()
+                    'Application.DoEvents()
                 Next
             Next
 
@@ -1599,7 +1600,7 @@ Module S_Pets
 
             'Agora fazemos um loop reverso e diminuimos tim, 
             'e procuramos pelo próximo quadrado com um valor menor
-            Application.DoEvents()
+            'Application.DoEvents()
         Loop
 
         'OK. Temos um caminho.

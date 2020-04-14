@@ -1,13 +1,14 @@
 ﻿Imports System.Net
 Imports ASFW.Network
+Imports Server.ASFW.Network.Server
 
 Friend Module S_NetworkConfig
-    Friend WithEvents Socket As Server
+    Friend WithEvents Socket As Server.ASFW.Network.Server
 
     Friend Sub InitNetwork()
         If Not Socket Is Nothing Then Return
         ' Estabelecer algumas regras
-        Socket = New Server(ClientPackets.Count, 4096, MAX_PLAYERS) With {
+        Socket = New Server.ASFW.Network.Server(ClientPackets.Count, 4096, MAX_PLAYERS) With {
             .BufferLimit = 2048000, ' <- 2mb de armazenamento máximo
             .MinimumIndex = 1, ' <- Previne que a rede nos dê 0 de índice
             .PacketAcceptLimit = 100, ' Não sei qual seria um limite razoável agora, entao por que não?
