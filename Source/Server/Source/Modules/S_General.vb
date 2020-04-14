@@ -28,11 +28,11 @@ Module S_General
 
         LoadSettings()
 
-        Console.Title = "Elysium.NET v1.0 - Servidor"
-        Console.SetWindowSize(120, 20)
+        'Console.Title = "Elysium.NET v1.0 - Servidor"
+        'Console.SetWindowSize(120, 20)
 
-        handler = New ConsoleEventDelegate(AddressOf ConsoleEventCallback)
-        SetConsoleCtrlHandler(handler, True)
+        'handler = New ConsoleEventDelegate(AddressOf ConsoleEventCallback)
+        'SetConsoleCtrlHandler(handler, True)
 
         time1 = GetTimeMs()
 
@@ -41,14 +41,14 @@ Module S_General
 
         ' Carregar Encriptação
         Dim fi = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "\AsyncKeys.xml"
-        If Not File.Exists(fi) Then
-            EKeyPair.GenerateKeys()
-            EKeyPair.ExportKey(fi, True) ' Verdadeiro exporta chave privada também.
-            ' Lembrar de nunca passar a chave privada para o cliente!
-            ' Exportar a chave salva como arquivo para uso posterior.
-        Else
-            EKeyPair.ImportKey(fi)
-        End If
+        'If Not File.Exists(fi) Then
+        'EKeyPair.GenerateKeys()
+        'EKeyPair.ExportKey(fi, True) ' Verdadeiro exporta chave privada também.
+        ' Lembrar de nunca passar a chave privada para o cliente!
+        ' Exportar a chave salva como arquivo para uso posterior.
+        'Else
+        'EKeyPair.ImportKey(fi)
+        'End If
         ' FIM DA ENCRIPTACAO
 
         ReDim Map(MAX_CACHED_MAPS)
