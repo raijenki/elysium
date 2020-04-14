@@ -1,5 +1,6 @@
 ﻿Imports ASFW
-Imports Ini = ASFW.IO.FileIO.TextFile
+Imports Server.ASFW
+Imports Ini = Server.ASFW.IO.FileIO.TextFile
 
 Module S_AutoMap
     ' Automapper System
@@ -369,7 +370,7 @@ Module S_AutoMap
         Dim tick As Integer
 
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
         tick = GetTimeMs()
         totalMaps = size * size
 
@@ -380,7 +381,7 @@ Module S_AutoMap
 
         tick = GetTimeMs() - tick
         Console.WriteLine("Done and cached resources in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
     End Sub
 
     Sub MakeOvergrasses(mapStart As Integer, size As Integer)
@@ -389,7 +390,7 @@ Module S_AutoMap
         Dim tick As Integer
 
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
         tick = GetTimeMs()
         totalMaps = size * size
 
@@ -399,7 +400,7 @@ Module S_AutoMap
 
         tick = GetTimeMs() - tick
         Console.WriteLine("Done overgrasses in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
     End Sub
 
     Sub MakeOvergrass(mapNum As Integer)
@@ -561,7 +562,7 @@ Module S_AutoMap
         Dim tick As Integer
 
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
         tick = GetTimeMs()
         riverBorder = 4
         madeRivers = 0
@@ -674,7 +675,7 @@ SelectMap:
 
         tick = GetTimeMs() - tick
         Console.WriteLine("Done " & totalRivers & " rivers in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
     End Sub
 
     Sub PlaceMountain(mapNum As Integer, x As Integer, y As Integer, mountainPrefab As MountainTile)
@@ -886,7 +887,7 @@ Important:
         Dim tick As Integer
         Dim mapCount As Integer
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
         tick = GetTimeMs()
         totalMaps = size * size
         mapCount = 0
@@ -898,7 +899,7 @@ Important:
         Next i
         tick = GetTimeMs() - tick
         Console.WriteLine("Done mountains in " & (mapCount) & " maps in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
     End Sub
 
     Sub MakeMap(mapNum As Integer, prefab As MapPrefab)
@@ -1298,7 +1299,7 @@ ChangeDir:
         Dim tick As Integer
 
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
         tick = GetTimeMs()
 
         maxTries = 30
@@ -1359,7 +1360,7 @@ ChangeDir:
 
         tick = GetTimeMs() - tick
         Console.WriteLine("Done " & totalPaths & " paths in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
     End Sub
 
     Sub MakePaths(mapStart As Integer, size As Integer)
@@ -1462,7 +1463,7 @@ ChangeDir:
 
         tick = GetTimeMs() - tick
         Console.WriteLine("Done " & totalMaps & " maps models in " & CDbl(tick / 1000) & "s")
-        Application.DoEvents()
+        'Application.DoEvents()
 
         If PathsChecked = True Then MakePaths(mapStart, size)
         If RiversChecked = True Then MakeRivers(mapStart, size)
@@ -1472,7 +1473,7 @@ ChangeDir:
 
         tick = GetTimeMs()
         Console.WriteLine("Working...")
-        Application.DoEvents()
+        'Application.DoEvents()
 
         For mapNum = mapStart To mapStart + totalMaps - 1
             SaveMap(mapNum)

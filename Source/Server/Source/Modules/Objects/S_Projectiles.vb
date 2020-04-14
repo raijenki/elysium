@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
+Imports Server.ASFW
 
 Friend Module S_Projectiles
 
@@ -53,7 +54,7 @@ Friend Module S_Projectiles
 
         For i = 1 To MAX_PROJECTILES
             LoadProjectile(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub

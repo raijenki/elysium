@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports ASFW
-Imports Ini = ASFW.IO.FileIO.TextFile
+Imports Server.ASFW
+Imports Ini = Server.ASFW.IO.FileIO.TextFile
 
 Friend Module S_Events
 
@@ -1123,7 +1124,7 @@ Friend Module S_Events
     Function CanEventMoveTowardsPlayer(playerId As Integer, mapNum As Integer, eventId As Integer) As Integer
         Dim i As Integer, x As Integer, y As Integer, x1 As Integer, y1 As Integer, didwalk As Boolean, walkThrough As Integer
         Dim tim As Integer, sX As Integer, sY As Integer, pos(,) As Integer, reachable As Boolean, j As Integer, lastSum As Integer, sum As Integer, fx As Integer, fy As Integer
-        Dim path() As Point, lastX As Integer, lastY As Integer, did As Boolean
+        Dim path() As Drawing.Point, lastX As Integer, lastY As Integer, did As Boolean
         ' Isso não funciona para eventos globais, então deve ser o primeiro jogador...
         ' Este evento retorna a direção. 4 não é direção valida então assumimos falha a não ser que se diga o contrário.
         CanEventMoveTowardsPlayer = 4
@@ -1370,7 +1371,7 @@ Friend Module S_Events
                                 End If
                             End If
                         End If
-                        Application.DoEvents()
+                        'Application.DoEvents()
                     Next i
                 Next j
 
@@ -1462,7 +1463,7 @@ Friend Module S_Events
 
                 'Agora fazemos um loop reverso e diminuimos tim, 
                 'e procuramos pelo próximo quadrado com um valor menor
-                Application.DoEvents()
+                'Application.DoEvents()
             Loop
 
             'OK. Temos um caminho.

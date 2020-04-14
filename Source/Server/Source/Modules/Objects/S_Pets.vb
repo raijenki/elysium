@@ -47,7 +47,7 @@ Module S_Pets
 
         For i = 1 To MAX_PETS
             SavePet(i)
-            'Application.DoEvents()
+            ''Application.DoEvents()
         Next
 
     End Sub
@@ -55,7 +55,7 @@ Module S_Pets
     Sub SavePet(petNum As Integer)
         Dim filename As String ', i As Integer
 
-        filename = System.Reflection.Assembly.GetExecutingAssembly().Location & "/Database/Pets/" & petNum & ".dat"
+        filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) & "/Database/Pets/" & petNum & ".dat"
 
         SaveObject(Pet(petNum), filename)
 
@@ -77,7 +77,7 @@ Module S_Pets
         Dim reader As New ByteStream()
         Dim filename As String ', i As Integer
 
-        filename = System.Reflection.Assembly.GetExecutingAssembly().Location & "/Database/Pets/" & petNum & ".dat"
+        filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) & "/Database/Pets/" & petNum & ".dat"
 
         LoadObject(Pet(petNum), filename)
 
@@ -1507,7 +1507,7 @@ Module S_Pets
                         End If
                     End If
 
-                    'Application.DoEvents()
+                    ''Application.DoEvents()
                 Next
             Next
 
@@ -1600,7 +1600,7 @@ Module S_Pets
 
             'Agora fazemos um loop reverso e diminuimos tim, 
             'e procuramos pelo próximo quadrado com um valor menor
-            'Application.DoEvents()
+            ''Application.DoEvents()
         Loop
 
         'OK. Temos um caminho.

@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
+Imports Server.ASFW
 
 Friend Module modCrafting
 
@@ -20,7 +21,7 @@ Friend Module modCrafting
         For i = 1 To MAX_RECIPE
             If Not File.Exists(Path.Recipe(i)) Then
                 SaveRecipe(i)
-                Application.DoEvents()
+                'Application.DoEvents()
             End If
         Next
 
@@ -31,7 +32,7 @@ Friend Module modCrafting
 
         For i = 1 To MAX_RECIPE
             SaveRecipe(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -50,7 +51,7 @@ Friend Module modCrafting
 
         For i = 1 To MAX_RECIPE
             LoadRecipe(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -70,7 +71,7 @@ Friend Module modCrafting
 
         For i = 1 To MAX_RECIPE
             ClearRecipe(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub

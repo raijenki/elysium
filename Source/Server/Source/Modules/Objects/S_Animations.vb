@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
+Imports Server.ASFW
 
 Friend Module S_Animations
 
@@ -50,7 +51,7 @@ Friend Module S_Animations
 
             If Not File.Exists(Path.Animation(i)) Then
                 SaveAnimation(i)
-                Application.DoEvents()
+                'Application.DoEvents()
             End If
 
         Next

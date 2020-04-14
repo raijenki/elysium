@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
+Imports Server.ASFW
+Imports Server.ASFW.IO.FileIO
 
 Friend Module S_Quest
 
@@ -48,7 +50,7 @@ Friend Module S_Quest
         Dim I As Integer
         For I = 1 To MAX_QUESTS
             SaveQuest(I)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
     End Sub
 
@@ -89,7 +91,7 @@ Friend Module S_Quest
         writer.WriteInt32(Quest(QuestNum).TaskCount)
         For I = 1 To Quest(QuestNum).TaskCount
             writer.WriteInt32(Quest(QuestNum).Task(I).Order)
-            writer.WriteInt32(Quest(QuestNum).Task(I).NPC)
+            writer.WriteInt32(Quest(QuestNum).Task(I).Npc)
             writer.WriteInt32(Quest(QuestNum).Task(I).Item)
             writer.WriteInt32(Quest(QuestNum).Task(I).Map)
             writer.WriteInt32(Quest(QuestNum).Task(I).Resource)
@@ -110,7 +112,7 @@ Friend Module S_Quest
 
         For I = 1 To MAX_QUESTS
             LoadQuest(I)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
     End Sub
 
@@ -158,7 +160,7 @@ Friend Module S_Quest
         ReDim Quest(QuestNum).Task(Quest(QuestNum).TaskCount)
         For I = 1 To Quest(QuestNum).TaskCount
             Quest(QuestNum).Task(I).Order = reader.ReadInt32()
-            Quest(QuestNum).Task(I).NPC = reader.ReadInt32()
+            Quest(QuestNum).Task(I).Npc = reader.ReadInt32()
             Quest(QuestNum).Task(I).Item = reader.ReadInt32()
             Quest(QuestNum).Task(I).Map = reader.ReadInt32()
             Quest(QuestNum).Task(I).Resource = reader.ReadInt32()
@@ -175,7 +177,7 @@ Friend Module S_Quest
         For I = 1 To MAX_QUESTS
             If Not File.Exists(Path.Quest(I)) Then
                 SaveQuest(I)
-                Application.DoEvents()
+                'Application.DoEvents()
             End If
         Next
     End Sub
@@ -220,7 +222,7 @@ Friend Module S_Quest
         ReDim Quest(QuestNum).Task(Quest(QuestNum).TaskCount)
         For I = 1 To Quest(QuestNum).TaskCount
             Quest(QuestNum).Task(I).Order = 0
-            Quest(QuestNum).Task(I).NPC = 0
+            Quest(QuestNum).Task(I).Npc = 0
             Quest(QuestNum).Task(I).Item = 0
             Quest(QuestNum).Task(I).Map = 0
             Quest(QuestNum).Task(I).Resource = 0
@@ -551,7 +553,7 @@ Friend Module S_Quest
             Case QuestType.Slay 'derrotar X quantidade de X npc's.
 
                 'o id do npc derrotado é o mesmo que tenho que derrotar?
-                If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
+                If Targetindex = Quest(QuestNum).Task(ActualTask).Npc Then
                     'Contador +1
                     Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount = Player(index).Character(TempPlayer(index).CurChar).PlayerQuest(QuestNum).CurrentCount + 1
                     'acabei o trabalho?
@@ -581,7 +583,7 @@ Friend Module S_Quest
                 End If
 
             Case QuestType.Talk 'Interagir com X npc.
-                If Targetindex = Quest(QuestNum).Task(ActualTask).NPC AndAlso Quest(QuestNum).Task(ActualTask).Amount = 0 Then
+                If Targetindex = Quest(QuestNum).Task(ActualTask).Npc AndAlso Quest(QuestNum).Task(ActualTask).Amount = 0 Then
                     QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
                     If CanEndQuest(index, QuestNum) Then
                         EndQuest(index, QuestNum)
@@ -601,7 +603,7 @@ Friend Module S_Quest
                 End If
 
             Case QuestType.Give 'Dar X quantidade de X item para X npc.
-                If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
+                If Targetindex = Quest(QuestNum).Task(ActualTask).Npc Then
                     For I = 1 To MAX_INV
                         If GetPlayerInvItemNum(index, I) = Quest(QuestNum).Task(ActualTask).Item Then
                             If GetPlayerInvItemValue(index, I) >= Quest(QuestNum).Task(ActualTask).Amount Then
@@ -643,7 +645,7 @@ Friend Module S_Quest
                 End If
 
             Case QuestType.Fetch 'Pegar X quantidade de X item do X npc.
-                If Targetindex = Quest(QuestNum).Task(ActualTask).NPC Then
+                If Targetindex = Quest(QuestNum).Task(ActualTask).Npc Then
                     GiveInvItem(index, Quest(QuestNum).Task(ActualTask).Item, Quest(QuestNum).Task(ActualTask).Amount)
                     QuestMessage(index, QuestNum, Quest(QuestNum).Task(ActualTask).Speech, 0)
                     If CanEndQuest(index, QuestNum) Then

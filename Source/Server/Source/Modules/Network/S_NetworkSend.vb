@@ -1,5 +1,7 @@
 ﻿Imports ASFW
 Imports ASFW.IO
+Imports Server.ASFW
+Imports Server.ASFW.IO
 
 Module S_NetworkSend
 
@@ -45,7 +47,7 @@ Module S_NetworkSend
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SNewCharClasses)
 
-        For i = 1 To Max_Classes
+        For i = 1 To MAX_CLASSES
             buffer.WriteString((GetClassName(i)))
             buffer.WriteString((Trim$(Classes(i).Desc)))
 

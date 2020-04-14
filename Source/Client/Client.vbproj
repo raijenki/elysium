@@ -95,6 +95,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ASFW\Network\Encryption.vb" />
     <Compile Include="My Project\ApplicationEvents.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>

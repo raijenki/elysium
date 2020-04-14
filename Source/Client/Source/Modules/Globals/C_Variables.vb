@@ -199,7 +199,7 @@ Module C_Variables
     Friend ShowAnimLayers As Boolean
     Friend ShowAnimTimer As Integer
 
-    Friend EKeyPair As New ASFW.IO.Encryption.KeyPair()
+    Friend EKeyPair As New Elysium.Client.ASFW.Encryption.KeyPair()
 
     ' O Editor alterou um vetor de itens
     Friend Item_Changed(MAX_ITEMS) As Boolean

@@ -4,13 +4,9 @@
         ''' <summary> Retorna o diretório de configuração </summary>
         Friend ReadOnly Property Config As String
             Get
-#If CLIENT Then
-                Return Environment.GetFolderPath(
-                       Environment.SpecialFolder.MyDocuments) & "/" &
-                       Settings.GameName & "/"
-#ElseIf SERVER Then
-                Return Application.StartupPath() & "/Configuration/"
-#End If
+
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Configuration/"
+
             End Get
         End Property
 
@@ -19,42 +15,10 @@
         '###  Diretórios exclusivos  ###
         '############################
 
-#If CLIENT Then
-
-        ''' <summary> Retorna o diretório gráfico </summary>
-        Friend ReadOnly Property Graphics As String
-            Get
-                Return Contents & "\Graphics\"
-            End Get
-        End Property
-
-        ''' <summary> Retorna o diretório gui </summary>
-        Friend ReadOnly Property Gui As String
-            Get
-                Return Contents & "\Gui\"
-            End Get
-        End Property
-
-        ''' <summary> Retorna o diretório de músicas </summary>
-        Friend ReadOnly Property Music As String
-            Get
-                Return Contents & "\Music\"
-            End Get
-        End Property
-
-        ''' <summary> Retorna o diretório de sons </summary>
-        Friend ReadOnly Property Sounds As String
-            Get
-                Return Contents & "\Sounds\"
-            End Get
-        End Property
-
-#ElseIf SERVER Then
-
         ''' <summary> Returns accounts directory </summary>
         Friend ReadOnly Property Accounts As String
             Get
-                Return Application.StartupPath() & "/Database/Accounts/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Accounts/"
             End Get
         End Property
 
@@ -66,7 +30,13 @@
         ''' <summary> Returns animations directory </summary>
         Friend ReadOnly Property Animations As String
             Get
-                Return Application.StartupPath() & "/Database/Animations/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Animations/"
+            End Get
+        End Property
+
+        Friend ReadOnly Property Database As String
+            Get
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/"
             End Get
         End Property
 
@@ -78,7 +48,7 @@
         ''' <summary> Returns items directory </summary>
         Friend ReadOnly Property Items As String
             Get
-                Return Application.StartupPath() & "/Database/Items/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Items/"
             End Get
         End Property
 
@@ -90,14 +60,14 @@
         ''' <summary> Returns logs directory </summary>
         Friend ReadOnly Property Logs As String
             Get
-                Return Application.StartupPath() & "/Logs/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Logs/"
             End Get
         End Property
 
         ''' <summary> Returns maps directory </summary>
         Friend ReadOnly Property Maps As String
             Get
-                Return Application.StartupPath() & "/Database/Maps/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Maps/"
             End Get
         End Property
 
@@ -109,7 +79,7 @@
         ''' <summary> Returns npcs directory </summary>
         Friend ReadOnly Property Npcs As String
             Get
-                Return Application.StartupPath() & "/Database/Npcs/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Npcs/"
             End Get
         End Property
 
@@ -121,7 +91,7 @@
         ''' <summary> Returns pets directory </summary>
         Friend ReadOnly Property Pets As String
             Get
-                Return Application.StartupPath() & "/Database/Pets/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Pets/"
             End Get
         End Property
 
@@ -133,7 +103,7 @@
         ''' <summary> Returns projectiles directory </summary>
         Friend ReadOnly Property Projectiles As String
             Get
-                Return Application.StartupPath() & "/Database/Projectiles/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Projectiles/"
             End Get
         End Property
 
@@ -145,7 +115,7 @@
         ''' <summary> Returns quests directory </summary>
         Friend ReadOnly Property Quests As String
             Get
-                Return Application.StartupPath() & "/Database/Quests/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Quests/"
             End Get
         End Property
 
@@ -157,7 +127,7 @@
         ''' <summary> Returns recipes directory </summary>
         Friend ReadOnly Property Recipes As String
             Get
-                Return Application.StartupPath() & "/Database/Recipes/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Recipes/"
             End Get
         End Property
 
@@ -169,7 +139,7 @@
         ''' <summary> Returns resources directory </summary>
         Friend ReadOnly Property Resources As String
             Get
-                Return Application.StartupPath() & "/Database/Resources/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Resources/"
             End Get
         End Property
 
@@ -181,7 +151,7 @@
         ''' <summary> Returns shops directory </summary>
         Friend ReadOnly Property Shops As String
             Get
-                Return Application.StartupPath() & "/Database/Shops/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Shops/"
             End Get
         End Property
 
@@ -193,7 +163,7 @@
         ''' <summary> Returns skills directory </summary>
         Friend ReadOnly Property Skills As String
             Get
-                Return Application.StartupPath() & "/Database/Skills/"
+                Return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "/Database/Skills/"
             End Get
         End Property
 
@@ -201,8 +171,6 @@
         Friend Function Skill(index As Integer) As String
             Return Skills() & index & ".dat"
         End Function
-
-#End If
 
     End Module
 End Namespace

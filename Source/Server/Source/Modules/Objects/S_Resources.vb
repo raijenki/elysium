@@ -1,7 +1,8 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
-Imports Ini = ASFW.IO.FileIO.TextFile
+Imports Server.ASFW
+Imports Ini = Server.ASFW.IO.FileIO.TextFile
 
 Friend Module S_Resources
 
@@ -51,7 +52,7 @@ Friend Module S_Resources
 
         For i = 1 To MAX_RESOURCES
             LoadResource(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -292,7 +293,7 @@ Friend Module S_Resources
 
 #Region "Outgoing Packets"
 
-    Sub SendResourceCacheTo(index As Integer, Resource_num As long)
+    Sub SendResourceCacheTo(index As Integer, Resource_num As Long)
         Dim i As Integer, mapnum As Integer
         Dim buffer As New ByteStream(4)
 

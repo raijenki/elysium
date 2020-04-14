@@ -1,7 +1,9 @@
 ﻿Imports System.IO
 Imports ASFW
 Imports ASFW.IO.FileIO
-Imports Ini = ASFW.IO.FileIO.TextFile
+Imports Server.ASFW
+Imports Server.ASFW.IO.FileIO
+Imports Ini = Server.ASFW.IO.FileIO.TextFile
 
 Module modDatabase
 
@@ -10,15 +12,15 @@ Module modDatabase
     Sub ClearClasses()
         Dim i As Integer
 
-        ReDim Classes(Max_Classes)
+        ReDim Classes(MAX_CLASSES)
 
-        For i = 1 To Max_Classes
+        For i = 1 To MAX_CLASSES
             Classes(i) = Nothing
             Classes(i).Name = ""
             Classes(i).Desc = ""
         Next
 
-        For i = 0 To Max_Classes
+        For i = 0 To MAX_CLASSES
             ReDim Classes(i).Stat(StatType.Count - 1)
             ReDim Classes(i).StartItem(5)
             ReDim Classes(i).StartValue(5)
@@ -542,7 +544,7 @@ Module modDatabase
 
         For i = 1 To MAX_NPCS
             SaveNpc(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -562,7 +564,7 @@ Module modDatabase
 
         For i = 1 To MAX_NPCS
             LoadNpc(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
         'SaveNpcs()
     End Sub
@@ -584,7 +586,7 @@ Module modDatabase
         For i = 1 To MAX_NPCS
             If Not File.Exists(Path.Npc(i)) Then
                 SaveNpc(i)
-                Application.DoEvents()
+                'Application.DoEvents()
             End If
 
         Next
@@ -603,7 +605,7 @@ Module modDatabase
 
         For y = 1 To MAX_CACHED_MAPS
             ClearMapNpcs(y)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -614,7 +616,7 @@ Module modDatabase
 
         For x = 1 To MAX_MAP_NPCS
             ClearMapNpc(x, y)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -648,7 +650,7 @@ Module modDatabase
 
         For i = 1 To MAX_SHOPS
             SaveShop(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -670,7 +672,7 @@ Module modDatabase
 
         For i = 1 To MAX_SHOPS
             LoadShop(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -727,7 +729,7 @@ Module modDatabase
 
         For i = 1 To MAX_SKILLS
             SaveSkill(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -746,7 +748,7 @@ Module modDatabase
 
         For i = 1 To MAX_SKILLS
             LoadSkill(i)
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -766,7 +768,7 @@ Module modDatabase
 
             If Not File.Exists(Path.Skill(i)) Then
                 SaveSkill(i)
-                Application.DoEvents()
+                'Application.DoEvents()
             End If
 
         Next
@@ -791,13 +793,13 @@ Module modDatabase
 #Region "Accounts"
 
     Function AccountExist(Name As String) As Boolean
-        Return File.Exists(Application.StartupPath & "\Data\Accounts\" & Trim$(Name) & "\Data.bin")
+        Return File.Exists(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Trim$(Name) & "\Data.bin")
     End Function
 
     Function PasswordOK(Name As String, Password As String) As Boolean
         If Not AccountExist(Name) Then Return False
         Dim reader As New ByteStream()
-        BinaryFile.Load(Application.StartupPath & "\Data\Accounts\" & Trim$(Name) & "\Data.bin", reader)
+        BinaryFile.Load(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Trim$(Name) & "\Data.bin", reader)
         If reader.ReadString().Trim <> Name.Trim Then Return False
         Return reader.ReadString().Trim.ToUpper = Password.Trim.ToUpper
     End Function
@@ -812,7 +814,7 @@ Module modDatabase
     End Sub
 
     Sub DeleteName(Name As String)
-        TextFile.RemoveString(Application.StartupPath & "\Data\Accounts\charlist.txt", Name.Trim.ToLower)
+        TextFile.RemoveString(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\charlist.txt", Name.Trim.ToLower)
     End Sub
 
 #End Region
@@ -829,7 +831,7 @@ Module modDatabase
 
     Sub SavePlayer(index As Integer)
         Dim playername As String = Trim$(Player(index).Login)
-        Dim filename As String = Application.StartupPath & "\Data\Accounts\" & playername
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & playername
         CheckDir(filename) : filename += "\Data.bin"
 
         Dim writer As New ByteStream(9 + Player(index).Login.Length + Player(index).Password.Length)
@@ -847,7 +849,7 @@ Module modDatabase
     End Sub
 
     Sub LoadPlayer(index As Integer, Name As String)
-        Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Name.Trim() & "\Data.bin"
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Name.Trim() & "\Data.bin"
         ClearPlayer(index)
 
         Dim reader As New ByteStream()
@@ -883,7 +885,7 @@ Module modDatabase
 #Region "Bank"
 
     Friend Sub LoadBank(index As Integer, Name As String)
-        Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Name.Trim() & "\Bank.bin"
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Name.Trim() & "\Bank.bin"
 
         ClearBank(index)
 
@@ -896,7 +898,7 @@ Module modDatabase
     End Sub
 
     Sub SaveBank(index As Integer)
-        Dim filename = Application.StartupPath & "\Data\Accounts\" & Player(index).Login.Trim() & "\Bank.bin"
+        Dim filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Player(index).Login.Trim() & "\Bank.bin"
 
         SaveObject(Bank(index), filename)
     End Sub
@@ -1071,7 +1073,7 @@ Module modDatabase
     End Sub
 
     Sub LoadCharacter(index As Integer, CharNum As Integer)
-        Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Player(index).Login.Trim & "\" & CharNum & ".bin"
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Player(index).Login.Trim & "\" & CharNum & ".bin"
 
         ClearCharacter(index, CharNum)
 
@@ -1080,7 +1082,7 @@ Module modDatabase
     End Sub
 
     Sub SaveCharacter(index As Integer, CharNum As Integer)
-        Dim filename As String = Application.StartupPath & "\Data\Accounts\" & Player(index).Login.Trim & "\" & CharNum & ".bin"
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\Accounts\" & Player(index).Login.Trim & "\" & CharNum & ".bin"
         SaveObject(Player(index).Character(CharNum), filename)
     End Sub
 
@@ -1235,7 +1237,7 @@ Module modDatabase
         Dim IP As String
         Dim F As Integer
         Dim i As Integer
-        filename = Application.StartupPath & "\data\banlist.txt"
+        filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\data\banlist.txt"
 
         ' Ter certeza que o arquivo existe
         If Not File.Exists("data\banlist.txt") Then
@@ -1263,7 +1265,7 @@ Module modDatabase
     Function IsBanned(IP As String) As Boolean
         Dim filename As String, line As String
 
-        filename = Application.StartupPath & "\data\banlist.txt"
+        filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\data\banlist.txt"
 
         ' Ver se o arquivo existe
         If Not File.Exists("data\banlist.txt") Then
@@ -1285,7 +1287,7 @@ Module modDatabase
     End Function
 
     Sub BanIndex(BanPlayerindex As Integer, BannedByindex As Integer)
-        Dim filename As String = Application.StartupPath & "\Data\banlist.txt"
+        Dim filename As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Data\banlist.txt"
         Dim IP As String, i As Integer
 
         ' Ter certeza que o arquivo existe

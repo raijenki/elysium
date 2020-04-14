@@ -22,7 +22,7 @@ Namespace ASFW.IO.Encryption
 
             Using bytes = New Rfc2898DeriveBytes(password, salt, iterations)
                 Dim rm = New RijndaelManaged With {
-                    .BlockSize = 256,
+                    .BlockSize = 128,
                     .Mode = CipherMode.CBC,
                     .Padding = PaddingMode.PKCS7
                 }
@@ -61,7 +61,7 @@ Namespace ASFW.IO.Encryption
 
             Using bytes = New Rfc2898DeriveBytes(password, salt, iterations)
                 Dim rm = New RijndaelManaged With {
-                    .BlockSize = 256,
+                    .BlockSize = 128,
                     .Mode = CipherMode.CBC,
                     .Padding = PaddingMode.PKCS7
                 }
@@ -106,7 +106,7 @@ Namespace ASFW.IO.Encryption
             System.Buffer.BlockCopy(value, 32, rgbIv, 0, 32)
             System.Buffer.BlockCopy(value, 64, buffer, 0, len)
             Dim rm = New RijndaelManaged With {
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC,
                 .Padding = PaddingMode.PKCS7
             }
@@ -136,7 +136,7 @@ Namespace ASFW.IO.Encryption
             System.Buffer.BlockCopy(value, 32, rgbIv, 0, 32)
             System.Buffer.BlockCopy(value, 64, buffer, 0, len)
             Dim rm = New RijndaelManaged With {
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC,
                 .Padding = PaddingMode.PKCS7
             }
@@ -268,7 +268,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Key not set.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
@@ -292,7 +292,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Key not set.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
@@ -316,7 +316,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Key not set.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
@@ -340,7 +340,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Key not set.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
@@ -386,7 +386,7 @@ Namespace ASFW.IO.Encryption
             If value.Length < 288 Then Return Nothing
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
             Dim rgb = New Byte(255) {}
@@ -416,7 +416,7 @@ Namespace ASFW.IO.Encryption
             If value.Length < 288 Then Return Nothing
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
             Dim rgb = New Byte(255) {}
@@ -447,7 +447,7 @@ Namespace ASFW.IO.Encryption
             If value.Length < offset + size Then Return Nothing
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
             Dim rgb = New Byte(255) {}
@@ -478,7 +478,7 @@ Namespace ASFW.IO.Encryption
             If value.Length < offset + size Then Return Nothing
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
-                .BlockSize = 256,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
             Dim rgb = New Byte(255) {}

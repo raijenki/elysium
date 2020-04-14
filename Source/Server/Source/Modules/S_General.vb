@@ -40,7 +40,7 @@ Module S_General
         Randomize()
 
         ' Carregar Encriptação
-        Dim fi = Application.StartupPath & "\AsyncKeys.xml"
+        Dim fi = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location()) & "\AsyncKeys.xml"
         If Not File.Exists(fi) Then
             EKeyPair.GenerateKeys()
             EKeyPair.ExportKey(fi, True) ' Verdadeiro exporta chave privada também.
@@ -277,8 +277,9 @@ Module S_General
         ClearGameData()
 
 #If DEBUG Then
-        Application.Exit()
-        Application.ExitThread()
+        'Application.Exit()
+        'Application.ExitThread()
+        Environment.Exit(-1)
         Process.GetCurrentProcess.Kill()
 #Else
         Environment.Exit(0)

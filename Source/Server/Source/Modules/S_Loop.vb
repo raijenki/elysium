@@ -124,7 +124,7 @@ Module modLoop
                 lastUpdateSavePlayers = GetTimeMs() + 600000
             End If
 
-            Application.DoEvents()
+            'Application.DoEvents()
             'Thread.Yield()
             Thread.Sleep(1)
         Loop
@@ -146,7 +146,7 @@ Module modLoop
                     SavePlayer(i)
                     SaveBank(i)
                 End If
-                Application.DoEvents()
+                'Application.DoEvents()
             Next
 
         End If

@@ -1,6 +1,5 @@
 ﻿Imports System.IO
-Imports ASFW
-Imports ASFW.IO
+Imports Server.ASFW
 
 Module S_NetworkReceive
 
@@ -182,8 +181,8 @@ Module S_NetworkReceive
 #End If
         If Not IsPlaying(index) AndAlso Not IsLoggedIn(index) Then
             'Pegar os dados
-            username = EKeyPair.DecryptString(buffer.ReadString)
-            password = EKeyPair.DecryptString(buffer.ReadString)
+            username = buffer.ReadString
+            password = buffer.ReadString
             ' Prevenir hacking
             If Len(username.Trim) < 3 OrElse Len(password.Trim) < 3 Then
                 AlertMsg(index, "Seu nome de usuário e senha devem possuir pelo menos três caracteres.")
@@ -302,11 +301,11 @@ Module S_NetworkReceive
                 End If
 
                 ' Pegar os dados
-                Name = EKeyPair.DecryptString(buffer.ReadString())
-                Password = EKeyPair.DecryptString(buffer.ReadString())
+                Name = buffer.ReadString()
+                Password = buffer.ReadString()
 
                 ' Checar versões
-                If EKeyPair.DecryptString(buffer.ReadString()) <> Application.ProductVersion Then
+                If buffer.ReadString() <> FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion Then
                     AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
                     Exit Sub
                 End If
@@ -449,7 +448,7 @@ Module S_NetworkReceive
 
             If (Sex < modEnumerators.SexType.Male) OrElse (Sex > modEnumerators.SexType.Female) Then Exit Sub
 
-            If Classes < 1 OrElse Classes > Max_Classes Then Exit Sub
+            If Classes < 1 OrElse Classes > MAX_CLASSES Then Exit Sub
 
             ' Ver se já existe personagem nesse slot
             If CharExist(index, slot) Then
@@ -947,7 +946,7 @@ Module S_NetworkReceive
 #If DEBUG Then
         AddDebug("Recebida CMSG: CSaveMap")
 #End If
-        Dim buffer As New ByteStream(Compression.DecompressBytes(data))
+        Dim buffer As New ByteStream(Server.ASFW.IO.Compression.DecompressBytes(data))
 
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
@@ -1290,7 +1289,7 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Creator Then Exit Sub
 
-        filename = Application.StartupPath & "\data\banlist.txt"
+        filename = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\data\banlist.txt"
 
         If File.Exists(filename) Then Kill(filename)
 
@@ -2373,11 +2372,11 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Developer Then Exit Sub
 
-        For i = 0 To Max_Classes
+        For i = 0 To MAX_CLASSES
             ReDim Classes(i).Stat(StatType.Count - 1)
         Next
 
-        For i = 1 To Max_Classes
+        For i = 1 To MAX_CLASSES
 
             With Classes(i)
                 .Name = buffer.ReadString
@@ -2443,12 +2442,12 @@ Module S_NetworkReceive
         If Not IsLoggedIn(index) Then
 
             ' Pegar o dado
-            Name = EKeyPair.DecryptString(buffer.ReadString)
-            Password = EKeyPair.DecryptString(buffer.ReadString)
-            Version = EKeyPair.DecryptString(buffer.ReadString)
+            Name = buffer.ReadString
+            Password = buffer.ReadString
+            Version = buffer.ReadString
 
             ' Checar versões
-            If Version <> Application.ProductVersion Then
+            If Version <> FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion Then
                 AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
                 Exit Sub
             End If
@@ -2539,7 +2538,7 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Mapper Then Exit Sub
 
-        Dim buffer As New ByteStream(Compression.DecompressBytes(data))
+        Dim buffer As New ByteStream(Server.ASFW.IO.Compression.DecompressBytes(data))
 
         Gettingmap = True
 

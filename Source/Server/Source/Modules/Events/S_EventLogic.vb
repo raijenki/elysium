@@ -1,4 +1,5 @@
 ﻿Imports ASFW
+Imports Server.ASFW
 
 Friend Module S_EventLogic
 
@@ -726,7 +727,7 @@ Friend Module S_EventLogic
                     Next
                 End If
             End If
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -1123,7 +1124,7 @@ Friend Module S_EventLogic
                     Next
                 End If
             End If
-            Application.DoEvents()
+            'Application.DoEvents()
         Next
 
     End Sub
@@ -2146,7 +2147,7 @@ Friend Module S_EventLogic
 
     Function FindNpcPath(mapNum As Integer, mapnpcnum As Integer, targetx As Integer, targety As Integer) As Integer
         Dim tim As Integer, sX As Integer, sY As Integer, pos(,) As Integer, reachable As Boolean, j As Integer, LastSum As Integer, Sum As Integer, FX As Integer, FY As Integer, i As Integer
-        Dim path() As Point, LastX As Integer, LastY As Integer, did As Boolean
+        Dim path() As Drawing.Point, LastX As Integer, LastY As Integer, did As Boolean
 
         'Fase de inicialização
 
@@ -2221,7 +2222,7 @@ Friend Module S_EventLogic
                             End If
                         End If
                     End If
-                    Application.DoEvents()
+                    'Application.DoEvents()
                 Next i
             Next j
 
@@ -2313,7 +2314,7 @@ Friend Module S_EventLogic
 
             'Agora fazemos um loop reverso e diminuimos tim, 
             'e procuramos pelo próximo quadrado com um valor menor
-            Application.DoEvents()
+            'Application.DoEvents()
         Loop
 
         'OK. Temos um caminho.
