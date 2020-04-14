@@ -44,7 +44,8 @@ Friend Module C_NetworkConfig
 #If DEBUG Then
 
     Private Sub Socket_TrafficReceived(size As Integer, ByRef data() As Byte) Handles Socket.TrafficReceived
-        Console.WriteLine("Tráfego Recebio : [Tamanho: " & size & "]")
+        Console.WriteLine("Tráfego Recebido : [Tamanho: " & size & "]")
+
         Dim tmpData = data
 #Disable Warning BC42024 ' Variável local não usada
         Dim breakPointDummy As Integer

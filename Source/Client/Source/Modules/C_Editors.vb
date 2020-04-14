@@ -342,8 +342,6 @@ Module C_Editors
             .nudY.Value = Skill(Editorindex).Y
             .cmbDir.SelectedIndex = Skill(Editorindex).Dir
             .nudVital.Value = Skill(Editorindex).Vital
-            .nudDuration.Value = Skill(Editorindex).Duration
-            .nudInterval.Value = Skill(Editorindex).Interval
             .nudRange.Value = Skill(Editorindex).Range
 
             .chkAoE.Checked = Skill(Editorindex).IsAoE
