@@ -9,5 +9,6 @@
     <FileVersion>1.0.0.0</FileVersion>
     <Copyright>Copyright © 2020 MMODEV</Copyright>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <StartupObject>Server.S_Console</StartupObject>
   </PropertyGroup>
 </Project>
