@@ -216,6 +216,7 @@ Module S_General
         Console.WriteLine("\____/|_|\__, |___/_|\__,_|_| |_| |_(_)_| \_/\____/  \_/  ")
         Console.WriteLine("          __/ |                                           ")
         Console.WriteLine("         |___/                                            ")
+        Console.WriteLine("             ===== Linux Edition =====                    ")
 
         Console.WriteLine("")
 

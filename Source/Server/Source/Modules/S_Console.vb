@@ -14,7 +14,7 @@ Module S_Console
     Private Sub ConsoleThread()
         Dim line As String, parts As String()
 
-        Console.WriteLine("Inicializando loop do console")
+        Console.WriteLine("Inicializando loop do console...")
 
         While (True)
             line = Console.ReadLine()
