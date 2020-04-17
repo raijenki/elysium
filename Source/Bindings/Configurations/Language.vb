@@ -18,7 +18,7 @@ Public Class LanguageDef
     Public Class MainMenuDef
 
         ' TEXTO PRINCIPAL
-        Public ServerStatus As String = "Status do servidor:"
+        Public ServerStatus As String = "Estado do servidor:"
         Public ServerOnline As String = "Online"
         Public ServerReconnect As String = "Reconectando..."
         Public ServerOffline As String = "Offline"
@@ -26,7 +26,7 @@ Public Class LanguageDef
         Public ButtonRegister As String = "Registrar"
         Public ButtonCredits As String = "Creditos"
         Public ButtonExit As String = "Sair"
-        Public NewsHeader As String = "Ultimas noticias"
+        Public NewsHeader As String = "Últimas noticias"
         Public News As String = "Bem-vindos ao cliente da Elysium.NET
                                  Esse é uma game engine, gratuita e open source, baseado em VB.NET
                                  Precisa de ajuda OU suporte? visite nosso forum
@@ -78,7 +78,7 @@ Public Class LanguageDef
     Public Class GameDef
 
         Public MapName As String = "Mapa: "
-        Public Time As String = "Tempo: "
+        Public Time As String = "Hora: "
         Public Fps As String = "Fps: "
         Public Lps As String = "Lps: "
 
