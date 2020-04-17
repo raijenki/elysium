@@ -217,6 +217,7 @@ Namespace ASFW.IO.Encryption
         ''' to other KeyPair objects without access to a file. (EX: over a network)
         ''' </summary>
         Public Function ExportKeyString(ByVal Optional exportPrivate As Boolean = False) As String
+            Dim _rsa = _rsaMgr.Create()
             Return _rsa.ToXmlString(exportPrivate)
         End Function
 
