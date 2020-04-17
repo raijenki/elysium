@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.0": {
-      "Server/1.0.0": {
+      "Elysium Server/1.0.0": {
         "runtime": {
-          "Server.dll": {}
+          "Elysium Server.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Server/1.0.0": {
+    "Elysium Server/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

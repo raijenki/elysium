@@ -182,8 +182,8 @@ Namespace ASFW.IO.Encryption
         ' Check if bugs later // Auto-implemented property
 
         'Property Csp As CspParameters = New CspParameters()
-        Public Property _rsaMgr As RSA
-        Public _rsa = _rsaMgr.Create()
+        Private _rsaMgr As RSA
+        Public _rsa = _rsaMgr.Create(2048)
         'Public _rsa As RSACryptoServiceProvider
 
         Public Sub Dispose()
@@ -207,7 +207,7 @@ Namespace ASFW.IO.Encryption
         ''' Generates a new Public/Encryption and Private/Decryption Keypair.
         ''' </summary>
         Public Sub GenerateKeys(ByVal Optional type As KeyType = KeyType.Signature)
-            Dim _rsa = _rsaMgr.Create()
+            Dim _rsa = _rsaMgr.Create(2048)
         End Sub
 
 
@@ -217,7 +217,7 @@ Namespace ASFW.IO.Encryption
         ''' to other KeyPair objects without access to a file. (EX: over a network)
         ''' </summary>
         Public Function ExportKeyString(ByVal Optional exportPrivate As Boolean = False) As String
-            Dim _rsa = _rsaMgr.Create()
+            Dim _rsa = _rsaMgr.Create(2048)
             Return _rsa.ToXmlString(exportPrivate)
         End Function
 

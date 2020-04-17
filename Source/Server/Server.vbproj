@@ -10,5 +10,6 @@
     <Copyright>Copyright © 2020 MMODEV</Copyright>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <StartupObject>Server.S_Console</StartupObject>
+    <AssemblyName>Elysium Server</AssemblyName>
   </PropertyGroup>
 </Project>
