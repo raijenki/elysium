@@ -210,7 +210,7 @@ Namespace ASFW.IO.Encryption
         ''' </summary>
         Public ReadOnly Property PublicOnly As Boolean
             Get
-                If _rsa Is Nothing Then Throw New Exception("Key(s) not found!")
+                If _rsa Is Nothing Then Throw New Exception("Chave(s) não encontrada(s)!")
                 Return _rsa.PublicOnly
             End Get
         End Property
@@ -265,7 +265,7 @@ Namespace ASFW.IO.Encryption
         End Sub
 
         Public Function EncryptBytes(ByVal value As Byte()) As Byte()
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
                 .BlockSize = 256,
@@ -289,7 +289,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Async Function EncryptBytesAsync(ByVal value As Byte()) As Task(Of Byte())
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
                 .BlockSize = 256,
@@ -313,7 +313,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Function EncryptBytes(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Byte()
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
                 .BlockSize = 256,
@@ -337,7 +337,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Async Function EncryptBytesAsync(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Task(Of Byte())
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
                 .KeySize = 256,
                 .BlockSize = 256,
@@ -361,27 +361,27 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Function EncryptString(ByVal value As String) As String
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Return Convert.ToBase64String(EncryptBytes(Encoding.UTF8.GetBytes(value)))
         End Function
 
         Public Async Function EncryptStringAsync(ByVal value As String) As Task(Of String)
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Return Convert.ToBase64String(Await EncryptBytesAsync(Encoding.UTF8.GetBytes(value)))
         End Function
 
         Public Sub EncryptFile(ByVal srcFile As String, ByVal dstFile As String)
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             File.WriteAllBytes(dstFile, EncryptBytes(File.ReadAllBytes(srcFile)))
         End Sub
 
         Public Async Function EncryptFileAsync(ByVal srcFile As String, ByVal dstFile As String) As Task
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             File.WriteAllBytes(dstFile, Await EncryptBytesAsync(File.ReadAllBytes(srcFile)))
         End Function
 
         Public Function DecryptBytes(ByVal value As Byte()) As Byte()
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             If value.Length < 288 Then Return Nothing
             Dim rm = New RijndaelManaged With {
@@ -411,7 +411,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Async Function DecryptBytesAsync(ByVal value As Byte()) As Task(Of Byte())
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             If value.Length < 288 Then Return Nothing
             Dim rm = New RijndaelManaged With {
@@ -441,7 +441,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Function DecryptBytes(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Byte()
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             If value.Length < 288 Then Return Nothing
             If value.Length < offset + size Then Return Nothing
@@ -472,7 +472,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Async Function DecryptBytesAsync(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Task(Of Byte())
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             If value.Length < 288 Then Return Nothing
             If value.Length < offset + size Then Return Nothing
@@ -503,7 +503,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Function DecryptString(ByVal value As String) As String
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             Dim buffer = Convert.FromBase64String(value)
             If buffer.Length < 288 Then Return ""
@@ -511,7 +511,7 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Async Function DecryptStringAsync(ByVal value As String) As Task(Of String)
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             Dim buffer = Convert.FromBase64String(value)
             If buffer.Length < 288 Then Return ""
@@ -519,18 +519,18 @@ Namespace ASFW.IO.Encryption
         End Function
 
         Public Sub DecryptFile(ByVal srcFile As String, ByVal dstFile As String)
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return
             Dim buffer = DecryptBytes(File.ReadAllBytes(srcFile))
-            If buffer Is Nothing Then Throw New Exception("File contents were empty!")
+            If buffer Is Nothing Then Throw New Exception("Conteúdo do arquivo estava vazio!")
             File.WriteAllBytes(dstFile, buffer)
         End Sub
 
         Public Async Function DecryptFileAsync(ByVal srcFile As String, ByVal dstFile As String) As Task
-            If _rsa Is Nothing Then Throw New Exception("Key not set.")
+            If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return
             Dim buffer = Await DecryptBytesAsync(File.ReadAllBytes(srcFile))
-            If buffer Is Nothing Then Throw New Exception("File contents were empty!")
+            If buffer Is Nothing Then Throw New Exception("Conteúdo do arquivo estava vazio!")
             File.WriteAllBytes(dstFile, buffer)
         End Function
     End Class

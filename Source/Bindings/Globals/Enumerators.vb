@@ -1,6 +1,6 @@
 ﻿Friend Module modEnumerators
 
-    ''' <Summary> Text Color Contstant </Summary>
+    ''' <Summary> Constantes de Cores de Textos  </Summary>
     Enum ColorType As Byte
         Black
         Blue
@@ -20,7 +20,7 @@
         White
     End Enum
 
-    ''' <Summary> Quick Access/Constant Color References </Summary>
+    ''' <Summary> Acesso Rápido/Referencias de Cor  </Summary>
     Enum QColorType As Byte
         SayColor = ColorType.White
         GlobalColor = ColorType.BrightBlue
@@ -36,20 +36,20 @@
         NewMapColor = ColorType.BrightBlue
     End Enum
 
-    ''' <Summary> Sex Constant </Summary>
+    ''' <Summary> Constantes Sexuais </Summary>
     Enum SexType As Byte
         Male
         Female
     End Enum
 
-    ''' <Summary> Map Moral Constant </Summary>
+    ''' <Summary> Consntantes de Moral do Mapa </Summary>
     Enum MapMoralType As Byte
         None
         Safe
         Indoors
     End Enum
 
-    ''' <Summary> Tile Constant </Summary>
+    ''' <Summary> Constantes de Tile </Summary>
     Enum TileType As Byte
         None
         Blocked
@@ -72,7 +72,7 @@
         Count
     End Enum
 
-    ''' <Summary> Item Constant </Summary>
+    ''' <Summary> Constante de Item </Summary>
     Enum ItemType As Byte
         None
         Equipment
@@ -87,7 +87,7 @@
         Count
     End Enum
 
-    ''' <Summary> Consumable Constant </Summary>
+    ''' <Summary> Constantes de Consumíveis </Summary>
     Enum ConsumableType As Byte
         Hp
         Mp
@@ -95,7 +95,7 @@
         Exp
     End Enum
 
-    ''' <Summary> Direction Constant </Summary>
+    ''' <Summary> Constantes de Direção </Summary>
     Enum DirectionType As Byte
         Up
         Down
@@ -103,14 +103,14 @@
         Right
     End Enum
 
-    ''' <Summary> Movement Constant </Summary>
+    ''' <Summary> Constantes de Movimento </Summary>
     Enum MovementType As Byte
         Standing
         Walking
         Running
     End Enum
 
-    ''' <Summary> Admin Constant </Summary>
+    ''' <Summary> Constantes de Admin </Summary>
     Enum AdminType As Byte
         Player
         Monitor
@@ -119,7 +119,7 @@
         Creator
     End Enum
 
-    ''' <Summary> Npc Behavior Constant </Summary>
+    ''' <Summary> Constantes de Comportamento de NPC </Summary>
     Enum NpcBehavior As Byte
         AttackOnSight
         AttackWhenAttacked
@@ -129,7 +129,7 @@
         Quest
     End Enum
 
-    ''' <Summary> Skill Constant </Summary>
+    ''' <Summary> Constantes de Habilidades </Summary>
     Enum SkillType As Byte
         DamageHp
         DamageMp
@@ -139,7 +139,7 @@
         Pet
     End Enum
 
-    ''' <Summary> Target Constant </Summary>
+    ''' <Summary> Constantes de Alvos </Summary>
     Enum TargetType As Byte
         None
         Player
@@ -148,14 +148,14 @@
         Pet
     End Enum
 
-    ''' <Summary> Action Message Constant </Summary>
+    ''' <Summary> Constantes de Mensagem de Ação </Summary>
     Enum ActionMsgType As Byte
         [Static]
         Scroll
         Screen
     End Enum
 
-    ''' <Summary> Stats used by Players, Npcs and Classes </Summary>
+    ''' <Summary> Atributos usados por Jogadores, Classes e NPCs </Summary>
     Friend Enum StatType As Byte
         Strength = 1
         Endurance
@@ -167,7 +167,7 @@
         Count
     End Enum
 
-    ''' <Summary> Vitals used by Players, Npcs, and Classes </Summary>
+    ''' <Summary> Vitais usados por Jogadores, Classes e NPCs </Summary>
     Friend Enum VitalType As Byte
         HP = 1
         MP
@@ -176,7 +176,7 @@
         Count
     End Enum
 
-    ''' <Summary> Equipment used by Players </Summary>
+    ''' <Summary> Equipamentos usados por jogadores </Summary>
     Friend Enum EquipmentType As Byte
         Weapon = 1
         Armor
@@ -188,7 +188,7 @@
         Count
     End Enum
 
-    ''' <Summary> Layers in a map </Summary>
+    ''' <Summary> Camadas em um mapa </Summary>
     Friend Enum LayerType As Byte
         Ground = 1
         Mask
@@ -199,7 +199,7 @@
         Count
     End Enum
 
-    ''' <Summary> Resource Skills </Summary>
+    ''' <Summary> Habilidades de Recursos </Summary>
     Friend Enum ResourceSkills As Byte
         Herbalist = 1
         WoodCutter
@@ -210,22 +210,22 @@
     End Enum
 
     Friend Enum RandomBonusType
-        RANDOM_SPEED = 1            ' Reduces time between attacks by 20%
-        RANDOM_DAMAGE        ' Increases base damage by 25%
-        RANDOM_WARRIOR         ' Adds Strength and Endurance
-        RANDOM_ARCHER        ' Adds Achery and Endurance
-        RANDOM_MAGE          ' Adds Magic and Endurance
-        RANDOM_JESTER         ' Adds Magic and Archery
-        RANDOM_BATTLEMAGE     ' Adds Attack and Magic
-        RANDOM_ROGUE         ' Adds Attack and Archery
-        RANDOM_TOWER           ' Adds Endurance and Defense
-        RANDOM_SURVIVALIST     ' Adds Cooking and Fishing
-        RANDOM_PERFECTIONIST   ' Adds Mining and Jeweler
-        RANDOM_COALMEN         ' Adds Mining and Blacksmithing
-        RANDOM_BOWYER          ' Adds Woodcutting and Fletching
-        RANDOM_BROKEN          ' Reduces damage and increases speed by 10%
-        RANDOM_PRISM           ' Gives four random stats, but will always turn soulbound
-        RANDOM_CANNON          ' Gives Attack, Ranged and Magic
+        RANDOM_SPEED = 1            ' Reduz tempo entre ataques em 20%
+        RANDOM_DAMAGE        ' Aumenta dano base em 25%
+        RANDOM_WARRIOR         ' Adiciona força e resistencia
+        RANDOM_ARCHER        ' Adiciona Arquearia e Resistencia
+        RANDOM_MAGE          ' Adiciona Magia e Resistencia
+        RANDOM_JESTER         ' Adiciona Magia e Arquearia
+        RANDOM_BATTLEMAGE     ' Adiciona Ataque e Magia
+        RANDOM_ROGUE         ' Adiciona Ataque e Arquearia
+        RANDOM_TOWER           ' Adiciona Resistencia e Defesa
+        RANDOM_SURVIVALIST     ' Adiciona Cozinha e Pescaria
+        RANDOM_PERFECTIONIST   ' Adiciona Mineração e Joalheria
+        RANDOM_COALMEN         ' Adiciona Mineração e Forja
+        RANDOM_BOWYER          ' Adiciona Lenhadoria e Fazedor-de-Flecharia
+        RANDOM_BROKEN          ' Reduz dano e aumenta velocidade em 10% 
+        RANDOM_PRISM           ' Quatro atributos aleatorios
+        RANDOM_CANNON          ' Dá ataque, alcance e magia
     End Enum
 
     Friend Enum RarityType

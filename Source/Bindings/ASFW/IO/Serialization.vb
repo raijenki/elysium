@@ -5,7 +5,7 @@ Imports System.Xml.Serialization
 Namespace ASFW.IO
     Public Module Serialization
         ''' <summary>
-        ''' Saves a public serializable class object as XML data in the specified file.
+        ''' Salva um objeto de classe serializável como XML em um arquivo específico.
         ''' </summary>
         Public Sub SaveXml(Of T)(ByVal path As String, ByVal obj As Object)
             Dim serializer As XmlSerializer = New XmlSerializer(GetType(T))
@@ -16,7 +16,7 @@ Namespace ASFW.IO
         End Sub
 
         ''' <summary>
-        ''' Loads XML data from the specified file as a public serializable class object.
+        ''' Carrega o arquivo XML como objeto serializável.
         ''' </summary>
         Public Function LoadXml(Of T)(ByVal path As String) As Object
             Dim serializer As XmlSerializer = New XmlSerializer(GetType(T))
@@ -39,7 +39,7 @@ Namespace ASFW.IO
 
 
         ''' <summary>
-        ''' Returns an object from a byte array.
+        ''' Retorna um objeto de um vetor de bytes.
         ''' </summary>
         Public Function ToObject(ByVal bytes As Byte()) As Object
             Using ms = New MemoryStream(bytes)

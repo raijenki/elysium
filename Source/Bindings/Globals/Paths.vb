@@ -72,153 +72,153 @@
 
 #ElseIf SERVER Then
 
-        ''' <summary> Returns accounts directory </summary>
+        ''' <summary> Retorna diretório de contas </summary>
         Friend ReadOnly Property Accounts As String
             Get
                 Return Application.StartupPath() & "/Database/Accounts/"
             End Get
         End Property
 
-        ''' <summary> Returns account file </summary>
+        ''' <summary> Retorna arquivo de contas </summary>
         Friend Function Account(index As Integer) As String
             Return Accounts & index & ".dat"
         End Function
 
-        ''' <summary> Returns animations directory </summary>
+        ''' <summary> Retorna diretório de animações </summary>
         Friend ReadOnly Property Animations As String
             Get
                 Return Application.StartupPath() & "/Database/Animations/"
             End Get
         End Property
 
-        ''' <summary> Returns animation file </summary>
+        ''' <summary> Retorna arquivos de animações </summary>
         Friend Function Animation(index As Integer) As String
             Return Animations & index & ".dat"
         End Function
 
-        ''' <summary> Returns items directory </summary>
+        ''' <summary> Retorna diretório de itens </summary>
         Friend ReadOnly Property Items As String
             Get
                 Return Application.StartupPath() & "/Database/Items/"
             End Get
         End Property
 
-        ''' <summary> Returns item file </summary>
+        ''' <summary> Retorna arquivos de itens </summary>
         Friend Function Item(index As Integer) As String
             Return Items & index & ".dat"
         End Function
 
-        ''' <summary> Returns logs directory </summary>
+        ''' <summary> Retorna diretório de logs </summary>
         Friend ReadOnly Property Logs As String
             Get
                 Return Application.StartupPath() & "/Logs/"
             End Get
         End Property
 
-        ''' <summary> Returns maps directory </summary>
+        ''' <summary> Retorna diretório de mapas </summary>
         Friend ReadOnly Property Maps As String
             Get
                 Return Application.StartupPath() & "/Database/Maps/"
             End Get
         End Property
 
-        ''' <summary> Returns map file </summary>
+        ''' <summary> Retorna arquivos de mapas </summary>
         Friend Function Map(index As Integer) As String
             Return Maps & index & ".dat"
         End Function
 
-        ''' <summary> Returns npcs directory </summary>
+        ''' <summary> Retorna diretório de npcs </summary>
         Friend ReadOnly Property Npcs As String
             Get
                 Return Application.StartupPath() & "/Database/Npcs/"
             End Get
         End Property
 
-        ''' <summary> Returns npc file </summary>
+        ''' <summary> Retorna arquivos de npcs </summary>
         Friend Function Npc(index As Integer) As String
             Return Npcs() & index & ".dat"
         End Function
 
-        ''' <summary> Returns pets directory </summary>
+        ''' <summary> Retorna diretório de pets </summary>
         Friend ReadOnly Property Pets As String
             Get
                 Return Application.StartupPath() & "/Database/Pets/"
             End Get
         End Property
 
-        ''' <summary> Returns pet file </summary>
+        ''' <summary> Retorna arquivos de pets </summary>
         Friend Function Pet(index As Integer) As String
             Return Pets() & index & ".dat"
         End Function
 
-        ''' <summary> Returns projectiles directory </summary>
+        ''' <summary> Retorna diretório de projeteis </summary>
         Friend ReadOnly Property Projectiles As String
             Get
                 Return Application.StartupPath() & "/Database/Projectiles/"
             End Get
         End Property
 
-        ''' <summary> Returns projectile file </summary>
+        ''' <summary> Retorna arquivo de projeteis </summary>
         Friend Function Projectile(index As Integer) As String
             Return Projectiles() & index & ".dat"
         End Function
 
-        ''' <summary> Returns quests directory </summary>
+        ''' <summary> Retorna diretório de quests </summary>
         Friend ReadOnly Property Quests As String
             Get
                 Return Application.StartupPath() & "/Database/Quests/"
             End Get
         End Property
 
-        ''' <summary> Returns quest file </summary>
+        ''' <summary> Retorna arquivos de quests </summary>
         Friend Function Quest(index As Integer) As String
             Return Quests() & index & ".dat"
         End Function
 
-        ''' <summary> Returns recipes directory </summary>
+        ''' <summary> Retorna diretório de receitas </summary>
         Friend ReadOnly Property Recipes As String
             Get
                 Return Application.StartupPath() & "/Database/Recipes/"
             End Get
         End Property
 
-        ''' <summary> Returns recipe file </summary>
+        ''' <summary> Retorna arquivos de receitas </summary>
         Friend Function Recipe(index As Integer) As String
             Return Recipes() & index & ".dat"
         End Function
 
-        ''' <summary> Returns resources directory </summary>
+        ''' <summary> Retorna diretório de recursous </summary>
         Friend ReadOnly Property Resources As String
             Get
                 Return Application.StartupPath() & "/Database/Resources/"
             End Get
         End Property
 
-        ''' <summary> Returns resource file </summary>
+        ''' <summary> Retorna arquivos de recursos </summary>
         Friend Function Resource(index As Integer) As String
             Return Resources() & index & ".dat"
         End Function
 
-        ''' <summary> Returns shops directory </summary>
+        ''' <summary> Retorna diretório de lojas </summary>
         Friend ReadOnly Property Shops As String
             Get
                 Return Application.StartupPath() & "/Database/Shops/"
             End Get
         End Property
 
-        ''' <summary> Returns shop file </summary>
+        ''' <summary> Retorna arquivos de lojas </summary>
         Friend Function Shop(index As Integer) As String
             Return Shops() & index & ".dat"
         End Function
 
-        ''' <summary> Returns skills directory </summary>
+        ''' <summary> Retorna diretório de habilidades </summary>
         Friend ReadOnly Property Skills As String
             Get
                 Return Application.StartupPath() & "/Database/Skills/"
             End Get
         End Property
 
-        ''' <summary> Returns skill file </summary>
+        ''' <summary> Retorna arquivos de habilidades </summary>
         Friend Function Skill(index As Integer) As String
             Return Skills() & index & ".dat"
         End Function

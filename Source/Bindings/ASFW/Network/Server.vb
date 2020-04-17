@@ -170,7 +170,7 @@ Namespace ASFW.Network
         ''' <returns></returns>
         Public Function ClientIp(ByVal index As Integer) As String
             If IsConnected(index) Then Return CType(_socket(index).RemoteEndPoint, IPEndPoint).Address.ToString()
-            Return "[Null]"
+            Return "[Nulo]"
         End Function
 
 

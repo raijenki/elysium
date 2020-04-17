@@ -1,5 +1,5 @@
 ﻿Friend Module modTypes
-    ' Common data structure arrays
+    ' Vetores de estruturas de dados comuns
     Friend Classes() As ClassStruct
     Friend Item(MAX_ITEMS) As ItemStruct
     Friend Npc(MAX_NPCS) As NpcStruct
@@ -8,7 +8,7 @@
     Friend Resource(MAX_RESOURCES) As ResourceStruct
     Friend Animation(MAX_ANIMATIONS) As AnimationStruct
 
-    ' Common data structures
+    ' Estruturas de dados comuns
     <Serializable>
     Friend Structure RandInvStruct
         Dim Prefix As String
@@ -257,8 +257,8 @@
         Dim ExpGain As Integer
         Dim LevelPnts As Integer
 
-        Dim StatType As Byte '1 for set stats, 2 for relation to owner's stats
-        Dim LevelingType As Byte '0 for leveling on own, 1 for not leveling
+        Dim StatType As Byte '1 para próprios atributos, 2 para relação com o dono
+        Dim LevelingType As Byte '0 para nível próprio, 1 para não nivelar
 
         Dim Stat() As Byte
 
@@ -289,7 +289,7 @@
         Dim Requirement() As Integer '1=item, 2=quest, 3=class
         Dim RequirementIndex() As Integer
 
-        Dim QuestGiveItem As Integer 'Todo: make this dynamic
+        Dim QuestGiveItem As Integer 'Todo: fazer dinâmico
         Dim QuestGiveItemValue As Integer
         Dim QuestRemoveItem As Integer
         Dim QuestRemoveItemValue As Integer

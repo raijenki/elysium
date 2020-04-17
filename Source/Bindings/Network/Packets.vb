@@ -1,6 +1,6 @@
 ﻿Friend Module Packets
 
-    ' Packets sent by client to server
+    ' Packets enviadas do cliente ao servidor
     Friend Enum ClientPackets
         CNewAccount = 1
         CDelAccount
@@ -72,13 +72,13 @@
 
         CAdmin
 
-        'quests
+        'tarefas
         CRequestQuests
         CQuestLogUpdate
         CPlayerHandleQuest
         CQuestReset
 
-        'Housing
+        'moradias
         CBuyHouse
         CVisit
         CAcceptVisit
@@ -91,7 +91,7 @@
         CDeleteHotbarSlot
         CUseHotbarSlot
 
-        'Events
+        'Eventos
         CEventChatReply
         CEvent
         CSwitchesAndVariables
@@ -110,7 +110,7 @@
         'emotes
         CEmote
 
-        'party
+        'equipes
         CRequestParty
         CAcceptParty
         CDeclineParty
@@ -126,16 +126,16 @@
         CPetSkill
         CPetUseStatPoint
 
-        '*************************
-        '***   EDITOR PACKETS  ***
-        '*************************
+        '*******************************
+        '***   PACKETS DOS EDITORES  ***
+        '*******************************
 
-        ' Mapper Packets
+        ' Packets do Mapper
         CMapRespawn
         CMapReport
         CSaveMap
 
-        ' AutoMapper Packets
+        ' Packets do AutoMapper
         CRequestAutoMap
         CSaveAutoMap
 
@@ -143,23 +143,23 @@
         ' ### Dev+ Packets ###
         ' ####################
 
-        'animations
+        'animações
         CRequestEditAnimation
         CSaveAnimation
 
-        'Class Editor
+        'editor de classes
         CRequestEditClasses
         CSaveClasses
 
-        'houses
+        'moradias
         CRequestEditHouse
         CSaveHouses
 
-        'items
+        'itens
         CRequestEditItem
         CSaveItem
 
-        'npc's
+        'npcs
         CRequestEditNpc
         CSaveNpc
 
@@ -167,35 +167,35 @@
         CRequestEditPet
         CSavePet
 
-        'projectiles
+        'projeteis
         CRequestEditProjectiles
         CSaveProjectile
 
-        'quests
+        'tarefas
         CRequestEditQuest
         CSaveQuest
 
-        'recipe
+        'receitas
         CRequestEditRecipes
         CSaveRecipe
 
-        'resources
+        'recursos
         CRequestEditResource
         CSaveResource
 
-        'shops
+        'lojas
         CRequestEditShop
         CSaveShop
 
-        'skills
+        'habilidades
         CRequestEditSkill
         CSaveSkill
 
-        ' Make sure COUNT is below everything else
+        ' Ter certeza que Count está abaixo de tudo
         Count
     End Enum
 
-    ' Packets sent by server to client
+    ' Packets enviadas do servidor ao clinete
     Friend Enum ServerPackets
         SAlertMsg = 1
         SKeyPair
@@ -284,14 +284,14 @@
         SrClick
         STotalOnline
 
-        'quests
+        'tarefas
         SQuestEditor
         SUpdateQuest
         SPlayerQuest
         SPlayerQuests
         SQuestMessage
 
-        'Housing
+        'moradia
         SBuyHouse
         SVisit
         SFurniture
@@ -301,7 +301,7 @@
         'hotbar
         SHotbar
 
-        'Events
+        'Eventos
         SSpawnEvent
         SEventMove
         SEventDir
@@ -323,14 +323,14 @@
         SUpdateProjectile
         SMapProjectile
 
-        'recipes
+        'receitas
         SUpdateRecipe
         SRecipeEditor
         SSendPlayerRecipe
         SOpenCraft
         SUpdateCraft
 
-        'Class Editor
+        'editor de classes
         SClassEditor
         SUpdateClasses
 
@@ -340,7 +340,7 @@
         'emotes
         SEmote
 
-        'Parties
+        'equipes
         SPartyInvite
         SPartyUpdate
         SPartyVitals
@@ -360,7 +360,7 @@
         STime
         SClock
 
-        ' Make sure COUNT is below everything else
+        ' Tenha certeza que COUNT está abaixo de tudo
         COUNT
     End Enum
 
