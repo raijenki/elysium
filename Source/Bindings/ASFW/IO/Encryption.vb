@@ -3,6 +3,9 @@ Imports System.IO
 Imports System.Text
 Imports System.Threading.Tasks
 Imports System.Security.Cryptography
+Imports System.Collections.Generic
+
+
 
 Namespace ASFW.IO.Encryption
     ''' <summary>
@@ -14,11 +17,6 @@ Namespace ASFW.IO.Encryption
             Dim salt = New Byte(31) {}
             Dim rgbIv = New Byte(31) {}
             Dim buffer As Byte()
-
-            Using csp = New RNGCryptoServiceProvider()
-                csp.GetBytes(salt)
-                csp.GetBytes(rgbIv)
-            End Using
 
             Using bytes = New Rfc2898DeriveBytes(password, salt, iterations)
                 Dim rm = New RijndaelManaged With {
@@ -53,11 +51,6 @@ Namespace ASFW.IO.Encryption
             Dim salt = New Byte(31) {}
             Dim rgbIv = New Byte(31) {}
             Dim buffer As Byte()
-
-            Using csp = New RNGCryptoServiceProvider()
-                csp.GetBytes(salt)
-                csp.GetBytes(rgbIv)
-            End Using
 
             Using bytes = New Rfc2898DeriveBytes(password, salt, iterations)
                 Dim rm = New RijndaelManaged With {
@@ -173,14 +166,8 @@ Namespace ASFW.IO.Encryption
     ''' Advanced encryption methods performed over a generated Async Keypair Code.
     ''' </summary>
     Public NotInheritable Class KeyPair
-        Implements IDisposable
 
 
-        ''' <summary>
-        ''' Honestly wasn't sure if anyone would need direct access to this so
-        ''' it was left publicly accessible in case they would.
-        ''' </summary>
-        'Private _Csp As CspParameters
 
         ''' <summary>
         ''' Honestly have no idea what these are for, but they are used in key
@@ -194,14 +181,14 @@ Namespace ASFW.IO.Encryption
 
         ' Check if bugs later // Auto-implemented property
 
-        Property Csp As CspParameters = New CspParameters()
+        'Property Csp As CspParameters = New CspParameters()
+        Public Property _rsaMgr As RSA
+        Public _rsa = _rsaMgr.Create()
+        'Public _rsa As RSACryptoServiceProvider
 
-        Private _rsa As RSACryptoServiceProvider
-
-        Public Sub Dispose() Implements IDisposable.Dispose
-            _rsa.Dispose()
-            Me.Csp = Nothing
-            _rsa = Nothing
+        Public Sub Dispose()
+            _rsaMgr.Dispose()
+            _rsaMgr = Nothing
         End Sub
 
 
@@ -220,8 +207,7 @@ Namespace ASFW.IO.Encryption
         ''' Generates a new Public/Encryption and Private/Decryption Keypair.
         ''' </summary>
         Public Sub GenerateKeys(ByVal Optional type As KeyType = KeyType.Signature)
-            Csp.ProviderType = type
-            _rsa = New RSACryptoServiceProvider(2048, Csp)
+            Dim _rsa = _rsaMgr.Create()
         End Sub
 
 
@@ -249,7 +235,6 @@ Namespace ASFW.IO.Encryption
         ''' Loads the string data of the Key Code(s) for use.
         ''' </summary>
         Public Sub ImportKeyString(ByVal key As String)
-            _rsa = New RSACryptoServiceProvider(Csp)
             _rsa.FromXmlString(key)
         End Sub
 
@@ -259,7 +244,6 @@ Namespace ASFW.IO.Encryption
         ''' </summary>
         Public Sub ImportKey(ByVal file As String)
             Dim stream = New StreamReader(file)
-            _rsa = New RSACryptoServiceProvider(Csp)
             _rsa.FromXmlString(stream.ReadToEnd())
             stream.Close()
         End Sub
