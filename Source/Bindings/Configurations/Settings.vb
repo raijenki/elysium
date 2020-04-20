@@ -21,7 +21,7 @@ Public Class SettingsDef
     Public HighEnd As Byte = 0
     Public ShowNpcBar As Byte = 1
 
-    <XmlIgnore()> Public Ip As String = "134.209.15.141"
+    <XmlIgnore()> Public Ip As String = "127.0.0.1"
     <XmlIgnore()> Public Port As Integer = 7001
 
     <XmlIgnore()> Public GameName As String = "Elysium.NET"
