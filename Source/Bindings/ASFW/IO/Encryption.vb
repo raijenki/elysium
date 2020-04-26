@@ -221,7 +221,7 @@ Namespace ASFW.IO.Encryption
         ''' </summary>
         Public Sub GenerateKeys(ByVal Optional type As KeyType = KeyType.Signature)
             Csp.ProviderType = type
-            _rsa = New RSACryptoServiceProvider(2048, Csp)
+            _rsa = New RSACryptoServiceProvider(1024, Csp)
         End Sub
 
 
@@ -267,14 +267,14 @@ Namespace ASFW.IO.Encryption
         Public Function EncryptBytes(ByVal value As Byte()) As Byte()
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
             Using ms = New MemoryStream()
-                ms.Write(_rsa.Encrypt(rm.Key, False), 0, 256)
-                ms.Write(rm.IV, 0, 32)
+                ms.Write(_rsa.Encrypt(rm.Key, False), 0, 128)
+                ms.Write(rm.IV, 0, 16)
 
                 Using es = rm.CreateEncryptor()
 
@@ -291,14 +291,14 @@ Namespace ASFW.IO.Encryption
         Public Async Function EncryptBytesAsync(ByVal value As Byte()) As Task(Of Byte())
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
             Using ms = New MemoryStream()
-                Await ms.WriteAsync(_rsa.Encrypt(rm.Key, False), 0, 256)
-                Await ms.WriteAsync(rm.IV, 0, 32)
+                Await ms.WriteAsync(_rsa.Encrypt(rm.Key, False), 0, 128)
+                Await ms.WriteAsync(rm.IV, 0, 16)
 
                 Using es = rm.CreateEncryptor()
 
@@ -315,16 +315,16 @@ Namespace ASFW.IO.Encryption
         Public Function EncryptBytes(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Byte()
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
             Using es = rm.CreateEncryptor()
 
                 Using ms = New MemoryStream()
-                    ms.Write(_rsa.Encrypt(rm.Key, False), 0, 256)
-                    ms.Write(rm.IV, 0, 32)
+                    ms.Write(_rsa.Encrypt(rm.Key, False), 0, 128)
+                    ms.Write(rm.IV, 0, 16)
 
                     Using cs = New CryptoStream(ms, es, CryptoStreamMode.Write)
                         cs.Write(value, offset, size)
@@ -339,16 +339,16 @@ Namespace ASFW.IO.Encryption
         Public Async Function EncryptBytesAsync(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Task(Of Byte())
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
 
             Using es = rm.CreateEncryptor()
 
                 Using ms = New MemoryStream()
-                    Await ms.WriteAsync(_rsa.Encrypt(rm.Key, False), 0, 256)
-                    Await ms.WriteAsync(rm.IV, 0, 32)
+                    Await ms.WriteAsync(_rsa.Encrypt(rm.Key, False), 0, 128)
+                    Await ms.WriteAsync(rm.IV, 0, 16)
 
                     Using cs = New CryptoStream(ms, es, CryptoStreamMode.Write)
                         Await cs.WriteAsync(value, offset, size)
@@ -383,19 +383,19 @@ Namespace ASFW.IO.Encryption
         Public Function DecryptBytes(ByVal value As Byte()) As Byte()
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
-            If value.Length < 288 Then Return Nothing
+            If value.Length < 144 Then Return Nothing
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
-            Dim rgb = New Byte(255) {}
-            Dim iv = New Byte(31) {}
-            Dim len = value.Length - 288
+            Dim rgb = New Byte(127) {}
+            Dim iv = New Byte(15) {}
+            Dim len = value.Length - 144
             Dim buffer = New Byte(len - 1) {}
-            System.Buffer.BlockCopy(value, 0, rgb, 0, 256)
-            System.Buffer.BlockCopy(value, 256, iv, 0, 32)
-            System.Buffer.BlockCopy(value, 288, buffer, 0, len)
+            System.Buffer.BlockCopy(value, 0, rgb, 0, 128)
+            System.Buffer.BlockCopy(value, 128, iv, 0, 16)
+            System.Buffer.BlockCopy(value, 144, buffer, 0, len)
 
             Using ds = rm.CreateDecryptor(_rsa.Decrypt(rgb, False), iv)
 
@@ -413,19 +413,19 @@ Namespace ASFW.IO.Encryption
         Public Async Function DecryptBytesAsync(ByVal value As Byte()) As Task(Of Byte())
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
-            If value.Length < 288 Then Return Nothing
+            If value.Length < 144 Then Return Nothing
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
-            Dim rgb = New Byte(255) {}
-            Dim iv = New Byte(31) {}
-            Dim len = value.Length - 288
+            Dim rgb = New Byte(127) {}
+            Dim iv = New Byte(15) {}
+            Dim len = value.Length - 144
             Dim buffer = New Byte(len - 1) {}
-            System.Buffer.BlockCopy(value, 0, rgb, 0, 256)
-            System.Buffer.BlockCopy(value, 256, iv, 0, 32)
-            System.Buffer.BlockCopy(value, 288, buffer, 0, len)
+            System.Buffer.BlockCopy(value, 0, rgb, 0, 128)
+            System.Buffer.BlockCopy(value, 128, iv, 0, 16)
+            System.Buffer.BlockCopy(value, 144, buffer, 0, len)
 
             Using ds = rm.CreateDecryptor(_rsa.Decrypt(rgb, False), iv)
 
@@ -443,20 +443,20 @@ Namespace ASFW.IO.Encryption
         Public Function DecryptBytes(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Byte()
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
-            If value.Length < 288 Then Return Nothing
+            If value.Length < 144 Then Return Nothing
             If value.Length < offset + size Then Return Nothing
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
-            Dim rgb = New Byte(255) {}
-            Dim iv = New Byte(31) {}
-            Dim len = size - 288
+            Dim rgb = New Byte(127) {}
+            Dim iv = New Byte(15) {}
+            Dim len = size - 144
             Dim buffer = New Byte(len - 1) {}
-            System.Buffer.BlockCopy(value, offset, rgb, 0, 256)
-            System.Buffer.BlockCopy(value, offset + 256, iv, 0, 32)
-            System.Buffer.BlockCopy(value, offset + 288, buffer, 0, len)
+            System.Buffer.BlockCopy(value, offset, rgb, 0, 128)
+            System.Buffer.BlockCopy(value, offset + 128, iv, 0, 16)
+            System.Buffer.BlockCopy(value, offset + 144, buffer, 0, len)
 
             Using ds = rm.CreateDecryptor(_rsa.Decrypt(rgb, False), iv)
 
@@ -474,20 +474,20 @@ Namespace ASFW.IO.Encryption
         Public Async Function DecryptBytesAsync(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer) As Task(Of Byte())
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
-            If value.Length < 288 Then Return Nothing
+            If value.Length < 160 Then Return Nothing
             If value.Length < offset + size Then Return Nothing
             Dim rm = New RijndaelManaged With {
-                .KeySize = 256,
-                .BlockSize = 256,
+                .KeySize = 128,
+                .BlockSize = 128,
                 .Mode = CipherMode.CBC
             }
-            Dim rgb = New Byte(255) {}
-            Dim iv = New Byte(31) {}
-            Dim len = size - 288
+            Dim rgb = New Byte(127) {}
+            Dim iv = New Byte(16) {}
+            Dim len = size - 160
             Dim buffer = New Byte(len - 1) {}
-            System.Buffer.BlockCopy(value, offset, rgb, 0, 256)
-            System.Buffer.BlockCopy(value, offset + 256, iv, 0, 32)
-            System.Buffer.BlockCopy(value, offset + 288, buffer, 0, len)
+            System.Buffer.BlockCopy(value, offset, rgb, 0, 128)
+            System.Buffer.BlockCopy(value, offset + 128, iv, 0, 16)
+            System.Buffer.BlockCopy(value, offset + 144, buffer, 0, len)
 
             Using ds = rm.CreateDecryptor(_rsa.Decrypt(rgb, False), iv)
 
@@ -506,7 +506,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             Dim buffer = Convert.FromBase64String(value)
-            If buffer.Length < 288 Then Return ""
+            If buffer.Length < 144 Then Return ""
             Return Encoding.UTF8.GetString(DecryptBytes(buffer))
         End Function
 
@@ -514,7 +514,7 @@ Namespace ASFW.IO.Encryption
             If _rsa Is Nothing Then Throw New Exception("Chave não setada.")
             If _rsa.PublicOnly Then Return Nothing
             Dim buffer = Convert.FromBase64String(value)
-            If buffer.Length < 288 Then Return ""
+            If buffer.Length < 144 Then Return ""
             Return Encoding.UTF8.GetString(Await DecryptBytesAsync(buffer))
         End Function
 
