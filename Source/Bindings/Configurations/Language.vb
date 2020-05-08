@@ -10,7 +10,7 @@ Public Class LanguageDef
         Public Loading As String = "Carregando..."
         Public Graphics As String = "Iniciando Graficos..."
         Public Network As String = "Conectando na rede..."
-        Public Starting As String = "Jogo inciando..."
+        Public Starting As String = "Jogo iniciando..."
 
     End Class
 
@@ -22,22 +22,19 @@ Public Class LanguageDef
         Public ServerOnline As String = "Online"
         Public ServerReconnect As String = "Reconectando..."
         Public ServerOffline As String = "Offline"
-        Public ButtonPlay As String = "Jogar"
-        Public ButtonRegister As String = "Registrar"
+        Public ButtonPlay As String = "Entrar"
+        Public ButtonRegister As String = "Criar Nova Conta"
         Public ButtonCredits As String = "Creditos"
         Public ButtonExit As String = "Sair"
         Public NewsHeader As String = "Últimas noticias"
-        Public News As String = "Bem-vindos ao cliente da Elysium.NET
-                                 Esse é uma game engine, gratuita e open source, baseado em VB.NET
-                                 Precisa de ajuda OU suporte? visite nosso forum
-                                 http://www.mmodev.com.br/"
+        Public News As String = "Bem-vindos ao cliente da Elysium.NET. Esse é uma game engine, gratuita e open source, baseado em VB.NET. Precisa de ajuda OU suporte? visite nosso forum. http://www.mmodev.com.br/"
 
         ' TEXTO DE LOGIN
         Public Login As String = "Login"
-        Public LoginName As String = "Login: "
-        Public LoginPass As String = "Senha: "
+        Public LoginName As String = "Usuário "
+        Public LoginPass As String = "Senha "
         Public LoginCheckBox As String = "Salvar senha?"
-        Public LoginButton As String = "Enviar"
+        Public LoginButton As String = "Entrar"
 
         ' TEXTO DE NOVO PERSONAGEM
         Public NewCharacter As String = "Criar personagem"
@@ -47,20 +44,18 @@ Public Class LanguageDef
         Public NewCharacterMale As String = "Masculino"
         Public NewCharacterFemale As String = "Feminino"
         Public NewCharacterSprite As String = "Sprite"
-        Public NewCharacterButton As String = "Enviar"
+        Public NewCharacterButton As String = "cRIAR"
 
         ' TEXTO DE SELEÇÃO DE PERSONAGENS
         Public UseCharacter As String = "Seleção de Personagem"
-        Public UseCharacterNew As String = "Novo Personagem"
-        Public UseCharacterUse As String = "Escolher Personagem"
-        Public UseCharacterDel As String = "Deletar Personagem"
+        Public UseCharacterNew As String = "Novo"
+        Public UseCharacterUse As String = "Selecionar"
+        Public UseCharacterDel As String = "Deletar"
 
         ' TEXTO DE REGISTRO DA CONTA
-        Public Register As String = "Registro de Conta"
-        Public RegisterName As String = "Login: "
-        Public RegisterPass1 As String = "Senha: "
-        ' RJK OU LUCAS, SE VIREM ISSO ESSA VARIAVEL TERIA Q TER UM NOME MAIS AMIGAVEL N?
-        Public RegisterPass2 As String = "Re-digite a senha: "
+        Public RegisterName As String = "Usuário "
+        Public RegisterPass As String = "Senha "
+        Public RetypeRegisterPass As String = "Re-digite a senha "
 
         ' TEXTO DE CREDITOS
         Public Credits As String = "Créditos"

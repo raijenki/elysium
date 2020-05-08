@@ -72,25 +72,27 @@ Namespace ASFW.Network
         End Sub
 
         Private Sub DoConnect(ByVal ar As IAsyncResult)
-            Try
-                _socket.EndConnect(ar)
-            Catch
-                RaiseEvent ConnectionFailed()
-                _connecting = False
-                Return
-            End Try
+            If Not Socket Is Nothing Then
+                Try
+                    _socket.EndConnect(ar)
+                Catch
+                    RaiseEvent ConnectionFailed()
+                    _connecting = False
+                    Return
+                End Try
 
-            If Not _socket.Connected Then
-                RaiseEvent ConnectionFailed()
+                If Not _socket.Connected Then
+                    RaiseEvent ConnectionFailed()
+                    _connecting = False
+                    Return
+                End If
+
                 _connecting = False
-                Return
+                RaiseEvent ConnectionSuccess()
+                _socket.ReceiveBufferSize = _packetSize
+                _socket.SendBufferSize = _packetSize
+                BeginReceiveData()
             End If
-
-            _connecting = False
-            RaiseEvent ConnectionSuccess()
-            _socket.ReceiveBufferSize = _packetSize
-            _socket.SendBufferSize = _packetSize
-            BeginReceiveData()
         End Sub
 
 
@@ -114,10 +116,12 @@ Namespace ASFW.Network
         End Sub
 
         Private Sub DoDisconnect(ByVal ar As IAsyncResult)
-            Try
-                _socket.EndDisconnect(ar)
-            Catch
-            End Try
+            If Not _socket Is Nothing Then
+                Try
+                    _socket.EndDisconnect(ar)
+                Catch
+                End Try
+            End If
 
             RaiseEvent ConnectionLost()
         End Sub
@@ -130,37 +134,40 @@ Namespace ASFW.Network
         Private Sub DoReceive(ByVal ar As IAsyncResult)
             Dim size = 0
 
-            Try
-                size = _socket.EndReceive(ar)
-            Catch
-                RaiseEvent CrashReport("ConnectionForciblyClosedException")
-                Disconnect()
-                Return
-            End Try
+            If Not _socket Is Nothing Then
 
-            If size < 1 Then
-                If _socket Is Nothing Then Return
-                RaiseEvent CrashReport("BufferUnderflowException")
-                Disconnect()
-                Return
+                Try
+                    size = _socket.EndReceive(ar)
+                Catch
+                    RaiseEvent CrashReport("ConnectionForciblyClosedException")
+                    Disconnect()
+                    Return
+                End Try
+
+                If size < 1 Then
+                    If _socket Is Nothing Then Return
+                    RaiseEvent CrashReport("BufferUnderflowException")
+                    Disconnect()
+                    Return
+                End If
+
+                RaiseEvent TrafficReceived(size, _receiveBuffer)
+
+                If _packetRing Is Nothing Then
+                    _packetRing = New Byte(size - 1) {}
+                    Buffer.BlockCopy(_receiveBuffer, 0, _packetRing, 0, size)
+                Else
+                    Dim len = _packetRing.Length
+                    Dim data = New Byte(len + size - 1) {}
+                    Buffer.BlockCopy(_packetRing, 0, data, 0, len)
+                    Buffer.BlockCopy(_receiveBuffer, 0, data, len, size)
+                    _packetRing = data
+                End If
+
+                PacketHandler()
+                _receiveBuffer = New Byte(_packetSize - 1) {}
+                _socket.BeginReceive(_receiveBuffer, 0, _packetSize, SocketFlags.None, AddressOf DoReceive, Nothing)
             End If
-
-            RaiseEvent TrafficReceived(size, _receiveBuffer)
-
-            If _packetRing Is Nothing Then
-                _packetRing = New Byte(size - 1) {}
-                Buffer.BlockCopy(_receiveBuffer, 0, _packetRing, 0, size)
-            Else
-                Dim len = _packetRing.Length
-                Dim data = New Byte(len + size - 1) {}
-                Buffer.BlockCopy(_packetRing, 0, data, 0, len)
-                Buffer.BlockCopy(_receiveBuffer, 0, data, len, size)
-                _packetRing = data
-            End If
-
-            PacketHandler()
-            _receiveBuffer = New Byte(_packetSize - 1) {}
-            _socket.BeginReceive(_receiveBuffer, 0, _packetSize, SocketFlags.None, AddressOf DoReceive, Nothing)
         End Sub
 
         Private Sub PacketHandler()

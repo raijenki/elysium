@@ -1,27 +1,27 @@
-Creators:
-JC Snider
-Damian666
+Elysium.NET:
+Raijenki
+boasfesta
+andreidl
+
+Design:
+Pablo
 
 Base:
+Orion+ Engine by JC Snider, Damian666
 Eclipse Origins v1.1.0 by Robin Perris*
 
-Graphics/Media Engine:
+Plataforma gráfica e sonora:
 SFML*
 
-Temporary Graphics:
+Gráficos temporários:
 Rpgmaker MV
 
-Testing:
+Contribuições externas:
 Kras
 Pamiclo
 H3lp
-
-Optimisations:
 SpiceyWolf
 Chronos
+BugSick
 
-AutoMapper System: boasfesta
-
-Instanced map system, other functions: BugSick
-
-*License copies can be found in the license directory.
+*Cópias das licenças se encontram no diretório.

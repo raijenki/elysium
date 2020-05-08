@@ -4,6 +4,10 @@ Imports ASFW
 Friend Class FrmMenu
     Inherits Form
 
+    Private CustomText As Drawing.Text.PrivateFontCollection = New Drawing.Text.PrivateFontCollection
+    Private ButtonNormalColor As Color
+    Private ButtonHoverColor As Color
+
 #Region "Form Functions"
 
     ''' <summary>
@@ -21,6 +25,8 @@ Friend Class FrmMenu
         LoadMenuGraphics()
         pnlLoad.Width = Width
         pnlLoad.Height = Height
+        lblStatus.Left = Width / 2 - lblStatus.Width / 2
+        lblStatus.Top = Height / 2 - lblStatus.Height / 2
 
         If Started = False Then Call Startup()
 
@@ -39,10 +45,61 @@ Friend Class FrmMenu
 
 #Region "Draw Functions"
 
+    Friend Sub LoadMenuFont()
+        Dim fontPath As String = Path.Gui & "Menu\OpenSans-Regular.ttf"
+
+        If File.Exists(fontPath) Then
+            CustomText.AddFontFile(fontPath)
+
+            btnPlay.Font = New Font(CustomText.Families(0), btnPlay.Font.Size, FontStyle.Regular)
+            btnRegister.Font = New Font(CustomText.Families(0), btnRegister.Font.Size, FontStyle.Regular)
+            btnCredits.Font = New Font(CustomText.Families(0), btnCredits.Font.Size, FontStyle.Regular)
+            btnExit.Font = New Font(CustomText.Families(0), btnExit.Font.Size, FontStyle.Regular)
+            lblNews.Font = New Font(CustomText.Families(0), lblNews.Font.Size, FontStyle.Regular)
+            lblStatusHeader.Font = New Font(CustomText.Families(0), lblStatusHeader.Font.Size, FontStyle.Regular)
+            lblServerStatus.Font = New Font(CustomText.Families(0), lblServerStatus.Font.Size, FontStyle.Regular)
+            lblStatus.Font = New Font(CustomText.Families(0), lblStatus.Font.Size, FontStyle.Regular)
+            lblLoginPass.Font = New Font(CustomText.Families(0), lblLoginPass.Font.Size, FontStyle.Regular)
+            lblLoginName.Font = New Font(CustomText.Families(0), lblLoginName.Font.Size, FontStyle.Regular)
+            lblNewAccPass2.Font = New Font(CustomText.Families(0), lblNewAccPass2.Font.Size, FontStyle.Regular)
+            lblNewAccPass.Font = New Font(CustomText.Families(0), lblNewAccPass.Font.Size, FontStyle.Regular)
+            lblNewAccName.Font = New Font(CustomText.Families(0), lblNewAccName.Font.Size, FontStyle.Regular)
+            lblCreditsTop.Font = New Font(CustomText.Families(0), lblCreditsTop.Font.Size, FontStyle.Regular)
+            lblScrollingCredits.Font = New Font(CustomText.Families(0), lblScrollingCredits.Font.Size, FontStyle.Regular)
+            lblNextChar.Font = New Font(CustomText.Families(0), lblNextChar.Font.Size, FontStyle.Regular)
+            lblPrevChar.Font = New Font(CustomText.Families(0), lblPrevChar.Font.Size, FontStyle.Regular)
+            lblNewCharGender.Font = New Font(CustomText.Families(0), lblNewCharGender.Font.Size, FontStyle.Regular)
+            lblNewCharClass.Font = New Font(CustomText.Families(0), lblNewCharClass.Font.Size, FontStyle.Regular)
+            lblNewCharName.Font = New Font(CustomText.Families(0), lblNewCharName.Font.Size, FontStyle.Regular)
+            lblNewChar.Font = New Font(CustomText.Families(0), lblNewChar.Font.Size, FontStyle.Regular)
+            lblNewsHeader.Font = New Font(CustomText.Families(0), lblNewsHeader.Font.Size, FontStyle.Regular)
+            lblCharSelect.Font = New Font(CustomText.Families(0), lblCharSelect.Font.Size, FontStyle.Regular)
+            lblNewCharSprite.Font = New Font(CustomText.Families(0), lblNewCharSprite.Font.Size, FontStyle.Regular)
+            chkSavePass.Font = New Font(CustomText.Families(0), chkSavePass.Font.Size, FontStyle.Regular)
+
+            btnLogin.Font = New Font(CustomText.Families(0), btnLogin.Font.Size, FontStyle.Bold)
+            btnCreateAccount.Font = New Font(CustomText.Families(0), btnCreateAccount.Font.Size, FontStyle.Bold)
+            btnCreateCharacter.Font = New Font(CustomText.Families(0), btnCreateCharacter.Font.Size, FontStyle.Bold)
+            btnDelChar.Font = New Font(CustomText.Families(0), btnDelChar.Font.Size, FontStyle.Bold)
+            btnNewChar.Font = New Font(CustomText.Families(0), btnNewChar.Font.Size, FontStyle.Bold)
+            btnUseChar.Font = New Font(CustomText.Families(0), btnUseChar.Font.Size, FontStyle.Bold)
+
+            txtPassword.Font = New Font(CustomText.Families(0), txtPassword.Font.Size, FontStyle.Bold)
+            txtLogin.Font = New Font(CustomText.Families(0), txtLogin.Font.Size, FontStyle.Bold)
+            txtRPass2.Font = New Font(CustomText.Families(0), txtRPass2.Font.Size, FontStyle.Bold)
+            txtRPass.Font = New Font(CustomText.Families(0), txtRPass.Font.Size, FontStyle.Bold)
+            txtRuser.Font = New Font(CustomText.Families(0), txtRuser.Font.Size, FontStyle.Bold)
+            txtCharName.Font = New Font(CustomText.Families(0), txtCharName.Font.Size, FontStyle.Bold)
+            txtDescription.Font = New Font(CustomText.Families(0), txtDescription.Font.Size, FontStyle.Bold)
+        End If
+    End Sub
+
     ''' <summary>
     ''' Precarregar imagens no menu.
     ''' </summary>
     Friend Sub LoadMenuGraphics()
+
+        LoadMenuFont()
 
         'Menu Principal
         If File.Exists(Path.Gui & "Menu\menu" & GfxExt) Then
@@ -51,25 +108,11 @@ Friend Class FrmMenu
 
         'Botões do Menu Principal
         If File.Exists(Path.Gui & "Menu\button" & GfxExt) Then
-            btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-            btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnLogin.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-            btnPlay.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-            btnRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnNewChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnUseChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnDelChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
             btnCreateAccount.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-        End If
-
-        'Paineis do Menu Principal
-        If File.Exists(Path.Gui & "Menu\panel" & GfxExt) Then
-            pnlMainMenu.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
-            pnlLogin.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
-            pnlNewChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
-            pnlCharSelect.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
-            pnlRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
-            pnlCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\panel" & GfxExt)
         End If
 
         'logo
@@ -77,21 +120,27 @@ Friend Class FrmMenu
             picLogo.BackgroundImage = Image.FromFile(Path.Gui & "Menu\logo" & GfxExt)
         End If
 
+        ' MMODEV
+        If Debugger.IsAttached Then
+            If File.Exists(Path.Gui & "Menu\MMODEV" & GfxExt) Then
+                picMMODEV.BackgroundImage = Image.FromFile(Path.Gui & "Menu\MMODEV" & GfxExt)
+            End If
+        End If
+
         ' Principal
         lblStatusHeader.Text = Language.MainMenu.ServerStatus
-        lblNewsHeader.Text = Language.MainMenu.newsheader
+        lblNewsHeader.Text = Language.MainMenu.NewsHeader
         lblNews.Text = Language.MainMenu.News
-        btnPlay.Text = Language.MainMenu.buttonplay
+        btnPlay.Text = Language.MainMenu.ButtonPlay
         btnRegister.Text = Language.MainMenu.ButtonRegister
-        btnCredits.Text = Language.MainMenu.buttoncredits
+        btnCredits.Text = Language.MainMenu.ButtonCredits
         btnExit.Text = Language.MainMenu.ButtonExit
 
         ' Login
-        lblLogin.Text = Language.MainMenu.Login
-        lblLoginName.Text = Language.MainMenu.LoginName
-        lblLoginPass.Text = Language.MainMenu.LoginPass
+        lblLoginName.Text = Language.MainMenu.LoginName.ToUpper
+        lblLoginPass.Text = Language.MainMenu.LoginPass.ToUpper
         chkSavePass.Text = Language.MainMenu.LoginCheckBox
-        btnLogin.Text = Language.MainMenu.LoginButton
+        btnLogin.Text = Language.MainMenu.LoginButton.ToUpper
 
         ' Novo personagem
         lblNewChar.Text = Language.MainMenu.NewCharacter
@@ -101,22 +150,24 @@ Friend Class FrmMenu
         rdoMale.Text = Language.MainMenu.NewCharacterMale
         rdoFemale.Text = Language.MainMenu.NewCharacterFemale
         lblNewCharSprite.Text = Language.MainMenu.NewCharacterSprite
-        btnCreateCharacter.Text = Language.MainMenu.NewCharacterButton
+        btnCreateCharacter.Text = Language.MainMenu.NewCharacterButton.ToUpper
 
         ' Usar personagem
         lblCharSelect.Text = Language.MainMenu.UseCharacter
-        btnNewChar.Text = Language.MainMenu.UseCharacterNew
-        btnUseChar.Text = Language.MainMenu.UseCharacteruse
-        btnDelChar.Text = Language.MainMenu.UseCharacterDel
+        btnNewChar.Text = Language.MainMenu.UseCharacterNew.ToUpper
+        btnUseChar.Text = Language.MainMenu.UseCharacterUse.ToUpper
+        btnDelChar.Text = Language.MainMenu.UseCharacterDel.ToUpper
 
         ' Registro
-        lblNewAccount.Text = Language.MainMenu.Register
-        lblNewAccName.Text = Language.MainMenu.RegisterName
-        lblNewAccPass.Text = Language.MainMenu.RegisterPass1
-        lblNewAccPass2.Text = Language.MainMenu.RegisterPass2
+        lblNewAccName.Text = Language.MainMenu.RegisterName.ToUpper
+        lblNewAccPass.Text = Language.MainMenu.RegisterPass.ToUpper
+        lblNewAccPass2.Text = Language.MainMenu.RetypeRegisterPass.ToUpper
 
         ' Creditos
         lblCreditsTop.Text = Language.MainMenu.Credits
+
+        ButtonNormalColor = ColorTranslator.FromHtml("#ffffff")
+        ButtonHoverColor = ColorTranslator.FromHtml("#05c593")
     End Sub
 
     ''' <summary>
@@ -280,7 +331,7 @@ Friend Class FrmMenu
     Private Sub TmrCredits_Tick(sender As Object, e As EventArgs) Handles tmrCredits.Tick
         Dim credits As String
         Dim filepath As String
-        filepath = Application.StartupPath & "\Data\credits.txt"
+        filepath = Application.StartupPath & "\Contents\credits.txt"
         lblScrollingCredits.Top = 177
         If PnlCreditsVisible = True Then
             tmrCredits.Enabled = False
@@ -411,20 +462,6 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Mandar estado de hover do botão.
-    ''' </summary>
-    Private Sub BtnPlay_MouseEnter(sender As Object, e As EventArgs) Handles btnPlay.MouseEnter
-        btnPlay.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado normal.
-    ''' </summary>
-    Private Sub BtnPlay_MouseLeave(sender As Object, e As EventArgs) Handles btnPlay.MouseLeave
-        btnPlay.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-    End Sub
-
-    ''' <summary>
     ''' Lida com o botão de Registrar.
     ''' </summary>
     Private Sub BtnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
@@ -435,20 +472,6 @@ Friend Class FrmMenu
             PnlCharCreateVisible = False
             PnlCreditsVisible = False
         End If
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado de hover.
-    ''' </summary>
-    Private Sub BtnRegister_MouseEnter(sender As Object, e As EventArgs) Handles btnRegister.MouseEnter
-        btnRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado normal.
-    ''' </summary>
-    Private Sub BtnRegister_MouseLeave(sender As Object, e As EventArgs) Handles btnRegister.MouseLeave
-        btnRegister.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
@@ -466,39 +489,11 @@ Friend Class FrmMenu
     End Sub
 
     ''' <summary>
-    ''' Muda o botão para o estado de hover.
-    ''' </summary>
-    Private Sub BtnCredits_MouseEnter(sender As Object, e As EventArgs) Handles btnCredits.MouseEnter
-        btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado normal.
-    ''' </summary>
-    Private Sub BtnCredits_MouseLeave(sender As Object, e As EventArgs) Handles btnCredits.MouseLeave
-        btnCredits.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
-    End Sub
-
-    ''' <summary>
     ''' Lida com o botão de sair.
     ''' </summary>
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         PlaySound("Click.ogg")
         DestroyGame()
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado de hover..
-    ''' </summary>
-    Private Sub BtnExit_MouseEnter(sender As Object, e As EventArgs) Handles btnExit.MouseEnter
-        btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
-    End Sub
-
-    ''' <summary>
-    ''' Muda o botão para o estado normal.
-    ''' </summary>
-    Private Sub BtnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
-        btnExit.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
     End Sub
 
     ''' <summary>
@@ -664,6 +659,61 @@ Friend Class FrmMenu
 
     End Sub
 
+    Private Sub btnPlay_MouseEnter(sender As Object, e As EventArgs) Handles btnPlay.MouseEnter
+        btnPlay.ForeColor = ButtonHoverColor
+    End Sub
+
+    Private Sub btnPlay_MouseLeave(sender As Object, e As EventArgs) Handles btnPlay.MouseLeave
+        btnPlay.ForeColor = ButtonNormalColor
+    End Sub
+
+    Private Sub btnRegister_MouseEnter(sender As Object, e As EventArgs) Handles btnRegister.MouseEnter
+        btnRegister.ForeColor = ButtonHoverColor
+    End Sub
+
+    Private Sub btnRegister_MouseLeave(sender As Object, e As EventArgs) Handles btnRegister.MouseLeave
+        btnRegister.ForeColor = ButtonNormalColor
+    End Sub
+
+    Private Sub btnCredits_MouseEnter(sender As Object, e As EventArgs) Handles btnCredits.MouseEnter
+        btnCredits.ForeColor = ButtonHoverColor
+    End Sub
+
+    Private Sub btnCredits_MouseLeave(sender As Object, e As EventArgs) Handles btnCredits.MouseLeave
+        btnCredits.ForeColor = ButtonNormalColor
+    End Sub
+
+    Private Sub btnExit_MouseEnter(sender As Object, e As EventArgs) Handles btnExit.MouseEnter
+        btnExit.ForeColor = ButtonHoverColor
+    End Sub
+
+    Private Sub btnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
+        btnExit.ForeColor = ButtonNormalColor
+    End Sub
+
+    Private Sub btnNewChar_MouseEnter(sender As Object, e As EventArgs) Handles btnNewChar.MouseEnter
+        btnNewChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
+    End Sub
+
+    Private Sub btnNewChar_MouseLeave(sender As Object, e As EventArgs) Handles btnNewChar.MouseLeave
+        btnNewChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
+    End Sub
+
+    Private Sub btnUseChar_MouseEnter(sender As Object, e As EventArgs) Handles btnUseChar.MouseEnter
+        btnUseChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
+    End Sub
+
+    Private Sub btnUseChar_MouseLeave(sender As Object, e As EventArgs) Handles btnUseChar.MouseLeave
+        btnUseChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
+    End Sub
+
+    Private Sub btnDelChar_MouseEnter(sender As Object, e As EventArgs) Handles btnDelChar.MouseEnter
+        btnDelChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button_hover" & GfxExt)
+    End Sub
+
+    Private Sub btnDelChar_MouseLeave(sender As Object, e As EventArgs) Handles btnDelChar.MouseLeave
+        btnDelChar.BackgroundImage = Image.FromFile(Path.Gui & "Menu\button" & GfxExt)
+    End Sub
 #End Region
 
 End Class
