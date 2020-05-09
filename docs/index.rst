@@ -1,22 +1,113 @@
-.. Elysium Docs documentation master file, created by
-   sphinx-quickstart on Sat May  9 16:52:26 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _topics-index:
 
-Bem-vindo à documentação da Elysium!
-========================================
+==============================
+Documentação da Elysium.NET |version|
+==============================
+
+A Elysium.NET é um motor de jogos online 2D construída em Visual Basic.NET 
+e que visa um fácil e rápido desenvolvimento para seus usuários. 
+
+
+Ajuda
+============
+
+Ainda com problemas? Gostaríamos de ajudar!
+
+* Tente olhar o :doc:`FAQ <faq>` -- ele tem respostas para as perguntas mais comuns.
+* Procurando por alguma informação específica? Tente usar o :ref:`genindex` ou o :ref:`modindex`.
+* Faça uma pergunta no nosso canal no `Discord`_,
+* Utilize nossa `comunidade`_ para procurar/fazer dúvidas mais técnicas ou reportar bugs.
+
+.. _Discord: https://discord.gg/9UPAwN
+.. _comunidade: https://forum.mmodev.com.br
+
+Introdução
+===========
 
 .. toctree::
-   :maxdepth: 2
-   :glob:
+   :caption: Introdução
+   :hidden:
 
-	*
+   intro/overview
+   intro/install
+   intro/tutorial
+
+:doc:`intro/overview`
+    Entenda o que é a Elysium.NET, seus requisitos e o que você pode fazer com ela.
+
+:doc:`intro/install`
+    Rode a Elysium.NET no seu computador.
+
+:doc:`intro/tutorial`
+    Faça seu primeiro jogo com a Elysium.NET.
+
+.. _section-basics:
+
+Servidor
+==============
+
+.. toctree::
+   :caption: Servidor
+   :hidden:
+
+   server/commands
+   server/Linux
 
 
+Cliente
+=================
 
-Indices and tables
-==================
+.. toctree::
+   :caption: Cliente
+   :hidden:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   client/sistemas
+
+
+:doc:`client/sistemas`
+    Saiba quais são os sistemas disponíveis no cliente.
+
+
+Extensões
+================
+
+.. toctree::
+   :caption: Extensões
+   :hidden:
+
+   ext/plugin-manager
+
+:doc:`ext/plugin-manager`
+    Entenda o gerenciador de plugins.
+
+Problemas Específicos
+=========================
+
+.. toctree::
+   :caption: Problemas Específicos
+   :hidden:
+
+   faq
+
+:doc:`faq`
+    Tenha as respostas para as perguntas mais frequentes.
+
+OUTROS
+============
+
+.. toctree::
+   :caption: OUTROS
+   :hidden:
+
+   news
+   contributing
+   versioning
+
+:doc:`news`
+    Veja o que mudou nas versões recentes da Elysium.
+
+:doc:`contributing`
+    Aprenda como contribuir para o projeto da Elysium.NET.
+
+:doc:`versioning`
+    Entenda o versionamento da Elysium.NET.
