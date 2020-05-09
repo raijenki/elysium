@@ -1,8 +1,8 @@
 .. _topics-contributing:
 
-======================
+====================================
 Contribuindo para a Elysium.NET
-======================
+====================================
 
 Há muitas maneiras de contribuir com a Elysium.NET. Aqui estão algumas delas:
 

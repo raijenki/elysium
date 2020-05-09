@@ -1,10 +1,10 @@
 .. _faq:
 
 Perguntas Mais Frequentes
-============================
+================================
 
 Qual a segurança da Elysium.NET na comunicação entre servidor e cliente?
--------------------------------------------------
+-------------------------------------------------------------------------------
 
 Por motivos de compatibilidade entre o .NET Framework e o .NET Core, a Elysium.NET utiliza criptografia RSA com chave de 128bits combinado ao algoritmo AES-256.
 
