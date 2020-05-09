@@ -1,8 +1,8 @@
 .. _topics-index:
 
-==============================
-Documentação da Elysium.NET |version|
-==============================
+=========================================
+Documentação da Elysium.NET 1.0
+=========================================
 
 A Elysium.NET é um motor de jogos online 2D construída em Visual Basic.NET 
 e que visa um fácil e rápido desenvolvimento para seus usuários. 
