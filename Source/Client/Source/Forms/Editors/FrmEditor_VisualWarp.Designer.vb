@@ -22,13 +22,13 @@ Partial Class frmEditor_VisualWarp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnWarpOK = New DarkUI.Controls.DarkButton()
-        Me.DarkLabel15 = New DarkUI.Controls.DarkLabel()
+        Me.btnWarpOK = New Button()
+        Me.DarkLabel15 = New Label()
         Me.lstMaps = New System.Windows.Forms.ListBox()
         Me.pnlPreview = New System.Windows.Forms.Panel()
         Me.picPreview = New System.Windows.Forms.PictureBox()
-        Me.lblSelX = New DarkUI.Controls.DarkLabel()
-        Me.lblSelY = New DarkUI.Controls.DarkLabel()
+        Me.lblSelX = New Label()
+        Me.lblSelY = New Label()
         Me.pnlPreview.SuspendLayout()
         CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -122,11 +122,11 @@ Partial Class frmEditor_VisualWarp
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnWarpOK As DarkUI.Controls.DarkButton
-    Friend WithEvents DarkLabel15 As DarkUI.Controls.DarkLabel
+    Friend WithEvents btnWarpOK As Button
+    Friend WithEvents DarkLabel15 As Label
     Friend WithEvents lstMaps As Windows.Forms.ListBox
     Friend WithEvents pnlPreview As Windows.Forms.Panel
     Friend WithEvents picPreview As Windows.Forms.PictureBox
-    Friend WithEvents lblSelX As DarkUI.Controls.DarkLabel
-    Friend WithEvents lblSelY As DarkUI.Controls.DarkLabel
+    Friend WithEvents lblSelX As Label
+    Friend WithEvents lblSelY As Label
 End Class
