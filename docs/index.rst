@@ -53,6 +53,12 @@ Servidor
    server/commands
    server/Linux
 
+:doc:`server/commands`
+    Aprenda os comandos que te auxiliam a gerenciar o servidor.
+
+:doc:`server/Linux`
+    Aprenda a rodar o servidor em sistemas baseados em Linux.
+
 
 Cliente
 =================
