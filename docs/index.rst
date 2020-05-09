@@ -98,7 +98,7 @@ Problemas Específicos
 :doc:`faq`
     Tenha as respostas para as perguntas mais frequentes.
 
-OUTROS
+Outros
 ============
 
 .. toctree::
