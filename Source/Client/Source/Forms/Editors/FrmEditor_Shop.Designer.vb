@@ -23,31 +23,31 @@ Partial Class frmEditor_Shop
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEditor_Shop))
-        Me.DarkGroupBox1 = New DarkUI.Controls.DarkGroupBox()
+        Me.DarkGroupBox1 = New GroupBox()
         Me.lstIndex = New System.Windows.Forms.ListBox()
-        Me.DarkGroupBox2 = New DarkUI.Controls.DarkGroupBox()
-        Me.btnCancel = New DarkUI.Controls.DarkButton()
-        Me.btnDelete = New DarkUI.Controls.DarkButton()
-        Me.btnSave = New DarkUI.Controls.DarkButton()
-        Me.DarkGroupBox3 = New DarkUI.Controls.DarkGroupBox()
-        Me.btnDeleteTrade = New DarkUI.Controls.DarkButton()
-        Me.btnUpdate = New DarkUI.Controls.DarkButton()
-        Me.nudCostValue = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel8 = New DarkUI.Controls.DarkLabel()
-        Me.cmbCostItem = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel7 = New DarkUI.Controls.DarkLabel()
-        Me.nudItemValue = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel6 = New DarkUI.Controls.DarkLabel()
-        Me.cmbItem = New DarkUI.Controls.DarkComboBox()
-        Me.DarkLabel5 = New DarkUI.Controls.DarkLabel()
+        Me.DarkGroupBox2 = New GroupBox()
+        Me.btnCancel = New Button()
+        Me.btnDelete = New Button()
+        Me.btnSave = New Button()
+        Me.DarkGroupBox3 = New GroupBox()
+        Me.btnDeleteTrade = New Button()
+        Me.btnUpdate = New Button()
+        Me.nudCostValue = New NumericUpDown()
+        Me.DarkLabel8 = New Label()
+        Me.cmbCostItem = New ComboBox()
+        Me.DarkLabel7 = New Label()
+        Me.nudItemValue = New NumericUpDown()
+        Me.DarkLabel6 = New Label()
+        Me.cmbItem = New ComboBox()
+        Me.DarkLabel5 = New Label()
         Me.lstTradeItem = New System.Windows.Forms.ListBox()
-        Me.DarkLabel4 = New DarkUI.Controls.DarkLabel()
-        Me.nudBuy = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel3 = New DarkUI.Controls.DarkLabel()
-        Me.nudFace = New DarkUI.Controls.DarkNumericUpDown()
-        Me.DarkLabel2 = New DarkUI.Controls.DarkLabel()
-        Me.txtName = New DarkUI.Controls.DarkTextBox()
-        Me.DarkLabel1 = New DarkUI.Controls.DarkLabel()
+        Me.DarkLabel4 = New Label()
+        Me.nudBuy = New NumericUpDown()
+        Me.DarkLabel3 = New Label()
+        Me.nudFace = New NumericUpDown()
+        Me.DarkLabel2 = New Label()
+        Me.txtName = New TextBox()
+        Me.DarkLabel1 = New Label()
         Me.picFace = New System.Windows.Forms.PictureBox()
         Me.DarkGroupBox1.SuspendLayout()
         Me.DarkGroupBox2.SuspendLayout()
@@ -62,7 +62,7 @@ Partial Class frmEditor_Shop
         'DarkGroupBox1
         '
         Me.DarkGroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DarkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        'Me.DarkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox1.Controls.Add(Me.lstIndex)
         Me.DarkGroupBox1.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox1.Location = New System.Drawing.Point(3, 3)
@@ -86,7 +86,7 @@ Partial Class frmEditor_Shop
         'DarkGroupBox2
         '
         Me.DarkGroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DarkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        'Me.DarkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox2.Controls.Add(Me.btnCancel)
         Me.DarkGroupBox2.Controls.Add(Me.btnDelete)
         Me.DarkGroupBox2.Controls.Add(Me.btnSave)
@@ -137,7 +137,7 @@ Partial Class frmEditor_Shop
         'DarkGroupBox3
         '
         Me.DarkGroupBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DarkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        'Me.DarkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.DarkGroupBox3.Controls.Add(Me.btnDeleteTrade)
         Me.DarkGroupBox3.Controls.Add(Me.btnUpdate)
         Me.DarkGroupBox3.Controls.Add(Me.nudCostValue)
@@ -198,12 +198,12 @@ Partial Class frmEditor_Shop
         'cmbCostItem
         '
         Me.cmbCostItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbCostItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbCostItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbCostItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbCostItem.ButtonIcon = CType(resources.GetObject("cmbCostItem.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbCostItem.DrawDropdownHoverOutline = False
-        Me.cmbCostItem.DrawFocusRectangle = False
+        'Me.cmbCostItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        'Me.cmbCostItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        'Me.cmbCostItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        'Me.cmbCostItem.ButtonIcon = CType(resources.GetObject("cmbCostItem.ButtonIcon"), System.Drawing.Bitmap)
+        'Me.cmbCostItem.DrawDropdownHoverOutline = False
+        'Me.cmbCostItem.DrawFocusRectangle = False
         Me.cmbCostItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cmbCostItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCostItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -214,7 +214,7 @@ Partial Class frmEditor_Shop
         Me.cmbCostItem.Size = New System.Drawing.Size(165, 21)
         Me.cmbCostItem.TabIndex = 49
         Me.cmbCostItem.Text = Nothing
-        Me.cmbCostItem.TextPadding = New System.Windows.Forms.Padding(2)
+        'Me.cmbCostItem.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel7
         '
@@ -249,12 +249,12 @@ Partial Class frmEditor_Shop
         'cmbItem
         '
         Me.cmbItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.cmbItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
-        Me.cmbItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmbItem.ButtonIcon = CType(resources.GetObject("cmbItem.ButtonIcon"), System.Drawing.Bitmap)
-        Me.cmbItem.DrawDropdownHoverOutline = False
-        Me.cmbItem.DrawFocusRectangle = False
+        'Me.cmbItem.BorderColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        'Me.cmbItem.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid
+        'Me.cmbItem.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(43, Byte), Integer))
+        'Me.cmbItem.ButtonIcon = CType(resources.GetObject("cmbItem.ButtonIcon"), System.Drawing.Bitmap)
+        'Me.cmbItem.DrawDropdownHoverOutline = False
+        'Me.cmbItem.DrawFocusRectangle = False
         Me.cmbItem.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cmbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -265,7 +265,7 @@ Partial Class frmEditor_Shop
         Me.cmbItem.Size = New System.Drawing.Size(165, 21)
         Me.cmbItem.TabIndex = 45
         Me.cmbItem.Text = Nothing
-        Me.cmbItem.TextPadding = New System.Windows.Forms.Padding(2)
+        'Me.cmbItem.TextPadding = New System.Windows.Forms.Padding(2)
         '
         'DarkLabel5
         '
@@ -395,30 +395,30 @@ Partial Class frmEditor_Shop
 
     End Sub
 
-    Friend WithEvents DarkGroupBox1 As DarkUI.Controls.DarkGroupBox
+    Friend WithEvents DarkGroupBox1 As GroupBox
     Friend WithEvents lstIndex As Windows.Forms.ListBox
-    Friend WithEvents DarkGroupBox2 As DarkUI.Controls.DarkGroupBox
-    Friend WithEvents txtName As DarkUI.Controls.DarkTextBox
-    Friend WithEvents DarkLabel1 As DarkUI.Controls.DarkLabel
+    Friend WithEvents DarkGroupBox2 As GroupBox
+    Friend WithEvents txtName As TextBox
+    Friend WithEvents DarkLabel1 As Label
     Friend WithEvents picFace As Windows.Forms.PictureBox
-    Friend WithEvents nudFace As DarkUI.Controls.DarkNumericUpDown
-    Friend WithEvents DarkLabel2 As DarkUI.Controls.DarkLabel
-    Friend WithEvents DarkLabel4 As DarkUI.Controls.DarkLabel
-    Friend WithEvents nudBuy As DarkUI.Controls.DarkNumericUpDown
-    Friend WithEvents DarkLabel3 As DarkUI.Controls.DarkLabel
-    Friend WithEvents DarkGroupBox3 As DarkUI.Controls.DarkGroupBox
+    Friend WithEvents nudFace As NumericUpDown
+    Friend WithEvents DarkLabel2 As Label
+    Friend WithEvents DarkLabel4 As Label
+    Friend WithEvents nudBuy As NumericUpDown
+    Friend WithEvents DarkLabel3 As Label
+    Friend WithEvents DarkGroupBox3 As GroupBox
     Friend WithEvents lstTradeItem As Windows.Forms.ListBox
-    Friend WithEvents cmbItem As DarkUI.Controls.DarkComboBox
-    Friend WithEvents DarkLabel5 As DarkUI.Controls.DarkLabel
-    Friend WithEvents nudItemValue As DarkUI.Controls.DarkNumericUpDown
-    Friend WithEvents DarkLabel6 As DarkUI.Controls.DarkLabel
-    Friend WithEvents DarkLabel7 As DarkUI.Controls.DarkLabel
-    Friend WithEvents cmbCostItem As DarkUI.Controls.DarkComboBox
-    Friend WithEvents nudCostValue As DarkUI.Controls.DarkNumericUpDown
-    Friend WithEvents DarkLabel8 As DarkUI.Controls.DarkLabel
-    Friend WithEvents btnUpdate As DarkUI.Controls.DarkButton
-    Friend WithEvents btnDeleteTrade As DarkUI.Controls.DarkButton
-    Friend WithEvents btnCancel As DarkUI.Controls.DarkButton
-    Friend WithEvents btnDelete As DarkUI.Controls.DarkButton
-    Friend WithEvents btnSave As DarkUI.Controls.DarkButton
+    Friend WithEvents cmbItem As ComboBox
+    Friend WithEvents DarkLabel5 As Label
+    Friend WithEvents nudItemValue As NumericUpDown
+    Friend WithEvents DarkLabel6 As Label
+    Friend WithEvents DarkLabel7 As Label
+    Friend WithEvents cmbCostItem As ComboBox
+    Friend WithEvents nudCostValue As NumericUpDown
+    Friend WithEvents DarkLabel8 As Label
+    Friend WithEvents btnUpdate As Button
+    Friend WithEvents btnDeleteTrade As Button
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnSave As Button
 End Class

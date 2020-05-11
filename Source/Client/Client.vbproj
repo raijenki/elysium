@@ -74,10 +74,6 @@
     <DefineConstants>CLIENT</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DarkUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DarkUI.dll</HintPath>
-    </Reference>
     <Reference Include="SFML.Portable, Version=2.0.6807.40114, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SFML-Portable-2.1.1.5.1\lib\SFML.Portable.dll</HintPath>
     </Reference>
