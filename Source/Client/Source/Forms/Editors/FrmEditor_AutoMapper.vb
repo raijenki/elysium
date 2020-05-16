@@ -9,7 +9,7 @@ Friend Class frmEditor_AutoMapper
         pnlResources.Left = 0
         pnlTileConfig.Top = 0
         pnlTileConfig.Left = 0
-        Width = 409
+        Width = 540
     End Sub
 
     Private Sub TilesetsToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles TilesetsToolStripMenuItem.Click

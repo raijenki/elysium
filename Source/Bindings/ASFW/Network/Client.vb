@@ -41,8 +41,10 @@ Namespace ASFW.Network
 
         Public Sub Dispose() Implements IDisposable.Dispose
             Disconnect()
-            _socket.Close()
-            _socket.Dispose()
+            If Not _socket Is Nothing Then
+                _socket.Close()
+                _socket.Dispose()
+            End If
             _socket = Nothing
             PacketId = Nothing
             ConnectionSuccessEvent = Nothing
