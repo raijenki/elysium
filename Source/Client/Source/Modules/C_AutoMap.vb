@@ -98,7 +98,7 @@ Module C_AutoMap
 
     Sub LoadTilePrefab()
         Dim Prefab As Integer, Layer As Integer
-        Dim cf = Path.Contents & "AutoMapper.ini"
+        Dim cf = Path.Contents & "\AutoMapper.ini"
 
         ReDim Tile(TilePrefab.Count - 1)
         For Prefab = 1 To TilePrefab.Count - 1
@@ -171,7 +171,7 @@ Module C_AutoMap
         DetailFreq = buffer.ReadInt32
         ResourceFreq = buffer.ReadInt32
 
-        Dim cf = Path.Contents & "AutoMapper.ini"
+        Dim cf = Path.Contents & "\AutoMapper.ini"
 
         If Not File.Exists(cf) Then Exit Sub
 
@@ -208,7 +208,7 @@ Module C_AutoMap
     End Sub
 
     Friend Sub SendSaveAutoMapper()
-        Dim cf = Path.Contents & "AutoMapper.ini"
+        Dim cf = Path.Contents & "\AutoMapper.ini"
         Dim buffer As New ASFW.ByteStream(4)
 
         buffer.WriteInt32(ClientPackets.CSaveAutoMap)
