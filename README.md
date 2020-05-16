@@ -1,5 +1,5 @@
-# elysium
-Repository for the new Elysium engine
+# Elysium.NET Core
+Este branch é exclusivo para a versão do Servidor da Elysium.NET em .NET Core.
 
-# confg
-fluxograma pra fazer coisas é: cria branch com o nome da feature, implementa lá -> pull request -> merge
+# Como contribuir
+Crie uma branch com o nome da feature e envie um Pull request para a equipe.
