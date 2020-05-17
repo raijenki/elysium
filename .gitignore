@@ -1,4 +1,6 @@
 Build/
+Servidor/bin/
+Servidor/obj/
 source/Client/obj/
 source/Server/obj/
 .vs/
