@@ -1,4 +1,4 @@
-Elysium.NET:
+﻿Elysium.NET:
 Raijenki
 boasfesta
 andreidl
@@ -7,16 +7,16 @@ Design:
 Pablo
 
 Base:
-Orion+ Engine by JC Snider, Damian666
-Eclipse Origins v1.1.0 by Robin Perris*
+Orion+ Engine por JC Snider, Damian666
+Eclipse Origins v1.1.0 por Robin Perris*
 
-Plataforma gr�fica e sonora:
+Plataforma gráfica e sonora:
 SFML*
 
-Gr�ficos tempor�rios:
+Gráficos temporários:
 Rpgmaker MV
 
-Contribui��es externas:
+Contribuições externas:
 Kras
 Pamiclo
 H3lp
@@ -24,4 +24,4 @@ SpiceyWolf
 Chronos
 BugSick
 
-*C�pias das licen�as se encontram no diret�rio.
+*Cópias das licenças se encontram no diretório.
