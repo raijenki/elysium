@@ -1,4 +1,4 @@
-Bem vindo ao cliente da Elysium.NET. Esta é uma engine open-source escrita em VB.Net!
+ï»¿Bem vindo ao cliente da Elysium.NET. Esta Ã© uma engine open-source escrita em VB.Net!
 
-Para mais informações, visite nosso fórum: www.forum.mmodev.com.br
-Este projeto é baseado na Orion+ Engine, que por sua vez é baseada na Orion.
+Para mais informaÃ§Ãµes, visite nosso fÃ³rum: www.forum.mmodev.com.br
+Este projeto Ã© baseado na Orion+ Engine, que por sua vez Ã© baseada na Orion.

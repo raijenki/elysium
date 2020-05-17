@@ -7,12 +7,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Orion+ Client")>
+<Assembly: AssemblyTitle("Elysium Cliente")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Orion+ Client")>
-<Assembly: AssemblyCopyright("Copyright ©  2015 - 2016")>
-<Assembly: AssemblyTrademark("Damian666")>
+<Assembly: AssemblyProduct("Elysium Cliente")>
+<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyTrademark("MMODEV")>
 
 <Assembly: ComVisible(False)>
 
