@@ -853,10 +853,10 @@ Friend Module S_Events
 
         buffer.WriteInt32(ServerPackets.SEventDir)
         buffer.WriteInt32(eventId)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SEventDir", PACKET_LOG)
         Console.WriteLine("Enviada SMSG: SEventDir")
-
+#End If
         If globalevent Then
             buffer.WriteInt32(TempEventMap(mapNum).Events(eventId).Dir)
         Else
@@ -912,10 +912,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempEventMap(mapNum).Events(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove Dir Up GlobalEvent", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove Dir Up GlobalEvent")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -931,10 +931,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempPlayer(index).EventMap.EventPages(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove Dir Up", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove Dir Up")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -953,10 +953,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempEventMap(mapNum).Events(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove Down GlobalEvent", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove Down GlobalEvent")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -972,10 +972,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempPlayer(index).EventMap.EventPages(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -993,10 +993,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempEventMap(mapNum).Events(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove Left GlobalEvent", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove Left GlobalEvent")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -1012,10 +1012,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempPlayer(index).EventMap.EventPages(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -1033,10 +1033,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempEventMap(mapNum).Events(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove GlobalEvent", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove GlobalEvent")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else
@@ -1052,10 +1052,10 @@ Friend Module S_Events
                     buffer.WriteInt32(dir)
                     buffer.WriteInt32(TempPlayer(index).EventMap.EventPages(eventindex).Dir)
                     buffer.WriteInt32(movementspeed)
-
+#If DEBUG Then
                     Addlog("Enviada SMSG: SEventMove", PACKET_LOG)
                     Console.WriteLine("Enviada SMSG: SEventMove")
-
+#End If
                     If globalevent Then
                         SendDataToMap(mapNum, buffer.Data, buffer.Head)
                     Else

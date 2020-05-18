@@ -324,10 +324,10 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
-
+#If DEBUG Then
                 Addlog("Enviada SMSG: SNpcMove Up", PACKET_LOG)
                 Console.WriteLine("Enviada SMSG: SNpcMove Up")
-
+#End If
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Down
                 MapNpc(mapNum).Npc(MapNpcNum).Y = MapNpc(mapNum).Npc(MapNpcNum).Y + 1
@@ -338,10 +338,10 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
-
+#If DEBUG Then
                 Addlog("Enviada SMSG: SNpcMove Down", PACKET_LOG)
                 Console.WriteLine("Enviada SMSG: SNpcMove Down")
-
+#End If
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Left
                 MapNpc(mapNum).Npc(MapNpcNum).X = MapNpc(mapNum).Npc(MapNpcNum).X - 1
@@ -352,10 +352,10 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
-
+#If DEBUG Then
                 Addlog("Enviada SMSG: SNpcMove Left", PACKET_LOG)
                 Console.WriteLine("Enviada SMSG: SNpcMove Left")
-
+#End If
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
             Case DirectionType.Right
                 MapNpc(mapNum).Npc(MapNpcNum).X = MapNpc(mapNum).Npc(MapNpcNum).X + 1
@@ -366,10 +366,10 @@ Module S_Npc
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Y)
                 buffer.WriteInt32(MapNpc(mapNum).Npc(MapNpcNum).Dir)
                 buffer.WriteInt32(Movement)
-
+#If DEBUG Then
                 Addlog("Enviada SMSG: SNpcMove Right", PACKET_LOG)
                 Console.WriteLine("Enviada SMSG: SNpcMove Right")
-
+#End If
                 SendDataToMap(mapNum, buffer.Data, buffer.Head)
         End Select
 
@@ -389,10 +389,10 @@ Module S_Npc
         buffer.WriteInt32(ServerPackets.SNpcDir)
         buffer.WriteInt32(MapNpcNum)
         buffer.WriteInt32(Dir)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SNpcDir", PACKET_LOG)
         Console.WriteLine("Sent SMSG: SNpcDir")
-
+#End If
         SendDataToMap(mapNum, buffer.Data, buffer.Head)
 
         buffer.Dispose()

@@ -29,10 +29,10 @@ Module S_Parties
     Sub SendPartyInvite(index As Integer, target As Integer)
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPartyInvite)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SPartyInvite", PACKET_LOG)
         Console.WriteLine("Enviada SMSG: SPartyInvite")
-
+#End If
         buffer.WriteString((Trim$(Player(target).Character(TempPlayer(target).CurChar).Name)))
 
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
@@ -42,10 +42,10 @@ Module S_Parties
     Sub SendPartyUpdate(partyNum As Integer)
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPartyUpdate)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SPartyUpdate", PACKET_LOG)
         Console.WriteLine("Enviada SMSG: SPartyUpdate")
-
+#End If
         buffer.WriteInt32(1)
         buffer.WriteInt32(Party(partyNum).Leader)
         For i = 1 To MAX_PARTY_MEMBERS
@@ -61,10 +61,10 @@ Module S_Parties
         Dim buffer As New ByteStream(4), i As Integer, partyNum As Integer
 
         buffer.WriteInt32(ServerPackets.SPartyUpdate)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SPartyUpdate To Players", PACKET_LOG)
         Console.WriteLine("Enviada SMSG: SPartyUpdate To Players")
-
+#End If
         ' ver se estamos em uma equipe
         partyNum = TempPlayer(index).InParty
         If partyNum > 0 Then
@@ -90,10 +90,10 @@ Module S_Parties
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SPartyVitals)
         buffer.WriteInt32(index)
-
+#If DEBUG Then
         Addlog("Enviada SMSG: SPartyVitals", PACKET_LOG)
         Console.WriteLine("Enviada SMSG: SPartyVitals")
-
+#End If
         For i = 1 To VitalType.Count - 1
             buffer.WriteInt32(GetPlayerMaxVital(index, i))
             buffer.WriteInt32(Player(index).Character(TempPlayer(index).CurChar).Vital(i))
@@ -108,9 +108,10 @@ Module S_Parties
 #Region "Incoming Packets"
 
     Friend Sub Packet_PartyRquest(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         Addlog("Recebida CMSG: CRequestParty", PACKET_LOG)
         Console.WriteLine("Recebida CMSG: CRequestParty")
-
+#End If
         ' Prevenir fazer euqipe com si próprio
         If TempPlayer(index).Target = index Then Exit Sub
         ' ter certeza que é um alvo válido
@@ -125,30 +126,35 @@ Module S_Parties
     End Sub
 
     Friend Sub Packet_AcceptParty(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         Addlog("Recebida CMSG: CAcceptParty", PACKET_LOG)
         Console.WriteLine("Recebida CMSG: CAcceptParty")
-
+#End If
         Party_InviteAccept(TempPlayer(index).PartyInvite, index)
     End Sub
 
     Friend Sub Packet_DeclineParty(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         Addlog("Recebida CMSG: CDeclineParty", PACKET_LOG)
         Console.WriteLine("Recebida CMSG: CDeclineParty")
-
+#End If
         Party_InviteDecline(TempPlayer(index).PartyInvite, index)
     End Sub
 
     Friend Sub Packet_LeaveParty(index As Integer, ByRef data() As Byte)
+#If DEBUG Then
         Addlog("Recebida CMSG: CLeaveParty", PACKET_LOG)
         Console.WriteLine("Recebida CMSG: CLeaveParty")
-
+#End If
         Party_PlayerLeave(index)
     End Sub
 
     Friend Sub Packet_PartyChatMsg(index As Integer, ByRef data() As Byte)
         Dim buffer As New ByteStream(data)
+#If DEBUG Then
         Addlog("Recebida CMSG: CPartyChatMsg", PACKET_LOG)
         Console.WriteLine("Recebida CMSG: CPartyChatMsg")
+#End If
 
         PartyMsg(index, buffer.ReadString)
 
