@@ -27,7 +27,7 @@
             Get
 #If CLIENT Then
                 Return Environment.GetFolderPath(
-                       Environment.SpecialFolder.MyDocuments) & "/" &
+                       Environment.SpecialFolder.ApplicationData) & "/" &
                        Settings.GameName & "/"
 #ElseIf SERVER Then
                 Return Application.StartupPath() & "/Configuration/"

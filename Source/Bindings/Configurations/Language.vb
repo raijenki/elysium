@@ -114,7 +114,7 @@ Public Class LanguageDef
         Public AdminGblMsg As String = "''msgaqui = Mensagem global como administrador"
         Public AdminPvtMsg As String = "= msgaqui = Mensagem privada como administrador"
         Public Admin1 As String = "Comandos sociais:"
-        Public Admin2 As String = "Comandos uteis /admin, /loc, 
+        Public Admin2 As String = "Comandos úteis /admin, /loc, 
                                    /warpmeto, /warptome, /warpto, 
                                    /sprite, /mapreport, /chutar, 
                                    /banir, /respawn, /welcome, /questreset"
