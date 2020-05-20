@@ -2,7 +2,7 @@
 
 Namespace ASFW.IO.FileIO
     ''' <summary>
-    ''' Saves and Loads Binary Files using a ByteStream.
+    ''' Salva e carrega arquivos binários usando um ByteStream.
     ''' </summary>
     Public Module BinaryFile
         Public Sub Load(ByVal src As String, ByRef stream As ByteStream)
@@ -48,7 +48,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Returns true if the read variable matches the input.
+        ''' Retorna verdade se a variável lida é igual ao input.
         ''' </summary>
         Public Function CompareVar(ByVal path As String, ByVal header As String, ByVal name As String, ByVal input As String) As Boolean
             Return Equals(Read(path, header, name), input)
@@ -56,7 +56,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Returns true if the input exists as its own line in the file.
+        ''' Retorna verdade se o input existe em sua própria linha do arquivo.
         ''' </summary>
         Public Function StringExists(ByVal path As String, ByVal input As String) As Boolean
             Dim fContents = File.ReadAllLines(path)
@@ -70,7 +70,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Removes the line matching the input if it exists. The line must match 100%.
+        ''' Remove a linha que du match no input se existir. A linha deve ser igual 100%.
         ''' </summary>
         Public Sub RemoveString(ByVal path As String, ByVal input As String)
             Dim fContents = File.ReadAllLines(path)
@@ -89,7 +89,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Completely erases the contents of the file.
+        ''' Apaga completamente o conteúdo do arquivo.
         ''' </summary>
         Public Sub ClearFile(ByVal path As String)
             If Not File.Exists(path) Then Return
@@ -99,7 +99,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Returns the variable data if it is found. Otherwise returns empty string.
+        ''' Retorna o dado da variável se for encontrada. Caso contrário, retorna string vazia.
         ''' </summary>
         Public Function Read(ByVal path As String, ByVal header As String, ByVal name As String) As String
             Dim fContents = File.ReadAllLines(path)
@@ -121,7 +121,7 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Overwrites variable data if it is found. Otherwise does nothing.
+        ''' Sobrescrever dado de variável se for encontrado. Caso contrário, fazer nada.
         ''' </summary>
         Public Sub Write(ByVal path As String, ByVal header As String, ByVal name As String, ByVal value As String)
             Dim fContents = File.ReadAllLines(path)
@@ -145,9 +145,8 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Returns variable data if found otherwise returns empty string.
-        ''' This is an INI replica function and creates the variable if it doesnt exist
-        ''' however this does come with a performance cost.
+        ''' Retorna dado de variável se encontrado, caso contrário volta uma string vazia.
+        ''' Esta é uma réplica da funcão da INI e cria a variável se não existir, mas vem com um custo de desempenho.
         ''' </summary>
         Public Function GetVar(ByVal path As String, ByVal header As String, ByVal name As String) As String
             Dim fContents = File.ReadAllLines(path)
@@ -199,9 +198,8 @@ Namespace ASFW.IO.FileIO
 
 
         ''' <summary>
-        ''' Overwrites variable data if it is found.
-        ''' This is an INI replica function and creates the variable if it doesnt exist
-        ''' however this does come with a performance cost.
+        ''' Sobrescreve dado se encontrado
+        ''' Esta é uma réplica da funcão da INI e cria a variável se não existir, mas vem com um custo de desempenho.
         ''' </summary>
         Public Sub PutVar(ByVal path As String, ByVal header As String, ByVal name As String, ByVal value As String)
             Dim fContents = File.ReadAllLines(path)

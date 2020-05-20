@@ -9,11 +9,11 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Returns true if listener is active and can receive connection requests.
+        ''' Retorna verdadeiro se o listener estiver ativo e pode receber pedidos de conexões.
         ''' </summary>
 
         ''' <summary>
-        ''' Returns the highest index used by active clients.
+        ''' Retorna o maior índice usado pelos clientes ativos.
         ''' </summary>
         Private _IsListening As Boolean, _HighIndex As Integer
 
@@ -46,12 +46,12 @@ Namespace ASFW.Network
         Private _packetSize As Integer
 
         ''' <summary>
-        ''' Limitation of packet sizes to allow being received. 0 Meens no limit anything is received.
+        ''' Limitação do tamanho de tamanhos de packets a serem recebidos. 0 = sem limites.
         ''' </summary>
         Public Property BufferLimit As Integer = 0
 
         ''' <summary>
-        ''' Returns the client limit set on initialization.
+        ''' Retorna o limite de clientes setado na inicialização.
         ''' </summary>
         Public ReadOnly Property ClientLimit As Integer
 
@@ -75,20 +75,20 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sets the minimum index the listener starts from.
+        ''' Seta o indice mínimo que o listener começa.
         ''' </summary>
         Public Property MinimumIndex As Integer = 0
 
         ''' <summary>
-        ''' The limit to how many packets can be stored on the buffer at one time.
-        ''' 0 for no limit.
+        ''' O limite de quantas packets podem ser guardadas no buffer de uma vez.
+        ''' 0 para sem limites.
         ''' </summary>
         Public Property PacketAcceptLimit As Integer = 0
 
         ''' <summary>
-        ''' If expected packets should never reach this number (EX - A connection is spamming)
-        ''' then automatically disconnect. Basicly this is something like a DDOS prevention tool.
-        ''' 0 to never disconnect.
+        ''' Se as packets esperadas nunca chegarem a esse número (EX - Um spam de conexões)
+        ''' então desconectar automaticamente. É quase uma ferrametna de prevenção a DDoS.
+        ''' 0 para nunca desconectar.
         ''' </summary>
         Public Property PacketDisconnectCount As Integer = 0
         Public Delegate Sub AccessArgs(ByVal index As Integer, ByVal packetid As Integer)
@@ -107,9 +107,9 @@ Namespace ASFW.Network
         Public PacketId As DataArgs()
 
 
-        ''' <summary> If clientLimit is left at 0 then new connections will not be refused. </summary>
-        ''' <paramname="packetCount">Constant size of max packet header count.</param>
-        ''' <paramname="packetSize">Constant size of packet buffer size.</param>
+        ''' <summary> Se o clientLimit é deixado em zero, então novas conexões não serão recusadas. </summary>
+        ''' <paramname="packetCount">Tamanho constante do contador de cabeçalho da packet.</param>
+        ''' <paramname="packetSize">Tamanho constante do buffer da packet.</param>
         Public Sub New(ByVal packetCount As Integer, ByVal Optional packetSize As Integer = 8192, ByVal Optional clientLimit As Integer = 0)
             If _listener IsNot Nothing OrElse _socket IsNot Nothing Then Return
             If packetSize <= 0 Then packetSize = 8192
@@ -144,8 +144,8 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Returns true if a connection exists. May return false positive if connection was
-        ''' terminated incorrectly. (EX: Other side crashed and never requestd disconnect)
+        ''' Retorna verdadeiro se uma conexão existe. Pode retornar falso positivo se
+        ''' a conexão foi terminada incorretamente (EX: outro lado caiu e nunca pediu desconexão).
         ''' </summary>
         Public Function IsConnected(ByVal index As Integer) As Boolean
             If Not _socket.ContainsKey(index) Then Return False
@@ -156,7 +156,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Returns the Local Area Net connection IP or IPv4 of the server host computer.
+        ''' Retorna a IP de conexão de área local ou o IPv4 do servidor.
         ''' </summary>
         Public Function GetIPv4() As String
             Return Dns.GetHostEntry(Dns.GetHostName()).AddressList(0).ToString()
@@ -164,7 +164,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Returns the ip saved in the existing 
+        ''' Retorna ip salvo no index 
         ''' </summary>
         ''' <paramname="index"></param>
         ''' <returns></returns>
@@ -175,7 +175,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Signals termination of a connection to the other side if connected to anyone.
+        ''' Sinaliza término de conexão para o outro lado se conectado a alguém.
         ''' </summary>
         Public Sub Disconnect(ByVal index As Integer)
             If Not _socket.ContainsKey(index) Then Return
@@ -251,7 +251,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Activates listener if it is not already active.
+        ''' Ativa listener se já não estiver ativo.
         ''' </summary>
         Public Sub StartListening(ByVal port As Integer, ByVal backlog As Integer)
             If _socket Is Nothing OrElse IsListening OrElse _listener IsNot Nothing Then Return
@@ -264,7 +264,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Deactivates listener if it is active.
+        ''' Desativa listener se estiver ativo.
         ''' </summary>
         Public Sub StopListening()
             If Not IsListening OrElse _socket Is Nothing Then Return
@@ -508,14 +508,11 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to the connected endpoint.
-        ''' [Used internally, but can be used externally if creating your own
-        ''' SendToAll/But to reduce overhead if ref data has been optimized already.]
+        ''' Envia vetor de bytes pela rede para o ponto-fim contado.
+        ''' [Usado internamente, mas pode ser usado externamente como forma de reduzir overhead.]
         ''' 
-        ''' NOTE: Requires the first 4 values of data to express the size of the
-        ''' contents of data EX: The head value from the other version of the send methods.
-        ''' 
-        ''' NOTE 2: If using ByteStream use the new ToPacket() method.
+        ''' NOTA: Requer os primeiros 4 valores do dado expresse o tamanho. 
+        ''' NOTE 2: Se usando o ByetStream, usar o método ToPacket().
         ''' </summary>
         Public Sub SendDataTo(ByVal index As Integer, ByVal data As Byte())
             If Not _socket.ContainsKey(index) Then Return
@@ -530,7 +527,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to the connected endpoint.
+        '''  Envia o vetor de bytes pela rede para um conectado específico.
         ''' </summary>
         Public Sub SendDataTo(ByVal index As Integer, ByVal data As Byte(), ByVal head As Integer)
             If Not _socket.ContainsKey(index) Then Return
@@ -548,7 +545,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to all connected endpoints.
+        '''  Envia o vetor de bytes pela rede para todos os conectados.
         ''' </summary>
         Public Sub SendDataToAll(ByVal data As Byte(), ByVal head As Integer)
             Dim buffer = New Byte(head + 4 - 1) {}
@@ -562,8 +559,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to all connected endpoints
-        ''' excluding the specified index.
+        ''' Envia o vetor de bytes pela rede para todos os conectados, excluindo o índice específico.
         ''' </summary>
         Public Sub SendDataToAllBut(ByVal index As Integer, ByVal data As Byte(), ByVal head As Integer)
             Dim buffer = New Byte(head + 4 - 1) {}

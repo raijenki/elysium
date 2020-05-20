@@ -6,7 +6,7 @@ Imports System.Security.Cryptography
 
 Namespace ASFW.IO.Encryption
     ''' <summary>
-    ''' Simple encryption methods performed over a static password.
+    ''' Método simples de criptografia utilizando uma senha estática.
     ''' </summary>
     Public Module Generic
         Public Function EncryptBytes(ByVal value As Byte(), ByVal password As String, ByVal iterations As Integer) As Byte()
@@ -170,29 +170,18 @@ Namespace ASFW.IO.Encryption
 
 
     ''' <summary>
-    ''' Advanced encryption methods performed over a generated Async Keypair Code.
+    ''' Método avançado de criptografia utilizando um par de chaves assíncrono.
     ''' </summary>
     Public NotInheritable Class KeyPair
         Implements IDisposable
 
 
-        ''' <summary>
-        ''' Honestly wasn't sure if anyone would need direct access to this so
-        ''' it was left publicly accessible in case they would.
-        ''' </summary>
-        'Private _Csp As CspParameters
 
-        ''' <summary>
-        ''' Honestly have no idea what these are for, but they are used in key
-        ''' generation so if anyone knows their purpose they'll still have the
-        ''' ability to use them.
-        ''' </summary>
         Public Enum KeyType
             Signature = 1
             Exchange = 2
         End Enum
 
-        ' Check if bugs later // Auto-implemented property
 
         Property Csp As CspParameters = New CspParameters()
 
@@ -206,7 +195,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Returns if only a Public/Encryption key was loaded.
+        ''' Retorna se uma chave pública foi carregada.
         ''' </summary>
         Public ReadOnly Property PublicOnly As Boolean
             Get
@@ -217,7 +206,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Generates a new Public/Encryption and Private/Decryption Keypair.
+        ''' Gera uma nova chave pública de encriptar e privada de decriptar.
         ''' </summary>
         Public Sub GenerateKeys(ByVal Optional type As KeyType = KeyType.Signature)
             Csp.ProviderType = type
@@ -226,9 +215,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Returns the string data of the Key Code(s). This functions
-        ''' primary use is for retrieving Key(s) so they can be passed
-        ''' to other KeyPair objects without access to a file. (EX: over a network)
+        ''' Retorna o string da chave. Isto funciona para pegar a chave para que possam ser passadas sem acessar um arquivo.
         ''' </summary>
         Public Function ExportKeyString(ByVal Optional exportPrivate As Boolean = False) As String
             Return _rsa.ToXmlString(exportPrivate)
@@ -236,7 +223,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Saves the string data of the Key Code(s) to a file for reuse.
+        ''' Salva o dado da chave em um arquivo para reuso.
         ''' </summary>
         Public Sub ExportKey(ByVal file As String, ByVal Optional exportPrivate As Boolean = True)
             Dim stream = New StreamWriter(file, False)
@@ -246,7 +233,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Loads the string data of the Key Code(s) for use.
+        ''' Carrega o dado de string da chave para uso.
         ''' </summary>
         Public Sub ImportKeyString(ByVal key As String)
             _rsa = New RSACryptoServiceProvider(Csp)
@@ -255,7 +242,7 @@ Namespace ASFW.IO.Encryption
 
 
         ''' <summary>
-        ''' Loads the string data of the Key Code(s) from a file for use.
+        ''' Carrega o dado de string da chave de um arquivo para uso.
         ''' </summary>
         Public Sub ImportKey(ByVal file As String)
             Dim stream = New StreamReader(file)

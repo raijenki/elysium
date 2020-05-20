@@ -31,7 +31,7 @@ Public Class SettingsDef
     Public GameName As String = "Elysium.NET"
     Public Website As String = "http://www.mmodev.com.br"
 
-    Public Welcome As String = "Bem vindo ao elysium.net, aproveite sua estadia e visite nosso forum http://www.mmodev.com.br!"
+    Public Welcome As String = "Bem vindo ao Elysium.net, aproveite sua estadia e visite nosso portal http://www.mmodev.com.br!"
     Public Port As Integer = 7001
 
     Public StartMap As Integer = 1

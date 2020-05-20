@@ -6,17 +6,17 @@ Imports System.Reflection
 
 Namespace ASFW
     ''' <summary>
-    ''' A buffer object made from a byte array.
+    ''' Um objeto no buffer feito de vetor de bytes. 
     ''' </summary>
     Public Structure ByteStream
         Implements IDisposable
 
         ''' <summary>
-        ''' The internal byte array
+        ''' O vetor de bytes interno.
         ''' </summary>
         Public Data As Byte()
         ''' <summary>
-        ''' The read/write head. This moves on read AND write code so keep track of this
+        ''' O cabeçalho de leitura/escrita. This moves on read AND write code so keep track of this
         ''' if attempting to read and write at the same time.
         ''' </summary>
         Public Head As Integer
@@ -47,9 +47,8 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' For use with the networking of this library.
-        ''' Packs the data array with an extra 4 bytes at the
-        ''' beginning expressing the Head value.
+        ''' Para uso com a networking desta biblioteca.
+        ''' Faz o pacote do vetor de dados com 4 valores extra no cabeçalho.
         ''' </summary>
         ''' <returns></returns>
         Public Function ToPacket() As Byte()
@@ -80,7 +79,7 @@ Namespace ASFW
 
 #Region "Read"
         ''' <summary>
-        ''' Reads a byte array from the stream without reading for a prewritten size.
+        ''' Lê um vetor de bytes do stream sem ler por um tamanho predefinido.
         ''' </summary>
         Public Function ReadBlock(ByVal size As Integer) As Byte()
             If size <= 0 OrElse Head + size > Data.Length Then Return New Byte(-1) {}
@@ -92,7 +91,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a serializable object from the stream.
+        ''' Lê um objeto serializável do stream.
         ''' </summary>
         Public Function ReadObject() As Object
             Dim value = ReadBytes()
@@ -107,7 +106,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a byte array and its size from the stream.
+        ''' Lê um vetor de bytes e seu tamanho dos stream.
         ''' </summary>
         Public Function ReadBytes() As Byte()
             If Head + 4 > Data.Length Then Return New Byte(-1) {}
@@ -122,7 +121,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a regular string from the stream.
+        ''' Lê uma string regular do fluxo.
         ''' </summary>
         Public Function ReadString() As String
             If Head + 4 > Data.Length Then Return ""
@@ -136,7 +135,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (character) from the stream.
+        ''' Lê um caractere do fluxo.
         ''' </summary>
         Public Function ReadChar() As Char
             If Head + 2 > Data.Length Then Return Char.MinValue
@@ -147,7 +146,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (byte) from the stream.
+        ''' Lê um byte do fluxo.
         ''' </summary>
         Public Function ReadByte() As Byte
             If Head + 1 > Data.Length Then Return 0
@@ -158,7 +157,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (boolean) from the stream.
+        ''' Lê um booleano do fluxo.
         ''' </summary>
         Public Function ReadBoolean() As Boolean
             If Head + 1 > Data.Length Then Return False
@@ -169,7 +168,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (short) from the stream.
+        ''' Lê um short do fluxo.
         ''' </summary>
         Public Function ReadInt16() As Short
             If Head + 2 > Data.Length Then Return 0
@@ -180,7 +179,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (unsigned short) from the stream.
+        ''' Lê um unsigned short do fluxo.
         ''' </summary>
         Public Function ReadUInt16() As UShort
             If Head + 2 > Data.Length Then Return 0
@@ -191,7 +190,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (integer) from the stream.
+        ''' Lê um integer do fluxo/stream.
         ''' </summary>
         Public Function ReadInt32() As Integer
             If Head + 4 > Data.Length Then Return 0
@@ -202,7 +201,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (usigned integer) from the stream.
+        ''' Lê um unsigned integer do fluxo.
         ''' </summary>
         Public Function ReadUInt32() As UInteger
             If Head + 4 > Data.Length Then Return 0
@@ -213,7 +212,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (single-floating point) from the stream.
+        ''' Lê um ponto flutuante de precisão simples do fluxo.
         ''' </summary>
         Public Function ReadSingle() As Single
             If Head + 4 > Data.Length Then Return 0.0F
@@ -224,7 +223,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (long) from the stream.
+        ''' Lê um long do fluxo.
         ''' </summary>
         Public Function ReadInt64() As Long
             If Head + 8 > Data.Length Then Return 0
@@ -235,7 +234,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (unsigned long) from the stream.
+        ''' Lê um unsigned long do fluxo.
         ''' </summary>
         Public Function ReadUInt64() As ULong
             If Head + 8 > Data.Length Then Return 0
@@ -246,7 +245,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Reads a (double-floating point) from the stream.
+        ''' Lê um ponto flutuante de precisão dupla do fluxo.
         ''' </summary>
         Public Function ReadDouble() As Double
             If Head + 8 > Data.Length Then Return 0.0
@@ -259,7 +258,7 @@ Namespace ASFW
 
 #Region "Write"
         ''' <summary>
-        ''' Writes a byte array to the stream without prewriting its size.
+        ''' Escreve um vetor de bytes para o fluxo sem preescrever seu tamanho.
         ''' </summary>
         Public Sub WriteBlock(ByVal bytes As Byte())
             CheckSize(bytes.Length)
@@ -269,7 +268,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a byte array to the stream without prewriting its size.
+        ''' Escreve um vetor de bytes para o fluxo sem preescrever seu tamanho.
         ''' </summary>
         Public Sub WriteBlock(ByVal bytes As Byte(), ByVal offset As Integer, ByVal size As Integer)
             CheckSize(size)
@@ -279,7 +278,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a serializable object to the stream.
+        ''' Escreve um objeto serializável no fluxo..
         ''' </summary>
         Public Sub WriteObject(ByVal value As Object)
             Using ms = New MemoryStream()
@@ -290,7 +289,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a byte array and its size to the stream.
+        ''' Escreve um vetor de bytes e seu tamanho no fluxo.
         ''' </summary>
         Public Sub WriteBytes(ByVal value As Byte(), ByVal offset As Integer, ByVal size As Integer)
             WriteBlock(BitConverter.GetBytes(size))
@@ -299,7 +298,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a byte array and its size to the stream.
+        ''' Escreve um vetor de bytes e seu tamanho no fluxo..
         ''' </summary>
         Public Sub WriteBytes(ByVal value As Byte())
             WriteBlock(BitConverter.GetBytes(value.Length))
@@ -308,7 +307,7 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a regular string to the stream.
+        ''' Escreve uma string comum no fluxo.
         ''' </summary>
         Public Sub WriteString(ByVal value As String)
             If Equals(value, Nothing) Then
@@ -323,14 +322,14 @@ Namespace ASFW
 
 
         ''' <summary>
-        ''' Writes a (character) to the stream.
+        ''' Escreve um caractere no fluxo.
         ''' </summary>
         Public Sub WriteChar(ByVal value As Char)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (byte) to the stream.
+        ''' Escreve um byte no fluxo.
         ''' </summary>
         Public Sub WriteByte(ByVal value As Byte)
             CheckSize(1)
@@ -339,63 +338,63 @@ Namespace ASFW
         End Sub
 
         ''' <summary>
-        ''' Writes a (boolean) to the stream.
+        ''' Escreve um booleano no fluxo.
         ''' </summary>
         Public Sub WriteBoolean(ByVal value As Boolean)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (short) to the stream.
+        ''' Escreve um short no fluxo.
         ''' </summary>
         Public Sub WriteInt16(ByVal value As Short)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (unsigned short) to the stream.
+        ''' Escreve um unsigned short no fluxo.
         ''' </summary>
         Public Sub WriteUInt16(ByVal value As UShort)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (integer) to the stream.
+        ''' Escreve um integer no fluxo.
         ''' </summary>
         Public Sub WriteInt32(ByVal value As Integer)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (unsigned integer) to the stream.
+        ''' Escreve um unsigned integer no fluxo.
         ''' </summary>
         Public Sub WriteUInt32(ByVal value As UInteger)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (single-floating point) to the stream.
+        ''' Escreve um ponto flutuante de precisão simples do fluxo.
         ''' </summary>
         Public Sub WriteSingle(ByVal value As Single)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (long) to the stream.
+        ''' Escreve um long no fluxo.
         ''' </summary>
         Public Sub WriteInt64(ByVal value As Long)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (unsigned long) to the stream.
+        ''' Escreve um unsigned long no fluxo.
         ''' </summary>
         Public Sub WriteUInt64(ByVal value As ULong)
             WriteBlock(BitConverter.GetBytes(value))
         End Sub
 
         ''' <summary>
-        ''' Writes a (double-floating point) to the stream.
+        ''' Escreve um ponto flutuante de precisão duplo do fluxo.
         ''' </summary>
         Public Sub WriteDouble(ByVal value As Double)
             WriteBlock(BitConverter.GetBytes(value))
@@ -403,7 +402,7 @@ Namespace ASFW
 
 #End Region
 
-        ''' <summary> Internal use binder. </summary>
+        ''' <summary> Binder de uso interno. </summary>
         Private Class ASFWBinder
             Inherits SerializationBinder
 

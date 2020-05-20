@@ -29,7 +29,7 @@ Namespace ASFW.Network
 
 
         ''' <summary> </summary>
-        ''' <paramname="packetCount">Constant size of max packet header count.</param>
+        ''' <paramname="packetCount">Tamanho constante do max packet header count.</param>
         Public Sub New(ByVal packetCount As Integer, ByVal Optional packetSize As Integer = 8192)
             If _socket IsNot Nothing Then Return
             If packetSize <= 0 Then packetSize = 8192
@@ -58,8 +58,8 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Connects to the specified remote end point.
-        ''' Invokes an event if connection was successful or failed.
+        ''' Conecta ao ponto-fim específico.
+        ''' Invoca um evento se a conexão teve sucesso ou falhou.
         ''' </summary>
         Public Sub Connect(ByVal ip As String, ByVal port As Integer)
             If _socket Is Nothing OrElse _socket.Connected OrElse _connecting Then Return
@@ -99,8 +99,8 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Returns true if a connection exists. May return false positive if connection was
-        ''' terminated incorrectly. (EX: Other side crashed and never requestd disconnect)
+        ''' Retorna verdadeiro se a conexão existir. Pode retornar falso positivo se a conexão foi terminada incorretamente.
+        ''' (EX: Outro lado caiu ou nunca pediu desconexão)
         ''' </summary>
         Public ReadOnly Property IsConnected As Boolean
             Get
@@ -110,7 +110,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Signals termination of a connection to the other side if connected to anyone.
+        ''' Sinaliza terminação da conexão para o outro lado se conectado a alguém.
         ''' </summary>
         Public Sub Disconnect()
             If _socket Is Nothing OrElse Not _socket.Connected Then Return
@@ -236,14 +236,12 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to the connected endpoint.
-        ''' [Used internally, but can be used externally if creating your own
-        ''' SendToAll/But to reduce overhead if ref data has been optimized already.]
+        ''' Envia vetor de bytes pela rede para o ponto-fim conectado
+        ''' [Usado internamente, mas pode ser usado externamente para reduzir possiveis overheads.]
         ''' 
-        ''' NOTE: Requires the first 4 values of data to express the size of the
-        ''' contents of data EX: The head value from the other version of the send methods.
+        ''' NOTA: Os primeiros 4 valores/bytes expressam tamanho do dado.
         ''' 
-        ''' NOTE 2: If using ByteStream use the new ToPacket() method.
+        ''' NOTA 2: Se usando ByteStream, usar o método ToPacket().
         ''' </summary>
         Public Sub SendData(ByVal data As Byte())
             If Not _socket.Connected Then Return
@@ -252,7 +250,7 @@ Namespace ASFW.Network
 
 
         ''' <summary>
-        ''' Sends byte array data over the network to the connected endpoint.
+        ''' Envia vetor de bytes pela rede para o ponto-fim conectado.
         ''' </summary>
         Public Sub SendData(ByVal data As Byte(), ByVal head As Integer)
             If Not _socket.Connected Then Return
