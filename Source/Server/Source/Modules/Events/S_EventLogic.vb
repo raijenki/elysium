@@ -116,10 +116,10 @@ Friend Module S_EventLogic
                                     Buffer.WriteInt32(.QuestNum)
                                 End With
                                 Socket.SendDataTo(i, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
                                 Addlog("Enviada SMSG: SSpawnEvent Remover Eventos Mortos", PACKET_LOG)
                                 Console.WriteLine("Enviada SMSG: SSpawnEvent Remover Eventos Mortos")
-
+#End If
                                 Buffer.Dispose()
                             End If
                         End If
@@ -697,10 +697,10 @@ Friend Module S_EventLogic
                                                             Buffer.WriteInt32(.QuestNum)
                                                         End With
                                                         SendDataToMap(i, Buffer.Data, Buffer.Head)
-
+#If DEBUG Then
                                                         Addlog("Enviada SMSG: SSpawnEvent Process Event Movement", PACKET_LOG)
                                                         Console.WriteLine("Enviada SMSG: SSpawnEvent Process Event Movement")
-
+#End If
                                                         Buffer.Dispose()
                                                     End If
                                                 End If
@@ -1806,38 +1806,38 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(ServerPackets.SPlayBGM)
                                                             buffer.WriteString((Trim(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1)))
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SPlayBGM", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SPlayBGM")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvFadeoutBgm
                                                             buffer = New ByteStream(4)
                                                             buffer.WriteInt32(ServerPackets.SFadeoutBGM)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SFadeoutBGM", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SFadeoutBGM")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvPlaySound
                                                             buffer = New ByteStream(4)
                                                             buffer.WriteInt32(ServerPackets.SPlaySound)
                                                             buffer.WriteString((Trim(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Text1)))
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SPlaySound", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SPlaySound")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvStopSound
                                                             buffer = New ByteStream(4)
                                                             buffer.WriteInt32(ServerPackets.SStopSound)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SStopSound", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SStopSound")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvSetAccess
                                                             Player(i).Access = Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1
@@ -1916,10 +1916,10 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data4)
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data5)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SPic evShowPicture", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SPic evShowPicture")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvHidePicture
                                                             buffer = New ByteStream(4)
@@ -1927,10 +1927,10 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(1)
                                                             buffer.WriteInt32(Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1 + 1)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SPic evHidePicture", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SPic evHidePicture")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvWaitMovement
                                                             If Map(GetPlayerMap(i)).Events(.EventId).Pages(.PageId).CommandList(.CurList).Commands(.CurSlot).Data1 <= Map(GetPlayerMap(i)).EventCount Then
@@ -1949,20 +1949,20 @@ Friend Module S_EventLogic
                                                             buffer.WriteInt32(ServerPackets.SHoldPlayer)
                                                             buffer.WriteInt32(0)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SHoldPlayer", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SHoldPlayer")
-
+#End If
                                                             buffer.Dispose()
                                                         Case EventType.EvReleasePlayer
                                                             buffer = New ByteStream(4)
                                                             buffer.WriteInt32(ServerPackets.SHoldPlayer)
                                                             buffer.WriteInt32(1)
                                                             Socket.SendDataTo(i, buffer.Data, buffer.Head)
-
+#If DEBUG Then
                                                             Addlog("Enviada SMSG: SHoldPlayer Release", PACKET_LOG)
                                                             Console.WriteLine("Enviada SMSG: SHoldPlayer Release")
-
+#End If
                                                             buffer.Dispose()
                                                     End Select
                                                 End If

@@ -104,7 +104,7 @@ Public Class LanguageDef
         Public Help2 As String = "'[mensagem] = Mensagem global"
         Public Help3 As String = "-[mensagem] = Mensagem para a equipe"
         Public Help4 As String = "![jogador] [mensagem] = Mensagem direta"
-        Public Help5 As String = "Comandos uteis: /ajuda, /info, 
+        Public Help5 As String = "Comandos úteis: /ajuda, /info, 
                                   /quem, /fps, /lps, /atributos, /troca, 
                                   /party, /entrar, /sair, /vendermoradia, 
                                   /convidarmoradia"
@@ -114,7 +114,7 @@ Public Class LanguageDef
         Public AdminGblMsg As String = "''msgaqui = Mensagem global como administrador"
         Public AdminPvtMsg As String = "= msgaqui = Mensagem privada como administrador"
         Public Admin1 As String = "Comandos sociais:"
-        Public Admin2 As String = "Comandos uteis /admin, /loc, 
+        Public Admin2 As String = "Comandos úteis /admin, /loc, 
                                    /warpmeto, /warptome, /warpto, 
                                    /sprite, /mapreport, /chutar, 
                                    /banir, /respawn, /welcome, /questreset"
