@@ -24,7 +24,7 @@ Module C_DataBase
         Dim i As Integer
         i = 1
 
-        While File.Exists(Path.Graphics & "characters\" & i & GfxExt)
+        While File.Exists(Path.Graphics & "personagens\" & i & GfxExt)
             NumCharacters = NumCharacters + 1
             i = i + 1
         End While
@@ -48,7 +48,7 @@ Module C_DataBase
         Dim i As Integer
         i = 1
 
-        While File.Exists(Path.Graphics & "animations\" & i & GfxExt)
+        While File.Exists(Path.Graphics & "animados\" & i & GfxExt)
             NumAnimations = NumAnimations + 1
             i = i + 1
         End While
@@ -60,7 +60,7 @@ Module C_DataBase
         Dim i As Integer
         i = 1
 
-        While File.Exists(Path.Graphics & "SkillIcons\" & i & GfxExt)
+        While File.Exists(Path.Graphics & "HabIcons\" & i & GfxExt)
             NumSkillIcons = NumSkillIcons + 1
             i = i + 1
         End While
@@ -72,7 +72,7 @@ Module C_DataBase
         Dim i As Integer
         i = 1
 
-        While File.Exists(Path.Graphics & "Faces\" & i & GfxExt)
+        While File.Exists(Path.Graphics & "Rostos\" & i & GfxExt)
             NumFaces = NumFaces + 1
             i = i + 1
         End While
@@ -84,7 +84,7 @@ Module C_DataBase
         Dim i As Integer
         i = 1
 
-        While File.Exists(Path.Graphics & "Fogs\" & i & GfxExt)
+        While File.Exists(Path.Graphics & "Nevoas\" & i & GfxExt)
             NumFogs = NumFogs + 1
             i = i + 1
         End While

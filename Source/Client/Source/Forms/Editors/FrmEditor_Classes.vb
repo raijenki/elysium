@@ -122,16 +122,16 @@ Friend Class frmEditor_Classes
 
     Sub DrawPreview()
 
-        If File.Exists(Path.Graphics & "Characters\" & nudMaleSprite.Value & GfxExt) Then
-            picMale.Width = Image.FromFile(Path.Graphics & "characters\" & nudMaleSprite.Value & GfxExt).Width \ 4
-            picMale.Height = Image.FromFile(Path.Graphics & "characters\" & nudMaleSprite.Value & GfxExt).Height \ 4
-            picMale.BackgroundImage = Image.FromFile(Path.Graphics & "Characters\" & nudMaleSprite.Value & GfxExt)
+        If File.Exists(Path.Graphics & "Personagens\" & nudMaleSprite.Value & GfxExt) Then
+            picMale.Width = Image.FromFile(Path.Graphics & "Personagens\" & nudMaleSprite.Value & GfxExt).Width \ 4
+            picMale.Height = Image.FromFile(Path.Graphics & "Personagens\" & nudMaleSprite.Value & GfxExt).Height \ 4
+            picMale.BackgroundImage = Image.FromFile(Path.Graphics & "Personagens\" & nudMaleSprite.Value & GfxExt)
         End If
 
-        If File.Exists(Path.Graphics & "Characters\" & nudFemaleSprite.Value & GfxExt) Then
-            picFemale.Width = Image.FromFile(Path.Graphics & "characters\" & nudFemaleSprite.Value & GfxExt).Width \ 4
-            picFemale.Height = Image.FromFile(Path.Graphics & "characters\" & nudFemaleSprite.Value & GfxExt).Height \ 4
-            picFemale.BackgroundImage = Image.FromFile(Path.Graphics & "Characters\" & nudFemaleSprite.Value & GfxExt)
+        If File.Exists(Path.Graphics & "Personagens\" & nudFemaleSprite.Value & GfxExt) Then
+            picFemale.Width = Image.FromFile(Path.Graphics & "Personagens\" & nudFemaleSprite.Value & GfxExt).Width \ 4
+            picFemale.Height = Image.FromFile(Path.Graphics & "Personagens\" & nudFemaleSprite.Value & GfxExt).Height \ 4
+            picFemale.BackgroundImage = Image.FromFile(Path.Graphics & "Personagens\" & nudFemaleSprite.Value & GfxExt)
         End If
 
     End Sub

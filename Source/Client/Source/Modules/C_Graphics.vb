@@ -424,7 +424,7 @@ Module C_Graphics
         WeatherGfxInfo = New GraphicInfo
         If File.Exists(Path.Graphics & "Misc\Weather" & GfxExt) Then
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            WeatherGfx = New Texture(Path.Graphics & "Misc\Weather" & GfxExt)
+            WeatherGfx = New Texture(Path.Graphics & "Misc\Clima" & GfxExt)
             WeatherSprite = New Sprite(WeatherGfx)
 
             'Botar em cache o comprimento e a altura
@@ -768,7 +768,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumCharacters Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            CharacterGfx(index) = New Texture(Path.Graphics & "characters\" & index & GfxExt)
+            CharacterGfx(index) = New Texture(Path.Graphics & "personagens\" & index & GfxExt)
             CharacterSprite(index) = New Sprite(CharacterGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -799,7 +799,7 @@ Module C_Graphics
 
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            ItemsGfx(index) = New Texture(Path.Graphics & "Items\" & index & GfxExt)
+            ItemsGfx(index) = New Texture(Path.Graphics & "Itens\" & index & GfxExt)
             ItemsSprite(index) = New Sprite(ItemsGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -814,7 +814,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumResources Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            ResourcesGfx(index) = New Texture(Path.Graphics & "resources\" & index & GfxExt)
+            ResourcesGfx(index) = New Texture(Path.Graphics & "recursos\" & index & GfxExt)
             ResourcesSprite(index) = New Sprite(ResourcesGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -829,7 +829,7 @@ Module C_Graphics
             If index <= 0 OrElse index > NumAnimations Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            AnimationsGfx(index) = New Texture(Path.Graphics & "Animations\" & index & GfxExt)
+            AnimationsGfx(index) = New Texture(Path.Graphics & "Animados\" & index & GfxExt)
             AnimationsSprite(index) = New Sprite(AnimationsGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -844,7 +844,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumFaces Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            FacesGfx(index) = New Texture(Path.Graphics & "Faces\" & index & GfxExt)
+            FacesGfx(index) = New Texture(Path.Graphics & "Rostos\" & index & GfxExt)
             FacesSprite(index) = New Sprite(FacesGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -859,7 +859,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumFogs Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            FogGfx(index) = New Texture(Path.Graphics & "Fogs\" & index & GfxExt)
+            FogGfx(index) = New Texture(Path.Graphics & "Nevoas\" & index & GfxExt)
             FogSprite(index) = New Sprite(FogGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -874,7 +874,7 @@ Module C_Graphics
             If index <= 0 OrElse index > NumSkillIcons Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            SkillIconsGfx(index) = New Texture(Path.Graphics & "SkillIcons\" & index & GfxExt)
+            SkillIconsGfx(index) = New Texture(Path.Graphics & "HabIcons\" & index & GfxExt)
             SkillIconsSprite(index) = New Sprite(SkillIconsGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -889,7 +889,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumFurniture Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            FurnitureGfx(index) = New Texture(Path.Graphics & "Furniture\" & index & GfxExt)
+            FurnitureGfx(index) = New Texture(Path.Graphics & "Mobilia\" & index & GfxExt)
             FurnitureSprite(index) = New Sprite(FurnitureGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -904,7 +904,7 @@ Module C_Graphics
             If index < 0 OrElse index > NumProjectiles Then Exit Sub
 
             'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            ProjectileGfx(index) = New Texture(Path.Graphics & "Projectiles\" & index & GfxExt)
+            ProjectileGfx(index) = New Texture(Path.Graphics & "Projeteis\" & index & GfxExt)
             ProjectileSprite(index) = New Sprite(ProjectileGfx(index))
 
             'Botar em cache o comprimento e a altura
@@ -3051,8 +3051,8 @@ NextLoop:
             Exit Sub
         End If
 
-        If File.Exists(Path.Graphics & "items\" & itemnum & GfxExt) Then
-            frmEditor_Item.picItem.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "items\" & itemnum & GfxExt)
+        If File.Exists(Path.Graphics & "itens\" & itemnum & GfxExt) Then
+            frmEditor_Item.picItem.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "itens\" & itemnum & GfxExt)
         End If
 
     End Sub
@@ -3148,10 +3148,10 @@ NextLoop:
             Exit Sub
         End If
 
-        If File.Exists(Path.Graphics & "characters\" & Sprite & GfxExt) Then
-            frmEditor_NPC.picSprite.Width = Drawing.Image.FromFile(Path.Graphics & "characters\" & Sprite & GfxExt).Width / 4
-            frmEditor_NPC.picSprite.Height = Drawing.Image.FromFile(Path.Graphics & "characters\" & Sprite & GfxExt).Height / 4
-            frmEditor_NPC.picSprite.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "characters\" & Sprite & GfxExt)
+        If File.Exists(Path.Graphics & "personagens\" & Sprite & GfxExt) Then
+            frmEditor_NPC.picSprite.Width = Drawing.Image.FromFile(Path.Graphics & "personagens\" & Sprite & GfxExt).Width / 4
+            frmEditor_NPC.picSprite.Height = Drawing.Image.FromFile(Path.Graphics & "personagens\" & Sprite & GfxExt).Height / 4
+            frmEditor_NPC.picSprite.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "personagens\" & Sprite & GfxExt)
         End If
     End Sub
 
@@ -3164,8 +3164,8 @@ NextLoop:
         If Sprite < 1 OrElse Sprite > NumResources Then
             frmEditor_Resource.picNormalpic.BackgroundImage = Nothing
         Else
-            If File.Exists(Path.Graphics & "resources\" & Sprite & GfxExt) Then
-                frmEditor_Resource.picNormalpic.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "resources\" & Sprite & GfxExt)
+            If File.Exists(Path.Graphics & "recursos\" & Sprite & GfxExt) Then
+                frmEditor_Resource.picNormalpic.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "recursos\" & Sprite & GfxExt)
             End If
         End If
 
@@ -3175,8 +3175,8 @@ NextLoop:
         If Sprite < 1 OrElse Sprite > NumResources Then
             frmEditor_Resource.picExhaustedPic.BackgroundImage = Nothing
         Else
-            If File.Exists(Path.Graphics & "resources\" & Sprite & GfxExt) Then
-                frmEditor_Resource.picExhaustedPic.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "resources\" & Sprite & GfxExt)
+            If File.Exists(Path.Graphics & "recursos\" & Sprite & GfxExt) Then
+                frmEditor_Resource.picExhaustedPic.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "recursos\" & Sprite & GfxExt)
             End If
         End If
     End Sub

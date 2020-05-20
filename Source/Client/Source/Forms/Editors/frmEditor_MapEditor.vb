@@ -1250,8 +1250,8 @@ Public Class FrmEditor_MapEditor
             Exit Sub
         End If
 
-        If File.Exists(Path.Graphics & "items\" & itemnum & GfxExt) Then
-            Me.picMapItem.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "items\" & itemnum & GfxExt)
+        If File.Exists(Path.Graphics & "itens\" & itemnum & GfxExt) Then
+            Me.picMapItem.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "itens\" & itemnum & GfxExt)
         End If
 
     End Sub
@@ -1266,8 +1266,8 @@ Public Class FrmEditor_MapEditor
             Exit Sub
         End If
 
-        If File.Exists(Path.Graphics & "items\" & itemnum & GfxExt) Then
-            Me.picMapKey.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "items\" & itemnum & GfxExt)
+        If File.Exists(Path.Graphics & "itens\" & itemnum & GfxExt) Then
+            Me.picMapKey.BackgroundImage = Drawing.Image.FromFile(Path.Graphics & "itens\" & itemnum & GfxExt)
         End If
 
     End Sub

@@ -417,8 +417,8 @@ Module C_Editors
         End If
 
         frmEditor_Shop.nudFace.Value = Shop(Editorindex).Face
-        If File.Exists(Path.Graphics & "Faces\" & Shop(Editorindex).Face & GfxExt) Then
-            frmEditor_Shop.picFace.BackgroundImage = Image.FromFile(Path.Graphics & "Faces\" & Shop(Editorindex).Face & GfxExt)
+        If File.Exists(Path.Graphics & "Rostos\" & Shop(Editorindex).Face & GfxExt) Then
+            frmEditor_Shop.picFace.BackgroundImage = Image.FromFile(Path.Graphics & "Rostos\" & Shop(Editorindex).Face & GfxExt)
         End If
 
         frmEditor_Shop.cmbItem.Items.Clear()

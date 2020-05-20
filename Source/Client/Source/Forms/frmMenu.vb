@@ -186,9 +186,9 @@ Friend Class FrmMenu
             If NewCharSprite = 0 Then NewCharSprite = 1
 
             If rdoMale.Checked = True Then
-                filename = Path.Graphics & "characters\" & Classes(NewCharClass).MaleSprite(NewCharSprite) & GfxExt
+                filename = Path.Graphics & "Personagens\" & Classes(NewCharClass).MaleSprite(NewCharSprite) & GfxExt
             Else
-                filename = Path.Graphics & "characters\" & Classes(NewCharClass).FemaleSprite(NewCharSprite) & GfxExt
+                filename = Path.Graphics & "Personagens\" & Classes(NewCharClass).FemaleSprite(NewCharSprite) & GfxExt
             End If
 
             Dim charsprite As Bitmap = New Bitmap(filename)
@@ -228,7 +228,7 @@ Friend Class FrmMenu
             If CharSelection(1).Sprite > 0 Then
                 g = picChar1.CreateGraphics
 
-                filename = Path.Graphics & "characters\" & CharSelection(1).Sprite & GfxExt
+                filename = Path.Graphics & "Personagens\" & CharSelection(1).Sprite & GfxExt
 
                 Dim charsprite As Bitmap = New Bitmap(filename)
 
@@ -257,7 +257,7 @@ Friend Class FrmMenu
             If CharSelection(2).Sprite > 0 Then
                 g = picChar2.CreateGraphics
 
-                filename = Path.Graphics & "characters\" & CharSelection(2).Sprite & GfxExt
+                filename = Path.Graphics & "Personagens\" & CharSelection(2).Sprite & GfxExt
 
                 Dim charsprite As Bitmap = New Bitmap(filename)
 
@@ -286,7 +286,7 @@ Friend Class FrmMenu
             If CharSelection(3).Sprite > 0 Then
                 g = picChar3.CreateGraphics
 
-                filename = Path.Graphics & "characters\" & CharSelection(3).Sprite & GfxExt
+                filename = Path.Graphics & "Personagens\" & CharSelection(3).Sprite & GfxExt
 
                 Dim charsprite As Bitmap = New Bitmap(filename)
 
@@ -331,7 +331,7 @@ Friend Class FrmMenu
     Private Sub TmrCredits_Tick(sender As Object, e As EventArgs) Handles tmrCredits.Tick
         Dim credits As String
         Dim filepath As String
-        filepath = Application.StartupPath & "\Contents\credits.txt"
+        filepath = Application.StartupPath & "\Dados\Creditos.txt"
         lblScrollingCredits.Top = 177
         If PnlCreditsVisible = True Then
             tmrCredits.Enabled = False

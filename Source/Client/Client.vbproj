@@ -327,6 +327,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Forms\FrmMenu.resx">
       <DependentUpon>FrmMenu.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
@@ -339,26 +340,26 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Contents\AutoMapper.ini">
+    <None Include="Dados\AutoMapper.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Menu\OpenSans-Regular.ttf">
+    <None Include="Dados\Interface\Menu\OpenSans-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\App.config" />
-    <None Include="Contents\Music\Forest.ogg">
+    <None Include="Dados\Audio\Musicas\Forest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Music\Track1.ogg">
+    <None Include="Dados\Audio\Musicas\Track1.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Sounds\Click.ogg">
+    <None Include="Dados\Audio\Efeitos\Click.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Sounds\Rain.ogg">
+    <None Include="Dados\Audio\Efeitos\Rain.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Sounds\Thunder.ogg">
+    <None Include="Dados\Audio\Efeitos\Thunder.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\app.manifest" />
@@ -413,664 +414,664 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Contents\Credits.txt">
+    <None Include="Dados\Creditos.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Animations\1.png">
+    <None Include="Dados\Graficos\Animados\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Animations\2.png">
+    <None Include="Dados\Graficos\Animados\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Characters\1.png">
+    <None Include="Dados\Graficos\Personagens\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Characters\2.png">
+    <None Include="Dados\Graficos\Personagens\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Characters\3.png">
+    <None Include="Dados\Graficos\Personagens\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\1.png">
+    <None Include="Dados\Graficos\Emotes\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\10.png">
+    <None Include="Dados\Graficos\Emotes\10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\11.png">
+    <None Include="Dados\Graficos\Emotes\11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\2.png">
+    <None Include="Dados\Graficos\Emotes\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\3.png">
+    <None Include="Dados\Graficos\Emotes\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\4.png">
+    <None Include="Dados\Graficos\Emotes\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\5.png">
+    <None Include="Dados\Graficos\Emotes\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\6.png">
+    <None Include="Dados\Graficos\Emotes\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\7.png">
+    <None Include="Dados\Graficos\Emotes\7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\8.png">
+    <None Include="Dados\Graficos\Emotes\8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Emotes\9.png">
+    <None Include="Dados\Graficos\Emotes\9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Faces\1.png">
+    <None Include="Dados\Graficos\Rostos\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Faces\2.png">
+    <None Include="Dados\Graficos\Rostos\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Faces\3.png">
+    <None Include="Dados\Graficos\Rostos\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Fogs\1.png">
+    <None Include="Dados\Graficos\Nevoas\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Furniture\1.png">
+    <None Include="Dados\Graficos\Mobilia\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Furniture\2.png">
+    <None Include="Dados\Graficos\Mobilia\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Furniture\3.png">
+    <None Include="Dados\Graficos\Mobilia\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Furniture\4.png">
+    <None Include="Dados\Graficos\Mobilia\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Furniture\5.png">
+    <None Include="Dados\Graficos\Mobilia\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Button.png">
+    <None Include="Dados\Interface\Button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Button_Hover.png">
+    <None Include="Dados\Interface\Button_Hover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Bank.png">
+    <None Include="Dados\Interface\Main\Bank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Char.png">
+    <None Include="Dados\Interface\Main\Char.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Chat.png">
+    <None Include="Dados\Interface\Main\Chat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Description.png">
+    <None Include="Dados\Interface\Main\Description.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\EventChat.png">
+    <None Include="Dados\Interface\Main\EventChat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Hotbar.png">
+    <None Include="Dados\Interface\Main\Hotbar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Inventory.png">
+    <None Include="Dados\Interface\Main\Inventory.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Min.png">
+    <None Include="Dados\Interface\Main\Min.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\MyChat.png">
+    <None Include="Dados\Interface\Main\MyChat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Pet.png">
+    <None Include="Dados\Interface\Main\Pet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\PetBar.png">
+    <None Include="Dados\Interface\Main\PetBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Plus.png">
+    <None Include="Dados\Interface\Main\Plus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\ProgBar.png">
+    <None Include="Dados\Interface\Main\ProgBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\RightClick.png">
+    <None Include="Dados\Interface\Main\RightClick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Shop.png">
+    <None Include="Dados\Interface\Main\Shop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Skills.png">
+    <None Include="Dados\Interface\Main\Skills.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Main\Trade.png">
+    <None Include="Dados\Interface\Main\Trade.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Menu\Panel.png">
+    <None Include="Dados\Interface\Menu\Panel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Gui\Menu\Untitled.png">
+    <None Include="Dados\Interface\Menu\Untitled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\10.png">
+    <None Include="Dados\Graficos\Itens\10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\100.png">
+    <None Include="Dados\Graficos\Itens\100.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\101.png">
+    <None Include="Dados\Graficos\Itens\101.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\102.png">
+    <None Include="Dados\Graficos\Itens\102.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\103.png">
+    <None Include="Dados\Graficos\Itens\103.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\104.png">
+    <None Include="Dados\Graficos\Itens\104.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\105.png">
+    <None Include="Dados\Graficos\Itens\105.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\106.png">
+    <None Include="Dados\Graficos\Itens\106.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\107.png">
+    <None Include="Dados\Graficos\Itens\107.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\108.png">
+    <None Include="Dados\Graficos\Itens\108.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\109.png">
+    <None Include="Dados\Graficos\Itens\109.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\11.png">
+    <None Include="Dados\Graficos\Itens\11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\110.png">
+    <None Include="Dados\Graficos\Itens\110.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\111.png">
+    <None Include="Dados\Graficos\Itens\111.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\112.png">
+    <None Include="Dados\Graficos\Itens\112.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\113.png">
+    <None Include="Dados\Graficos\Itens\113.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\114.png">
+    <None Include="Dados\Graficos\Itens\114.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\115.png">
+    <None Include="Dados\Graficos\Itens\115.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\116.png">
+    <None Include="Dados\Graficos\Itens\116.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\117.png">
+    <None Include="Dados\Graficos\Itens\117.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\118.png">
+    <None Include="Dados\Graficos\Itens\118.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\119.png">
+    <None Include="Dados\Graficos\Itens\119.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\12.png">
+    <None Include="Dados\Graficos\Itens\12.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\120.png">
+    <None Include="Dados\Graficos\Itens\120.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\121.png">
+    <None Include="Dados\Graficos\Itens\121.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\122.png">
+    <None Include="Dados\Graficos\Itens\122.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\123.png">
+    <None Include="Dados\Graficos\Itens\123.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\124.png">
+    <None Include="Dados\Graficos\Itens\124.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\125.png">
+    <None Include="Dados\Graficos\Itens\125.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\126.png">
+    <None Include="Dados\Graficos\Itens\126.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\127.png">
+    <None Include="Dados\Graficos\Itens\127.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\128.png">
+    <None Include="Dados\Graficos\Itens\128.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\129.png">
+    <None Include="Dados\Graficos\Itens\129.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\13.png">
+    <None Include="Dados\Graficos\Itens\13.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\130.png">
+    <None Include="Dados\Graficos\Itens\130.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\131.png">
+    <None Include="Dados\Graficos\Itens\131.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\14.png">
+    <None Include="Dados\Graficos\Itens\14.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\15.png">
+    <None Include="Dados\Graficos\Itens\15.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\16.png">
+    <None Include="Dados\Graficos\Itens\16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\17.png">
+    <None Include="Dados\Graficos\Itens\17.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\18.png">
+    <None Include="Dados\Graficos\Itens\18.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\19.png">
+    <None Include="Dados\Graficos\Itens\19.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\2.png">
+    <None Include="Dados\Graficos\Itens\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\20.png">
+    <None Include="Dados\Graficos\Itens\20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\21.png">
+    <None Include="Dados\Graficos\Itens\21.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\22.png">
+    <None Include="Dados\Graficos\Itens\22.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\23.png">
+    <None Include="Dados\Graficos\Itens\23.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\24.png">
+    <None Include="Dados\Graficos\Itens\24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\25.png">
+    <None Include="Dados\Graficos\Itens\25.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\26.png">
+    <None Include="Dados\Graficos\Itens\26.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\27.png">
+    <None Include="Dados\Graficos\Itens\27.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\28.png">
+    <None Include="Dados\Graficos\Itens\28.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\29.png">
+    <None Include="Dados\Graficos\Itens\29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\3.png">
+    <None Include="Dados\Graficos\Itens\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\30.png">
+    <None Include="Dados\Graficos\Itens\30.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\31.png">
+    <None Include="Dados\Graficos\Itens\31.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\32.png">
+    <None Include="Dados\Graficos\Itens\32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\33.png">
+    <None Include="Dados\Graficos\Itens\33.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\34.png">
+    <None Include="Dados\Graficos\Itens\34.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\35.png">
+    <None Include="Dados\Graficos\Itens\35.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\36.png">
+    <None Include="Dados\Graficos\Itens\36.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\37.png">
+    <None Include="Dados\Graficos\Itens\37.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\38.png">
+    <None Include="Dados\Graficos\Itens\38.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\39.png">
+    <None Include="Dados\Graficos\Itens\39.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\4.png">
+    <None Include="Dados\Graficos\Itens\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\40.png">
+    <None Include="Dados\Graficos\Itens\40.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\41.png">
+    <None Include="Dados\Graficos\Itens\41.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\42.png">
+    <None Include="Dados\Graficos\Itens\42.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\43.png">
+    <None Include="Dados\Graficos\Itens\43.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\44.png">
+    <None Include="Dados\Graficos\Itens\44.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\45.png">
+    <None Include="Dados\Graficos\Itens\45.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\46.png">
+    <None Include="Dados\Graficos\Itens\46.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\47.png">
+    <None Include="Dados\Graficos\Itens\47.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\48.png">
+    <None Include="Dados\Graficos\Itens\48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\49.png">
+    <None Include="Dados\Graficos\Itens\49.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\5.png">
+    <None Include="Dados\Graficos\Itens\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\50.png">
+    <None Include="Dados\Graficos\Itens\50.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\51.png">
+    <None Include="Dados\Graficos\Itens\51.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\52.png">
+    <None Include="Dados\Graficos\Itens\52.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\53.png">
+    <None Include="Dados\Graficos\Itens\53.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\54.png">
+    <None Include="Dados\Graficos\Itens\54.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\55.png">
+    <None Include="Dados\Graficos\Itens\55.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\56.png">
+    <None Include="Dados\Graficos\Itens\56.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\57.png">
+    <None Include="Dados\Graficos\Itens\57.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\58.png">
+    <None Include="Dados\Graficos\Itens\58.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\59.png">
+    <None Include="Dados\Graficos\Itens\59.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\6.png">
+    <None Include="Dados\Graficos\Itens\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\60.png">
+    <None Include="Dados\Graficos\Itens\60.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\61.png">
+    <None Include="Dados\Graficos\Itens\61.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\62.png">
+    <None Include="Dados\Graficos\Itens\62.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\63.png">
+    <None Include="Dados\Graficos\Itens\63.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\64.png">
+    <None Include="Dados\Graficos\Itens\64.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\65.png">
+    <None Include="Dados\Graficos\Itens\65.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\66.png">
+    <None Include="Dados\Graficos\Itens\66.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\67.png">
+    <None Include="Dados\Graficos\Itens\67.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\68.png">
+    <None Include="Dados\Graficos\Itens\68.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\69.png">
+    <None Include="Dados\Graficos\Itens\69.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\7.png">
+    <None Include="Dados\Graficos\Itens\7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\70.png">
+    <None Include="Dados\Graficos\Itens\70.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\71.png">
+    <None Include="Dados\Graficos\Itens\71.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\72.png">
+    <None Include="Dados\Graficos\Itens\72.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\73.png">
+    <None Include="Dados\Graficos\Itens\73.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\74.png">
+    <None Include="Dados\Graficos\Itens\74.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\75.png">
+    <None Include="Dados\Graficos\Itens\75.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\76.png">
+    <None Include="Dados\Graficos\Itens\76.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\77.png">
+    <None Include="Dados\Graficos\Itens\77.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\78.png">
+    <None Include="Dados\Graficos\Itens\78.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\79.png">
+    <None Include="Dados\Graficos\Itens\79.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\8.png">
+    <None Include="Dados\Graficos\Itens\8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\80.png">
+    <None Include="Dados\Graficos\Itens\80.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\81.png">
+    <None Include="Dados\Graficos\Itens\81.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\82.png">
+    <None Include="Dados\Graficos\Itens\82.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\83.png">
+    <None Include="Dados\Graficos\Itens\83.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\84.png">
+    <None Include="Dados\Graficos\Itens\84.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\85.png">
+    <None Include="Dados\Graficos\Itens\85.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\86.png">
+    <None Include="Dados\Graficos\Itens\86.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\87.png">
+    <None Include="Dados\Graficos\Itens\87.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\88.png">
+    <None Include="Dados\Graficos\Itens\88.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\89.png">
+    <None Include="Dados\Graficos\Itens\89.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\9.png">
+    <None Include="Dados\Graficos\Itens\9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\90.png">
+    <None Include="Dados\Graficos\Itens\90.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\91.png">
+    <None Include="Dados\Graficos\Itens\91.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\92.png">
+    <None Include="Dados\Graficos\Itens\92.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\93.png">
+    <None Include="Dados\Graficos\Itens\93.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\94.png">
+    <None Include="Dados\Graficos\Itens\94.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\95.png">
+    <None Include="Dados\Graficos\Itens\95.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\96.png">
+    <None Include="Dados\Graficos\Itens\96.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\97.png">
+    <None Include="Dados\Graficos\Itens\97.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\98.png">
+    <None Include="Dados\Graficos\Itens\98.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Items\99.png">
+    <None Include="Dados\Graficos\Itens\99.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Blood.png">
+    <None Include="Dados\Graficos\Misc\Blood.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\ChatBubble.png">
+    <None Include="Dados\Graficos\Misc\ChatBubble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Cursor.png">
+    <None Include="Dados\Graficos\Misc\Cursor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Direction.png">
+    <None Include="Dados\Graficos\Misc\Direction.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Door.png">
+    <None Include="Dados\Graficos\Misc\Door.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Light.png">
+    <None Include="Dados\Graficos\Misc\Light.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Shadow.png">
+    <None Include="Dados\Graficos\Misc\Shadow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Target.png">
+    <None Include="Dados\Graficos\Misc\Target.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Misc\Weather.png">
+    <None Include="Dados\Graficos\Misc\Clima.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Panoramas\1.png">
+    <None Include="Dados\Graficos\Panoramas\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Paperdolls\1.png">
+    <None Include="Dados\Graficos\Paperdolls\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Parallax\1.png">
+    <None Include="Dados\Graficos\Parallax\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Projectiles\1.png">
+    <None Include="Dados\Graficos\Projeteis\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Projectiles\2.png">
+    <None Include="Dados\Graficos\Projeteis\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Projectiles\3.png">
+    <None Include="Dados\Graficos\Projeteis\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\1.png">
+    <None Include="Dados\Graficos\Recursos\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\2.png">
+    <None Include="Dados\Graficos\Recursos\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\3.png">
+    <None Include="Dados\Graficos\Recursos\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\4.png">
+    <None Include="Dados\Graficos\Recursos\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\5.png">
+    <None Include="Dados\Graficos\Recursos\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Resources\6.png">
+    <None Include="Dados\Graficos\Recursos\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Skillicons\1.png">
+    <None Include="Dados\Graficos\HabIcons\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Skillicons\2.png">
+    <None Include="Dados\Graficos\HabIcons\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Skillicons\3.png">
+    <None Include="Dados\Graficos\HabIcons\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\1.png">
+    <None Include="Dados\Graficos\Tilesets\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\2.png">
+    <None Include="Dados\Graficos\Tilesets\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\3.png">
+    <None Include="Dados\Graficos\Tilesets\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\4.png">
+    <None Include="Dados\Graficos\Tilesets\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\5.png">
+    <None Include="Dados\Graficos\Tilesets\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Contents\Graphics\Tilesets\6.png">
+    <None Include="Dados\Graficos\Tilesets\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Contents\Graphics\Items\1.png">
+    <Content Include="Dados\Graficos\Itens\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Actionbar\ActionBar.png">
+    <Content Include="Dados\Interface\Actionbar\ActionBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\EXPBar.png">
+    <Content Include="Dados\Interface\EXPBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\HPBar.png">
+    <Content Include="Dados\Interface\HPBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Main\Craft.png">
+    <Content Include="Dados\Interface\Main\Craft.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Main\HUD.png">
+    <Content Include="Dados\Interface\Main\HUD.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Main\QuestLog.png">
+    <Content Include="Dados\Interface\Main\QuestLog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Menu\Button.png">
+    <Content Include="Dados\Interface\Menu\Button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Menu\Button_Hover.png">
+    <Content Include="Dados\Interface\Menu\Button_Hover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Menu\Logo.png">
+    <Content Include="Dados\Interface\Menu\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Menu\Menu.png">
+    <Content Include="Dados\Interface\Menu\Menu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\Menu\MMODEV.png">
+    <Content Include="Dados\Interface\Menu\MMODEV.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Contents\Gui\MPBar.png">
+    <Content Include="Dados\Interface\MPBar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />

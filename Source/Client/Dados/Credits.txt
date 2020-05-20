@@ -14,7 +14,7 @@ Plataforma gráfica e sonora:
 SFML*
 
 Gráficos temporários:
-Rpgmaker MV
+RpgMaker MV
 
 Contribuições externas:
 Kras

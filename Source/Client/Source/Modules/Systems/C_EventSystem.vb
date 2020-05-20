@@ -2823,7 +2823,7 @@ newlist:
                     Case 1
                         If TmpEvent.Pages(CurPageNum).Graphic > 0 AndAlso TmpEvent.Pages(CurPageNum).Graphic <= NumCharacters Then
                             'Carregar personagem de Contents para nosso bitmap fonte 
-                            sourceBitmap = New Bitmap(Path.Graphics & "\characters\" & TmpEvent.Pages(CurPageNum).Graphic & ".png")
+                            sourceBitmap = New Bitmap(Path.Graphics & "\Personagens\" & TmpEvent.Pages(CurPageNum).Graphic & ".png")
                             targetBitmap = New Bitmap(sourceBitmap.Width, sourceBitmap.Height) 'Criar nosso bitmap alvo
 
                             g = Graphics.FromImage(targetBitmap)

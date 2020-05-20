@@ -432,7 +432,7 @@ Public Class FrmEditor_Events
                 For i = 1 To Map.EventCount
                     If i <> EditorEvent Then
                         cmbEvent.Items.Add(Trim$(Map.Events(i).Name))
-                        x = x + 1
+                        x += 1
                         ListOfEvents(x) = i
                     End If
                 Next
@@ -455,7 +455,7 @@ Public Class FrmEditor_Events
                 For i = 1 To Map.EventCount
                     If i <> EditorEvent Then
                         cmbMoveWait.Items.Add(Trim$(Map.Events(i).Name))
-                        x = x + 1
+                        x += 1
                         ListOfEvents(x) = i
                     End If
                 Next
@@ -709,7 +709,7 @@ Public Class FrmEditor_Events
                 TmpEvent.Pages(i + 1) = TmpEvent.Pages(i)
             Next
         End If
-        TmpEvent.PageCount = TmpEvent.PageCount - 1
+        TmpEvent.PageCount -= 1
         ' setar tabulação
         tabPages.TabPages.Clear()
 
@@ -1368,10 +1368,10 @@ Public Class FrmEditor_Events
     Sub AddMoveRouteCommand(Index As Integer)
         Dim i As Integer, X As Integer
 
-        Index = Index + 1
+        Index += 1
         If lstMoveRoute.SelectedIndex > -1 Then
             i = lstMoveRoute.SelectedIndex + 1
-            TempMoveRouteCount = TempMoveRouteCount + 1
+            TempMoveRouteCount += 1
             ReDim Preserve TempMoveRoute(TempMoveRouteCount)
             For X = TempMoveRouteCount - 1 To i Step -1
                 TempMoveRoute(X + 1) = TempMoveRoute(X)
@@ -1388,7 +1388,7 @@ Public Class FrmEditor_Events
             End If
             PopulateMoveRouteList()
         Else
-            TempMoveRouteCount = TempMoveRouteCount + 1
+            TempMoveRouteCount += 1
             ReDim Preserve TempMoveRoute(TempMoveRouteCount)
             TempMoveRoute(TempMoveRouteCount).Index = Index
             PopulateMoveRouteList()
@@ -1408,12 +1408,12 @@ Public Class FrmEditor_Events
     Sub RemoveMoveRouteCommand(Index As Integer)
         Dim i As Integer
 
-        Index = Index + 1
+        Index += 1
         If Index > 0 AndAlso Index <= TempMoveRouteCount Then
             For i = Index + 1 To TempMoveRouteCount
                 TempMoveRoute(i - 1) = TempMoveRoute(i)
             Next
-            TempMoveRouteCount = TempMoveRouteCount - 1
+            TempMoveRouteCount -= 1
             If TempMoveRouteCount = 0 Then
                 ReDim TempMoveRoute(0)
             Else
@@ -1571,8 +1571,8 @@ Public Class FrmEditor_Events
 
     Private Sub NudShowTextFace_ValueChanged(sender As Object, e As EventArgs) Handles nudShowTextFace.ValueChanged
         If nudShowTextFace.Value > 0 Then
-            If File.Exists(Path.Graphics & "Faces\" & nudShowTextFace.Value & GfxExt) Then
-                picShowTextFace.BackgroundImage = Image.FromFile(Path.Graphics & "Faces\" & nudShowTextFace.Value & GfxExt)
+            If File.Exists(Path.Graphics & "Rostos\" & nudShowTextFace.Value & GfxExt) Then
+                picShowTextFace.BackgroundImage = Image.FromFile(Path.Graphics & "Rostos\" & nudShowTextFace.Value & GfxExt)
             End If
         Else
             picShowTextFace.BackgroundImage = Nothing
@@ -2583,7 +2583,7 @@ Public Class FrmEditor_Events
 
     End Sub
 
-    Private Sub fraPageSetUp_Enter(sender As Object, e As EventArgs) Handles fraPageSetUp.Enter
+    Private Sub FraPageSetUp_Enter(sender As Object, e As EventArgs) Handles fraPageSetUp.Enter
 
     End Sub
 
