@@ -48,9 +48,9 @@ Alterando Configurações
 O processo mais básico a se fazer é a alteração das configurações básicas e a geração de um executável. Com o Visual Studio, abra o arquivo **Elysium.sln**, que estará no diretório-raiz. Ao abrir, procure no gerenciador de soluções o caminho ``Bindings/Configurations/Settings.vb``.
 
 .. image:: images/gerenciador_solucoes.jpg
-    :width: 600px
+    :width: 350px
     :align: center
-    :height: 214px
+    :height: 487px
     :alt: alternate text
 	
 Esse arquivo é o responsável por todas as configurações iniciais tanto do cliente quanto do servidor. Comece procurando por:
