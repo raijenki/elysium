@@ -147,7 +147,7 @@ Partial Class FrmAdmin
         Me.btnAdminSetSprite.Name = "btnAdminSetSprite"
         Me.btnAdminSetSprite.Size = New System.Drawing.Size(162, 37)
         Me.btnAdminSetSprite.TabIndex = 16
-        Me.btnAdminSetSprite.Text = "Setar Sprite"
+        Me.btnAdminSetSprite.Text = "Alterar Sprite"
         Me.btnAdminSetSprite.UseVisualStyleBackColor = True
         '
         'btnAdminWarpTo
@@ -163,7 +163,7 @@ Partial Class FrmAdmin
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(9, 323)
+        Me.Label5.Location = New System.Drawing.Point(10, 325)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 20)
@@ -187,7 +187,7 @@ Partial Class FrmAdmin
         Me.btnAdminSetAccess.Name = "btnAdminSetAccess"
         Me.btnAdminSetAccess.Size = New System.Drawing.Size(350, 34)
         Me.btnAdminSetAccess.TabIndex = 9
-        Me.btnAdminSetAccess.Text = "Setar Acesso"
+        Me.btnAdminSetAccess.Text = "Alterar Acesso"
         Me.btnAdminSetAccess.UseVisualStyleBackColor = True
         '
         'btnAdminWarpMe2
@@ -326,7 +326,7 @@ Partial Class FrmAdmin
         '
         'nudAdminSprite
         '
-        Me.nudAdminSprite.Location = New System.Drawing.Point(120, 320)
+        Me.nudAdminSprite.Location = New System.Drawing.Point(120, 323)
         Me.nudAdminSprite.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.nudAdminSprite.Name = "nudAdminSprite"
         Me.nudAdminSprite.Size = New System.Drawing.Size(72, 26)
@@ -370,7 +370,7 @@ Partial Class FrmAdmin
         Me.tabMapList.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tabMapList.Size = New System.Drawing.Size(379, 375)
         Me.tabMapList.TabIndex = 2
-        Me.tabMapList.Text = "Lista de mapas"
+        Me.tabMapList.Text = "Lista de Mapas"
         Me.tabMapList.UseVisualStyleBackColor = True
         '
         'tabMapTools
@@ -388,7 +388,7 @@ Partial Class FrmAdmin
         Me.tabMapTools.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tabMapTools.Size = New System.Drawing.Size(379, 375)
         Me.tabMapTools.TabIndex = 3
-        Me.tabMapTools.Text = "Ferramentas de mapa"
+        Me.tabMapTools.Text = "Ferramentas de Mapa"
         Me.tabMapTools.UseVisualStyleBackColor = True
         '
         'nudSpawnItemAmount
@@ -539,7 +539,7 @@ Partial Class FrmAdmin
         Me.btnNPCEditor.Location = New System.Drawing.Point(9, 295)
         Me.btnNPCEditor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnNPCEditor.Name = "btnNPCEditor"
-        Me.btnNPCEditor.Size = New System.Drawing.Size(168, 38)
+        Me.btnNPCEditor.Size = New System.Drawing.Size(168, 70)
         Me.btnNPCEditor.TabIndex = 58
         Me.btnNPCEditor.Text = "Editor de NPCs"
         Me.btnNPCEditor.UseVisualStyleBackColor = True
@@ -549,7 +549,7 @@ Partial Class FrmAdmin
         Me.btnSkillEditor.Location = New System.Drawing.Point(195, 295)
         Me.btnSkillEditor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSkillEditor.Name = "btnSkillEditor"
-        Me.btnSkillEditor.Size = New System.Drawing.Size(168, 38)
+        Me.btnSkillEditor.Size = New System.Drawing.Size(168, 70)
         Me.btnSkillEditor.TabIndex = 59
         Me.btnSkillEditor.Text = "Editor de Habilidades"
         Me.btnSkillEditor.UseVisualStyleBackColor = True

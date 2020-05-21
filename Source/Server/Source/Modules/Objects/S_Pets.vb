@@ -84,7 +84,7 @@ Module S_Pets
 
     Sub CheckPets()
         For i = 1 To MAX_PETS
-            If Not File.Exists(Application.StartupPath & "\Data\pets\pet" & i & ".dat") Then
+            If Not File.Exists(Application.StartupPath & "\Database\pets\pet" & i & ".dat") Then
                 SavePet(i)
             End If
         Next
