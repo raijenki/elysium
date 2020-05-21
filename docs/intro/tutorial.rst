@@ -40,9 +40,10 @@ A partir deste momento, o cliente conseguirá detectar o servidor e conectar a e
 Trabalhando com o Cliente
 ####################################
 Com o servidor preparado, você pode abrir o arquivo **Elysium Cliente.exe** e esperar que o estado do servidor fique Online. A partir daí, crie uma nova conta ou faça o login com a conta padrão de login **mmodev** e senha **mmodev**.
+
 Caso você opte por criar uma conta própria, utilize o comando ``/setadmin NOME-DO-PERSONAGEM 4`` na tela do servidor para dar o máximo de poder de administração ao personagem.
 
-.. image:: images/client_init.jpg
+.. image:: images/cliente_init.jpg
     :width: 600px
     :align: center
     :height: 484px
@@ -54,3 +55,9 @@ Os comandos mais básicos do cliente são:
 * INSERT: Abre o painel de administração.
 
 Com o painel de administração aberto, a criação do mundo fica mais intuitiva e é atualizada em tempo real. Para mais informações, verifique a página correspondente de cada sistema.
+
+Distribuindo seu jogo
+####################################
+No momento, a única maneira de distribuir seu jogo é compilando-o e alterando o IP do servidor dentro do código. Isso está para ser alterado nas próximas versões.
+
+Repare que, mesmo você criando uma versão do zero, é possível copiar o diretório do servidor antigo para o novo, preservando o conteudo de mapas, contas e habilidades.
