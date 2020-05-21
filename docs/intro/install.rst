@@ -1,6 +1,6 @@
-.. _tutorial:
+.. _install:
 
-Tutorial
+Instalando
 ==========================
 
 Fazer seu primeiro jogo com a Elysium.NET é muito fácil, e deve levar alguns poucos minutos. Entretanto, este tutorial também irá discutir alguns detalhes mais técnicos para aprofundar a compreensão do desenvolvedor.
@@ -50,6 +50,7 @@ Caso você opte por criar uma conta própria, utilize o comando ``/setadmin NOME
     :alt: alternate text
 	
 Os comandos mais básicos do cliente são:
+
 * W-A-S-D: Movimento para cima, baixo, esquerda e direita.
 * CTRL: Interage com o mapa e/ou ataca os imigos.
 * INSERT: Abre o painel de administração.
