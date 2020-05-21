@@ -29,17 +29,18 @@ Introdução
    :hidden:
 
    intro/overview
-   intro/install
    intro/tutorial
+   intro/compiling
+
 
 :doc:`intro/overview`
     Entenda o que é a Elysium.NET, seus requisitos e o que você pode fazer com ela.
 
-:doc:`intro/install`
-    Rode a Elysium.NET no seu computador.
-
 :doc:`intro/tutorial`
     Faça seu primeiro jogo com a Elysium.NET.
+
+:doc:`intro/compiling`
+    Rode a Elysium.NET no seu computador.
 
 .. _section-basics:
 
