@@ -15,15 +15,20 @@ Inicialmente, precisaremos instalar as dependências que serão necessárias par
 
    apt-get install -y git
    apt-get install -y dotnet-sdk
-
+   
 Feito isso, basta clonar o repositório da Elysium e dar *checkout* na versão server-core:
+
 .. code-block:: 
 
    git clone https://github.com/raijenki/elysium.git
    cd elysium/
    git checkout server-core
 
+Compilando e Executando
+#############################
+   
 Finalmente, basta compilar e executar:
+
 .. code-block:: 
 
    dotnet build

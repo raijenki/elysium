@@ -25,7 +25,7 @@ O código-fonte da Elysium.NET encontra-se no `GitHub <https://github.com/raijen
     :height: 214px
     :alt: alternate text
 
-.. warning:: Usuários mais avançados podem se sentir mais a vontade para fazer cópia direta do repositório da Elysium.NET e ter acesso às novidades mais recentes; entretanto, ressalta-se que tais versões não são amplamente testadas e são bastante susceptíveis a bugs.
+.. warning:: Usuários mais avançados podem se sentir mais a vontade para fazer cópia direta do repositório da Elysium.NET e ter acesso às novidades mais recentes; entretanto, ressalta-se que tais versões não são amplamente testadas e são bastante suscetíveis a bugs.
 
 Estrutura do Diretório
 ###########################################
