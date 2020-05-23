@@ -4,14 +4,20 @@
 Documentação da Elysium.NET 1.0
 =========================================
 
-A Elysium.NET é um motor de jogos online 2D construída em Visual Basic.NET 
-e que visa um fácil e rápido desenvolvimento para seus usuários. 
+.. image:: intro/images/Logo.png
+    :width: 396px
+    :align: center
+    :height: 111px
+    :alt: alternate text
 
+Seja bem-vindo à documentação oficial da Elysium.NET, série 1, um motor de jogos online 2D totalmente livre e gratuito. Se você é novo nesta documentação, sugerimos que leia a seção 'Visão Geral' para ter uma ideia melhor sobre toda a aplicação.
+
+A tabela de conteúdos, contida nesta página, e o menu lateral devem te dar fácil acesso a todos os aspectos desta documentação, podendo você ir diretamente ao seu tópico de interesse. Também é possível usar a barra de busca.
 
 Ajuda
 ============
 
-Ainda com problemas? Gostaríamos de ajudar!
+Mesmo olhando a tabela abaixo, ainda está com problemas? Gostaríamos de ajudar!
 
 * Tente olhar o :doc:`FAQ <faq>` -- ele tem respostas para as perguntas mais comuns.
 * Procurando por alguma informação específica? Tente usar o :ref:`genindex` ou o :ref:`modindex`.
@@ -40,7 +46,7 @@ Introdução
     Faça seu primeiro jogo com a Elysium.NET.
 
 :doc:`intro/compiling`
-    Rode a Elysium.NET no seu computador.
+    Faça modificações mais profundas e compile a Elysium.NET facilmente.
 
 .. _section-basics:
 
