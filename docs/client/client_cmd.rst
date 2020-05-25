@@ -60,6 +60,7 @@ Além de todos os comandos do nível de Monitor, os Mapeadores tem acesso aos se
 * **/irpara <INTEIRO>**: Transporta para o mapa de número <INTEIRO>.
 * **/sprite <INTEIRO>**: Altera o número da sprite para o de <INTEIRO>.
 * **/mapreport**: Retorna o MapReport.
+* **/boasvindas <STRING>**: Seta a mensagem de boas-vindas para <STRING>.
 * **/respawn**: Refaz a geração do mapa em que o Monitor está.
 * **/banlist**: Retorna a lista de jogadores banidos.
 * **/banir <NOME-DO-JOGADOR>**: Remove permanentemente o jogador.

@@ -26,8 +26,8 @@ Public Class LanguageDef
         Public ButtonRegister As String = "Criar Nova Conta"
         Public ButtonCredits As String = "Creditos"
         Public ButtonExit As String = "Sair"
-        Public NewsHeader As String = "Últimas noticias"
-        Public News As String = "Bem-vindos ao cliente da Elysium.NET. Esse é uma game engine, gratuita e open source, baseado em VB.NET. Precisa de ajuda OU suporte? visite nosso forum. http://www.mmodev.com.br/"
+        Public NewsHeader As String = "Últimas Noticias"
+        Public News As String = "Bem-vindo ao cliente da Elysium.NET. Esse é um motor de jogos gratuito e open source. Precisa de ajuda OU suporte? Visite nosso website em http://www.mmodev.com.br/"
 
         ' TEXTO DE LOGIN
         Public Login As String = "Login"
@@ -106,7 +106,7 @@ Public Class LanguageDef
         Public Help4 As String = "![jogador] [mensagem] = Mensagem direta"
         Public Help5 As String = "Comandos úteis: /ajuda, /info, 
                                   /quem, /fps, /lps, /atributos, /troca, 
-                                  /party, /entrar, /sair, /vendermoradia, 
+                                  /equipe, /entrar, /sair, /vendermoradia, 
                                   /convidarmoradia"
 
         ' Apenas admin
@@ -115,9 +115,9 @@ Public Class LanguageDef
         Public AdminPvtMsg As String = "= msgaqui = Mensagem privada como administrador"
         Public Admin1 As String = "Comandos sociais:"
         Public Admin2 As String = "Comandos úteis /admin, /loc, 
-                                   /warpmeto, /warptome, /warpto, 
+                                   /melevarpara, /metraga, /irpara, 
                                    /sprite, /mapreport, /chutar, 
-                                   /banir, /respawn, /welcome, /questreset"
+                                   /banir, /respawn, /boasvindas, /resetartarefa"
 
         Public Welcome As String = "Digite: /boasvindas [mensagem]"
         Public Access As String = "Digite: /acesso [jogador] [acesso]"
@@ -129,7 +129,7 @@ Public Class LanguageDef
         Public WarpToMe As String = "Digite: /metraga [jogador]"
         Public WarpTo As String = "Digite: /irpara [índice do mapa]"
 
-        Public ResetQuest As String = "Digite: /questreset [índice]"
+        Public ResetQuest As String = "Digite: /resetartarefa [índice]"
 
         Public InvalidMap As String = "Mapa inválido..."
         Public InvalidQuest As String = "Tarefa inválida..."

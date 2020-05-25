@@ -686,6 +686,7 @@ Module C_GameLogic
                     End If
 
                     SendKick(command(1))
+					
                 ' // Comandos de Mapeador //
                 ' Localização
                 Case "/loc"
@@ -818,7 +819,7 @@ Module C_GameLogic
                 ' // Comandos do Desenvolvedor //
 
                 ' // Comandos do Criador //
-                ' Dar acesso ao utro jogador
+                ' Dar acesso a outro jogador
                 Case "/acesso"
 
                     If GetPlayerAccess(Myindex) < AdminType.Creator Then
