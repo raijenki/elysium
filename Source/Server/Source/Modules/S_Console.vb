@@ -64,7 +64,7 @@ Module S_Console
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
                                 PlayerMsg(Pindex, "Seu Acesso foi setado para Monitor!", ColorType.BrightCyan)
-                                Console.WriteLine("Successfully set the power level to " & Power & " for player " & Name)
+                                Console.WriteLine("Nível de acesso " & Power & " setado para " & Name & " com sucesso")
                             Case 2
                                 SetPlayerAccess(Pindex, Power)
                                 SendPlayerData(Pindex)
