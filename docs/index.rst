@@ -75,7 +75,10 @@ Cliente
    :hidden:
 
    client/sistemas
+   client/client_cmd
 
+:doc:`client/client_cmd`
+    Descubra quais são os comandos que podem ser utilizados pelo cliente, bem como a estrutura dos níveis de acesso.
 
 :doc:`client/sistemas`
     Saiba quais são os sistemas disponíveis no cliente.
