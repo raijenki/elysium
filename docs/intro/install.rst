@@ -33,7 +33,7 @@ Inicialize o servidor e espere o carregamento completo de todas as telas, onde e
     :height: 234px
     :alt: alternate text
 	
-A partir deste momento, o cliente conseguirá detectar o servidor e conectar a ele. Você pode usar o comando ``'/ajuda'`` na própria tela do servidor para obter uma lista de comandos que podem ser usados.
+A partir deste momento, o cliente conseguirá detectar o servidor e conectar a ele. Você pode usar o comando ``/ajuda`` na própria tela do servidor para obter uma lista de comandos que podem ser usados.
 
 .. warning:: Por questão de segurança, delete o arquivo **AsyncKeys.xml** antes de inicializar o servidor. Ele contém uma chave criptografica que serve de comunicação entre o servidor e o cliente e, por ser padrão na versão compilada, outras pessoas podem conseguir hackear seu jogo se não trocada. Ao deletar, o servidor cria, em sua inicialização uma chave nova, a qual pode servir para a distribuição do seu jogo.
 

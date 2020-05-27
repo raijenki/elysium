@@ -10,15 +10,13 @@ Apesar desta seção ser majoritariamente focada em servidores Linux, é possív
 Requisitos
 #########################
 Inicialmente, precisaremos instalar as dependências que serão necessárias para executar o servidor:
-
-.. code-block:: 
+:: 
 
    apt-get install -y git
    apt-get install -y dotnet-sdk
    
 Feito isso, basta clonar o repositório da Elysium e dar *checkout* na versão server-core:
-
-.. code-block:: 
+:: 
 
    git clone https://github.com/raijenki/elysium.git
    cd elysium/
@@ -28,8 +26,7 @@ Compilando e Executando
 #############################
    
 Finalmente, basta compilar e executar:
-
-.. code-block:: 
+:: 
 
    dotnet build
    cd Servidor/
