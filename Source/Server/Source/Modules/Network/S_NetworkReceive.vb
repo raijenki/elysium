@@ -215,7 +215,7 @@ Module S_NetworkReceive
 
             IP = Mid$(IP, 1, i)
             If IsBanned(IP) Then
-                AlertMsg(index, "Você está banido!")
+                AlertMsg(index, "Você está banido!", True)
             End If
 
             ' Ver se a conta já não existe
@@ -267,7 +267,7 @@ Module S_NetworkReceive
         For i = 1 To GetPlayersOnline()
             If IsPlaying(i) Then
                 If Trim$(Player(i).Login) = Trim$(Name) Then
-                    AlertMsg(i, "Sua conta foi removida por um administrador!")
+                    AlertMsg(i, "Sua conta foi removida por um administrador!", True)
                     ClearPlayer(i)
                 End If
             End If
@@ -298,7 +298,7 @@ Module S_NetworkReceive
 
                 IP = Mid$(IP, 1, i)
                 If IsBanned(IP) Then
-                    AlertMsg(index, "Você está banido!")
+                    AlertMsg(index, "Você está banido!", True)
                 End If
 
                 ' Pegar os dados
@@ -307,7 +307,7 @@ Module S_NetworkReceive
 
                 ' Checar versões
                 If EKeyPair.DecryptString(buffer.ReadString()) <> Application.ProductVersion Then
-                    AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
+                    AlertMsg(index, "Versão desatualizada, visite " & Settings.Website, True)
                     Exit Sub
                 End If
 
@@ -1258,7 +1258,7 @@ Module S_NetworkReceive
                 If GetPlayerAccess(n) < GetPlayerAccess(index) Then
                     GlobalMsg(GetPlayerName(n) & " foi chutado do " & Settings.GameName & " por " & GetPlayerName(index) & "!")
                     Addlog(GetPlayerName(index) & " chutou " & GetPlayerName(n) & ".", ADMIN_LOG)
-                    AlertMsg(n, "Você foi chutado por " & GetPlayerName(index) & "!")
+                    AlertMsg(n, "Você foi chutado por " & GetPlayerName(index) & "!", True)
                 Else
                     PlayerMsg(index, "Esse é alguém de acesso igual ou maior que o seu!", ColorType.BrightRed)
                 End If
@@ -2264,7 +2264,7 @@ Module S_NetworkReceive
         If index > 0 AndAlso IsPlaying(index) Then
             GlobalMsg(GetPlayerLogin(index) & "/" & GetPlayerName(index) & " foi desconectado por (" & Reason & ")")
 
-            AlertMsg(index, "Você perdeu sua conexão com " & Settings.GameName & ".")
+            AlertMsg(index, "Você perdeu sua conexão com " & Settings.GameName & ".", True)
         End If
 
     End Sub
@@ -2449,7 +2449,7 @@ Module S_NetworkReceive
 
             ' Checar versões
             If Version <> Application.ProductVersion Then
-                AlertMsg(index, "Versão desatualizada, visite " & Settings.Website)
+                AlertMsg(index, "Versão desatualizada, visite " & Settings.Website, True)
                 Exit Sub
             End If
 
@@ -2487,7 +2487,7 @@ Module S_NetworkReceive
                 SendHouseConfigs(index)
                 SendPets(index)
             Else
-                AlertMsg(index, "Não autorizado.")
+                AlertMsg(index, "Não autorizado.", True)
                 Exit Sub
             End If
 
@@ -2523,7 +2523,7 @@ Module S_NetworkReceive
 #End If
             buffer.Dispose()
         Else
-            AlertMsg(index, "Não permitido!")
+            AlertMsg(index, "Não permitido!", True)
         End If
 
     End Sub

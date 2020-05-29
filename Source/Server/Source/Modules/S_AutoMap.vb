@@ -174,7 +174,7 @@ Module S_AutoMap
 
         'Detail config area
         'Use: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
-        LoadDetail(TilePrefab.Grass, 9, 0, 0, TileType.None, 9, 15)
+        LoadDetail(TilePrefab.Grass, 1, 0, 0, TileType.None, 9, 15)
 
         LoadDetail(TilePrefab.Sand, 10, 0, 13, TileType.None, 7, 14)
         LoadDetail(TilePrefab.Sand, 11, 0, 0, TileType.None, 1, 1)

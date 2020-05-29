@@ -1255,9 +1255,9 @@ Module modDatabase
 
         IP = Mid$(IP, 1, i)
         AddTextToFile(IP, "banlist.txt")
-        GlobalMsg(GetPlayerName(BanPlayerindex) & " foi banido de " & Settings.GameName & " pelo " & "Servidor" & "!")
+        GlobalMsg(GetPlayerName(BanPlayerindex) & " foi banido de " & Settings.GameName & " pelo servidor!")
         Addlog("O Servidor" & " baniu " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
-        AlertMsg(BanPlayerindex, "Você foi banido pelo " & "Servidor" & "!")
+        AlertMsg(BanPlayerindex, "Você foi banido pelo servidor!", True)
     End Sub
 
     Function IsBanned(IP As String) As Boolean
@@ -1306,7 +1306,7 @@ Module modDatabase
         AddTextToFile(IP, "banlist.txt")
         GlobalMsg(GetPlayerName(BanPlayerindex) & " foi banido de " & Settings.GameName & " por " & GetPlayerName(BannedByindex) & "!")
         Addlog(GetPlayerName(BannedByindex) & " baniu " & GetPlayerName(BanPlayerindex) & ".", ADMIN_LOG)
-        AlertMsg(BanPlayerindex, "Você foi banido pory " & GetPlayerName(BannedByindex) & "!")
+        AlertMsg(BanPlayerindex, "Você foi banido por " & GetPlayerName(BannedByindex) & "!", True)
     End Sub
 
 #End Region

@@ -97,7 +97,7 @@ Module S_Console
                     If Not Pindex > 0 Then
                         Console.WriteLine("Nome do jogador está vazio ou inválido. [Nome não encontrado]")
                     Else
-                        AlertMsg(Pindex, "Você foi chutado do servidor!")
+                        AlertMsg(Pindex, "Você foi chutado do servidor!", True)
                         LeftGame(Pindex)
                     End If
 
