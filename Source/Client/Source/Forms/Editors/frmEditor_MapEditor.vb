@@ -1276,6 +1276,10 @@ Public Class FrmEditor_MapEditor
 
     End Sub
 
+    Private Sub cmbTileSets_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles cmbTileSets.SelectedIndexChanged
+
+    End Sub
+
     Friend Sub DrawTileOutline()
         Dim rec As Rectangle
         If Me.tabpages.SelectedTab Is Me.tpDirBlock Then Exit Sub

@@ -170,14 +170,30 @@ Module S_AutoMap
     ''' Here a user can define which details to add
     ''' </summary>
     Sub LoadDetails()
+        Dim cf = Path.Contents & "\AutoMapper.ini"
+        Dim DetailCount As Long
+        Dim TilePrefab As Long
+        Dim Tileset As Long
+        Dim StartX As Long
+        Dim StartY As Long
+        Dim EndX As Long
+        Dim EndY As Long
         ReDim Detail(1)
 
-        'Detail config area
-        'Use: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
-        LoadDetail(TilePrefab.Grass, 1, 0, 0, TileType.None, 9, 15)
+        'Área de configuração detalhada
+        'Uso: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
 
-        LoadDetail(TilePrefab.Sand, 10, 0, 13, TileType.None, 7, 14)
-        LoadDetail(TilePrefab.Sand, 11, 0, 0, TileType.None, 1, 1)
+        DetailCount = Val(Ini.Read(cf, "Details", "DetailCount"))
+        For TileDetail = 1 To DetailCount
+            TilePrefab = Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab"))
+            Tileset = Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset"))
+            StartX = Val(Ini.Read(cf, "Detail" & TileDetail, "StartX"))
+            StartY = Val(Ini.Read(cf, "Detail" & TileDetail, "StartY"))
+            EndX = Val(Ini.Read(cf, "Detail" & TileDetail, "EndX"))
+            EndY = Val(Ini.Read(cf, "Detail" & TileDetail, "EndY"))
+
+            LoadDetail(TilePrefab, Tileset, StartX, StartY, TileType.None, EndX, EndY)
+        Next
     End Sub
 
     ''' <summary>
@@ -204,6 +220,7 @@ Module S_AutoMap
 
     Sub Packet_SaveAutoMap(index As Integer, ByRef data() As Byte)
         Dim Layer As Integer
+        Dim DetailCount As Long
         Dim buffer As New ByteStream(data)
         Dim cf = Path.Database & "AutoMapper.ini"
 #If DEBUG Then
@@ -220,6 +237,17 @@ Module S_AutoMap
         ResourceFreq = buffer.ReadInt32
 
         Ini.Write(cf, "Resources", "ResourcesNum", buffer.ReadString())
+
+        DetailCount = buffer.ReadInt32
+        Ini.Write(cf, "Details", "DetailCount", DetailCount)
+        For TileDetail = 1 To DetailCount
+            Ini.Write(cf, "Detail" & TileDetail, "Prefab", buffer.ReadInt32)
+            Ini.Write(cf, "Detail" & TileDetail, "Tileset", buffer.ReadInt32)
+            Ini.Write(cf, "Detail" & TileDetail, "StartX", buffer.ReadInt32)
+            Ini.Write(cf, "Detail" & TileDetail, "StartY", buffer.ReadInt32)
+            Ini.Write(cf, "Detail" & TileDetail, "EndX", buffer.ReadInt32)
+            Ini.Write(cf, "Detail" & TileDetail, "EndY", buffer.ReadInt32)
+        Next
 
         For Prefab = 1 To TilePrefab.Count - 1
             ReDim Tile(Prefab).Layer(LayerType.Count - 1)
@@ -244,7 +272,7 @@ Module S_AutoMap
 #Region "Outgoing Packets"
 
     Sub SendAutoMapper(index As Integer)
-        Dim buffer As ByteStream, Prefab As Integer
+        Dim buffer As ByteStream, Prefab As Integer, DetailCount As Long
         Dim cf = Path.Database & "AutoMapper.ini"
         buffer = New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SAutoMapper)
@@ -259,9 +287,19 @@ Module S_AutoMap
         buffer.WriteInt32(DetailFreq)
         buffer.WriteInt32(ResourceFreq)
 
-
         'send xml info
         buffer.WriteString((Ini.Read(cf, "Resources", "ResourcesNum")))
+
+        detailCount = Val(Ini.Read(cf, "Details", "DetailCount"))
+        buffer.WriteInt32(detailCount)
+        For TileDetail = 1 To detailCount
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "StartX")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "StartY")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "EndX")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "EndY")))
+        Next
 
         For Prefab = 1 To TilePrefab.Count - 1
             For Layer = 1 To LayerType.Count - 1

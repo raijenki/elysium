@@ -2910,7 +2910,7 @@ NextLoop:
     End Sub
 
     Friend Sub DrawGui()
-        'esconder GUI eqnaunto mapeando...
+        'esconder GUI enquanto estiver mapeando...
         If HideGui = True Then Exit Sub
 
         If HudVisible = True Then
