@@ -32,6 +32,25 @@ Partial Class frmEditor_AutoMapper
         Me.DarkLabel8 = New System.Windows.Forms.Label()
         Me.lstResources = New System.Windows.Forms.ListBox()
         Me.pnlTileConfig = New System.Windows.Forms.Panel()
+        Me.pnlDetails = New System.Windows.Forms.Panel()
+        Me.btnDetailHelper = New System.Windows.Forms.Button()
+        Me.cmbDetailPrefab = New System.Windows.Forms.ComboBox()
+        Me.lblPrefabDetail = New System.Windows.Forms.Label()
+        Me.txtAreaYDetail = New System.Windows.Forms.TextBox()
+        Me.lblAreaYDetail = New System.Windows.Forms.Label()
+        Me.txtAreaXDetail = New System.Windows.Forms.TextBox()
+        Me.lblAreaXDetail = New System.Windows.Forms.Label()
+        Me.txtDetailStartY = New System.Windows.Forms.TextBox()
+        Me.lblStartYDetail = New System.Windows.Forms.Label()
+        Me.txtDetailStartX = New System.Windows.Forms.TextBox()
+        Me.lblDetailStartX = New System.Windows.Forms.Label()
+        Me.cmbDetailTileset = New System.Windows.Forms.ComboBox()
+        Me.lblDetailTileset = New System.Windows.Forms.Label()
+        Me.btnCloseDetail = New System.Windows.Forms.Button()
+        Me.btnSaveDetail = New System.Windows.Forms.Button()
+        Me.btnAddDetail = New System.Windows.Forms.Button()
+        Me.btnDeleteDetail = New System.Windows.Forms.Button()
+        Me.lstDetails = New System.Windows.Forms.ListBox()
         Me.btnTileSetSave = New System.Windows.Forms.Button()
         Me.btnTileSetClose = New System.Windows.Forms.Button()
         Me.DarkLabel10 = New System.Windows.Forms.Label()
@@ -52,6 +71,7 @@ Partial Class frmEditor_AutoMapper
         Me.ConfigurationsToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TilesetsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ResourcesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DetalhesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerateToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PathsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RiversToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -74,31 +94,11 @@ Partial Class frmEditor_AutoMapper
         Me.txtDetail = New System.Windows.Forms.TextBox()
         Me.txtResourceFreq = New System.Windows.Forms.TextBox()
         Me.btnStart = New System.Windows.Forms.Button()
-        Me.pnlDetails = New System.Windows.Forms.Panel()
-        Me.lstDetails = New System.Windows.Forms.ListBox()
-        Me.btnAddDetail = New System.Windows.Forms.Button()
-        Me.btnDeleteDetail = New System.Windows.Forms.Button()
-        Me.btnSaveDetail = New System.Windows.Forms.Button()
-        Me.btnCloseDetail = New System.Windows.Forms.Button()
-        Me.lblDetailTileset = New System.Windows.Forms.Label()
-        Me.cmbDetailTileset = New System.Windows.Forms.ComboBox()
-        Me.lblDetailStartX = New System.Windows.Forms.Label()
-        Me.txtDetailStartX = New System.Windows.Forms.TextBox()
-        Me.txtDetailStartY = New System.Windows.Forms.TextBox()
-        Me.lblStartYDetail = New System.Windows.Forms.Label()
-        Me.txtAreaYDetail = New System.Windows.Forms.TextBox()
-        Me.lblAreaYDetail = New System.Windows.Forms.Label()
-        Me.txtAreaXDetail = New System.Windows.Forms.TextBox()
-        Me.lblAreaXDetail = New System.Windows.Forms.Label()
-        Me.cmbDetailPrefab = New System.Windows.Forms.ComboBox()
-        Me.lblPrefabDetail = New System.Windows.Forms.Label()
-        Me.btnDetailHelper = New System.Windows.Forms.Button()
-        Me.DetalhesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlResources.SuspendLayout()
         Me.pnlTileConfig.SuspendLayout()
+        Me.pnlDetails.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.DarkMenu.SuspendLayout()
-        Me.pnlDetails.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlResources
@@ -214,7 +214,6 @@ Partial Class frmEditor_AutoMapper
         '
         'pnlTileConfig
         '
-        Me.pnlTileConfig.Controls.Add(Me.pnlDetails)
         Me.pnlTileConfig.Controls.Add(Me.btnTileSetSave)
         Me.pnlTileConfig.Controls.Add(Me.btnTileSetClose)
         Me.pnlTileConfig.Controls.Add(Me.DarkLabel10)
@@ -228,6 +227,212 @@ Partial Class frmEditor_AutoMapper
         Me.pnlTileConfig.Size = New System.Drawing.Size(508, 332)
         Me.pnlTileConfig.TabIndex = 25
         Me.pnlTileConfig.Visible = False
+        '
+        'pnlDetails
+        '
+        Me.pnlDetails.Controls.Add(Me.btnDetailHelper)
+        Me.pnlDetails.Controls.Add(Me.cmbDetailPrefab)
+        Me.pnlDetails.Controls.Add(Me.lblPrefabDetail)
+        Me.pnlDetails.Controls.Add(Me.txtAreaYDetail)
+        Me.pnlDetails.Controls.Add(Me.lblAreaYDetail)
+        Me.pnlDetails.Controls.Add(Me.txtAreaXDetail)
+        Me.pnlDetails.Controls.Add(Me.lblAreaXDetail)
+        Me.pnlDetails.Controls.Add(Me.txtDetailStartY)
+        Me.pnlDetails.Controls.Add(Me.lblStartYDetail)
+        Me.pnlDetails.Controls.Add(Me.txtDetailStartX)
+        Me.pnlDetails.Controls.Add(Me.lblDetailStartX)
+        Me.pnlDetails.Controls.Add(Me.cmbDetailTileset)
+        Me.pnlDetails.Controls.Add(Me.lblDetailTileset)
+        Me.pnlDetails.Controls.Add(Me.btnCloseDetail)
+        Me.pnlDetails.Controls.Add(Me.btnSaveDetail)
+        Me.pnlDetails.Controls.Add(Me.btnAddDetail)
+        Me.pnlDetails.Controls.Add(Me.btnDeleteDetail)
+        Me.pnlDetails.Controls.Add(Me.lstDetails)
+        Me.pnlDetails.Location = New System.Drawing.Point(1060, 28)
+        Me.pnlDetails.Name = "pnlDetails"
+        Me.pnlDetails.Size = New System.Drawing.Size(508, 329)
+        Me.pnlDetails.TabIndex = 43
+        Me.pnlDetails.Visible = False
+        '
+        'btnDetailHelper
+        '
+        Me.btnDetailHelper.Location = New System.Drawing.Point(307, 257)
+        Me.btnDetailHelper.Name = "btnDetailHelper"
+        Me.btnDetailHelper.Size = New System.Drawing.Size(23, 23)
+        Me.btnDetailHelper.TabIndex = 31
+        Me.btnDetailHelper.Text = "?"
+        Me.btnDetailHelper.UseVisualStyleBackColor = True
+        '
+        'cmbDetailPrefab
+        '
+        Me.cmbDetailPrefab.Enabled = False
+        Me.cmbDetailPrefab.FormattingEnabled = True
+        Me.cmbDetailPrefab.Items.AddRange(New Object() {"Água", "Areia", "Grama", "Passeio", "Sobre-grama", "Rio", "Montanha"})
+        Me.cmbDetailPrefab.Location = New System.Drawing.Point(176, 146)
+        Me.cmbDetailPrefab.Name = "cmbDetailPrefab"
+        Me.cmbDetailPrefab.Size = New System.Drawing.Size(154, 24)
+        Me.cmbDetailPrefab.TabIndex = 30
+        '
+        'lblPrefabDetail
+        '
+        Me.lblPrefabDetail.AutoSize = True
+        Me.lblPrefabDetail.ForeColor = System.Drawing.Color.White
+        Me.lblPrefabDetail.Location = New System.Drawing.Point(6, 144)
+        Me.lblPrefabDetail.Name = "lblPrefabDetail"
+        Me.lblPrefabDetail.Size = New System.Drawing.Size(168, 17)
+        Me.lblPrefabDetail.TabIndex = 29
+        Me.lblPrefabDetail.Text = "Aparecer somente sobre:"
+        '
+        'txtAreaYDetail
+        '
+        Me.txtAreaYDetail.Enabled = False
+        Me.txtAreaYDetail.Location = New System.Drawing.Point(230, 229)
+        Me.txtAreaYDetail.Name = "txtAreaYDetail"
+        Me.txtAreaYDetail.Size = New System.Drawing.Size(100, 22)
+        Me.txtAreaYDetail.TabIndex = 28
+        '
+        'lblAreaYDetail
+        '
+        Me.lblAreaYDetail.AutoSize = True
+        Me.lblAreaYDetail.ForeColor = System.Drawing.Color.White
+        Me.lblAreaYDetail.Location = New System.Drawing.Point(173, 228)
+        Me.lblAreaYDetail.Name = "lblAreaYDetail"
+        Me.lblAreaYDetail.Size = New System.Drawing.Size(55, 17)
+        Me.lblAreaYDetail.TabIndex = 27
+        Me.lblAreaYDetail.Text = "Area Y:"
+        '
+        'txtAreaXDetail
+        '
+        Me.txtAreaXDetail.Enabled = False
+        Me.txtAreaXDetail.Location = New System.Drawing.Point(66, 229)
+        Me.txtAreaXDetail.Name = "txtAreaXDetail"
+        Me.txtAreaXDetail.Size = New System.Drawing.Size(100, 22)
+        Me.txtAreaXDetail.TabIndex = 26
+        '
+        'lblAreaXDetail
+        '
+        Me.lblAreaXDetail.AutoSize = True
+        Me.lblAreaXDetail.ForeColor = System.Drawing.Color.White
+        Me.lblAreaXDetail.Location = New System.Drawing.Point(9, 228)
+        Me.lblAreaXDetail.Name = "lblAreaXDetail"
+        Me.lblAreaXDetail.Size = New System.Drawing.Size(55, 17)
+        Me.lblAreaXDetail.TabIndex = 25
+        Me.lblAreaXDetail.Text = "Area X:"
+        '
+        'txtDetailStartY
+        '
+        Me.txtDetailStartY.Enabled = False
+        Me.txtDetailStartY.Location = New System.Drawing.Point(230, 205)
+        Me.txtDetailStartY.Name = "txtDetailStartY"
+        Me.txtDetailStartY.Size = New System.Drawing.Size(100, 22)
+        Me.txtDetailStartY.TabIndex = 24
+        '
+        'lblStartYDetail
+        '
+        Me.lblStartYDetail.AutoSize = True
+        Me.lblStartYDetail.ForeColor = System.Drawing.Color.White
+        Me.lblStartYDetail.Location = New System.Drawing.Point(173, 204)
+        Me.lblStartYDetail.Name = "lblStartYDetail"
+        Me.lblStartYDetail.Size = New System.Drawing.Size(57, 17)
+        Me.lblStartYDetail.TabIndex = 23
+        Me.lblStartYDetail.Text = "Início Y:"
+        '
+        'txtDetailStartX
+        '
+        Me.txtDetailStartX.Enabled = False
+        Me.txtDetailStartX.Location = New System.Drawing.Point(66, 205)
+        Me.txtDetailStartX.Name = "txtDetailStartX"
+        Me.txtDetailStartX.Size = New System.Drawing.Size(100, 22)
+        Me.txtDetailStartX.TabIndex = 22
+        '
+        'lblDetailStartX
+        '
+        Me.lblDetailStartX.AutoSize = True
+        Me.lblDetailStartX.ForeColor = System.Drawing.Color.White
+        Me.lblDetailStartX.Location = New System.Drawing.Point(9, 204)
+        Me.lblDetailStartX.Name = "lblDetailStartX"
+        Me.lblDetailStartX.Size = New System.Drawing.Size(57, 17)
+        Me.lblDetailStartX.TabIndex = 21
+        Me.lblDetailStartX.Text = "Início X:"
+        '
+        'cmbDetailTileset
+        '
+        Me.cmbDetailTileset.Enabled = False
+        Me.cmbDetailTileset.FormattingEnabled = True
+        Me.cmbDetailTileset.Location = New System.Drawing.Point(176, 175)
+        Me.cmbDetailTileset.Name = "cmbDetailTileset"
+        Me.cmbDetailTileset.Size = New System.Drawing.Size(154, 24)
+        Me.cmbDetailTileset.TabIndex = 20
+        '
+        'lblDetailTileset
+        '
+        Me.lblDetailTileset.AutoSize = True
+        Me.lblDetailTileset.ForeColor = System.Drawing.Color.White
+        Me.lblDetailTileset.Location = New System.Drawing.Point(6, 173)
+        Me.lblDetailTileset.Name = "lblDetailTileset"
+        Me.lblDetailTileset.Size = New System.Drawing.Size(54, 17)
+        Me.lblDetailTileset.TabIndex = 19
+        Me.lblDetailTileset.Text = "Tileset:"
+        '
+        'btnCloseDetail
+        '
+        Me.btnCloseDetail.BackColor = System.Drawing.SystemColors.Control
+        Me.btnCloseDetail.Location = New System.Drawing.Point(9, 279)
+        Me.btnCloseDetail.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnCloseDetail.Name = "btnCloseDetail"
+        Me.btnCloseDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.btnCloseDetail.Size = New System.Drawing.Size(163, 39)
+        Me.btnCloseDetail.TabIndex = 18
+        Me.btnCloseDetail.Text = "Fechar"
+        Me.btnCloseDetail.UseVisualStyleBackColor = False
+        '
+        'btnSaveDetail
+        '
+        Me.btnSaveDetail.BackColor = System.Drawing.SystemColors.Control
+        Me.btnSaveDetail.Location = New System.Drawing.Point(337, 279)
+        Me.btnSaveDetail.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSaveDetail.Name = "btnSaveDetail"
+        Me.btnSaveDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.btnSaveDetail.Size = New System.Drawing.Size(163, 41)
+        Me.btnSaveDetail.TabIndex = 17
+        Me.btnSaveDetail.Text = "Salvar"
+        Me.btnSaveDetail.UseVisualStyleBackColor = False
+        '
+        'btnAddDetail
+        '
+        Me.btnAddDetail.BackColor = System.Drawing.SystemColors.Control
+        Me.btnAddDetail.Location = New System.Drawing.Point(337, 144)
+        Me.btnAddDetail.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAddDetail.Name = "btnAddDetail"
+        Me.btnAddDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.btnAddDetail.Size = New System.Drawing.Size(163, 42)
+        Me.btnAddDetail.TabIndex = 16
+        Me.btnAddDetail.Text = "Adicionar Detalhe"
+        Me.btnAddDetail.UseVisualStyleBackColor = False
+        '
+        'btnDeleteDetail
+        '
+        Me.btnDeleteDetail.BackColor = System.Drawing.SystemColors.Control
+        Me.btnDeleteDetail.Location = New System.Drawing.Point(337, 190)
+        Me.btnDeleteDetail.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnDeleteDetail.Name = "btnDeleteDetail"
+        Me.btnDeleteDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.btnDeleteDetail.Size = New System.Drawing.Size(163, 37)
+        Me.btnDeleteDetail.TabIndex = 15
+        Me.btnDeleteDetail.Text = "Remover Detalhe"
+        Me.btnDeleteDetail.UseVisualStyleBackColor = False
+        '
+        'lstDetails
+        '
+        Me.lstDetails.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.lstDetails.ForeColor = System.Drawing.Color.Gainsboro
+        Me.lstDetails.FormattingEnabled = True
+        Me.lstDetails.ItemHeight = 16
+        Me.lstDetails.Location = New System.Drawing.Point(4, 4)
+        Me.lstDetails.Margin = New System.Windows.Forms.Padding(4)
+        Me.lstDetails.Name = "lstDetails"
+        Me.lstDetails.Size = New System.Drawing.Size(496, 132)
+        Me.lstDetails.TabIndex = 1
         '
         'btnTileSetSave
         '
@@ -442,15 +647,21 @@ Partial Class frmEditor_AutoMapper
         '
         Me.TilesetsToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.TilesetsToolStripMenuItem.Name = "TilesetsToolStripMenuItem"
-        Me.TilesetsToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.TilesetsToolStripMenuItem.Size = New System.Drawing.Size(150, 26)
         Me.TilesetsToolStripMenuItem.Text = "Tilesets"
         '
         'ResourcesToolStripMenuItem
         '
         Me.ResourcesToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.ResourcesToolStripMenuItem.Name = "ResourcesToolStripMenuItem"
-        Me.ResourcesToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.ResourcesToolStripMenuItem.Size = New System.Drawing.Size(150, 26)
         Me.ResourcesToolStripMenuItem.Text = "Recursos"
+        '
+        'DetalhesToolStripMenuItem
+        '
+        Me.DetalhesToolStripMenuItem.Name = "DetalhesToolStripMenuItem"
+        Me.DetalhesToolStripMenuItem.Size = New System.Drawing.Size(150, 26)
+        Me.DetalhesToolStripMenuItem.Text = "Detalhes"
         '
         'GenerateToolStripMenuItem1
         '
@@ -467,7 +678,7 @@ Partial Class frmEditor_AutoMapper
         Me.PathsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.PathsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black
         Me.PathsToolStripMenuItem1.Name = "PathsToolStripMenuItem1"
-        Me.PathsToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.PathsToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.PathsToolStripMenuItem1.Text = "Caminhos"
         '
         'RiversToolStripMenuItem1
@@ -477,7 +688,7 @@ Partial Class frmEditor_AutoMapper
         Me.RiversToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.RiversToolStripMenuItem1.ForeColor = System.Drawing.Color.Black
         Me.RiversToolStripMenuItem1.Name = "RiversToolStripMenuItem1"
-        Me.RiversToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.RiversToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.RiversToolStripMenuItem1.Text = "Rios"
         '
         'MountainsToolStripMenuItem1
@@ -487,7 +698,7 @@ Partial Class frmEditor_AutoMapper
         Me.MountainsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.MountainsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black
         Me.MountainsToolStripMenuItem1.Name = "MountainsToolStripMenuItem1"
-        Me.MountainsToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.MountainsToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.MountainsToolStripMenuItem1.Text = "Montanhas"
         '
         'OverGrassToolStripMenuItem1
@@ -497,7 +708,7 @@ Partial Class frmEditor_AutoMapper
         Me.OverGrassToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.OverGrassToolStripMenuItem1.ForeColor = System.Drawing.Color.Black
         Me.OverGrassToolStripMenuItem1.Name = "OverGrassToolStripMenuItem1"
-        Me.OverGrassToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.OverGrassToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.OverGrassToolStripMenuItem1.Text = "Sobre-grama"
         '
         'ResourcesToolStripMenuItem3
@@ -507,7 +718,7 @@ Partial Class frmEditor_AutoMapper
         Me.ResourcesToolStripMenuItem3.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ResourcesToolStripMenuItem3.ForeColor = System.Drawing.Color.Black
         Me.ResourcesToolStripMenuItem3.Name = "ResourcesToolStripMenuItem3"
-        Me.ResourcesToolStripMenuItem3.Size = New System.Drawing.Size(224, 26)
+        Me.ResourcesToolStripMenuItem3.Size = New System.Drawing.Size(180, 26)
         Me.ResourcesToolStripMenuItem3.Text = "Recursos"
         '
         'DetailsToolStripMenuItem1
@@ -517,7 +728,7 @@ Partial Class frmEditor_AutoMapper
         Me.DetailsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.DetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black
         Me.DetailsToolStripMenuItem1.Name = "DetailsToolStripMenuItem1"
-        Me.DetailsToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.DetailsToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.DetailsToolStripMenuItem1.Text = "Detalhes"
         '
         'DarkLabel1
@@ -693,223 +904,12 @@ Partial Class frmEditor_AutoMapper
         Me.btnStart.Text = "Criar Mundo"
         Me.btnStart.UseVisualStyleBackColor = False
         '
-        'pnlDetails
-        '
-        Me.pnlDetails.Controls.Add(Me.btnDetailHelper)
-        Me.pnlDetails.Controls.Add(Me.cmbDetailPrefab)
-        Me.pnlDetails.Controls.Add(Me.lblPrefabDetail)
-        Me.pnlDetails.Controls.Add(Me.txtAreaYDetail)
-        Me.pnlDetails.Controls.Add(Me.lblAreaYDetail)
-        Me.pnlDetails.Controls.Add(Me.txtAreaXDetail)
-        Me.pnlDetails.Controls.Add(Me.lblAreaXDetail)
-        Me.pnlDetails.Controls.Add(Me.txtDetailStartY)
-        Me.pnlDetails.Controls.Add(Me.lblStartYDetail)
-        Me.pnlDetails.Controls.Add(Me.txtDetailStartX)
-        Me.pnlDetails.Controls.Add(Me.lblDetailStartX)
-        Me.pnlDetails.Controls.Add(Me.cmbDetailTileset)
-        Me.pnlDetails.Controls.Add(Me.lblDetailTileset)
-        Me.pnlDetails.Controls.Add(Me.btnCloseDetail)
-        Me.pnlDetails.Controls.Add(Me.btnSaveDetail)
-        Me.pnlDetails.Controls.Add(Me.btnAddDetail)
-        Me.pnlDetails.Controls.Add(Me.btnDeleteDetail)
-        Me.pnlDetails.Controls.Add(Me.lstDetails)
-        Me.pnlDetails.Location = New System.Drawing.Point(0, 3)
-        Me.pnlDetails.Name = "pnlDetails"
-        Me.pnlDetails.Size = New System.Drawing.Size(508, 329)
-        Me.pnlDetails.TabIndex = 43
-        Me.pnlDetails.Visible = False
-        '
-        'lstDetails
-        '
-        Me.lstDetails.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.lstDetails.ForeColor = System.Drawing.Color.Gainsboro
-        Me.lstDetails.FormattingEnabled = True
-        Me.lstDetails.ItemHeight = 16
-        Me.lstDetails.Location = New System.Drawing.Point(4, 4)
-        Me.lstDetails.Margin = New System.Windows.Forms.Padding(4)
-        Me.lstDetails.Name = "lstDetails"
-        Me.lstDetails.Size = New System.Drawing.Size(496, 132)
-        Me.lstDetails.TabIndex = 1
-        '
-        'btnAddDetail
-        '
-        Me.btnAddDetail.BackColor = System.Drawing.SystemColors.Control
-        Me.btnAddDetail.Location = New System.Drawing.Point(337, 144)
-        Me.btnAddDetail.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAddDetail.Name = "btnAddDetail"
-        Me.btnAddDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
-        Me.btnAddDetail.Size = New System.Drawing.Size(163, 42)
-        Me.btnAddDetail.TabIndex = 16
-        Me.btnAddDetail.Text = "Adicionar Detalhe"
-        Me.btnAddDetail.UseVisualStyleBackColor = False
-        '
-        'btnDeleteDetail
-        '
-        Me.btnDeleteDetail.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDeleteDetail.Location = New System.Drawing.Point(337, 190)
-        Me.btnDeleteDetail.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnDeleteDetail.Name = "btnDeleteDetail"
-        Me.btnDeleteDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
-        Me.btnDeleteDetail.Size = New System.Drawing.Size(163, 37)
-        Me.btnDeleteDetail.TabIndex = 15
-        Me.btnDeleteDetail.Text = "Remover Detalhe"
-        Me.btnDeleteDetail.UseVisualStyleBackColor = False
-        '
-        'btnSaveDetail
-        '
-        Me.btnSaveDetail.BackColor = System.Drawing.SystemColors.Control
-        Me.btnSaveDetail.Location = New System.Drawing.Point(337, 279)
-        Me.btnSaveDetail.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnSaveDetail.Name = "btnSaveDetail"
-        Me.btnSaveDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
-        Me.btnSaveDetail.Size = New System.Drawing.Size(163, 41)
-        Me.btnSaveDetail.TabIndex = 17
-        Me.btnSaveDetail.Text = "Salvar"
-        Me.btnSaveDetail.UseVisualStyleBackColor = False
-        '
-        'btnCloseDetail
-        '
-        Me.btnCloseDetail.BackColor = System.Drawing.SystemColors.Control
-        Me.btnCloseDetail.Location = New System.Drawing.Point(9, 279)
-        Me.btnCloseDetail.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnCloseDetail.Name = "btnCloseDetail"
-        Me.btnCloseDetail.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
-        Me.btnCloseDetail.Size = New System.Drawing.Size(163, 39)
-        Me.btnCloseDetail.TabIndex = 18
-        Me.btnCloseDetail.Text = "Fechar"
-        Me.btnCloseDetail.UseVisualStyleBackColor = False
-        '
-        'lblDetailTileset
-        '
-        Me.lblDetailTileset.AutoSize = True
-        Me.lblDetailTileset.ForeColor = System.Drawing.Color.White
-        Me.lblDetailTileset.Location = New System.Drawing.Point(6, 173)
-        Me.lblDetailTileset.Name = "lblDetailTileset"
-        Me.lblDetailTileset.Size = New System.Drawing.Size(54, 17)
-        Me.lblDetailTileset.TabIndex = 19
-        Me.lblDetailTileset.Text = "Tileset:"
-        '
-        'cmbDetailTileset
-        '
-        Me.cmbDetailTileset.Enabled = False
-        Me.cmbDetailTileset.FormattingEnabled = True
-        Me.cmbDetailTileset.Location = New System.Drawing.Point(176, 175)
-        Me.cmbDetailTileset.Name = "cmbDetailTileset"
-        Me.cmbDetailTileset.Size = New System.Drawing.Size(154, 24)
-        Me.cmbDetailTileset.TabIndex = 20
-        '
-        'lblDetailStartX
-        '
-        Me.lblDetailStartX.AutoSize = True
-        Me.lblDetailStartX.ForeColor = System.Drawing.Color.White
-        Me.lblDetailStartX.Location = New System.Drawing.Point(9, 204)
-        Me.lblDetailStartX.Name = "lblDetailStartX"
-        Me.lblDetailStartX.Size = New System.Drawing.Size(57, 17)
-        Me.lblDetailStartX.TabIndex = 21
-        Me.lblDetailStartX.Text = "Início X:"
-        '
-        'txtDetailStartX
-        '
-        Me.txtDetailStartX.Enabled = False
-        Me.txtDetailStartX.Location = New System.Drawing.Point(66, 205)
-        Me.txtDetailStartX.Name = "txtDetailStartX"
-        Me.txtDetailStartX.Size = New System.Drawing.Size(100, 22)
-        Me.txtDetailStartX.TabIndex = 22
-        '
-        'txtDetailStartY
-        '
-        Me.txtDetailStartY.Enabled = False
-        Me.txtDetailStartY.Location = New System.Drawing.Point(230, 205)
-        Me.txtDetailStartY.Name = "txtDetailStartY"
-        Me.txtDetailStartY.Size = New System.Drawing.Size(100, 22)
-        Me.txtDetailStartY.TabIndex = 24
-        '
-        'lblStartYDetail
-        '
-        Me.lblStartYDetail.AutoSize = True
-        Me.lblStartYDetail.ForeColor = System.Drawing.Color.White
-        Me.lblStartYDetail.Location = New System.Drawing.Point(173, 204)
-        Me.lblStartYDetail.Name = "lblStartYDetail"
-        Me.lblStartYDetail.Size = New System.Drawing.Size(57, 17)
-        Me.lblStartYDetail.TabIndex = 23
-        Me.lblStartYDetail.Text = "Início Y:"
-        '
-        'txtAreaYDetail
-        '
-        Me.txtAreaYDetail.Enabled = False
-        Me.txtAreaYDetail.Location = New System.Drawing.Point(230, 229)
-        Me.txtAreaYDetail.Name = "txtAreaYDetail"
-        Me.txtAreaYDetail.Size = New System.Drawing.Size(100, 22)
-        Me.txtAreaYDetail.TabIndex = 28
-        '
-        'lblAreaYDetail
-        '
-        Me.lblAreaYDetail.AutoSize = True
-        Me.lblAreaYDetail.ForeColor = System.Drawing.Color.White
-        Me.lblAreaYDetail.Location = New System.Drawing.Point(173, 228)
-        Me.lblAreaYDetail.Name = "lblAreaYDetail"
-        Me.lblAreaYDetail.Size = New System.Drawing.Size(55, 17)
-        Me.lblAreaYDetail.TabIndex = 27
-        Me.lblAreaYDetail.Text = "Area Y:"
-        '
-        'txtAreaXDetail
-        '
-        Me.txtAreaXDetail.Enabled = False
-        Me.txtAreaXDetail.Location = New System.Drawing.Point(66, 229)
-        Me.txtAreaXDetail.Name = "txtAreaXDetail"
-        Me.txtAreaXDetail.Size = New System.Drawing.Size(100, 22)
-        Me.txtAreaXDetail.TabIndex = 26
-        '
-        'lblAreaXDetail
-        '
-        Me.lblAreaXDetail.AutoSize = True
-        Me.lblAreaXDetail.ForeColor = System.Drawing.Color.White
-        Me.lblAreaXDetail.Location = New System.Drawing.Point(9, 228)
-        Me.lblAreaXDetail.Name = "lblAreaXDetail"
-        Me.lblAreaXDetail.Size = New System.Drawing.Size(55, 17)
-        Me.lblAreaXDetail.TabIndex = 25
-        Me.lblAreaXDetail.Text = "Area X:"
-        '
-        'cmbDetailPrefab
-        '
-        Me.cmbDetailPrefab.Enabled = False
-        Me.cmbDetailPrefab.FormattingEnabled = True
-        Me.cmbDetailPrefab.Items.AddRange(New Object() {"Água", "Areia", "Grama", "Passeio", "Sobre-grama", "Rio", "Montanha"})
-        Me.cmbDetailPrefab.Location = New System.Drawing.Point(176, 146)
-        Me.cmbDetailPrefab.Name = "cmbDetailPrefab"
-        Me.cmbDetailPrefab.Size = New System.Drawing.Size(154, 24)
-        Me.cmbDetailPrefab.TabIndex = 30
-        '
-        'lblPrefabDetail
-        '
-        Me.lblPrefabDetail.AutoSize = True
-        Me.lblPrefabDetail.ForeColor = System.Drawing.Color.White
-        Me.lblPrefabDetail.Location = New System.Drawing.Point(6, 144)
-        Me.lblPrefabDetail.Name = "lblPrefabDetail"
-        Me.lblPrefabDetail.Size = New System.Drawing.Size(168, 17)
-        Me.lblPrefabDetail.TabIndex = 29
-        Me.lblPrefabDetail.Text = "Aparecer somente sobre:"
-        '
-        'btnDetailHelper
-        '
-        Me.btnDetailHelper.Location = New System.Drawing.Point(307, 257)
-        Me.btnDetailHelper.Name = "btnDetailHelper"
-        Me.btnDetailHelper.Size = New System.Drawing.Size(23, 23)
-        Me.btnDetailHelper.TabIndex = 31
-        Me.btnDetailHelper.Text = "?"
-        Me.btnDetailHelper.UseVisualStyleBackColor = True
-        '
-        'DetalhesToolStripMenuItem
-        '
-        Me.DetalhesToolStripMenuItem.Name = "DetalhesToolStripMenuItem"
-        Me.DetalhesToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
-        Me.DetalhesToolStripMenuItem.Text = "Detalhes"
-        '
         'frmEditor_AutoMapper
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1584, 364)
+        Me.Controls.Add(Me.pnlDetails)
         Me.Controls.Add(Me.pnlResources)
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.txtResourceFreq)
@@ -936,12 +936,12 @@ Partial Class frmEditor_AutoMapper
         Me.pnlResources.PerformLayout()
         Me.pnlTileConfig.ResumeLayout(False)
         Me.pnlTileConfig.PerformLayout()
+        Me.pnlDetails.ResumeLayout(False)
+        Me.pnlDetails.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.DarkMenu.ResumeLayout(False)
         Me.DarkMenu.PerformLayout()
-        Me.pnlDetails.ResumeLayout(False)
-        Me.pnlDetails.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

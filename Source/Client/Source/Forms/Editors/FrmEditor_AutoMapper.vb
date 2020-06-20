@@ -181,7 +181,7 @@ Friend Class frmEditor_AutoMapper
         Dim i As Long
         lstDetails.Items.Clear()
 
-        For i = 1 To Detail.Length
+        For i = 1 To UBound(Detail)
             lstDetails.Items.Add("Detalhe " & i)
         Next
     End Sub
@@ -193,6 +193,15 @@ Friend Class frmEditor_AutoMapper
         txtDetailStartY.Enabled = True
         txtAreaXDetail.Enabled = True
         txtAreaYDetail.Enabled = True
+
+        Dim index As Long = lstDetails.SelectedIndex
+
+        cmbDetailPrefab.SelectedIndex = Detail(index).DetailBase
+        cmbDetailTileset.SelectedIndex = Detail(index).Tileset
+        txtDetailStartX.Text = Detail(index).StartX
+        txtDetailStartY.Text = Detail(index).StartY
+        txtAreaXDetail.Text = Detail(index).EndX
+        txtAreaYDetail.Text = Detail(index).EndY
     End Sub
 
     Private Sub btnCloseDetail_Click(sender As Object, e As EventArgs) Handles btnCloseDetail.Click
@@ -201,37 +210,37 @@ Friend Class frmEditor_AutoMapper
 
     Private Sub txtDetailStartX_TextChanged(sender As Object, e As EventArgs) Handles txtDetailStartX.TextChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).StartX = Val(txtDetailStartX.Text)
+            Detail(lstDetails.SelectedIndex).StartX = Val(txtDetailStartX.Text)
         End If
     End Sub
 
     Private Sub cmbDetailPrefab_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDetailPrefab.SelectedIndexChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).Prefab = cmbDetailPrefab.SelectedIndex
+            Detail(lstDetails.SelectedIndex).DetailBase = cmbDetailPrefab.SelectedIndex
         End If
     End Sub
 
     Private Sub cmbDetailTileset_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDetailTileset.SelectedIndexChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).Tileset = cmbDetailTileset.SelectedIndex
+            Detail(lstDetails.SelectedIndex).Tileset = cmbDetailTileset.SelectedIndex
         End If
     End Sub
 
     Private Sub txtDetailStartY_TextChanged(sender As Object, e As EventArgs) Handles txtDetailStartY.TextChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).StartY = Val(txtDetailStartY.Text)
+            Detail(lstDetails.SelectedIndex).StartY = Val(txtDetailStartY.Text)
         End If
     End Sub
 
     Private Sub txtAreaXDetail_TextChanged(sender As Object, e As EventArgs) Handles txtAreaXDetail.TextChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).EndX = Val(txtAreaXDetail.Text)
+            Detail(lstDetails.SelectedIndex).EndX = Val(txtAreaXDetail.Text)
         End If
     End Sub
 
     Private Sub txtAreaYDetail_TextChanged(sender As Object, e As EventArgs) Handles txtAreaYDetail.TextChanged
         If lstDetails.SelectedIndex >= 0 Then
-            Detail(lstDetails.SelectedIndex + 1).EndY = Val(txtAreaYDetail.Text)
+            Detail(lstDetails.SelectedIndex).EndY = Val(txtAreaYDetail.Text)
         End If
     End Sub
 
@@ -249,7 +258,7 @@ Friend Class frmEditor_AutoMapper
 
     Private Sub btnDeleteDetail_Click(sender As Object, e As EventArgs) Handles btnDeleteDetail.Click
         If lstDetails.SelectedIndex >= 0 Then
-            Detail.RemoveAt(lstDetails.SelectedIndex + 1)
+            Detail = Detail.RemoveAt(lstDetails.SelectedIndex + 1)
             UpdateDetailList()
         End If
     End Sub
@@ -258,16 +267,16 @@ Friend Class frmEditor_AutoMapper
         Dim TileDetail As Integer
         Dim cf = Path.Contents & "AutoMapper.ini"
 
-        For TileDetail = 1 To Detail.Length
-            Ini.Write(cf, "Detail" & TileDetail, "Prefab", Val(Detail(TileDetail).Prefab))
-            Ini.Write(cf, "Detail" & TileDetail, "Tileset", Val(Detail(TileDetail).Tileset))
-            Ini.Write(cf, "Detail" & TileDetail, "StartX", Val(Detail(TileDetail).StartX))
-            Ini.Write(cf, "Detail" & TileDetail, "StartY", Val(Detail(TileDetail).StartY))
-            Ini.Write(cf, "Detail" & TileDetail, "EndX", Val(Detail(TileDetail).EndX))
-            Ini.Write(cf, "Detail" & TileDetail, "EndY", Val(Detail(TileDetail).EndY))
+        For TileDetail = 0 To UBound(Detail) - 1
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Prefab", Val(Detail(TileDetail).DetailBase))
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Tileset", Val(Detail(TileDetail).Tileset))
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartX", Val(Detail(TileDetail).StartX))
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartY", Val(Detail(TileDetail).StartY))
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndX", Val(Detail(TileDetail).EndX))
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndY", Val(Detail(TileDetail).EndY))
         Next TileDetail
 
-        Ini.Write(cf, "Details", "DetailCount", Val(Detail.Length))
+        Ini.WriteOrCreate(cf, "Details", "DetailCount", Val(UBound(Detail)))
 
         pnlDetails.Visible = False
     End Sub

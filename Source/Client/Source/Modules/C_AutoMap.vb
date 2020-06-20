@@ -75,7 +75,6 @@ Module C_AutoMap
 
     Structure DetailRec
         Dim DetailBase As Byte
-        Dim Prefab As Long
         Dim Tileset As Long
         Dim StartX As Long
         Dim StartY As Long
@@ -126,9 +125,7 @@ Module C_AutoMap
 
     Sub AddDetail(Prefab As TilePrefab, Tileset As Integer, X As Integer, Y As Integer, TileType As Integer, EndX As Long, EndY As Long)
         Dim DetailCount As Integer
-        DetailCount = UBound(Detail) + 1
-
-        ReDim Preserve Detail(DetailCount)
+        DetailCount = UBound(Detail)
 
         Detail(DetailCount).DetailBase = Prefab
         Detail(DetailCount).Tileset = Tileset
@@ -136,6 +133,8 @@ Module C_AutoMap
         Detail(DetailCount).StartY = Y
         Detail(DetailCount).EndX = EndX
         Detail(DetailCount).EndY = EndY
+
+        ReDim Preserve Detail(DetailCount + 1)
     End Sub
 
     Sub LoadDetails()
@@ -147,13 +146,13 @@ Module C_AutoMap
         Dim StartY As Long
         Dim EndX As Long
         Dim EndY As Long
-        ReDim Detail(1)
+        ReDim Detail(0)
 
         'Área de configuração detalhada
         'Uso: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
 
         DetailCount = Val(Ini.Read(cf, "Details", "DetailCount"))
-        For TileDetail = 1 To DetailCount
+        For TileDetail = 0 To DetailCount - 1
             TilePrefab = Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab"))
             Tileset = Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset"))
             StartX = Val(Ini.Read(cf, "Detail" & TileDetail, "StartX"))
@@ -187,14 +186,14 @@ Module C_AutoMap
         Ini.Write(cf, "Resources", "ResourcesNum", buffer.ReadString())
 
         DetailCount = buffer.ReadInt32
-        Ini.Write(cf, "Details", "DetailCount", DetailCount)
-        For TileDetail = 1 To DetailCount
-            Ini.Write(cf, "Detail" & TileDetail, "Prefab", buffer.ReadInt32)
-            Ini.Write(cf, "Detail" & TileDetail, "Tileset", buffer.ReadInt32)
-            Ini.Write(cf, "Detail" & TileDetail, "StartX", buffer.ReadInt32)
-            Ini.Write(cf, "Detail" & TileDetail, "StartY", buffer.ReadInt32)
-            Ini.Write(cf, "Detail" & TileDetail, "EndX", buffer.ReadInt32)
-            Ini.Write(cf, "Detail" & TileDetail, "EndY", buffer.ReadInt32)
+        Ini.WriteOrCreate(cf, "Details", "DetailCount", DetailCount)
+        For TileDetail = 0 To DetailCount - 1
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Prefab", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Tileset", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartX", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartY", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndX", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndY", buffer.ReadInt32)
         Next
 
         For Prefab = 1 To TilePrefab.Count - 1
@@ -245,9 +244,9 @@ Module C_AutoMap
         'Envio de informações xml
         buffer.WriteString((Ini.Read(cf, "Resources", "ResourcesNum")))
 
-        detailCount = Val(Ini.Read(cf, "Details", "DetailCount"))
+        detailCount = UBound(Detail)
         buffer.WriteInt32(detailCount)
-        For TileDetail = 1 To detailCount
+        For TileDetail = 0 To detailCount - 1
             buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab")))
             buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset")))
             buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "StartX")))

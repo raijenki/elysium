@@ -11,14 +11,14 @@
         ''' <summary> Retorna o diretório de conteúdos </summary>
         Friend ReadOnly Property Contents As String
             Get
-                Return Application.StartupPath() & "\Dados"
+                Return Application.StartupPath() & "\Dados\"
             End Get
         End Property
 
         ''' <summary> Retorna o diretório do banco de dados </summary>
         Friend ReadOnly Property Database As String
             Get
-                Return Application.StartupPath() & "\Database\"
+                Return Application.StartupPath() & "\Dados\"
             End Get
         End Property
 
