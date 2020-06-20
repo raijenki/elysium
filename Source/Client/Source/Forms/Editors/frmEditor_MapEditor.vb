@@ -403,11 +403,11 @@ Public Class FrmEditor_MapEditor
     Private Sub CmbNpcList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNpcList.SelectedIndexChanged
         If lstMapNpc.SelectedIndex > -1 Then
             If cmbNpcList.SelectedIndex > 0 Then
-                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = (lstMapNpc.SelectedIndex + 1) & ": " & Npc(cmbNpcList.SelectedIndex).Name
                 Map.Npc(lstMapNpc.SelectedIndex + 1) = cmbNpcList.SelectedIndex
+                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = (lstMapNpc.SelectedIndex + 1) & ": " & Npc(cmbNpcList.SelectedIndex).Name
             Else
-                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = "Nenhum NPC"
                 Map.Npc(lstMapNpc.SelectedIndex + 1) = 0
+                lstMapNpc.Items.Item(lstMapNpc.SelectedIndex) = "Nenhum NPC"
             End If
 
         End If
@@ -627,7 +627,7 @@ Public Class FrmEditor_MapEditor
         lstMapNpc.Items.Clear()
 
         For X = 1 To MAX_MAP_NPCS
-            If Map.Npc(X) = 0 Then
+            If Map.Npc(X) <= 0 Then
                 lstMapNpc.Items.Add("Nenhum NPC")
             Else
                 lstMapNpc.Items.Add(X & ": " & Trim$(Npc(Map.Npc(X)).Name))
