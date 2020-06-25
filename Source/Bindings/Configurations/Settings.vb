@@ -54,15 +54,6 @@ Friend Module modSettings
             File.Create(cf).Dispose()
             ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, New SettingsDef)
         End If : Settings = ASFW.IO.Serialization.LoadXml(Of SettingsDef)(cf)
-
-#If CLIENT Then ' Update Gui
-        FrmOptions.optMOn.Checked = Settings.Music
-        FrmOptions.optSOn.Checked = Settings.Sound
-        FrmOptions.lblVolume.Text = "Volume: " & Settings.Volume
-        FrmOptions.scrlVolume.Value = Settings.Volume
-
-        FrmOptions.cmbScreenSize.SelectedIndex = Settings.ScreenSize
-#End If
     End Sub
 
     Friend Sub SaveSettings()

@@ -80,9 +80,9 @@ Partial Class frmEditor_Resource
         Me.DarkGroupBox1.Controls.Add(Me.lstIndex)
         Me.DarkGroupBox1.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox1.Location = New System.Drawing.Point(4, 2)
-        Me.DarkGroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox1.Name = "DarkGroupBox1"
-        Me.DarkGroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox1.Size = New System.Drawing.Size(288, 551)
         Me.DarkGroupBox1.TabIndex = 0
         Me.DarkGroupBox1.TabStop = False
@@ -96,7 +96,7 @@ Partial Class frmEditor_Resource
         Me.lstIndex.FormattingEnabled = True
         Me.lstIndex.ItemHeight = 16
         Me.lstIndex.Location = New System.Drawing.Point(12, 23)
-        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstIndex.Margin = New System.Windows.Forms.Padding(4)
         Me.lstIndex.Name = "lstIndex"
         Me.lstIndex.Size = New System.Drawing.Size(261, 514)
         Me.lstIndex.TabIndex = 1
@@ -123,9 +123,9 @@ Partial Class frmEditor_Resource
         Me.DarkGroupBox2.Controls.Add(Me.DarkLabel1)
         Me.DarkGroupBox2.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox2.Location = New System.Drawing.Point(300, 2)
-        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox2.Name = "DarkGroupBox2"
-        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox2.Padding = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox2.Size = New System.Drawing.Size(487, 516)
         Me.DarkGroupBox2.TabIndex = 1
         Me.DarkGroupBox2.TabStop = False
@@ -140,9 +140,9 @@ Partial Class frmEditor_Resource
         Me.DarkGroupBox5.Controls.Add(Me.DarkLabel12)
         Me.DarkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox5.Location = New System.Drawing.Point(12, 454)
-        Me.DarkGroupBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox5.Name = "DarkGroupBox5"
-        Me.DarkGroupBox5.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox5.Padding = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox5.Size = New System.Drawing.Size(461, 54)
         Me.DarkGroupBox5.TabIndex = 16
         Me.DarkGroupBox5.TabStop = False
@@ -153,7 +153,7 @@ Partial Class frmEditor_Resource
         Me.nudRewardExp.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudRewardExp.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudRewardExp.Location = New System.Drawing.Point(359, 17)
-        Me.nudRewardExp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudRewardExp.Margin = New System.Windows.Forms.Padding(4)
         Me.nudRewardExp.Name = "nudRewardExp"
         Me.nudRewardExp.Size = New System.Drawing.Size(93, 22)
         Me.nudRewardExp.TabIndex = 3
@@ -177,7 +177,7 @@ Partial Class frmEditor_Resource
         Me.cmbRewardItem.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbRewardItem.FormattingEnabled = True
         Me.cmbRewardItem.Location = New System.Drawing.Point(56, 16)
-        Me.cmbRewardItem.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbRewardItem.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbRewardItem.Name = "cmbRewardItem"
         Me.cmbRewardItem.Size = New System.Drawing.Size(160, 24)
         Me.cmbRewardItem.TabIndex = 1
@@ -202,9 +202,9 @@ Partial Class frmEditor_Resource
         Me.DarkGroupBox4.Controls.Add(Me.DarkLabel10)
         Me.DarkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox4.Location = New System.Drawing.Point(12, 393)
-        Me.DarkGroupBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox4.Name = "DarkGroupBox4"
-        Me.DarkGroupBox4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox4.Padding = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox4.Size = New System.Drawing.Size(461, 54)
         Me.DarkGroupBox4.TabIndex = 15
         Me.DarkGroupBox4.TabStop = False
@@ -215,7 +215,7 @@ Partial Class frmEditor_Resource
         Me.nudLvlReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudLvlReq.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudLvlReq.Location = New System.Drawing.Point(397, 17)
-        Me.nudLvlReq.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudLvlReq.Margin = New System.Windows.Forms.Padding(4)
         Me.nudLvlReq.Name = "nudLvlReq"
         Me.nudLvlReq.Size = New System.Drawing.Size(55, 22)
         Me.nudLvlReq.TabIndex = 3
@@ -238,9 +238,9 @@ Partial Class frmEditor_Resource
         Me.cmbTool.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbTool.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbTool.FormattingEnabled = True
-        Me.cmbTool.Items.AddRange(New Object() {"None", "Hatchet", "Pickaxe", "Fishing Rod"})
+        Me.cmbTool.Items.AddRange(New Object() {"Nenhum", "Machado", "Picareta", "Vara de pescar"})
         Me.cmbTool.Location = New System.Drawing.Point(135, 16)
-        Me.cmbTool.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbTool.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbTool.Name = "cmbTool"
         Me.cmbTool.Size = New System.Drawing.Size(113, 24)
         Me.cmbTool.TabIndex = 1
@@ -264,7 +264,7 @@ Partial Class frmEditor_Resource
         Me.cmbAnimation.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbAnimation.FormattingEnabled = True
         Me.cmbAnimation.Location = New System.Drawing.Point(340, 150)
-        Me.cmbAnimation.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbAnimation.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbAnimation.Name = "cmbAnimation"
         Me.cmbAnimation.Size = New System.Drawing.Size(132, 24)
         Me.cmbAnimation.TabIndex = 14
@@ -285,7 +285,7 @@ Partial Class frmEditor_Resource
         Me.nudRespawn.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudRespawn.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudRespawn.Location = New System.Drawing.Point(147, 150)
-        Me.nudRespawn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudRespawn.Margin = New System.Windows.Forms.Padding(4)
         Me.nudRespawn.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudRespawn.Name = "nudRespawn"
         Me.nudRespawn.Size = New System.Drawing.Size(103, 22)
@@ -313,9 +313,9 @@ Partial Class frmEditor_Resource
         Me.DarkGroupBox3.Controls.Add(Me.picNormalpic)
         Me.DarkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro
         Me.DarkGroupBox3.Location = New System.Drawing.Point(12, 183)
-        Me.DarkGroupBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox3.Name = "DarkGroupBox3"
-        Me.DarkGroupBox3.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DarkGroupBox3.Padding = New System.Windows.Forms.Padding(4)
         Me.DarkGroupBox3.Size = New System.Drawing.Size(461, 202)
         Me.DarkGroupBox3.TabIndex = 10
         Me.DarkGroupBox3.TabStop = False
@@ -326,7 +326,7 @@ Partial Class frmEditor_Resource
         Me.nudExhaustedPic.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudExhaustedPic.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudExhaustedPic.Location = New System.Drawing.Point(356, 169)
-        Me.nudExhaustedPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudExhaustedPic.Margin = New System.Windows.Forms.Padding(4)
         Me.nudExhaustedPic.Name = "nudExhaustedPic"
         Me.nudExhaustedPic.Size = New System.Drawing.Size(96, 22)
         Me.nudExhaustedPic.TabIndex = 49
@@ -336,7 +336,7 @@ Partial Class frmEditor_Resource
         Me.nudNormalPic.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudNormalPic.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudNormalPic.Location = New System.Drawing.Point(115, 169)
-        Me.nudNormalPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudNormalPic.Margin = New System.Windows.Forms.Padding(4)
         Me.nudNormalPic.Name = "nudNormalPic"
         Me.nudNormalPic.Size = New System.Drawing.Size(96, 22)
         Me.nudNormalPic.TabIndex = 48
@@ -368,7 +368,7 @@ Partial Class frmEditor_Resource
         Me.picExhaustedPic.BackColor = System.Drawing.Color.Black
         Me.picExhaustedPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.picExhaustedPic.Location = New System.Drawing.Point(251, 23)
-        Me.picExhaustedPic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.picExhaustedPic.Margin = New System.Windows.Forms.Padding(4)
         Me.picExhaustedPic.Name = "picExhaustedPic"
         Me.picExhaustedPic.Size = New System.Drawing.Size(203, 138)
         Me.picExhaustedPic.TabIndex = 45
@@ -379,7 +379,7 @@ Partial Class frmEditor_Resource
         Me.picNormalpic.BackColor = System.Drawing.Color.Black
         Me.picNormalpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.picNormalpic.Location = New System.Drawing.Point(8, 23)
-        Me.picNormalpic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.picNormalpic.Margin = New System.Windows.Forms.Padding(4)
         Me.picNormalpic.Name = "picNormalpic"
         Me.picNormalpic.Size = New System.Drawing.Size(203, 138)
         Me.picNormalpic.TabIndex = 44
@@ -390,7 +390,7 @@ Partial Class frmEditor_Resource
         Me.nudHealth.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.nudHealth.ForeColor = System.Drawing.Color.Gainsboro
         Me.nudHealth.Location = New System.Drawing.Point(392, 118)
-        Me.nudHealth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.nudHealth.Margin = New System.Windows.Forms.Padding(4)
         Me.nudHealth.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudHealth.Name = "nudHealth"
         Me.nudHealth.Size = New System.Drawing.Size(81, 22)
@@ -403,9 +403,9 @@ Partial Class frmEditor_Resource
         Me.DarkLabel5.Location = New System.Drawing.Point(315, 121)
         Me.DarkLabel5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DarkLabel5.Name = "DarkLabel5"
-        Me.DarkLabel5.Size = New System.Drawing.Size(68, 17)
+        Me.DarkLabel5.Size = New System.Drawing.Size(40, 17)
         Me.DarkLabel5.TabIndex = 8
-        Me.DarkLabel5.Text = "HitPoints:"
+        Me.DarkLabel5.Text = "Vida:"
         '
         'cmbType
         '
@@ -414,9 +414,9 @@ Partial Class frmEditor_Resource
         Me.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbType.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbType.FormattingEnabled = True
-        Me.cmbType.Items.AddRange(New Object() {"None", "Herb", "Tree", "Mine", "Fishing Spot"})
+        Me.cmbType.Items.AddRange(New Object() {"Nenhum", "Erva", "Arvore", "Minério", "Área de pesca"})
         Me.cmbType.Location = New System.Drawing.Point(145, 117)
-        Me.cmbType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbType.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbType.Name = "cmbType"
         Me.cmbType.Size = New System.Drawing.Size(160, 24)
         Me.cmbType.TabIndex = 7
@@ -449,7 +449,7 @@ Partial Class frmEditor_Resource
         Me.txtMessage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMessage2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.txtMessage2.Location = New System.Drawing.Point(145, 85)
-        Me.txtMessage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMessage2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMessage2.Name = "txtMessage2"
         Me.txtMessage2.Size = New System.Drawing.Size(327, 22)
         Me.txtMessage2.TabIndex = 4
@@ -460,7 +460,7 @@ Partial Class frmEditor_Resource
         Me.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMessage.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.txtMessage.Location = New System.Drawing.Point(145, 53)
-        Me.txtMessage.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMessage.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMessage.Name = "txtMessage"
         Me.txtMessage.Size = New System.Drawing.Size(327, 22)
         Me.txtMessage.TabIndex = 3
@@ -482,7 +482,7 @@ Partial Class frmEditor_Resource
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.txtName.Location = New System.Drawing.Point(145, 21)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(327, 22)
         Me.txtName.TabIndex = 1
@@ -502,7 +502,7 @@ Partial Class frmEditor_Resource
         '
         Me.btnSave.BackColor = System.Drawing.SystemColors.Control
         Me.btnSave.Location = New System.Drawing.Point(300, 518)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.btnSave.Size = New System.Drawing.Size(100, 36)
@@ -514,7 +514,7 @@ Partial Class frmEditor_Resource
         '
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Control
         Me.btnDelete.Location = New System.Drawing.Point(489, 518)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.btnDelete.Size = New System.Drawing.Size(100, 36)
@@ -526,7 +526,7 @@ Partial Class frmEditor_Resource
         '
         Me.btnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.btnCancel.Location = New System.Drawing.Point(687, 518)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.btnCancel.Size = New System.Drawing.Size(100, 36)
@@ -546,7 +546,7 @@ Partial Class frmEditor_Resource
         Me.Controls.Add(Me.DarkGroupBox2)
         Me.Controls.Add(Me.DarkGroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmEditor_Resource"
         Me.Text = "Resource Editor"
         Me.DarkGroupBox1.ResumeLayout(False)

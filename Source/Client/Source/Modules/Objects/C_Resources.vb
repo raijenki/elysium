@@ -124,7 +124,7 @@ Module C_Resources
 
         'Vendo que ainda vamos utilizar isso, atualizar o temporizador
         With ResourcesGfxInfo(resource)
-            .TextureTimer = GetTickCount() + 10000
+            .TextureTimer = GetTickCount() + 100000
         End With
 
         RenderSprite(ResourcesSprite(resource), GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height)

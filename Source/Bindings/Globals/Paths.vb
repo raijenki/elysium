@@ -59,14 +59,14 @@
         ''' <summary> Retorna o diretório de músicas </summary>
         Friend ReadOnly Property Music As String
             Get
-                Return Contents & "\Audio\Musicas"
+                Return Contents & "\Audio\Musicas\"
             End Get
         End Property
 
         ''' <summary> Retorna o diretório de sons </summary>
         Friend ReadOnly Property Sounds As String
             Get
-                Return Contents & "\Audio\Efeitos"
+                Return Contents & "\Audio\Efeitos\"
             End Get
         End Property
 
@@ -75,7 +75,7 @@
         ''' <summary> Retorna diretório de contas </summary>
         Friend ReadOnly Property Accounts As String
             Get
-                Return Application.StartupPath() & "/Database/Contas/"
+                Return Application.StartupPath() & "/Dados/Contas/"
             End Get
         End Property
 
@@ -87,7 +87,7 @@
         ''' <summary> Retorna diretório de animações </summary>
         Friend ReadOnly Property Animations As String
             Get
-                Return Application.StartupPath() & "/Database/Animados/"
+                Return Application.StartupPath() & "/Dados/Animados/"
             End Get
         End Property
 
@@ -99,7 +99,7 @@
         ''' <summary> Retorna diretório de itens </summary>
         Friend ReadOnly Property Items As String
             Get
-                Return Application.StartupPath() & "/Database/Itens/"
+                Return Application.StartupPath() & "/Dados/Itens/"
             End Get
         End Property
 
@@ -118,7 +118,7 @@
         ''' <summary> Retorna diretório de mapas </summary>
         Friend ReadOnly Property Maps As String
             Get
-                Return Application.StartupPath() & "/Database/Mapas/"
+                Return Application.StartupPath() & "/Dados/Mapas/"
             End Get
         End Property
 
@@ -130,7 +130,7 @@
         ''' <summary> Retorna diretório de npcs </summary>
         Friend ReadOnly Property Npcs As String
             Get
-                Return Application.StartupPath() & "/Database/Npcs/"
+                Return Application.StartupPath() & "/Dados/Npcs/"
             End Get
         End Property
 
@@ -142,7 +142,7 @@
         ''' <summary> Retorna diretório de pets </summary>
         Friend ReadOnly Property Pets As String
             Get
-                Return Application.StartupPath() & "/Database/Pets/"
+                Return Application.StartupPath() & "/Dados/Pets/"
             End Get
         End Property
 
@@ -154,7 +154,7 @@
         ''' <summary> Retorna diretório de projeteis </summary>
         Friend ReadOnly Property Projectiles As String
             Get
-                Return Application.StartupPath() & "/Database/Projeteis/"
+                Return Application.StartupPath() & "/Dados/Projeteis/"
             End Get
         End Property
 
@@ -166,7 +166,7 @@
         ''' <summary> Retorna diretório de quests </summary>
         Friend ReadOnly Property Quests As String
             Get
-                Return Application.StartupPath() & "/Database/Tarefas/"
+                Return Application.StartupPath() & "/Dados/Tarefas/"
             End Get
         End Property
 
@@ -178,7 +178,7 @@
         ''' <summary> Retorna diretório de receitas </summary>
         Friend ReadOnly Property Recipes As String
             Get
-                Return Application.StartupPath() & "/Database/Receitas/"
+                Return Application.StartupPath() & "/Dados/Receitas/"
             End Get
         End Property
 
@@ -190,7 +190,7 @@
         ''' <summary> Retorna diretório de recursous </summary>
         Friend ReadOnly Property Resources As String
             Get
-                Return Application.StartupPath() & "/Database/Recursos/"
+                Return Application.StartupPath() & "/Dados/Recursos/"
             End Get
         End Property
 
@@ -202,7 +202,7 @@
         ''' <summary> Retorna diretório de lojas </summary>
         Friend ReadOnly Property Shops As String
             Get
-                Return Application.StartupPath() & "/Database/Lojas/"
+                Return Application.StartupPath() & "/Dados/Lojas/"
             End Get
         End Property
 
@@ -214,7 +214,7 @@
         ''' <summary> Retorna diretório de habilidades </summary>
         Friend ReadOnly Property Skills As String
             Get
-                Return Application.StartupPath() & "/Database/Habilidades/"
+                Return Application.StartupPath() & "/Dados/Habilidades/"
             End Get
         End Property
 
