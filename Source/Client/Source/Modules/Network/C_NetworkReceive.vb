@@ -167,6 +167,7 @@ Module C_NetworkReceive
 
     Private Sub Packet_AlertMSG(ByRef data() As Byte)
         Dim msg As String
+        Dim disconnect As Boolean
         Dim buffer As New ByteStream(data)
         Pnlloadvisible = False
 
@@ -181,11 +182,12 @@ Module C_NetworkReceive
         PnlCharSelectVisible = False
 
         msg = buffer.ReadString()
+        disconnect = buffer.ReadBoolean()
 
         buffer.Dispose()
 
         MsgBox(msg, vbOKOnly, Settings.GameName)
-        DestroyGame()
+        If disconnect Then DestroyGame()
     End Sub
 
     Private Sub Packet_KeyPair(ByRef data() As Byte)

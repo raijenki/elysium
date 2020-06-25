@@ -164,7 +164,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database\Classes.ini">
+    <None Include="Dados\Classes.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\app.config" />
@@ -215,14 +215,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database\AutoMapper.ini">
+    <None Include="Dados\AutoMapper.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Database\SkillExp.ini">
+    <None Include="Dados\SkillExp.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="My Project\Icon.ico" />
-    <None Include="Database\News.txt">
+    <None Include="Dados\News.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

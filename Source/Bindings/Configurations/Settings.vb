@@ -48,28 +48,19 @@ Friend Module modSettings
         Dim cf As String = Path.Config()
         If Not Directory.Exists(cf) Then
             Directory.CreateDirectory(cf)
-        End If : cf = cf & "\Settings.xml"
+        End If : cf = cf & "\Configurações.xml"
 
         If Not File.Exists(cf) Then
             File.Create(cf).Dispose()
             ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, New SettingsDef)
         End If : Settings = ASFW.IO.Serialization.LoadXml(Of SettingsDef)(cf)
-
-#If CLIENT Then ' Update Gui
-        FrmOptions.optMOn.Checked = Settings.Music
-        FrmOptions.optSOn.Checked = Settings.Sound
-        FrmOptions.lblVolume.Text = "Volume: " & Settings.Volume
-        FrmOptions.scrlVolume.Value = Settings.Volume
-
-        FrmOptions.cmbScreenSize.SelectedIndex = Settings.ScreenSize
-#End If
     End Sub
 
     Friend Sub SaveSettings()
         Dim cf As String = Path.Config()
         If Not Directory.Exists(cf) Then
             Directory.CreateDirectory(cf)
-        End If : cf = cf & "\Settings.xml"
+        End If : cf = cf & "\Configurações.xml"
 
         ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, Settings)
     End Sub

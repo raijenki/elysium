@@ -283,7 +283,7 @@ Module C_General
 
         'janelas de atributos de pet
         PetStatX = PetbarX
-        PetStatY = PetbarY - PetStatsGfxInfo.Height - 10
+        PetStatY = PetbarY
     End Sub
 
     Friend Sub DestroyGame()

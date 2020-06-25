@@ -43,7 +43,7 @@ Partial Class FrmOptions
         '
         Me.btnSaveSettings.ForeColor = System.Drawing.Color.Black
         Me.btnSaveSettings.Location = New System.Drawing.Point(14, 252)
-        Me.btnSaveSettings.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveSettings.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveSettings.Name = "btnSaveSettings"
         Me.btnSaveSettings.Size = New System.Drawing.Size(274, 28)
         Me.btnSaveSettings.TabIndex = 14
@@ -65,7 +65,7 @@ Partial Class FrmOptions
         Me.cmbScreenSize.FormattingEnabled = True
         Me.cmbScreenSize.Items.AddRange(New Object() {"800X600", "1024X768", "1152X864"})
         Me.cmbScreenSize.Location = New System.Drawing.Point(14, 142)
-        Me.cmbScreenSize.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbScreenSize.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbScreenSize.Name = "cmbScreenSize"
         Me.cmbScreenSize.Size = New System.Drawing.Size(273, 24)
         Me.cmbScreenSize.TabIndex = 12
@@ -97,9 +97,9 @@ Partial Class FrmOptions
         Me.GroupBox2.Controls.Add(Me.optSOn)
         Me.GroupBox2.ForeColor = System.Drawing.Color.Black
         Me.GroupBox2.Location = New System.Drawing.Point(157, 16)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Size = New System.Drawing.Size(133, 46)
         Me.GroupBox2.TabIndex = 7
         Me.GroupBox2.TabStop = False
@@ -109,7 +109,7 @@ Partial Class FrmOptions
         '
         Me.optSOff.AutoSize = True
         Me.optSOff.Location = New System.Drawing.Point(66, 23)
-        Me.optSOff.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.optSOff.Margin = New System.Windows.Forms.Padding(4)
         Me.optSOff.Name = "optSOff"
         Me.optSOff.Size = New System.Drawing.Size(48, 21)
         Me.optSOff.TabIndex = 5
@@ -121,7 +121,7 @@ Partial Class FrmOptions
         '
         Me.optSOn.AutoSize = True
         Me.optSOn.Location = New System.Drawing.Point(5, 23)
-        Me.optSOn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.optSOn.Margin = New System.Windows.Forms.Padding(4)
         Me.optSOn.Name = "optSOn"
         Me.optSOn.Size = New System.Drawing.Size(48, 21)
         Me.optSOn.TabIndex = 4
@@ -135,9 +135,9 @@ Partial Class FrmOptions
         Me.GroupBox1.Controls.Add(Me.optMOn)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Black
         Me.GroupBox1.Location = New System.Drawing.Point(16, 14)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Size = New System.Drawing.Size(133, 48)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
@@ -147,7 +147,7 @@ Partial Class FrmOptions
         '
         Me.optMOff.AutoSize = True
         Me.optMOff.Location = New System.Drawing.Point(66, 21)
-        Me.optMOff.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.optMOff.Margin = New System.Windows.Forms.Padding(4)
         Me.optMOff.Name = "optMOff"
         Me.optMOff.Size = New System.Drawing.Size(48, 21)
         Me.optMOff.TabIndex = 2
@@ -159,7 +159,7 @@ Partial Class FrmOptions
         '
         Me.optMOn.AutoSize = True
         Me.optMOn.Location = New System.Drawing.Point(5, 21)
-        Me.optMOn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.optMOn.Margin = New System.Windows.Forms.Padding(4)
         Me.optMOn.Name = "optMOn"
         Me.optMOn.Size = New System.Drawing.Size(48, 21)
         Me.optMOn.TabIndex = 1
@@ -171,7 +171,7 @@ Partial Class FrmOptions
         '
         Me.chkHighEnd.AutoSize = True
         Me.chkHighEnd.Location = New System.Drawing.Point(16, 176)
-        Me.chkHighEnd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkHighEnd.Margin = New System.Windows.Forms.Padding(4)
         Me.chkHighEnd.Name = "chkHighEnd"
         Me.chkHighEnd.Size = New System.Drawing.Size(179, 21)
         Me.chkHighEnd.TabIndex = 15
@@ -182,7 +182,7 @@ Partial Class FrmOptions
         '
         Me.chkNpcBars.AutoSize = True
         Me.chkNpcBars.Location = New System.Drawing.Point(14, 204)
-        Me.chkNpcBars.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkNpcBars.Margin = New System.Windows.Forms.Padding(4)
         Me.chkNpcBars.Name = "chkNpcBars"
         Me.chkNpcBars.Size = New System.Drawing.Size(182, 21)
         Me.chkNpcBars.TabIndex = 16
@@ -204,7 +204,7 @@ Partial Class FrmOptions
         Me.Controls.Add(Me.lblVolume)
         Me.Controls.Add(Me.scrlVolume)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmOptions"
         Me.ShowInTaskbar = False
         Me.Text = "Configurações de Jogo"

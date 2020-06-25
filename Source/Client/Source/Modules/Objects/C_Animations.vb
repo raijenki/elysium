@@ -113,6 +113,9 @@ Module C_Animations
             .Used(1) = True
         End With
 
+        Dim sound As String = Animation(AnimInstance(AnimationIndex).Animation).Sound
+        If sound <> String.Empty Then PlaySound(sound)
+
         buffer.Dispose()
     End Sub
 
@@ -254,14 +257,12 @@ Module C_Animations
 
     Friend Sub CheckAnimInstance(index As Integer)
         Dim looptime As Integer
-        Dim layer As Integer, sound As String
+        Dim layer As Integer
         Dim frameCount As Integer
 
         ' Se não existir, sair da função
         If AnimInstance(index).Animation <= 0 Then Exit Sub
         If AnimInstance(index).Animation >= MAX_ANIMATIONS Then Exit Sub
-
-        sound = Animation(AnimInstance(index).Animation).Sound
 
         For layer = 0 To 1
             If AnimInstance(index).Used(layer) Then
@@ -293,8 +294,6 @@ Module C_Animations
         ' Se nenhuma camada for usada, limpar
         If AnimInstance(index).Used(0) = False AndAlso AnimInstance(index).Used(1) = False Then
             ClearAnimInstance(index)
-        Else
-            If sound <> "" Then PlaySound(sound)
         End If
     End Sub
 

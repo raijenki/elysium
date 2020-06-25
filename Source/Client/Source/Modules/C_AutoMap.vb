@@ -75,7 +75,11 @@ Module C_AutoMap
 
     Structure DetailRec
         Dim DetailBase As Byte
-        Dim Tile As TileStruct
+        Dim Tileset As Long
+        Dim StartX As Long
+        Dim StartY As Long
+        Dim EndX As Long
+        Dim EndY As Long
     End Structure
 
     Structure MapOrientationRec
@@ -115,45 +119,49 @@ Module C_AutoMap
 
         ResourcesNum = Ini.Read(cf, "Resources", "ResourcesNum")
         Resources = Split(ResourcesNum, ";")
+
+        LoadDetails()
     End Sub
 
-    Sub LoadDetail(Prefab As TilePrefab, Tileset As Integer, X As Integer, Y As Integer, Optional TileType As Integer = 0, Optional EndX As Integer = 0, Optional EndY As Integer = 0)
-        If EndX = 0 Then EndX = X
-        If EndY = 0 Then EndY = Y
-
-        Dim pX As Integer, pY As Integer
-        For pX = X To EndX
-            For pY = Y To EndY
-                AddDetail(Prefab, Tileset, pX, pY, TileType)
-            Next pY
-        Next pX
-
-    End Sub
-
-    Sub AddDetail(Prefab As TilePrefab, Tileset As Integer, X As Integer, Y As Integer, TileType As Integer)
+    Sub AddDetail(Prefab As TilePrefab, Tileset As Integer, X As Integer, Y As Integer, TileType As Integer, EndX As Long, EndY As Long)
         Dim DetailCount As Integer
-        DetailCount = UBound(Detail) + 1
-
-        ReDim Preserve Detail(DetailCount)
-        ReDim Preserve Detail(DetailCount).Tile.Layer(LayerType.Count - 1)
+        DetailCount = UBound(Detail)
 
         Detail(DetailCount).DetailBase = Prefab
-        Detail(DetailCount).Tile.Type = TileType
-        Detail(DetailCount).Tile.Layer(3).Tileset = Tileset
-        Detail(DetailCount).Tile.Layer(3).X = X
-        Detail(DetailCount).Tile.Layer(3).Y = Y
+        Detail(DetailCount).Tileset = Tileset
+        Detail(DetailCount).StartX = X
+        Detail(DetailCount).StartY = Y
+        Detail(DetailCount).EndX = EndX
+        Detail(DetailCount).EndY = EndY
+
+        ReDim Preserve Detail(DetailCount + 1)
     End Sub
 
     Sub LoadDetails()
-        ReDim Detail(1)
+        Dim cf = Path.Contents & "\AutoMapper.ini"
+        Dim DetailCount As Long
+        Dim TilePrefab As Long
+        Dim Tileset As Long
+        Dim StartX As Long
+        Dim StartY As Long
+        Dim EndX As Long
+        Dim EndY As Long
+        ReDim Detail(0)
 
         'Área de configuração detalhada
         'Uso: LoadDetail TilePrefab, Tileset, StartTilesetX, StartTilesetY, TileType, EndTilesetX, EndTilesetY
-        LoadDetail(TilePrefab.Grass, 9, 0, 0, TileType.None, 7, 7)
-        LoadDetail(TilePrefab.Grass, 9, 0, 10, TileType.None, 6, 15)
-        LoadDetail(TilePrefab.Grass, 9, 0, 13, TileType.None, 7, 14)
-        LoadDetail(TilePrefab.Sand, 10, 0, 13, TileType.None, 7, 14)
-        LoadDetail(TilePrefab.Sand, 11, 0, 0, TileType.None, 1, 1)
+
+        DetailCount = Val(Ini.Read(cf, "Details", "DetailCount"))
+        For TileDetail = 0 To DetailCount - 1
+            TilePrefab = Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab"))
+            Tileset = Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset"))
+            StartX = Val(Ini.Read(cf, "Detail" & TileDetail, "StartX"))
+            StartY = Val(Ini.Read(cf, "Detail" & TileDetail, "StartY"))
+            EndX = Val(Ini.Read(cf, "Detail" & TileDetail, "EndX"))
+            EndY = Val(Ini.Read(cf, "Detail" & TileDetail, "EndY"))
+
+            AddDetail(TilePrefab, Tileset, StartX, StartY, TileType.None, EndX, EndY)
+        Next
     End Sub
 
 #End Region
@@ -161,7 +169,7 @@ Module C_AutoMap
 #Region "Incoming Packets"
 
     Sub Packet_AutoMapper(ByRef data() As Byte)
-        Dim Layer As Integer
+        Dim Layer As Integer, DetailCount As Long
         Dim buffer As New ASFW.ByteStream(data)
         MapStart = buffer.ReadInt32
         MapSize = buffer.ReadInt32
@@ -176,6 +184,17 @@ Module C_AutoMap
         If Not File.Exists(cf) Then Exit Sub
 
         Ini.Write(cf, "Resources", "ResourcesNum", buffer.ReadString())
+
+        DetailCount = buffer.ReadInt32
+        Ini.WriteOrCreate(cf, "Details", "DetailCount", DetailCount)
+        For TileDetail = 0 To DetailCount - 1
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Prefab", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "Tileset", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartX", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "StartY", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndX", buffer.ReadInt32)
+            Ini.WriteOrCreate(cf, "Detail" & TileDetail, "EndY", buffer.ReadInt32)
+        Next
 
         For Prefab = 1 To TilePrefab.Count - 1
             ReDim Tile(Prefab).Layer(LayerType.Count - 1)
@@ -208,6 +227,7 @@ Module C_AutoMap
     End Sub
 
     Friend Sub SendSaveAutoMapper()
+        Dim detailCount As Long
         Dim cf = Path.Contents & "\AutoMapper.ini"
         Dim buffer As New ASFW.ByteStream(4)
 
@@ -223,6 +243,17 @@ Module C_AutoMap
 
         'Envio de informações xml
         buffer.WriteString((Ini.Read(cf, "Resources", "ResourcesNum")))
+
+        detailCount = UBound(Detail)
+        buffer.WriteInt32(detailCount)
+        For TileDetail = 0 To detailCount - 1
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Prefab")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "Tileset")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "StartX")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "StartY")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "EndX")))
+            buffer.WriteInt32(Val(Ini.Read(cf, "Detail" & TileDetail, "EndY")))
+        Next
 
         For Prefab = 1 To TilePrefab.Count - 1
             For Layer = 1 To LayerType.Count - 1

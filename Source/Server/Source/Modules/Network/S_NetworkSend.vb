@@ -3,10 +3,11 @@ Imports ASFW.IO
 
 Module S_NetworkSend
 
-    Sub AlertMsg(index As Integer, Msg As String)
+    Sub AlertMsg(index As Integer, Msg As String, Optional Disconnect As Boolean = False)
         Dim buffer As New ByteStream(4)
         buffer.WriteInt32(ServerPackets.SAlertMsg)
         buffer.WriteString((Msg))
+        buffer.WriteBoolean(Disconnect)
         Socket.SendDataTo(index, buffer.Data, buffer.Head)
 #If DEBUG Then
         AddDebug("Enviada SMSG: SAlertMsg")

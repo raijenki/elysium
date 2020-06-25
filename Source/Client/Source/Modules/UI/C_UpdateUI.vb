@@ -768,13 +768,13 @@
         If OptionsVisible = True Then
 
             ' mostrar na GUI
-            If Settings.Music = 1 Then
+            If Settings.Music = True Then
                 FrmOptions.optMOn.Checked = True
             Else
                 FrmOptions.optMOff.Checked = True
             End If
 
-            If Settings.Music = 1 Then
+            If Settings.Sound = True Then
                 FrmOptions.optSOn.Checked = True
             Else
                 FrmOptions.optSOff.Checked = True

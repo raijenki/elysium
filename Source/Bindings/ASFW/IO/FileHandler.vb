@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Runtime.InteropServices
+Imports System.Text
 
 Namespace ASFW.IO.FileIO
     ''' <summary>
@@ -251,5 +253,18 @@ Namespace ASFW.IO.FileIO
                 File.WriteAllText(path, fBlock)
             End If
         End Sub
+
+        <DllImport("kernel32")>
+        Private Function WritePrivateProfileString(ByVal lpSectionName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As Long
+        End Function
+
+        Public Function WriteOrCreate(filename As String, section As String, key As String, Optional defaultValue As String = "") As String
+            Dim sb As New StringBuilder(500)
+            If WritePrivateProfileString(section, key, defaultValue, filename) > 0 Then
+                Return sb.ToString
+            Else
+                Return defaultValue
+            End If
+        End Function
     End Module
 End Namespace

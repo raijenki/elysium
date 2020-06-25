@@ -16,7 +16,6 @@ Module C_Sound
     Friend FadeInSwitch As Boolean
     Friend FadeOutSwitch As Boolean
     Friend CurMusic As String
-    Friend MaxVolume As Single
 
     Sub PlayMusic(fileName As String)
         If Settings.Music = 0 OrElse Not File.Exists(Path.Music & fileName) Then Exit Sub
@@ -84,7 +83,7 @@ Module C_Sound
     End Sub
 
     Sub PlaySound(fileName As String, Optional looped As Boolean = False)
-        If Settings.Sound = 0 OrElse Not File.Exists(Path.Sounds & fileName) Then Exit Sub
+        If Settings.Sound = False OrElse Not File.Exists(Path.Sounds & fileName) Then Exit Sub
 
         Dim buffer As SoundBuffer
         If SoundPlayer Is Nothing Then
@@ -96,7 +95,7 @@ Module C_Sound
             Else
                 SoundPlayer.Loop() = False
             End If
-            SoundPlayer.Volume() = MaxVolume
+            SoundPlayer.Volume() = Settings.Volume
             SoundPlayer.Play()
         Else
             SoundPlayer.Stop()
@@ -107,7 +106,7 @@ Module C_Sound
             Else
                 SoundPlayer.Loop() = False
             End If
-            SoundPlayer.Volume() = MaxVolume
+            SoundPlayer.Volume() = Settings.Volume
             SoundPlayer.Play()
         End If
     End Sub
@@ -131,7 +130,7 @@ Module C_Sound
             Else
                 ExtraSoundPlayer.Loop() = False
             End If
-            ExtraSoundPlayer.Volume() = MaxVolume
+            ExtraSoundPlayer.Volume() = Settings.Volume
             ExtraSoundPlayer.Play()
         Else
             ExtraSoundPlayer.Stop()
@@ -142,7 +141,7 @@ Module C_Sound
             Else
                 ExtraSoundPlayer.Loop() = False
             End If
-            ExtraSoundPlayer.Volume() = MaxVolume
+            ExtraSoundPlayer.Volume() = Settings.Volume
             ExtraSoundPlayer.Play()
         End If
     End Sub
@@ -157,7 +156,7 @@ Module C_Sound
 
         If MusicPlayer Is Nothing Then Exit Sub
 
-        If MusicPlayer.Volume() >= MaxVolume Then FadeInSwitch = False
+        If MusicPlayer.Volume() >= Settings.Volume Then FadeInSwitch = False
         MusicPlayer.Volume() = MusicPlayer.Volume() + 3
 
     End Sub

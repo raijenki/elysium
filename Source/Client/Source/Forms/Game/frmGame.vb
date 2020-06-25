@@ -127,9 +127,25 @@ Friend Class FrmGame
             If Inputs.Character(e.KeyCode) Then PnlCharacterVisible = Not PnlCharacterVisible
             If Inputs.Quest(e.KeyCode) Then PnlQuestLogVisible = Not PnlQuestLogVisible
             If Inputs.skill(e.KeyCode) Then PnlSkillsVisible = Not PnlSkillsVisible
-            If Inputs.Settings(e.KeyCode) Then FrmOptions.Visible = Not FrmOptions.Visible
+            If Inputs.Settings(e.KeyCode) Then
+                If FrmOptions.Visible = False Then
+                    LoadDefaultOptions()
+                    FrmOptions.Visible = True
+                Else
+                    FrmOptions.Visible = False
+                End If
+            End If
         End If
 
+    End Sub
+
+    Private Sub LoadDefaultOptions()
+        FrmOptions.optMOn.Checked = Settings.Music
+        FrmOptions.optSOn.Checked = Settings.Sound
+        FrmOptions.lblVolume.Text = "Volume: " & Settings.Volume
+        FrmOptions.scrlVolume.Value = Settings.Volume
+
+        FrmOptions.cmbScreenSize.SelectedIndex = Settings.ScreenSize
     End Sub
 
     Private Sub LblCurrencyOk_Click(sender As Object, e As EventArgs) Handles lblCurrencyOk.Click

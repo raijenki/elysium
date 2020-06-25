@@ -84,7 +84,7 @@ Module S_Pets
 
     Sub CheckPets()
         For i = 1 To MAX_PETS
-            If Not File.Exists(Application.StartupPath & "\Database\pets\pet" & i & ".dat") Then
+            If Not File.Exists(Path.Pet(i)) Then
                 SavePet(i)
             End If
         Next
@@ -980,7 +980,7 @@ Module S_Pets
                     n = Map(mapNum).Tile(x, y - 1).Type
 
                     ' Ter certeza que a tile é andável
-                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn Then
+                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn AndAlso n <> TileType.NpcAvoid Then
                         CanPetMove = False
                         Exit Function
                     End If
@@ -1022,7 +1022,7 @@ Module S_Pets
                     n = Map(mapNum).Tile(x, y + 1).Type
 
                     ' Ter certeza que a tile é andável
-                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn Then
+                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn AndAlso n <> TileType.NpcAvoid Then
                         CanPetMove = False
                         Exit Function
                     End If
@@ -1063,7 +1063,7 @@ Module S_Pets
                     n = Map(mapNum).Tile(x - 1, y).Type
 
                     ' Ter certeza que a tile é andável
-                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn Then
+                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn AndAlso n <> TileType.NpcAvoid Then
                         CanPetMove = False
                         Exit Function
                     End If
@@ -1104,7 +1104,7 @@ Module S_Pets
                     n = Map(mapNum).Tile(x + 1, y).Type
 
                     ' Ter certeza que a tile é andável
-                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn Then
+                    If n <> TileType.None AndAlso n <> TileType.NpcSpawn AndAlso n <> TileType.NpcAvoid Then
                         CanPetMove = False
                         Exit Function
                     End If

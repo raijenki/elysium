@@ -5,11 +5,9 @@
     Private Sub scrlVolume_ValueChanged(sender As Object, e As EventArgs) Handles scrlVolume.ValueChanged
         Settings.Volume = scrlVolume.Value
 
-        MaxVolume = Settings.Volume
-
         lblVolume.Text = "Volume: " & Settings.Volume
 
-        If Not MusicPlayer Is Nothing Then MusicPlayer.Volume() = MaxVolume
+        If Not MusicPlayer Is Nothing Then MusicPlayer.Volume() = Settings.Volume
 
     End Sub
 
@@ -55,6 +53,10 @@
         RePositionGui()
 
         Me.Visible = False
+    End Sub
+
+    Private Sub FrmOptions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 
 #End Region

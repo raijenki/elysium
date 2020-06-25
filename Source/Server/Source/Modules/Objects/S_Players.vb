@@ -1126,7 +1126,7 @@ Module S_Players
                 MapNum = GetPlayerMap(index)
                 X = GetPlayerX(index)
                 Y = GetPlayerY(index)
-                AlertMsg(index, "Não foi possível criar mapa do cache!")
+                AlertMsg(index, "Não foi possível criar mapa do cache!", True)
             Else
                 'Guardar infos antigas para retornar à entrada da instância
                 If Not TempPlayer(index).InInstance = 1 Then

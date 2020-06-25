@@ -30,7 +30,6 @@
         CBanDestroy
         CBanPlayer
         CRequestEditMap
-
         CSetAccess
         CWhosOnline
         CSetMotd
@@ -39,7 +38,6 @@
         CCast
         CQuit
         CSwapInvSlots
-
         CCheckPing
         CUnequip
         CRequestPlayerData
@@ -48,7 +46,6 @@
         CRequestResources
         CSpawnItem
         CTrainStat
-
         CRequestAnimations
         CRequestSkills
         CRequestShops
@@ -62,14 +59,12 @@
         CWithdrawItem
         CCloseBank
         CAdminWarp
-
         CTradeInvite
         CTradeInviteAccept
         CAcceptTrade
         CDeclineTrade
         CTradeItem
         CUntradeItem
-
         CAdmin
 
         'tarefas
