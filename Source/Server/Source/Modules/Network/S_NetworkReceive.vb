@@ -1290,7 +1290,7 @@ Module S_NetworkReceive
         ' Prevenir hacking
         If GetPlayerAccess(index) < AdminType.Creator Then Exit Sub
 
-        filename = Application.StartupPath & "\database\banlist.txt"
+        filename = Application.StartupPath & "\Dados\banlist.txt"
 
         If File.Exists(filename) Then Kill(filename)
 

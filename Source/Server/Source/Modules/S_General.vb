@@ -195,7 +195,7 @@ Module S_General
         SpawnAllMapNpcs()
 
         ' Verificar se a lista com nomes de personagens existe para evitar duplicatas; caso contrário, fazer.
-        If Not File.Exists("Database\Contas\charlist.txt") Then
+        If Not File.Exists("Dados\Contas\charlist.txt") Then
             F = FreeFile()
         End If
 
