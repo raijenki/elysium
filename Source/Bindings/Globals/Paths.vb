@@ -25,13 +25,7 @@
         ''' <summary> Retorna o diretório de configuração </summary>
         Friend ReadOnly Property Config As String
             Get
-#If CLIENT Then
-                Return Environment.GetFolderPath(
-                       Environment.SpecialFolder.ApplicationData) & "/" &
-                       Settings.GameName & "/"
-#ElseIf SERVER Then
-                Return Application.StartupPath() & "/Configs/"
-#End If
+                Return Application.StartupPath() & "/Dados/"
             End Get
         End Property
 

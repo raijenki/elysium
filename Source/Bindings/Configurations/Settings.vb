@@ -48,7 +48,7 @@ Friend Module modSettings
         Dim cf As String = Path.Config()
         If Not Directory.Exists(cf) Then
             Directory.CreateDirectory(cf)
-        End If : cf = cf & "\Settings.xml"
+        End If : cf = cf & "\Configurações.xml"
 
         If Not File.Exists(cf) Then
             File.Create(cf).Dispose()
@@ -60,7 +60,7 @@ Friend Module modSettings
         Dim cf As String = Path.Config()
         If Not Directory.Exists(cf) Then
             Directory.CreateDirectory(cf)
-        End If : cf = cf & "\Settings.xml"
+        End If : cf = cf & "\Configurações.xml"
 
         ASFW.IO.Serialization.SaveXml(Of SettingsDef)(cf, Settings)
     End Sub
