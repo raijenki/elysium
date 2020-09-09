@@ -25,9 +25,6 @@ Partial Class frmEditor_Item
         Me.DarkGroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lstIndex = New System.Windows.Forms.ListBox()
         Me.fraBasics = New System.Windows.Forms.GroupBox()
-        Me.fraPet = New System.Windows.Forms.GroupBox()
-        Me.cmbPet = New System.Windows.Forms.ComboBox()
-        Me.DarkLabel13 = New System.Windows.Forms.Label()
         Me.txtDescription = New System.Windows.Forms.TextBox()
         Me.DarkLabel10 = New System.Windows.Forms.Label()
         Me.cmbAnimation = New System.Windows.Forms.ComboBox()
@@ -128,7 +125,6 @@ Partial Class frmEditor_Item
         Me.picFurniture = New System.Windows.Forms.PictureBox()
         Me.DarkGroupBox1.SuspendLayout()
         Me.fraBasics.SuspendLayout()
-        Me.fraPet.SuspendLayout()
         CType(Me.nudItemLvl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,7 +191,6 @@ Partial Class frmEditor_Item
         'fraBasics
         '
         Me.fraBasics.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.fraBasics.Controls.Add(Me.fraPet)
         Me.fraBasics.Controls.Add(Me.txtDescription)
         Me.fraBasics.Controls.Add(Me.DarkLabel10)
         Me.fraBasics.Controls.Add(Me.cmbAnimation)
@@ -230,45 +225,7 @@ Partial Class frmEditor_Item
         Me.fraBasics.TabIndex = 1
         Me.fraBasics.TabStop = False
         Me.fraBasics.Text = "Básico"
-        '
-        'fraPet
-        '
-        Me.fraPet.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.fraPet.Controls.Add(Me.cmbPet)
-        Me.fraPet.Controls.Add(Me.DarkLabel13)
-        Me.fraPet.ForeColor = System.Drawing.Color.Gainsboro
-        Me.fraPet.Location = New System.Drawing.Point(324, 196)
-        Me.fraPet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.fraPet.Name = "fraPet"
-        Me.fraPet.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.fraPet.Size = New System.Drawing.Size(267, 50)
-        Me.fraPet.TabIndex = 25
-        Me.fraPet.TabStop = False
-        Me.fraPet.Text = "Pets"
-        '
-        'cmbPet
-        '
-        Me.cmbPet.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.cmbPet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmbPet.ForeColor = System.Drawing.Color.Gainsboro
-        Me.cmbPet.FormattingEnabled = True
-        Me.cmbPet.Location = New System.Drawing.Point(55, 18)
-        Me.cmbPet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.cmbPet.Name = "cmbPet"
-        Me.cmbPet.Size = New System.Drawing.Size(203, 24)
-        Me.cmbPet.TabIndex = 1
-        '
-        'DarkLabel13
-        '
-        Me.DarkLabel13.AutoSize = True
-        Me.DarkLabel13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.DarkLabel13.Location = New System.Drawing.Point(8, 21)
-        Me.DarkLabel13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.DarkLabel13.Name = "DarkLabel13"
-        Me.DarkLabel13.Size = New System.Drawing.Size(33, 17)
-        Me.DarkLabel13.TabIndex = 0
-        Me.DarkLabel13.Text = "Pet:"
+     
         '
         'txtDescription
         '
@@ -429,7 +386,7 @@ Partial Class frmEditor_Item
         Me.cmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbType.ForeColor = System.Drawing.Color.Gainsboro
         Me.cmbType.FormattingEnabled = True
-        Me.cmbType.Items.AddRange(New Object() {"Nenhum", "Equipamento", "Consumível", "Chave", "Moeda", "Habilidade", "Mobília", "Receita", "Pet"})
+        Me.cmbType.Items.AddRange(New Object() {"Nenhum", "Equipamento", "Consumível", "Chave", "Moeda", "Habilidade", "Mobília", "Receita"})
         Me.cmbType.Location = New System.Drawing.Point(98, 50)
         Me.cmbType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbType.Name = "cmbType"
@@ -1486,8 +1443,6 @@ Partial Class frmEditor_Item
         Me.DarkGroupBox1.ResumeLayout(False)
         Me.fraBasics.ResumeLayout(False)
         Me.fraBasics.PerformLayout()
-        Me.fraPet.ResumeLayout(False)
-        Me.fraPet.PerformLayout()
         CType(Me.nudItemLvl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picItem, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1566,9 +1521,6 @@ Partial Class frmEditor_Item
     Friend WithEvents fraSkill As GroupBox
     Friend WithEvents DarkLabel12 As Label
     Friend WithEvents cmbSkills As ComboBox
-    Friend WithEvents fraPet As GroupBox
-    Friend WithEvents cmbPet As ComboBox
-    Friend WithEvents DarkLabel13 As Label
     Friend WithEvents fraEquipment As GroupBox
     Friend WithEvents cmbTool As ComboBox
     Friend WithEvents DarkLabel14 As Label

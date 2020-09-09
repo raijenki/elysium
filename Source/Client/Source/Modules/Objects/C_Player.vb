@@ -89,7 +89,6 @@ Module C_Player
 
         Dim RandEquip() As RandInvStruct
 
-        Dim Pet As PlayerPetRec
     End Structure
 #End Region
 
@@ -170,31 +169,6 @@ Module C_Player
 
         ReDim Player(index).RecipeLearned(MAX_RECIPE)
 
-        'pets
-        Player(index).Pet.Num = 0
-        Player(index).Pet.Health = 0
-        Player(index).Pet.Mana = 0
-        Player(index).Pet.Level = 0
-
-        ReDim Player(index).Pet.Stat(StatType.Count - 1)
-        For i = 1 To StatType.Count - 1
-            Player(index).Pet.Stat(i) = 0
-        Next
-
-        ReDim Player(index).Pet.Skill(4)
-        For i = 1 To 4
-            Player(index).Pet.Skill(i) = 0
-        Next
-
-        Player(index).Pet.X = 0
-        Player(index).Pet.Y = 0
-        Player(index).Pet.Dir = 0
-        Player(index).Pet.MaxHp = 0
-        Player(index).Pet.MaxMp = 0
-        Player(index).Pet.Alive = 0
-        Player(index).Pet.AttackBehaviour = 0
-        Player(index).Pet.Exp = 0
-        Player(index).Pet.Tnl = 0
     End Sub
 #End Region
 
@@ -504,15 +478,6 @@ Module C_Player
                         If GetPlayerY(i) = y Then
                             CheckDirection = True
                             Exit Function
-                        ElseIf Player(i).Pet.X = x AndAlso Player(i).Pet.Alive = True Then
-                            If Player(i).Pet.Y = y Then
-                                CheckDirection = True
-                                Exit Function
-                            End If
-                        End If
-                    ElseIf Player(i).Pet.X = x AndAlso Player(i).Pet.Y = y AndAlso Player(i).Pet.Alive = True Then
-                        CheckDirection = True
-                        Exit Function
                     End If
                 End If
             End If

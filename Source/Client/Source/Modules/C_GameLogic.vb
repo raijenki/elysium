@@ -182,13 +182,7 @@ Module C_GameLogic
                         SkillBufferTimer = 0
                     End If
                 End If
-                ' ver se precisamso destravar as restrições de habilidades do pet 
-                If PetSkillBuffer > 0 Then
-                    If PetSkillBufferTimer + (Skill(Pet(Player(Myindex).Pet.Num).Skill(PetSkillBuffer)).CastTime * 1000) < tick Then
-                        PetSkillBuffer = 0
-                        PetSkillBufferTimer = 0
-                    End If
-                End If
+
 
                 SyncLock MapLock
                     If CanMoveNow Then
@@ -202,8 +196,6 @@ Module C_GameLogic
                         For i = 1 To TotalOnline 'MAX_PLAYERS
                             If IsPlaying(i) Then
                                 ProcessMovement(i)
-                                If PetAlive(i) Then
-                                    ProcessPetMovement(i)
                                 End If
                             End If
                         Next
@@ -634,9 +626,6 @@ Module C_GameLogic
                 Case "/sair"
                     SendLeaveParty()
 
-                'soltar
-                Case "/soltarpet"
-                    SendReleasePet()
 
                 ' // Comandos de Monitor //
 

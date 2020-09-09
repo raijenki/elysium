@@ -642,11 +642,7 @@ Module C_Editors
                 frmEditor_Item.cmbSkills.Items.Add(i & ": " & Skill(i).Name)
             Next
 
-            frmEditor_Item.cmbPet.Items.Clear()
-            frmEditor_Item.cmbPet.Items.Add("Nenhum")
-            For i = 1 To MAX_PETS
-                frmEditor_Item.cmbPet.Items.Add(i & ": " & Pet(i).Name)
-            Next
+
 
             frmEditor_Item.cmbRecipe.Items.Clear()
             frmEditor_Item.cmbRecipe.Items.Add("Nenhum")
@@ -739,12 +735,7 @@ Module C_Editors
                 frmEditor_Item.fraFurniture.Visible = False
             End If
 
-            If (frmEditor_Item.cmbType.SelectedIndex = ItemType.Pet) Then
-                frmEditor_Item.fraPet.Visible = True
-                frmEditor_Item.cmbPet.SelectedIndex = .Data1
-            Else
-                frmEditor_Item.fraPet.Visible = False
-            End If
+
 
             ' Requisitos básicos
             frmEditor_Item.cmbAccessReq.SelectedIndex = .AccessReq

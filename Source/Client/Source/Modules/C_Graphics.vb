@@ -243,13 +243,7 @@ Module C_Graphics
     Friend ChatBubbleSprite As Sprite
     Friend ChatBubbleGfxInfo As GraphicInfo
 
-    Friend PetStatsGfx As Texture
-    Friend PetStatsSprite As Sprite
-    Friend PetStatsGfxInfo As GraphicInfo
 
-    Friend PetBarGfx As Texture
-    Friend PetBarSprite As Sprite
-    Friend PetbarGfxInfo As GraphicInfo
 
     Friend MapTintGfx As New RenderTexture(1152, 864)
     Friend MapTintSprite As Sprite
@@ -704,27 +698,6 @@ Module C_Graphics
             ChatBubbleGfxInfo.Height = ChatBubbleGfx.Size.Y
         End If
 
-        PetStatsGfxInfo = New GraphicInfo
-        If File.Exists(Path.Gui & "Main\Pet" & GfxExt) Then
-            'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            PetStatsGfx = New Texture(Path.Gui & "Main\Pet" & GfxExt)
-            PetStatsSprite = New Sprite(PetStatsGfx)
-
-            'Botar em cache o comprimento e a altura
-            PetStatsGfxInfo.Width = PetStatsGfx.Size.X
-            PetStatsGfxInfo.Height = PetStatsGfx.Size.Y
-        End If
-
-        PetbarGfxInfo = New GraphicInfo
-        If File.Exists(Path.Gui & "Main\Petbar" & GfxExt) Then
-            'primeiramente carregar texturas, não se importar com fluxos de memória (apenas o nome do arquivo)
-            PetBarGfx = New Texture(Path.Gui & "Main\Petbar" & GfxExt)
-            PetBarSprite = New Sprite(PetBarGfx)
-
-            'Botar em cache o comprimento e a altura
-            PetbarGfxInfo.Width = PetBarGfx.Size.X
-            PetbarGfxInfo.Height = PetBarGfx.Size.Y
-        End If
 
         LightGfxInfo = New GraphicInfo
         If File.Exists(Path.Graphics & "Misc\Light" & GfxExt) Then
@@ -1705,11 +1678,6 @@ Module C_Graphics
                         If Player(I).Y = y Then
                             DrawPlayer(I)
                         End If
-                        If PetAlive(I) Then
-                            If Player(I).Pet.Y = y Then
-                                DrawPet(I)
-                            End If
-                        End If
                     End If
                 Next
 
@@ -1737,9 +1705,7 @@ Module C_Graphics
                         DrawTarget(Player(MyTarget).X * 32 - 16 + Player(MyTarget).XOffset, Player(MyTarget).Y * 32 + Player(MyTarget).YOffset)
                     ElseIf MyTargetType = TargetType.Npc Then
                         DrawTarget(MapNpc(MyTarget).X * 32 - 16 + MapNpc(MyTarget).XOffset, MapNpc(MyTarget).Y * 32 + MapNpc(MyTarget).YOffset)
-                    ElseIf MyTargetType = TargetType.Pet Then
-                        DrawTarget(Player(MyTarget).Pet.X * 32 - 16 + Player(MyTarget).Pet.XOffset, (Player(MyTarget).Pet.Y * 32) + Player(MyTarget).Pet.YOffset)
-                    End If
+
                 End If
 
                 For I = 1 To TotalOnline 'MAX_PLAYERS
@@ -1864,9 +1830,6 @@ Module C_Graphics
         For I = 1 To TotalOnline 'MAX_PLAYERS
             If IsPlaying(I) AndAlso GetPlayerMap(I) = GetPlayerMap(Myindex) Then
                 DrawPlayerName(I)
-                If PetAlive(I) Then
-                    DrawPlayerPetName(I)
-                End If
             End If
         Next
 
@@ -2038,42 +2001,6 @@ Module C_Graphics
             Next
         End If
 
-        If PetAlive(Myindex) Then
-            ' desenhar propria barra de vida
-            If Player(Myindex).Pet.Health > 0 AndAlso Player(Myindex).Pet.Health <= Player(Myindex).Pet.MaxHp Then
-                'Debug.Print("pethealth:" & Player(Myindex).Pet.Health)
-                ' foco no jogador
-                tmpX = Player(Myindex).Pet.X * PicX + Player(Myindex).Pet.XOffset
-                tmpY = Player(Myindex).Pet.Y * PicX + Player(Myindex).Pet.YOffset + 48
-                ' calcular comprimento para preencher
-                barWidth = ((Player(Myindex).Pet.Health) / (Player(Myindex).Pet.MaxHp)) * 32
-                ' desenhar barras
-                rec(1) = New Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4)
-                Dim rectShape As New RectangleShape(New Vector2f(barWidth, 4)) With {
-                    .Position = New Vector2f(ConvertMapX(tmpX), ConvertMapY(tmpY - 75)),
-                    .FillColor = SFML.Graphics.Color.Red
-                }
-                GameWindow.Draw(rectShape)
-            End If
-        End If
-        ' ver barra de tempo de uso de habilidade do pet
-        If PetSkillBuffer > 0 Then
-            If Skill(Pet(Player(Myindex).Pet.Num).Skill(PetSkillBuffer)).CastTime > 0 Then
-                ' foco no pet
-                tmpX = Player(Myindex).Pet.X * PicX + Player(Myindex).Pet.XOffset
-                tmpY = Player(Myindex).Pet.Y * PicY + Player(Myindex).Pet.YOffset + 35
-
-                ' calcular comprimento para preencher
-                barWidth = (GetTickCount() - PetSkillBufferTimer) / ((Skill(Pet(Player(Myindex).Pet.Num).Skill(PetSkillBuffer)).CastTime * 1000)) * 64
-                ' desenhar barras
-                rec(1) = New Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4)
-                Dim rectShape As New RectangleShape(New Vector2f(barWidth, 4)) With {
-                    .Position = New Vector2f(ConvertMapX(tmpX), ConvertMapY(tmpY)),
-                    .FillColor = SFML.Graphics.Color.Cyan
-                }
-                GameWindow.Draw(rectShape)
-            End If
-        End If
     End Sub
 
     Sub DrawMapName()
@@ -2918,8 +2845,6 @@ NextLoop:
             DrawActionPanel()
             DrawChat()
             DrawHotbar()
-            DrawPetBar()
-            DrawPetStats()
         End If
 
         If PnlCharacterVisible = True Then

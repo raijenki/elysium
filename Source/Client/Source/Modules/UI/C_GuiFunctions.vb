@@ -277,38 +277,7 @@ Friend Module C_GuiFunctions
                 CheckGuiClick = True
             End If
 
-            If AbovePetbar(x, y) Then
-                If Player(Myindex).Pet.Num > 0 Then
-                    hotbarslot = IsPetBarSlot(e.Location.X, e.Location.Y)
-
-                    If e.Button = MouseButtons.Left Then
-                        If hotbarslot > 0 Then
-                            If hotbarslot >= 1 AndAlso hotbarslot <= 3 Then
-                                If hotbarslot = 1 Then
-                                    'summon
-                                    SendSummonPet()
-                                ElseIf hotbarslot = 2 Then
-                                    SendPetBehaviour(PetAttackBehaviourAttackonsight)
-                                ElseIf hotbarslot = 3 Then
-                                    SendPetBehaviour(PetAttackBehaviourGuard)
-                                End If
-
-                            ElseIf hotbarslot >= 4 AndAlso hotbarslot <= 7 Then
-                                slotnum = Player(Myindex).Pet.Skill(hotbarslot - 3)
-
-                                If slotnum <> 0 Then
-                                    PlaySound("Click.ogg")
-                                    SendUsePetSkill(slotnum)
-                                End If
-                            End If
-
-                            CheckGuiClick = True
-                        End If
-                    End If
-
-                    CheckGuiClick = True
-                End If
-            End If
+ 
 
         End If
 
@@ -1317,15 +1286,7 @@ Friend Module C_GuiFunctions
         End If
     End Function
 
-    Function AbovePetbar(x As Single, y As Single) As Boolean
-        AbovePetbar = False
 
-        If x > PetbarX AndAlso x < PetbarX + PetbarGfxInfo.Width Then
-            If y > PetbarY AndAlso y < PetbarY + HotBarGfxInfo.Height Then
-                AbovePetbar = True
-            End If
-        End If
-    End Function
 
     Function AboveInvpanel(x As Single, y As Single) As Boolean
         AboveInvpanel = False

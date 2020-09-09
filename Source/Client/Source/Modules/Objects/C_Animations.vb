@@ -206,19 +206,6 @@ Module C_Animations
                     ClearAnimInstance(index)
                     Exit Sub
                 End If
-            ElseIf AnimInstance(index).LockType = TargetType.Pet Then
-                ' fazer quick save no índice
-                lockindex = AnimInstance(index).lockindex
-                ' ver se está no jogo
-                If IsPlaying(lockindex) AndAlso PetAlive(lockindex) = True Then
-                    ' ver se está no mesmo mapa
-                    If GetPlayerMap(lockindex) = GetPlayerMap(Myindex) Then
-                        ' está no mapa, está jogando, setar x e y
-                        x = (Player(lockindex).Pet.X * PicX) + 16 - (width / 2) + Player(lockindex).Pet.XOffset
-                        y = (Player(lockindex).Pet.Y * PicY) + 16 - (height / 2) + Player(lockindex).Pet.YOffset
-                    End If
-                End If
-            End If
         Else
             ' sem trava, padrão é x + y
             x = (AnimInstance(index).X * 32) + 16 - (width / 2)

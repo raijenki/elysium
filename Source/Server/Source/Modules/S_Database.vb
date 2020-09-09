@@ -865,7 +865,6 @@ Module modDatabase
 
     Sub ClearPlayer(index As Integer)
         ReDim TempPlayer(index).SkillCd(MAX_PLAYER_SKILLS)
-        ReDim TempPlayer(index).PetSkillCd(4)
 
         Player(index).Login = ""
         Player(index).Password = ""
@@ -1043,30 +1042,6 @@ Module modDatabase
             Next
         Next
 
-        'pets
-        Player(index).Character(CharNum).Pet.Num = 0
-        Player(index).Character(CharNum).Pet.Health = 0
-        Player(index).Character(CharNum).Pet.Mana = 0
-        Player(index).Character(CharNum).Pet.Level = 0
-
-        ReDim Player(index).Character(CharNum).Pet.Stat(StatType.Count - 1)
-        For i = 1 To StatType.Count - 1
-            Player(index).Character(CharNum).Pet.Stat(i) = 0
-        Next
-
-        ReDim Player(index).Character(CharNum).Pet.Skill(4)
-        For i = 1 To 4
-            Player(index).Character(CharNum).Pet.Skill(i) = 0
-        Next
-
-        Player(index).Character(CharNum).Pet.X = 0
-        Player(index).Character(CharNum).Pet.Y = 0
-        Player(index).Character(CharNum).Pet.Dir = 0
-        Player(index).Character(CharNum).Pet.Alive = 0
-        Player(index).Character(CharNum).Pet.AttackBehaviour = 0
-        Player(index).Character(CharNum).Pet.AdoptiveStats = 0
-        Player(index).Character(CharNum).Pet.Points = 0
-        Player(index).Character(CharNum).Pet.Exp = 0
 
     End Sub
 

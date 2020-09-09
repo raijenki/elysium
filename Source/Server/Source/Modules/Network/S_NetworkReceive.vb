@@ -128,14 +128,8 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CLeaveParty) = AddressOf Packet_LeaveParty
         Socket.PacketId(ClientPackets.CPartyChatMsg) = AddressOf Packet_PartyChatMsg
 
-        'pets
-        Socket.PacketId(ClientPackets.CRequestPets) = AddressOf Packet_RequestPets
-        Socket.PacketId(ClientPackets.CSummonPet) = AddressOf Packet_SummonPet
-        Socket.PacketId(ClientPackets.CPetMove) = AddressOf Packet_PetMove
-        Socket.PacketId(ClientPackets.CSetBehaviour) = AddressOf Packet_SetPetBehaviour
-        Socket.PacketId(ClientPackets.CReleasePet) = AddressOf Packet_ReleasePet
-        Socket.PacketId(ClientPackets.CPetSkill) = AddressOf Packet_PetSkill
-        Socket.PacketId(ClientPackets.CPetUseStatPoint) = AddressOf Packet_UsePetStatPoint
+
+		
 
         'Edtiores
         Socket.PacketId(ClientPackets.CRequestEditItem) = AddressOf Packet_EditItem
@@ -162,11 +156,7 @@ Module S_NetworkReceive
         Socket.PacketId(ClientPackets.CSaveClasses) = AddressOf Packet_SaveClasses
         Socket.PacketId(ClientPackets.CRequestAutoMap) = AddressOf Packet_RequestAutoMap
         Socket.PacketId(ClientPackets.CSaveAutoMap) = AddressOf Packet_SaveAutoMap
-
-        'Pets
-        Socket.PacketId(ClientPackets.CRequestEditPet) = AddressOf Packet_RequestEditPet
-        Socket.PacketId(ClientPackets.CSavePet) = AddressOf Packet_SavePet
-
+		
     End Sub
 
     Private Sub Packet_Ping(index As Integer, ByRef data() As Byte)
@@ -2485,7 +2475,6 @@ Module S_NetworkReceive
                 SendQuests(index)
                 SendRecipes(index)
                 SendHouseConfigs(index)
-                SendPets(index)
             Else
                 AlertMsg(index, "Não autorizado.", True)
                 Exit Sub

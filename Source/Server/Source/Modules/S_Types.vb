@@ -90,7 +90,6 @@
 
         Dim RandEquip() As RandInvStruct
 
-        Dim Pet As PlayerPetRec
     End Structure
 
     Friend Structure TempPlayerRec
@@ -156,30 +155,6 @@
         Dim TmpMap As Integer
         Dim TmpX As Integer
         Dim TmpY As Integer
-
-        'Pets
-        Dim PetTarget As Integer
-
-        Dim PetTargetType As Integer
-        Dim PetBehavior As Integer
-
-        Dim GoToX As Integer
-        Dim GoToY As Integer
-
-        Dim PetStunTimer As Integer
-        Dim PetStunDuration As Integer
-        Dim PetAttackTimer As Integer
-
-        Dim PetSkillCd() As Integer
-        Dim PetskillBuffer As SkillBufferRec
-
-        Dim PetDoT() As DoTRec
-        Dim PetHoT() As DoTRec
-
-        ' Regeneração
-        Dim PetstopRegen As Boolean
-
-        Dim PetstopRegenTimer As Integer
 
     End Structure
 
@@ -309,9 +284,6 @@
         Dim Timer As Integer
         Dim Caster As Integer
         Dim StartTime As Integer
-
-        'PET
-        Dim AttackerType As Integer 'Para Pets
 
     End Structure
 

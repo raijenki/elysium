@@ -182,13 +182,7 @@ Friend Class FrmGame
             ' Botão esquerdo
             If e.Button = MouseButtons.Left Then
 
-                ' Se estamos no meioo de escolher o alvo de troca ou não
-                If Not TradeRequest Then
-                    If PetAlive(Myindex) Then
-                        If IsInBounds() Then
-                            PetMove(CurX, CurY)
-                        End If
-                    End If
+              
                     ' Alvo
                     PlayerSearch(CurX, CurY, 0)
                 Else
@@ -196,7 +190,6 @@ Friend Class FrmGame
                     SendTradeRequest(Player(MyTarget).Name)
                 End If
                 PnlRClickVisible = False
-                ShowPetStats = False
 
                 ' Botão direito
             ElseIf e.Button = MouseButtons.Right Then
@@ -205,13 +198,7 @@ Friend Class FrmGame
                     If GetPlayerAccess(Myindex) >= 2 Then AdminWarp(CurX, CurY)
                 Else
                     ' Menu do Botão Direito
-                    If PetAlive(Myindex) Then
-                        If IsInBounds() AndAlso CurX = Player(Myindex).Pet.X And CurY = Player(Myindex).Pet.Y Then
-                            ShowPetStats = True
-                        End If
-                    Else
-                        PlayerSearch(CurX, CurY, 1)
-                    End If
+                     PlayerSearch(CurX, CurY, 1)
                 End If
                 FurnitureSelected = 0
             End If

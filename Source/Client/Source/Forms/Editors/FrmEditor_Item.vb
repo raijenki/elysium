@@ -150,11 +150,6 @@
             fraRecipe.Visible = False
         End If
 
-        If cmbType.SelectedIndex = ItemType.Pet Then
-            fraPet.Visible = True
-        Else
-            fraPet.Visible = False
-        End If
 
         Item(Editorindex).Type = cmbType.SelectedIndex
     End Sub
@@ -219,11 +214,6 @@
         Item(Editorindex).ItemLevel = nudItemLvl.Value
     End Sub
 
-    Private Sub CmbPet_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPet.SelectedIndexChanged
-        If Editorindex = 0 OrElse Editorindex > MAX_ITEMS Then Exit Sub
-
-        Item(Editorindex).Data1 = cmbPet.SelectedIndex
-    End Sub
 
 #End Region
 

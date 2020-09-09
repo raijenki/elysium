@@ -112,14 +112,6 @@
         CLeaveParty
         CPartyChatMsg
 
-        'pets
-        CRequestPets
-        CSummonPet
-        CPetMove
-        CSetBehaviour
-        CReleasePet
-        CPetSkill
-        CPetUseStatPoint
 
         '*******************************
         '***   PACKETS DOS EDITORES  ***
@@ -158,9 +150,6 @@
         CRequestEditNpc
         CSaveNpc
 
-        'pets
-        CRequestEditPet
-        CSavePet
 
         'projeteis
         CRequestEditProjectiles
@@ -339,18 +328,6 @@
         SPartyInvite
         SPartyUpdate
         SPartyVitals
-
-        'pets
-        SPetEditor
-        SUpdatePet
-        SUpdatePlayerPet
-        SPetMove
-        SPetDir
-        SPetVital
-        SClearPetSkillBuffer
-        SPetAttack
-        SPetXY
-        SPetExp
 
         STime
         SClock

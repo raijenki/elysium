@@ -243,31 +243,6 @@
 
     End Structure
 
-    <Serializable>
-    Friend Structure PetRec
-        Dim Num As Integer
-        Dim Name As String
-        Dim Sprite As Integer
-
-        Dim Range As Integer
-
-        Dim Level As Integer
-
-        Dim MaxLevel As Integer
-        Dim ExpGain As Integer
-        Dim LevelPnts As Integer
-
-        Dim StatType As Byte '1 para próprios atributos, 2 para relação com o dono
-        Dim LevelingType As Byte '0 para nível próprio, 1 para não nivelar
-
-        Dim Stat() As Byte
-
-        Dim Skill() As Integer
-
-        Dim Evolvable As Byte
-        Dim EvolveLevel As Integer
-        Dim EvolveNum As Integer
-    End Structure
 
     <Serializable>
     Friend Structure ProjectileRec

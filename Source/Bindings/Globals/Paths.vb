@@ -133,17 +133,7 @@
             Return Npcs() & index & ".dat"
         End Function
 
-        ''' <summary> Retorna diretório de pets </summary>
-        Friend ReadOnly Property Pets As String
-            Get
-                Return Application.StartupPath() & "/Dados/Pets/"
-            End Get
-        End Property
 
-        ''' <summary> Retorna arquivos de pets </summary>
-        Friend Function Pet(index As Integer) As String
-            Return Pets() & index & ".dat"
-        End Function
 
         ''' <summary> Retorna diretório de projeteis </summary>
         Friend ReadOnly Property Projectiles As String

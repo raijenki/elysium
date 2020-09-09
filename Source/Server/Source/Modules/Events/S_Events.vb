@@ -2096,7 +2096,6 @@ Friend Module S_Events
 #Region "Misc"
 
     Friend Sub GivePlayerExp(index As Integer, exp As Integer)
-        Dim petnum As Integer
 
         ' Dar a experiência
 
@@ -2104,17 +2103,6 @@ Friend Module S_Events
         SendActionMsg(GetPlayerMap(index), "+" & exp & " Exp", ColorType.White, 1, (GetPlayerX(index) * 32), (GetPlayerY(index) * 32))
         ' Ver se subimos de nível
         CheckPlayerLevelUp(index)
-
-        If PetAlive(index) Then
-            petnum = GetPetNum(index)
-
-            If Pet(petnum).LevelingType = 1 Then
-                SetPetExp(index, GetPetExp(index) + (exp * (Pet(petnum).ExpGain / 100)))
-                SendActionMsg(GetPlayerMap(index), "+" & (exp * (Pet(petnum).ExpGain / 100)) & " Exp", ColorType.White, 1, (GetPetX(index) * 32), (GetPetY(index) * 32))
-                CheckPetLevelUp(index)
-                SendPetExp(index)
-            End If
-        End If
 
         SendExp(index)
         SendPlayerData(index)

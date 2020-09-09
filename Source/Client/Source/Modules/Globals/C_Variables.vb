@@ -208,7 +208,6 @@ Module C_Variables
     Friend Animation_Changed(MAX_ANIMATIONS) As Boolean
     Friend Skill_Changed(MAX_SKILLS) As Boolean
     Friend Shop_Changed(MAX_SHOPS) As Boolean
-    Friend Pet_Changed(MAX_PETS) As Boolean
 
     Friend AnimEditorFrame(1) As Integer
     Friend AnimEditorTimer(1) As Integer
@@ -216,7 +215,6 @@ Module C_Variables
     'Editores
     Friend InitEditor As Boolean
     Friend InitMapEditor As Boolean
-    Friend InitPetEditor As Boolean
     Friend InitItemEditor As Boolean
     Friend InitResourceEditor As Boolean
     Friend InitNPCEditor As Boolean
@@ -233,7 +231,6 @@ Module C_Variables
     Friend Const EDITOR_SHOP As Byte = 4
     Friend Const EDITOR_RESOURCE As Byte = 5
     Friend Const EDITOR_ANIMATION As Byte = 6
-    Friend Const EDITOR_PET As Byte = 7
     Friend Const EDITOR_QUEST As Byte = 7
     Friend Const EDITOR_HOUSE As Byte = 8
     Friend Const EDITOR_RECIPE As Byte = 9

@@ -146,12 +146,6 @@
     <Compile Include="Source\Forms\Editors\FrmEditor_NPC.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\Forms\Editors\FrmEditor_Pet.Designer.vb">
-      <DependentUpon>FrmEditor_Pet.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Forms\Editors\FrmEditor_Pet.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Source\Forms\Editors\FrmEditor_Projectile.Designer.vb">
       <DependentUpon>FrmEditor_Projectile.vb</DependentUpon>
     </Compile>
@@ -243,7 +237,6 @@
     <Compile Include="Source\Modules\UI\C_HotBar.vb" />
     <Compile Include="Source\Modules\Systems\C_Housing.vb" />
     <Compile Include="Source\Modules\Systems\C_Parties.vb" />
-    <Compile Include="Source\Modules\Objects\C_Pets.vb" />
     <Compile Include="Source\Modules\Objects\C_Player.vb" />
     <Compile Include="Source\Modules\Objects\C_Projectiles.vb" />
     <Compile Include="Source\Modules\Systems\C_Quest.vb" />
@@ -289,9 +282,7 @@
     <EmbeddedResource Include="Source\Forms\Editors\FrmEditor_NPC.resx">
       <DependentUpon>FrmEditor_NPC.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Forms\Editors\FrmEditor_Pet.resx">
-      <DependentUpon>FrmEditor_Pet.vb</DependentUpon>
-    </EmbeddedResource>
+
     <EmbeddedResource Include="Source\Forms\Editors\FrmEditor_Projectile.resx">
       <DependentUpon>FrmEditor_Projectile.vb</DependentUpon>
     </EmbeddedResource>
@@ -526,12 +517,7 @@
     <None Include="Dados\Interface\Main\MyChat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Dados\Interface\Main\Pet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Dados\Interface\Main\PetBar.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+
     <None Include="Dados\Interface\Main\Plus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

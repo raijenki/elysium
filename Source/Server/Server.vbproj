@@ -129,7 +129,6 @@
     <Compile Include="Source\Modules\Objects\S_Housing.vb" />
     <Compile Include="Source\Modules\Objects\S_Instances.vb" />
     <Compile Include="Source\Modules\S_Parties.vb" />
-    <Compile Include="Source\Modules\Objects\S_Pets.vb" />
     <Compile Include="Source\Modules\Objects\S_Players.vb" />
     <Compile Include="Source\Modules\S_Loop.vb" />
     <Compile Include="Source\Modules\Objects\S_Projectiles.vb" />

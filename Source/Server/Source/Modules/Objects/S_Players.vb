@@ -1180,13 +1180,7 @@ Module S_Players
         SetPlayerMap(index, MapNum)
         SetPlayerX(index, X)
         SetPlayerY(index, Y)
-        If PetAlive(index) Then
-            SetPetX(index, X)
-            SetPetY(index, Y)
-            TempPlayer(index).PetTarget = 0
-            TempPlayer(index).PetTargetType = 0
-            SendPetXy(index, X, Y)
-        End If
+
 
         SendPlayerXY(index)
 
@@ -2643,14 +2637,7 @@ Module S_Players
                     ' Pegar o num da receita
                     n = Item(InvItemNum).Data1
                     LearnRecipe(index, n, InvNum)
-                Case ItemType.Pet
-                    If Item(InvItemNum).Stackable = 1 Then
-                        TakeInvItem(index, InvItemNum, 1)
-                    Else
-                        TakeInvItem(index, InvItemNum, 0)
-                    End If
-                    n = Item(InvItemNum).Data1
-                    AdoptPet(index, n)
+
             End Select
 
         End If
@@ -2855,8 +2842,6 @@ Module S_Players
         SendStats(index)
         SendJoinMap(index)
         SendHouseConfigs(index)
-        SendPets(index)
-        SendUpdatePlayerPet(index, True)
         SendTimeTo(index)
         SendGameClockTo(index)
 
@@ -2920,9 +2905,7 @@ Module S_Players
                 SendCloseTrade(tradeTarget)
             End If
 
-            'pet
-            'ReleasePet(Index)
-            ReCallPet(index)
+
 
             SavePlayer(index)
             SaveBank(index)

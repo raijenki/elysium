@@ -82,7 +82,6 @@
         Skill
         Furniture
         Recipe
-        Pet
 
         Count
     End Enum
@@ -136,7 +135,6 @@
         HealHp
         HealMp
         Warp
-        Pet
     End Enum
 
     ''' <Summary> Constantes de Alvos </Summary>
@@ -145,7 +143,6 @@
         Player
         Npc
         [Event]
-        Pet
     End Enum
 
     ''' <Summary> Constantes de Mensagem de Ação </Summary>

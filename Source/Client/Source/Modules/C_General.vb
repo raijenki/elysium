@@ -44,7 +44,6 @@ Module C_General
         ClearItems()
         ClearNpcs()
         ClearParty()
-        ClearPets()
         ClearQuests()
         ClearRecipes()
         ClearShops()
@@ -253,16 +252,10 @@ Module C_General
             HotbarX = HudWindowX + HudPanelGfxInfo.Width + 20
             HotbarY = 5
 
-            'petbar
-            PetbarX = HotbarX
-            PetbarY = HotbarY + 34
         Else
             HotbarX = ChatWindowX + MyChatWindowGfxInfo.Width + 50
             HotbarY = FrmGame.Height - HotBarGfxInfo.Height - 45
 
-            'petbar
-            PetbarX = HotbarX
-            PetbarY = HotbarY - 34
         End If
 
         'painel de acao
@@ -281,9 +274,6 @@ Module C_General
         SkillWindowX = FrmGame.Width - SkillPanelGfxInfo.Width - 26
         SkillWindowY = FrmGame.Height - SkillPanelGfxInfo.Height - ActionPanelGfxInfo.Height - 50
 
-        'janelas de atributos de pet
-        PetStatX = PetbarX
-        PetStatY = PetbarY
     End Sub
 
     Friend Sub DestroyGame()

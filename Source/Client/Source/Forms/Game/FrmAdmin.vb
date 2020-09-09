@@ -184,8 +184,8 @@
             Exit Sub
         End If
 
-        SendRequestPets()
-        SendRequestEditPet()
+        'SendRequestPets()
+        'SendRequestEditPet()
     End Sub
 
     Private Sub btnProjectiles_Click(sender As Object, e As EventArgs) Handles btnProjectiles.Click

@@ -134,16 +134,7 @@ Module C_NetworkReceive
         Socket.PacketId(ServerPackets.SPartyUpdate) = AddressOf Packet_PartyUpdate
         Socket.PacketId(ServerPackets.SPartyVitals) = AddressOf Packet_PartyVitals
 
-        'pets
-        Socket.PacketId(ServerPackets.SUpdatePet) = AddressOf Packet_UpdatePet
-        Socket.PacketId(ServerPackets.SUpdatePlayerPet) = AddressOf Packet_UpdatePlayerPet
-        Socket.PacketId(ServerPackets.SPetMove) = AddressOf Packet_PetMove
-        Socket.PacketId(ServerPackets.SPetDir) = AddressOf Packet_PetDir
-        Socket.PacketId(ServerPackets.SPetVital) = AddressOf Packet_PetVital
-        Socket.PacketId(ServerPackets.SClearPetSkillBuffer) = AddressOf Packet_ClearPetSkillBuffer
-        Socket.PacketId(ServerPackets.SPetAttack) = AddressOf Packet_PetAttack
-        Socket.PacketId(ServerPackets.SPetXY) = AddressOf Packet_PetXY
-        Socket.PacketId(ServerPackets.SPetExp) = AddressOf Packet_PetExperience
+
 
         Socket.PacketId(ServerPackets.SClock) = AddressOf Packet_Clock
         Socket.PacketId(ServerPackets.STime) = AddressOf Packet_Time
@@ -162,7 +153,7 @@ Module C_NetworkReceive
         Socket.PacketId(ServerPackets.SRecipeEditor) = AddressOf Packet_RecipeEditor
         Socket.PacketId(ServerPackets.SClassEditor) = AddressOf Packet_ClassEditor
         Socket.PacketId(ServerPackets.SAutoMapper) = AddressOf Packet_AutoMapper
-        Socket.PacketId(ServerPackets.SPetEditor) = AddressOf Packet_PetEditor
+
     End Sub
 
     Private Sub Packet_AlertMSG(ByRef data() As Byte)
@@ -1002,10 +993,6 @@ Module C_NetworkReceive
 
     Private Sub Packet_ResourceEditor(ByRef data() As Byte)
         InitResourceEditor = True
-    End Sub
-
-    Friend Sub Packet_PetEditor(ByRef data() As Byte)
-        InitPetEditor = True
     End Sub
 
     Friend Sub HandleProjectileEditor(ByRef data() As Byte)

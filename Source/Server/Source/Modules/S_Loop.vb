@@ -36,26 +36,9 @@ Module modLoop
                     Select New With {p.Index, Key .Success = HandleClearStun(p.Index)}
                 ).ToArray()
 
-                ' Verificar se algum pet terminou de usar uma habilidade e faze-la andar se tiver.
-                Dim petskills = (
-                From p In onlinePlayers
-                Where Player(p.Index).Character(p.player.CurChar).Pet.Alive = 1 AndAlso TempPlayer(p.Index).PetskillBuffer.Skill > 0 AndAlso GetTimeMs() > p.player.PetskillBuffer.Timer + (Skill(Player(p.Index).Character(p.player.CurChar).Pet.Skill(p.player.PetskillBuffer.Skill)).CastTime * 1000)
-                Select New With {p.Index, Key .Success = HandlePetSkill(p.Index)}
-                ).ToArray()
 
-                ' Ver se temos que limpar algum pet sendo estuporado.
-                Dim petstuns = (
-                    From p In onlinePlayers
-                    Where p.player.PetStunDuration > 0 AndAlso p.player.PetStunTimer + (p.player.PetStunDuration * 1000)
-                    Select New With {p.Index, Key .Success = HandleClearPetStun(p.Index)}
-                ).ToArray()
 
-                ' Verificar o timer de regeneração do pet
-                Dim petregen = (
-                    From p In onlinePlayers
-                    Where p.player.PetstopRegen = True AndAlso p.player.PetstopRegenTimer + 5000 < GetTimeMs()
-                    Select New With {p.Index, Key .Success = HandleStopPetRegen(p.Index)}
-                ).ToArray()
+
 
                 ' Lógica de HoT e DoT
                 'For x = 1 To MAX_COTS
@@ -102,7 +85,6 @@ Module modLoop
 
             If GetTimeMs() > tmr300 Then
                 UpdateNpcAi()
-                UpdatePetAi()
                 tmr300 = GetTimeMs() + 300
             End If
 
@@ -310,26 +292,6 @@ Module modLoop
                                     For i = 1 To GetPlayersOnline()
                                         If IsPlaying(i) Then
                                             If GetPlayerMap(i) = mapNum AndAlso MapNpc(mapNum).Npc(x).Target = 0 AndAlso GetPlayerAccess(i) <= AdminType.Monitor Then
-                                                If PetAlive(i) Then
-                                                    n = Npc(npcNum).Range
-                                                    distanceX = MapNpc(mapNum).Npc(x).X - Player(i).Character(TempPlayer(i).CurChar).Pet.X
-                                                    distanceY = MapNpc(mapNum).Npc(x).Y - Player(i).Character(TempPlayer(i).CurChar).Pet.Y
-
-                                                    ' Ter certeza que é um valor positivo
-                                                    If distanceX < 0 Then distanceX *= -1
-                                                    If distanceY < 0 Then distanceY *= -1
-
-                                                    ' Está ao alcance? Peguem-no
-                                                    If distanceX <= n AndAlso distanceY <= n Then
-                                                        If Npc(npcNum).Behaviour = NpcBehavior.AttackOnSight OrElse GetPlayerPK(i) = i Then
-                                                            If Len(Trim$(Npc(npcNum).AttackSay)) > 0 Then
-                                                                PlayerMsg(i, Trim$(Npc(npcNum).Name) & " diz: " & Npc(npcNum).AttackSay.Trim, QColorType.SayColor)
-                                                            End If
-                                                            MapNpc(mapNum).Npc(x).TargetType = TargetType.Pet
-                                                            MapNpc(mapNum).Npc(x).Target = i
-                                                        End If
-                                                    End If
-                                                Else
                                                     n = Npc(npcNum).Range
                                                     distanceX = MapNpc(mapNum).Npc(x).X - GetPlayerX(i)
                                                     distanceY = MapNpc(mapNum).Npc(x).Y - GetPlayerY(i)
@@ -348,7 +310,7 @@ Module modLoop
                                                             MapNpc(mapNum).Npc(x).Target = i
                                                         End If
                                                     End If
-                                                End If
+                                                
                                             End If
                                         End If
                                     Next
@@ -421,17 +383,6 @@ Module modLoop
                                                 targetVerify = True
                                                 targetY = MapNpc(mapNum).Npc(target).Y
                                                 targetX = MapNpc(mapNum).Npc(target).X
-                                            Else
-                                                MapNpc(mapNum).Npc(x).TargetType = 0 ' limpar
-                                                MapNpc(mapNum).Npc(x).Target = 0
-                                            End If
-                                        End If
-                                    ElseIf targetTypes = TargetType.Pet Then
-                                        If target > 0 Then
-                                            If IsPlaying(target) = True AndAlso GetPlayerMap(target) = mapNum AndAlso PetAlive(target) Then
-                                                targetVerify = True
-                                                targetY = Player(target).Character(TempPlayer(target).CurChar).Pet.Y
-                                                targetX = Player(target).Character(TempPlayer(target).CurChar).Pet.X
                                             Else
                                                 MapNpc(mapNum).Npc(x).TargetType = 0 ' limpar
                                                 MapNpc(mapNum).Npc(x).Target = 0
@@ -527,14 +478,6 @@ Module modLoop
                                     ' NPC está morto ou não-existente
                                     MapNpc(mapNum).Npc(x).Target = 0
                                     MapNpc(mapNum).Npc(x).TargetType = 0 ' limpar
-                                End If
-                            ElseIf targetTypes = TargetType.Pet Then
-                                If IsPlaying(target) AndAlso GetPlayerMap(target) = mapNum AndAlso PetAlive(target) Then
-                                    TryNpcAttackPet(x, target)
-                                Else
-                                    ' Jogador saiu do mapa, definir alvo como zero
-                                    MapNpc(mapNum).Npc(x).Target = 0
-                                    MapNpc(mapNum).Npc(x).TargetType = 0 ' clear
                                 End If
                             End If
                         End If
@@ -634,14 +577,7 @@ Module modLoop
         HandlePlayerHouse = True
     End Function
 
-    Friend Function HandlePetSkill(index As Integer) As Boolean
-        PetCastSkill(index, TempPlayer(index).PetskillBuffer.Skill, TempPlayer(index).PetskillBuffer.Target, TempPlayer(index).PetskillBuffer.TargetTypes, True)
-        TempPlayer(index).PetskillBuffer.Skill = 0
-        TempPlayer(index).PetskillBuffer.Timer = 0
-        TempPlayer(index).PetskillBuffer.Target = 0
-        TempPlayer(index).PetskillBuffer.TargetTypes = 0
-        HandlePetSkill = True
-    End Function
+
 
     Friend Function HandlePlayerCraft(index As Integer) As Boolean
         TempPlayer(index).CraftIt = 0
@@ -658,17 +594,7 @@ Module modLoop
         HandleClearStun = True
     End Function
 
-    Friend Function HandleClearPetStun(index As Integer) As Boolean
-        TempPlayer(index).PetStunDuration = 0
-        TempPlayer(index).PetStunTimer = 0
-        HandleClearPetStun = True
-    End Function
 
-    Friend Function HandleStopPetRegen(index As Integer) As Boolean
-        TempPlayer(index).PetstopRegen = False
-        TempPlayer(index).PetstopRegenTimer = 0
-        HandleStopPetRegen = True
-    End Function
 
     Friend Function HandleCastSkill(index As Integer) As Boolean
         CastSkill(index, TempPlayer(index).SkillBuffer)

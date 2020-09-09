@@ -157,12 +157,6 @@
 
     Friend HotbarY As Integer = 825
 
-    'pet bar
-    Friend PetbarX As Integer = 489
-
-    Friend PetbarY As Integer = 800
-    Friend PetStatX As Integer = 943
-    Friend PetStatY As Integer = 575
 
     'Inventory window Coordinates
     Friend InvWindowX As Integer = 943
@@ -366,32 +360,6 @@
         End If
 
 
-        If InitPetEditor = True Then
-            With frmEditor_Pet
-                Editor = EDITOR_PET
-                .lstIndex.Items.Clear()
-
-                ' Adcionar nomes
-                For i = 1 To MAX_PETS
-                    .lstIndex.Items.Add(i & ": " & Trim$(Pet(i).Name))
-                Next
-
-                .cmbEvolve.Items.Clear()
-
-                .cmbEvolve.Items.Add("Nenhum")
-
-                ' Adicionar os nomes
-                For i = 1 To MAX_PETS
-                    .cmbEvolve.Items.Add(i & ": " & Trim$(Pet(i).Name))
-                Next
-
-                .Show()
-                .lstIndex.SelectedIndex = 0
-                .cmbEvolve.SelectedIndex = 0
-                PetEditorInit()
-            End With
-            InitPetEditor = False
-        End If
 
         If QuestEditorShow = True Then
             With frmEditor_Quest

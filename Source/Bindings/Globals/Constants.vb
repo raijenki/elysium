@@ -14,7 +14,6 @@
     Friend Const MAX_NPC_SKILLS As Byte = 6
     Friend Const MAX_PARTIES As Integer = 35
     Friend Const MAX_PARTY_MEMBERS As Integer = 4
-    Friend Const MAX_PETS As Integer = 100
     Friend Const MAX_PLAYERS As Integer = 70
     Friend Const MAX_PLAYER_SKILLS As Byte = 20
     Friend Const MAX_RANDOM_TYPES As Byte = 16

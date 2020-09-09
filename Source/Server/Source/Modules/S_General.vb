@@ -118,7 +118,6 @@ Module S_General
 
         For i = 1 To MAX_PLAYERS
             ReDim TempPlayer(i).SkillCd(MAX_PLAYER_SKILLS)
-            ReDim TempPlayer(i).PetSkillCd(4)
         Next
 
         For i = 1 To MAX_PLAYERS
@@ -155,10 +154,6 @@ Module S_General
         'equipes
         ClearParties()
 
-        'pets
-        ReDim Pet(MAX_PETS)
-        ClearPets()
-
         ' Verificar se o diretório existe; caso contrário, fazer
         CheckDir(Path.Database)
         CheckDir(Path.Items)
@@ -172,7 +167,6 @@ Module S_General
         CheckDir(Path.logs)
         CheckDir(Path.Quests)
         CheckDir(Path.Recipes)
-        CheckDir(Path.Pets)
         CheckDir(Path.Projectiles)
         CheckDir(Path.Quests)
 
@@ -296,11 +290,10 @@ Module S_General
         Console.WriteLine("Limpando Lojas...") : ClearShops()
         Console.WriteLine("Limpando Habilidades...") : ClearSkills()
         Console.WriteLine("Limpando Animações...") : ClearAnimations()
-        Console.WriteLine("Limpando Quests...") : ClearQuests()
+        Console.WriteLine("Limpando Tarefas...") : ClearQuests()
         Console.WriteLine("Limpando Projéteis do Mapa...") : ClearMapProjectiles()
         Console.WriteLine("Limpando Projéteis...") : ClearProjectiles()
         Console.WriteLine("Limpando Receitas...") : ClearRecipes()
-        Console.WriteLine("Limpando Pets...") : ClearPets()
     End Sub
 
     Private Sub LoadGameData()
@@ -319,7 +312,6 @@ Module S_General
         Console.WriteLine("Gerando eventos globais...") : SpawnAllMapGlobalEvents()
         Console.WriteLine("Carregando Projéteis...") : LoadProjectiles()
         Console.WriteLine("Carregando Receitas...") : LoadRecipes()
-        Console.WriteLine("Carregando Pets...") : LoadPets()
     End Sub
 
     ' Usado para verificar a validade dos nomes
