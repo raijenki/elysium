@@ -1,0 +1,8 @@
+plans/
+client/client
+client/*.o
+client/maps/*.dat
+client/deps
+server/server
+server/*.o
+server/maps/*.dat
