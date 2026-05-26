@@ -44,19 +44,19 @@ set(SOURCES
     src/config.c
 )
 
-add_executable(mirage_client ${SOURCES})
+add_executable(client ${SOURCES})
 
-target_link_libraries(mirage_client ${CSFML_LIBS} stdc++ m)
+target_link_libraries(client ${CSFML_LIBS} stdc++ m)
 
 if(NOT CSFML_GRAPHICS_FOUND)
-    set_target_properties(mirage_client PROPERTIES
+    set_target_properties(client PROPERTIES
         BUILD_RPATH "${CSFML_LIB_DIR}"
         INSTALL_RPATH "${CSFML_LIB_DIR}"
     )
 endif()
 
 # Copy assets to build directory
-add_custom_command(TARGET mirage_client POST_BUILD
+add_custom_command(TARGET client POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:mirage_client>/assets
+    ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:client>/assets
 )

@@ -1,8 +1,10 @@
 plans/
 client/client
 client/*.o
+client/src/*.o
 client/maps/*.dat
 client/deps
 server/server
 server/*.o
+server/src/*.o
 server/maps/*.dat

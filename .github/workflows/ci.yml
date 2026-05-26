@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcsfml-dev
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install csfml
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-csfml
+            make
+
+      - name: Build server (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd server
+          make clean
+          make
+
+      - name: Build client (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd client
+          rm -rf build
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: Build server (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd server
+          make clean
+          make
+
+      - name: Build client (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd client
+          rm -rf build
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
+          cmake --build build
+
+      - name: Smoke test server (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd server
+          ./server &
+          PID=$!
+          sleep 2
+          if kill -0 $PID 2>/dev/null; then
+            echo "Server started successfully"
+            kill $PID 2>/dev/null || true
+            sleep 1
+            kill -9 $PID 2>/dev/null || true
+          else
+            echo "Server failed to start"
+            exit 1
+          fi
+
+      - name: Smoke test server (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd server
+          ./server &
+          PID=$!
+          sleep 3
+          if kill -0 $PID 2>/dev/null; then
+            echo "Server started successfully"
+            kill $PID 2>/dev/null || true
+            sleep 1
+            kill -9 $PID 2>/dev/null || true
+          else
+            echo "Server failed to start"
+            exit 1
+          fi

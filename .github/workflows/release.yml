@@ -1,0 +1,135 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            suffix: linux
+          - os: macos-latest
+            suffix: macos
+          - os: windows-latest
+            suffix: windows
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcsfml-dev
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install csfml
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-csfml
+            make
+            zip
+
+      - name: Build server (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd server
+          make clean
+          make CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
+
+      - name: Build client (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd client
+          rm -rf build
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: Build server (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd server
+          make clean
+          make CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
+
+      - name: Build client (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd client
+          rm -rf build
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
+          cmake --build build
+
+      - name: Package client
+        shell: bash
+        run: |
+          mkdir -p dist/client/maps
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cp client/build/client.exe dist/client/
+          else
+            cp client/build/client dist/client/
+          fi
+          cp -r client/assets dist/client/
+          cp client/config.ini dist/client/
+          touch dist/client/maps/.gitkeep
+          cd dist
+          zip -r elysium-client-${{ matrix.suffix }}.zip client/
+
+      - name: Package server
+        shell: bash
+        run: |
+          mkdir -p dist/server/maps dist/server/accounts
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cp server/server.exe dist/server/
+          else
+            cp server/server dist/server/
+          fi
+          cp server/*.ini dist/server/
+          cp -r server/maps/* dist/server/maps/ 2>/dev/null || true
+          cp -r server/accounts/* dist/server/accounts/ 2>/dev/null || true
+          cd dist
+          zip -r elysium-server-${{ matrix.suffix }}.zip server/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.suffix }}
+          path: dist/*.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: release-*
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: artifacts/**/*.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
