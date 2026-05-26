@@ -61,7 +61,7 @@ jobs:
         run: |
           cd client
           rm -rf build
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix)"
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix csfml)"
           cmake --build build
 
       - name: Build server (Windows)
@@ -78,7 +78,7 @@ jobs:
         run: |
           cd client
           rm -rf build
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=/mingw64
           cmake --build build
 
       - name: Smoke test server (Unix)
