@@ -42,6 +42,7 @@ jobs:
         with:
           update: true
           install: >-
+            gcc
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-csfml
@@ -69,7 +70,7 @@ jobs:
         run: |
           cd server
           make clean
-          make CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
+          make CC=/usr/bin/gcc CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
 
       - name: Build client (Windows)
         if: runner.os == 'Windows'

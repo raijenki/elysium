@@ -18,6 +18,14 @@
 #include <ctype.h>
 #include <signal.h>
 
+// Portable socket flag fallbacks
+#ifndef MSG_NOSIGNAL
+#define MSG_NOSIGNAL 0
+#endif
+#ifndef MSG_DONTWAIT
+#define MSG_DONTWAIT 0
+#endif
+
 // Winsock globals
 #define GAME_PORT 4000
 

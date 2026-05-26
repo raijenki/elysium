@@ -34,6 +34,7 @@ jobs:
         with:
           update: true
           install: >-
+            gcc
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-csfml
@@ -60,7 +61,7 @@ jobs:
         run: |
           cd server
           make clean
-          make
+          make CC=/usr/bin/gcc
 
       - name: Build client (Windows)
         if: runner.os == 'Windows'
