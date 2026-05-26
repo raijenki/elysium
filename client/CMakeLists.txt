@@ -46,7 +46,11 @@ set(SOURCES
 
 add_executable(client ${SOURCES})
 
-target_link_libraries(client ${CSFML_LIBS} stdc++ m)
+if(WIN32)
+    target_link_libraries(client ${CSFML_LIBS} ws2_32)
+else()
+    target_link_libraries(client ${CSFML_LIBS} stdc++ m)
+endif()
 
 if(NOT CSFML_GRAPHICS_FOUND)
     set_target_properties(client PROPERTIES

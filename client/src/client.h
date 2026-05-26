@@ -6,13 +6,28 @@
 #include <string.h>
 #include <stdint.h>
 #include <time.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <fcntl.h>
+#ifdef _WIN32
+  #include <winsock2.h>
+  #include <ws2tcpip.h>
+#else
+  #include <unistd.h>
+  #include <sys/socket.h>
+  #include <netinet/in.h>
+  #include <arpa/inet.h>
+  #include <fcntl.h>
+#endif
 #include <errno.h>
 #include <ctype.h>
+
+#ifndef MSG_NOSIGNAL
+#define MSG_NOSIGNAL 0
+#endif
+
+#ifdef _WIN32
+  #define CLOSESOCKET(fd) closesocket(fd)
+#else
+  #define CLOSESOCKET(fd) close(fd)
+#endif
 
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>

@@ -3,6 +3,10 @@
 struct sockaddr_in serverAddr;
 
 void TcpInit(void) {
+#ifdef _WIN32
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+#endif
     memset(PlayerBuffer, 0, sizeof(PlayerBuffer));
     PlayerBufferLen = 0;
     SocketFd = -1;
@@ -10,9 +14,12 @@ void TcpInit(void) {
 
 void TcpDestroy(void) {
     if (SocketFd >= 0) {
-        close(SocketFd);
+        CLOSESOCKET(SocketFd);
         SocketFd = -1;
     }
+#ifdef _WIN32
+    WSACleanup();
+#endif
 }
 
 int ConnectToServer(const char *ip, int port) {
@@ -25,14 +32,19 @@ int ConnectToServer(const char *ip, int port) {
     inet_pton(AF_INET, ip, &serverAddr.sin_addr);
 
     if (connect(SocketFd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
-        close(SocketFd);
+        CLOSESOCKET(SocketFd);
         SocketFd = -1;
         return 0;
     }
 
     // Non-blocking
+#ifdef _WIN32
+    u_long mode = 1;
+    ioctlsocket(SocketFd, FIONBIO, &mode);
+#else
     int flags = fcntl(SocketFd, F_GETFL, 0);
     fcntl(SocketFd, F_SETFL, flags | O_NONBLOCK);
+#endif
     return 1;
 }
 
@@ -91,10 +103,10 @@ void IncomingData(void) {
             PlayerBufferLen = 0;
         }
     } else if (nbytes == 0) {
-        close(SocketFd);
+        CLOSESOCKET(SocketFd);
         SocketFd = -1;
     } else if (errno != EAGAIN && errno != EWOULDBLOCK) {
-        close(SocketFd);
+        CLOSESOCKET(SocketFd);
         SocketFd = -1;
     }
 }
