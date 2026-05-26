@@ -331,7 +331,7 @@ void HandleData(const char *Data, int DataLen) {
     if (strcmp(cmd, "attack") == 0) {
         int i = PVAL(1);
         Player[i].Attacking = 1;
-        Player[i].AttackTimer = GetTickCount();
+        Player[i].AttackTimer = GetGameTick();
         free(datacopy);
         return;
     }
@@ -342,7 +342,7 @@ void HandleData(const char *Data, int DataLen) {
     if (strcmp(cmd, "npcattack") == 0) {
         int i = PVAL(1);
         MapNpc[i].Attacking = 1;
-        MapNpc[i].AttackTimer = GetTickCount();
+        MapNpc[i].AttackTimer = GetGameTick();
         free(datacopy);
         return;
     }

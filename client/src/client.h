@@ -429,7 +429,7 @@ extern sfRenderTexture *g_backBuffer;
 // Utility
 // ==================
 
-int32_t GetTickCount(void);
+int32_t GetGameTick(void);
 void str_trim(char *str);
 void strlcpy_safe(char *dst, const char *src, size_t size);
 int file_exists(const char *path);
@@ -635,7 +635,7 @@ void SoundInit(void);
 void SoundDestroy(void);
 void PlayMidi(const char *song);
 void StopMidi(void);
-void PlaySound(const char *sound);
+void PlayGameSound(const char *sound);
 
 // ==================
 // Config

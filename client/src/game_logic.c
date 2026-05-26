@@ -83,9 +83,9 @@ void CheckMovement(void) {
 void CheckAttack(void) {
     if (!InGame || GettingMap) return;
     if (ControlDown && Player[MyIndex].Attacking == 0) {
-        if (Player[MyIndex].AttackTimer + 1000 < GetTickCount()) {
+        if (Player[MyIndex].AttackTimer + 1000 < GetGameTick()) {
             Player[MyIndex].Attacking = 1;
-            Player[MyIndex].AttackTimer = GetTickCount();
+            Player[MyIndex].AttackTimer = GetGameTick();
             SendAttack();
         }
     }

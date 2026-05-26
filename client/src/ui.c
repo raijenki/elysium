@@ -200,9 +200,9 @@ void UIUpdate(void) {
         }
 
         // Animation timer
-        if (GetTickCount() > MapAnimTimer + 250) {
+        if (GetGameTick() > MapAnimTimer + 250) {
             MapAnim = !MapAnim;
-            MapAnimTimer = GetTickCount();
+            MapAnimTimer = GetGameTick();
         }
 
         CheckMovement();

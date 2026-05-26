@@ -27,7 +27,7 @@ void StopMidi(void) {
     }
 }
 
-void PlaySound(const char *sound) {
+void PlayGameSound(const char *sound) {
     (void)sound;
     // TODO: play WAV sound effect
 }

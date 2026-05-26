@@ -55,10 +55,10 @@ void BltPlayer(int Index) {
             case DIR_RIGHT: if (Player[Index].XOffset < -PIC_X / 2) Anim = 1; break;
         }
     } else {
-        if (Player[Index].AttackTimer + 500 > GetTickCount()) Anim = 2;
+        if (Player[Index].AttackTimer + 500 > GetGameTick()) Anim = 2;
     }
 
-    if (Player[Index].AttackTimer + 1000 < GetTickCount()) {
+    if (Player[Index].AttackTimer + 1000 < GetGameTick()) {
         Player[Index].Attacking = 0;
         Player[Index].AttackTimer = 0;
     }
@@ -91,10 +91,10 @@ void BltNpc(int MapNpcNum) {
             case DIR_RIGHT: if (MapNpc[MapNpcNum].XOffset < -PIC_X / 2) Anim = 1; break;
         }
     } else {
-        if (MapNpc[MapNpcNum].AttackTimer + 500 > GetTickCount()) Anim = 2;
+        if (MapNpc[MapNpcNum].AttackTimer + 500 > GetGameTick()) Anim = 2;
     }
 
-    if (MapNpc[MapNpcNum].AttackTimer + 1000 < GetTickCount()) {
+    if (MapNpc[MapNpcNum].AttackTimer + 1000 < GetGameTick()) {
         MapNpc[MapNpcNum].Attacking = 0;
         MapNpc[MapNpcNum].AttackTimer = 0;
     }

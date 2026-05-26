@@ -62,10 +62,18 @@ int InItemsEditor = 0, InNpcEditor = 0, InShopEditor = 0, InSpellEditor = 0;
 int EditorIndex = 0;
 
 // Utility
-int32_t GetTickCount(void) {
+#ifdef _WIN32
+  #include <io.h>
+#endif
+
+int32_t GetGameTick(void) {
+#ifdef _WIN32
+    return (int32_t)GetTickCount();
+#else
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return (int32_t)(ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
+#endif
 }
 
 void str_trim(char *str) {
@@ -86,7 +94,11 @@ void strlcpy_safe(char *dst, const char *src, size_t size) {
 }
 
 int file_exists(const char *path) {
+#ifdef _WIN32
+    return _access(path, 0) == 0;
+#else
     return access(path, F_OK) == 0;
+#endif
 }
 
 sfColor QBColor(int color) {
