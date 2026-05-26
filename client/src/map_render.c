@@ -9,17 +9,17 @@ void BltTile(int x, int y) {
     // Ground
     int srcX = (Ground % 7) * PIC_X;
     int srcY = (Ground / 7) * PIC_Y;
-    GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, sfFalse);
+    GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, false);
 
     // Mask/Anim
     if ((MapAnim == 0 || Anim2 <= 0) && Anim1 > 0 && TempTile[x][y].DoorOpen == NO) {
         srcX = (Anim1 % 7) * PIC_X;
         srcY = (Anim1 / 7) * PIC_Y;
-        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, sfTrue);
+        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, true);
     } else if (Anim2 > 0) {
         srcX = (Anim2 % 7) * PIC_X;
         srcY = (Anim2 / 7) * PIC_Y;
-        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, sfTrue);
+        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, true);
     }
 }
 
@@ -29,7 +29,7 @@ void BltFringeTile(int x, int y) {
     if (Fringe > 0) {
         int srcX = (Fringe % 7) * PIC_X;
         int srcY = (Fringe / 7) * PIC_Y;
-        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, sfTrue);
+        GraphicsDrawSprite(texTiles, srcX, srcY, PIC_X, PIC_Y, x * PIC_X, y * PIC_Y, PIC_X, PIC_Y, true);
     }
 }
 
@@ -39,7 +39,7 @@ void BltItem(int ItemNum) {
     int itemPic = Item[MapItem[ItemNum].Num].Pic;
     GraphicsDrawSprite(texItems, 0, itemPic * PIC_Y, PIC_X, PIC_Y,
                        MapItem[ItemNum].x * PIC_X, MapItem[ItemNum].y * PIC_Y,
-                       PIC_X, PIC_Y, sfTrue);
+                       PIC_X, PIC_Y, true);
 }
 
 void BltPlayer(int Index) {
@@ -75,7 +75,7 @@ void BltPlayer(int Index) {
     }
 
     GraphicsDrawSprite(texSprites, srcX, srcY + clipY, PIC_X, PIC_Y - clipY,
-                       dstX, dstY, PIC_X, PIC_Y - clipY, sfTrue);
+                       dstX, dstY, PIC_X, PIC_Y - clipY, true);
 }
 
 void BltNpc(int MapNpcNum) {
@@ -111,7 +111,7 @@ void BltNpc(int MapNpcNum) {
     }
 
     GraphicsDrawSprite(texSprites, srcX, srcY + clipY, PIC_X, PIC_Y - clipY,
-                       dstX, dstY, PIC_X, PIC_Y - clipY, sfTrue);
+                       dstX, dstY, PIC_X, PIC_Y - clipY, true);
 }
 
 void BltPlayerName(int Index) {

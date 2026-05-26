@@ -1,4 +1,6 @@
 plans/
+csfml/
+refs/
 client/client
 client/*.o
 client/src/*.o

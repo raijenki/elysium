@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -g -Ideps/usr/include
-LDFLAGS = -Ldeps/usr/lib/x86_64-linux-gnu -Wl,-rpath,'$$ORIGIN/deps/usr/lib/x86_64-linux-gnu'
+LDFLAGS = -Ldeps/usr/lib -Wl,-rpath,'$$ORIGIN/deps/usr/lib'
 LIBS = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-network -lcsfml-audio \
        -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio \
        -lstdc++ -lm

@@ -1,44 +1,56 @@
-cmake_minimum_required(VERSION 3.10)
-project(MirageClient C)
+cmake_minimum_required(VERSION 3.22)
+project(MirageClient C CXX)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# Find CSFML
-find_package(PkgConfig QUIET)
-if(PKG_CONFIG_FOUND)
-    pkg_check_modules(CSFML_GRAPHICS csfml-graphics)
-    pkg_check_modules(CSFML_WINDOW csfml-window)
-    pkg_check_modules(CSFML_SYSTEM csfml-system)
-    pkg_check_modules(CSFML_NETWORK csfml-network)
-    pkg_check_modules(CSFML_AUDIO csfml-audio)
-endif()
-
-if(NOT CSFML_GRAPHICS_FOUND)
-    # Tier 2: find_path/find_library (Homebrew, MSYS2, system installs)
-    find_path(CSFML_INCLUDE_DIR SFML/Graphics.h)
-    find_library(CSFML_GFX_LIB csfml-graphics)
-
-    if(CSFML_INCLUDE_DIR AND CSFML_GFX_LIB)
-        message(STATUS "Found CSFML via find_path: ${CSFML_INCLUDE_DIR}")
-        include_directories(${CSFML_INCLUDE_DIR})
-        set(CSFML_LIBS csfml-graphics csfml-window csfml-system csfml-network csfml-audio)
-    elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-        # Tier 3: local deps directory (Linux bundled deps only)
-        message(STATUS "CSFML not found, using local deps fallback")
-        set(CSFML_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/deps/usr/include" CACHE PATH "CSFML include dir" FORCE)
-        set(CSFML_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/usr/lib/x86_64-linux-gnu" CACHE PATH "CSFML lib dir" FORCE)
-        include_directories(${CSFML_INCLUDE_DIR})
-        link_directories(${CSFML_LIB_DIR})
-        set(CSFML_LIBS csfml-graphics csfml-window csfml-system csfml-network csfml-audio)
-    else()
-        message(FATAL_ERROR "CSFML not found. Please install CSFML or set CMAKE_PREFIX_PATH.")
-    endif()
+# Find bundled SFML/CSFML source trees (works whether cmake is run from project root or client dir)
+if(EXISTS "${CMAKE_SOURCE_DIR}/SFML-3.1.0/CMakeLists.txt")
+    set(SFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/SFML-3.1.0")
+    set(CSFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/CSFML-3.0.0")
+elseif(EXISTS "${CMAKE_SOURCE_DIR}/../SFML-3.1.0/CMakeLists.txt")
+    set(SFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../SFML-3.1.0")
+    set(CSFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../CSFML-3.0.0")
 else()
-    include_directories(${CSFML_GRAPHICS_INCLUDE_DIRS})
-    link_directories(${CSFML_GRAPHICS_LIBRARY_DIRS})
-    set(CSFML_LIBS ${CSFML_GRAPHICS_LIBRARIES} ${CSFML_WINDOW_LIBRARIES} ${CSFML_SYSTEM_LIBRARIES} ${CSFML_NETWORK_LIBRARIES} ${CSFML_AUDIO_LIBRARIES})
+    message(FATAL_ERROR "SFML-3.1.0 source tree not found. Expected at ${CMAKE_SOURCE_DIR}/SFML-3.1.0 or ${CMAKE_SOURCE_DIR}/../SFML-3.1.0")
 endif()
+
+# Use FetchContent to build SFML and CSFML alongside the client
+include(FetchContent)
+
+# Disable unnecessary SFML/CSFML targets
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_TEST_SUITE OFF CACHE BOOL "" FORCE)
+set(CSFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(CSFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(CSFML_BUILD_TEST_SUITE OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(SFML
+    SOURCE_DIR ${SFML_SOURCE_DIR}
+)
+
+FetchContent_Declare(CSFML
+    SOURCE_DIR ${CSFML_SOURCE_DIR}
+)
+
+# Make SFML available first. This creates SFML::System, SFML::Graphics, etc.
+# Build SFML as shared libraries so CSFML can link against them.
+set(BUILD_SHARED_LIBS ON)
+FetchContent_MakeAvailable(SFML)
+
+# CSFML does `find_package(SFML REQUIRED COMPONENTS ...)`. When SFML is a
+# subdirectory, the targets exist but find_package won't find them via config.
+# We prepend our custom cmake module directory so CMake finds FindSFML.cmake,
+# which simply reports the already-existing targets as found.
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+# Now make CSFML available. It will find our custom FindSFML.cmake and see that
+# SFML targets are already present.
+FetchContent_MakeAvailable(CSFML)
+
+# Clean up module path
+list(REMOVE_ITEM CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 set(SOURCES
     src/main.c
@@ -59,21 +71,22 @@ set(SOURCES
 
 add_executable(client ${SOURCES})
 
-if(WIN32)
-    target_link_libraries(client ${CSFML_LIBS} ws2_32)
-else()
-    target_link_libraries(client ${CSFML_LIBS} stdc++ m)
-endif()
+target_link_libraries(client PRIVATE
+    csfml-graphics
+    csfml-window
+    csfml-system
+    csfml-network
+    csfml-audio
+)
 
-if(CSFML_LIB_DIR)
-    set_target_properties(client PROPERTIES
-        BUILD_RPATH "${CSFML_LIB_DIR}"
-        INSTALL_RPATH "${CSFML_LIB_DIR}"
-    )
+if(WIN32)
+    target_link_libraries(client PRIVATE ws2_32)
+else()
+    target_link_libraries(client PRIVATE stdc++ m)
 endif()
 
 # Copy assets to build directory
 add_custom_command(TARGET client POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:client>/assets
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:client>/assets
 )

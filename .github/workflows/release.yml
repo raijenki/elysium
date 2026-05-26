@@ -26,29 +26,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies (Ubuntu)
+      - name: Install Linux dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcsfml-dev
+          sudo apt-get install -y \
+            libxrandr-dev libxcursor-dev libxi-dev libudev-dev \
+            libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev \
+            libfreetype-dev libharfbuzz-dev libmbedtls-dev libssh2-1-dev
 
-      - name: Install dependencies (macOS)
-        if: runner.os == 'macOS'
-        run: brew install csfml
-
-      - name: Install dependencies (Windows)
+      - name: Setup MSYS2 (Windows server build only)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           update: true
           install: >-
             gcc
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-csfml
-            mingw-w64-x86_64-pkg-config
             make
             zip
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: client/build/_deps
+          key: ${{ runner.os }}-cmake-deps-${{ hashFiles('client/CMakeLists.txt') }}
+
+      - name: Configure client
+        run: cmake -S client -B client/build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build client
+        run: cmake --build client/build --config Release
 
       - name: Build server (Unix)
         if: runner.os != 'Windows'
@@ -56,23 +63,6 @@ jobs:
           cd server
           make clean
           make CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
-
-      - name: Build client (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          cd client
-          rm -rf build
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
-
-      - name: Build client (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          cd client
-          rm -rf build
-          export PKG_CONFIG_PATH="$(brew --prefix)/lib/pkgconfig"
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix)"
-          cmake --build build
 
       - name: Build server (Windows)
         if: runner.os == 'Windows'
@@ -82,27 +72,37 @@ jobs:
           make clean
           make CC=/usr/bin/gcc CFLAGS="-Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=200809L -D_GNU_SOURCE"
 
-      - name: Build client (Windows)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          cd client
-          rm -rf build
-          export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=/mingw64
-          cmake --build build
-
       - name: Package client
         shell: bash
         run: |
           mkdir -p dist/client/maps
           if [ "${{ runner.os }}" == "Windows" ]; then
-            cp client/build/client.exe dist/client/
+            # Visual Studio multi-config places binary in Release/
+            if [ -f client/build/Release/client.exe ]; then
+              cp client/build/Release/client.exe dist/client/
+            else
+              cp client/build/client.exe dist/client/
+            fi
           else
             cp client/build/client dist/client/
           fi
           cp -r client/assets dist/client/
           cp client/config.ini dist/client/
+
+          # Bundle shared libraries from FetchContent build tree
+          if [ "${{ runner.os }}" == "Linux" ]; then
+            mkdir -p dist/client/lib
+            cp client/build/_deps/sfml-build/lib/libsfml-*.so* dist/client/lib/ 2>/dev/null || true
+            cp client/build/_deps/csfml-build/lib/libcsfml-*.so* dist/client/lib/ 2>/dev/null || true
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            mkdir -p dist/client/lib
+            cp client/build/_deps/sfml-build/lib/libsfml-*.dylib dist/client/lib/ 2>/dev/null || true
+            cp client/build/_deps/csfml-build/lib/libcsfml-*.dylib dist/client/lib/ 2>/dev/null || true
+          elif [ "${{ runner.os }}" == "Windows" ]; then
+            # Copy all DLLs found in the build tree
+            find client/build -name "*.dll" -exec cp {} dist/client/ \; 2>/dev/null || true
+          fi
+
           touch dist/client/maps/.gitkeep
           cd dist
           zip -r elysium-client-${{ matrix.suffix }}.zip client/

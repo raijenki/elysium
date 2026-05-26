@@ -40,8 +40,8 @@ int main(int argc, char *argv[]) {
     (void)argv;
 
     // Create window
-    sfVideoMode mode = {960, 720, 32};
-    g_window = sfRenderWindow_create(mode, GAME_NAME, sfClose | sfTitlebar, NULL);
+    sfVideoMode mode = {{960, 720}, 32};
+    g_window = sfRenderWindow_create(mode, GAME_NAME, sfClose | sfTitlebar, sfWindowed, NULL);
     if (!g_window) {
         fprintf(stderr, "Failed to create window\n");
         return 1;
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
             }
             if (g_event.type == sfEvtKeyPressed) {
                 if (GetScreen() == SCREEN_GAME && InGame) {
-                    if (g_event.key.code == sfKeyReturn) {
+                    if (g_event.key.code == sfKeyEnter) {
                         if (InChatMode) {
                             HandleKeypresses(13);
                         } else {
@@ -114,15 +114,15 @@ int main(int argc, char *argv[]) {
                 }
             }
             if (g_event.type == sfEvtMouseMoved) {
-                UIHandleMouseMove(g_event.mouseMove.x, g_event.mouseMove.y);
+                UIHandleMouseMove(g_event.mouseMove.position.x, g_event.mouseMove.position.y);
             }
             if (g_event.type == sfEvtMouseButtonPressed) {
                 UIHandleMouseButton(g_event.mouseButton.button, 1,
-                                    g_event.mouseButton.x, g_event.mouseButton.y);
+                                    g_event.mouseButton.position.x, g_event.mouseButton.position.y);
             }
             if (g_event.type == sfEvtMouseButtonReleased) {
                 UIHandleMouseButton(g_event.mouseButton.button, 0,
-                                    g_event.mouseButton.x, g_event.mouseButton.y);
+                                    g_event.mouseButton.position.x, g_event.mouseButton.position.y);
             }
         }
 

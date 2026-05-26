@@ -333,7 +333,7 @@ void UIHandleKey(int key) {
                 if (w->cursorPos < (int)strlen(w->text)) w->cursorPos++;
                 return;
             }
-            if (key == sfKeyReturn) {
+            if (key == sfKeyEnter) {
                 activeTextbox = -1;
                 w->focused = 0;
                 return;
@@ -348,7 +348,7 @@ void UIHandleKey(int key) {
         if (key == sfKeyRight) DirRight = 1;
         if (key == sfKeyLShift || key == sfKeyRShift) ShiftDown = 1;
         if (key == sfKeyLControl || key == sfKeyRControl) ControlDown = 1;
-        if (key == sfKeyReturn) {
+        if (key == sfKeyEnter) {
             // Chat toggle
         }
     }

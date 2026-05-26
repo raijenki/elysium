@@ -29,11 +29,11 @@
   #define CLOSESOCKET(fd) close(fd)
 #endif
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
-#include <SFML/Network.h>
-#include <SFML/Audio.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/Window.h>
+#include <CSFML/System.h>
+#include <CSFML/Network.h>
+#include <CSFML/Audio.h>
 
 // ==================
 // Constants
@@ -581,7 +581,7 @@ int GraphicsInit(void);
 void GraphicsDestroy(void);
 void GraphicsClear(void);
 void GraphicsDisplay(void);
-void GraphicsDrawSprite(sfTexture *tex, int srcX, int srcY, int srcW, int srcH, int dstX, int dstY, int dstW, int dstH, sfBool useKey);
+void GraphicsDrawSprite(sfTexture *tex, int srcX, int srcY, int srcW, int srcH, int dstX, int dstY, int dstW, int dstH, bool useKey);
 void GraphicsDrawRect(int x, int y, int w, int h, sfColor color);
 void GraphicsDrawText(const char *text, int x, int y, int size, sfColor color);
 

@@ -12,9 +12,9 @@ static sfTexture *LoadTextureWithColorKey(const char *path) {
     sfVector2u size = sfImage_getSize(img);
     for (unsigned int y = 0; y < size.y; y++) {
         for (unsigned int x = 0; x < size.x; x++) {
-            sfColor c = sfImage_getPixel(img, x, y);
+            sfColor c = sfImage_getPixel(img, (sfVector2u){x, y});
             if (c.r == 0 && c.g == 0 && c.b == 0) {
-                sfImage_setPixel(img, x, y, sfColor_fromRGBA(0, 0, 0, 0));
+                sfImage_setPixel(img, (sfVector2u){x, y}, sfColor_fromRGBA(0, 0, 0, 0));
             }
         }
     }
@@ -42,7 +42,7 @@ int GraphicsInit(void) {
     }
 
     // Create back buffer (game viewport)
-    g_backBuffer = sfRenderTexture_create((MAX_MAPX + 1) * PIC_X, (MAX_MAPY + 1) * PIC_Y, sfFalse);
+    g_backBuffer = sfRenderTexture_create((sfVector2u){(MAX_MAPX + 1) * PIC_X, (MAX_MAPY + 1) * PIC_Y}, NULL);
 
     return 0;
 }
@@ -64,11 +64,10 @@ void GraphicsDisplay(void) {
 }
 
 void GraphicsDrawSprite(sfTexture *tex, int srcX, int srcY, int srcW, int srcH,
-                        int dstX, int dstY, int dstW, int dstH, sfBool useKey) {
+                        int dstX, int dstY, int dstW, int dstH, bool useKey) {
     (void)useKey;
     if (!tex) return;
-    sfSprite *spr = sfSprite_create();
-    sfSprite_setTexture(spr, tex, sfTrue);
+    sfSprite *spr = sfSprite_create(tex);
     sfIntRect srcRect = {srcX, srcY, srcW, srcH};
     sfSprite_setTextureRect(spr, srcRect);
     sfSprite_setPosition(spr, (sfVector2f){(float)dstX, (float)dstY});
@@ -90,11 +89,10 @@ void GraphicsDrawRect(int x, int y, int w, int h, sfColor color) {
 
 void GraphicsDrawText(const char *text, int x, int y, int size, sfColor color) {
     if (!g_font || !text) return;
-    sfText *t = sfText_create();
-    sfText_setFont(t, g_font);
+    sfText *t = sfText_create(g_font);
     sfText_setString(t, text);
     sfText_setCharacterSize(t, (unsigned int)size);
-    sfText_setColor(t, color);
+    sfText_setFillColor(t, color);
     sfText_setPosition(t, (sfVector2f){(float)x, (float)y});
     sfRenderWindow_drawText(g_window, t, NULL);
     sfText_destroy(t);

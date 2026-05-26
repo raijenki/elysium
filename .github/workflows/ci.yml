@@ -18,28 +18,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies (Ubuntu)
+      - name: Install Linux dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcsfml-dev
+          sudo apt-get install -y \
+            libxrandr-dev libxcursor-dev libxi-dev libudev-dev \
+            libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev \
+            libfreetype-dev libharfbuzz-dev libmbedtls-dev libssh2-1-dev
 
-      - name: Install dependencies (macOS)
-        if: runner.os == 'macOS'
-        run: brew install csfml
-
-      - name: Install dependencies (Windows)
+      - name: Setup MSYS2 (Windows server build only)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           update: true
           install: >-
             gcc
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-csfml
-            mingw-w64-x86_64-pkg-config
             make
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: client/build/_deps
+          key: ${{ runner.os }}-cmake-deps-${{ hashFiles('client/CMakeLists.txt') }}
+
+      - name: Configure client
+        run: cmake -S client -B client/build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build client
+        run: cmake --build client/build --config Release
 
       - name: Build server (Unix)
         if: runner.os != 'Windows'
@@ -48,23 +55,6 @@ jobs:
           make clean
           make
 
-      - name: Build client (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          cd client
-          rm -rf build
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
-
-      - name: Build client (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          cd client
-          rm -rf build
-          export PKG_CONFIG_PATH="$(brew --prefix)/lib/pkgconfig"
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix)"
-          cmake --build build
-
       - name: Build server (Windows)
         if: runner.os == 'Windows'
         shell: msys2 {0}
@@ -72,16 +62,6 @@ jobs:
           cd server
           make clean
           make CC=/usr/bin/gcc
-
-      - name: Build client (Windows)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          cd client
-          rm -rf build
-          export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=/mingw64
-          cmake --build build
 
       - name: Smoke test server (Unix)
         if: runner.os != 'Windows'
