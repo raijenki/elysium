@@ -4,18 +4,7 @@ project(MirageClient C CXX)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# Find bundled SFML/CSFML source trees (works whether cmake is run from project root or client dir)
-if(EXISTS "${CMAKE_SOURCE_DIR}/SFML-3.1.0/CMakeLists.txt")
-    set(SFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/SFML-3.1.0")
-    set(CSFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/CSFML-3.0.0")
-elseif(EXISTS "${CMAKE_SOURCE_DIR}/../SFML-3.1.0/CMakeLists.txt")
-    set(SFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../SFML-3.1.0")
-    set(CSFML_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../CSFML-3.0.0")
-else()
-    message(FATAL_ERROR "SFML-3.1.0 source tree not found. Expected at ${CMAKE_SOURCE_DIR}/SFML-3.1.0 or ${CMAKE_SOURCE_DIR}/../SFML-3.1.0")
-endif()
-
-# Use FetchContent to build SFML and CSFML alongside the client
+# Fetch SFML and CSFML from GitHub (same approach as cmake-sfml-project template)
 include(FetchContent)
 
 # Disable unnecessary SFML/CSFML targets
@@ -27,12 +16,18 @@ set(CSFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
 set(CSFML_BUILD_TEST_SUITE OFF CACHE BOOL "" FORCE)
 
 FetchContent_Declare(SFML
-    SOURCE_DIR ${SFML_SOURCE_DIR}
-)
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 3.1.0
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+    SYSTEM)
 
 FetchContent_Declare(CSFML
-    SOURCE_DIR ${CSFML_SOURCE_DIR}
-)
+    GIT_REPOSITORY https://github.com/SFML/CSFML.git
+    GIT_TAG 3.0.0
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+    SYSTEM)
 
 # Make SFML available first. This creates SFML::System, SFML::Graphics, etc.
 # Build SFML as shared libraries so CSFML can link against them.
