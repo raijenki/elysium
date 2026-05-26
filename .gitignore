@@ -3,6 +3,7 @@ csfml/
 refs/
 SFML-3.1.0/
 CSFML-3.0.0/
+client/build
 client/client
 client/*.o
 client/src/*.o
