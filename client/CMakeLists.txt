@@ -76,6 +76,7 @@ target_link_libraries(client PRIVATE
 
 if(WIN32)
     target_link_libraries(client PRIVATE ws2_32)
+    target_compile_definitions(client PRIVATE strncasecmp=_strnicmp strcasecmp=_stricmp)
 else()
     target_link_libraries(client PRIVATE stdc++ m)
 endif()
