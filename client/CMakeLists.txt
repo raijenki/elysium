@@ -15,12 +15,23 @@ if(PKG_CONFIG_FOUND)
 endif()
 
 if(NOT CSFML_GRAPHICS_FOUND)
-    # Fallback: assume CSFML is in a local deps directory
-    set(CSFML_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/deps/usr/include" CACHE PATH "CSFML include dir")
-    set(CSFML_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/usr/lib/x86_64-linux-gnu" CACHE PATH "CSFML lib dir")
-    include_directories(${CSFML_INCLUDE_DIR})
-    link_directories(${CSFML_LIB_DIR})
-    set(CSFML_LIBS csfml-graphics csfml-window csfml-system csfml-network csfml-audio)
+    # Tier 2: find_path/find_library (Homebrew, MSYS2, system installs)
+    find_path(CSFML_INCLUDE_DIR SFML/Graphics.h)
+    find_library(CSFML_GFX_LIB csfml-graphics)
+
+    if(CSFML_INCLUDE_DIR AND CSFML_GFX_LIB)
+        message(STATUS "Found CSFML via find_path: ${CSFML_INCLUDE_DIR}")
+        include_directories(${CSFML_INCLUDE_DIR})
+        set(CSFML_LIBS csfml-graphics csfml-window csfml-system csfml-network csfml-audio)
+    else()
+        # Tier 3: local deps directory (Linux bundled deps)
+        message(STATUS "CSFML not found, using local deps fallback")
+        set(CSFML_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/deps/usr/include" CACHE PATH "CSFML include dir")
+        set(CSFML_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/usr/lib/x86_64-linux-gnu" CACHE PATH "CSFML lib dir")
+        include_directories(${CSFML_INCLUDE_DIR})
+        link_directories(${CSFML_LIB_DIR})
+        set(CSFML_LIBS csfml-graphics csfml-window csfml-system csfml-network csfml-audio)
+    endif()
 else()
     include_directories(${CSFML_GRAPHICS_INCLUDE_DIRS})
     link_directories(${CSFML_GRAPHICS_LIBRARY_DIRS})
@@ -52,7 +63,7 @@ else()
     target_link_libraries(client ${CSFML_LIBS} stdc++ m)
 endif()
 
-if(NOT CSFML_GRAPHICS_FOUND)
+if(CSFML_LIB_DIR)
     set_target_properties(client PROPERTIES
         BUILD_RPATH "${CSFML_LIB_DIR}"
         INSTALL_RPATH "${CSFML_LIB_DIR}"

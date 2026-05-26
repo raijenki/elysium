@@ -38,6 +38,7 @@ jobs:
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-csfml
+            mingw-w64-x86_64-pkg-config
             make
 
       - name: Build server (Unix)
@@ -47,12 +48,20 @@ jobs:
           make clean
           make
 
-      - name: Build client (Unix)
-        if: runner.os != 'Windows'
+      - name: Build client (Linux)
+        if: runner.os == 'Linux'
         run: |
           cd client
           rm -rf build
           cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: Build client (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          cd client
+          rm -rf build
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix)"
           cmake --build build
 
       - name: Build server (Windows)
